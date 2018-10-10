@@ -2,122 +2,40 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+[micro-ROS](https://cordis.europa.eu/project/rcn/213167_en.html) puts ROS2 onto microcontrollers, making them first class participants of the ROS 2 environment.
 
-[Link to another page](./another-page.html).
+From the level of ROS onwards, we strive to re-use as much as possible from ROS 2, and be as compatible with it as possible. In some areas, we will probably do custom implementations optimized for resource use. This will definitely include TF, and maybe other areas such as scheduling. These optimized implementations may also be interesting for use with "normal" ROS2.
 
-There should be whitespace between paragraphs.
+We'll update this README as we proceed. For now, you can check out our work on:
+ - Real-Time Operating System: [https://github.com/microROS/NuttX]()
+ - Reference hardware: [https://github.com/microROS/hardware]()
+ - Build infrastructure for embedded development using docker: [https://github.com/microROS/docker]()
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+### Architecture
+The micro-ROS architecture is a work in progress, and while we do have some ideas, for now, lets just say that it's modular and built from the following ingredients:
 
-# Header 1
+ - A Real-Time Operating System (RTOS). This includes at least NuttX, and possibly others.
+ - An embedded communications middleware, at least [Micro XRCE-DDS](https://github.com/eProsima/Micro-XRCE-DDS)
+ - The [ROS client library](http://github.com/microROS/rcl)
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
+A first approach (yet not final) of the architecture is represented below:
 
 ```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
++-------------------------------------------------------------+
+|               embedded application layer                    |
++-------------------------------------------------------------+
+|                   ROS client library                        |
++-------------------------------------------------------------+
+|             micro-ROS middleware interface                  |
++-------------------+---------------------+-------------------+
+|    middleware 1   |     middleware 2    |   middleware 3    |
+|    (micro-RTPS)   |                     |                   |
++-------------------+---------------------+-------------------+
+|      Real-Time Operating System (RTOS) abstractions         |
++------------------+------------------+-----------------------+
+|         RTOS 1   |       RTOS 2     |        RTOS 3         |
+|        (NuttX)   |                  |                       |
++------------------+------------------+-----------------------+
+|                         hardware                            |
++-------------------------------------------------------------+
 ```
