@@ -20,22 +20,4 @@ The micro-ROS architecture is a work in progress. It's modular and built with th
 
 A first approach (yet not final) of the architecture is represented below:
 
-```
-+-------------------------------------------------------------+
-|               embedded application layer                    |
-+-------------------------------------------------------------+
-|                   ROS client library                        |
-+-------------------------------------------------------------+
-|             micro-ROS middleware interface                  |
-+-------------------+---------------------+-------------------+
-|    middleware 1   |     middleware 2    |   middleware 3    |
-|    (micro-RTPS)   |                     |                   |
-+-------------------+---------------------+-------------------+
-|      Real-Time Operating System (RTOS) abstractions         |
-+------------------+------------------+-----------------------+
-|         RTOS 1   |       RTOS 2     |        RTOS 3         |
-|        (NuttX)   |                  |                       |
-+------------------+------------------+-----------------------+
-|                         hardware                            |
-+-------------------------------------------------------------+
-```
+![](assets/img/micro-ROS_architecture.png)
