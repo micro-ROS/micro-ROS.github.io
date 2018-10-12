@@ -12,7 +12,7 @@ We'll update this README as we proceed. For now, you can check out our work on:
  - Build infrastructure for embedded development using docker: [https://github.com/microROS/docker]()
 
 ### Architecture
-The micro-ROS architecture is a work in progress, and while we do have some ideas, for now, lets just say that it's modular and built from the following ingredients:
+The micro-ROS architecture is a work in progress. It's modular and built with the following ingredients:
 
  - A Real-Time Operating System (RTOS). This includes at least NuttX, and possibly others.
  - An embedded communications middleware, at least [Micro XRCE-DDS](https://github.com/eProsima/Micro-XRCE-DDS)
