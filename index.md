@@ -21,3 +21,5 @@ The micro-ROS architecture is a work in progress. It's modular and built with th
 A first approach (yet not final) of the architecture is represented below:
 
 ![](assets/img/micro-ROS_architecture.png)
+
+Got questions, [open an issue](https://github.com/microROS/micro-ROS/issues/new) and we'll get back to you as soon as possible.
