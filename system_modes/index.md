@@ -1,15 +1,15 @@
 # Lifecycle and System Modes
 
 Table of Contents
-*   [Introduction and goal](#introductionandgoal)
+*   [Introduction and goal](#introduction-and-goal)
 *   [Requirements](#requirements)
-*   [Background: ROS 2 Lifecycle](#backgroundros2lifecycle)
-*   [Main features](#mainfeatures)
-    *   [Extended lifecycle](#extendedlifecycle)
-    *   [System hierarchy and modes](#systemhierarchyandmodes)
-    *   [Mode manager](#modemanager)
+*   [Background: ROS 2 Lifecycle](#background-ros-2-lifecycle)
+*   [Main features](#main-features)
+    *   [Extended lifecycle](#extended-lifecycle)
+    *   [System hierarchy and modes](#system-hierarchy-and-modes)
+    *   [Mode manager](#mode-manager)
 *   [Roadmap](#roadmap)
-*   [Related Work](#relatedwork)
+*   [Related Work](#related-work)
 *   [Acknowledgments](#acknowledgments)
 
 TODO CHECK FUNCTIONING OF THE LINKS ABOVE (AND THE GENERATED IDS FOR THE SECTION HEADERS).
