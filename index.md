@@ -13,11 +13,10 @@ We'll update this README as we proceed. For now, you can check out our work on:
  - Micro-ROS-Agent package implementation: [micro-ROS-Agent](https://github.com/microROS/micro-ROS-Agent)
  - ROS Client Library for the C language: [rclc](https://github.com/microROS/rclc)
  - Sample code using rclc and rclcpp implementations: [micro-ROS-demos](https://github.com/microROS/micro-ROS-demos)
-  - System modes and system hierarchy: [micro-system-modes](https://github.com/microROS/system_modes)
+ - Library to support the implementation of language-specific ROS Client Libraries: [rcl](https://github.com/microROS/rcl)
  - Real-Time Operating System: [https://github.com/microROS/NuttX](https://github.com/microROS/NuttX)
  - Micro-ROS in RTOS example applications: [apps](https://github.com/microROS/apps)
- - Real-Time Operating System: [https://github.com/microROS/NuttX](https://github.com/microROS/NuttX)
- - Micro-ROS in RTOS example applications: [apps](https://github.com/microROS/apps)
+ - System modes and system hierarchy: [micro-system-modes](https://github.com/microROS/system_modes)
  - Reference hardware: [https://github.com/microROS/hardware](https://github.com/microROS/hardware)
  - Build infrastructure for embedded development using docker: [https://github.com/microROS/docker](https://github.com/microROS/docker)
 
