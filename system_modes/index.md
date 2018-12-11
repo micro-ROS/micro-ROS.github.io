@@ -10,11 +10,8 @@ Table of Contents
     - [System Hierarchy and Modes](#system-hierarchy-and-modes)
     - [Mode manager](#mode-manager)
   - [Roadmap](#roadmap)
-  - [Related Work](#related-work)
-    - [AADL](#aadl)
   - [Acknowledgments](#acknowledgments)
 
-TODO CHECK FUNCTIONING OF THE LINKS ABOVE (AND THE GENERATED IDS FOR THE SECTION HEADERS).
 
 ## Introduction and Goal
 
@@ -49,7 +46,7 @@ The envisioned key elements to achieve this goal are:
 
 ## Requirements
 
-The list of requirements is maintained in the doc folder of the micro-ROS system modes repository at **TODO INSERT LINK**.
+The list of requirements is maintained in the doc folder of the micro-ROS system modes repository, at https://github.com/microROS/system_modes/system_modes/doc/requirements.md
 
 
 ## Background: ROS 2 Lifecycle
@@ -103,15 +100,6 @@ https://github.com/microROS/system_modes/system_modes_examples/
 *   Lightweight concept for specifying error propagations between nodes and subsystems.
 
 _Note: The extension of the ACTIVE state by modes (substates) was originally planned for 2020 but brought forward in 2018._
-
-
-## Related Work
-
-In this section, we provide an overview to related approaches and link to the corresponding APIs.
-
-### AADL
-
-INSERT SOME WORDS ON AADL AND LINK DOCUMENTATION - OR REMOVE THIS SECTION.
 
 
 ## Acknowledgments
