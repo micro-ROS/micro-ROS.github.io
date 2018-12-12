@@ -259,6 +259,7 @@ Also, different execution frequencies cannot be modeled by a single instance of 
 The option to execute threads independent of the predefined wakeup-hooks is very useful, e.g. for diagnostics. The concept of the Barrier is useful for satisfying functional dependencies which need to be considered in the execution order.
 
 
+<!--
 ### Orocos
 
 TODO INSERT DESCRIPTION ON PARTIAL ORDER SCHEDULING.
@@ -271,7 +272,7 @@ TODO INSERT DESCRIPTION ON MODEL-BASED APPROACH BY COSIMA (ON TOP OF OROCOS) FRO
 D. L. Wigand, P. Mohammadi, E. M. Hoffman, N. G. Tsagarakis, J. J. Steil and S. Wrede, "An open-source architecture for simulation, execution and analysis of real-time robotics systems," 2018 IEEE International Conference on Simulation, Modeling, and Programming for Autonomous Robots (SIMPAR), Brisbane, QLD, 2018, pp. 93-100.
 doi: 10.1109/SIMPAR.2018.8376277
 URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8376277&isnumber=8376259
-
+-->
 
 
 ## References and Links
