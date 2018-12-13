@@ -16,6 +16,7 @@ We'll update this README as we proceed. For now, you can check out our work on:
  - Library to support the implementation of language-specific ROS Client Libraries: [rcl](https://github.com/microROS/rcl)
  - Real-Time Operating System: [https://github.com/microROS/NuttX](https://github.com/microROS/NuttX)
  - Micro-ROS in RTOS example applications: [apps](https://github.com/microROS/apps)
+ - Predictable scheduling and execution:  [real-time_executor](real-time_executor/)
  - System modes and system hierarchy: [system-modes](system_modes/)
  - Reference hardware: [https://github.com/microROS/hardware](https://github.com/microROS/hardware)
  - Build infrastructure for embedded development using docker: [https://github.com/microROS/docker](https://github.com/microROS/docker)
