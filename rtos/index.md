@@ -12,7 +12,7 @@ Due to the benefits explained in the introduction, micro-ROS integrates RTOS in 
 
 ## NuttX RTOS
 
-[NuttX](http://www.nuttx.org/) is a RTOS that emphasizes its compliance with standards (such us POSIX) and small footprint, it can be fit in 8 to 32 bit microcontrollers. The use of POSIX and ANSI standards, together with mimic it does to UNIX APIs, makes it friendly to the developers that are used to Linux. The RTOS is licensed under BSD license and makes use of GNU toolchain. In order to obtain more information, please visit [NuttX overview page](http://nuttx.org/Documentation/NuttX.html#overview).
+[NuttX](http://www.nuttx.org/) is a RTOS that emphasizes its compliance with standards (such us POSIX) and small footprint, it can be fit in 8 to 32 bit microcontrollers. The use of POSIX and ANSI standards, together with the mimic it does to UNIX APIs, makes it friendly to the developers that are used to Linux. The RTOS is licensed under BSD license and makes use of GNU toolchain. In order to obtain more information, please visit [NuttX overview page](http://nuttx.org/Documentation/NuttX.html#overview).
 
 ![NuttX_logo](https://upload.wikimedia.org/wikipedia/en/b/b0/NuttX_logo.png)
 
@@ -29,4 +29,4 @@ The STM32LDiscovery board contains a STM32L ultra-low power packaging and consis
 
 In order to obtain more information about how to get started using this RTOS, please check our [documentation repository](https://github.com/microROS/micro-ROS-doc), where tutorials and getting started material is offered.
 
-We have created several Docker containers for development purposes and precompiled examples, in order to rapidly start testing. These Docker files have been uploaded under the [micro-ROS Docker repository](https://github.com/microROS/docker).
+We have created several Docker containers, where some are meant for development purposes and other to execute precompiled examples. These Docker files have been gathered together in the [micro-ROS Docker repository](https://github.com/microROS/docker).
