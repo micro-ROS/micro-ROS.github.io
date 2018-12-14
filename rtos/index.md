@@ -19,7 +19,7 @@ Due to the benefits explained in the introduction, micro-ROS integrates RTOS in 
 
 ## Supported development boards
 
-For development purposes, project consortium has established two development boards as development blueprints: [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) and the STM32LDiscovery](https://www.st.com/en/evaluation-tools/32l152cdiscovery.html). Both development board schematics are open, promoting new hardware designs based on such a platforms.
+For development purposes, project consortium has established two development boards as development blueprints: [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) and the [STM32LDiscovery](https://www.st.com/en/evaluation-tools/32l152cdiscovery.html). Both development board schematics are open, promoting new hardware designs based on such a platforms.
 
 The first one consists on a ARM Cortex-M4F MCU with 196 KB of RAM and 1 MB of flash. It also offers Arduino-like expansion pins and Ethernet communication means.
 
