@@ -2,12 +2,12 @@
 
 Table of contents
 
-- [Embedded TF](#embedded-tf)
-  - [Introduction and Goal](#introduction-and-goal)
-  - [Requirements](#requirements)
-  - [Design](#design)
-  - [Implementation of tf2_filter](#implementation-of-tf2filter)
-  - [Acknowledgments](#acknowledgments)
+- [Introduction and Goal](#introduction-and-goal)
+- [Requirements](#requirements)
+- [Design](#design)
+- [Implementation of tf2_filter](#implementation-of-tf2filter)
+- [Roadmap](#roadmap)
+- [Acknowledgments](#acknowledgments)
 
 
 ## Introduction and Goal
@@ -25,6 +25,18 @@ Embedded TF requirements are documented at:  [github.com/microROS/geometry2/blob
 ## Design
 
 The Embedded TF design is documented at:  [github.com/microROS/geometry2/blob/ros2/tf2_filter/docs/design.md](https://github.com/microROS/geometry2/blob/ros2/tf2_filter/docs/design.md).
+
+
+## Roadmap
+
+**2018**
+* Static filter approach in the agent allowing to specify the parts of the kinematic chain that are relevant for an application component on micro-ROS.
+
+**2019**
+* Design and implement an embedded TF implementation which is integrated with the real-time executor in a way that removes the need for costly synchronization primitives.
+
+**2020**
+* Design and implement an API extension, as well as a reference implementation for custom transform representations that increase run-time efficiency.
 
 
 ## Implementation of tf2_filter
