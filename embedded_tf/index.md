@@ -27,6 +27,11 @@ Embedded TF requirements are documented at:  [github.com/microROS/geometry2/blob
 The Embedded TF design is documented at:  [github.com/microROS/geometry2/blob/ros2/tf2_filter/docs/design.md](https://github.com/microROS/geometry2/blob/ros2/tf2_filter/docs/design.md).
 
 
+## Implementation of tf2_filter
+
+Implementation of tf2_filter for ROS2 and micro-ROS can be found at:  [github.com/microROS/geometry2/blob/ros2/tf2_filter/](https://github.com/microROS/geometry2/blob/ros2/tf2_filter/).
+
+
 ## Roadmap
 
 **2018**
@@ -37,11 +42,6 @@ The Embedded TF design is documented at:  [github.com/microROS/geometry2/blob/ro
 
 **2020**
 * Design and implement an API extension, as well as a reference implementation for custom transform representations that increase run-time efficiency.
-
-
-## Implementation of tf2_filter
-
-Implementation of tf2_filter for ROS2 and micro-ROS can be found at:  [github.com/microROS/geometry2/blob/ros2/tf2_filter/](https://github.com/microROS/geometry2/blob/ros2/tf2_filter/).
 
 
 ## Acknowledgments
