@@ -15,14 +15,14 @@ For each message, one transformation library is required by the integration serv
 
 ![image](http://www.plantuml.com/plantuml/svg/ZP712i8m38RlUOempuKvfrv49gYmap05BmCfhfs5hOMslhzjLuQYu1e8_E5Fyf4Mnb9jdtq77UCMhK8jseV5HcXsjq99uA9ZcA1xjQnEvmnxPWnjMIrzBK5giDpVvlXXF9RNNNNuRSqGf6f6guymr-sERHTDfU5AzzGJ39Rt2GkShJddQJeHBfyEj_o6YtQ75pRyWrkDS03XC8Hi1sW8ESeio1mtX0nT47AK3gDWil7_yW80)
 
-In the implementation of these transformation libraries, the user needs to be able to serialisation/deserialization ROS2 messages.
-Also, an NGSIv2 serialisation/deserialization mechanism will be used.
+In the implementation of these transformation libraries, the user needs to be able to serialisation/deserialisation ROS2 messages.
+Also, an NGSIv2 serialisation/deserialisation mechanism will be used.
 
-The FIROS2 package provides a standard NGSIv2 serialisation/deserialization mechanisms, but ROS2 serialisation/deserialization is not offered due to its dependencies with the message type.
+The FIROS2 package provides a standard NGSIv2 serialisation/deserialisation mechanisms, but ROS2 serialisation/deserialisation is not offered due to its dependencies with the message type.
 
 For solving this issue, various methods to get it are proposed:
 
-#### Use serialisation/deserialization method provided by the middleware layer
+#### Use serialisation/deserialisation method provided by the middleware layer
 
 This is currently the method used in micro-ROS - FIROS 2 integration.
 
@@ -52,23 +52,23 @@ This is a portion of code used in the transformation library implementation.
         return;
     }
 
-    // Transformation and NGSIv2 serialization code here
+    // Transformation and NGSIv2 serialisation code here
 
     }
 ```
 
 Note the call to ROS 2 interface __rosidl_typesupport_cpp::get_message_type_support_handle__
 
-#### Use serialization/deserialization method for an specific type support
+#### Use serialisation/deserialisation method for an specific type support
 
 In this case, the transformation library will use one specific type support to serialise/deserialise the bridged ROS2 messages.
 In micro-ROS case, the implementation to be used will be rosidl_typesupport_microxrcedds.
 This method is trivial to develop as it does not require additional source code on the micro-ROS side.
 
-In the case of micro-ROS, the transformation library should use the serialisation/deserialization API exposed by its typesupport, rosidl_typesupport_microxrcedds.
+In the case of micro-ROS, the transformation library should use the serialisation/deserialisation API exposed by its typesupport, rosidl_typesupport_microxrcedds.
 This mechanism requires the user to have access to the typesupport API, which sometimes is not always possible.
 
-#### Used serialization/deserialization method generated from IDL file
+#### Used serialisation/deserialisation method generated from IDL file
 
 In this case, transformation library will use generated code to serialise/deserialise the bridged ROS2 messages.
 The generated code may be made using an IDL parser tool.
