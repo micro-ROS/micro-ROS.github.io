@@ -21,10 +21,13 @@ We'll update this README as we proceed. For now, you can check out our work on:
  - Embedded transform (tf) library: [embedded_tf](embedded_tf/)
  - Reference hardware: [https://github.com/microROS/hardware](https://github.com/microROS/hardware)
  - Build infrastructure for embedded development using docker: [https://github.com/microROS/docker](https://github.com/microROS/docker)
+ - FIWARE interoperability: [FIROS2](FIROS2/)
 
 ### Interoperability
 
 In the road-map of the project, interoperability tasks are also considered. Apart from ROS (1) and ROS 2, [H-ROS](https://acutronicrobotics.com/modularity/H-ROS/) interoperability is going to be also granted, thanks to HRIM.  [HRIM](https://acutronicrobotics.com/modularity/hrim/) is an information model for robots that facilitates interoperability among modules from different vendors of robot hardware.
+
+Interoperability between micro-ROS and FIROS 2 is also in the road-map of the project. POC developed and first designs and integration ideas can be checked in the [FIROS2](FIROS2/) subpage.
 
 ### Architecture
 The micro-ROS architecture is a work in progress. It's modular and built with the following ingredients:
