@@ -203,7 +203,7 @@ For this, execute the following instructions.
 ```shell
 (
 sudo docker pull microros/linux
-sudo docker run  -it --rm  --privileged --net=host qeyup/ros2_devtools
+sudo docker run  -it --rm  --privileged --net=host microros/linux
 )
 ```
 
