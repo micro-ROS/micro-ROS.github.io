@@ -36,11 +36,11 @@ exclude:
 timezone: Europe/Berlin
 defaults:
 - scope:
-    path: _posts
+    path: _showcases
     type: posts
   values:
     layout: post
-    sectionid: blog
+    sectionid: showcases
 
 - scope:
     path: _docs
@@ -51,10 +51,20 @@ defaults:
     seo:
       type: "WebPage"
 
+- scope:
+    path: _tutorials
+    type: docs
+  values:
+    layout: docs
+    sectionid: tutorials
+
 collections:
   docs:
     permalink: /:collection/:path/
     output: true
-  posts:
+  tutorials:
+    permalink: /:collection/:path/
+    output: true
+  showcases:
     permalink: /blog/:year/:month/:day/:title/
     output: true
