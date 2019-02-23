@@ -1,7 +1,5 @@
 ---
-title: Welcome
-permalink: /docs/home/
-redirect_from: /docs/index.html
+unpublished: true
 ---
 
 ## Getting started
