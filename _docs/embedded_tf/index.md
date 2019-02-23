@@ -1,4 +1,8 @@
-# Embedded TF
+---
+title: Embedded Transform (TF)
+redirect_from: /embedded_tf/
+permalink: /docs/embedded_tf/
+---
 
 Table of contents
 

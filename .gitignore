@@ -4,3 +4,5 @@ _site
 *.gem
 .bundle
 vendor/bundle
+Gemfile.lock
+
