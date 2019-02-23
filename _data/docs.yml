@@ -12,5 +12,8 @@
 
 - title: Concepts
   docs:
+   - rtos
    - real-time_executor
    - embedded_tf
+   - system_modes
+   - FIROS2

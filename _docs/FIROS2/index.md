@@ -1,8 +1,9 @@
 ---
-layout: default 
+title: micro-ROS & FIWARE
+permalink: /docs/FIROS2/
+redirect_from: /FIROS2/
 ---
 
-# micro-ROS & FIWARE
 
 ## Interoperability
 

@@ -1,3 +1,9 @@
+---
+title: Real-Time Operating Systems (RTOS)
+permalink: /docs/rtos/
+redirect_from: /rtos/
+---
+
 # RTOS
 
 ## Introduction
