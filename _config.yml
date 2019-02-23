@@ -1,9 +1,7 @@
 # Site settings
 title: microROS
-email: ingo.luetkebohle@de.bosch.com
 description: >
-  Jekyll Template for Project Websites
-  providing documentation and blog post pages.
+  ROS2 for micro-controllers
 lang: en-US
 
 baseurl: "" # the subpath of your site, e.g. /blog/
@@ -66,5 +64,6 @@ collections:
     permalink: /:collection/:path/
     output: true
   showcases:
-    permalink: /blog/:year/:month/:day/:title/
+#    permalink: /blog/:year/:month/:day/:title/
+    permalink: /:collection/:path/
     output: true
