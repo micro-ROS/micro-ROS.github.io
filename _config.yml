@@ -49,13 +49,6 @@ defaults:
     seo:
       type: "WebPage"
 
-- scope:
-    path: _tutorials
-    type: docs
-  values:
-    layout: docs
-    sectionid: tutorials
-
 collections:
   docs:
     permalink: /:collection/:path/

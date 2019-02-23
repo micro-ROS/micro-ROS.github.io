@@ -2,6 +2,11 @@
   docs:
    - home
 
+# placeholder for tutorials...
+- title: Tutorials
+  docs:
+   - tutorials
+
 - title: Concepts
   docs:
    - rtos
