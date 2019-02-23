@@ -1,4 +1,8 @@
-# Real-Time Executor
+---
+title: Real-Time Executor
+redirect_from: /real-time_executor/
+permalink: /docs/real-time_executor/
+---
 
 Table of contents
 
