@@ -1,40 +1,23 @@
-# Jekyll Doc Theme
+# microROS web site
 
-Go to [the website](https://aksakalli.github.io/jekyll-doc-theme/) for detailed information and demo.
+This is the source for the microROS website, available 
+at [https://microros.github.io/](https://microros.github.io/)
+
+## Editing
+
+See [editing instructions](EDITING-INSTRUCTIONS.md)
 
 ## Running locally
 
-You need Ruby and gem before starting, then:
+To test locally, you need a local version of Jekyll, the site-generation 
+engine used by Github Pages. See [Jekyll Quickstart](https://jekyllrb.com/docs/)
+for installation instructions.
 
+After installing Jekyll, install all dependencies by running
 ```bash
-# install bundler
-gem install bundler
-
-# clone the project
-git clone https://github.com/aksakalli/jekyll-doc-theme.git
-cd jekyll-doc-theme
-
-# run jekyll with dependencies
-bundle exec jekyll serve
-```
-
-## Docker
-
-Alternatively, you can deploy it using the multi-stage [Dockerfile](Dockerfile)
-that serves files from Nginx for better performance in production.
-
-Build the image for your site's `JEKYLL_BASEURL`:
-
-```
-docker build --build-arg JEKYLL_BASEURL="/" -t jekyll-doc-theme .
-```
-
-and serve it:
-
-```
-docker run -p 8080:80 jekyll-doc-theme
+bundle install
 ```
 
 ## License
 
-Released under [the MIT license](LICENSE).
+Released under [the Apache Public License 2.0](LICENSE).
