@@ -3,7 +3,7 @@ permalink: /docs/home/
 title: Overview
 ---
 
-[micro-ROS](https://cordis.europa.eu/project/rcn/213167_en.html) puts ROS2 onto microcontrollers, making them first class participants of the ROS 2 environment.
+[microROS](https://cordis.europa.eu/project/rcn/213167_en.html) puts ROS2 onto microcontrollers, making them first class participants of the ROS 2 environment.
 
 ## Tutorials
 
