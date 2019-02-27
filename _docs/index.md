@@ -27,7 +27,7 @@ We're basically following the ROS2 architecture and make use of its middleware p
 ## Source Code Repositories
 
  - Middleware
-  -  RMW layer [rmw-microxrcedds](https://github.com/microROS/rmw-microxrcedds)
+  -  RMW adapter for Micro-XRCE-DDS [rmw-microxrcedds](https://github.com/microROS/rmw-microxrcedds)
   - Type Support [rosidl_typesupport_microxrcedds](https://github.com/microROS/rosidl_typesupport_microxrcedds)
   - "Agent" (bridge) [micro-ROS-Agent](https://github.com/microROS/micro-ROS-Agent)
  - RTOS
