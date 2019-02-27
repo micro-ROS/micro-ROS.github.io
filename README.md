@@ -21,6 +21,3 @@ bundle install
 ## License
 
 Released under [the Apache Public License 2.0](LICENSE).
-
-This repository contains content from 3rd parties, as outlined
-in [3rdparty_licenses.txt](3rdparty_licenses.txt).
