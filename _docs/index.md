@@ -11,7 +11,7 @@ See [Tutorial List](/docs/tutorials/).
 
 ## Architecture
 
-We're basically following the ROS2 architecture and make use of its middleware pluggability to use DDS-XRCE, which is suitable for micro-controllers. Moreover, we use an RTOS (NuttX) instead of Linux. On micro-controllers many different RTOS's are used, so we also add an RTOS abstraction layer (AL), to make porting to other RTOS possible.
+We're basically following the ROS2 architecture and make use of its middleware pluggability to use DDS-XRCE, which is suitable for microcontrollers. Moreover, we use an RTOS (NuttX) instead of Linux. On microcontrollers many different RTOS's are used, so we also add an RTOS abstraction layer (AL), to make porting to other RTOS possible.
 
 ![](/img/micro-ROS_architecture.png)
 
