@@ -17,7 +17,6 @@ We're basically following the ROS2 architecture and make use of its middleware p
 
 ## Concept Documentation
 
- - Library to support the implementation of language-specific ROS Client Libraries: [rcl](https://github.com/microROS/rcl)
  - Predictable scheduling and execution:  [real-time_executor](real-time_executor/)
  - System modes and system hierarchy: [system_modes](system_modes/)
  - Embedded transform (tf) library: [embedded_tf](embedded_tf/)
