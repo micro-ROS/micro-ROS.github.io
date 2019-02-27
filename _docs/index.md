@@ -3,7 +3,7 @@ permalink: /docs/home/
 title: Overview
 ---
 
-[micro-ROS](https://cordis.europa.eu/project/rcn/213167_en.html) puts ROS2 onto microcontrollers, making them first class participants of the ROS 2 environment.
+[microROS](https://cordis.europa.eu/project/rcn/213167_en.html) puts ROS2 onto microcontrollers, making them first class participants of the ROS 2 environment.
 
 ## Tutorials
 
@@ -11,13 +11,12 @@ See [Tutorial List](/docs/tutorials/).
 
 ## Architecture
 
-We're basically following the ROS2 architecture and make use of its middleware pluggability to use DDS-XRCE, which is suitable for micro-controllers. Moreover, we use an RTOS (NuttX) instead of Linux. On micro-controllers many different RTOS's are used, so we also add an RTOS abstraction layer (AL), to make porting to other RTOS possible.
+We're basically following the ROS2 architecture and make use of its middleware pluggability to use [DDS-XRCE](https://www.omg.org/spec/DDS-XRCE/), which is suitable for microcontrollers. Moreover, we use an RTOS (NuttX) instead of Linux. On microcontrollers many different RTOS's are used, so we also add an RTOS abstraction layer (AL), to make porting to other RTOS possible.
 
 ![](/img/micro-ROS_architecture.png)
 
 ## Concept Documentation
 
- - Library to support the implementation of language-specific ROS Client Libraries: [rcl](https://github.com/microROS/rcl)
  - Predictable scheduling and execution:  [real-time_executor](real-time_executor/)
  - System modes and system hierarchy: [system_modes](system_modes/)
  - Embedded transform (tf) library: [embedded_tf](embedded_tf/)
@@ -28,7 +27,7 @@ We're basically following the ROS2 architecture and make use of its middleware p
 ## Source Code Repositories
 
  - Middleware
-  -  RMW layer [rmw-microxrcedds](https://github.com/microROS/rmw-microxrcedds)
+  -  RMW adapter for Micro-XRCE-DDS [rmw-microxrcedds](https://github.com/microROS/rmw-microxrcedds)
   - Type Support [rosidl_typesupport_microxrcedds](https://github.com/microROS/rosidl_typesupport_microxrcedds)
   - "Agent" (bridge) [micro-ROS-Agent](https://github.com/microROS/micro-ROS-Agent)
  - RTOS
