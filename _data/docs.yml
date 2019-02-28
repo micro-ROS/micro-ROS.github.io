@@ -1,11 +1,13 @@
 - title: General
   docs:
    - home
+   - hardware_support
 
 # placeholder for tutorials...
 - title: Tutorials
   docs:
    - tutorials
+   - tutorials/debugging-gdb-openocd
 
 - title: Concepts
   docs:
