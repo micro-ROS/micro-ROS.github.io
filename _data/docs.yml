@@ -8,6 +8,7 @@
   docs:
    - tutorials
    - tutorials/debugging-gdb-openocd
+   - tutorials/debugging-vscode
 
 - title: Concepts
   docs:
