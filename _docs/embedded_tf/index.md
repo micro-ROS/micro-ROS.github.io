@@ -9,7 +9,7 @@ Table of contents
 - [Introduction and Goal](#introduction-and-goal)
 - [Requirements](#requirements)
 - [Design](#design)
-- [Implementation of tf2_filter](#implementation-of-tf2filter)
+- [Implementation of tf2_filter](#implementation-of-tf2_filter)
 - [Roadmap](#roadmap)
 - [Acknowledgments](#acknowledgments)
 
