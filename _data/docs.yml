@@ -5,7 +5,8 @@
 # placeholder for tutorials...
 - title: Tutorials
   docs:
-   - getting_started
+   - tutorials/getting_started
+   - tutorials/getting_started_embedded
 
 - title: Concepts
   docs:
