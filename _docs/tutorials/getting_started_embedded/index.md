@@ -12,7 +12,7 @@ Table of contents
 
 The aim of this section is to be able of running micro-ROS architecture examples using Docker files at one of the supported embedded boards.
 
-For that purpose, we are going to use a Olimex STM32-E407 board, that contains and Cortex-M4F microcontroller.
+For that purpose, we are going to use a [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) board, that contains and Cortex-M4F microcontroller.
 
 
 ## Running micro-ROS example
