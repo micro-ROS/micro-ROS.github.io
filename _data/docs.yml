@@ -7,6 +7,8 @@
   docs:
    - tutorials/getting_started
    - tutorials/getting_started_embedded
+   - tutorials/advanced
+   - tutorials/advanced/nuttx_getting_started
 
 - title: Concepts
   docs:
