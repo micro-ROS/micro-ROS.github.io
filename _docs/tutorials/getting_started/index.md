@@ -1,7 +1,6 @@
 ---
 title: Getting Started with your computer (WIP)
 permalink: /docs/tutorials/getting_started/
-redirect_from: /getting_started/
 ---
 
 Table of contents
