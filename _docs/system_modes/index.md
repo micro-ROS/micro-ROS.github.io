@@ -1,7 +1,7 @@
 ---
 title: Lifecycle and System Modes
 permalink: /docs/system_modes/
-redirect_from: system_modes
+redirect_from: /system_modes/
 ---
 
 
