@@ -5,7 +5,11 @@
 # placeholder for tutorials...
 - title: Tutorials
   docs:
-   - tutorials
+   - tutorials/getting_started
+   - tutorials/getting_started_embedded
+   - tutorials/getting_started_simulator
+   - tutorials/advanced
+   - tutorials/advanced/nuttx_getting_started
 
 - title: Concepts
   docs:
