@@ -75,6 +75,8 @@ Open the target configuration and locate a line starting with `$_TARGETNAME conf
 
 ### Compile OpenOCD
 
+**NOTE** The Sony OpenOCD branch has some compile issues on Ubuntu 18.04 right now, because it uses a newer compiler. The easiest "solution" is to remove the `-Werror` from your compile. We'll submit a patch soon.
+
 To compile and install OpenOCD, after you made your changes, run
 ```bash
 ./bootstrap
