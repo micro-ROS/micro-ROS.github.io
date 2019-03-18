@@ -4,16 +4,18 @@
    - hardware_support
 
 # placeholder for tutorials...
-- title: Tutorials
+- title: Basic Tutorials
   docs:
    - tutorials
    - tutorials/getting_started
    - tutorials/getting_started_embedded
    - tutorials/getting_started_simulator
-   - tutorials/advanced
-   - tutorials/advanced/nuttx_getting_started
-   - tutorials/advanced/debugging-gdb-openocd
-   - tutorials/advanced/debugging-vscode
+ 
+ - title: Advanced Tutorials
+   docs:
+    - tutorials/advanced/nuttx_getting_started
+    - tutorials/advanced/debugging-gdb-openocd
+    - tutorials/advanced/debugging-vscode
 
 - title: Concepts
   docs:
