@@ -20,7 +20,7 @@ Due to the benefits explained in the introduction, micro-ROS integrates RTOS in 
 
 [NuttX](http://www.nuttx.org/) is a RTOS that emphasizes its compliance with standards (such us POSIX) and small footprint, it can be fit in 8 to 32 bit microcontrollers. The use of POSIX and ANSI standards, together with the mimic it does to UNIX APIs, makes it friendly to the developers that are used to Linux. The RTOS is licensed under BSD license and makes use of GNU toolchain. In order to obtain more information, please visit [NuttX overview page](http://nuttx.org/Documentation/NuttX.html#overview).
 
-![NuttX_logo](https://upload.wikimedia.org/wikipedia/en/b/b0/NuttX_logo.png)
+![NuttX_logo](https://upload.wikimedia.org/wikipedia/commons/b/b0/NuttX_logo.png)
 
 
 ## Supported development boards
