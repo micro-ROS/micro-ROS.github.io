@@ -1,7 +1,7 @@
 ---
 title: Debugging a NuttX target with GDB and OpenOCD
 author: Ingo Lütkebohle
-permalink: /docs/tutorials/debugging-gdb-openocd/
+permalink: /docs/tutorials/advanced/debugging-gdb-openocd/
 ---
 
 Rare is the program that works on the first try -- so you will usually need a debugger. This is even more true on an embedded device, where "printf"-style debugging is very cumbersome.
