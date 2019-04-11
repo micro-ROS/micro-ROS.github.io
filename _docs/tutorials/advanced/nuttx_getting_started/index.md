@@ -677,64 +677,315 @@ Once the firmware was configured and uploaded, we need to connect the breakout b
 
 Finally, connect the mini USB cable to the USB OTG1, and the connections should look like this:
 
+
 ![image](imgs/olimex_mrf24j40.jpg)
 
 Once the wiring is done, open a console and you should see this:
 
-![image](imgs/6lowpan_nsh.png)
+```bash
+nsh> ?
+help usage:  help [-v] [<cmd>]
 
-First we need to type the next command in both boards to bring-down the connection: `ifdown wpan0`
+  [         cd        df        help      ls        mw        set       true      
+  ?         cp        echo      hexdump   mb        ps        sh        uname     
+  addroute  cmp       exec      ifconfig  mkdir     pwd       sleep     umount    
+  basename  dirname   exit      ifdown    mh        rm        test      unset     
+  break     dd        false     ifup      mount     rmdir     telnetd   usleep    
+  cat       delroute  free      kill      mv        route     time      xd        
 
-We already know that we have two different roles, **Client** and **Server**. So we need to configure each board with one role:
-**- Server Configuration:**
-- `i8sak wpan0 startpan cd:ab `
-- `i8sak set chan 11`
-- `i8sak set panid cd:ab `
-- `i8sak set saddr 42:01 `
-- `i8sak acceptassoc  `
+Builtin Apps:
+  udp_6lowpan  ping6        i8sak
+```
 
-Now it's time to configure the client. It's important to follow this configuration order.
-**- Client Configuration:**
-- `i8sak wpan0`
-- `i8sak set chan 11 `
-- `i8sak set panid cd:ab `
-- `i8sak set saddr 42:02  `
-- `i8sak set ep_saddr 42:01`
-- `i8sak assoc`
+Execute the App ``udp_6lowpan``.
+When you execute it, the app will ask you if you want to do an auto-configuration.
+The first time that we execute this app after the initialization of the board, we need to configure the network. If you execute the autoconfiguration, the configuration process will be simplified, otherwise, you will need to configure manually. **If you don't configure the board, it won't work properly.**
+If you type 'Y', it should appear the next output:
 
-If everything goes fine, you should see something like this:
-**Server Board**
+```bash
+nsh> udp_6lowpan
+Do you want to execute the automatic WPAN configuration? (y/n)
+Starting WPAN configuration
+Type C to be coordinator
+Type N to be node
 
-![image](imgs/6lowpan_accept.png)
+```
 
-**Client Board**
+This is asking if you want to be a coordinator or a node.
+The difference between a coordinator and a node is that the first one can work as a router, coordinating the network traffic of up to 8 nodes.
+On the other hand, the node is an endpoint device which only sends and receive data, it doesn't coordinate the traffic of the other devices.
 
-![image](imgs/6lowpan_assoc.png)
+**Note:** A coordinator should be bring-up before the node configuration.
 
-It is only left to bring-up the network, so type this command in both boards: `ifup wpan0`.
+If you choose coordinator, type 'C' and it should return the next output:
 
-At this point, the set-up is complete and it's the moment to use the UDP server and client to have a communication between the boards.
-So, first we need to know the IP of the server board. Type the next commands in the server board:
-- `mount -t procfs /proc`
-- `ifconfig`
+```bash
+ifdown wpan0...OK
+i8sak: resetting MAC layer
+i8sak: starting PAN
+Choose your ID (00 to FF)
+```
+Type the ID that you want, it should be between 00 and FF (Hexadecimal value).
+**Caution:** Avoid to use the same ID in two devices,or you will get and IP conflict.The ID must be unique.
 
-You should see something like in the image. The red square is the IP of the board.
-![image](imgs/6lowpan_ip.png)
+Once you write your ID, it should return the next data:
+```bash
+Your hardware address is: i8sak set eaddr 00:fa:de:00:de:ad:be:00
 
-Finally in the Server board, execute the Server, typing:
-- `udpserver &`
+i8sak: accepting all assoc requests
+i8sak: daemon started
+ifup wpan0...OK
+Mounting proc file system
+wpan0   Link encap:6LoWPAN HWaddr 00:be:ad:de:00:de:fa:00 at UP
+        inet6 addr: fe80::2be:adde:de:fa00/64
+        inet6 DRaddr: ::/64
 
-![image](imgs/6lowpan_server.png)
-Now the UDP server, it's ready to work.
-
-To use the UDP client, we need to type the next command in the client board:
-- `udpclient <IP of the server board>`
-
-![image](imgs/6lowpan_client.png)
-
-Now the UDP Client, will send a `HelloWorld` to the UDP Server.
+        RX: Received Fragment Errors  
+            00000000 00000000 00000000
+            IPv6     Dropped
+            00000000 00000000
+        TX: Queued   Sent     Errors   Timeouts
+            00000000 00000000 00000000 00000000
+        Total Errors: 00000000
 
 
+
+
+Available commands
+ -To send a package type: write
+ -To receive a package type: read
+ -To exit type: quit
+
+```
+
+Now the coordinator network is ready to send and receive packages. Also is prepared to receive an association request from the nodes. This association request is a tool of node to be coordinated by a coordinator.
+
+Coming back to the role menu, if you choose a node, will also ask for an ID (**Remember, the ID must be unique.**). And it should look like this:
+
+```bash
+nsh> udp_6lowpan
+Do you want to execute the automatic WPAN configuration? (y/n)
+Starting WPAN configuration
+Type C to be coordinator
+Type N to be node
+
+
+ifdown wpan0...OK
+Choose your ID (00 to FF)
+
+```
+The node can send and receive a message with and without a coordinator. After giving a valid ID, we can have the next two output:
+
+- If a coordinator is available in the network:
+
+```bash
+Your hardware address is: i8sak set eaddr 00:fa:de:00:de:ad:be:01
+
+i8sak: daemon started
+i8sak: issuing ASSOC. request 1
+i8sak: ASSOC.request succeeded
+ifup wpan0...OK
+Mounting proc file system
+i8sak: daemon closing
+wpan0   Link encap:6LoWPAN HWaddr 01:be:ad:de:00:de:fa:00 at UP
+        inet6 addr: fe80::3be:adde:de:fa00/64
+        inet6 DRaddr: ::/64
+
+        RX: Received Fragment Errors  
+            00000000 00000000 00000000
+            IPv6     Dropped
+            00000000 00000000
+        TX: Queued   Sent     Errors   Timeouts
+            00000000 00000000 00000000 00000000
+        Total Errors: 00000000
+
+
+
+
+Available commands
+ -To send a package type: write
+ -To receive a package type: read
+ -To exit type: quit
+
+```
+- No coordinator is available:
+
+```bash
+Your hardware address is: i8sak set eaddr 00:fa:de:00:de:ad:be:01
+
+i8sak: daemon started
+i8sak: issuing ASSOC. request 1
+i8sak: ASSOC.request failed: No ack
+ifup wpan0...OK
+Mounting proc file system
+i8sak: daemon closing
+wpan0   Link encap:6LoWPAN HWaddr 01:be:ad:de:00:de:fa:00 at UP
+        inet6 addr: fe80::3be:adde:de:fa00/64
+        inet6 DRaddr: ::/64
+
+        RX: Received Fragment Errors  
+            00000000 00000000 00000000
+            IPv6     Dropped
+            00000000 00000000
+        TX: Queued   Sent     Errors   Timeouts
+            00000000 00000000 00000000 00000000
+        Total Errors: 00000000
+
+
+
+
+Available commands
+ -To send a package type: write
+ -To receive a package type: read
+ -To exit type: quit
+
+```
+You can notice that the difference is at the ```ASSOC.request``` which failed or succeed. If in the future you want to have a coordinator in your network, you can associate a node to it, as easy as executing again the autoconfiguration.
+
+At this point, remember to copy the IP address of your device. The IP of the board is the value of **inet6 addr**. For this example is fe80::3be:adde: de:fa00.
+If you can't find in the output of this app, just type ```quit``` and the application will close and you will be at the NSH console again. At this moment, type ```ifconfig``` and all the data of the connection will be shown.
+
+```bash
+nsh> ifconfig
+wpan0   Link encap:6LoWPAN HWaddr 01:be:ad:de:00:de:fa:00 at UP
+        inet6 addr: fe80::3be:adde:de:fa00/64
+        inet6 DRaddr: ::/64
+
+        RX: Received Fragment Errors  
+            00000000 00000000 00000000
+            IPv6     Dropped
+            00000000 00000000
+        TX: Queued   Sent     Errors   Timeouts
+            00000000 00000000 00000000 00000000
+        Total Errors: 00000000
+
+             IPv6   TCP   UDP  ICMPv6
+Received     0000  0000  0000  0000
+Dropped      0000  0000  0000  0000
+  IPv6        VHL: 0000
+  Checksum   ----  0000  0000  ----
+  TCP         ACK: 0000   SYN: 0000
+              RST: 0000  0000
+  Type       0000  ----  ----  0000
+Sent         0000  0000  0000  0000
+  Rexmit     ----  0000  ----  ----
+```
+
+Everything is ready to send and receive UDP package from/to the 6lowpan network. The way to use it is exactly the same in both modes (coordinator and node).
+
+The ```udp_6lowpan``` give us the next options:
+
+```bash
+Available commands
+ -To send a package type: write
+ -To receive a package type: read
+ -To exit type: quit
+
+```
+
+To send a package, type ```write``` and push enter.
+The application will ask for the next information:
+- Destination IP: The IPV6 of the board that we want to send a package.
+- Destination Port: The open port of the destination board.
+- Origin port: The port that we want to use to send the data in the emitter board.
+(Is mandatory to push enter once you write the asked data).
+
+Once all the data are introduced, it should return something like this:
+```bash
+Introduce the IVP6 Destination
+Introduce the port destination
+Introduce the port origin
+Conection data:
+ -Dest_IP: fe80::2be:adde:de:fa00
+ -Dest_Port: 61616
+ -Origin_Port: 61617
+Introduce a message to send:
+
+```
+Now you're able to send messages to fe80::2be:adde:de:fa00 port 61616.
+If you want to close the connection and not send any more packages, you can type ```quit``` plus enter, and it should return to the main app menu.
+
+If you want to use your device as receiver, just type ```read``` in the main app menu. This will ask you which port should it use to accept packages.
+(Is possible to receive and send messages at the same type, but you will need to create a custom app)
+After type the number of the port and press enter(For this example, we're going to use the port 61616), it should output the next:
+```bash
+Available commands
+ -To send a package type: write
+ -To receive a package type: read
+ -To exit type: quit
+Introduce the reception port
+Listening on 61616 for input packets
+
+```
+
+This the output that you should see when you send a package and when you receive:
+- Sending a package:
+
+```bash
+wpan0   Link encap:6LoWPAN HWaddr 00:be:ad:de:00:de:fa:00 at UP
+        inet6 addr: fe80::2be:adde:de:fa00/64
+        inet6 DRaddr: ::/64
+
+        RX: Received Fragment Errors  
+            00000000 00000000 00000000
+            IPv6     Dropped
+            00000000 00000000
+        TX: Queued   Sent     Errors   Timeouts
+            00000000 00000000 00000000 00000000
+        Total Errors: 00000000
+
+
+
+
+Available commands
+ -To send a package type: write
+ -To receive a package type: read
+ -To exit type: quit
+Introduce the IVP6 Destination
+Introduce the port destination
+Introduce the port origin
+Conection data:
+ -Dest_IP: fe80::3be:adde:de:fa00
+ -Dest_Port: 61616
+ -Origin_Port: 61617
+Introduce a message to send:
+Sending 13 characters: micro-ROS
+
+Introduce a message to send:
+```
+
+- Receiving a package:
+
+```bash
+wpan0   Link encap:6LoWPAN HWaddr 01:be:ad:de:00:de:fa:00 at UP
+        inet6 addr: fe80::3be:adde:de:fa00/64
+        inet6 DRaddr: ::/64
+
+        RX: Received Fragment Errors  
+            00000000 00000000 00000000
+            IPv6     Dropped
+            00000000 00000000
+        TX: Queued   Sent     Errors   Timeouts
+            00000000 00000000 00000000 00000000
+        Total Errors: 00000000
+
+
+
+
+Available commands
+ -To send a package type: write
+ -To receive a package type: read
+ -To exit type: quit
+Introduce the reception port
+Listening on 61616 for input packets
+Received 13 bytes from 80fe:0000:0000:0000:be02:dead:de00:00fa port 61617
+Received packet: micro-ROS
+
+```
+
+This version of the 6lowpan stack, have interoperability with 6lowpan stack of Linux. So we can have communication between NuttX and 6lowpan.
+
+The ping between NuttX devices work properly, but with Linux, devices don't work properly and a final point to know is the dynamic association and multi-hop communication doesn't work properly. So, communications are only point-to-point.
 
 ## How to use the ADC demo
 
