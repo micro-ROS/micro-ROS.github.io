@@ -1,8 +1,8 @@
 ---
 title: Supported Hardware
---- 
+---
 
-This page lists the hardware that microROS currently supports, and also accessories that we frequently refer to, such as add-on boards, and JTAG probes.
+This page lists the hardware that micro-ROS currently supports, and also accessories that we frequently refer to, such as add-on boards, and JTAG probes.
 
 ## Evaluation Boards
 
