@@ -41,8 +41,8 @@ the defconfig files for NuttX, OFERA project has created.
 
 For the examples listed below, please make use of the branch called `master` for this two repositories:
 
--  [NuttX](https://github.com/microROS/Nuttx) fork, where NuttX RTOS is stored.
--  [Apps](https://github.com/microROS/apps) fork, whee NuttX applications and examples are placed.
+-  [NuttX](https://github.com/micro-ROS/Nuttx) fork, where NuttX RTOS is stored.
+-  [Apps](https://github.com/micro-ROS/apps) fork, whee NuttX applications and examples are placed.
 
 ----------------------
 
@@ -1034,7 +1034,7 @@ And it should look like this:
 For this board we need two TTL232 cables. The first one is used to show the console.
 Connect the serial cable `RX` to pin `PA9` and `TX` to pin `PA10` and the GND wire to a `GND` pin.
 
-Then, you need to connect to the second UART to use micro-XRCE-DDS:
+Then, you need to connect to the second UART to use Micro XRCE-DDS:
 Connect the serial cable `RX` to pin `PA2` and `TX` to pin `PA3` and the GND wire to a `GND` pin.
 
 And it should look like this:
@@ -1043,7 +1043,7 @@ And it should look like this:
 
 In this example, we use an Olimex board and a STM32L1 Board, but you can use any combination between STM32L1, Olimex Board and PC. Now we're going to execute the Agent in the PC.
 First, we need to check the port number of the serial cable that we want to use as Micro XRCE-DDS interface.
-Note: You must installed micro-XRCE-DDS agent previously, follow this guide -> https://micro-xrce-dds.readthedocs.io/en/latest/installation.html
+Note: You must installed Micro XRCE-DDS agent previously, follow this guide -> https://micro-xrce-dds.readthedocs.io/en/latest/installation.html
 
 Open a console and type the next command:
 `MicroXRCE-DDSAgent serial <serial_port>`
@@ -1092,14 +1092,14 @@ Then, we have the Olimex as subscriber, so we need to follow the same steps as w
 
 ## How to use  micro-ROS demo {#micro-ROS-demo-Olimex}
 
-In this demo, we will use the alpha version of microROS for NuttX running under the Olimex-STM32-E407 board.
+In this demo, we will use the alpha version of micro-ROS for NuttX running under the Olimex-STM32-E407 board.
 With board running this demo we could create a ROS2 publisher or a ROS2 subscriber.
 The publisher creates and publishes as a topic a progressive count of integers (From 0 to 1000).
 The subscriber subscribes to that topic and shows the value of the number published.
 
 This demo is a little bit different as the other demos because we need to follow another path to configure it.
 We need to download the docker files of micro-ROS, executing the next command:
-`git clone -b features/micro-ros https://github.com/microROS/docker`
+`git clone -b features/micro-ros https://github.com/micro-ROS/docker`
 (Note: This repository might change of location)
 
 Now it's necessary to build the docker file, so type the next command:
@@ -1124,11 +1124,11 @@ Now the board it's ready.
 Connect the serial cable (TTL232) to the computer and check which is the number of the serial port.
 
 Note: We need to install previously the micro-ROS agent. So you can follow the next guide to install it:
-https://github.com/microROS/micro-ROS-doc/blob/master/docs/install_and_run.md
+https://github.com/micro-ROS/micro-ROS-doc/blob/master/docs/install_and_run.md
 
 ## Run a publisher:
 
-First you need to execute the **microROS Agent** in your computer using the next command:
+First you need to execute the **micro-ROS Agent** in your computer using the next command:
 ```
 cd ~/agent_ws/install/uros_agent/lib/uros_agent/
 ./uros_agent serial <direction_of_serial>
