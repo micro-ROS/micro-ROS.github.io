@@ -5,17 +5,16 @@ redirect_from: /system_modes/
 ---
 
 
-Table of Contents
-- [Lifecycle and System Modes](#lifecycle-and-system-modes)
-  - [Introduction and Goal](#introduction-and-goal)
-  - [Requirements](#requirements)
-  - [Background: ROS 2 Lifecycle](#background-ros-2-lifecycle)
-  - [Main Features](#main-features)
-    - [Extended Lifecycle](#extended-lifecycle)
-    - [System Hierarchy and Modes](#system-hierarchy-and-modes)
-    - [Mode manager](#mode-manager)
-  - [Roadmap](#roadmap)
-  - [Acknowledgments](#acknowledgments)
+Table of contents
+- [Introduction and Goal](#introduction-and-goal)
+- [Requirements](#requirements)
+- [Background: ROS 2 Lifecycle](#background-ros-2-lifecycle)
+- [Main Features](#main-features)
+  - [Extended Lifecycle](#extended-lifecycle)
+  - [System Hierarchy and Modes](#system-hierarchy-and-modes)
+  - [Mode manager](#mode-manager)
+- [Roadmap](#roadmap)
+- [Acknowledgments](#acknowledgments)
 
 
 ## Introduction and Goal
