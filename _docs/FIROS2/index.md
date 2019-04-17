@@ -1,5 +1,5 @@
 ---
-title: microROS & FIWARE
+title: micro-ROS & FIWARE
 permalink: /docs/FIROS2/
 redirect_from: /FIROS2/
 ---
@@ -7,7 +7,7 @@ redirect_from: /FIROS2/
 
 ## Interoperability
 
-This subsection will explain all the design alternatives for the interoperability of FIROS2 with microROS.
+This subsection will explain all the design alternatives for the interoperability of FIROS2 with micro-ROS.
 
 ### Mechanisms for the deserialisation of incoming data in the transformation library
 
@@ -25,7 +25,7 @@ For solving this issue, various methods to get it are proposed:
 
 #### Use serialisation/deserialisation method provided by the middleware layer
 
-This is currently the method used in microROS - FIROS 2 integration.
+This is currently the method used in micro-ROS - FIROS 2 integration.
 
 In this case, the transformation library will use user selected middleware interface to serialise/deserialise the bridged ROS2 messages.
 This method requires to get the message typesupport for the bridged message type.
@@ -63,25 +63,25 @@ Note the call to ROS 2 interface __rosidl_typesupport_cpp::get_message_type_supp
 #### Use serialisation/deserialisation method for an specific type support
 
 In this case, the transformation library will use one specific type support to serialise/deserialise the bridged ROS2 messages.
-In microROS case, the implementation to be used will be rosidl_typesupport_microxrcedds.
+In micro-ROS case, the implementation to be used will be rosidl_typesupport_microxrcedds.
 This method is trivial to develop as it does not require additional source code on the micro-ROS side.
 
-In the case of microROS, the transformation library should use the serialisation/deserialisation API exposed by its typesupport, rosidl_typesupport_microxrcedds.
+In the case of micro-ROS, the transformation library should use the serialisation/deserialisation API exposed by its typesupport, rosidl_typesupport_microxrcedds.
 This mechanism requires the user to have access to the typesupport API, which sometimes is not always possible.
 
 #### Used serialisation/deserialisation method generated from IDL file
 
 In this case, transformation library will use generated code to serialise/deserialise the bridged ROS2 messages.
 The generated code may be made using an IDL parser tool.
-In the microROS case, Micro XRCE-DDS provides with Micro XRCE-DDS code generator, which accepts an IDL file as input and generates type code.
+In the micro-ROS case, Micro XRCE-DDS provides with Micro XRCE-DDS code generator, which accepts an IDL file as input and generates type code.
 This IDL files should correspond with those messages types the transformation is wanted.
 This is the [integration service](https://github.com/eProsima/Integration-Service) native method.
 Integration services uses this method, but it makes the development of the library slower as it needs to be generated per each message to be bridged.
 
 ![image](http://www.plantuml.com/plantuml/svg/bP8_2y8m4CNtV8f7tOIArd-R2DR1GGTT70eIqciRQ1D8qkzl4sr1iA0t11xlxjsF97lhk75jKxEQ2WUdOMHPEUJIa71IAwPqJeZGLQOoTPR2QDolXsESfZS8RvQao72dZM_mZH6unIbzB32XENN52baF8GrPoql20ZAluPtFgGIiGv855mvHfcwwDO9UcmfjC8ptsp2TYH1Z1rtrEbDzwX9V8P8HYDLl4Cb_4Ell49SHYCrl49V_8BPWZ8LxZkFTwvbOEDzo6UHgn5q7kHbnk-mzgTp_foS0)
 
-In the case of ROS2/microROS workspaces, there are tools which generate those IDL files.
-The rosidl_gen package is the package microROS/ROS2 could use to create IDL from ROS2 interfaces.
+In the case of ROS2/micro-ROS workspaces, there are tools which generate those IDL files.
+The rosidl_gen package is the package micro-ROS/ROS2 could use to create IDL from ROS2 interfaces.
 
 ### Integration proposals
 
@@ -90,7 +90,7 @@ This section presents all the integrations possibilities.
 
 #### Direct integration
 
-In this case, microROS Agent will act as a bridge between DDS-XRCE and NGSIv2.
+In this case, micro-ROS Agent will act as a bridge between DDS-XRCE and NGSIv2.
 
 Selected bridged topics and their corresponding transformations must be configured on the micro-ROS Agent node.
 
@@ -106,7 +106,7 @@ This proposal requires micro-ROS Agent changes, but it is the direct native inte
 
 #### Indirect integration with a single FIROS2 node
 
-In this case, microROS nodes will publish the configured topics on DDS, and a FIROS2 node will subscribe to those topics and convert them into NGSIv2 protocol.
+In this case, micro-ROS nodes will publish the configured topics on DDS, and a FIROS2 node will subscribe to those topics and convert them into NGSIv2 protocol.
 Selected bridged topics must be configured on that single FIROS2 node.
 Each ROS 2 topic type should have a corresponding transformation library configured on that FIROS2 node.
 
@@ -124,11 +124,11 @@ This proposal requires transformation library development, but the integration w
 
 #### Indirect integration with multiple FIROS2 nodes
 
-In this case, microROS nodes will publish the configured topic on DDS and multiple FIROS2 nodes, one for each set topic, will subscribe to those topics and convert them into NGSIv2 protocol.
+In this case, micro-ROS nodes will publish the configured topic on DDS and multiple FIROS2 nodes, one for each set topic, will subscribe to those topics and convert them into NGSIv2 protocol.
 
 This approach would require more nodes on the network and individual configurations.
 
-This approach is the one followed by microROS, and it is limited due to current FIROS 2 implementation.
+This approach is the one followed by micro-ROS, and it is limited due to current FIROS 2 implementation.
 
 This proposal requires transformation library development, but the integration will be the same as a regular ROS2 node, so no micro-ROS specific development should be expected.
 

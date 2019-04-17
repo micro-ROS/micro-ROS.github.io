@@ -1122,7 +1122,7 @@ And it should look like this:
 Now the board it's ready.
 Connect the serial cable (TTL232) to the computer and check which is the number of the serial port.
 
-Note: We need to install previously the microROS agent. So you can follow the next guide to install it:
+Note: We need to install previously the micro-ROS agent. So you can follow the next guide to install it:
 https://github.com/microROS/micro-ROS-doc/blob/master/docs/install_and_run.md
 
 ## Run a publisher:

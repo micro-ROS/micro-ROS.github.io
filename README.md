@@ -1,7 +1,7 @@
-# microROS web site
+# micro-ROS web site
 
-This is the source for the microROS website, available 
-at [https://microros.github.io/](https://microros.github.io/)
+This is the source for the micro-ROS website, available
+at [https://micro-ros.github.io/](https://micro-ros.github.io/)
 
 ## Editing
 
@@ -9,7 +9,7 @@ See [editing instructions](EDITING-INSTRUCTIONS.md)
 
 ## Running locally
 
-To test locally, you need a local version of Jekyll, the site-generation 
+To test locally, you need a local version of Jekyll, the site-generation
 engine used by Github Pages. See [Jekyll Quickstart](https://jekyllrb.com/docs/)
 for installation instructions.
 
@@ -28,7 +28,7 @@ To install it, It has been incorporated in the Gemfile so the previous dependenc
 
 You can run the following gem to tests the generated site.
 
-```bash 
+```bash
 bundle exec jekyll build
 bundle exec htmlproofer ./_site
 ```
