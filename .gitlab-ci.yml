@@ -1,0 +1,8 @@
+image:
+    jekyll/jekyll 
+before_script:
+    - bundle install
+pagecheck:
+    script:
+        - ./scripts/cibuild
+
