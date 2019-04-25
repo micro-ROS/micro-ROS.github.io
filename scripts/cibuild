@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 set -e # halt script on error
 
+IGNORE_HREFS=$(ruby -e 'puts %w{
+  vimeo.com
+  micro-ros.github.io//blog
+  }.map{|h| "/#{h}/"}.join(",")'
+)
+
 bundle exec jekyll build
-bundle exec htmlproofer --check_html --check-favicon --assume-extension --empty-alt-ignore --only-4xx ./_site
+bundle exec htmlproofer --check_html --check-favicon --assume-extension --empty-alt-ignore --only-4xx --url-ignore $IGNORE_HREFS $@ ./_site
