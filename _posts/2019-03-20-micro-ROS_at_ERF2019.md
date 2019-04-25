@@ -25,4 +25,3 @@ Comming soon...
   title="{{ author.name }}">
     {{ author.name }}
 </a>
-
