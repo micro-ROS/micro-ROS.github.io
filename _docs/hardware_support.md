@@ -6,7 +6,7 @@ This page lists the hardware platforms that we use to test and develop micro-ROS
 
 # Reference Platforms
 
-Even that micro-ROS technology can be ported to many targets, we have decided selecting development platforms to support them. This page describes the main characteristic of those boards.
+Even that micro-ROS technology can be ported to many targets, we have decided to select development platforms to support them. This page describes the main characteristic of those boards.
 
 ## Olimex LTD STM32-E407
 
@@ -14,11 +14,11 @@ Even that micro-ROS technology can be ported to many targets, we have decided se
 
 The [Olimex LTD STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) is an open-hardware low-cost entry board for developing custom applications with the STM32F407ZGT6 Cortex-M4F microcontrollers from STMicroelectronics.
 
-It contains 196KB of RAM and 1MB of Flash. It is a very complete board thanks to the big variety of communication interfaces it offers: USB OTG, Ethernet, SD Card slot, SPI, CAN or I2C buses are exposed. The board contains various expansion options available: Arduino-like headers for attaching daughter boards, many pins exposed, as well as a UEXT connector. This connector is a custom pin-out bus and is used to attach sensor breakouts sensors that manufacturer sells.
+It contains 196KB of RAM and 1MB of Flash. It is a very complete board thanks to the wide variety of communication interfaces it offers: USB OTG, Ethernet, SD Card slot, SPI, CAN or I2C buses are exposed. The board contains various expansion options available: Arduino-like headers for attaching daughter boards, many pins exposed, as well as a UEXT connector. This connector is a custom pin-out bus and is used to attach sensor breakouts sensors that manufacturer sells.
 
 ### Development tools
 
-In order to flash and debug the board, it is required to get a JTAG probe. We recommend getting on of the next JTAG probes:
+In order to flash and debug the board, it is required to get a JTAG probe. We recommend getting one of the next JTAG probes:
 
 + [ARM-USB-OCD-H](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-OCD-H/)
 + [ARM-USB-TINY-H](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/)
