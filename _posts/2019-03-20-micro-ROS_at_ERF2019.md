@@ -18,10 +18,3 @@ The micro-ROS community demo was presented, making use of a Kobuki, one of the p
 ### Videos
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Ca0wmFLi_oY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-{% assign author = site.data.authors[page.author] %}
-<a rel="author"
-  href="https://twitter.com/{{ author.twitter }}"
-  title="{{ author.name }}">
-    {{ author.name }}
-</a>
