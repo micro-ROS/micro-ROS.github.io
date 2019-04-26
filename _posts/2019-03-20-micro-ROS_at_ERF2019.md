@@ -5,7 +5,7 @@ author: borjaouterelo
 
 The [European Robotics Forum](https://www.eu-robotics.net/robotics_forum/), the most influential meeting of the robotics community in Europe, was held in Bucharest, Romania, in March 2019. Over 900 European robotics top experts attended the 10th edition of the conference.
 
-OFERA consortium, taking advantage of the opportunity, arranged one of their faces to face meetings the days before the ERF as some of the members will also be attending to the forum.
+OFERA consortium, taking advantage of the opportunity, arranged one of their face-to-face meetings the days before the ERF as some of the members will also be attending to the forum.
 
 In the forum and as part of the TG Software & System Engineering Meeting, Ingo Luetkebohle from Bosch and Borja Outerelo from eProsima presented an overview of the micro-ROS project, exposing the challenges it faces and the involvement of the community via a demo and the ROS 2 Embedded SIG.
 
