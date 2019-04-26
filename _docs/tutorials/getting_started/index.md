@@ -5,16 +5,16 @@ permalink: /docs/tutorials/getting_started/
 
 Table of contents
 
-*   [Running Micro XRCE-DDS example using prebuilt Docker](#running-Micro-XRCE-DDS-example-using-prebuilt-docker)
-*   [Running micro-ROS example using prebuilt Docker](#running-micro-ROS-example-using-prebuilt-docker)
-*   [Running rclc and rclcpp examples in your ROS2 workspace](#running-rclc-and-rclcpp-examples-in-your-ros2-workspace)
+*   [Running Micro XRCE-DDS example using prebuilt Docker](#Micro-XRCE-DDS-prebuilt-Docker)
+*   [Running micro-ROS example using prebuilt Docker](#micro-ROS-prebuilt-Docker)
+*   [Running rclc and rclcpp examples in your ROS2 workspace](#rclc-rclcpp-ROS2-ws)
 
 ## Introduction
 
 The aim of this section is to be able of running micro-ROS architecture examples using Docker files at your computer, without the need of any embedded board.
 
 
-## Running micro-ROS example at Docker using prebuilt Docker
+## Running micro-ROS example at Docker using prebuilt Docker {#micro-ROS-prebuilt-Docker}
 
 _Explain how to set up and run, @BorjaOuterelo need your help here_
 
@@ -24,7 +24,7 @@ At docker repo, we have one folder for each.
 
 ----------------
 
-## Running Micro XRCE-DDS example using prebuilt Docker
+## Running Micro XRCE-DDS example using prebuilt Docker {#Micro-XRCE-DDS-prebuilt-Docker}
 
 _Explain how to set up and run, @BorjaOuterelo need your help here_
 
@@ -35,7 +35,7 @@ At docker repo, we have one folder for each.
 ----------------
 
 
-## Running rclc and rclcpp examples in your ROS2 workspace
+## Running rclc and rclcpp examples in your ROS2 workspace {#rclc-rclcpp-ROS2-ws}
 
 There are also available examples that you could run building the code at your Linux or Windows computer. 
 
@@ -422,7 +422,7 @@ rad0_control_cpp.exe
 
 #### Callback-group-level Executor
 
-Demo of the Callback-group-level Executor concept. See [Cpp/cbg-executor_ping-pong/README.md](Cpp/cbg-executor_ping-pong/README.md) for details.
+Demo of the Callback-group-level Executor concept. See [cbg-executor_ping-pong/README.md](https://github.com/micro-ROS/micro-ROS_experiments/blob/experiment/cbg-executor-0.6.1/cbg-executor_ping-pong/README.md) for details.
 
 Run the micro-ROS Agent.
 

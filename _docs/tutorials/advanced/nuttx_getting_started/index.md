@@ -8,33 +8,32 @@ the defconfig files for NuttX, OFERA project has created.
 
 # Example list
 
-
 ## Olimex STM32-E407
 
-- [NSH over USB](#How-to-execute-NSH-over-USB-under-Olimex-STM32-E407)
-- [NSH over UART](#How-to-use-NSH-over-UART)
-- [Auxiliar UART port](#How-to-use-an-auxiliary-UART)
-- [BMP180 through I2C](#How-to-execute-BMP180-example)
-- [HIH6130 through I2C](#How-to-execute-HIH6130-example)
-- [UDP echo server](#How-to-execute-UDPEcho-server-example)
-- [TCP echo server](#How-to-execute-TCP-Echo-server-example)
-- [MRF24J40-6LowPan through SPI](#How-to-use-MRF24j40-6LowPan)
-- [ADC](#How-to-use-the-ADC-demo)
-- [Telemetry](#How-to-execute-telemetry-app)
-- [Power Manager](#How-to-execute-Power-Manager-example)
-- [SD Card](#How-to-use-a-micro-SD-Card-in-the-Olimex-STM32-E407-board)
-- [Micro XRCE-DDS through serial](#How-to-execute-Micro-XRCE-DDS)
-- [micro-ROS demo](#How-to-use-micro-ROS-demo)
+- [NSH over USB](#NSH-USB-Olimex)
+- [NSH over UART](#NSH-UART-Olimex)
+- [Auxiliar UART port](#Auxiliar-UART-Olimex)
+- [BMP180 through I2C](#BMP180-Olimex)
+- [HIH6130 through I2C](#HIH6130-Olimex)
+- [UDP echo server](#UDPEcho-Olimex)
+- [TCP echo server](#TCPEcho-Olimex)
+- [MRF24J40-6LowPan through SPI](#MRF24j40-6LowPan-Olimex)
+- [ADC](#ADC-Olimex)
+- [Telemetry](#Telemetry-Olimex)
+- [Power Manager](#Power-Manager-Olimex)
+- [SD Card](#SD-Card-Olimex)
+- [Micro XRCE-DDS through serial](#Micro-XRCE-DDS-Olimex)
+- [micro-ROS demo](#micro-ROS-demo-Olimex)
 
 
 
 ## STM32L Discovery
 
-- [NSH through UART](#How-to-execute-NSH-under-STM32L-Discovery)
-- [BMP180 through I2C](#How-to-execute-BMP180-example)
-- [HIH6130 through I2C](#How-to-execute-HIH6130-example)
-- [Power Manager](#How-to-execute-Power-Manager-example)
-- [Micro XRCE-DDS through serial](#How-to-execute-Micro-XRCE-DDS)
+- [NSH through UART](#NSH-UART-Discovery)
+- [BMP180 through I2C](#BMP180-Discovery)
+- [HIH6130 through I2C](#HIH6130-Discovery)
+- [Power Manager](#Power-Manager-Discovery)
+- [Micro XRCE-DDS through serial](#Micro-XRCE-DDS-Discovery)
 
 
 
@@ -42,8 +41,8 @@ the defconfig files for NuttX, OFERA project has created.
 
 For the examples listed below, please make use of the branch called `master` for this two repositories:
 
--  [NuttX](https://github.com/microROS/Nuttx) fork, where NuttX RTOS is stored.
--  [Apps](https://github.com/microROS/apps) fork, whee NuttX applications and examples are placed.
+-  [NuttX](https://github.com/micro-ROS/Nuttx) fork, where NuttX RTOS is stored.
+-  [Apps](https://github.com/micro-ROS/apps) fork, whee NuttX applications and examples are placed.
 
 ----------------------
 
@@ -63,7 +62,7 @@ The flash script will execute the proper command to upload the firmware to the b
 
 This section provides step-by-step tutorials so you can start executing the examples we have created. These tutorials starts using NuttX, using many different peripherals and tools, and ends up showing how to execute Micro XRCE-DDS client and micro-ROS client.
 
-## How to execute NSH over USB under Olimex-STM32-E407
+## How to execute NSH over USB under Olimex-STM32-E40 {#NSH-USB-Olimex}
 
 NSH is a system console that can be use throught the next interfaces: USB,UART and Telnet. With this console you can execute apps, set system configuration and see the state of the system.
 
@@ -119,7 +118,8 @@ If you don't know which interface is the micro USB, type `dmesg` command at a te
 ## How to execute NSH with the UART.
 
 
-### Olimex-STM32-E407
+### Olimex-STM32-E407 {#NSH-UART-Olimex}
+
 This board have the possibility to show the console through the UART or through USB.
 
 Go to the main folder of NuttX and execute the next command to configure the board:
@@ -173,7 +173,8 @@ nsh>
 ```
 
 
-### STM32L1Discovery
+### STM32L1Discovery {#NSH-UART-Discovery}
+
 **This board only can show the NSH console throught the UART**
 
 Go to the main folder of NuttX and execute the next command to configure the board:
@@ -225,7 +226,7 @@ nsh>
 ```
 If you don't know which interface is the micro USB, type `dmesg` command at a terminal, this command should let you know which is the last USB device that has been connected to your computer and at what interface is attached.
 
-## How to use an auxiliary UART:
+## How to use an auxiliary UART {#Auxiliar-UART-Olimex}
 
 In this demo we will show how to use an auxiliary UART to send and receive messages.
 When we run this demos, we will send the first argument to the auxiliary terminal and we will wait for an input from the auxiliary terminal.
@@ -265,7 +266,7 @@ BMP180 is a I2C barometric pressure sensor. With this sensor you can obtain the 
 
 [BMP180 breakout link](https://www.adafruit.com/product/1603)
 
-### Olimex STM32-E407
+### Olimex STM32-E407  {#BMP180-Olimex}
 
 Go to the main folder of NuttX and type the command to configure the board:
 `./scripts/configure.sh olimex-stm32-e407 bmp180`
@@ -276,7 +277,7 @@ Compile:
 Upload:
 `./scripts/flash.sh olimex-stm32-e407`
 
-### STM32L Discovery
+### STM32L Discovery {#BMP180-Discovery}
 
 Go to the main folder of NuttX and type the command to configure the board:
 `./scripts/configure.sh stm32l1 bmp180`
@@ -360,7 +361,7 @@ Pressure: 95985
 Pressure: 95988
 ```
 
-## How to execute HIH6130 example
+## How to execute HIH6130 example {#HIH6130-Olimex}
 
 The HIH6130 is humidity/temperature that works through I2C interface.
 
@@ -377,7 +378,7 @@ Compile:
 Upload:
 `./scripts/flash.sh olimex-stm32-e407`
 
-### STM32L Discovery
+### STM32L Discovery {#HIH6130-Discovery}
 
 Go to the main folder of NuttX and type the command to configure the board:
 `./scripts/configure.sh stm32l1 hih6130`
@@ -468,7 +469,7 @@ Temperature: 31 �ºC Humidity: 44
 Temperature: 31 �ºC Humidity: 44
 ```
 
-## How to execute UDP Echo server example
+## How to execute UDP Echo server example {#UDPEcho-Olimex}
 
 Go to the main folder of NuttX and type the next command to configure the board:
 `./scripts/configure.sh olimex-stm32-e407 udpecho`
@@ -534,7 +535,7 @@ Now if you type something in the computer, the board should echo the same and sh
 
 ![image](imgs/udp_5.jpg)
 
-## How to execute TCP Echo server example
+## How to execute TCP Echo server example {#TCPEcho-Olimex}
 
 
 Go to the main folder of NuttX and type the next command to configure the board:
@@ -631,7 +632,7 @@ The variables are shown in two hexadecimal numbers per each field. In case of th
 `0x85` = 133
 
 
-## How to use MRF24j40-6LowPan
+## How to use MRF24j40-6LowPan {#MRF24j40-6LowPan-Olimex}
 
 With this demo, we'll be able to create a point to point connection with the  MRF24J40 module using the protocol 6LowPan. This network, allows you to have hundreds of nodes with very little power consumption.
 One of the nodes is a TCP or UDP server, and the other nodes are TCP or UDP clients that they connect to the server.
@@ -736,7 +737,7 @@ Now the UDP Client, will send a `HelloWorld` to the UDP Server.
 
 
 
-## How to use the ADC demo
+## How to use the ADC demo {#ADC-Olimex}
 
 In this demo we will take the analog value pin A1, that is attached to  channel 4 of the ADC number 3. This demo only works in the Olimex board.
 
@@ -759,7 +760,7 @@ If you execute the application typing `adc_simple`, you will see a measurement o
 
 ![image](imgs/adc_measure.png)
 
-# How to execute CPU performance telemetry app
+# How to execute CPU performance telemetry app {#Telemetry-Olimex}
 
 Go to the main folder of NuttX and type the next command to configure the board:
 `./scripts/configure.sh olimex-stm32-e407 telemetry`
@@ -895,7 +896,7 @@ SigMask:    00000000
 
 This example is simple. After some seconds, the board enter into a sleep mode that could be re-waken up, writing into the serial season. As the MCU is in low power mode, some data is lost, until the complete wake up is done.
 
-### Olimex STM32-E407
+### Olimex STM32-E407 {#Power-Manager-Olimex}
 
 Go to the main folder of NuttX and type the command to configure the board:
 `./scripts/configure.sh olimex-stm32-e407 pm`
@@ -906,7 +907,7 @@ Compile:
 Upload:
 `./scripts/flash.sh olimex-stm32-e407`
 
-### STM32L Discovery
+### STM32L Discovery {#Power-Manager-Discovery}
 
 Go to the main folder of NuttX and type the command to configure the board:
 `./scripts/configure.sh stm32l1 pm`
@@ -939,7 +940,7 @@ Info : Listening on port 4444 for telnet connections
 Now open a serial session for connecting to the board. Once the prompt pops-up, do not type for some seconds and you will see that, in a point, if you type something, it will not appear at the command line. After some seconds, the command line will again work properly.
 
 
-## How to use a micro SD-Card in the Olimex-STM32-E407 board
+## How to use a micro SD-Card in the Olimex-STM32-E407 board {#SD-Card-Olimex}
 
 This demo it's only for the Olimex board. This demo shows how to write and read files from a SD card.
 
@@ -974,7 +975,7 @@ In this example, we will execute Micro XRCE-DDS client in NuttX. This example ru
 For this demo we need two boards (It doesn't matter if it's the Olimex Board or the STM32L1), one will be the publisher which will send a topic with a shape, the color of the shape and the coordinate of the shape. The other board will subscribe to the topic.
 At this moment it's only possible to work through serial, but it could be possible to use with UDP and TCP in a future.
 
-### Olimex STM32-E407
+### Olimex STM32-E407 {#Micro-XRCE-DDS-Olimex}
 
 Go to the main folder of NuttX and type the command to configure the board:
 `./scripts/configure.sh olimex-stm32-e407 microxrcedds`
@@ -985,7 +986,7 @@ Compile:
 Upload:
 `./scripts/flash.sh olimex-stm32-e407`
 
-### STM32L Discovery
+### STM32L Discovery {#Micro-XRCE-DDS-Discovery}
 
 Go to the main folder of NuttX and type the command to configure the board:
 `./scripts/configure.sh stm32l1 microxrcedds`
@@ -1033,7 +1034,7 @@ And it should look like this:
 For this board we need two TTL232 cables. The first one is used to show the console.
 Connect the serial cable `RX` to pin `PA9` and `TX` to pin `PA10` and the GND wire to a `GND` pin.
 
-Then, you need to connect to the second UART to use micro-XRCE-DDS:
+Then, you need to connect to the second UART to use Micro XRCE-DDS:
 Connect the serial cable `RX` to pin `PA2` and `TX` to pin `PA3` and the GND wire to a `GND` pin.
 
 And it should look like this:
@@ -1042,7 +1043,7 @@ And it should look like this:
 
 In this example, we use an Olimex board and a STM32L1 Board, but you can use any combination between STM32L1, Olimex Board and PC. Now we're going to execute the Agent in the PC.
 First, we need to check the port number of the serial cable that we want to use as Micro XRCE-DDS interface.
-Note: You must installed micro-XRCE-DDS agent previously, follow this guide -> https://micro-xrce-dds.readthedocs.io/en/latest/installation.html
+Note: You must installed Micro XRCE-DDS agent previously, follow this guide -> https://micro-xrce-dds.readthedocs.io/en/latest/installation.html
 
 Open a console and type the next command:
 `MicroXRCE-DDSAgent serial <serial_port>`
@@ -1089,16 +1090,16 @@ We have the STM32L1 as publisher, so we need to check the serial port number of 
 Then, we have the Olimex as subscriber, so we need to follow the same steps as with the STM32L1 board.
 
 
-## How to use  micro-ROS demo:
+## How to use  micro-ROS demo {#micro-ROS-demo-Olimex}
 
-In this demo, we will use the alpha version of microROS for NuttX running under the Olimex-STM32-E407 board.
+In this demo, we will use the alpha version of micro-ROS for NuttX running under the Olimex-STM32-E407 board.
 With board running this demo we could create a ROS2 publisher or a ROS2 subscriber.
 The publisher creates and publishes as a topic a progressive count of integers (From 0 to 1000).
 The subscriber subscribes to that topic and shows the value of the number published.
 
 This demo is a little bit different as the other demos because we need to follow another path to configure it.
 We need to download the docker files of micro-ROS, executing the next command:
-`git clone -b features/micro-ros https://github.com/microROS/docker`
+`git clone -b features/micro-ros https://github.com/micro-ROS/docker`
 (Note: This repository might change of location)
 
 Now it's necessary to build the docker file, so type the next command:
@@ -1122,12 +1123,12 @@ And it should look like this:
 Now the board it's ready.
 Connect the serial cable (TTL232) to the computer and check which is the number of the serial port.
 
-Note: We need to install previously the microROS agent. So you can follow the next guide to install it:
-https://github.com/microROS/micro-ROS-doc/blob/master/docs/install_and_run.md
+Note: We need to install previously the micro-ROS agent. So you can follow the next guide to install it:
+https://github.com/micro-ROS/micro-ROS-doc/blob/master/docs/install_and_run.md
 
 ## Run a publisher:
 
-First you need to execute the **microROS Agent** in your computer using the next command:
+First you need to execute the **micro-ROS Agent** in your computer using the next command:
 ```
 cd ~/agent_ws/install/uros_agent/lib/uros_agent/
 ./uros_agent serial <direction_of_serial>

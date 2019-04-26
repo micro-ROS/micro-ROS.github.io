@@ -6,8 +6,8 @@ author: Iñigo Muguruza Goenaga, Juan Muñoz Flores
 
 Table of contents
 
-*   [Running micro-ROS example in the simulator](#running-micro-ROS-example)
-*   [Running Micro XRCE-DDS example in the simulator](#running-Micro-XRCE-DDS-example)
+*   [Running micro-ROS example in the simulator](#running-micro-ros-example)
+*   [Running Micro XRCE-DDS example in the simulator](#running-micro-xrce-dds-example)
 
 ## Introduction
 
