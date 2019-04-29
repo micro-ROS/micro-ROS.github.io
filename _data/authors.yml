@@ -1,13 +1,21 @@
-iluetkeb:
+# The author entry will be looked for each post.
+# From all the author data, 'link' will be used to locate which will be prominent in the post, as a link.
+# 'link' should contain the name of the data to be used; twitter, web or github are currently supported.
+lui3si:
+  name: iluetkeb
   twitter: ingoluetkebohle
+  link: twitter
 anordman:
   name: Arne Nordmann
   twitter: norro58
   web: http://arne-nordmann.de
+  link: twitter
 borjaouterelo:
   name: Borja Outerelo
   twitter: boouga
   github: BorjaOuterelo
+  link: twitter
 ralph-lange:
   name: Ralph Lange
   web: http://lange-ralph.de
+  link: web
