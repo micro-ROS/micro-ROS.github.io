@@ -4,7 +4,7 @@ title: Supported Hardware
 
 This page lists the hardware platforms that we use to test and develop micro-ROS, and also accessories that we frequently refer to, such as add-on boards, and JTAG probes.
 
-# # Reference Platforms {#evaluation-boards}
+## Reference Platforms {#evaluation-boards}
 
 Even that micro-ROS technology can be ported to many targets, we have decided to select development platforms to support them. This page describes the main characteristic of those boards.
 
