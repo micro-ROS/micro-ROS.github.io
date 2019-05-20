@@ -7,4 +7,4 @@ This site uses the Jekyll-doc theme, see its [documentation]
 
 # Customizations
 
-Instead of a "blog" section we have a "show-case" section with posts-style.
+Instead of a "blog" section we have a "Updates" section in the folder [_posts/](_posts/) with posts-style.
