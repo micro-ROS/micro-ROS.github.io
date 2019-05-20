@@ -95,10 +95,7 @@ Questions:
 * Is it possible to avoid a large heap at all by providing tiny heaps for each concept (node, subscription, publisher) on the corresponding data types on top-most layer? Can each allocation on the lower layers be clearly assigned/related to one instance on the top-most layer?
 * Is a two-phase approach -- allow dynamic allocation in some initialization phase but not in a later run phase -- possible? How much effort is it to implement? Would such an approach be acceptable for some safety-certified implementation?
 
-As a first experiment, we implemented a simple node and subscriber directly against the rcl in the C programming language and counted the allocations and frees.
-
-* Node with subscriber implemented against rcl: [https://github.com/micro-ROS/micro-ROS-demos/tree/experiment/measure_allocations/C/rcl_int32_subscriber](https://github.com/micro-ROS/micro-ROS-demos/tree/experiment/measure_allocations/C/rcl_int32_subscriber)
-* Modified rcutils with counters for allocations and frees: [https://github.com/micro-ROS/rcutils/commits/experiment/measure_allocations](https://github.com/micro-ROS/rcutils/commits/experiment/measure_allocations) 
+As a first experiment, we implemented a simple node and subscriber directly against the rcl in the C programming language and counted the allocations and frees. The code can be found at [https://github.com/micro-ROS/micro-ROS_experiments/tree/experiment/measure_allocations/rcl_int32_subscriber](https://github.com/micro-ROS/micro-ROS_experiments/tree/experiment/measure_allocations/rcl_int32_subscriber).
 
 In detail, we counted the calls of the standard C memory functions (malloc, realloc, free) and the calls of the functions of the default allocator (which uses the standard C memory functions) in rcutils/allocator.c
 
