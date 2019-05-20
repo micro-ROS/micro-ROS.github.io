@@ -20,6 +20,11 @@ After installing Jekyll, install all dependencies by running
 bundle install
 ```
 
+Then, you may launch Jekyll to build and serve the website continuously by
+```bash
+bundle exec jekyll serve
+```
+
 ## Testing generated site
 
 To test the generated HTML site, you can use `html-proofer` gem.
