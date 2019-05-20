@@ -1,4 +1,15 @@
 <head>
+
+    {% if site.google_analytics %}
+        {% if jekyll.environment == "production" %}
+            {% include gtag.html %}
+        {% else %}
+            <!-- jekyll.environment variable is "{{ jekyll.environment }}" and not "production", Google Analytics snippet will be skipped. -->
+        {% endif %}
+    {% else %}
+        <!-- Please specify google_analytics variable in the _config.yml to enable Google Analytics --> endif %}
+    {% endif %}
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,4 +22,6 @@
 
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+
+
 </head>

@@ -60,3 +60,6 @@ collections:
     permalink: /blog/:year/:month/:day/:title/
 #    permalink: /:collection/:path/
     output: true
+
+# Google Analytics configuration
+google_analytics: UA-139926223-1
