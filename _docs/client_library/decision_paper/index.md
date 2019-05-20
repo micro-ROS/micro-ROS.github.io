@@ -1,5 +1,5 @@
 ---
-title: Client Library -- Decision Paper
+title: Client Library - Decision Paper
 permalink: /docs/client_library/decision_paper/
 ---
 
@@ -168,41 +168,53 @@ A discrimination of the usage of the workaround is still to be done. This should
 
 See the modified rcl version at [https://github.com/micro-ROS/rcl/commit/cdb0cca50d49c5b5576bf88d2bb7a1d57ae1e00b](https://github.com/micro-ROS/rcl/commit/cdb0cca50d49c5b5576bf88d2bb7a1d57ae1e00b)
 
-## High-level core features missing in rcl
+## Decision in the OFERA Project
 
-Parameters
+* In a face-to-face meeting in Bucharest in March 2019, the partners from the OFERA project decided to take a double-tracked approach as follows:
 
-* eProsima plans optimized implementation, where MCU client queries agent specifically for parameter values rather than all values being sent to the node on the MCU.
+1. Use rcl as C-based Client Library for micro-ROS by enriching it with small, modular libraries for parameters, graph, logging, clock, timers, execution management, lifecycle and system modes, TF, diagnostics, and power management.
+2. Analyze fitness of rclcpp for use on microcontrollers, in particular regarding memory and CPU consumption as well as dynamic memory management.
 
-Graph
+In this meeting, we decided explicitly against a separate client library in the style of rclc.
 
-* Similar to parameters.
+### Responsibilities for extensions to rcl
 
-Logging
+Parameters (eProsima)
 
-* Optimized implementation for MCU by eProsima
+* Optimized implementation planned, where MCU client queries agent specifically for parameter values rather than all values being sent to the node on the MCU
 
-Time / Clock and Timers [eProsima+Bosch+Erle, in Turtlebot demo -- step 1]
-* Jan, looks into rcl time and clock interface
+Graph (eProsima)
+
+* Similar to parameters
+
+Logging (eProsima)
+
+* Optimized implementation for MCU
+
+Time / Clock and Timers (eProsima, Bosch, Acutronic Robotics)
+
+* Bosch will analyze rcl time and clock interface
 * Synchronization with microprocessor -- message types already available in micro-XRCE-DDS
-* Adapter for RTOS required -- part of abstraction layer ?!
+* Adapter for RTOS required -- part of abstraction layer
 
-Executor [Bosch, in Turtlebot demo -- step 1]
+Executor (Bosch)
 
-Lifecycle / System modes [Bosch, in Turtlebot demo -- step 2]
+* Very simple mechanism will be developed in the micro-ROS Turtlebot demo until August 2019.
 
-TF [Bosch, in Turtlebot demo -- step 3]
+Lifecycle / System modes (Bosch)
 
-Diagnostics [Bosch, in Turtlebot demo -- step 2]
+* To be developed in a second step in the micro-ROS Turtlebot demo.
 
+TF (Bosch)
+
+* To be developed in a third step in the micro-ROS Turtlebot demo.
+
+Diagnostics (Bosch)
+
+* To be developed in the second step in the micro-ROS Turtlebot demo.
 * Liveliness of node: Introduce mechanism in micro-XRCE-DDS similar to standard DDS?
 * Make PR for rmw extension with abstract interface to be informed about liveliness of other nodes?!
 
-Power management
+Power management (Acutronic Robotics)
 
-* RTOS dependant, it would require implementation for each one, AL
-
-## Decision in the OFERA Project
-
-* Do not go for rclc but directly for rcl + extensions
-* Try out rclcpp on a MCU and measure memory and CPU consumption
+* Highly dependent on RTOS, it would require implementation for each one
