@@ -20,7 +20,8 @@
 - title: Concepts
   docs:
    - rtos
+   - client_library
    - real-time_executor
-   - embedded_tf
    - system_modes
+   - embedded_tf
    - FIROS2
