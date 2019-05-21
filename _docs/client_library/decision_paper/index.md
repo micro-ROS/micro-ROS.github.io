@@ -191,7 +191,7 @@ Logging (eProsima)
 Time / Clock and Timers (eProsima, Bosch, Acutronic Robotics)
 
 * Bosch will analyze rcl time and clock interface
-* Synchronization with microprocessor -- message types already available in micro-XRCE-DDS
+* Synchronization with microprocessor -- message types already available in Micro-XRCE-DDS
 * Adapter for RTOS required -- part of abstraction layer
 
 Executor (Bosch)
@@ -209,7 +209,7 @@ TF (Bosch)
 Diagnostics (Bosch)
 
 * To be developed in the second step in the micro-ROS Turtlebot demo.
-* Liveliness of node: Introduce mechanism in micro-XRCE-DDS similar to standard DDS?
+* Liveliness of node: Introduce mechanism in Micro-XRCE-DDS similar to standard DDS?
 * Make PR for rmw extension with abstract interface to be informed about liveliness of other nodes?!
 
 Power management (Acutronic Robotics)
