@@ -1013,7 +1013,7 @@ If you execute the application typing `adc_simple`, you will see a measurement o
 
 ![image](imgs/adc_measure.png)
 
-## How to execute CPU performance telemetry app
+# How to execute CPU performance telemetry app
 
 Go to the main folder of NuttX and type the next command to configure the board:
 `./scripts/configure.sh olimex-stm32-e407 telemetry`
@@ -1145,7 +1145,7 @@ Priority:   100
 Scheduler:  SCHED_FIFO                                                          
 SigMask:    00000000  
 ```
-## How to execute Power Manager example
+# How to execute Power Manager example
 
 This example is simple. After some seconds, the board enter into a sleep mode that could be re-waken up, writing into the serial season. As the MCU is in low power mode, some data is lost, until the complete wake up is done.
 
