@@ -5,8 +5,8 @@ permalink: /docs/tutorials/getting_started_embedded/
 
 Table of contents
 
-*   [Running micro-ROS example at an embedded board](#running-micro-ROS-example)
-*   [Running Micro XRCE-DDS example at an embedded board](#running-Micro-XRCE-DDS-example)
+*   [Running micro-ROS example at an embedded board](#running-micro-ros-example)
+*   [Running Micro XRCE-DDS example at an embedded board](#running-micro-xrce-dds-example)
 
 ## Introduction
 

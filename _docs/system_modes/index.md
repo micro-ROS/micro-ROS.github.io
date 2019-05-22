@@ -5,17 +5,16 @@ redirect_from: /system_modes/
 ---
 
 
-Table of Contents
-- [Lifecycle and System Modes](#lifecycle-and-system-modes)
-  - [Introduction and Goal](#introduction-and-goal)
-  - [Requirements](#requirements)
-  - [Background: ROS 2 Lifecycle](#background-ros-2-lifecycle)
-  - [Main Features](#main-features)
-    - [Extended Lifecycle](#extended-lifecycle)
-    - [System Hierarchy and Modes](#system-hierarchy-and-modes)
-    - [Mode manager](#mode-manager)
-  - [Roadmap](#roadmap)
-  - [Acknowledgments](#acknowledgments)
+Table of contents
+- [Introduction and Goal](#introduction-and-goal)
+- [Requirements](#requirements)
+- [Background: ROS 2 Lifecycle](#background-ros-2-lifecycle)
+- [Main Features](#main-features)
+  - [Extended Lifecycle](#extended-lifecycle)
+  - [System Hierarchy and Modes](#system-hierarchy-and-modes)
+  - [Mode manager](#mode-manager)
+- [Roadmap](#roadmap)
+- [Acknowledgments](#acknowledgments)
 
 
 ## Introduction and Goal
@@ -51,7 +50,7 @@ The envisioned key elements to achieve this goal are:
 
 ## Requirements
 
-The list of requirements is maintained in the doc folder of the micro-ROS system modes repository, at:  https://github.com/microROS/system_modes/blob/master/system_modes/doc/requirements.md
+The list of requirements is maintained in the doc folder of the micro-ROS system modes repository, at:  https://github.com/micro-ROS/system_modes/blob/master/system_modes/doc/requirements.md
 
 
 ## Background: ROS 2 Lifecycle
@@ -69,7 +68,7 @@ The implementation of the Lifecycle Node is described at:
 In micro-ROS, we extend the ROS 2 lifecycle by allowing to specify modes, i.e. substates, specializing the *active* *state based on the standard ROS 2 parameters mechanism. We implemented this concept based on rcl and rclcpp for ROS 2 and micro-ROS.
 
 Documentation and code can be found at:  
-[github.com:system_modes/README.md#lifecycle](https://github.com/microROS/system_modes/blob/master/system_modes/README.md#lifecycle)
+[github.com:system_modes/README.md#lifecycle](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#lifecycle)
 
 
 ### System Hierarchy and Modes
@@ -77,9 +76,9 @@ Documentation and code can be found at:
 We provide a modeling concept for specifying the hierarchical composition of systems recursively from nodes and for specifying the states and modes of systems and subsystems with the extended lifecycle, analogously to nodes. This system modes and hierarchy (SMH) model also includes an application-specific the mapping of the states and modes along the system hierarchy down to nodes.
 
 The description of this model can be found at:  
-[github.com:system_modes/README.md#system-modes](https://github.com/microROS/system_modes/blob/master/system_modes/README.md#system-modes)  
+[github.com:system_modes/README.md#system-modes](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#system-modes)  
 A simple example is provided at:  
-[github.com:system_modes_examples/README.md#example-mode-file](https://github.com/microROS/system_modes/blob/master/system_modes_examples/README.md#example-mode-file)
+[github.com:system_modes_examples/README.md#example-mode-file](https://github.com/micro-ROS/system_modes/blob/master/system_modes_examples/README.md#example-mode-file)
 
 
 ### Mode manager
@@ -87,9 +86,9 @@ A simple example is provided at:
 The mode manager allows for runtime system adaptation based on such a system hierarchy and modes model. It parses the model and provides all services and topics to request state and mode changes and to monitor these changes.
 
 The documentation and code can be found at:  
-[github.com:system_modes/README.md#mode-manager](https://github.com/microROS/system_modes/blob/master/system_modes/README.md#mode-manager)  
+[github.com:system_modes/README.md#mode-manager](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-manager)  
 A simple example is provided at:  
-[github.com:system_modes_examples/README.md#setup](https://github.com/microROS/system_modes/blob/master/system_modes_examples/README.md#setup)
+[github.com:system_modes_examples/README.md#setup](https://github.com/micro-ROS/system_modes/blob/master/system_modes_examples/README.md#setup)
 
 
 ## Roadmap
