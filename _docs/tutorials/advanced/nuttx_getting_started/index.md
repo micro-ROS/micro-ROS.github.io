@@ -19,7 +19,7 @@ the defconfig files for NuttX, OFERA project has created.
 - [UDP echo server](#How-to-execute-UDPEcho-server-example)
 - [TCP echo server](#How-to-execute-TCP-Echo-server-example)
 - [MRF24J40-6LowPan through SPI](#How-to-use-MRF24j40-6LowPan)
-- [How to set 6lowpan communication between Raspbian and Nuttx.](#How to set 6lowpan communication between Raspbian and / Nuttx.)
+- [How to set 6lowpan communication between Raspbian and Nuttx.](#How-to-set-6lowpan-communication-between-Raspbian-and-Nuttx)
 - [ADC](#How-to-use-the-ADC-demo)
 - [Telemetry](#How-to-execute-telemetry-app)
 - [Power Manager](#How-to-execute-Power-Manager-example)
