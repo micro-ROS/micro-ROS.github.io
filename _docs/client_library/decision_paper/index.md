@@ -99,9 +99,9 @@ As a first experiment, we implemented a simple node and subscriber directly agai
 
 In detail, we counted the calls of the standard C memory functions (malloc, realloc, free) and the calls of the functions of the default allocator (which uses the standard C memory functions) in rcutils/allocator.c
 
-With the Micro-XRCE-DDS middleware, we obtained the following numbers:
+With the Micro XRCE-DDS middleware, we obtained the following numbers:
 
-![Allocations with Micro-XRCE-DDS](allocations_Micro-XRCE-DDS.png)
+![Allocations with Micro XRCE-DDS](allocations_Micro_XRCE-DDS.png)
 
 For curiosity, the numbers for Fast-RTPS:
   
@@ -191,7 +191,7 @@ Logging (eProsima)
 Time / Clock and Timers (eProsima, Bosch, Acutronic Robotics)
 
 * Bosch will analyze rcl time and clock interface
-* Synchronization with microprocessor -- message types already available in Micro-XRCE-DDS
+* Synchronization with microprocessor -- message types already available in Micro XRCE-DDS
 * Adapter for RTOS required -- part of abstraction layer
 
 Executor (Bosch)
@@ -209,7 +209,7 @@ TF (Bosch)
 Diagnostics (Bosch)
 
 * To be developed in the second step in the micro-ROS Turtlebot demo.
-* Liveliness of node: Introduce mechanism in Micro-XRCE-DDS similar to standard DDS?
+* Liveliness of node: Introduce mechanism in Micro XRCE-DDS similar to standard DDS?
 * Make PR for rmw extension with abstract interface to be informed about liveliness of other nodes?!
 
 Power management (Acutronic Robotics)
