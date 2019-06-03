@@ -1,3 +1,8 @@
+---
+title: 6LOWPAN communications between NuttX and Raspbian.
+permalink: /docs/tutorials/advanced/6lowpan_nuttx_rpi/
+---
+
 # How to set 6lowpan communication between Raspbian and Nuttx.
 
 This guide will show how to set-up a Raspberry Pi 3 (RPI) running Raspbian and an Olimex STM32 E407 board running NuttX to have 6lowpan communication between them.
