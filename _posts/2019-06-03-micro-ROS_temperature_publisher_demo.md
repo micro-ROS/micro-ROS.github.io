@@ -10,11 +10,10 @@ At the same time, the Olimex board is connected by serial to Raspberry Pi, which
 
 The next video shows this demo running.
 
-
 <video muted width="640" height="480" align="middle" controls="controls">
     <source src="/download/Dashing_post_micro-ROS_temp_publisher.mp4" type="video/mp4">
 </video>
-
+**(This video doesn't work on Chrome)**
 
 You can find all the details and how to reproduce in the next link:
 [micro-ROS temperature publisher demo](https://github.com/micro-ROS/micro-ROS_temperature_publisher_demo)
