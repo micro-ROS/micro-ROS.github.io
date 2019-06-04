@@ -1,9 +1,8 @@
 ---
-title: 6LOWPAN communications between NuttX and Raspbian.
+title: 6LOWPAN communications between NuttX and a Raspberry Pi
 permalink: /docs/tutorials/advanced/6lowpan_nuttx_rpi/
 ---
 
-# How to set 6lowpan communication between Raspbian and Nuttx.
 
 This guide will show how to set-up a Raspberry Pi 3 (RPI) running Raspbian and an Olimex STM32 E407 board running NuttX to have 6lowpan communication between them.
 
@@ -14,7 +13,7 @@ This guide will show how to set-up a Raspberry Pi 3 (RPI) running Raspbian and a
 - Olimex-STM32-E407 board.
 - Two PMODRF2 module which are base on the MRF24J40 module.
 - PC with Ubuntu (It works fine with Ubuntu 16.04)
-
+- NuttX source code, you can find a Docker file with all the tools [here](https://github.com/micro-ROS/docker/tree/master/Embedded/NuttX/development/stm32-e407).
 ## How to set-up 6lowpan RPI?
 
 First, we need to connect the PMODRF2 module to the RPI, so we need to set the next connections:
@@ -31,16 +30,16 @@ First, we need to connect the PMODRF2 module to the RPI, so we need to set the n
 | CS | 26 | 1 |
 
 In the next links you can see the pinout of each board:
-[- Raspberry Pi 3 pinout.](https://i.pinimg.com/originals/84/46/ec/8446eca5728ebbfa85882e8e16af8507.png)
-[- PMODRF2 pionut.](https://reference.digilentinc.com/reference/pmod/pmodrf2/start)
+- [Raspberry Pi 3 pinout.](https://i.pinimg.com/originals/84/46/ec/8446eca5728ebbfa85882e8e16af8507.png)
+- [PMODRF2 pionut.](https://reference.digilentinc.com/reference/pmod/pmodrf2/start)
 
-Once you've set all the wires, power-on the RPI and download the next repository inside the RPI.
-https://github.com/micro-ROS/micro-ROS-bridge_RPI
+Once you've set all the wires, power-on the RPI and download the next repository inside the RPI:
+- https://github.com/micro-ROS/micro-ROS-bridge_RPI
 
 Execute the next command:
 ```sudo ./micro-ROS-bridge_RPI/RPI_6lowpan/script.sh```
 
-If everything goes fine, at the end of the script, the board should restart. After the start-up, type the next command to see if the configuration and the connection are fine:
+If everything goes fine, at the end of the script, the board should restart. After the start-up, type the next command to see if the configuration and the connections are fine:
 ```dmesg | grep mrf24j40```
 
 And if everything is fine, it should return the next:
@@ -61,9 +60,9 @@ The last point is to set-up the network.
 Now the RPI is ready to send and receive messages from a NuttX board or another RPI.
 
 
-## How to set-up 6lowpan NuttX?
+## How to set-up 6lowpan in NuttX?
 
-First, we need to do the connections between the Olimex board and the PMODRF2 module.
+First, we need to do the connections between the [Olimex board](/docs/hardware_support) and the PMODRF2 module.
 
 - `Board D13` -> `MRF24J40 SCLK`
 - `Board D12` -> `MRF24J40 MISO`
@@ -73,7 +72,7 @@ First, we need to do the connections between the Olimex board and the PMODRF2 mo
 
 Once the wiring is finished, we need to compile and upload the firmware. Type the next commands:
 
-o to the main folder of NuttX and type the command to configure the board:
+Go to the main folder of NuttX and type the command to configure the board:
 `./scripts/configure.sh olimex-stm32-e407 mrf24j40-6lowpan`
 
 Compile:
@@ -120,9 +119,10 @@ Builtin Apps:
   udp_6lowpan  ping6        i8sak
 ```
 
-We're going to configure the network. Execute udp_6lowpan.
+We're going to configure the network. Execute `udp_6lowpan`.
 The program will ask you if you want to configure the network. Type **Y** to start the configuration process.
-**Important note:** If you don't configure the network, the connection won't be possible with other boards.**
+
+**Important note: If you don't configure the network, the connection won't be possible with other boards.**
 
 Then will ask you if you want to set this board as a coordinator or as a node.
 The difference between a coordinator and a node is that the first one can work as a router, coordinating the network traffic of up to 8 nodes.
@@ -161,7 +161,7 @@ Available commands
 
 ```
 
-** At this point the network is ready to work!**
+**At this point the network is ready to work!**
 
 Finally type ``quit`` two times to close the app and come back to the main menu.
 
@@ -232,7 +232,7 @@ As you can see there is two IP in this network interface. But you need to rememb
 `fe80::9c6e:87a5:eb60:84d0``
 
 Go to the place where lives the repo that you downloaded previously. Go to ``micro-ROS-bridge_RPI/RPI_6lowpan/Examples/6lowpan_recv``
-Finally, execute recv_demo telling to open the 61616 port. Type this command: ``./recv_demo 61616``
+Finally, execute `recv_demo` telling to open the `61616` port. Type this command: ``./recv_demo 61616``
 
 At this point, the RPI is ready to receive incoming packages.
 
@@ -283,7 +283,7 @@ The Linux 6lowpan utility needs to have a ping response before sending a data pa
 If this does not work, do as follow:
 
 Check if the Nuttx address is part within the Linux/Raspbian neighborhood table.
-If it is, remove it:
+If it is saved there, remove it:
 ```bash
  $ ip neigh  # a bunch of address shall appear including yours (if you send a
 	message already)
@@ -291,7 +291,7 @@ If it is, remove it:
  $ sudo ip neigh delete fe80::2be:adde:de:fa00 dev lowpan0 # Remove it.
 ```
 
-Then once delete add the Nuttx device it permanently (until reboot):
+Then, once deleted, add the Nuttx device it permanently (until reboot):
 
 ```bash
  $ sudo ip neigh add fe80::2be:adde:de:fa00 dev lowpan0 00:be:ad:de:00:de:fa:00 # Add it with the
@@ -299,7 +299,7 @@ corret  Hardware address.
 ```
 
 ### NuttX part:
-First we need the ip of the board, so type ``ifconfig`` in the main menu. This should return somenthing like this:
+First, we need the ip of the board, so type ``ifconfig`` in the main menu. This should return somenthing like this:
 ```bash
 wpan0   Link encap:6LoWPAN HWaddr 00:be:ad:de:00:de:fa:00 at UP                 
         inet6 addr: fe80::2be:adde:de:fa00/64                                   
@@ -327,7 +327,7 @@ Sent         0000  0000  0000  0000
 
 For us is important to remember the **inet6_addr** which is: ``fe80::2be:adde:de:fa00``
 
-Execute ``udp_6lowpan`` app, type ``N`` to the configuration request and finally type read, to start the receiving mode.
+Execute ``udp_6lowpan`` app, type ``N`` to the configuration request and finally type `read`, to start the receiving mode.
 Type the port that you want to open, for example, the 61616. And it should look like this mean is waiting for the incoming message.
 
 ```bash
@@ -341,7 +341,7 @@ Listening on 61616 for input packets
 
 ### Raspbian Part:
 
-Go to the places that lives the previous download repo. Then go to this folder: ``/micro-ROS-bridge_RPI/RPI_6lowpan/Examples/66lowpan_send``
+Go to the places that lives the previous download repo. Then go to this folder: ``/micro-ROS-bridge_RPI/RPI_6lowpan/Examples/6lowpan_send``
 
 And execute with root privileges the next app: ``send_demo``.
 These demos have two arguments: The first is the port to open in the destination and the second is the destination IP. An example of this specific demo could be:
