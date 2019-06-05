@@ -1,4 +1,6 @@
-# Comparisons
+---
+title: Comparison to other approaches to put ROS onto small embedded devices
+---
 
 This page compares micro-ROS to a few alternative approaches.
 

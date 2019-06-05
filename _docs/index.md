@@ -1,5 +1,5 @@
 ---
-permalink: /docs/home/
+permalink: /docs/home
 title: Overview
 ---
 
@@ -15,7 +15,7 @@ We're basically following the ROS2 architecture and make use of its middleware p
 
 ![](/img/micro-ROS_architecture.png)
 
-For comaprisons to other approaches, see our [comparison](comparison) document.
+We have also prepared a [comparison](/docs/comparison) to other approaches, to see the important differences quickly.
 
 ## Concept Documentation
 
