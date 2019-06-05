@@ -1,5 +1,6 @@
 ---
 title: Supported Hardware
+permalink: /docs/overview/hardware/
 ---
 
 This page lists the hardware platforms that we use to test and develop micro-ROS, and also accessories that we frequently refer to, such as add-on boards, and JTAG probes.

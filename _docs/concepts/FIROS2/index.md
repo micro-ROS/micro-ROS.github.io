@@ -1,6 +1,6 @@
 ---
 title: micro-ROS & FIWARE
-permalink: /docs/FIROS2/
+permalink: /docs/concepts/FIROS2/
 redirect_from: /FIROS2/
 ---
 

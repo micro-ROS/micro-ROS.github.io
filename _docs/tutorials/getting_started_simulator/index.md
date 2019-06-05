@@ -242,5 +242,3 @@ Receiving... [SHAPE_TYPE | color: BLUE | x: 200 | y: 200 | size: 40]
 
 
 _Needs rework to explain better how to open new terminals_
-
-

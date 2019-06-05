@@ -1,6 +1,6 @@
 ---
 title: Client Library
-permalink: /docs/client_library/
+permalink: /docs/concepts/client_library/
 ---
 
 ## Overview

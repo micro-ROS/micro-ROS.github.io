@@ -19,7 +19,7 @@ For that purpose, we are going to use a [Olimex STM32-E407](https://www.olimex.c
 
 At this example, we are going to flash the board with a binary that contains a NuttX App. This NuttX App is a micro-ROS client. This client will try to connect to the micro-ROS Agent running at your computer and exchange data using Micro XRCE-DDS.
 
-For that purpose, firs install [this](https://github.com/microROS/docker/tree/master/Embedded/NuttX/precompiled/micro-XRCE-DDS/olimex-stm32-e407) container at your Linux machine. 
+For that purpose, firs install [this](https://github.com/microROS/docker/tree/master/Embedded/NuttX/precompiled/micro-XRCE-DDS/olimex-stm32-e407) container at your Linux machine.
 
 
 
@@ -121,5 +121,3 @@ wrote 65536 bytes from file nuttx.bin in 2.157869s (29.659 KiB/s)
 At this point, you should have your board flashed with NuttX image containing an `nsh` application and a publisher and a subscriber using Micro XRCE-DDS.
 
 _To be completed!_
-
-

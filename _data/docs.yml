@@ -1,17 +1,16 @@
-- title: General
+- title: Overview
   docs:
-   - home
-   - hardware_support
+   - overview
+   - overview/hardware
+   - overview/comparison
 
-# placeholder for tutorials...
-- title: Basic Tutorials
+- title: Tutorials - Basic
   docs:
-   - tutorials
    - tutorials/getting_started
    - tutorials/getting_started_embedded
    - tutorials/getting_started_simulator
- 
-- title: Advanced Tutorials
+
+- title: Tutorials - Advanced
   docs:
    - tutorials/advanced/nuttx_getting_started
    - tutorials/advanced/debugging-gdb-openocd
@@ -20,9 +19,9 @@
 
 - title: Concepts
   docs:
-   - rtos
-   - client_library
-   - real-time_executor
-   - system_modes
-   - embedded_tf
-   - FIROS2
+   - concepts/rtos
+   - concepts/client_library
+   - concepts/real-time_executor
+   - concepts/system_modes
+   - concepts/embedded_tf
+   - concepts/FIROS2
