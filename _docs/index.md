@@ -1,5 +1,5 @@
 ---
-permalink: /docs/home
+permalink: /docs/home/
 title: Overview
 ---
 
