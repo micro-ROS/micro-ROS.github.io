@@ -15,7 +15,7 @@ We're basically following the ROS2 architecture and make use of its middleware p
 
 ![](/img/micro-ROS_architecture.png)
 
-For comaprisons to other approaches, see our [comparison](comparison.html) document.
+For comaprisons to other approaches, see our [comparison](comparison) document.
 
 ## Concept Documentation
 
