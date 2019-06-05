@@ -1,6 +1,6 @@
 ---
 title: Client Library - Decision Paper
-permalink: /docs/client_library/decision_paper/
+permalink: /docs/concepts/client_library/decision_paper/
 ---
 
 This document shall serve as decision template for the design and implementation of the micro-ROS client library. We discuss different options and existing starting points for this undertaking, decision criteria and analysis results regarding the existing assets.
@@ -104,7 +104,7 @@ With the Micro XRCE-DDS middleware, we obtained the following numbers:
 ![Allocations with Micro XRCE-DDS](allocations_Micro_XRCE-DDS.png)
 
 For curiosity, the numbers for Fast-RTPS:
-  
+
 ![Allocations with Fast-RTPS](allocations_Fast-RTPS.png)
 
 ### Current work on ROS 2

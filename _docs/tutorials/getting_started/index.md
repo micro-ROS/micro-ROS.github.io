@@ -37,7 +37,7 @@ At docker repo, we have one folder for each.
 
 ## Running rclc and rclcpp examples in your ROS2 workspace {#rclc-rclcpp-ROS2-ws}
 
-There are also available examples that you could run building the code at your Linux or Windows computer. 
+There are also available examples that you could run building the code at your Linux or Windows computer.
 
 ### Previous step
 
