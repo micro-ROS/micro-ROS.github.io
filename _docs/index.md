@@ -15,6 +15,8 @@ We're basically following the ROS2 architecture and make use of its middleware p
 
 ![](/img/micro-ROS_architecture.png)
 
+For comaprisons to other approaches, see our [comparison](comparison.html) document.
+
 ## Concept Documentation
 
  - Predictable scheduling and execution:  [real-time_executor](/docs/real-time_executor/)
