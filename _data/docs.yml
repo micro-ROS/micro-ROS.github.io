@@ -4,13 +4,13 @@
    - overview/hardware
    - overview/comparison
 
-- title: Tutorials - Basic
+- title: Basic Tutorials
   docs:
    - tutorials/getting_started
    - tutorials/getting_started_embedded
    - tutorials/getting_started_simulator
 
-- title: Tutorials - Advanced
+- title: Advanced Tutorials
   docs:
    - tutorials/advanced/nuttx_getting_started
    - tutorials/advanced/debugging-gdb-openocd

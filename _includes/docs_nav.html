@@ -1,5 +1,16 @@
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 {% for section in site.data.docs %}
+  {% assign should_show_this_menu = false %}
+  {% if page.path contains "_docs/overview" and section.title contains "Overview" %}
+    {% assign should_show_this_menu = true %}
+  {% endif %}
+  {% if page.path contains "_docs/tutorials" and section.title contains "Tutorials" %}
+    {% assign should_show_this_menu = true %}
+  {% endif %}
+  {% if page.path contains "_docs/concepts" and section.title contains "Concepts" %}
+    {% assign should_show_this_menu = true %}
+  {% endif %}
+  {% if should_show_this_menu == true %}
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -18,5 +29,6 @@
       </div>
     </div>
   </div>
+  {% endif %}
 {% endfor %}
 </div>
