@@ -4,10 +4,10 @@
   {% if page.path contains "_docs/overview" and section.title contains "Overview" %}
     {% assign should_show_this_menu = true %}
   {% endif %}
-  {% if page.path contains "_docs/tutorials" and section.title contains "Tutorials" %}
+  {% if page.path contains "_docs/concepts" and section.title contains "Concepts" %}
     {% assign should_show_this_menu = true %}
   {% endif %}
-  {% if page.path contains "_docs/concepts" and section.title contains "Concepts" %}
+  {% if page.path contains "_docs/tutorials" and section.title contains "Tutorials" %}
     {% assign should_show_this_menu = true %}
   {% endif %}
   {% if should_show_this_menu == true %}
