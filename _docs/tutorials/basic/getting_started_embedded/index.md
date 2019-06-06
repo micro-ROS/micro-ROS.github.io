@@ -1,7 +1,6 @@
 ---
 title: Getting Started with an embedded board (WIP)
 permalink: /docs/tutorials/basic/getting_started_embedded/
-redirect_from: /docs/tutorials/
 ---
 
 Table of contents
