@@ -17,4 +17,4 @@ The micro-ROS community demo was presented, making use of a Kobuki, one of the p
 
 ### Videos
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ca0wmFLi_oY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Ca0wmFLi_oY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
