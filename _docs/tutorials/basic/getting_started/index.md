@@ -1,6 +1,8 @@
 ---
 title: Getting Started with your computer (WIP)
-permalink: /docs/tutorials/getting_started/
+permalink: /docs/tutorials/basic/getting_started/
+redirect_from: /docs/tutorials/basic/
+redirect_from: /docs/tutorials/
 ---
 
 Table of contents

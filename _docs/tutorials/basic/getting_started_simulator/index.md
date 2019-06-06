@@ -1,6 +1,6 @@
 ---
 title: Getting Started with simulator (WIP)
-permalink: /docs/tutorials/getting_started_simulator/
+permalink: /docs/tutorials/basic/getting_started_simulator/
 author: Iñigo Muguruza Goenaga, Juan Muñoz Flores
 ---
 

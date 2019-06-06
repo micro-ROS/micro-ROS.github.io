@@ -1,6 +1,6 @@
 ---
 title: Debugging with Visual Studio Code
-permalink: /docs/tutorials/advanced/debugging-vscode/
+permalink: /docs/tutorials/advanced/debugging_vscode/
 author: Ingo Lütkebohle
 ---
 
@@ -63,9 +63,9 @@ As in the gdb tutorial, initially you won't see much because the program is stop
 
 ### Adding an SVD File
 
-You may have noticed that on the left-hand side, there is a sub-window called "Cortex Peripherals" which simply states "No SVD File loaded". SVD means "System View Description" and is a standard format which microcontroller vendors use to describe the available features of their MCUs. 
+You may have noticed that on the left-hand side, there is a sub-window called "Cortex Peripherals" which simply states "No SVD File loaded". SVD means "System View Description" and is a standard format which microcontroller vendors use to describe the available features of their MCUs.
 
-For example, in the case of our STM32-E407 board, which features an STM32F407ZGT6 MCU, we can download the SVD description from [STM's web-page for the STM32F407ZG series](https://www.st.com/en/microcontrollers-microprocessors/stm32f407zg.html). In the "HW Model, CAD Libraries & SVD", you will find a link to the [STM32F4 series SVD](https://www.st.com/resource/en/svd/stm32f4_svd.zip). 
+For example, in the case of our STM32-E407 board, which features an STM32F407ZGT6 MCU, we can download the SVD description from [STM's web-page for the STM32F407ZG series](https://www.st.com/en/microcontrollers-microprocessors/stm32f407zg.html). In the "HW Model, CAD Libraries & SVD", you will find a link to the [STM32F4 series SVD](https://www.st.com/resource/en/svd/stm32f4_svd.zip).
 
 Extract the SVD and then add an `svdFile` attribute to the launch configuration. The full configuration will look like this:
 

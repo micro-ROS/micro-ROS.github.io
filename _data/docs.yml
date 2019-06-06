@@ -6,15 +6,15 @@
 
 - title: Basic Tutorials
   docs:
-   - tutorials/getting_started
-   - tutorials/getting_started_embedded
-   - tutorials/getting_started_simulator
+   - tutorials/basic/getting_started
+   - tutorials/basic/getting_started_embedded
+   - tutorials/basic/getting_started_simulator
 
 - title: Advanced Tutorials
   docs:
    - tutorials/advanced/nuttx_getting_started
-   - tutorials/advanced/debugging-gdb-openocd
-   - tutorials/advanced/debugging-vscode
+   - tutorials/advanced/debugging_gdb_openocd
+   - tutorials/advanced/debugging_vscode
    - tutorials/advanced/6lowpan_nuttx_rpi
 
 - title: Concepts
