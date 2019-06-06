@@ -1,6 +1,7 @@
 ---
 title: Overview
 permalink: /docs/overview/
+redirect_from: /docs/
 ---
 
 [micro-ROS](https://cordis.europa.eu/project/rcn/213167_en.html) puts ROS2 onto microcontrollers, making them first class participants of the ROS 2 environment.

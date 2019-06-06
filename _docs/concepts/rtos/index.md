@@ -1,6 +1,7 @@
 ---
 title: Real-Time Operating Systems (RTOS)
 permalink: /docs/concepts/rtos/
+redirect_from: /docs/concepts/
 ---
 
 # RTOS

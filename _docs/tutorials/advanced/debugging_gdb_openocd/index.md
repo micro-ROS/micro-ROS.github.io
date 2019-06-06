@@ -1,7 +1,7 @@
 ---
 title: Debugging a NuttX target with GDB and OpenOCD
+permalink: /docs/tutorials/advanced/debugging_gdb_openocd/
 author: Ingo Lütkebohle
-permalink: /docs/tutorials/advanced/debugging-gdb-openocd/
 ---
 
 Rare is the program that works on the first try -- so you will usually need a debugger. This is even more true on an embedded device, where "printf"-style debugging is very cumbersome.
@@ -133,7 +133,7 @@ In my case, this is the NSH thread which is waiting for some input.
 This concludes this basic tutorial on getting gdb to run with OpenOCD and NuttX support.
 
 Using gdb on the command line is considered a bit cumbersome by many. So if you know your way
-around an IDE with gdb support, integrating it should be easy. We leave that as an exercise 
+around an IDE with gdb support, integrating it should be easy. We leave that as an exercise
 for the reader ;-)
 
 There are also IDEs with microcontroller support -- stay tuned for another tutorial with more
