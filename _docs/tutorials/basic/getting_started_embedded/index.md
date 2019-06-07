@@ -1,6 +1,6 @@
 ---
 title: Getting Started with an embedded board (WIP)
-permalink: /docs/tutorials/getting_started_embedded/
+permalink: /docs/tutorials/basic/getting_started_embedded/
 ---
 
 Table of contents
