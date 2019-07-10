@@ -20,7 +20,7 @@ Even though many development boards could be used, we have chosen two of them as
 
 This section describes the main characteristic of the selected boards.
 
-## Olimex LTD STM32-E407
+### Olimex LTD STM32-E407
 
 ![Olimex](https://www.olimex.com/Products/ARM/ST/STM32-E407/images/STM32-E407-02.jpg)
 
