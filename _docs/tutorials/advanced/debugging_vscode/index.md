@@ -4,7 +4,7 @@ permalink: /docs/tutorials/advanced/debugging_vscode/
 author: Ingo Lütkebohle
 ---
 
-This is a follow-up to [Debugging with gdb and openocd](/docs/tutorials/advanced/debugging-gdb-openocd/), because the set up done in that tutorial is a pre-requisite to debugging with Visual Studio Code.
+This is a follow-up to [Debugging with gdb and openocd](/docs/tutorials/advanced/debugging_gdb_openocd/), because the set up done in that tutorial is a pre-requisite to debugging with Visual Studio Code.
 
 ## Motivation
 
