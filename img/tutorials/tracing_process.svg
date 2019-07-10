@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 696 376" width="696" version="1.1">
+    <defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="87" rows="22"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[#screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+        text {
+            dominant-baseline: text-before-edge;
+            white-space: pre;
+        }]]></style>
+        <style type="text/css" id="user-style">
+            /* gjm8 color theme (source: https://terminal.sexy/) */
+            .foreground {fill: #c5c5c5;}
+            .background {fill: #1c1c1c;}
+            .color0 {fill: #1c1c1c;}
+            .color1 {fill: #ff005b;}
+            .color2 {fill: #cee318;}
+            .color3 {fill: #ffe755;}
+            .color4 {fill: #048ac7;}
+            .color5 {fill: #833c9f;}
+            .color6 {fill: #0ac1cd;}
+            .color7 {fill: #e5e5e5;}
+            .color8 {fill: #1c1c1c;}
+            .color9 {fill: #ff005b;}
+            .color10 {fill: #cee318;}
+            .color11 {fill: #ffe755;}
+            .color12 {fill: #048ac7;}
+            .color13 {fill: #833c9f;}
+            .color14 {fill: #0ac1cd;}
+            .color15 {fill: #e5e5e5;}
+        </style>
+    </defs>
+    <svg id="screen" width="696" viewBox="0 0 696 374" preserveAspectRatio="xMidYMin meet">
+        <rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text class="foreground" textLength="408" x="0">94288517870464  1562746992863837193  94288517518896</text></g><g id="g2"><text class="foreground" textLength="408" x="0">94288518240160  1562746992864386991  94288518252464</text></g><g id="g3"><text class="foreground" textLength="408" x="0">94288518609936  1562746992865161707  94288518320272</text></g><g id="g4"><text class="foreground" textLength="408" x="0">94288519326016  1562746992866382215  94288514569680</text></g><g id="g5"><text class="foreground" textLength="408" x="0">94288519407744  1562746992866948657  94288519346592</text></g><g id="g6"><text class="foreground" textLength="136" x="0">Callback symbols:</text></g><g id="g7"><text class="foreground" textLength="696" x="0">                           timestamp                                             symbol</text></g><g id="g8"><text class="foreground" textLength="696" x="0">callback_object                                                                        </text></g><g id="g9"><text class="foreground" textLength="696" x="0">94258814809568   1562746992861415771  std::_Bind&lt;void (rclcpp::TimeSource::*(rclcpp:...</text></g><g id="g10"><text class="foreground" textLength="696" x="0">94258819586592   1562746992861940378  std::_Bind&lt;void (PingNode::*(PingNode*, std::_...</text></g><g id="g11"><text class="foreground" textLength="696" x="0">94258820235240   1562746992862399994                                              timer</text></g><g id="g12"><text class="foreground" textLength="696" x="0">94288514569680   1562746992866400686  std::_Bind&lt;void (rclcpp::TimeSource::*(rclcpp:...</text></g><g id="g13"><text class="foreground" textLength="696" x="0">94288519346592   1562746992866961196  std::_Bind&lt;void (PongNode::*(PongNode*, std::_...</text></g><g id="g14"><text class="foreground" textLength="152" x="0">Callback instances:</text></g><g id="g15"><text class="foreground" textLength="488" x="0">  callback_object            timestamp duration intra_process</text></g><g id="g16"><text class="foreground" textLength="488" x="0">0  94258820235240  1562746993362567313   115006         False</text></g><g id="g17"><text class="foreground" textLength="488" x="0">1  94288519346592  1562746993363166546  1180219         False</text></g><g id="g18"><text class="foreground" textLength="488" x="0">2  94258819586592  1562746993363902477  1227555         False</text></g><g id="g19"><text class="foreground" textLength="400" x="0">==================================================</text></g><g id="g20"><text class="foreground" textLength="96" x="0">~/ros2_ws $ </text><text class="background" textLength="8" x="96"> </text></g></defs><g><use y="0" xlink:href="#g1"/><use y="17" xlink:href="#g2"/><use y="34" xlink:href="#g3"/><use y="51" xlink:href="#g4"/><use y="68" xlink:href="#g5"/><use y="102" xlink:href="#g6"/><use y="119" xlink:href="#g7"/><use y="136" xlink:href="#g8"/><use y="153" xlink:href="#g9"/><use y="170" xlink:href="#g10"/><use y="187" xlink:href="#g11"/><use y="204" xlink:href="#g12"/><use y="221" xlink:href="#g13"/><use y="255" xlink:href="#g14"/><use y="272" xlink:href="#g15"/><use y="289" xlink:href="#g16"/><use y="306" xlink:href="#g17"/><use y="323" xlink:href="#g18"/><use y="340" xlink:href="#g19"/><rect class="foreground" height="17" width="8" x="96" y="357"/><use y="357" xlink:href="#g20"/></g></svg>
+</svg>
