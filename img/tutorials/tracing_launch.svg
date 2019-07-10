@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 656 376" width="656" version="1.1">
+    <defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="82" rows="22"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[#screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+        text {
+            dominant-baseline: text-before-edge;
+            white-space: pre;
+        }]]></style>
+        <style type="text/css" id="user-style">
+            /* gjm8 color theme (source: https://terminal.sexy/) */
+            .foreground {fill: #c5c5c5;}
+            .background {fill: #1c1c1c;}
+            .color0 {fill: #1c1c1c;}
+            .color1 {fill: #ff005b;}
+            .color2 {fill: #cee318;}
+            .color3 {fill: #ffe755;}
+            .color4 {fill: #048ac7;}
+            .color5 {fill: #833c9f;}
+            .color6 {fill: #0ac1cd;}
+            .color7 {fill: #e5e5e5;}
+            .color8 {fill: #1c1c1c;}
+            .color9 {fill: #ff005b;}
+            .color10 {fill: #cee318;}
+            .color11 {fill: #ffe755;}
+            .color12 {fill: #048ac7;}
+            .color13 {fill: #833c9f;}
+            .color14 {fill: #0ac1cd;}
+            .color15 {fill: #e5e5e5;}
+        </style>
+    </defs>
+    <svg id="screen" width="656" viewBox="0 0 656 374" preserveAspectRatio="xMidYMin meet">
+        <rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text class="foreground" textLength="344" x="0">~/ros2_ws $ source install/local_setup.bash</text></g><g id="g2"><text class="foreground" textLength="480" x="0">~/ros2_ws $ ros2 launch tracetools_launch example.launch.py </text></g><g id="g3"><text class="foreground" textLength="656" x="0">[INFO] [launch]: All log files can be found below /home/example/.ros/log/2019-07-1</text></g><g id="g4"><text class="foreground" textLength="408" x="0">0-10-16-01-215219                                  </text></g><g id="g5"><text class="foreground" textLength="456" x="0">[INFO] [launch]: Default logging verbosity is set to INFO</text></g><g id="g6"><text class="foreground" textLength="432" x="0">[INFO] [test_ping-1]: process started with pid [19995]</text></g><g id="g7"><text class="foreground" textLength="432" x="0">[INFO] [test_pong-2]: process started with pid [19996]</text></g><g id="g8"><text class="foreground" textLength="528" x="0">[test_ping-1] [INFO] [test_ping]: [output] some random pong string</text></g><g id="g9"><text class="foreground" textLength="176" x="0">[test_ping-1] spinning</text></g><g id="g10"><text class="foreground" textLength="176" x="0">[test_pong-2] spinning</text></g><g id="g11"><text class="foreground" textLength="528" x="0">[test_pong-2] [INFO] [test_pong]: [output] some random ping string</text></g><g id="g12"><text class="foreground" textLength="496" x="0">[INFO] [test_ping-1]: process has finished cleanly [pid 19995]</text></g><g id="g13"><text class="foreground" textLength="496" x="0">[INFO] [test_pong-2]: process has finished cleanly [pid 19996]</text></g><g id="g14"><text class="foreground" textLength="96" x="0">~/ros2_ws $ </text><text class="background" textLength="8" x="96"> </text></g></defs><g><use y="0" xlink:href="#g1"/><use y="17" xlink:href="#g2"/><use y="34" xlink:href="#g3"/><use y="51" xlink:href="#g4"/><use y="68" xlink:href="#g5"/><use y="85" xlink:href="#g6"/><use y="102" xlink:href="#g7"/><use y="136" xlink:href="#g8"/><use y="119" xlink:href="#g9"/><use y="153" xlink:href="#g10"/><use y="170" xlink:href="#g11"/><use y="187" xlink:href="#g12"/><use y="204" xlink:href="#g13"/><rect class="foreground" height="17" width="8" x="96" y="221"/><use y="221" xlink:href="#g14"/></g></svg>
+</svg>

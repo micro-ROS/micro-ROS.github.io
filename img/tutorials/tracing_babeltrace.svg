@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="terminal" baseProfile="full" viewBox="0 0 656 376" width="656" version="1.1">
+    <defs>
+        <termtosvg:template_settings xmlns:termtosvg="https://github.com/nbedos/termtosvg">
+            <termtosvg:screen_geometry columns="82" rows="22"/>
+        </termtosvg:template_settings>
+        <style type="text/css" id="generated-style"><![CDATA[#screen {
+                font-family: 'DejaVu Sans Mono', monospace;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+        text {
+            dominant-baseline: text-before-edge;
+            white-space: pre;
+        }]]></style>
+        <style type="text/css" id="user-style">
+            /* gjm8 color theme (source: https://terminal.sexy/) */
+            .foreground {fill: #c5c5c5;}
+            .background {fill: #1c1c1c;}
+            .color0 {fill: #1c1c1c;}
+            .color1 {fill: #ff005b;}
+            .color2 {fill: #cee318;}
+            .color3 {fill: #ffe755;}
+            .color4 {fill: #048ac7;}
+            .color5 {fill: #833c9f;}
+            .color6 {fill: #0ac1cd;}
+            .color7 {fill: #e5e5e5;}
+            .color8 {fill: #1c1c1c;}
+            .color9 {fill: #ff005b;}
+            .color10 {fill: #cee318;}
+            .color11 {fill: #ffe755;}
+            .color12 {fill: #048ac7;}
+            .color13 {fill: #833c9f;}
+            .color14 {fill: #0ac1cd;}
+            .color15 {fill: #e5e5e5;}
+        </style>
+    </defs>
+    <svg id="screen" width="656" viewBox="0 0 656 374" preserveAspectRatio="xMidYMin meet">
+        <rect class="background" height="100%" width="100%" x="0" y="0"/><defs><g id="g1"><text class="foreground" textLength="656" x="0">_init: { cpu_id = 2 }, { procname = "test_pong", vpid = 20420, vtid = 20420 }, { p</text></g><g id="g2"><text class="foreground" textLength="656" x="0">ublisher_handle = 0x55C141B3BAE8, node_handle = 0x55C1416ABB00, rmw_publisher_hand</text></g><g id="g3"><text class="foreground" textLength="488" x="0">le = 0x55C141C20260, topic_name = "/pong", queue_depth = 10 }</text></g><g id="g4"><text class="foreground" textLength="656" x="0">[10:23:13.362567313] (+0.495375393)                             ros2:callback_star</text></g><g id="g5"><text class="foreground" textLength="656" x="0">t: { cpu_id = 3 }, { procname = "test_ping", vpid = 20419, vtid = 20419 }, { callb</text></g><g id="g6"><text class="foreground" textLength="352" x="0">ack = 0x55BA577F3FE8, is_intra_process = 0 }</text></g><g id="g7"><text class="foreground" textLength="656" x="0">[10:23:13.362682319] (+0.000115006)                             ros2:callback_end:</text></g><g id="g8"><text class="foreground" textLength="656" x="0"> { cpu_id = 3 }, { procname = "test_ping", vpid = 20419, vtid = 20419 }, { callbac</text></g><g id="g9"><text class="foreground" textLength="160" x="0">k = 0x55BA577F3FE8 }</text></g><g id="g10"><text class="foreground" textLength="656" x="0">[10:23:13.363166546] (+0.000484227)                             ros2:callback_star</text></g><g id="g11"><text class="foreground" textLength="656" x="0">t: { cpu_id = 3 }, { procname = "test_pong", vpid = 20420, vtid = 20420 }, { callb</text></g><g id="g12"><text class="foreground" textLength="352" x="0">ack = 0x55C141B3B9A0, is_intra_process = 0 }</text></g><g id="g13"><text class="foreground" textLength="656" x="0">[10:23:13.363902477] (+0.000735931)                             ros2:callback_star</text></g><g id="g14"><text class="foreground" textLength="656" x="0">t: { cpu_id = 0 }, { procname = "test_ping", vpid = 20419, vtid = 20419 }, { callb</text></g><g id="g15"><text class="foreground" textLength="352" x="0">ack = 0x55BA57755A20, is_intra_process = 0 }</text></g><g id="g16"><text class="foreground" textLength="656" x="0">[10:23:13.364346765] (+0.000444288)                             ros2:callback_end:</text></g><g id="g17"><text class="foreground" textLength="656" x="0"> { cpu_id = 3 }, { procname = "test_pong", vpid = 20420, vtid = 20420 }, { callbac</text></g><g id="g18"><text class="foreground" textLength="160" x="0">k = 0x55C141B3B9A0 }</text></g><g id="g19"><text class="foreground" textLength="656" x="0">[10:23:13.365130032] (+0.000783267)                             ros2:callback_end:</text></g><g id="g20"><text class="foreground" textLength="656" x="0"> { cpu_id = 0 }, { procname = "test_ping", vpid = 20419, vtid = 20419 }, { callbac</text></g><g id="g21"><text class="foreground" textLength="160" x="0">k = 0x55BA57755A20 }</text></g><g id="g22"><text class="foreground" textLength="136" x="0">~/.ros/tracing $ </text><text class="background" textLength="8" x="136"> </text></g></defs><g><use y="0" xlink:href="#g1"/><use y="17" xlink:href="#g2"/><use y="34" xlink:href="#g3"/><use y="51" xlink:href="#g4"/><use y="68" xlink:href="#g5"/><use y="85" xlink:href="#g6"/><use y="102" xlink:href="#g7"/><use y="119" xlink:href="#g8"/><use y="136" xlink:href="#g9"/><use y="153" xlink:href="#g10"/><use y="170" xlink:href="#g11"/><use y="187" xlink:href="#g12"/><use y="204" xlink:href="#g13"/><use y="221" xlink:href="#g14"/><use y="238" xlink:href="#g15"/><use y="255" xlink:href="#g16"/><use y="272" xlink:href="#g17"/><use y="289" xlink:href="#g18"/><use y="306" xlink:href="#g19"/><use y="323" xlink:href="#g20"/><use y="340" xlink:href="#g21"/><rect class="foreground" height="17" width="8" x="136" y="357"/><use y="357" xlink:href="#g22"/></g></svg>
+</svg>
