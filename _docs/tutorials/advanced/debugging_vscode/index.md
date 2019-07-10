@@ -12,7 +12,7 @@ Visual Studio Code is a modern IDE that is very easy to extend and popular with 
 
 ## Prerequisites
 
- * All the prerequisites of [Debugging with gdb and openocd](/docs/tutorials/advanced/debugging-gdb-openocd/)
+ * All the prerequisites of [Debugging with gdb and openocd](/docs/tutorials/advanced/debugging_gdb_openocd/)
  * Cortex-M hardware (all of our standard boards are ARM based)
  * [Visual Studio Code](https://code.visualstudio.com/)
 

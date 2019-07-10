@@ -19,7 +19,7 @@ In this simulator, we are going to emulate the architectures of the MCUs we are 
 
 ## Running micro-ROS example
 
-WIP, is not running properly yet! More info [here](https://github.com/microROS/docker/tree/docker_sim/Simulation/micro-ROS).
+WIP, is not running properly yet! More info [here](https://github.com/micro-ROS/docker/tree/master/Simulation/micro-ROS).
 
 
 ## Running Micro XRCE-DDS example
