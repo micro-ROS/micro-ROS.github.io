@@ -3,11 +3,22 @@ title: Supported Hardware
 permalink: /docs/overview/hardware/
 ---
 
-This page lists the hardware platforms that we use to test and develop micro-ROS, and also accessories that we frequently refer to, such as add-on boards, and JTAG probes.
+By default, micro-ROS uses [NuttX RTOS](https://nuttx.org/). This RTOS has a big variety of supported MCUs and development boards. The next list shows some of them:
+
++ MicroChip PIC32MX Family
++ Atmel SAMA5Dx
++ STM32F1/2/3/4 and STM32L1/4, that includes many Nucleo board support.
++ Renesas M16C/26
++ NXP/Freescale i.MX1/6 and i.MX RT
++ Silicon Labs EFM32 Gecko and Giant Gecko
+
+Please check [this link](http://nuttx.org/doku.php?id=wiki:platforms:supported-platforms) to check the complete list and the status of each board. In case you are interested in porting new boards or MCUs, please check the [next link](http://www.nuttx.org/Documentation/NuttxPortingGuide.html).
+
+Even though many development boards could be used, we have chosen two of them as references. This page lists the hardware platforms that we use to test and develop micro-ROS, and also accessories that we frequently refer to, such as add-on boards, and JTAG probes.
 
 ## Reference Platforms {#evaluation-boards}
 
-Even that micro-ROS technology can be ported to many targets, we have decided to select development platforms to support them. This page describes the main characteristic of those boards.
+This section describes the main characteristic of the selected boards.
 
 ## Olimex LTD STM32-E407
 
