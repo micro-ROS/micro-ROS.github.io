@@ -16,16 +16,16 @@ We're basically following the ROS2 architecture and make use of its middleware p
 
 ![](/img/micro-ROS_architecture.png)
 
-We have also prepared a [comparison](/docs/comparison) to other approaches, to see the important differences quickly.
+We have also prepared a [comparison](/docs/overview/comparison) to other approaches, to see the important differences quickly.
 
 ## Concept Documentation
 
- - Predictable scheduling and execution:  [real-time_executor](/docs/real-time_executor/)
- - System modes and system hierarchy: [system_modes](/docs/system_modes/)
- - Embedded transform (tf) library: [embedded_tf](/docs/embedded_tf/)
+ - Predictable scheduling and execution:  [real-time_executor](/docs/concepts/real-time_executor/)
+ - System modes and system hierarchy: [system_modes](/docs/concepts/system_modes/)
+ - Embedded transform (tf) library: [embedded_tf](/docs/concepts/embedded_tf/)
  - Reference hardware: [https://github.com/microROS/hardware](https://github.com/microROS/hardware)
  - Build infrastructure for embedded development using docker: [https://github.com/microROS/docker](https://github.com/microROS/docker)
- - FIWARE interoperability: [FIROS2](/docs/FIROS2)
+ - FIWARE interoperability: [FIROS2](/docs/concepts/FIROS2)
 
 ## Source Code Repositories
 

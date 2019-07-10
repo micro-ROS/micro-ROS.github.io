@@ -13,6 +13,6 @@ In this undertaking, to minimize the long-term maintenance cost, we strive to us
 
 Advanced concepts developed in the context of the client library are documented separately. These are:
 
-* [Real-Time Executor](/docs/real-time_executor/)
-* [System Modes](/docs/system_modes/)
-* [Embedded Transform (TF)](/docs/embedded_tf/)
+* [Real-Time Executor](/docs/concepts/real-time_executor/)
+* [System Modes](/docs/concepts/system_modes/)
+* [Embedded Transform (TF)](/docs/concepts/embedded_tf/)
