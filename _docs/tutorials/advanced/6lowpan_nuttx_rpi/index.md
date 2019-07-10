@@ -62,7 +62,7 @@ Now the RPI is ready to send and receive messages from a NuttX board or another 
 
 ## How to set-up 6lowpan in NuttX?
 
-First, we need to do the connections between the [Olimex board](/docs/hardware_support) and the PMODRF2 module.
+First, we need to do the connections between the [Olimex board](/docs/overview/hardware#evaluation-boards) and the PMODRF2 module.
 
 - `Board D13` -> `MRF24J40 SCLK`
 - `Board D12` -> `MRF24J40 MISO`
