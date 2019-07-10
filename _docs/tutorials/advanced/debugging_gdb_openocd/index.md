@@ -14,8 +14,8 @@ NuttX integration for OpenOCD is relatively new as of the time of writing (early
 
 ### Hardware
 
- * a [supported embedded board](/docs/hardware_support#evaluation-boards)
- * a [support debugger probe](/docs/hardware_support#development-tools)
+ * a [supported embedded board](/docs/overview/hardware#evaluation-boards)
+ * a [support debugger probe](/docs/overview/hardware#development-tools)
 
 ### Software
 

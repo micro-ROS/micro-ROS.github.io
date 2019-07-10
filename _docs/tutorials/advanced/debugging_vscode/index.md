@@ -4,7 +4,7 @@ permalink: /docs/tutorials/advanced/debugging_vscode/
 author: Ingo Lütkebohle
 ---
 
-This is a follow-up to [Debugging with gdb and openocd](/docs/tutorials/advanced/debugging-gdb-openocd/), because the set up done in that tutorial is a pre-requisite to debugging with Visual Studio Code.
+This is a follow-up to [Debugging with gdb and openocd](/docs/tutorials/advanced/debugging_gdb_openocd/), because the set up done in that tutorial is a pre-requisite to debugging with Visual Studio Code.
 
 ## Motivation
 
@@ -12,7 +12,7 @@ Visual Studio Code is a modern IDE that is very easy to extend and popular with 
 
 ## Prerequisites
 
- * All the prerequisites of [Debugging with gdb and openocd](/docs/tutorials/advanced/debugging-gdb-openocd/)
+ * All the prerequisites of [Debugging with gdb and openocd](/docs/tutorials/advanced/debugging_gdb_openocd/)
  * Cortex-M hardware (all of our standard boards are ARM based)
  * [Visual Studio Code](https://code.visualstudio.com/)
 
