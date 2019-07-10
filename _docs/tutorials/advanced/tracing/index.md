@@ -1,6 +1,7 @@
 ---
 title: Getting started with ROS 2 tracing
 author: christophebedard
+permalink: /docs/tutorials/advanced/tracing/
 ---
 
 1. [Introduction](#introduction)

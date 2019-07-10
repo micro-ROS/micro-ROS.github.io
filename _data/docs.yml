@@ -16,6 +16,7 @@
    - tutorials/advanced/debugging_gdb_openocd
    - tutorials/advanced/debugging_vscode
    - tutorials/advanced/6lowpan_nuttx_rpi
+   - tutorials/advanced/tracing
 
 - title: Concepts
   docs:
