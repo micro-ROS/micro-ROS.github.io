@@ -16,7 +16,7 @@ As the Operating Systems (OS) that are available for computers, the RTOSes also 
 
 Notice that the RTOS call are made by several top layers in the micro-ROS stack. The main one using the RTOS primitives is the middleware. The middleware requires accessing to the transport resources of the RTOS (serial, UDP or 6LOWPAN communications for example), it also requires of the time resources of the RTOS to operate properly. In addition, it is expected that the micro-ROS client library could have access to RTOS resources to have control of mechanisms such as scheduling or power management, so the developer could optimize the application in many domains.
 
-Unfortunately, these resources normally are not POSIX compliant, so the use of abstraction layers at RTOS level is required. These ALs will allow to abstract the RTOSes in use and provide unified calls to control aforementioned resources.
+Unfortunately, these resources normally are not POSIX compliant, so the use of abstraction layers at RTOS level is required. These layers will allow to abstract the RTOSes in use and provide unified calls to control aforementioned resources.
 
 ## NuttX RTOS
 
