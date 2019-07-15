@@ -10,6 +10,9 @@
   {% if page.path contains "_docs/tutorials" and section.title contains "Tutorials" %}
     {% assign should_show_this_menu = true %}
   {% endif %}
+  {% if page.path contains "_docs/tutorials" and section.title contains "Demos" %}
+    {% assign should_show_this_menu = true %}
+  {% endif %}
   {% if should_show_this_menu == true %}
   <div class="panel panel-default">
     <div class="panel-heading">

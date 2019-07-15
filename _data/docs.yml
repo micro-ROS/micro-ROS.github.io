@@ -18,6 +18,10 @@
    - tutorials/advanced/6lowpan_nuttx_rpi
    - tutorials/advanced/tracing
 
+- title: Demos
+  docs:
+   - tutorials/demos/kobuki_demo
+
 - title: Concepts
   docs:
    - concepts/rtos
