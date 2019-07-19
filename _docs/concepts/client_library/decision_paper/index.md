@@ -1,9 +1,9 @@
 ---
-title: Client Library - Decision Paper
+title: Decision Paper
 permalink: /docs/concepts/client_library/decision_paper/
 ---
 
-This document shall serve as decision template for the design and implementation of the micro-ROS client library. We discuss different options and existing starting points for this undertaking, decision criteria and analysis results regarding the existing assets.
+This document served as decision template for the design and implementation of the micro-ROS client library in March 2019. We discuss different options and existing starting points for this undertaking, decision criteria and analysis results regarding the existing assets.
 
 ## Assumptions
 
