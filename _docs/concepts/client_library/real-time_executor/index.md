@@ -1,6 +1,6 @@
 ---
 title: Real-Time Executor
-permalink: /docs/concepts/real-time_executor/
+permalink: /docs/concepts/client_library/real-time_executor/
 redirect_from: /real-time_executor/
 ---
 

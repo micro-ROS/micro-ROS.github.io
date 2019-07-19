@@ -22,11 +22,19 @@
   docs:
    - tutorials/demos/kobuki_demo
 
-- title: Concepts
+- title: Client Library
+  docs:
+   - concepts/client_library
+   - concepts/client_library/real-time_executor
+   - concepts/client_library/system_modes
+   - concepts/client_library/embedded_tf
+   - concepts/client_library/decision_paper
+
+- title: Middleware
   docs:
    - concepts/rtos
-   - concepts/client_library
-   - concepts/real-time_executor
-   - concepts/system_modes
-   - concepts/embedded_tf
-   - concepts/FIROS2
+   - concepts/rtos/FIROS2
+
+- title: RTOS
+  docs:
+   - concepts/rtos

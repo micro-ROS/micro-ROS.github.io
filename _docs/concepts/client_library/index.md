@@ -1,6 +1,7 @@
 ---
 title: Client Library
 permalink: /docs/concepts/client_library/
+redirect_from: /docs/concepts/
 ---
 
 ## Overview

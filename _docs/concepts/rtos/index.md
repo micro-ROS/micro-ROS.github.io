@@ -1,7 +1,6 @@
 ---
 title: Real-Time Operating Systems (RTOS)
 permalink: /docs/concepts/rtos/
-redirect_from: /docs/concepts/
 ---
 
 The use of Real-Time Operating Systems (RTOS) is a general practice in nowadays embedded systems. These embedded devices typically consist of a resource-constrained microcontroller that executes an application where the interaction with external components is performed. In many cases, this application contains a time-critical task where a time-deadline or deterministic response is required.
