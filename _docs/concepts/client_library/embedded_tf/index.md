@@ -1,6 +1,6 @@
 ---
 title: Embedded Transform (TF)
-permalink: /docs/concepts/embedded_tf/
+permalink: /docs/concepts/client_library/embedded_tf/
 redirect_from: /embedded_tf/
 ---
 

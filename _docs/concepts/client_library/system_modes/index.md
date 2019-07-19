@@ -1,6 +1,6 @@
 ---
 title: Lifecycle and System Modes
-permalink: /docs/concepts/system_modes/
+permalink: /docs/concepts/client_library/system_modes/
 redirect_from: /system_modes/
 ---
 
