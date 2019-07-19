@@ -4,6 +4,26 @@
    - overview/hardware
    - overview/comparison
 
+
+
+- title: Client Library
+  docs:
+   - concepts/client_library
+   - concepts/client_library/real-time_executor
+   - concepts/client_library/system_modes
+   - concepts/client_library/embedded_tf
+   - concepts/client_library/decision_paper
+
+- title: Middleware
+  docs:
+   - concepts/middleware/FIROS2
+
+- title: RTOS
+  docs:
+   - concepts/rtos
+
+
+
 - title: Basic Tutorials
   docs:
    - tutorials/basic/getting_started
@@ -21,20 +41,3 @@
 - title: Demos
   docs:
    - tutorials/demos/kobuki_demo
-
-- title: Client Library
-  docs:
-   - concepts/client_library
-   - concepts/client_library/real-time_executor
-   - concepts/client_library/system_modes
-   - concepts/client_library/embedded_tf
-   - concepts/client_library/decision_paper
-
-- title: Middleware
-  docs:
-   - concepts/rtos
-   - concepts/rtos/FIROS2
-
-- title: RTOS
-  docs:
-   - concepts/rtos

@@ -4,10 +4,19 @@
   {% if page.path contains "_docs/overview" and section.title contains "Overview" %}
     {% assign should_show_this_menu = true %}
   {% endif %}
-  {% if page.path contains "_docs/concepts" and section.title contains "Concepts" %}
+  {% if page.path contains "_docs/concepts" and section.title contains "Client Library" %}
     {% assign should_show_this_menu = true %}
   {% endif %}
-  {% if page.path contains "_docs/tutorials" and section.title contains "Tutorials" %}
+  {% if page.path contains "_docs/concepts" and section.title contains "Middleware" %}
+    {% assign should_show_this_menu = true %}
+  {% endif %}
+  {% if page.path contains "_docs/concepts" and section.title contains "RTOS" %}
+    {% assign should_show_this_menu = true %}
+  {% endif %}
+  {% if page.path contains "_docs/tutorials" and section.title contains "Basic Tutorials" %}
+    {% assign should_show_this_menu = true %}
+  {% endif %}
+  {% if page.path contains "_docs/tutorials" and section.title contains "Advanced Tutorials" %}
     {% assign should_show_this_menu = true %}
   {% endif %}
   {% if page.path contains "_docs/tutorials" and section.title contains "Demos" %}
