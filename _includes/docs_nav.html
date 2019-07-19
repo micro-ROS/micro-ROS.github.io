@@ -13,6 +13,9 @@
   {% if page.path contains "_docs/concepts" and section.title contains "RTOS" %}
     {% assign should_show_this_menu = true %}
   {% endif %}
+  {% if page.path contains "_docs/concepts" and section.title contains "Benchmarking" %}
+    {% assign should_show_this_menu = true %}
+  {% endif %}
   {% if page.path contains "_docs/tutorials" and section.title contains "Basic Tutorials" %}
     {% assign should_show_this_menu = true %}
   {% endif %}

@@ -16,11 +16,16 @@
 
 - title: Middleware
   docs:
+   - concepts/middleware/Micro_XRCE-DDS
    - concepts/middleware/FIROS2
 
 - title: RTOS
   docs:
    - concepts/rtos
+
+- title: Benchmarking
+  docs:
+   - concepts/benchmarking
 
 
 
