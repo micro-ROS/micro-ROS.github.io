@@ -17,6 +17,8 @@ Therefore, we plan to offer/support two APIs:
 1. A **C API** based on the [ROS 2 Support Client Library (rcl)](https://github.com/ros2/rcl/), enriched with modular packages for execution management, diagnostics, parameters, ...
 2. A **C++ API** based on the [ROS 2 rclcpp](https://github.com/ros2/rclcpp/), which at first requires analyzing the fitness of rclcpp for use on microcontrollers, in particular regarding memory and CPU consumption as well as dynamic memory management.
 
+<img src="micro-ROS_stack.png" style="display:block; margin-left: auto; margin-right: auto;"/>
+
 The basis of discussion for this decision is documented in a dedicated [decision paper](decision_paper/).
 
 ## Advanced Concepts
