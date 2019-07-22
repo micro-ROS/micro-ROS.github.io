@@ -20,12 +20,12 @@ We have also prepared a [comparison](/docs/overview/comparison) to other approac
 
 ## Concept Documentation
 
- - Predictable scheduling and execution:  [real-time_executor](/docs/concepts/real-time_executor/)
- - System modes and system hierarchy: [system_modes](/docs/concepts/system_modes/)
- - Embedded transform (tf) library: [embedded_tf](/docs/concepts/embedded_tf/)
+ - Predictable scheduling and execution:  [real-time_executor](/docs/concepts/client_library/real-time_executor/)
+ - System modes and system hierarchy: [system_modes](/docs/concepts/client_library/system_modes/)
+ - Embedded transform (tf) library: [embedded_tf](/docs/concepts/client_library/embedded_tf/)
  - Reference hardware: [https://github.com/microROS/hardware](https://github.com/microROS/hardware)
  - Build infrastructure for embedded development using docker: [https://github.com/microROS/docker](https://github.com/microROS/docker)
- - FIWARE interoperability: [FIROS2](/docs/concepts/FIROS2)
+ - FIWARE interoperability: [FIROS2](/docs/concepts/middleware/FIROS2)
 
 ## Source Code Repositories
 
