@@ -6,13 +6,17 @@ redirect_from: /docs/
 
 *micro-ROS puts ROS 2 onto microcontrollers, making them first class participants of the ROS 2 environment.*
 
-We're basically following the [ROS 2 architecture](https://index.ros.org/doc/ros2/) and make use of its middleware pluggability to use [DDS-XRCE](https://www.omg.org/spec/DDS-XRCE/), which is suitable for microcontrollers. Moreover, we use an RTOS (NuttX) instead of Linux. We also add an RTOS abstraction layer, to make porting to other RTOS possible.
+We're basically following the [ROS 2 architecture](https://index.ros.org/doc/ros2/) and make use of its middleware pluggability to use [DDS-XRCE](https://www.omg.org/spec/DDS-XRCE/), which is suitable for microcontrollers. Moreover, we use an POSIX-based RTOS (NuttX) instead of Linux. We also add RTOS abstractions, to make porting to other RTOS easier.
 
 ![](/img/micro-ROS_architecture.png)
 
+Dark blue components are developed specifically for micro-ROS. Light blue components are taken from the standard ROS 2 stack. We seek to contribute as much code back to the ROS 2 mainline codebase as possible.
+
 We have also prepared a [comparison](/docs/overview/comparison) to other approaches, to see the important differences quickly.
 
-## Major Source Code Repositories
+## Source Code Repositories
+
+Major repositories in order of the layers are:
 
 * Applications:
   * Kobuki demo: [embedded robot driver](https://github.com/micro-ROS/apps/tree/kobuki_rcl_port/examples/kobuki) and [remote ROS 2 software](https://github.com/micro-ROS/micro-ROS_kobuki_demo)
