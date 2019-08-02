@@ -11,15 +11,15 @@ This subsection will explain all the design alternatives for the interoperabilit
 
 ### Mechanisms for the deserialisation of incoming data in the transformation library
 
-FIROS2 requires transformation libraries to convert ROS2 messages into FIWARE NGSIv2 messages and the other way around.
+FIROS2 requires transformation libraries to convert ROS 2 messages into FIWARE NGSIv2 messages and the other way around.
 For each message, one transformation library is required by the integration service (FIROS2).
 
 ![image](http://www.plantuml.com/plantuml/svg/ZP712i8m38RlUOempuKvfrv49gYmap05BmCfhfs5hOMslhzjLuQYu1e8_E5Fyf4Mnb9jdtq77UCMhK8jseV5HcXsjq99uA9ZcA1xjQnEvmnxPWnjMIrzBK5giDpVvlXXF9RNNNNuRSqGf6f6guymr-sERHTDfU5AzzGJ39Rt2GkShJddQJeHBfyEj_o6YtQ75pRyWrkDS03XC8Hi1sW8ESeio1mtX0nT47AK3gDWil7_yW80)
 
-In the implementation of these transformation libraries, the user needs to be able to serialisation/deserialisation ROS2 messages.
+In the implementation of these transformation libraries, the user needs to be able to serialisation/deserialisation ROS 2 messages.
 Also, an NGSIv2 serialisation/deserialisation mechanism will be used.
 
-The FIROS2 package provides a standard NGSIv2 serialisation/deserialisation mechanisms, but ROS2 serialisation/deserialisation is not offered due to its dependencies with the message type.
+The FIROS2 package provides a standard NGSIv2 serialisation/deserialisation mechanisms, but ROS 2 serialisation/deserialisation is not offered due to its dependencies with the message type.
 
 For solving this issue, various methods to get it are proposed:
 
@@ -27,10 +27,10 @@ For solving this issue, various methods to get it are proposed:
 
 This is currently the method used in micro-ROS - FIROS 2 integration.
 
-In this case, the transformation library will use user selected middleware interface to serialise/deserialise the bridged ROS2 messages.
+In this case, the transformation library will use user selected middleware interface to serialise/deserialise the bridged ROS 2 messages.
 This method requires to get the message typesupport for the bridged message type.
 This method is straightforward to implement as it does not require additional source code development.
-Also, the abstraction from the middleware implementation makes it more compatible with others ROS2 workspaces.
+Also, the abstraction from the middleware implementation makes it more compatible with others ROS 2 workspaces.
 
 This is a portion of code used in the transformation library implementation.
 
@@ -40,7 +40,7 @@ This is a portion of code used in the transformation library implementation.
     // Get type support
     const rosidl_message_type_support_t * type_support = rosidl_typesupport_cpp::get_message_type_support_handle<MESAGE_TYPE>();
 
-    // Convert to ROS2 serialized message
+    // Convert to ROS 2 serialized message
     rmw_serialized_message_t serialized_message;
     serialized_message.buffer = (char*)serialized_input->data;
     serialized_message.buffer_length = serialized_input->length;
@@ -62,7 +62,7 @@ Note the call to ROS 2 interface __rosidl_typesupport_cpp::get_message_type_supp
 
 #### Use serialisation/deserialisation method for an specific type support
 
-In this case, the transformation library will use one specific type support to serialise/deserialise the bridged ROS2 messages.
+In this case, the transformation library will use one specific type support to serialise/deserialise the bridged ROS 2 messages.
 In micro-ROS case, the implementation to be used will be rosidl_typesupport_microxrcedds.
 This method is trivial to develop as it does not require additional source code on the micro-ROS side.
 
@@ -71,7 +71,7 @@ This mechanism requires the user to have access to the typesupport API, which so
 
 #### Used serialisation/deserialisation method generated from IDL file
 
-In this case, transformation library will use generated code to serialise/deserialise the bridged ROS2 messages.
+In this case, transformation library will use generated code to serialise/deserialise the bridged ROS 2 messages.
 The generated code may be made using an IDL parser tool.
 In the micro-ROS case, Micro XRCE-DDS provides with Micro XRCE-DDS code generator, which accepts an IDL file as input and generates type code.
 This IDL files should correspond with those messages types the transformation is wanted.
@@ -80,8 +80,8 @@ Integration services uses this method, but it makes the development of the libra
 
 ![image](http://www.plantuml.com/plantuml/svg/bP8_2y8m4CNtV8f7tOIArd-R2DR1GGTT70eIqciRQ1D8qkzl4sr1iA0t11xlxjsF97lhk75jKxEQ2WUdOMHPEUJIa71IAwPqJeZGLQOoTPR2QDolXsESfZS8RvQao72dZM_mZH6unIbzB32XENN52baF8GrPoql20ZAluPtFgGIiGv855mvHfcwwDO9UcmfjC8ptsp2TYH1Z1rtrEbDzwX9V8P8HYDLl4Cb_4Ell49SHYCrl49V_8BPWZ8LxZkFTwvbOEDzo6UHgn5q7kHbnk-mzgTp_foS0)
 
-In the case of ROS2/micro-ROS workspaces, there are tools which generate those IDL files.
-The rosidl_gen package is the package micro-ROS/ROS2 could use to create IDL from ROS2 interfaces.
+In the case of ROS 2 / micro-ROS workspaces, there are tools which generate those IDL files.
+The rosidl_gen package is the package micro-ROS/ROS2 could use to create IDL from ROS 2 interfaces.
 
 ### Integration proposals
 
@@ -112,7 +112,7 @@ Each ROS 2 topic type should have a corresponding transformation library configu
 
 This approach is a specialisation of the following one, where all the configuration and transformation libraries are centralised in a single node.
 
-This proposal requires transformation library development, but the integration will be the same as a regular ROS2 node, so no micro-ROS specific development should be expected.
+This proposal requires transformation library development, but the integration will be the same as a regular ROS 2 node, so no micro-ROS specific development should be expected.
 
 **Architecture**
 
@@ -130,7 +130,7 @@ This approach would require more nodes on the network and individual configurati
 
 This approach is the one followed by micro-ROS, and it is limited due to current FIROS 2 implementation.
 
-This proposal requires transformation library development, but the integration will be the same as a regular ROS2 node, so no micro-ROS specific development should be expected.
+This proposal requires transformation library development, but the integration will be the same as a regular ROS 2 node, so no micro-ROS specific development should be expected.
 
 **Workflow**
 
@@ -195,7 +195,7 @@ sudo docker-compose up
 
 > **Note:** After this execution a FIWARE Orion server will be running at the localhost address and port 1026.
 
-1. **Build FIROS2 in a ROS2 workspace and run it**
+1. **Build FIROS2 in a ROS 2 workspace and run it**
 
 To compile FIROS2, micro-ROS Agent side set of packages will be used.
 

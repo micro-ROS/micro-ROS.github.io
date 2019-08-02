@@ -46,7 +46,7 @@ From the past discussions and developments in 2018, we assume that a [rosserial]
 
 In the [EU project OFERA](http://ofera.eu/), a list of high-level requirements to the whole micro-ROS stack including the client library has been compiled in the Deliverable [D1.7 Reference Scenarios and Technical System Requirements Definition](http://ofera.eu/storage/deliverables/OFERA_D1.7_Requirements.pdf). Import requirements immediately linked to the client library are:
 
-* ROS2 lifecycle: micro-ROS nodes should support the node lifecycle defined for ROS2 nodes.
+* ROS 2 lifecycle: micro-ROS nodes should support the node lifecycle defined for ROS 2 nodes.
 * Dynamic component parameters: micro-ROS shall provide mechanisms for dynamic management of component parameters, compatible with ROS mechanisms.
 * Time precision: Clock synchronization between main micro-processor and MCU should be precise, with precision not less than 1ms.
 * No-copy: Communication between nodes on the same MCU should be effective (no-copy).
@@ -76,7 +76,7 @@ Questions:
 
 Only very basic concepts (node, subscription and publisher) implemented so far. Whole library has just 500 LoC in sum.
 
-Has OSRF plans for it in the midterm? They have mentioned it on the roadmap, [ROS2 roadmap](https://github.com/micro-ROS/rclc/tree/feature/api_documentation).
+Has OSRF plans for it in the midterm? They have mentioned it on the roadmap, [ROS 2 roadmap](https://github.com/micro-ROS/rclc/tree/feature/api_documentation).
 
 ## Dynamic Memory Management in ROS 2
 
@@ -109,7 +109,7 @@ For curiosity, the numbers for Fast-RTPS:
 
 ### Current work on ROS 2
 
-Currently there is an active interest in making ROS2 a real "real time" platform. These interest have strive to a set of developments regarding the amount of dynamic memory used along the full stack. From eProsima side they are making a big effort changing Fast RTPS dynamic memory to a static system. This eProsima approach aligns with the idea of two-steps: 1) reserve all memory needed and then 2) work with the pre-allocated memory and avoid new allocations.
+Currently there is an active interest in making ROS 2 a real "real time" platform. These interest have strive to a set of developments regarding the amount of dynamic memory used along the full stack. From eProsima side they are making a big effort changing Fast RTPS dynamic memory to a static system. This eProsima approach aligns with the idea of two-steps: 1) reserve all memory needed and then 2) work with the pre-allocated memory and avoid new allocations.
 
 To develop this mechanism currently there are to main changes, all regarding STL containers:
 
