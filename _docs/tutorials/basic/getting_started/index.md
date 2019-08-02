@@ -44,7 +44,7 @@ There are also available examples that you could run building the code at your L
 ### Previous step
 
 To run all the demonstrations, you need to set up the ROS 2 environment and build all the required packages.
-Click [here](https://github.com/microROS/micro-ROS-doc) to read further about how to do this previous step.
+Click [here](https://github.com/micro-ROS/micro-ROS-doc) to read further about how to do this previous step.
 
 ### Package clusters
 

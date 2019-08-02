@@ -23,17 +23,17 @@ micro-ROS will go beyond this state of the art by running the dynamic transform 
 
 ## Requirements
 
-Embedded TF requirements are documented at:  [github.com/microROS/geometry2/blob/ros2/tf2_filter/docs/requirements.md](https://github.com/microROS/geometry2/blob/ros2/tf2_filter/docs/requirements.md).
+Embedded TF requirements are documented at:  [github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/docs/requirements.md](https://github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/docs/requirements.md).
 
 
 ## Design
 
-The Embedded TF design is documented at:  [github.com/microROS/geometry2/blob/ros2/tf2_filter/docs/design.md](https://github.com/microROS/geometry2/blob/ros2/tf2_filter/docs/design.md).
+The Embedded TF design is documented at:  [github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/docs/design.md](https://github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/docs/design.md).
 
 
 ## Implementation of tf2_filter
 
-Implementation of tf2_filter for ROS 2 and micro-ROS can be found at:  [github.com/microROS/geometry2/blob/ros2/tf2_filter/](https://github.com/microROS/geometry2/blob/ros2/tf2_filter/).
+Implementation of tf2_filter for ROS 2 and micro-ROS can be found at:  [github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/](https://github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/).
 
 
 ## Roadmap

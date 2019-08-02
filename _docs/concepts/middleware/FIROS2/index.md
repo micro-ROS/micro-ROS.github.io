@@ -142,7 +142,7 @@ This proposal requires transformation library development, but the integration w
 
 ## Demonstration
 
-This section explains how to demonstrate the interoperability of FIROS2 with microROS.
+This section explains how to demonstrate the interoperability of FIROS2 with micro-ROS.
 The purpose is to demonstrate the interoperability, although the final design is not closed.
 
 To run the demonstration a step by step guide is presented in this document.
@@ -214,9 +214,9 @@ Once in the Docker, all the necessary repositories should be downloaded and a FI
 (
 mkdir -p ws/src
 cd ws
-wget https://raw.githubusercontent.com/microROS/micro-ROS-doc/feature/RepoListUpdate/Installation/repos/agent_minimum.repos
+wget https://raw.githubusercontent.com/micro-ROS/micro-ROS-doc/feature/RepoListUpdate/Installation/repos/agent_minimum.repos
 vcs import src < agent_minimum.repos
-git clone -b feature/FIROS2 https://github.com/microROS/micro-ROS-demos.git src/uros/Demos
+git clone -b feature/FIROS2 https://github.com/micro-ROS/micro-ROS-demos.git src/uros/Demos
 git clone --recursive -b feature/TCP_DynTypes https://github.com/eProsima/FIROS2.git src/uros/FIROS2
 colcon build
 . ./install/local_setup.bash
