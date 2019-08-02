@@ -233,7 +233,7 @@ docker pull microros/client_linux
 docker run  -it --rm  --privileged --net=host microros/client_linux
 ```
 
-Once in the docker run the microROS Client.
+Once in the docker run the micro-ROS Client.
 
 ```shell
 int32_publisher_c
