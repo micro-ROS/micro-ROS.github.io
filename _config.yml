@@ -1,7 +1,7 @@
 # Site settings
 title: micro-ROS
 description: >
-  ROS2 for micro-controllers
+  ROS 2 for microcontrollers
 lang: en-US
 
 baseurl: "" # the subpath of your site, e.g. /blog/

@@ -9,7 +9,7 @@ Table of contents
 
 *   [Running Micro XRCE-DDS example using prebuilt Docker](#Micro-XRCE-DDS-prebuilt-Docker)
 *   [Running micro-ROS example using prebuilt Docker](#micro-ROS-prebuilt-Docker)
-*   [Running rclc and rclcpp examples in your ROS2 workspace](#rclc-rclcpp-ROS2-ws)
+*   [Running rclc and rclcpp examples in your ROS 2 workspace](#rclc-rclcpp-ROS2-ws)
 
 ## Introduction
 
@@ -37,13 +37,13 @@ At docker repo, we have one folder for each.
 ----------------
 
 
-## Running rclc and rclcpp examples in your ROS2 workspace {#rclc-rclcpp-ROS2-ws}
+## Running rclc and rclcpp examples in your ROS 2 workspace {#rclc-rclcpp-ROS2-ws}
 
 There are also available examples that you could run building the code at your Linux or Windows computer.
 
 ### Previous step
 
-To run all the demonstrations, you need to set up the ROS2 environment and build all the required packages.
+To run all the demonstrations, you need to set up the ROS 2 environment and build all the required packages.
 Click [here](https://github.com/microROS/micro-ROS-doc) to read further about how to do this previous step.
 
 ### Package clusters
@@ -56,12 +56,12 @@ The repository contains the below packages clusters:
 
 ###### Int32_publisher
 
-The purpose of the package is to publish one of the most basic ROS2 messages and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
+The purpose of the package is to publish one of the most basic ROS 2 messages and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
 For each publication, the message value increases in one unit order to see in the subscriber side the message variations.
 
 ###### Int32_subscriber
 
-The purpose of the package is to subscribe to one of the most basic ROS2 messages and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
+The purpose of the package is to subscribe to one of the most basic ROS 2 messages and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
 
 ##### Run demonstration (Linux)
 
@@ -129,12 +129,12 @@ int32_subscriber_c.exe
 
 ###### String_publisher
 
-The purpose of the package is to publish a simple string ROS2 message and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
+The purpose of the package is to publish a simple string ROS 2 message and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
 For each publication, the message string number increases in one unit order to see in the subscriber side the message variations.
 
 ###### String_subscriber
 
-The purpose of the package is to subscribe to a simple string ROS2 message and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
+The purpose of the package is to subscribe to a simple string ROS 2 message and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
 
 ##### Run string demonstration (Linux)
 
@@ -202,7 +202,7 @@ string_subscriber_c.exe
 ###### complex_msg
 
 One of the purposes of the package is to demonstrate how typesupport code is generated for a complex message.
-Also, the generation of a complex ROS2 structure message is used to demonstrate how the different layers (rcl, typesupport and rmw) handle it.
+Also, the generation of a complex ROS 2 structure message is used to demonstrate how the different layers (rcl, typesupport and rmw) handle it.
 The message structure contains the following types:
 
 - All primitive data types.
@@ -211,12 +211,12 @@ The message structure contains the following types:
 
 ###### Complex_msg_publisher
 
-The purpose of the package is to publish a complex ROS2 message and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
+The purpose of the package is to publish a complex ROS 2 message and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
 For each publication, the message values increases in one unit order to see in the subscriber side the message variations.
 
 ###### Complex_msg_subscriber
 
-The purpose of the package is to subscribe to a complex ROS2 message and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
+The purpose of the package is to subscribe to a complex ROS 2 message and demonstrate how Micro-ROS layers (rcl, typesupport and rmw) handle it.
 
 ##### Run complex demonstration (Linux)
 
@@ -282,7 +282,7 @@ complex_msg_subscriber_c.exe
 
 This purpose of the packages is to demonstrate Micro-ROS stack can be used in a real application scenario.
 In this demonstration, an altitude control system is simulated.
-The primary purpose of this is to demonstrate how Micro-ROS communicates with ROS2 nodes.
+The primary purpose of this is to demonstrate how Micro-ROS communicates with ROS 2 nodes.
 
 ##### Real application packages
 
@@ -312,7 +312,7 @@ The mission of this node is to read altitude values and send to the actuator eng
 It also publishes the status (OK, WARNING or FAILURE) as a DDS topic.
 The status depends on the altitude value.
 
-The node is built using the ROS2 middleware packages (rmw_fastrtps and rosidl_typesupport_fastrtps).
+The node is built using the ROS 2 middleware packages (rmw_fastrtps and rosidl_typesupport_fastrtps).
 
 It is meant to be running in on a regular PC, and it is directly connected to de DDS world.
 
@@ -375,7 +375,7 @@ Run the display node.
 ~/client_ws/install/rad0_display_c/lib/rad0_display_c/./rad0_display_c
 ```
 
-###### ROS2 nodes
+###### ROS 2 nodes
 
 ```bash
 ~/agent_ws/install/rad0_display_c/lib/rad0_display_c/./rad0_display_c
@@ -414,7 +414,7 @@ cd C:\C\install\Lib\rad0_display_c\
 rad0_display_c.exe
 ```
 
-###### ROS2 nodes
+###### ROS 2 nodes
 
 ```cmd
 cd C:\A\install\Lib\rad0_control_cpp\

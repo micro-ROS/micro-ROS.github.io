@@ -1347,7 +1347,7 @@ Then, we have the Olimex as subscriber, so we need to follow the same steps as w
 ## How to use  micro-ROS demo {#micro-ROS-demo-Olimex}
 
 In this demo, we will use the alpha version of micro-ROS for NuttX running under the Olimex-STM32-E407 board.
-With board running this demo we could create a ROS2 publisher or a ROS2 subscriber.
+With board running this demo we could create a ROS 2 publisher or a ROS 2 subscriber.
 The publisher creates and publishes as a topic a progressive count of integers (From 0 to 1000).
 The subscriber subscribes to that topic and shows the value of the number published.
 
@@ -1418,5 +1418,5 @@ If the publisher is running properly, you should see this on the board:
 So as a summary:
 - With this demo, you can run a publisher or subscriber in the Olimex Board.
 - You need to run an agent for each publisher or subscriber that you want to run.
-- You can create a ROS2 subscriber in the PC and receive the topic.
+- You can create a ROS 2 subscriber in the PC and receive the topic.
 - The topic that sends this example is an integer that goes from 0 to 1000.

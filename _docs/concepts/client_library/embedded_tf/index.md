@@ -33,7 +33,7 @@ The Embedded TF design is documented at:  [github.com/microROS/geometry2/blob/ro
 
 ## Implementation of tf2_filter
 
-Implementation of tf2_filter for ROS2 and micro-ROS can be found at:  [github.com/microROS/geometry2/blob/ros2/tf2_filter/](https://github.com/microROS/geometry2/blob/ros2/tf2_filter/).
+Implementation of tf2_filter for ROS 2 and micro-ROS can be found at:  [github.com/microROS/geometry2/blob/ros2/tf2_filter/](https://github.com/microROS/geometry2/blob/ros2/tf2_filter/).
 
 
 ## Roadmap
