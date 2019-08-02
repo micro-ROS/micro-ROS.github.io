@@ -1,5 +1,5 @@
 ---
-title: yArchitecture
+title: Architecture
 permalink: /docs/overview/
 redirect_from: /docs/
 ---
