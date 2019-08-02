@@ -40,7 +40,7 @@ Build your own the image using the docker file:
 
 ### Run
 
-_Note: the example explained here works with the [commit a495c65](https://github.com/eProsima/Micro-XRCE-DDS-Agent/commit/a495c65faa964ddc068ac6e1249f17f5c9f92787) of Micro XRCE-DDS Agent and NuttX "nuttx-sim-dev" branch [commit 54b0ca9](https://github.com/microROS/NuttX/commit/54b0ca954ae2a734ebef6d1dec589813bfd026a7)._
+_Note: the example explained here works with the [commit a495c65](https://github.com/eProsima/Micro-XRCE-DDS-Agent/commit/a495c65faa964ddc068ac6e1249f17f5c9f92787) of Micro XRCE-DDS Agent and NuttX "nuttx-sim-dev" branch [commit 54b0ca9](https://github.com/micro-ROS/NuttX/commit/54b0ca954ae2a734ebef6d1dec589813bfd026a7)._
 
 #### Client 1: Micro XRCE-DDS publisher
 
