@@ -1,18 +1,12 @@
 ---
-title: Overview
+title: Mission and Architecture
 permalink: /docs/overview/
 redirect_from: /docs/
 ---
 
-[micro-ROS](https://cordis.europa.eu/project/rcn/213167_en.html) puts ROS 2 onto microcontrollers, making them first class participants of the ROS 2 environment.
+*micro-ROS puts ROS 2 onto microcontrollers, making them first class participants of the ROS 2 environment.*
 
-## Tutorials
-
-See [Tutorial List](/docs/tutorials/).
-
-## Architecture
-
-We're basically following the ROS 2 architecture and make use of its middleware pluggability to use [DDS-XRCE](https://www.omg.org/spec/DDS-XRCE/), which is suitable for microcontrollers. Moreover, we use an RTOS (NuttX) instead of Linux. On microcontrollers many different RTOS's are used, so we also add an RTOS abstraction layer (AL), to make porting to other RTOS possible.
+We're basically following the [ROS 2 architecture](https://index.ros.org/doc/ros2/) and make use of its middleware pluggability to use [DDS-XRCE](https://www.omg.org/spec/DDS-XRCE/), which is suitable for microcontrollers. Moreover, we use an RTOS (NuttX) instead of Linux. We also add an RTOS abstraction layer, to make porting to other RTOS possible.
 
 ![](/img/micro-ROS_architecture.png)
 
