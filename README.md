@@ -12,7 +12,7 @@ See [editing instructions](EDITING-INSTRUCTIONS.md)
 ## Running locally
 
 To test locally, you need a local version of Jekyll, the site-generation
-engine used by Github Pages. See [Jekyll Quickstart](https://jekyllrb.com/docs/)
+engine used by GitHub Pages. See [Jekyll Quickstart](https://jekyllrb.com/docs/)
 for installation instructions.
 
 After installing Jekyll, install all dependencies by running
