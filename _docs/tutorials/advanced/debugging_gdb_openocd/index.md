@@ -29,7 +29,7 @@ Sony has added NuttX support to OpenOCD, and most importantly, this includes thr
 
 ### Get the code
 
-The repository is on Github at [https://github.com/sony/openocd-nuttx](https://github.com/sony/openocd-nuttx). Check it out like this:
+The repository is on GitHub at [https://github.com/sony/openocd-nuttx](https://github.com/sony/openocd-nuttx). Check it out like this:
 ```
 git clone --depth 1 https://github.com/sony/openocd-nuttx
 ```
