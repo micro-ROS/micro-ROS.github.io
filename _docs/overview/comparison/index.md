@@ -1,9 +1,9 @@
 ---
-title: Comparison to other approaches to put ROS onto small embedded devices
+title: Comparison to related approaches
 permalink: /docs/overview/comparison/
 ---
 
-This page compares micro-ROS to a few alternative approaches.
+This page compares micro-ROS to a few alternative approaches putting ROS onto small embedded devices.
 
 ## micro-ROS compared to ROSSerial
 
