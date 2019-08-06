@@ -34,3 +34,15 @@ Major repositories in order of the layers are:
   * Example applications for NuttX directly are in [apps](https://github.com/micro-ROS/apps)
 
 Most repositories can be found in GitHub's micro-ROS organization at [github.com/micro-ROS/](https://github.com/micro-ROS/).
+
+### ROS2 Compliant Table
+
+The following table summarizes the compatibility between micro-ROS and ROS2 releases.
+This table contains links to installation documentation as well as `.repos` file for both *Client* and *Agent* side.
+On the one hand, the *Client* size `.repos` includes all the necessary to build a micro-ROS application, along with some demo examples.
+On the other hand, the *Agent* size `.repos` includes the micro-ROS-Agent bridge.
+
+| ROS2 Release | Documentation | Client | Agent  |
+|:-------------|:--------------|:-------|:-------|
+| **Crystal**  | [![](https://img.shields.io/badge/read-the%20docs-blue)](https://github.com/micro-ROS/micro-ROS-doc/blob/crystal/Installation) | [![](https://img.shields.io/badge/uROS-repos-brightgreen)](https://github.com/micro-ROS/micro-ROS-doc/blob/crystal/Installation/repos/client_minimum.repos) | [![](https://img.shields.io/badge/uROS-repos-brightgreen)](https://github.com/micro-ROS/micro-ROS-doc/blob/crystal/Installation/repos/agent_minimum.repos) |
+| **Dashing**  | [![](https://img.shields.io/badge/read-the%20docs-blue)](https://github.com/micro-ROS/micro-ROS-doc/blob/dashing/Installation) | [![](https://img.shields.io/badge/uROS-repos-brightgreen)](https://github.com/micro-ROS/micro-ROS-doc/blob/dashing/Installation/repos/client_minimum.repos) | [![](https://img.shields.io/badge/uROS-repos-brightgreen)](https://github.com/micro-ROS/micro-ROS-doc/blob/dashing/Installation/repos/agent_minimum.repos) |
