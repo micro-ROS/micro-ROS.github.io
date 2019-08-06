@@ -50,6 +50,6 @@ On the other hand, Micro XRCE-DDS Agent support Windows and Linux platform.
 
 ## Other links
 
-* [Manual](https://micro-xrce-dds.readthedocs.io/en/latest/)
+* [Manual at Read the Docs](https://micro-xrce-dds.readthedocs.io/en/latest/)
 * [GitHub](https://github.com/eProsima/Micro-XRCE-DDS)
 
