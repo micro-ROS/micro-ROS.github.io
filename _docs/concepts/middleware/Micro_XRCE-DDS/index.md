@@ -4,7 +4,7 @@ permalink: /docs/concepts/middleware/Micro_XRCE-DDS/
 redirect_from: /docs/concepts/middleware/
 ---
 
-**eProsima Micro XRCE-DDS** is an open source wire protocol that implements the OMG DDS for e**X**tremly **R**erource **C**onstrained **E**nvironment standard ([DDS-XRCE](https://www.omg.org/spec/DDS-XRCE/About-DDS-XRCE/)).
+**eProsima Micro XRCE-DDS** is an open-source wire protocol that implements the OMG DDS for e**X**tremely **R**esource **C**onstrained **E**nvironment standard ([DDS-XRCE](https://www.omg.org/spec/DDS-XRCE/About-DDS-XRCE/)).
 The aim of the DDS-XRCE protocol is to provide access to the DDS Global-Data-Space from resource-constrained devices.
 This is achieved thanks to a **client-server** architecture, where low resource devices, called XRCE Clients, are connected to a server, called XRCE Agent, which acts on behalf of its clients in the DDS Global-Data-Space.
 
