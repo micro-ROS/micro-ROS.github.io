@@ -31,7 +31,7 @@ Furthermore, [micro-ROS](https://microros.github.io) project, whose target is to
 
 ### Low Resource Consumption
 
-As it was aforementioned, Micro XRCE-DDS is focused on microcontroller applications, therefore the design and implementation of this middleware have been carried out taking into account the memory restriction of this kind of devices.
+As it was aforementioned, Micro XRCE-DDS is focused on microcontroller applications. Therefore, the design and implementation of this middleware have been carried out taking into account the memory restriction of this kind of devices.
 Proof of this is the fact that Micro XRCE-DDS Client is completely dynamic memory free.
 From the point of view of memory footprint, the [latest](https://github.com/eProsima/Micro-XRCE-DDS-Client/releases/tag/v1.0.1) version of this library has a memory consumption of less than **75 KB of Flash memory** and **2.5 KB of RAM** for a complete publisher and subscriber application.
 
