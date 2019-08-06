@@ -25,7 +25,7 @@ Apart of these, Micro XRCE-DDS uses other two components:
 Micro XRCE-DDS is focused on microcontroller applications which require a publisher/subscriber architecture.
 Some examples of this kind of applications are those found in sensor networks, IoT or robotics.
 On this last regard, some companies such as [Renesas](https://www.sensorsmag.com/iot-wireless/mcus-support-dds-xrce-protocol-for-ros-2) and [ROBOTIS](https://xelnetwork.readthedocs.io/en/latest/) are using Micro XRCE-DDS as the middleware solution.
-Furthermore, [micro-ROS](https://microros.github.io) project, whose target is to put ROS2 onto microcontroller, has adopted Micro XRCE-DDS as the middleware layer.
+Furthermore, the [micro-ROS](https://microros.github.io) project, whose target is to put ROS 2 onto microcontroller, has adopted Micro XRCE-DDS as the middleware layer.
 
 ## Main Features
 
