@@ -20,7 +20,7 @@ The initial procedure is as follows
   
   1. Check out `micro-ros-setup` to a colcon workspace
   1. Build and source it
-  1. Run scripts to add Micro-ROS workspace
+  1. Run scripts to add micro-ROS workspace
   1. Configure Nuttx (we have example configurations)
   1. Build it
   1. Flash the firmware
