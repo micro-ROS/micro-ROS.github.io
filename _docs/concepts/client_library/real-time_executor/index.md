@@ -2,7 +2,7 @@
 title: Real-Time Executor
 redirect_from: /real-time_executor/
 permalink: /docs/concepts/client_library/real-time_executor/
----
+--- 
 
 
 ## Table of contents
@@ -11,19 +11,15 @@ permalink: /docs/concepts/client_library/real-time_executor/
 *   [ROS 2 Executor Concept](#ros-2-executor-concept)
 *   [RCL Executor](#rcl-executor)
     * [ROS 2 Layers](#ROS-2-Layers)
-    * [Let Executor Concept](#Let-Executor-Concept)
-    * [Let Executor API](#Let-Executor-API)
+    * [Concept](#concept)
+    * [API](#API)
     * [Tutorial and Download](#Tutorial-and-Download)
-*   [Background](#background)
+*   [Background](#Background)
     * [ROS 2 rclcpp Executor](#ROS-2-rclcpp-Executor)
     * [Complex semantic of the ROS 2 Executor](#Complex-semantic-of-the-ROS-2-Executor)
     *   [Callback-group-level Executor](#callback-group-level-executor)
-        *   [API Changes](#api-changes)
-        *   [Meta-Executor Concept](#meta-executor-concept)
-        *   [Test Bench](#test-bench)
-*   [Roadmap](#roadmap)
 *   [Related Work](#related-work)
-    * [Fawkes Framework](#Fawkes-Framework)
+*   [Roadmap](#roadmap)
 *   [References](#references)
 *   [Acknowledgments](#acknowledgments)
 
@@ -67,13 +63,13 @@ This section describes a let-executor. It is a first step towards deterministic 
 
 In the future, we plan to provide other executors with different deterministic semantics.
 
-### ROS 2 Layers
+### ROS 2 Layers<a name="ROS-2-Layers"></a>
 As mentioned in the section [Introduction to Client Library](../), we plan to provide micro-ROS support for the C++ API and for the C API. The Real-Time Executor enriches the C API based on the ROS Client Library (rcl).
 
-### Let-Executor Concept
+### Concept
 The let-executor implements a static order scheduler with logical-execution-time(let) semantics. During configuration the execution order of callbacks is defined and at runtime the callbacks are always processed in this order. The let-semantic refers to reading first all input data from the DDS-queue for all callbacks, storing the received messages or storing the event that a timer is ready. Then, in a second step, all callbacks, timers and the corresponding functions are executed in order as they were defined during configuration phase. 
 
-### Let-Executor API
+### API
 
 The API of the let-executor provides functions for configuration, defining the execution order of callbacks, running the scheduler and cleaning-up:
 
