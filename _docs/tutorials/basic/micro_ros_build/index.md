@@ -3,7 +3,6 @@ title: Installing Micro-ROS
 permalink: /docs/tutorials/basic/micro_ros_build/
 ---
 
-## Introduction
 
 
 > Note for those in a hurry: There are also (short but complete) build instructions in the [micro-ros-setup README](https://github.com/micro-ROS/micro-ros-build/blob/master/micro_ros_setup/README.md). 
