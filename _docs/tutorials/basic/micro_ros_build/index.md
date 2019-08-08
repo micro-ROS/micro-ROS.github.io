@@ -60,7 +60,7 @@ $ source install/local_setup.sh
 ### Create and building the firmware workspace
 
 ```shell
-$ ros2 run micro_ros_setup create_firmeware_ws.sh
+$ ros2 run micro_ros_setup create_firmware_ws.sh
 $ cd firmware/NuttX
 $ tools/configure.sh configs/olimex-stm32-e407/drive_base # FOR EXAMPLE!
 $ cd ../..
