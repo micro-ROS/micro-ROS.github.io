@@ -13,20 +13,20 @@ mit beispielen, wie man es verwendet.
 - related work Orocos
 
 
-##Table of contents
+## Table of contents
 
 *   [Introduction](#introduction)
 *   [ROS 2 Executor Concept](#ros-2-executor-concept)
 *   [RCL Executor](#rcl-executor)
-    * [API layers](*api-layers)
-    * [LET executor](*LET-executor)
-    * [Static order scheduling](*static-order-scheduling)
+    * [Client library layers](#api-layers)
+    * [let executor](#LET-executor)
+    * [API](#API)
 *   [Background](#background)
-    *   [rclcpp executor](rclcpp-executor)
+    *   [rclcpp executor](#rclcpp-executor)
         *   [Description](#description)
         *   [Architecture](#architecture)
         *   [Analysis](#analysis)
-    * [EDF Scheduler for ROS2](*EDF-scheduler-ROS2)
+    * [EDF Scheduler for ROS2](#EDF-scheduler-ROS2)
         * analyse rclcpp
         * EDF approach
     *   [Callback-group-level Executor](#callback-group-level-executor)
@@ -42,9 +42,9 @@ mit beispielen, wie man es verwendet.
 
 ## Introduction
 
-Predictable execution under given real-time constraints is a crucial requirement for many robotic applications, but is also a complex and time-consuming activity. While the service-based paradigm of ROS allows a fast integration of many different functionalities, it does not provide sufficient control over the execution management. For example,  there are no mechanisms to enforce a certain execution order of callbacks within a node, left alone to configure the  execution order of different nodes in a ROS system. This is essential for a high quality of control applications, which consist of cause-effect-chains like sensor acquisition, evaluation and actuation control, and operating on old data due to scheduling is not desired. Further more, when input data is collected in field tests, saved with ROS-bags and re-played, often results are different due to non-determinism of process scheduling.
+Predictable execution under given real-time constraints is a crucial requirement for many robotic applications, but is also a complex and time-consuming activity. While the service-based paradigm of ROS allows a fast integration of many different functionalities, it does not provide sufficient control over the execution management. For example,  there are no mechanisms to enforce a certain execution order of callbacks within a node, left alone to configure the  execution order of callbacks of different nodes in a ROS 2 system. This is essential for a high quality of control applications, which consist of cause-effect-chains like sensor acquisition, evaluation and actuation control, and operating on old data due to scheduling is not desired. Further more, when input data is collected in field tests, saved with ROS-bags and re-played, often results are different due to non-determinism of process scheduling.
 
-Of course, it is possible to manually construct the order of subscribing and publishing topics in the callbacks or by tweaking the priorities of the corresponding Linux processes. However, this approach is error-prune, difficult to extend for functionality and requires an in-depth knowledge of every ROS package in the system.
+Of course, it is possible to manually setup the order of subscribing and publishing topics in the callbacks or by tweaking the priorities of the corresponding Linux processes. However, this approach is error-prune, difficult to extend and requires an in-depth knowledge of the deplyed ROS 2 packages in the system.
 
 Therefore the goal of the Real-Time Executor is to support roboticists with practical and easy-to-use real-time mechanisms which provide solutions for:
 - Deterministic execution
@@ -74,23 +74,10 @@ The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor
 
 ## RCL-Executor
 
+### ROS 2 Layers
+As mentioned in [Introduction to Client Library](../index.md) 
 
-
-RCL Executor
-- rcl    - c layer LET static - order  , specific for C API (einordnung bzgl. API layer)
-- rclcpp - outlook  
-- beschreibung des RCL executors
-
-The ROS 2 Executor is responsible for receiving incoming data, calling timers, services etc. The recent paper ) analyzed the Executor in detail. They found out, that these events are not processed in a pure FIFO fashion, but timers are preferred over all other events of the DDS queue. The implication is, that in a high-load situation, only pending timers will be processed while incoming DDS-events will be delayed or starved. Furthermore, the FIFO-strategy makes it difficult to determine time bounds on the total execution time, which are necessary for the verification of safety- and real-time requirements.
-
-##### Concept
-To solve these issues, we have implemented an RCL-Executor, which provides different scheduling strategies. Currently, two scheduling policies are implemented: static-order and priority-based scheduling.
-
-In static-order-scheduling, all events, including timers, are processed in a pre-defined order. In case different events (timers, subscriptions, etc.) are available at the DDS queue, then they are all processed in the pre-defined static order.
-
-In priority-based scheduling, a priority is defined for each event. If multiple events are available at the DDS queue, then only the event with the highest priority is processed.   
-
-##### User API
+### User API
 The RCL-Executor is library written in C and is based on RCL. On implementation level we use a different terminology. In the RCL-Executor library an *event* is called a *handle* and *static-order* scheduling is called *FIFO* scheduling.
 
 The RCL-Executor provides the following user interface:
@@ -164,6 +151,15 @@ Also, the Executor does not maintain an explicit callback queue, but relies on t
 #### Analysis
 The Executor concept, however, does not provide means for prioritization or categorization of the incoming callback calls. Moreover, it does not leverage the real-time characteristics of the underlying operating-system scheduler to have finer control on the order of executions. The overall implication of this behavior is that time-critical callbacks could suffer possible deadline misses and a degraded performance since they are serviced later than non-critical callbacks. Additionally, due to the FIFO mechanism, it is difficult to determine usable bounds on the worst-case latency that each callback execution may incur.
 
+OLD STUFF
+
+The ROS 2 Executor is responsible for receiving incoming data, calling timers, services etc. The recent paper ) analyzed the Executor in detail. They found out, that these events are not processed in a pure FIFO fashion, but timers are preferred over all other events of the DDS queue. The implication is, that in a high-load situation, only pending timers will be processed while incoming DDS-events will be delayed or starved. Furthermore, the FIFO-strategy makes it difficult to determine time bounds on the total execution time, which are necessary for the verification of safety- and real-time requirements.
+
+To solve these issues, we have implemented an RCL-Executor, which provides different scheduling strategies. Currently, two scheduling policies are implemented: static-order and priority-based scheduling.
+
+In static-order-scheduling, all events, including timers, are processed in a pre-defined order. In case different events (timers, subscriptions, etc.) are available at the DDS queue, then they are all processed in the pre-defined static order.
+
+In priority-based scheduling, a priority is defined for each event. If multiple events are available at the DDS queue, then only the event with the highest priority is processed.   
 
 ### EDF for ROS
 
