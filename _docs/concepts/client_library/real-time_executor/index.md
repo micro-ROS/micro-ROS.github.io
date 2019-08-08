@@ -1,41 +1,29 @@
 ---
 title: Real-Time Executor
 redirect_from: /real-time_executor/
-permalink: /docs/real-time_executor/
+permalink: /docs/concepts/client_library/real-time_executor/
 ---
-
-
-TODO:
-- documentation in github readme.md im packag
-dann kann man es auch unter ros.index wiederfinden
-mit beispielen, wie man es verwendet.
-
-- related work Orocos
 
 
 ## Table of contents
 
-*   [Introduction](#introduction)
+*   [Introduction](#Introduction)
 *   [ROS 2 Executor Concept](#ros-2-executor-concept)
 *   [RCL Executor](#rcl-executor)
-    * [Client library layers](#api-layers)
-    * [let executor](#LET-executor)
-    * [API](#API)
+    * [ROS 2 Layers](#ROS-2-Layers)
+    * [Let Executor Concept](#Let-Executor-Concept)
+    * [Let Executor API](#Let-Executor-API)
+    * [Tutorial and Download](#Tutorial-and-Download)
 *   [Background](#background)
-    *   [rclcpp executor](#rclcpp-executor)
-        *   [Description](#description)
-        *   [Architecture](#architecture)
-        *   [Analysis](#analysis)
-    * [EDF Scheduler for ROS2](#EDF-scheduler-ROS2)
-        * analyse rclcpp
-        * EDF approach
+    * [ROS 2 rclcpp Executor](#ROS-2-rclcpp-Executor)
+    * [Complex semantic of the ROS 2 Executor](#Complex-semantic-of-the-ROS-2-Executor)
     *   [Callback-group-level Executor](#callback-group-level-executor)
         *   [API Changes](#api-changes)
         *   [Meta-Executor Concept](#meta-executor-concept)
         *   [Test Bench](#test-bench)
-
 *   [Roadmap](#roadmap)
 *   [Related Work](#related-work)
+    * [Fawkes Framework](#Fawkes-Framework)
 *   [References](#references)
 *   [Acknowledgments](#acknowledgments)
 
@@ -70,73 +58,68 @@ ROS 2 allows to bundle multiple nodes in one operating system process. To coordi
 
 The ROS 2 design defines one Executor (instance of [rclcpp::executor::Executor](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/executor.hpp)) per process, which is typically created either in a custom main function or by the launch system. The Executor coordinates the execution of all callbacks issued by these nodes by checking for available work (timers, services, messages, subscriptions, etc.) from the DDS queue and dispatching it to one or more threads, implemented in [SingleThreadedExecutor](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/executors/single_threaded_executor.hpp) and [MultiThreadedExecutor](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/executors/multi_threaded_executor.hpp), respectively.
 
-The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor looks up the wait queues, which notifies it of any pending callback in the DDS queue. If there are multiple pending callbacks, the ROS 2 Executor executes them in an unspecified order.
+The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor looks up the wait queues, which notifies it of any pending callback in the DDS queue. If there are multiple pending callbacks, the ROS 2 Executor executes them in an in the order as they were registred at the Executor. 
+
+See also section [ROS 2 rclcpp Executor](#ROS-2-rclcpp-Executor) for a more detailed functional desciption and an analysis of its semantics in section [Complex semantic of the ROS 2 Executor](#Complex-semantic-of-the-ROS-2-Executor).
 
 ## RCL-Executor
+This section describes a let-executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (let) and is a well-known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is improved. 
+
+In the future, we plan to provide other executors with different deterministic semantics.
 
 ### ROS 2 Layers
-As mentioned in [Introduction to Client Library](../index.md) 
+As mentioned in the section [Introduction to Client Library](../), we plan to provide micro-ROS support for the C++ API and for the C API. The Real-Time Executor enriches the C API based on the ROS Client Library (rcl).
 
-### User API
-The RCL-Executor is library written in C and is based on RCL. On implementation level we use a different terminology. In the RCL-Executor library an *event* is called a *handle* and *static-order* scheduling is called *FIFO* scheduling.
+### Let-Executor Concept
+The let-executor implements a static order scheduler with logical-execution-time(let) semantics. During configuration the execution order of callbacks is defined and at runtime the callbacks are always processed in this order. The let-semantic refers to reading first all input data from the DDS-queue for all callbacks, storing the received messages or storing the event that a timer is ready. Then, in a second step, all callbacks, timers and the corresponding functions are executed in order as they were defined during configuration phase. 
 
-The RCL-Executor provides the following user interface:
-* Initialization
-  * Total number of handles
-  * Scheduling policy (*FIFO*, *PRIORITY*)
-* Configuration
-  * rcle_executor_add_subscription()
-  * rcle_executor_add_subscription_prio()
-  * rcle_executor_add_timer()
-  * rcle_executor_add_subscription_prio()
-* Running
-  * rcle_executor_spin_once()
-  * rcle_executor_spin()
+### Let-Executor API
 
-For the static-order scheduling, the user initializes the RCL-Executor with *FIFO* as scheduling policy and the total number of handles. Then, the handles are added the the RCL-Executor. The order of these method-calls defines the static-order for the scheduling, hence the name *FIFO* scheduling. Processing the handles is started by e.g. the *spin*-function.
+The API of the let-executor provides functions for configuration, defining the execution order of callbacks, running the scheduler and cleaning-up:
 
-For priority-based scheduling, the user initializes the RCL-Executor with *PRIORITY* as scheduling policy and the total number of handles. The specific priority of each handle is specified in the respective *rcle_executor_add-\*-prio* function. Processing the handles is started by e.g. the *spin*-function.
+**Configuration**
+- rcle_let_executor_init(...)
+- rcle_let_executor_set_timeout(..)
 
-As resources are very constrained on micro-controllers, specific attention has been paid to the memory allocation: Dynamic memory is only allocated during the initialization phase to reserve memory for all handles. Later on, no memory is allocated while scheduling the handles (which was the case in the RCLC implementation).
+**Definition of the execution order**
+- rcle_let_executor_add_subscription(...)
+- rcle_let_executor_add_timer(...)
 
-The RCL-Executor and examples can be found in the repository [rcl-executor](https://github.com/micro-ROS/rcl_executor).
+**Running the executor**
+- rcle_let_executor_spin_some(...)
+- rcle_let_executor_spin_period(...)
+- rcle_let_executor_spin(...)
 
-
-## Static-order scheduler
-RT Executors
-
-implementation:
-- as thin-layer based on RCL (written in C)
-
-API
-- create executor
-- add_subscription
-- add_timer
-- add_function
-- spin_some
-- spin_period
-
-semantics:
-fixed static order scheduling. All handles (callbacks, timers, services, etc.) are executed in the order
-as they were added using the add_* methods to the executor.
-
-LET semantics (reference to some scientific paper)
-- read first, process, write
-- benefit: no interference of write of some callbacks to any other callbacks in this round of evaluating DDS queue ()
-take section from software architecture deliverable
-
-implementation notes:
-- implemented by: 1) creating a wait_set 2) rcl_wait() 3) rcl_take (for all ready handles) 4) scheduling of all handles in the static ORDER
-- during configuration: dynamic allocation for n number of handles, during run-time (e.g. spin_some) no dynamic memory allocation (except within rcl_take(), where memory might be dynamically allocated for messages with variable length)
+**Clean-up memory**
+- rcle_let_executor_fini(...)
 
 
+In the function `rcle_let_executor_init`, the user must specify the total number of handles to be executed. The term handle denotes the object to be executed, for example a timer or a subscription.
 
+The function `rcle_let_executor_set_timeout` is an optional configuration function, which defines the timeout in nanoseconds for calling rcl_wait(), i.e. the time to wait for new data from the DDS queue each time spin_some() is executed. The default timeout is 100ms.
+
+The functions `rcle_let_executor_add_subscription` and `rcle_let_executor_add_timer` add the corresponding handle to the executor. The maximum number of handles is defined in `rcle_let_executor_init` and must not be exceeded. The sequential order of these function calls defines the static execution order later at runtime.
+
+The function `rcle_let_executor_spin_some` checks for new data from the DDS queue once. It first saves all incoming messages and, in a second step, executes all handles according the configured order. This implements the let semantics.
+
+The function `rcle_let_executor_spin_period` calls `rcle_let_executor_spin_some` periodically (as defined with the argument period) as long as the ROS system is alive.
+
+The function `rcle_let_executor_spin` calls `rcle_let_executor_spin_some` indefinitely as long as the ROS system is alive. Note, that this function call might create a high performance load on your processor.
+
+The function `rlce_executor_fini` frees the dynamically allocated memory of the executor.
+
+
+As resources are very constrained on micro-controllers, specific attention has been paid to the memory allocation: Dynamic memory is only allocated during the initialization phase to reserve memory for all handles. This is the reason, why the total number of handles must be configured first. At runtime no memory is allocated by the let-executor.
+
+### Tutorial and Download
+
+The let-executor can be downloaded from the micro-ROS GitHub [rcl_executor repository](https://github.com/micro-ROS/rcl_executor). The package [rcl_executor](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor) provides the let-executor library with a step-by-step tutorial and the package [rcl_executor_examples](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor_examples) provides an example, how to use the let-executor.
 
 ## Background
 
-### ROS2 rclcpp Executor
+### ROS 2 rclcpp Executor
 
-#### Architecture
+Here we provide some more detail about the ROS 2 rclcpp Executor.
 
 The following diagram depicts the relevant classes of the ROS 2 Executor concept:
 
@@ -148,22 +131,18 @@ Also, the Executor does not maintain an explicit callback queue, but relies on t
 
 ![Call sequence from executor to DDS](executor_to_dds_sequence_diagram.png)
 
-#### Analysis
 The Executor concept, however, does not provide means for prioritization or categorization of the incoming callback calls. Moreover, it does not leverage the real-time characteristics of the underlying operating-system scheduler to have finer control on the order of executions. The overall implication of this behavior is that time-critical callbacks could suffer possible deadline misses and a degraded performance since they are serviced later than non-critical callbacks. Additionally, due to the FIFO mechanism, it is difficult to determine usable bounds on the worst-case latency that each callback execution may incur.
+  
 
-OLD STUFF
+### Complex semantic of the ROS 2 Executor
 
-The ROS 2 Executor is responsible for receiving incoming data, calling timers, services etc. The recent paper ) analyzed the Executor in detail. They found out, that these events are not processed in a pure FIFO fashion, but timers are preferred over all other events of the DDS queue. The implication is, that in a high-load situation, only pending timers will be processed while incoming DDS-events will be delayed or starved. Furthermore, the FIFO-strategy makes it difficult to determine time bounds on the total execution time, which are necessary for the verification of safety- and real-time requirements.
-
-To solve these issues, we have implemented an RCL-Executor, which provides different scheduling strategies. Currently, two scheduling policies are implemented: static-order and priority-based scheduling.
-
-In static-order-scheduling, all events, including timers, are processed in a pre-defined order. In case different events (timers, subscriptions, etc.) are available at the DDS queue, then they are all processed in the pre-defined static order.
-
-In priority-based scheduling, a priority is defined for each event. If multiple events are available at the DDS queue, then only the event with the highest priority is processed.   
-
-### EDF for ROS
-
- Tobias Blass PAPER
+ In a recent paper [CB2019](#CB2019), the Executor of ROS 2 has been analyzed in detail and a response time analysis of cause-effect chains has been proposed under reservation-based scheduling. As described in the sub-section [ROS 2 rclcpp Executor](#ROS-2-rclcpp-Executor), the executor distinguishes four categories of callbacks: _timers_, which are triggered by sysetm-level timers, _subscribers_, which are triggered by new messages on a subscribed topic, _services_, which are triggered by service requests, and _clients_, which are triggered by responses to service requests. The executor is responsible for taking messages from the input queues of the DDS layer and executing the corresponding callback. Since it executes callbacks to completion, it is a non-preemptive scheduler, However it does not consider all ready tasks for execution, but only a snapshot, called readySet. This readySet is updated when the executor is idle and in this step it interacts with the DDS layer updating the set of ready tasks. Then for every type of task, there are dedicated queues (timers, subscriptions, services, clients) which are processed sequentially. The following key issues were pointed out: 
+  * The executor processes _timers_ always first.  This can lead to the intrinsic effect, that in overload situations messages from the DDS queue are not processed
+ 
+  * Messages arriving during the processing of the readySet are not considered until the next update, which depnds on the execution time of all remaining callbacks. This leads to priority inversion, as lower-priority callbacks may implicitly block higher-priority callbacks by prolonging the current processing of the readySet. 
+  *  The readySet contains only one task instance, For example, even if multiple messages of the same topic are available, only one instance is processed until the executor is idle again and the readySet is updated from the DDS layer. This aggreviates priority inversion, as a backlogged callback might have to wait for multiple processsing of readySets until it is considered for scheduling. This means that non-timer callback instances might be blocked by multiple instances of the same lower-priority callback. 
+ 
+Due to these findings, an alternative approach is presented to provide determinism and to apply well-known schedulability analyses to a ROS 2 systems. A response time analysis is described under reservation-based scheduling.
 
 ### Callback-group-level Executor
  We propose a callback-group-level Executor, which is based on the Executor concept of the ROS 2 Executor and addresses its afore-mentioned deficits. This new Executor provides fine-grained control of the mapping of callbacks to the scheduling primitives and mechanisms of the underlying RTOS, even across multiple nodes. ROS 2 allows bundling multiple nodes in one operating system process. To coordinate the execution of the callbacks of the nodes of a process, the Executor concept was introduced in rclcpp (and also in rclpy).
@@ -328,7 +307,7 @@ URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8376277&isnumber=83
 ## References
 
 *   Ralph Lange: Callback-group-level Executor for ROS 2. Lightning talk at ROSCon 2018. Madrid, Spain. Sep 2018. [[Slides]](https://roscon.ros.org/2018/presentations/ROSCon2018_Lightning1_4.pdf) [[Video]](https://vimeo.com/292707644)
-* [CB2019] D. Casini, T. Blaß, I. Lütkebohle, B. Brandenburg: Response-Time Analysis of ROS 2 Processing Chains under Reservation-Based Scheduling, in Euromicro-Conference on Real-Time Systems 2019 [[Paper](http://drops.dagstuhl.de/opus/volltexte/2019/10743/)].[[slides]](https://www.ecrts.org/wp-content/uploads/2019/07/casini.pdf)
+* [CB2019]<a name="CB2019"> </a> D. Casini, T. Blaß, I. Lütkebohle, B. Brandenburg: Response-Time Analysis of ROS 2 Processing Chains under Reservation-Based Scheduling, in Euromicro-Conference on Real-Time Systems 2019 [[Paper](http://drops.dagstuhl.de/opus/volltexte/2019/10743/)].[[slides]](https://www.ecrts.org/wp-content/uploads/2019/07/casini.pdf)
 
 ## Acknowledgments
 
