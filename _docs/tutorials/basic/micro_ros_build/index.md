@@ -36,7 +36,7 @@ After the initial setup, you can develop using a simplified procedure like so:
 
 In the last step, the micro-controller will establish a connection to the agent and you can inspect the topics and other data then. Right now, we only do that at startup. In the future, Micro-ROS will also handle connection establishment during runtime.
 
-Now we'll explain these step in more details.
+Now we'll explain these steps in more details.
 
 ### Install `micro-ros-build`
 
