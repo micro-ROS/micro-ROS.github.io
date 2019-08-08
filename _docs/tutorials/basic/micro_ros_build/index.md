@@ -8,7 +8,7 @@ permalink: /docs/tutorials/basic/micro_ros_build/
 
 > Note for those in a hurry: There are also (short but complete) build instructions in the [micro-ros-setup README](https://github.com/micro-ROS/micro-ros-build/blob/master/micro_ros_setup/README.md). 
 
-As shown in the [overview](/docs/overview/), a typical Micro-ROS application has a client -- located on the micro-controller -- and a server side. Software on a micro-controller is usually called "firmware" and is normally cross-compiled on the host and then flashed onto the micro-controller. The following structure image shows the individual parts:
+As shown in the [overview](/docs/overview/), a typical micro-ROS application has a client -- located on the microcontroller -- and a server side. Software on a microcontroller is usually called "firmware" and is normally cross-compiled on the host and then flashed onto the microcontroller. The following structure image shows the individual parts:
 ![structure image](structure.png)
 
 Correspondingly, in the Micro-ROS build, we distinguish the firmware and the "regular" workspace for the server side. Since the regular workspace contains the agent, in other documentation it also sometimes called "agent workspace".
