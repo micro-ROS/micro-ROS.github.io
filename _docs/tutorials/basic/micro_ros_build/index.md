@@ -33,7 +33,7 @@ After the initial setup, you can develop using a simplified procedure like so:
   1. Flash
   1. Reset
 
-In the last step, the micro-controller will establish a connection to the agent and you can inspect the topics and other data then. Right now, we only do that at startup. In the future, Micro-ROS will also handle connection establishment during runtime.
+In the last step, the microcontroller will establish a connection to the agent and you can inspect the topics and other data then. Right now, we only do that at startup. In the future, micro-ROS will also handle connection establishment during runtime.
 
 Now we'll explain these steps in more details.
 
