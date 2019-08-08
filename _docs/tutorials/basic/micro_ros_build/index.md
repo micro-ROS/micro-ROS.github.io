@@ -10,7 +10,7 @@ permalink: /docs/tutorials/basic/micro_ros_build/
 As shown in the [overview](/docs/overview/), a typical micro-ROS application has a client -- located on the microcontroller -- and a server side. Software on a microcontroller is usually called "firmware" and is normally cross-compiled on the host and then flashed onto the microcontroller. The following structure image shows the individual parts:
 ![structure image](structure.png)
 
-Correspondingly, in the Micro-ROS build, we distinguish the firmware and the "regular" workspace for the server side. Since the regular workspace contains the agent, in other documentation it also sometimes called "agent workspace".
+Correspondingly, in the micro-ROS build, we distinguish the firmware and the "regular" workspace for the server side. Since the regular workspace contains the agent, in other documentation it also sometimes called "agent workspace".
 
 
 ### Installation Overview
