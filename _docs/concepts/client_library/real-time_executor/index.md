@@ -9,7 +9,7 @@ permalink: /docs/concepts/client_library/real-time_executor/
 
 *   [Introduction](#introduction)
 *   [ROS 2 Executor Concept](#ros-2-executor-concept)
-*   [RCL Executor](#rcl-executor)
+*   [RCL LET-Executor](#rcl-let-executor)
     * [Concept](#concept)
     * [Example](#example)
     * [Download](#download)
@@ -56,7 +56,7 @@ The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor
 
 See also section [ROS 2 rclcpp Executor](#ROS-2-rclcpp-Executor) for a more detailed functional desciption and an analysis of its semantics in section [Complex semantic of the ROS 2 Executor](#Complex-semantic-of-the-ROS-2-Executor).
 
-## RCL-Executor
+## RCL-LET-Executor
 This section describes the LET-Executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a well-known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is improved. 
 
 In the future, we plan to provide other executors with different deterministic semantics.
