@@ -57,16 +57,16 @@ The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor
 See also section [ROS 2 rclcpp Executor](#ROS-2-rclcpp-Executor) for a more detailed functional desciption and an analysis of its semantics in section [Complex semantic of the ROS 2 Executor](#Complex-semantic-of-the-ROS-2-Executor).
 
 ## RCL-LET-Executor
-This section describes the LET-Executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is improved. 
+This section describes the RCL-LET-Executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is improved [[BP2017](#BP2017)] [[EK2018](#EK2018)].
 
 In the future, we plan to provide other executors with different deterministic semantics.
 
 ### Concept
-The let-executor implements a static order scheduler with logical-execution-time(let) semantics [[BP2017](#BP2017)] [[EK2018](#EK2018)]. During configuration the execution order of callbacks is defined and at runtime the callbacks are always processed in this order. The let-semantic refers to reading first all input data from the DDS-queue for all callbacks, storing the received messages or storing the event that a timer is ready. Then, in a second step, all callbacks, timers and the corresponding functions are executed in order as they were defined during configuration phase. 
+The LET-Executor implements a static order scheduler with logical-execution-time(let) semantics . During configuration the execution order of callbacks is defined and at runtime the callbacks are always processed in this order. The let-semantic refers to reading first all input data from the DDS-queue for all callbacks, storing the received messages or storing the event that a timer is ready. Then, in a second step, all callbacks, timers and the corresponding functions are executed in order as they were defined during configuration phase. 
 
 ### Example
 
-We provide an example, who to use the RCL-LET-executor. First, the callbacks for the subscription and timer need to be defined. Then the ROS context and the ROS node are defined as well as the subscription and timer. 
+We provide an example, who to use the LET-Executor. First, the callbacks for the subscription and timer need to be defined. Then the ROS context and the ROS node are defined as well as the subscription and timer. 
 
 The executor is initialized with two handles. Then follow the _add_ functions, which define the static execution order of the handles. In this example, the subscription is always processed before the timer. Finally the executor is started with the _spin\_period_ function, which is continuously called every 20 ms.
 ```C
@@ -113,7 +113,7 @@ rcle_let_executor_add_timer(&exe, &timer);
 rcle_let_executor_spin_period(&exe, 20);
 ```
 ### Download
-The LET-executor can be downloaded from the micro-ROS GitHub [rcl_executor repository](https://github.com/micro-ROS/rcl_executor). The package [rcl_executor](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor) provides the let-executor library with a step-by-step tutorial and the package [rcl_executor_examples](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor_examples) provides an example, how to use the let-executor.
+The LET-Executor can be downloaded from the micro-ROS GitHub [rcl_executor repository](https://github.com/micro-ROS/rcl_executor). The package [rcl_executor](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor) provides the let-executor library with a step-by-step tutorial and the package [rcl_executor_examples](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor_examples) provides an example, how to use the LET-Executor.
 
 ## Background
 
