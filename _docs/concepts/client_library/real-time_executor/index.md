@@ -4,19 +4,19 @@ redirect_from: /real-time_executor/
 permalink: /docs/concepts/client_library/real-time_executor/
 --- 
 
-
+ 
 ## Table of contents
 
-*   [Introduction](#Introduction)
+*   [Introduction](#introduction)
 *   [ROS 2 Executor Concept](#ros-2-executor-concept)
 *   [RCL Executor](#rcl-executor)
-    * [ROS 2 Layers](#ROS-2-Layers)
+    * [API Layers](#api-layers)
     * [Concept](#concept)
-    * [API](#API)
-    * [Tutorial and Download](#Tutorial-and-Download)
-*   [Background](#Background)
-    * [ROS 2 rclcpp Executor](#ROS-2-rclcpp-Executor)
-    * [Complex semantic of the ROS 2 Executor](#Complex-semantic-of-the-ROS-2-Executor)
+    * [API](#api)
+    * [Tutorial and Download](#tutorial-and-download)
+*   [Background](#background)
+    * [ROS 2 rclcpp Executor](#ros-2-rclcpp-executor)
+    * [Complex semantics of the ROS 2 Executor](#complex-semantics-of-the-ros-2-executor)
     *   [Callback-group-level Executor](#callback-group-level-executor)
 *   [Related Work](#related-work)
 *   [Roadmap](#roadmap)
@@ -63,7 +63,7 @@ This section describes a let-executor. It is a first step towards deterministic 
 
 In the future, we plan to provide other executors with different deterministic semantics.
 
-### ROS 2 Layers<a name="ROS-2-Layers"></a>
+### API Layers
 As mentioned in the section [Introduction to Client Library](../), we plan to provide micro-ROS support for the C++ API and for the C API. The Real-Time Executor enriches the C API based on the ROS Client Library (rcl).
 
 ### Concept
@@ -113,6 +113,8 @@ The let-executor can be downloaded from the micro-ROS GitHub [rcl_executor repos
 
 ## Background
 
+In section we provide a detailed description of the ROS 2 rclcpp Executor, point-out its complex semantics and present the Callback-group-level executor.
+
 ### ROS 2 rclcpp Executor
 
 Here we provide some more detail about the ROS 2 rclcpp Executor.
@@ -130,7 +132,7 @@ Also, the Executor does not maintain an explicit callback queue, but relies on t
 The Executor concept, however, does not provide means for prioritization or categorization of the incoming callback calls. Moreover, it does not leverage the real-time characteristics of the underlying operating-system scheduler to have finer control on the order of executions. The overall implication of this behavior is that time-critical callbacks could suffer possible deadline misses and a degraded performance since they are serviced later than non-critical callbacks. Additionally, due to the FIFO mechanism, it is difficult to determine usable bounds on the worst-case latency that each callback execution may incur.
   
 
-### Complex semantic of the ROS 2 Executor
+### Complex semantics of the ROS 2 Executor
 
  In a recent paper [CB2019](#CB2019), the Executor of ROS 2 has been analyzed in detail and a response time analysis of cause-effect chains has been proposed under reservation-based scheduling. As described in the sub-section [ROS 2 rclcpp Executor](#ROS-2-rclcpp-Executor), the executor distinguishes four categories of callbacks: _timers_, which are triggered by sysetm-level timers, _subscribers_, which are triggered by new messages on a subscribed topic, _services_, which are triggered by service requests, and _clients_, which are triggered by responses to service requests. The executor is responsible for taking messages from the input queues of the DDS layer and executing the corresponding callback. Since it executes callbacks to completion, it is a non-preemptive scheduler, However it does not consider all ready tasks for execution, but only a snapshot, called readySet. This readySet is updated when the executor is idle and in this step it interacts with the DDS layer updating the set of ready tasks. Then for every type of task, there are dedicated queues (timers, subscriptions, services, clients) which are processed sequentially. The following key issues were pointed out: 
   * The executor processes _timers_ always first.  This can lead to the intrinsic effect, that in overload situations messages from the DDS queue are not processed
