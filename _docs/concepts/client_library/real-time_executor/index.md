@@ -32,7 +32,7 @@ Of course, it is possible to manually setup the order of subscribing and publish
 
 Therefore the goal of the Real-Time Executor is to support roboticists with practical and easy-to-use real-time mechanisms which provide solutions for:
 - Deterministic execution
-- Real time guarantees
+- Real-time guarantees
 - Integration of real-time and non real-time functionalities on one platform
 - Specific support for RTOS and microcontrollers
 
