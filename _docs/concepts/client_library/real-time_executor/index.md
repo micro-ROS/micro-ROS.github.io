@@ -13,10 +13,13 @@ permalink: /docs/concepts/client_library/real-time_executor/
     * [Concept](#concept)
     * [Example](#example)
     * [Download](#download)
-*   [Analysis of Default rclcpp Executor](#analysis-of-default-rclcpp-executor)
+*   [Analysis of Default Rclcpp Executor](#analysis-of-default-rclcpp-executor)
     * [Architecture](#architecture)
     * [Scheduling Semantics](#scheduling-semantics)
-    * [Callback-group-level Executor](#callback-group-level-executor)
+*   [Callback-group-level Executor](#callback-group-level-executor)
+    *   [API Changes](#api-changes)
+    *   [Meta Executor Concept](#meta-executor-concept)
+    *   [Test Bench](#test-bench)
 *   [Related Work](#related-work)
 *   [Roadmap](#roadmap)
 *   [References](#references)
@@ -54,7 +57,7 @@ The ROS 2 design defines one Executor (instance of [rclcpp::executor::Executor](
 
 The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor looks up the wait queues, which notifies it of any pending callback in the DDS queue. If there are multiple pending callbacks, the ROS 2 Executor executes them in an in the order as they were registred at the Executor. 
 
-See also Section [Analysis of Default rclcpp Executor](#analysis-of-default-rclcpp-executor) for a more detailed functional description and an analysis of its semantics.
+See also Section [Analysis of Default Rclcpp Executor](#analysis-of-default-rclcpp-executor) for a more detailed functional description and an analysis of its semantics.
 
 ## Rcl LET-Executor
 This section describes the rcl-LET-Executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is improved [[BP2017](#BP2017)] [[EK2018](#EK2018)].
@@ -115,7 +118,7 @@ rcle_let_executor_spin_period(&exe, 20);
 ### Download
 The LET-Executor can be downloaded from the micro-ROS GitHub [rcl_executor repository](https://github.com/micro-ROS/rcl_executor). The package [rcl_executor](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor) provides the LET-Executor library with a step-by-step tutorial and the package [rcl_executor_examples](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor_examples) provides an example, how to use the LET-Executor.
 
-## Analysis of Default rclcpp Executor
+## Analysis of Default Rclcpp Executor
 
 In section we provide a detailed analysis of the default executor of the rclcpp, including the software architecture, scheduling semantics and a potential refinement of the API.
 
@@ -158,6 +161,7 @@ The following figure illustrates this approach with two nodes served by three Ca
 The different callbacks of the Drive-Base node are distributed to different Executors (visualized by the color red, yellow and green).  For example the onCmdVel and publishWheelTicks callback are scheduled by the same Executor (yellow). Callbacks from different nodes can be serviced by the same Executor.
 
 ### API Changes
+
 In this section, we describe the necessary changes to the Executor API:
 *   [include/rclcpp/callback\_group.hpp](https://github.com/micro-ROS/rclcpp/blob/cbg-executor-0.5.1/rclcpp/include/rclcpp/callback_group.hpp):
 
@@ -292,8 +296,8 @@ URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8376277&isnumber=83
 2019
 
 * Design and implementation of LET Executor for rcl.
-* Design and implementation of domain-specific Executor for rcl, featuring sense-plan-act semantics
-* In-depth runtime analysis of default rclcpp Executor using ROS 2 tracetools developed in micro-ROS.
+* Design and implementation of domain-specific executor for rcl, featuring sense-plan-act semantics
+* In-depth runtime analysis of default rclcpp executor using ROS 2 tracetools developed in micro-ROS.
 * Design and implementation of static Executor for rclcpp with improved performance.
 * Research of concepts for model-based optimization of end-to-end latencies.
 
