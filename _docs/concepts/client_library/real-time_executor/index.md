@@ -46,7 +46,6 @@ Our approach is to provide a real-time Executor on two layers as described in se
 
 As the first step, we propose the LET-Executor, which implements static order scheduling policy with logic execution time semantics. In this scheduling policy, all processes are executed in a pre-defined order. Logical execution time refers to the concept, that first input data is read before tasks are executed, which has received much attention in automotive domain and multi-core platforms [[BP2017](#BP2017)] [[EK2018](#EK2018)]. Secondly, we developed a Callback-group-level executor, which allows to prioritize a group of callbacks. These approaches are based on the concept of executors, which have been introduced in ROS 2.
 
-The remaining of the chapter is structured as follows. First, the ROS 2 Executor concept is described. Then we describe the RCL Executor. In the background section we go into more detail of the ROS 2 Executor (rclcpp), point out its limitations, as published in a recent paper [1] and describe the callback-group-level Executor. Finally, we summarize related work and present the OFERA project roadmap.
 
 ## ROS 2 Executor Concept
 
