@@ -25,13 +25,13 @@ permalink: /docs/concepts/client_library/real-time_executor/
 
 ## Introduction
 
-Predictable execution under given real-time constraints is a crucial requirement for many robotic applications, but is also a complex and time-consuming activity. While the service-based paradigm of ROS allows a fast integration of many different functionalities, it does not provide sufficient control over the execution management. For example,  there are no mechanisms to enforce a certain execution order of callbacks within a node, left alone to configure the  execution order of callbacks of different nodes in a ROS 2 system. This is essential for a high quality of control applications, which consist of cause-effect-chains like sensor acquisition, evaluation and actuation control, and operating on old data due to scheduling is not desired. Further more, when input data is collected in field tests, saved with ROS-bags and re-played, often results are different due to non-determinism of process scheduling.
+Predictable execution under given real-time constraints is a crucial requirement for many robotic applications, but is also a complex and time-consuming activity. While the service-based paradigm of ROS allows a fast integration of many different functionalities, it does not provide sufficient control over the execution management. For example, there are no mechanisms to enforce a certain execution order of callbacks within a node, left alone to configure the  execution order of callbacks of different nodes in a ROS 2 system. This is essential for a high quality of control applications, which consist of cause-effect-chains like sensor acquisition, evaluation and actuation control, and operating on old data due to scheduling is not desired. Furthermore, when input data is collected in field tests, saved with ROS-bags and re-played, often results are different due to non-determinism of process scheduling.
 
 Of course, it is possible to manually setup the order of subscribing and publishing topics in the callbacks or by tweaking the priorities of the corresponding Linux processes. However, this approach is error-prune, difficult to extend and requires an in-depth knowledge of the deplyed ROS 2 packages in the system.
 
 Therefore the goal of the Real-Time Executor is to support roboticists with practical and easy-to-use real-time mechanisms which provide solutions for:
 - Deterministic execution
-- Real time guarantees
+- Real-time guarantees
 - Integration of real-time and non real-time functionalities on one platform
 - Specific support for RTOS and microcontrollers
 
@@ -43,9 +43,8 @@ The challenges to achieve these goals are:
 
 Our approach is to provide a real-time Executor on two layers as described in section [Introduction to Client Library](../). One based on rcl written in C programming language and one based on rclcpp written in C++.
 
-As the first step, we propose a let-Executor, which implements static order scheduling policy with logic execution time semantics. In this scheduling policy, all processes are executed in a pre-defined order. Logical execution time refers to the concept, that first input data is read before tasks are executed, which has received much attention in automotive domain and multi-core platforms [[BP2017](#BP2017)] [[EK2018](#EK2018)]. Secondly, we developed a Callback-group-level executor, which allows to prioritize a group of callbacks. These approaches are based on the concept of executors, which have been introduced in ROS 2.
+As the first step, we propose the LET-Executor, which implements static order scheduling policy with logic execution time semantics. In this scheduling policy, all processes are executed in a pre-defined order. Logical execution time refers to the concept, that first input data is read before tasks are executed, which has received much attention in automotive domain and multi-core platforms [[BP2017](#BP2017)] [[EK2018](#EK2018)]. Secondly, we developed a Callback-group-level executor, which allows to prioritize a group of callbacks. These approaches are based on the concept of executors, which have been introduced in ROS 2.
 
-The remaining of the chapter is structured as follows. First, the ROS 2 Executor concept is described. Then we describe the RCL Executor. In the background section we go into more detail of the ROS 2 Executor (rclcpp), point out its limitations, as published in a recent paper [1] and describe the callback-group-level Executor. Finally, we summarize related work and present the OFERA project roadmap.
 
 ## ROS 2 Executor Concept
 
@@ -57,8 +56,8 @@ The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor
 
 See also section [ROS 2 rclcpp Executor](#ROS-2-rclcpp-Executor) for a more detailed functional desciption and an analysis of its semantics in section [Complex semantic of the ROS 2 Executor](#Complex-semantic-of-the-ROS-2-Executor).
 
-## RCL-LET-Executor
-This section describes the RCL-LET-executor. It is a first step towards deterministic execution by providing static order scheduling with a LET semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a well-known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is improved. 
+## RCL-Executor
+This section describes the LET-Executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a well-known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is improved. 
 
 In the future, we plan to provide other executors with different deterministic semantics.
 
