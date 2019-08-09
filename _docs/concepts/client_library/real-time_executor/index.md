@@ -10,10 +10,9 @@ permalink: /docs/concepts/client_library/real-time_executor/
 *   [Introduction](#introduction)
 *   [ROS 2 Executor Concept](#ros-2-executor-concept)
 *   [RCL Executor](#rcl-executor)
-    * [API Layers](#api-layers)
     * [Concept](#concept)
-    * [API](#api)
-    * [Tutorial and Download](#tutorial-and-download)
+    * [Example](#example)
+    * [Download](#download)
 *   [Background](#background)
     * [ROS 2 rclcpp Executor](#ros-2-rclcpp-executor)
     * [Complex semantics of the ROS 2 Executor](#complex-semantics-of-the-ros-2-executor)
@@ -58,58 +57,65 @@ The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor
 
 See also section [ROS 2 rclcpp Executor](#ROS-2-rclcpp-Executor) for a more detailed functional desciption and an analysis of its semantics in section [Complex semantic of the ROS 2 Executor](#Complex-semantic-of-the-ROS-2-Executor).
 
-## RCL-Executor
-This section describes a let-executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (let) and is a well-known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is improved. 
+## RCL-LET-Executor
+This section describes the RCL-LET-executor. It is a first step towards deterministic execution by providing static order scheduling with a LET semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a well-known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is improved. 
 
 In the future, we plan to provide other executors with different deterministic semantics.
 
-### API Layers
-As mentioned in the section [Introduction to Client Library](../), we plan to provide micro-ROS support for the C++ API and for the C API. The Real-Time Executor enriches the C API based on the ROS Client Library (rcl).
 
 ### Concept
 The let-executor implements a static order scheduler with logical-execution-time(let) semantics [[BP2017](#BP2017)] [[EK2018](#EK2018)]. During configuration the execution order of callbacks is defined and at runtime the callbacks are always processed in this order. The let-semantic refers to reading first all input data from the DDS-queue for all callbacks, storing the received messages or storing the event that a timer is ready. Then, in a second step, all callbacks, timers and the corresponding functions are executed in order as they were defined during configuration phase. 
 
-### API
+### Example
 
-The API of the let-executor provides functions for configuration, defining the execution order of callbacks, running the scheduler and cleaning-up:
+We provide an example, who to use the RCL-LET-executor. First, the callbacks for the subscription and timer need to be defined. Then the ROS context and the ROS node are defined as well as the subscription and timer. 
 
-**Configuration**
-- rcle_let_executor_init(...)
-- rcle_let_executor_set_timeout(..)
+The executor is initialized with two handles. Then follow the _add_ functions, which define the static execution order of the handles. In this example, the subscription is always processed before the timer. Finally the executor is started with the _spin\_period_ function, which is continuously called every 20 ms.
+```C
+#include "rcl_executor/let_executor.h"
 
-**Definition of the execution order**
-- rcle_let_executor_add_subscription(...)
-- rcle_let_executor_add_timer(...)
+// define subscription callback
+void my_sub_cb(const void * msgin)
+{
+  // ...
+}
 
-**Running the executor**
-- rcle_let_executor_spin_some(...)
-- rcle_let_executor_spin_period(...)
-- rcle_let_executor_spin(...)
+// define timer callback
+void my_timer_cb(rcl_timer_t * timer, int64_t last_call_time) 
+{
+  // ...
+}
 
-**Clean-up memory**
-- rcle_let_executor_fini(...)
+// necessary ROS 2 objects 
+rcl_context_t context;   
+rcl_node_t node;
+rcl_subscription_t sub;
+rcl_timer_t timer;
+rcle_let_executor_t exe;
 
+// define ROS context
+context = rcl_get_zero_initialized_context();
+// initialize ROS node
+rcl_node_init(&node, &context,...);
 
-In the function `rcle_let_executor_init`, the user must specify the total number of handles to be executed. The term handle denotes the object to be executed, for example a timer or a subscription.
+// create a subscription
+rcl_subscription_init(&sub, &node, ...);
 
-The function `rcle_let_executor_set_timeout` is an optional configuration function, which defines the timeout in nanoseconds for calling rcl_wait(), i.e. the time to wait for new data from the DDS queue each time spin_some() is executed. The default timeout is 100ms.
+// create a timer
+rcl_timer_init(&timer, &my_timer_cb, ... );
 
-The functions `rcle_let_executor_add_subscription` and `rcle_let_executor_add_timer` add the corresponding handle to the executor. The maximum number of handles is defined in `rcle_let_executor_init` and must not be exceeded. The sequential order of these function calls defines the static execution order later at runtime.
+// initialize executor with two handles
+rcle_let_executor_init(&exe, &context, 2, ...);
 
-The function `rcle_let_executor_spin_some` checks for new data from the DDS queue once. It first saves all incoming messages and, in a second step, executes all handles according the configured order. This implements the let semantics.
+// define static execution order of handles
+rcle_let_executor_add_subscription(&exe, &sub, &my_sub_cb, ...);
+rcle_let_executor_add_timer(&exe, &timer);
 
-The function `rcle_let_executor_spin_period` calls `rcle_let_executor_spin_some` periodically (as defined with the argument period) as long as the ROS system is alive.
-
-The function `rcle_let_executor_spin` calls `rcle_let_executor_spin_some` indefinitely as long as the ROS system is alive. Note, that this function call might create a high performance load on your processor.
-
-The function `rlce_executor_fini` frees the dynamically allocated memory of the executor.
-
-
-As resources are very constrained on micro-controllers, specific attention has been paid to the memory allocation: Dynamic memory is only allocated during the initialization phase to reserve memory for all handles. This is the reason, why the total number of handles must be configured first. At runtime no memory is allocated by the let-executor.
-
-### Tutorial and Download
-
-The let-executor can be downloaded from the micro-ROS GitHub [rcl_executor repository](https://github.com/micro-ROS/rcl_executor). The package [rcl_executor](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor) provides the let-executor library with a step-by-step tutorial and the package [rcl_executor_examples](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor_examples) provides an example, how to use the let-executor.
+// spin with a period of 20ms 
+rcle_let_executor_spin_period(&exe, 20);
+```
+### Download
+The LET-executor can be downloaded from the micro-ROS GitHub [rcl_executor repository](https://github.com/micro-ROS/rcl_executor). The package [rcl_executor](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor) provides the let-executor library with a step-by-step tutorial and the package [rcl_executor_examples](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor_examples) provides an example, how to use the let-executor.
 
 ## Background
 
