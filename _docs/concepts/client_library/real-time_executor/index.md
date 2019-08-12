@@ -9,8 +9,7 @@ permalink: /docs/concepts/client_library/real-time_executor/
 
 *   [Introduction](#introduction)
 
-*   [ROS 2 Executor](#ros-2-executor)
-    * [Concept](#concept)
+*   [Analysis of rclcpp standard Executor](#analysis-of-rclcpp-standard-executor)
     * [Architecture](#architecture)
     * [Scheduling Semantics](#scheduling-semantics)
 
@@ -42,8 +41,11 @@ Therefore the goal of the Real-Time Executor is to support roboticists with prac
 - Integration of real-time and non real-time functionalities on one platform
 - Specific support for RTOS and microcontrollers
 
-The challenges to achieve these goals are:
-- to develop an adequate and well-defined scheduling mechanisms for the ROS framework and the operating system (RTOS)
+
+In ROS 1 a network thread is responsible for receiving all messages and putting them into a FIFO queue (in roscpp). That is, all callbacks were called in a FIFO manner, without any execution management. With the introduction of DDS (data distribution service) in ROS 2, the messages are buffered in DDS. In ROS 2, an Executor concept was introduced to support execution management, like priorization. At the rcl-layer, a _wait-set_ is configured with the messages to be received and in a second step, the messages are taken from the DDS-queue.  The standard implementation of the ROS 2 Executor for the C++ API (rclcpp) has, however, certain unusual features, like precedence of timers over all other DDS messages, non-preemptive round-robin scheduling for subscriptions, clients and services and considering only one instance of message type (even if multiple are available). These features have the consequence, that in certain situations the standard rclcpp Executor is not deterministic and it makes proving real-time guarantees hard. We have not looked at the Executor implementation for Python (rclpy) because we have micro-controllers as the platform in mind, on which typically C or C++ appliations will run.
+
+The challenges to achieve the afore-mentioned goals for ROS 2 are:
+- to develop an adequate and well-defined scheduling mechanisms for the ROS 2 framework and the real-time operating system (RTOS)
 - to define an easy-to-use interface for ROS-developers
 - to model requirements (like latencies, determinism in subsystems)
 - mapping of ROS framework and OS scheduler (semi-automated and optimized mapping is desired as well as generic, well-understood framework mechanisms)
@@ -52,9 +54,8 @@ Our approach is to provide a real-time Executor on two layers as described in se
 
 As the first step, we propose the LET-Executor, which implements static order scheduling policy with logic execution time semantics. In this scheduling policy, all callbacks are executed in a pre-defined order. Logical execution time refers to the concept, that first input data is read before tasks are executed.  Secondly, we developed a Callback-group-level Executor, which allows to prioritize a group of callbacks. These approaches are based on the concept of Executors, which have been introduced in ROS 2.
 
-## ROS 2 Executor
 
-### Concept
+## Analysis of rclcpp standard Executor
 
 ROS 2 allows to bundle multiple nodes in one operating system process. To coordinate the execution of the callbacks of the nodes of a process, the Executor concept was introduced in rclcpp (and also in rclpy).
 
@@ -80,9 +81,9 @@ The Executor concept, however, does not provide means for prioritization or cate
 
 In a recent paper [CB2019](#CB2019), the rclcpp Executor has been analyzed in detail and a response time analysis of cause-effect chains has been proposed under reservation-based scheduling. The Executor distinguishes four categories of callbacks: _timers_, which are triggered by system-level timers, _subscribers_, which are triggered by new messages on a subscribed topic, _services_, which are triggered by service requests, and _clients_, which are triggered by responses to service requests. The Executor is responsible for taking messages from the input queues of the DDS layer and executing the corresponding callback. Since it executes callbacks to completion, it is a non-preemptive scheduler, However it does not consider all ready tasks for execution, but only a snapshot, called readySet. This readySet is updated when the Executor is idle and in this step it interacts with the DDS layer updating the set of ready tasks. Then for every type of task, there are dedicated queues (timers, subscriptions, services, clients) which are processed sequentially. The following undesired properties were pointed out:
 
-* The Executor processes _timers_ always first.  This can lead to the intrinsic effect, that in overload situations messages from the DDS queue are not processed.
-* Messages arriving during the processing of the readySet are not considered until the next update, which depends on the execution time of all remaining callbacks. This leads to priority inversion, as lower-priority callbacks may implicitly block higher-priority callbacks by prolonging the current processing of the readySet. 
-* The readySet contains only one task instance, For example, even if multiple messages of the same topic are available, only one instance is processed until the Executor is idle again and the readySet is updated from the DDS layer. This aggravates priority inversion, as a backlogged callback might have to wait for multiple processing of readySets until it is considered for scheduling. This means that non-timer callback instances might be blocked by multiple instances of the same lower-priority callback.
+* Timers have the highest priority. The Executor processes _timers_ always first.  This can lead to the intrinsic effect, that in overload situations messages from the DDS queue are not processed.
+* Non-preemptive round-robin scheduling of non-timer handles. Messages arriving during the processing of the readySet are not considered until the next update, which depends on the execution time of all remaining callbacks. This leads to priority inversion, as lower-priority callbacks may implicitly block higher-priority callbacks by prolonging the current processing of the readySet. 
+* Only one message per handle is considered. The readySet contains only one task instance, For example, even if multiple messages of the same topic are available, only one instance is processed until the Executor is idle again and the readySet is updated from the DDS layer. This aggravates priority inversion, as a backlogged callback might have to wait for multiple processing of readySets until it is considered for scheduling. This means that non-timer callback instances might be blocked by multiple instances of the same lower-priority callback.
 
 Due to these findings, the authors present an alternative approach to provide determinism and to apply well-known schedulability analyses to a ROS 2 systems. A response time analysis is described under reservation-based scheduling.
 
@@ -96,9 +97,9 @@ The LET-Executor consists of tho phases, configuration and running phase. First,
 
 ### Example
 
-We provide an example for using the LET-Executor. First, the callbacks for a subscription and a timer need to be defined. Then the ROS context and the ROS node are defined as well as the subscription and timer. 
+We provide an example for using the LET-Executor. First, the callbacks _my\_sub\_cb_ and my_timer\_cb_ are defined for a subscription and a timer, respectivly. Then, the ROS _context_ and the ROS _node_ are defined as well as the subscription object _sub_ and the timer object _timer_. 
 
-The Executor is initialized with two handles. Then, the _add_ functions define the static execution order of the handles. In this example, the subscription shall be processed before the timer. Finally, the Executor is started with the _spin\_period_ function, which is continuously called every 20 ms.
+The Executor is initialized with two handles. Then, the _add_ functions define the static execution order of the handles. In this example, the subscription _sub_ shall be processed before the timer _timer_. Finally, the Executor is activated with the _spin\_period_ function, which is continuously called every 20 ms.
 ```C
 #include "rcl_executor/let_executor.h"
 
