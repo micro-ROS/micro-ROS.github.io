@@ -8,18 +8,22 @@ permalink: /docs/concepts/client_library/real-time_executor/
 ## Table of contents
 
 *   [Introduction](#introduction)
-*   [ROS 2 Executor Concept](#ros-2-executor-concept)
-*   [rcl LET-Executor](#rcl-let-executor)
+
+*   [ROS 2 Executor](#ros-2-executor)
+    * [Concept](#concept)
+    * [Architecture](#architecture)
+    * [Scheduling Semantics](#scheduling-semantics)
+
+*   [Rcl LET-Executor](#rcl-let-executor)
     * [Concept](#concept)
     * [Example](#example)
     * [Download](#download)
-*   [Analysis of Default Rclcpp Executor](#analysis-of-default-rclcpp-executor)
-    * [Architecture](#architecture)
-    * [Scheduling Semantics](#scheduling-semantics)
+
 *   [Callback-group-level Executor](#callback-group-level-executor)
     *   [API Changes](#api-changes)
     *   [Meta Executor Concept](#meta-executor-concept)
     *   [Test Bench](#test-bench)
+
 *   [Related Work](#related-work)
 *   [Roadmap](#roadmap)
 *   [References](#references)
@@ -48,8 +52,9 @@ Our approach is to provide a real-time executor on two layers as described in se
 
 As the first step, we propose the LET-Executor, which implements static order scheduling policy with logic execution time semantics. In this scheduling policy, all processes are executed in a pre-defined order. Logical execution time refers to the concept, that first input data is read before tasks are executed.  Secondly, we developed a Callback-group-level executor, which allows to prioritize a group of callbacks. These approaches are based on the concept of executors, which have been introduced in ROS 2.
 
+## ROS 2 Executor
 
-## ROS 2 Executor Concept
+### Concept
 
 ROS 2 allows to bundle multiple nodes in one operating system process. To coordinate the execution of the callbacks of the nodes of a process, the Executor concept was introduced in rclcpp (and also in rclpy).
 
@@ -57,7 +62,29 @@ The ROS 2 design defines one Executor (instance of [rclcpp::executor::Executor](
 
 The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor looks up the wait queues, which notifies it of any pending callback in the DDS queue. If there are multiple pending callbacks, the ROS 2 Executor executes them in an in the order as they were registred at the Executor. 
 
-See also Section [Analysis of Default Rclcpp Executor](#analysis-of-default-rclcpp-executor) for a more detailed functional description and an analysis of its semantics.
+### Architecture
+
+The following diagram depicts the relevant classes of the standard ROS 2 Executor implementation:
+
+![ROS 2 Executor class diagram](executor_class_diagram.png)
+
+Note that an Executor instance maintains weak pointers to the NodeBaseInterfaces of the nodes only. Therefore, nodes can be destroyed safely, without notifying the Executor.
+
+Also, the Executor does not maintain an explicit callback queue, but relies on the queue mechanism of the underlying DDS implementation as illustrated in the following sequence diagram:
+
+![Call sequence from executor to DDS](executor_to_dds_sequence_diagram.png)
+
+The Executor concept, however, does not provide means for prioritization or categorization of the incoming callback calls. Moreover, it does not leverage the real-time characteristics of the underlying operating-system scheduler to have finer control on the order of executions. The overall implication of this behavior is that time-critical callbacks could suffer possible deadline misses and a degraded performance since they are serviced later than non-critical callbacks. Additionally, due to the FIFO mechanism, it is difficult to determine usable bounds on the worst-case latency that each callback execution may incur.
+  
+### Scheduling Semantics
+
+In a recent paper [CB2019](#CB2019), the rclcpp executor has been analyzed in detail and a response time analysis of cause-effect chains has been proposed under reservation-based scheduling. The executor distinguishes four categories of callbacks: _timers_, which are triggered by system-level timers, _subscribers_, which are triggered by new messages on a subscribed topic, _services_, which are triggered by service requests, and _clients_, which are triggered by responses to service requests. The executor is responsible for taking messages from the input queues of the DDS layer and executing the corresponding callback. Since it executes callbacks to completion, it is a non-preemptive scheduler, However it does not consider all ready tasks for execution, but only a snapshot, called readySet. This readySet is updated when the executor is idle and in this step it interacts with the DDS layer updating the set of ready tasks. Then for every type of task, there are dedicated queues (timers, subscriptions, services, clients) which are processed sequentially. The following key issues were pointed out:
+
+* The executor processes _timers_ always first.  This can lead to the intrinsic effect, that in overload situations messages from the DDS queue are not processed
+* Messages arriving during the processing of the readySet are not considered until the next update, which depends on the execution time of all remaining callbacks. This leads to priority inversion, as lower-priority callbacks may implicitly block higher-priority callbacks by prolonging the current processing of the readySet. 
+* The readySet contains only one task instance, For example, even if multiple messages of the same topic are available, only one instance is processed until the executor is idle again and the readySet is updated from the DDS layer. This aggravates priority inversion, as a backlogged callback might have to wait for multiple processing of readySets until it is considered for scheduling. This means that non-timer callback instances might be blocked by multiple instances of the same lower-priority callback.
+
+Due to these findings, an alternative approach is presented to provide determinism and to apply well-known schedulability analyses to a ROS 2 systems. A response time analysis is described under reservation-based scheduling.
 
 ## Rcl LET-Executor
 This section describes the rcl-LET-Executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is improved [[BP2017](#BP2017)] [[EK2018](#EK2018)].
@@ -117,34 +144,6 @@ rcle_let_executor_spin_period(&exe, 20);
 ```
 ### Download
 The LET-Executor can be downloaded from the micro-ROS GitHub [rcl_executor repository](https://github.com/micro-ROS/rcl_executor). The package [rcl_executor](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor) provides the LET-Executor library with a step-by-step tutorial and the package [rcl_executor_examples](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor_examples) provides an example, how to use the LET-Executor.
-
-## Analysis of Default Rclcpp Executor
-
-In section we provide a detailed analysis of the default executor of the rclcpp, including the software architecture, scheduling semantics and a potential refinement of the API.
-
-### Architecture
-
-The following diagram depicts the relevant classes of the standard ROS 2 Executor implementation:
-
-![ROS 2 Executor class diagram](executor_class_diagram.png)
-
-Note that an Executor instance maintains weak pointers to the NodeBaseInterfaces of the nodes only. Therefore, nodes can be destroyed safely, without notifying the Executor.
-
-Also, the Executor does not maintain an explicit callback queue, but relies on the queue mechanism of the underlying DDS implementation as illustrated in the following sequence diagram:
-
-![Call sequence from executor to DDS](executor_to_dds_sequence_diagram.png)
-
-The Executor concept, however, does not provide means for prioritization or categorization of the incoming callback calls. Moreover, it does not leverage the real-time characteristics of the underlying operating-system scheduler to have finer control on the order of executions. The overall implication of this behavior is that time-critical callbacks could suffer possible deadline misses and a degraded performance since they are serviced later than non-critical callbacks. Additionally, due to the FIFO mechanism, it is difficult to determine usable bounds on the worst-case latency that each callback execution may incur.
-  
-### Scheduling Semantics
-
-In a recent paper [CB2019](#CB2019), the rclcpp executor has been analyzed in detail and a response time analysis of cause-effect chains has been proposed under reservation-based scheduling. The executor distinguishes four categories of callbacks: _timers_, which are triggered by system-level timers, _subscribers_, which are triggered by new messages on a subscribed topic, _services_, which are triggered by service requests, and _clients_, which are triggered by responses to service requests. The executor is responsible for taking messages from the input queues of the DDS layer and executing the corresponding callback. Since it executes callbacks to completion, it is a non-preemptive scheduler, However it does not consider all ready tasks for execution, but only a snapshot, called readySet. This readySet is updated when the executor is idle and in this step it interacts with the DDS layer updating the set of ready tasks. Then for every type of task, there are dedicated queues (timers, subscriptions, services, clients) which are processed sequentially. The following key issues were pointed out:
-
-* The executor processes _timers_ always first.  This can lead to the intrinsic effect, that in overload situations messages from the DDS queue are not processed
-* Messages arriving during the processing of the readySet are not considered until the next update, which depends on the execution time of all remaining callbacks. This leads to priority inversion, as lower-priority callbacks may implicitly block higher-priority callbacks by prolonging the current processing of the readySet. 
-* The readySet contains only one task instance, For example, even if multiple messages of the same topic are available, only one instance is processed until the executor is idle again and the readySet is updated from the DDS layer. This aggravates priority inversion, as a backlogged callback might have to wait for multiple processing of readySets until it is considered for scheduling. This means that non-timer callback instances might be blocked by multiple instances of the same lower-priority callback.
-
-Due to these findings, an alternative approach is presented to provide determinism and to apply well-known schedulability analyses to a ROS 2 systems. A response time analysis is described under reservation-based scheduling.
 
 ## Callback-group-level Executor
 
