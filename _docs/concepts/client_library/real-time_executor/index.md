@@ -57,7 +57,7 @@ Given the goals for a Real-Time Executor and the limitations of the ROS 2 standa
 
 Our approach is to provide Real-Time Executors on two layers as described in section [Introduction to Client Library](../). One based on the rcl-layer written in C programming language and one based on rclcpp written in C++.
 
-As the first step, we propose the LET-Executor for the rcl-layer in C, which implements static order scheduling policy with logic execution time semantics. In this scheduling policy, all callbacks are executed in a pre-defined order. Logical execution time refers to the concept, that first input data is read before tasks are executed.  Secondly, we developed a Callback-group-level Executor, which allows to prioritize a group of callbacks. These approaches are based on the concept of Executors, which have been introduced in ROS 2.
+As the first step, we propose the LET-Executor for the rcl-layer in C, which implements static order scheduling policy with logic execution time semantics. In this scheduling policy, all callbacks are executed in a pre-defined order. Logical Execution Time(LET) refers to the concept, that for a set of tasks, first all input data is read, then all tasks are processed, and finally all output is written. Secondly, we developed a Callback-group-level Executor, which allows to prioritize a group of callbacks. These approaches are based on the concept of Executors, which have been introduced in ROS 2.
 
 In the future, we plan to provide other Real-Time Executors for the rcl- and rclcpp-layer.
 
@@ -79,7 +79,18 @@ Note that an Executor instance maintains weak pointers to the NodeBaseInterfaces
 
 Also, the Executor does not maintain an explicit callback queue, but relies on the queue mechanism of the underlying DDS implementation as illustrated in the following sequence diagram:
 
-![Call sequence from executor to DDS](executor_to_dds_sequence_diagram.png)
+<!-- ![Call sequence from executor to DDS](executor_to_dds_sequence_diagram.png)
+-->
+![Call sequence from executor to DDS](rclcpp_callback_sequence.png)
+
+If no ready executable is available, the Executor waits for new data from the DDS queue. And then checks for a ready executable again. The control flow of this function is illustrated in the next diagram:
+
+<center><img src="rclcpp_get_next_executables.png" width="30%"></center>
+
+First, timers are checked, then subscriptions, services, clients and waitables (waitables are omitted for clariy).
+However, timers are checked for readiness without calling DDS. With the consequence that the DDS queue is not processed on a fully loaded system with pending timers.
+
+In a second step, the next ready executable is processed in this sequence: timers, subscriptions, services, clients and waitables (for simplicity clients and waitables are omitted in the diagram). Note, that the sub-function _execute\_*_ functions (without timers) request the new message from the DDS-queue with _rcl\_take_ and then calls the corresponding callback. This mechanism is illustrated for a subscription. This leads to an undeterministic behavior when a new message with register semantics (quality of service: last is best) is received after checking for new messages with _rcl\_wait()_. The visibility of this message depends on the execution time of all previous callbacks.
 
 The Executor concept, however, does not provide means for prioritization or categorization of the incoming callback calls. Moreover, it does not leverage the real-time characteristics of the underlying operating-system scheduler to have finer control on the order of executions. The overall implication of this behavior is that time-critical callbacks could suffer possible deadline misses and a degraded performance since they are serviced later than non-critical callbacks. Additionally, due to the FIFO mechanism, it is difficult to determine usable bounds on the worst-case latency that each callback execution may incur.
   
@@ -94,12 +105,18 @@ In a recent paper [CB2019](#CB2019), the rclcpp Executor has been analyzed in de
 Due to these findings, the authors present an alternative approach to provide determinism and to apply well-known schedulability analyses to a ROS 2 systems. A response time analysis is described under reservation-based scheduling.
 
 ## Rcl LET-Executor
-This section describes the rcl-LET-Executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is not necessary any more[[BP2017](#BP2017)] [[EK2018](#EK2018)].
+This section describes the rcl-LET-Executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed, and finally all output data is written. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is not necessary any more[[BP2017](#BP2017)] [[EK2018](#EK2018)]. The LET-Executor only implements the first two features, because buffering output data (i.e. published messages) could lead to unbounded queues.
 
 
 
 ### Concept
-The LET-Executor consists of tho phases, configuration and running phase. First, in configuration phase, the total number of handles are defined. A handle is the term in the rcl-layer to generalize _timers_, _subscriptions_, _services_ etc.. Also in this phase, the execution order of the callbacks is defined. Secondly, in the running phase, the availability of input data for all handles is requested from the DDS-queue, then all received input data is stored and, finally, all callbacks corresponding to the handles are executed in the specified order. With this two-step approach, the LET-Executor guarantees a deterministic callback execution (pre-defined static order) and implements the LET semantics while executing the callbacks.
+The LET-Executor consists of tho phases, configuration and running phase. First, in configuration phase, the total number of handles are defined. A handle is the term in the rcl-layer to generalize _timers_, _subscriptions_, _services_ etc.. Also in this phase, the execution order of the callbacks is defined. This is illustrated in the next diagram:
+
+<center><img src="let_executor_configuration.png" width="80%"></center>
+
+Secondly, in the running phase, the availability of input data for all handles is requested from the DDS-queue, then all received input data is stored and, finally, all callbacks corresponding to the handles are executed in the specified order. With this two-step approach, the LET-Executor guarantees a deterministic callback execution (pre-defined static order) and implements the LET semantics while executing the callbacks. The control flow of a _spin_ funtion is illustrated in the next diagram:
+
+<center><img src="let_executor_running.png" width="80%"></center>
 
 ### Example
 
