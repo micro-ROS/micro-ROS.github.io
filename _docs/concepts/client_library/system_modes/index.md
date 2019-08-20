@@ -12,7 +12,8 @@ Table of contents
 - [Main Features](#main-features)
   - [Extended Lifecycle](#extended-lifecycle)
   - [System Hierarchy and Modes](#system-hierarchy-and-modes)
-  - [Mode manager](#mode-manager)
+  - [Mode Inference](#mode-inference)
+  - [Mode Manager](#mode-manager)
 - [Roadmap](#roadmap)
 - [Acknowledgments](#acknowledgments)
 
@@ -37,16 +38,18 @@ Our observation is that interweaving of task handling, contingency handling, and
 
 Therefore, our **goal** within this work is to provide suitable abstractions and framework functions for (1.) system runtime configuration and (2.) system error and contingency diagnosis, to reduce the effort for the application developer of designing and implementing the task, contingency and error handling.
 
-This goal is illustrated in the following high-level architecture:
+This goal is illustrated in the following example architecture, which is described and managed based on a model file:
 
-![High-level Architecture](goal.png)
+![High-level Architecture](mode-management.png)
 
-The envisioned key elements to achieve this goal are:
+The main features of the approach are (detailed in the remainder):
 
-1.  Extensible concept to specify the runtime states of components, i.e ROS 2 nodes.
-2.  Modeling approach for specifying system modes based on these component states.
-3.  Diagnosis module for deriving relevant information from the operating systems, the hardware and the functional components.
-4.  Mode manager module for system runtime configuration.
+1.  _Extended Lifecycle_: Extensible concept to specify the runtime states of components, i.e ROS 2 lifecycle nodes.
+2.  _System Hierarchy and Modes_: Modeling approach for specifying a ROS system in terms of its system hierarchy and _system modes_, i.e. different (sub-)system configurations.
+3.  _Mode Manager_: A module to manage and change the system runtime configuration.
+4.  _Mode Inference_: A module for deriving the entire system state and mode from observable system information, i.e. states, modes, and parameters of its components.
+5.  _Diagnostics_: Diagnosis module for deriving relevant information from the operating systems, the hardware and the functional components.
+
 
 ## Requirements
 
@@ -61,6 +64,7 @@ The description of the concept can be found at:   [http://design.ros2.org/articl
 The implementation of the Lifecycle Node is described at:  
 [https://index.ros.org/doc/ros2/Managed-Nodes/](https://index.ros.org/doc/ros2/Managed-Nodes/).
 
+
 ## Main Features
 
 ### Extended Lifecycle
@@ -70,20 +74,31 @@ In micro-ROS, we extend the ROS 2 lifecycle by allowing to specify modes, i.e. s
 Documentation and code can be found at:  
 [github.com:system_modes/README.md#lifecycle](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#lifecycle)
 
-
 ### System Hierarchy and Modes
 
-We provide a modeling concept for specifying the hierarchical composition of systems recursively from nodes and for specifying the states and modes of systems and subsystems with the extended lifecycle, analogously to nodes. This system modes and hierarchy (SMH) model also includes an application-specific the mapping of the states and modes along the system hierarchy down to nodes.
+We provide a modeling concept for specifying the hierarchical composition of systems recursively from nodes and for specifying the states and modes of systems and (sub-)systems with the extended lifecycle, analogously to nodes. This system modes and hierarchy (SMH) model also includes an application-specific the mapping of the states and modes along the system hierarchy down to nodes.
 
 The description of this model can be found at:  
 [github.com:system_modes/README.md#system-modes](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#system-modes)  
 A simple example is provided at:  
 [github.com:system_modes_examples/README.md#example-mode-file](https://github.com/micro-ROS/system_modes/blob/master/system_modes_examples/README.md#example-mode-file)
 
+### Mode Inference
 
-### Mode manager
+The mode inference infers the entire system states (and modes) based on the lifecycle states, modes, and parameter configuration of its components, i.e. the ROS 2 lifecyle nodes. It parses the SMH model and subscribes to lifecycle/mode change requests, lifecycle/mode changes, and parameter events.
 
-The mode manager allows for runtime system adaptation based on such a system hierarchy and modes model. It parses the model and provides all services and topics to request state and mode changes and to monitor these changes.
+Based on the lifecycle change events it knows the _actual_ lifecycle state of all nodes. Based on parameter change events it knows the _actual_ parameter values of all nodes, which allows inference of the _modes_ of all nodes based on the SMH model. 
+Based on the SMH model and the inferred states and modes of all nodes, states and modes of all (sub-)systems can be _inferred_ bottom-up along the system hierarchy.
+This can be compared to the latest _requested_ states and modes to detect a deviation.
+
+The documentation and code can be found at:  
+[github.com:system_modes/README.md#mode-inference](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-inference)  
+The mode inference can be best observed in the mode monitor, a console-based debugging tool, see:  
+[github.com:system_modes/README.md#mode-monitor](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-monitor)
+
+### Mode Manager
+
+Building upon the _Mode Inference_ mechanism, the mode manager provides additional services and topics to _manage and adapt_ system states and modes according to the specification in the SMH model.
 
 The documentation and code can be found at:  
 [github.com:system_modes/README.md#mode-manager](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-manager)  
