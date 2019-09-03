@@ -37,7 +37,7 @@ Most repositories can be found in GitHub's micro-ROS organization at [github.com
 
 ### Compatibility with ROS 2 Releases
 
-The following table summarizes the compatibility between micro-ROS and ROS2 releases.
+The following table summarizes the compatibility between micro-ROS and ROS 2 releases.
 This table contains links to installation documentation as well as `.repos` file for both *Client* and *Agent* side.
 On the one hand, the *Client* size `.repos` includes all the necessary to build a micro-ROS application, along with some demo examples.
 On the other hand, the *Agent* size `.repos` includes the micro-ROS-Agent bridge.
