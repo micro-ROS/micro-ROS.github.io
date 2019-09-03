@@ -35,7 +35,7 @@ Major repositories in order of the layers are:
 
 Most repositories can be found in GitHub's micro-ROS organization at [github.com/micro-ROS/](https://github.com/micro-ROS/).
 
-### ROS2 Compliant Table
+### Compatibility with ROS 2 Releases
 
 The following table summarizes the compatibility between micro-ROS and ROS2 releases.
 This table contains links to installation documentation as well as `.repos` file for both *Client* and *Agent* side.
