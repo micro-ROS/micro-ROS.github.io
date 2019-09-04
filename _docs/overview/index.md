@@ -35,14 +35,13 @@ Major repositories in order of the layers are:
 
 Most repositories can be found in GitHub's micro-ROS organization at [github.com/micro-ROS/](https://github.com/micro-ROS/).
 
-### Compatibility with ROS 2 Releases
+### List of Repositories
 
-The following table summarizes the compatibility between micro-ROS and ROS 2 releases.
-This table contains links to installation documentation as well as `.repos` file for both *Client* and *Agent* side.
-On the one hand, the *Client* size `.repos` includes all the necessary to build a micro-ROS application, along with some demo examples.
-On the other hand, the *Agent* size `.repos` includes the micro-ROS-Agent bridge.
+| Name                            | Documentation | Release | CI | Issues |
+|:--------------------------------|:--------------|:--------|:---|:-------|
+| rmw-microxrcedds                | [![](https://img.shields.io/badge/read-the%20docs-blue)](https://github.com/micro-ROS/rmw-microxrcedds/blob/master/README.md) | [![](https://img.shields.io/badge/ROS-crystal-brightgreen)](https://github.com/micro-ROS/rmw-microxrcedds/tree/release-crystal-20190312) | | [![](https://img.shields.io/github/issues/micro-ROS/rmw-microxrcedds)](https://github.com/micro-ROS/rmw-microxrcedds/issues) |
+| rosidl_typesupport_microxrcedds |  [![](https://img.shields.io/badge/read-the%20docs-blue)](https://github.com/micro-ROS/rosidl_typesupport_microxrcedds/blob/master/README.md) | [![](https://img.shields.io/badge/ROS-crystal-brightgreen)](https://github.com/micro-ROS/rosidl_typesupport_microxrcedds/blob/release-crystal-20190312/README.md) |   | [![](https://img.shields.io/github/issues/micro-ROS/rosidl_typesupport_microxrcedds)](https://github.com/micro-ROS/rosidl_typesupport_microxrcedds/issues) |
+| micro-ROS-Agent                 |  [![](https://img.shields.io/badge/read-the%20docs-blue)](https://github.com/micro-ROS/micro-ROS-Agent/blob/master/README.md) | [![](https://img.shields.io/badge/ROS-crystal-brightgreen)](https://github.com/micro-ROS/micro-ROS-Agent/blob/release-crystal-20190312/README.md) |  [![](http://build.ros2.org/buildStatus/icon?job=Cbin_uB64__micro-xrce-dds-agent__ubuntu_bionic_amd64__binary)](https://github.com/micro-ROS/micro-ROS-doc/blob/crystal/Installation/repos/agent_minimum.repos) | [![](https://img.shields.io/github/issues/micro-ROS/micro-ROS-Agent)](https://github.com/micro-ROS/micro-ROS-Agent/issues) |
+| Micro XRCE-DDS                  | [![](https://img.shields.io/badge/read-the%20docs-blue)](https://micro-xrce-dds.readthedocs.io/en/latest/) | [![](https://img.shields.io/badge/ROS-crystal-brightgreen)](https://github.com/eProsima/Micro-XRCE-DDS/tree/v1.0.3) [![](https://img.shields.io/badge/ROS-dashing-brightgreen)](https://github.com/eProsima/Micro-XRCE-DDS/tree/v1.1.0) |    | [![](https://img.shields.io/github/issues/eProsima/Micro-XRCE-DDS.svg)](https://github.com/eProsima/Micro-XRCE-DDS/issues) |
+| system_modes                    | [![](https://img.shields.io/badge/read-the%20docs-blue)](https://github.com/micro-ROS/system_modes/blob/master/README.md) | [![](https://img.shields.io/github/release/micro-ROS/system_modes.svg)](https://github.com/micro-ROS/system_modes/releases) |    | [![](https://img.shields.io/github/issues/micro-ROS/system_modes.svg)](https://github.com/micro-ROS/system_modes/issues) |
 
-| ROS2 Release | Documentation | Client | Agent  |
-|:-------------|:--------------|:-------|:-------|
-| **Crystal**  | [![](https://img.shields.io/badge/read-the%20docs-blue)](https://github.com/micro-ROS/micro-ROS-doc/blob/crystal/Installation) | [![](https://img.shields.io/badge/uROS-repos-brightgreen)](https://github.com/micro-ROS/micro-ROS-doc/blob/crystal/Installation/repos/client_minimum.repos) | [![](https://img.shields.io/badge/uROS-repos-brightgreen)](https://github.com/micro-ROS/micro-ROS-doc/blob/crystal/Installation/repos/agent_minimum.repos) |
-| **Dashing**  | [![](https://img.shields.io/badge/read-the%20docs-blue)](https://github.com/micro-ROS/micro-ROS-doc/blob/dashing/Installation) | [![](https://img.shields.io/badge/uROS-repos-brightgreen)](https://github.com/micro-ROS/micro-ROS-doc/blob/dashing/Installation/repos/client_minimum.repos) | [![](https://img.shields.io/badge/uROS-repos-brightgreen)](https://github.com/micro-ROS/micro-ROS-doc/blob/dashing/Installation/repos/agent_minimum.repos) |
