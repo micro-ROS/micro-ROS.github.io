@@ -1,22 +1,31 @@
 ---
-title: Introduction to Benchmarking
+title: Benchmarking
+redirect_from: /benchmarking/
 permalink: /docs/concepts/benchmarking/
 ---
 
-Table of contents
+## Table of contents
 
-- [Our benchmarking tool framework](#our-benchmarking-tool-framework)
-- [Binary generation for instrumented code](#binary-generation-for-instrumented-code)
-- [TFA - Trace Framework Abstraction](#tfa-trace-framework-abstraction)
-- [Shadow Builder](#shadow-builder)
-- [Binary generation for instrumented code](#binary-generation-for-instrumented-code)
-- [Step to start Benchmarking](#step-to-start-bencharking)
+* [Introduction to Benchmarking](#introduction-to-benchmarking)
+* [Our benchmarking tool framework](#our-benchmarking-tool-framework)
+* [Trace Framework Abstraction](#trace-framework-abstraction)
+* [Shadow Builder](#shadow-builder)
+* [Binary generation for instrumented code](#binary-generation-for-instrumented-code)
+  * [Receiving inputs](#receiving-inputs)
+  * [Parse and Check](#parse-and-check)
+  * [TFA Execution](#tfa-execution)
+  * [Compilation](#compilation)
+* [Step to start benchmarking](#step-to-start-benchmarking)
+
+
+
+## Introduction to Benchmarking
 
 Developing working and stable application from the scribbles to the final
 executing binary is long and hard tasks. During this process developers may come
 across stabilities issues, perfomances issues. In addition to these issues, some
 specified QoS might be difficul to quantify.  Solving those problems without the
-proper tools might be a frustrating , tedious tasks leading to reduce developers
+proper tools might be a frustrating, tedious tasks leading to reduce developers
 efficiency. An adapted benchmarking tool could overcome all those development
 obstacles and increase development time.  There are different KPI (Keep
 Performance Indicators) that one might be interested into. In the framework of
@@ -40,59 +49,7 @@ benchmark can be added as a plugin using the provided framework. In this way
 plugins can be shared and this improve re-usability as much as possible.
 
 
-## Binary generation for instrumented code 
-
-The binary generation is the process of compiling the source code. In order to
-benchmark, previously to compile the source code, it is necessary to instrument
-the code. The code will instrumented in a transparent way for the
-programmer/user. Therefore, a configuration file provided by the programmer will
-be parsed and code inject as described in a configuration file. 
-
-### Step 1 - Binary Generation : Receiving inputs
-
-The binary generation's pipeline receives two inputs to work with:
- * Configuration Benchmarking file.
- * Source code to benchmark.
-
-In short, the configuration describes:
-
- * What is bench-marked (sources).
- * Where to benchmark.
- * What type of benchmark.
- * Optionally against what base line to compare (base line source)
-
-### Step 2 - Binary Generation: Parse & Check
-
-Once the input received the **Shadow Builder** parses the configuration
-file. From the configuration file, the Shadow builder gets:
-
- * The different benchmarking to be achieved.
- * The targeted platforms.
-
-In addition to parsing, the Shadow Builder is in charge of checking
-capabilities and consistency within the configuration file and the different
-TFA's plugins registered in the TFA module.
-
-### Step 3 - Binary Generation: TFA Execution
-
-Once parsed and check against the TFA module capabilities, the Shadow
-Builder will be in charge of translating configuration into source code. The
-translated sources will be achieved also in cooperation with the TFA module. The
-detailed steps of the TFA can be found here. At the end of this step, the TFA
-will generate the new forged source code ready for compilation. In addition to
-patched source code, the TFA will generate scripts that will the benchmarks.
-
-### Step 4 - Binary Generation: Compilation
-
-The compilation will happen for every kind of benchmarkings and
-platforms targeted. Depending on the kind of benchmark that is being executed,
-there will be one or more binaries per benchmarks session. The number of binary
-generated also depends on what plugins are provided by the user to the shadow
-builder. The shadow builder will retrieve capabilities of the plugins and
-request from the developer, match them and generated software according to the
-matches.
-
-## TFA - Trace Framework Abstraction
+## Trace Framework Abstraction
 
 The Shadow builder alone only parse comments from the application and pass it
 along to the Trace Framework Abstraction (TFA) Core. The TFA core is aware of
@@ -117,7 +74,7 @@ platform. Every plugins will to provide information as  requested by the parser:
  * Optional provide an end script to run andi execute the benchmarks
 
 
-## SB - Shadow Builder
+## Shadow Builder
 
 This section will introduce some concept related to the shadow builder (SB).
 
@@ -145,7 +102,61 @@ user in the benchmarking configuration file.  Injecting code
 In order to inject code, there are some tool that allow this. CLang AST tool
 will allow to inject some code. 
 
-## Step to start Benchmarking
+
+## Binary generation for instrumented code 
+
+The binary generation is the process of compiling the source code. In order to
+benchmark, previously to compile the source code, it is necessary to instrument
+the code. The code will instrumented in a transparent way for the
+programmer/user. Therefore, a configuration file provided by the programmer will
+be parsed and code inject as described in a configuration file. 
+
+### Receiving inputs
+
+The binary generation's pipeline receives two inputs to work with:
+ * Configuration Benchmarking file.
+ * Source code to benchmark.
+
+In short, the configuration describes:
+
+ * What is bench-marked (sources).
+ * Where to benchmark.
+ * What type of benchmark.
+ * Optionally against what base line to compare (base line source)
+
+### Parse and Check
+
+Once the input received the **Shadow Builder** parses the configuration
+file. From the configuration file, the Shadow builder gets:
+
+ * The different benchmarking to be achieved.
+ * The targeted platforms.
+
+In addition to parsing, the Shadow Builder is in charge of checking
+capabilities and consistency within the configuration file and the different
+TFA's plugins registered in the TFA module.
+
+### TFA Execution
+
+Once parsed and check against the TFA module capabilities, the Shadow
+Builder will be in charge of translating configuration into source code. The
+translated sources will be achieved also in cooperation with the TFA module. The
+detailed steps of the TFA can be found here. At the end of this step, the TFA
+will generate the new forged source code ready for compilation. In addition to
+patched source code, the TFA will generate scripts that will the benchmarks.
+
+### Compilation
+
+The compilation will happen for every kind of benchmarkings and
+platforms targeted. Depending on the kind of benchmark that is being executed,
+there will be one or more binaries per benchmarks session. The number of binary
+generated also depends on what plugins are provided by the user to the shadow
+builder. The shadow builder will retrieve capabilities of the plugins and
+request from the developer, match them and generated software according to the
+matches.
+
+
+## Step to start benchmarking
 
 The shadow Builder will be executed as follow:
 
@@ -158,4 +169,3 @@ The shadow Builder will be executed as follow:
  * Once all parsed, the shadow builder will compile for all the different
    platforms requested either by plugins or by user configuration.
 
-...
