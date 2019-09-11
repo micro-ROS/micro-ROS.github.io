@@ -24,8 +24,8 @@ permalink: /docs/concepts/benchmarking/
 Developing working and stable application from the scribbles to the final
 executing binary is long and hard tasks. During this process developers may come
 across stabilities issues, perfomances issues. In addition to these issues, some
-specified QoS might be difficul to quantify.  Solving those problems without the
-proper tools might be a frustrating, tedious tasks leading to reduce developers
+specified QoS might be difficult to quantify.  Solving those problems without the
+proper tools might be frustrating, tedious tasks leading to reduce developers
 efficiency. An adapted benchmarking tool could overcome all those development
 obstacles and increase development time.  There are different KPI (Keep
 Performance Indicators) that one might be interested into. In the framework of
@@ -35,7 +35,7 @@ some support for a lot of different KPI.
 
 The problems we want to tackle are: 
 
- * Out there, many benchmarking tools exists. Each of targeting different KPIs. 
+ * Out there, many benchmarking tools exist. Each of targeting different KPIs. 
  * Different platforms (Linux/Nuttx/Baremetal et.c.).
  * Too few time/resources to code benchmarking tool for each.
  * Avoid code overhead: Keep code clarity.
@@ -46,7 +46,7 @@ The problems we want to tackle are:
 The benchmarking tool under development is providing a framework to allow
 developers to create their own benchmarking tool. Each part a developer wants to
 benchmark can be added as a plugin using the provided framework. In this way
-plugins can be shared and this improve re-usability as much as possible.
+plugins can be shared and this improves re-usability as much as possible.
 
 
 ## Trace Framework Abstraction
@@ -71,7 +71,7 @@ platform. Every plugins will to provide information as  requested by the parser:
  * Provide a list of functions that are handled.
  * Provide snippets codes that will be added for benchmarking.
  * Provide list of patches and/or patch code
- * Optional provide an end script to run andi execute the benchmarks
+ * Optional provide an end script to run and execute the benchmarks
 
 
 ## Shadow Builder
@@ -83,7 +83,7 @@ benchmark. The tools will be able to output an “instrumented code” that will
 later be compiled as a normal code. The following steps describe what the shadow
 builder process flow:
 
- * Get configuration file from user (Benchmarking Configuration File).
+ * Get configuration file from the user (Benchmarking Configuration File).
  * Get appropriate sources.
  * Execute Trace Framework Abstraction Configuration file.
  * Parse the sources file needed Injecting code.
@@ -99,7 +99,7 @@ The SB is in charge of getting the path/git repository to the source code that
 needs to be benchmarking. The benchmarking. The sources are specified by the
 user in the benchmarking configuration file.  Injecting code
 
-In order to inject code, there are some tool that allow this. CLang AST tool
+In order to inject code, there are some tools that allow this. CLang AST tool
 will allow to inject some code. 
 
 
