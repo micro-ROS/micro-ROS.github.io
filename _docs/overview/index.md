@@ -25,7 +25,7 @@ Major repositories in order of the layers are:
   * Extensions to rcl, i.e. the ROS 2 C API: [rcl_executor](https://github.com/micro-ROS/rcl_executor), ...
   * Extensions for rclcpp: [system_modes](https://github.com/micro-ROS/system_modes/), [TF improvements](https://github.com/micro-ROS/geometry2), ...
 * Middleware:
-  * eProsima's open-source implementation of DDS-XRCE: [Micro-XRCE-DDS](Micro-XRCE-DDS)
+  * eProsima's open-source implementation of DDS-XRCE: [Micro-XRCE-DDS](https://github.com/eProsima/Micro-XRCE-DDS)
   * RMW adapter for Micro-XRCE-DDS: [rmw-microxrcedds](https://github.com/micro-ROS/rmw-microxrcedds)
   * Type support for Micro-XRCE-DDS: [rosidl_typesupport_microxrcedds](https://github.com/micro-ROS/rosidl_typesupport_microxrcedds)
   * Agent (bridge) to ROS 2: [micro-ROS-Agent](https://github.com/micro-ROS/micro-ROS-Agent)

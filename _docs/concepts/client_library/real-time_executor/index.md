@@ -206,7 +206,7 @@ With the test bench, we validated the functioning of the approach - here on ROS 
 
 ![Results from Callback-group-level Executor test bench](cbg-executor_test-bench_results.png)
 
-The test bench is provided in the [bg-executor_ping-pong_cpp](https://github.com/microROS/micro-ROS-demos/tree/master/Cpp/cbg-executor_ping-pong) package of the [micro-ROS-demos](https://github.com/microROS/micro-ROS-demos/) repository.
+The test bench is provided in the [bg-executor_ping-pong_cpp](https://github.com/micro-ROS/micro-ROS_experiments/tree/experiment/cbg-executor-0.6.1/cbg-executor_ping-pong) package of the [micro-ROS_experiments](https://github.com/microROS/micro-ROS_experiments/) repository.
 
 ## Related Work
 
