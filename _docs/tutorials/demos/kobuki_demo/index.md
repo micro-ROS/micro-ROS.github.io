@@ -1,7 +1,9 @@
 ---
 title: Kobuki Demo
 permalink: /docs/tutorials/demos/kobuki_demo/
-redirect_from: /docs/tutorials/demos/
+redirect_from:
+  - /docs/tutorials/demos/
+  - /kobuki_demo/
 ---
 
 The micro-ROS Kobuki Demo illustrates the use of micro-ROS on the Kobuki platform, which is the mobile base of the well-known Turtlebot 2 research robot.
