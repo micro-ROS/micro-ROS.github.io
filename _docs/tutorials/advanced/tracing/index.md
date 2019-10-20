@@ -143,16 +143,6 @@ The resulting plots for the `/ping` and `/pong` subscriptions are shown below. W
 <img src="/img/tutorials/tracing_analysis_plots.png" />
 </center>
 
-## Upcoming work
+## Relevant links
 
-Now that the groundwork is done, the next steps are:
-
-* Submit PRs for `rcl` and `rclcpp` instrumentation. We are aiming for the instrumentation to be included in ROS 2 Eloquent (November 2019).
-* Add more analyses.
-* Test on real hardware, and compare analysis results to other tools.
-* Release first version of packages.
-* Work on providing swappable `tracetools` packages (a default package with tracing being disabled, and another one with tracing being enabled).
-
-The tracing packages can be found [here](https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing). The analysis tools can be found [here](https://gitlab.com/micro-ROS/ros_tracing/tracetools_analysis).
-
-Let us know if you have any questions, or if you'd like to get involved!
+The tracing packages can be found in the [`ros2_tracing` repo](https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing). The analysis tools can be found in the [`tracetools_analysis` repo](https://gitlab.com/micro-ROS/ros_tracing/tracetools_analysis).
