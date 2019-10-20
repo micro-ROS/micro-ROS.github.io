@@ -115,6 +115,7 @@ It's now time to process the trace data! The `tracetools_analysis` package provi
 ```bash
 $ ros2 trace-analysis process ~/.ros/tracing/my-tracing-session/ust/
 ```
+
 <center>
 <img src="/img/tutorials/tracing_process.svg" style="padding: 10px;" />
 </center>
