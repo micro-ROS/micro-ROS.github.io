@@ -48,11 +48,11 @@ If the ROS 2 development tools and dependencies are not installed on your machin
 Now we'll download all the necessary packages. First, create your workspace.
 
 ```bash
-$ mkdir ~/ros2_ws
+$ mkdir -p ~/ros2_ws/src
 $ cd ros2_ws/
 ```
 
-Then clone everything using the following `.repos` file. It includes the core ROS 2 packages with instrumented versions of `rcl` and `rclcpp`, as well as the tracing tools and tracing analysis repos.
+Then clone everything using the `master` `ros2.repos` file, which includes the core ROS 2 packages with instrumented `rcl` and `rclcpp`. We will also need the trace analysis tools.
 
 #### Clone source on ROS 2 eloquent
 ```bash
@@ -69,8 +69,8 @@ $ vcs import src < all.repos
 #### Let's build everything and source!
 
 ```bash
-$ colcon build --symlink-install --cmake-args " -DWITH_LTTNG=ON"
-$ source ./install/local_setup.bash
+$ colcon build --symlink-install
+$ source install/local_setup.bash
 ```
 
 ## Simple tracing example
@@ -91,7 +91,7 @@ $ ros2 launch tracetools_launch example.launch.py
 
 As shown above, you should see a few output lines, and that's it.
 
-You can take a look at the trace's events using `babeltrace`.
+By default, traces are written in the `~/.ros/tracing/` directory. You can take a look at the trace's events using `babeltrace`.
 
 ```bash
 $ cd ~/.ros/tracing/
@@ -108,15 +108,13 @@ $ babeltrace my-tracing-session/ust/
 <img src="/img/tutorials/tracing_babeltrace.svg" style="padding: 10px;" />
 </center>
 
-The last part of the `babeltrace` output is shown above. This is a human-readable version of the raw Common Trace Format (CTF) data, which is a list of events. Each event has a timestamp, an event type, some information on the process that generated the event, and the fields corresponding to the event type. The last events of our trace are pairs of `ros2:callback_start` and `ros2:callback_end` events. Each contains a reference to its corresponding callback.
+The last part of the `babeltrace` output is shown above. This is a human-readable version of the raw Common Trace Format (CTF) data, which is a list of events. Each event has a timestamp, an event type, some information on the process that generated the event, and the fields corresponding to the event type. The last events of our trace are pairs of `ros2:callback_start` and `ros2:callback_end` events. Each one contains a reference to its corresponding callback.
 
-It's now time to process the trace data! The `tracetools_analysis` package provides tools to import and process the results. We can first convert the CTF data to a pickle file. Then we can process it to get `pandas` dataframes which we can use later to run analyses.
+It's now time to process the trace data! The `tracetools_analysis` package provides tools to import a trace and process it. Since reading a CTF trace is slow, it first converts it to a file which we can read much faster later on. Then we can process it to get `pandas` dataframes and use those to run analyses.
 
 ```bash
-$ ros2 run tracetools_analysis convert ~/.ros/tracing/my-tracing-session/ust
-$ ros2 run tracetools_analysis process ~/.ros/tracing/my-tracing-session/ust/pickle
+$ ros2 trace-analysis process ~/.ros/tracing/my-tracing-session/ust/
 ```
-
 <center>
 <img src="/img/tutorials/tracing_process.svg" style="padding: 10px;" />
 </center>
