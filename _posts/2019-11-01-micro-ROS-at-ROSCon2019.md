@@ -3,7 +3,7 @@ title: micro-ROS at ROSCon 2019 Macau
 author: borjaouterelo 
 ---
 
-![ROSCon2019Macu](/img/posts/ROSConMacau.png){:.img-responsive and style="max-width: 50%; margin-left: auto; margin-right: auto;"}
+![ROSCon2019Macau](/img/posts/ROSConMacau.png){:.img-responsive and style="max-width: 50%; margin-left: auto; margin-right: auto;"}
 ROSCon ([https://roscon.ros.org](https://roscon.ros.org/)) is the most important event of the ROS community. 
 The 2019 edition was held in Macau, China.
 This edition has been the biggest to date with more than 500 attendants.
