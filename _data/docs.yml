@@ -46,3 +46,4 @@
 - title: Demos
   docs:
    - tutorials/demos/kobuki_demo
+   - tutorials/demos/crazyflie_demo
