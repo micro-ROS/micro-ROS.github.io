@@ -5,49 +5,47 @@ redirect_from:
   - /crazyflie_demo/
 ---
 
-# Crazyflie + Turtlebot demo
+This demo aims to expose a **micro-ROS** use case. It runs on a pair of embedded devices:
+a [**Crazyflie 2.1**](https://www.bitcraze.io/crazyflie-2-1/) drone, used as a user controller,
+and a [**Kobuki Turtlebot 2**](https://www.turtlebot.com/turtlebot2/) as a mobile and controlled device.
 
-This demo aims to expose an use case of **Micro ROS** running on a pair or embedded devices: a [**Crazyflie 2.1**](https://www.bitcraze.io/crazyflie-2-1/) drone, used as an user controller and a [**Kobuki Turtlebot 2**](https://www.turtlebot.com/turtlebot2/) as a mobile and controlled device.
+Both of them rely on **micro-ROS** publication and subscription mechanisms and use an underlying [**Micro XRCE-DSS client**](https://micro-xrce-dds.readthedocs.io/en/latest/).
 
-Both of them rely on **Micro ROS** publication and subscription mechanisms and use an underlaying [**MicroXRCEDSS client**](https://micro-xrce-dds.readthedocs.io/en/latest/).
-
-In order to show the integration with **ROS2**, this demo also includes common ROS2 tooling such as Gazebo, RVIZ and simple ROS2 nodes (aka **external nodes**) acting as data converters.
+This demo also includes conventional ROS 2 tooling as a demonstration of integration with **ROS 2**. We use Gazebo, RVIZ and simple ROS 2 nodes (aka **external nodes**) acting as data converters.
 
 ## Index
-
-- [Crazyflie + Turtlebot demo](#crazyflie--turtlebot-demo)
-  - [Index](#index)
-  - [Setup](#setup)
-  - [Required Hardware](#required-hardware)
+ - [Index](#index)
+ - [Setup](#setup)
+ - [Required Hardware](#required-hardware)
 - [Installation](#installation)
-  - [Install external ROS2 nodes](#install-external-ros2-nodes)
-  - [Compile and flash Crazyflie 2.1 firmware](#compile-and-flash-crazyflie-21-firmware)
-  - [Install Crazyflie Client + Bridge](#install-crazyflie-client--bridge)
-  - [Compile and flash Kobuki Turtlebot 2 firmware](#compile-and-flash-kobuki-turtlebot-2-firmware)
+ - [Install external ROS2 nodes](#install-external-ros2-nodes)
+ - [Compile and flash Crazyflie 2.1 firmware](#compile-and-flash-crazyflie-21-firmware)
+ - [Install Crazyflie Client + Bridge](#install-crazyflie-client--bridge)
+ - [Compile and flash Kobuki Turtlebot 2 firmware](#compile-and-flash-kobuki-turtlebot-2-firmware)
 - [Usage](#usage)
-  - [Run Kobuki Turtlebot 2 Node](#run-kobuki-turtlebot-2-node)
-  - [Run Crazyflie 2.1 Node](#run-crazyflie-21-node)
-  - [Run external ROS2 nodes](#run-external-ros2-nodes)
-  - [Run RVIZ visualizers](#run-rviz-visualizers)
+ - [Run Kobuki Turtlebot 2 Node](#run-kobuki-turtlebot-2-node)
+ - [Run Crazyflie 2.1 Node](#run-crazyflie-21-node)
+ - [Run external ROS2 nodes](#run-external-ros2-nodes)
+ - [Run RVIZ visualizers](#run-rviz-visualizers)
 
 ## Setup
 
-The proposed demo is composed by different kind of messages and topics. 
+The proposed demo is composed of different kind of messages and topics. 
 
-The **Crazyflie 2.1** drone relies on [ST STM32F405](https://www.st.com/en/microcontrollers-microprocessors/stm32f405-415.html) MCU running **[FreeRTOS](https://www.freertos.org/)**. Using the RTOS capabilities and the integrated radio communication device, the drone is able to run a node that publish:
+The **Crazyflie 2.1** drone relies on [ST STM32F405](https://www.st.com/en/microcontrollers-microprocessors/stm32f405-415.html) MCU running **[FreeRTOS](https://www.freertos.org/)**. Using the RTOS capabilities and the integrated radio communication device, the drone can run a node that publishes:
 - its own relative position as a 3D vector (X, Y and Z) using a *geometry_msg/Point32* message type on */drone/odometry* topic.
 - its own attitude as a 3D vector (pitch, roll and yaw) using a *geometry_msg/Point32* message type on */drone/attitude* topic.
 
-The **Kobuki Turtlebot 2** robot is controlled using a UART protocol through a custom DB25 connector. The Micro ROS node runs on a Olimex STM32-E407 board attached to that UART port. This hardware features a [ST STM32F407](https://www.st.com/en/microcontrollers-microprocessors/stm32f407-417.html) MCU running **[Nuttx](https://nuttx.org/)** RTOS. In the same way, this node is able to communicate with the robot (UART) and with the ROS2 world (integrated Ethernet). Its used topics are:
+The **Kobuki Turtlebot 2** robot is controlled using a UART protocol through a custom DB25 connector. The Micro ROS node runs on an Olimex STM32-E407 board attached to that UART port. This hardware features a [ST STM32F407](https://www.st.com/en/microcontrollers-microprocessors/stm32f407-417.html) MCU running **[Nuttx](https://nuttx.org/)** RTOS. In the same way, this node can communicate with the robot (UART) and with the ROS2 world (integrated Ethernet). Its used topics are:
 - a subscription on */cmd_vel* topic (*geometry_msg/Twist* message type) to receive the controlling angular and linear velocity.
 - a publication on */robot_pose* topic (*geometry_msg/Vector3* message type) which includes X position, Y position and robot yaw. 
 
 The **external ROS2 nodes** are rclpy tools with some different functionalities:
 - *attitude_to_vel.py*
-  - Converts Crazyflie */drone/attitude* to Kobuki Turtlebot 2 */cmd_vel* so that drone pitch is mapped to robot linear velocity and drone roll to angular valocity.
-  - Converts Crazyflie publications on */drone/attitude* and */drone/attitude* topics to *tf2_msgs/TFMessage* messages (required by RVIZ visualizer)
+ - Converts Crazyflie */drone/attitude* to Kobuki Turtlebot 2 */cmd_vel* so that drone pitch is mapped to robot linear velocity and drone roll to angular valocity.
+ - Converts Crazyflie publications on */drone/attitude* and */drone/attitude* topics to *tf2_msgs/TFMessage* messages (required by RVIZ visualizer)
 - *odom_to_tf.py*
-  - Converts Kobuki Turtlebot 2 publications on */robot_pose* topic to *tf2_msgs/TFMessage* messages (required by RVIZ visualizer).
+ - Converts Kobuki Turtlebot 2 publications on */robot_pose* topic to *tf2_msgs/TFMessage* messages (required by RVIZ visualizer).
 
 The following image shows the described setup.
 
@@ -57,14 +55,14 @@ The following image shows the described setup.
 
 This setup uses the following hardware:
 
-| Item          |                                                          |
+| Item | |
 |---------------|----------------------------------------------------------|
 | Kobuki Turtlebot 2 | [Link](https://www.turtlebot.com/turtlebot2/) |
 | Olimex STM32-E407 | [Link](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) |
 | Olimex ARM-USB-TINY-H | [Link](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/) |
 | Crazyflie 2.1 | [Link](https://store.bitcraze.io/products/crazyflie-2-1) |
-| Flow Desk v2  | [Link](https://store.bitcraze.io/collections/decks/products/flow-deck-v2) |
-| Debug adapter  | [Link](https://store.bitcraze.io/collections/accessories/products/debug-adapter) |
+| Flow Desk v2 | [Link](https://store.bitcraze.io/collections/decks/products/flow-deck-v2) |
+| Debug adapter | [Link](https://store.bitcraze.io/collections/accessories/products/debug-adapter) |
 | Crazyradio PA 2.4 GHz USB dongle | [Link](https://store.bitcraze.io/collections/accessories/products/crazyradio-pa) |
 | Additional battery + charger (optional) | [Link](https://store.bitcraze.io/collections/accessories/products/240mah-lipo-battery-including-500ma-usb-charger) |
 
@@ -125,7 +123,7 @@ sudo apt-get update
 sudo apt install gcc-arm-embedded dfu-util
 ```
 
-Download and copile the **Crazyflie 2.1** firmware repository:
+Download and build the **Crazyflie 2.1** firmware repository:
 ```bash
 mkdir crazyflie_firmware
 git clone https://github.com/eProsima/crazyflie-firmware -b cf_micro-xrce-dds 
@@ -139,7 +137,7 @@ Unplug the **Crazyflie 2.1** battery
 
 Push the reset button while connecting the USB power supply.
 
-The top-left blue LED will blink, first slowly and after 4 seconds sightly faster, now it is in DFU programming mode. Check it with `lsusb`:
+The top-left blue LED blinks, first slowly and after 4 seconds sightly faster, now it is in DFU programming mode. Check it with `lsusb`:
 ```bash
 Bus 001 Device 051: ID 0483:df11 STMicroelectronics STM Device in DFU Mode
 ```
@@ -211,18 +209,18 @@ scripts/flash.sh olimex-stm32-e407
 
 # Usage
 
-After installation, the following packages should be installed:
+After installation, the following packages should be present in your system:
 
 ```
 .
-+-- Micro-XRCE-DDS          # used for installing Micro-XRCE-DDS
++-- Micro-XRCE-DDS # used for installing Micro-XRCE-DDS
 +-- crazyflie_demo 
-+-- crazyflie-firmware      # used for compiling and flashing Crazyflie 2.1 firmware
-+-- kobuki-firmware         # used for compiling and flashing Kobuki Turtlebot 2 firmware
++-- crazyflie-firmware # used for compiling and flashing Crazyflie 2.1 firmware
++-- kobuki-firmware # used for building and flashing Kobuki Turtlebot 2 firmware
 +-- crazyflie-clients-python
 ```
 
-Make sure that all ROS2 or MicroROS nodes created along the following steps **can reach each other using its network interfaces**.  
+Make sure that all ROS2 or MicroROS nodes created along with the following steps **can reach each other using its network interfaces**. 
 
 ## Run Kobuki Turtlebot 2 Node
 
@@ -266,7 +264,7 @@ source /opt/ros/crystal/setup.bash && source install/local_setup.bash
 ros2 run micro-ros_crazyflie_demo_remote attitude_to_vel
 ```
 
-Topic */cmd_vel* should be published and the **Kobuki Turtlebot 2** should start moving. Check it with `ros2 topic echo /cmd_vel`
+Topic */cmd_vel* should be published, and the **Kobuki Turtlebot 2** should start moving. Check it with `ros2 topic echo /cmd_vel`
 
 ## Run RVIZ visualizers
 Run complete visualizer:
@@ -276,7 +274,7 @@ source /opt/ros/crystal/setup.bash && source install/local_setup.bash
 ros2 launch micro-ros_crazyflie_demo_remote launch_drone_position.launch.py
 ```
 
-An RVIZ windows should be open and a Crazyflie 2.1 drone model should represent the drone attitude and position along with a historic path.
+RVIZ windows should be open, and a Crazyflie 2.1 drone model should represent the drone attitude and position along with a historic path.
 
 Run attitude visualizer:
 ```
@@ -285,6 +283,4 @@ source /opt/ros/crystal/setup.bash && source install/local_setup.bash
 ros2 launch micro-ros_crazyflie_demo_remote launch_drone_attitude.launch.py
 ```
 
-An RVIZ windows should be open and a Crazyflie 2.1 drone model should represent **only** the drone attitude.
-
-
+RVIZ windows should be open and a Crazyflie 2.1 drone model should represent **only** the drone attitude.
