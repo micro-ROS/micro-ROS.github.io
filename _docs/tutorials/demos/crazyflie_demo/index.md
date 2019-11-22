@@ -5,7 +5,7 @@ redirect_from:
   - /crazyflie_demo/
 ---
 
-This demo aims to expose a **micro-ROS** use case. It runs o a pair of embedded devices:
+This demo aims to expose a **micro-ROS** use case. It runs on a pair of embedded devices:
 a [**Crazyflie 2.1**](https://www.bitcraze.io/crazyflie-2-1/) drone, used as a user controller,
 and a [**Kobuki Turtlebot 2**](https://www.turtlebot.com/turtlebot2/) as a mobile and controlled device.
 
@@ -19,15 +19,15 @@ This demo was developed taking as base the [Kobuki demo](/docs/tutorials/demos/k
 
 ## Index
 - [Installation](#installation)
- - [Install external ROS 2 nodes](#install-external-ros-2-nodes)
- - [Build and flash Crazyflie 2.1 firmware](#build-and-flash-crazyflie-21-firmware)
- - [Install Crazyflie Client + Bridge](#install-crazyflie-client--bridge)
- - [Build and flash Kobuki Turtlebot 2 firmware](#build-and-flash-kobuki-turtlebot-2-firmware)
+  - [Install external ROS 2 nodes](#install-external-ros-2-nodes)
+  - [Build and flash Crazyflie 2.1 firmware](#build-and-flash-crazyflie-21-firmware)
+  - [Install Crazyflie Client + Bridge](#install-crazyflie-client--bridge)
+  - [Build and flash Kobuki Turtlebot 2 firmware](#build-and-flash-kobuki-turtlebot-2-firmware)
 - [Usage](#usage)
- - [Run Kobuki Turtlebot 2 Node](#run-kobuki-turtlebot-2-node)
- - [Run Crazyflie 2.1 Node](#run-crazyflie-21-node)
- - [Run external ROS 2 nodes](#run-external-ros-2-nodes)
- - [Run RVIZ visualizers](#run-rviz-visualizers)
+  - [Run Kobuki Turtlebot 2 Node](#run-kobuki-turtlebot-2-node)
+  - [Run Crazyflie 2.1 Node](#run-crazyflie-21-node)
+  - [Run external ROS 2 nodes](#run-external-ros-2-nodes)
+  - [Run RVIZ visualizers](#run-rviz-visualizers)
 
 ## Setup
 
