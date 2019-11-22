@@ -13,20 +13,16 @@ Both of them rely on **micro-ROS** publication and subscription mechanisms and u
 
 This demo also includes conventional ROS 2 tooling as a demonstration of integration with **ROS 2**. We use Gazebo, RVIZ and simple ROS 2 nodes (aka **external nodes**) acting as data converters.
 
-## Index
- - [Index](#index)
- - [Setup](#setup)
- - [Required Hardware](#required-hardware)
 - [Installation](#installation)
- - [Install external ROS2 nodes](#install-external-ros2-nodes)
- - [Compile and flash Crazyflie 2.1 firmware](#compile-and-flash-crazyflie-21-firmware)
- - [Install Crazyflie Client + Bridge](#install-crazyflie-client--bridge)
- - [Compile and flash Kobuki Turtlebot 2 firmware](#compile-and-flash-kobuki-turtlebot-2-firmware)
+  - [Install external ROS2 nodes](#install-external-ros2-nodes)
+  - [Build and flash Crazyflie 2.1 firmware](#build-and-flash-crazyflie-21-firmware)
+  - [Install Crazyflie Client + Bridge](#install-crazyflie-client--bridge)
+  - [Build and flash Kobuki Turtlebot 2 firmware](#build-and-flash-kobuki-turtlebot-2-firmware)
 - [Usage](#usage)
- - [Run Kobuki Turtlebot 2 Node](#run-kobuki-turtlebot-2-node)
- - [Run Crazyflie 2.1 Node](#run-crazyflie-21-node)
- - [Run external ROS2 nodes](#run-external-ros2-nodes)
- - [Run RVIZ visualizers](#run-rviz-visualizers)
+  - [Run Kobuki Turtlebot 2 Node](#run-kobuki-turtlebot-2-node)
+  - [Run Crazyflie 2.1 Node](#run-crazyflie-21-node)
+  - [Run external ROS2 nodes](#run-external-ros2-nodes)
+  - [Run RVIZ visualizers](#run-rviz-visualizers)
 
 ## Setup
 
@@ -36,7 +32,7 @@ The **Crazyflie 2.1** drone relies on [ST STM32F405](https://www.st.com/en/micro
 - its own relative position as a 3D vector (X, Y and Z) using a *geometry_msg/Point32* message type on */drone/odometry* topic.
 - its own attitude as a 3D vector (pitch, roll and yaw) using a *geometry_msg/Point32* message type on */drone/attitude* topic.
 
-The **Kobuki Turtlebot 2** robot is controlled using a UART protocol through a custom DB25 connector. The Micro ROS node runs on an Olimex STM32-E407 board attached to that UART port. This hardware features a [ST STM32F407](https://www.st.com/en/microcontrollers-microprocessors/stm32f407-417.html) MCU running **[Nuttx](https://nuttx.org/)** RTOS. In the same way, this node can communicate with the robot (UART) and with the ROS2 world (integrated Ethernet). Its used topics are:
+The **Kobuki Turtlebot 2** robot is controlled using a UART protocol through a custom DB25 connector. The micro-ROS node runs on an Olimex STM32-E407 board attached to that UART port. This hardware features a [ST STM32F407](https://www.st.com/en/microcontrollers-microprocessors/stm32f407-417.html) MCU running **[Nuttx](https://nuttx.org/)** RTOS. In the same way, this node can communicate with the robot (UART) and with the ROS2 world (integrated Ethernet). Its used topics are:
 - a subscription on */cmd_vel* topic (*geometry_msg/Twist* message type) to receive the controlling angular and linear velocity.
 - a publication on */robot_pose* topic (*geometry_msg/Vector3* message type) which includes X position, Y position and robot yaw. 
 
@@ -107,14 +103,14 @@ rosdep update && rosdep install --from-paths src --ignore-src -r -y
 rm ros2.yaml
 ```
 
-Compile the project:
+Build the project:
 ```bash
 source /opt/ros/dashing/setup.bash
 rosdep update && rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install
 ```
 
-## Compile and flash Crazyflie 2.1 firmware
+## Build and flash Crazyflie 2.1 firmware
 
 Install the toolchain:
 ```bash
@@ -173,9 +169,9 @@ Clone the repo dependencies:
 git clone -b Micro-XRCE-DDS_Bridge https://github.com/eProsima/crazyflie-clients-python 
 ```
 
-## Compile and flash Kobuki Turtlebot 2 firmware
+## Build and flash Kobuki Turtlebot 2 firmware
 
-Create a workspace for compiling **Micro ROS**:
+Create a workspace for building **micro-ROS**:
 ```
 source /opt/ros/crystal/setup.bash
 sudo apt install python-rosdep
@@ -186,7 +182,7 @@ colcon build --packages-select micro_ros_setup
 source install/local_setup.bash
 ```
 
-Build **Micro ROS Agent**:
+Build **micro-ROS Agent**:
 ```
 colcon build --packages-select micro_ros_setup
 source install/local_setup.bash
@@ -215,7 +211,7 @@ After installation, the following packages should be present in your system:
 .
 +-- Micro-XRCE-DDS # used for installing Micro-XRCE-DDS
 +-- crazyflie_demo 
-+-- crazyflie-firmware # used for compiling and flashing Crazyflie 2.1 firmware
++-- crazyflie-firmware # used for building and flashing Crazyflie 2.1 firmware
 +-- kobuki-firmware # used for building and flashing Kobuki Turtlebot 2 firmware
 +-- crazyflie-clients-python
 ```
@@ -226,14 +222,14 @@ Make sure that all ROS2 or MicroROS nodes created along with the following steps
 
 TODO: Explain data and power connections between Kobuki Turtlebot 2, Olimex STM32-E407 and MiniRouter.
 
-Run the **Micro ROS Agent**:
+Run the **micro-ROS Agent**:
 ```
 cd kobuki-firmware
 source /opt/ros/crystal/setup.bash && source install/local_setup.bash
 ros2 run micro_ros_agent micro_ros_agent udp 9999
 ```
 
-**Micro ROS Agent** should receive an incoming client connection and */robot_pose* topic should be published. Check it with `ros2 topic echo /robot_pose`
+**micro-ROS Agent** should receive an incoming client connection and */robot_pose* topic should be published. Check it with `ros2 topic echo /robot_pose`
 
 ## Run Crazyflie 2.1 Node
 
