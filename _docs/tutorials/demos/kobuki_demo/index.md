@@ -2,6 +2,7 @@
 title: Kobuki Demo
 permalink: /docs/tutorials/demos/kobuki_demo/
 redirect_from:
+  - /docs/tutorials/demos/
   - /kobuki_demo/
 ---
 
