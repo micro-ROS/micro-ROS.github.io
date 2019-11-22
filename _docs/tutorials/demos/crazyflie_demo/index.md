@@ -5,28 +5,33 @@ redirect_from:
   - /crazyflie_demo/
 ---
 
-This demo aims to expose a **micro-ROS** use case. It runs on a pair of embedded devices:
+This demo aims to expose a **micro-ROS** use case. It runs o a pair of embedded devices:
 a [**Crazyflie 2.1**](https://www.bitcraze.io/crazyflie-2-1/) drone, used as a user controller,
 and a [**Kobuki Turtlebot 2**](https://www.turtlebot.com/turtlebot2/) as a mobile and controlled device.
+
+![Illustration of the Crazyflie - DDS interaction](micro-ROS_crazyflie.png)
 
 Both of them rely on **micro-ROS** publication and subscription mechanisms and use an underlying [**Micro XRCE-DSS client**](https://micro-xrce-dds.readthedocs.io/en/latest/).
 
 This demo also includes conventional ROS 2 tooling as a demonstration of integration with **ROS 2**. We use Gazebo, RVIZ and simple ROS 2 nodes (aka **external nodes**) acting as data converters.
 
+This demo was developed taking as base the [Kobuki demo](/docs/tutorials/demos/kobuki_demo).
+
+## Index
 - [Installation](#installation)
-  - [Install external ROS2 nodes](#install-external-ros2-nodes)
-  - [Build and flash Crazyflie 2.1 firmware](#build-and-flash-crazyflie-21-firmware)
-  - [Install Crazyflie Client + Bridge](#install-crazyflie-client--bridge)
-  - [Build and flash Kobuki Turtlebot 2 firmware](#build-and-flash-kobuki-turtlebot-2-firmware)
+ - [Install external ROS 2 nodes](#install-external-ros-2-nodes)
+ - [Build and flash Crazyflie 2.1 firmware](#build-and-flash-crazyflie-21-firmware)
+ - [Install Crazyflie Client + Bridge](#install-crazyflie-client--bridge)
+ - [Build and flash Kobuki Turtlebot 2 firmware](#build-and-flash-kobuki-turtlebot-2-firmware)
 - [Usage](#usage)
-  - [Run Kobuki Turtlebot 2 Node](#run-kobuki-turtlebot-2-node)
-  - [Run Crazyflie 2.1 Node](#run-crazyflie-21-node)
-  - [Run external ROS2 nodes](#run-external-ros2-nodes)
-  - [Run RVIZ visualizers](#run-rviz-visualizers)
+ - [Run Kobuki Turtlebot 2 Node](#run-kobuki-turtlebot-2-node)
+ - [Run Crazyflie 2.1 Node](#run-crazyflie-21-node)
+ - [Run external ROS 2 nodes](#run-external-ros-2-nodes)
+ - [Run RVIZ visualizers](#run-rviz-visualizers)
 
 ## Setup
 
-The proposed demo is composed of different kind of messages and topics. 
+The proposed demo is composed of different kind of messages and topics.
 
 The **Crazyflie 2.1** drone relies on [ST STM32F405](https://www.st.com/en/microcontrollers-microprocessors/stm32f405-415.html) MCU running **[FreeRTOS](https://www.freertos.org/)**. Using the RTOS capabilities and the integrated radio communication device, the drone can run a node that publishes:
 - its own relative position as a 3D vector (X, Y and Z) using a *geometry_msg/Point32* message type on */drone/odometry* topic.
@@ -34,9 +39,9 @@ The **Crazyflie 2.1** drone relies on [ST STM32F405](https://www.st.com/en/micro
 
 The **Kobuki Turtlebot 2** robot is controlled using a UART protocol through a custom DB25 connector. The micro-ROS node runs on an Olimex STM32-E407 board attached to that UART port. This hardware features a [ST STM32F407](https://www.st.com/en/microcontrollers-microprocessors/stm32f407-417.html) MCU running **[Nuttx](https://nuttx.org/)** RTOS. In the same way, this node can communicate with the robot (UART) and with the ROS2 world (integrated Ethernet). Its used topics are:
 - a subscription on */cmd_vel* topic (*geometry_msg/Twist* message type) to receive the controlling angular and linear velocity.
-- a publication on */robot_pose* topic (*geometry_msg/Vector3* message type) which includes X position, Y position and robot yaw. 
+- a publication on */robot_pose* topic (*geometry_msg/Vector3* message type) which includes X position, Y position and robot yaw.
 
-The **external ROS2 nodes** are rclpy tools with some different functionalities:
+The **external ROS 2 nodes** are rclpy tools with some different functionalities:
 - *attitude_to_vel.py*
  - Converts Crazyflie */drone/attitude* to Kobuki Turtlebot 2 */cmd_vel* so that drone pitch is mapped to robot linear velocity and drone roll to angular valocity.
  - Converts Crazyflie publications on */drone/attitude* and */drone/attitude* topics to *tf2_msgs/TFMessage* messages (required by RVIZ visualizer)
@@ -65,9 +70,9 @@ This setup uses the following hardware:
 
 # Installation
 
-## Install external ROS2 nodes
+## Install external ROS 2 nodes
 
-[Install MicroXCRE-DDS](https://micro-xrce-dds.readthedocs.io/en/latest/installation.html). Recommended procedure:
+[Install Micro XCRE-DDS](https://micro-xrce-dds.readthedocs.io/en/latest/installation.html). Recommended procedure:
 
 ```bash
 git clone https://github.com/eProsima/Micro-XRCE-DDS.git
@@ -122,7 +127,7 @@ sudo apt install gcc-arm-embedded dfu-util
 Download and build the **Crazyflie 2.1** firmware repository:
 ```bash
 mkdir crazyflie_firmware
-git clone https://github.com/eProsima/crazyflie-firmware -b cf_micro-xrce-dds 
+git clone https://github.com/eProsima/crazyflie-firmware -b cf_micro-xrce-dds
 cd crazyflie_firmware
 git submodule init
 git submodule update
@@ -166,7 +171,7 @@ MODE=\"0664\", GROUP=\"plugdev\" > /etc/udev/rules.d/99-crazyflie.rules
 
 Clone the repo dependencies:
 ```
-git clone -b Micro-XRCE-DDS_Bridge https://github.com/eProsima/crazyflie-clients-python 
+git clone -b Micro-XRCE-DDS_Bridge https://github.com/eProsima/crazyflie-clients-python
 ```
 
 ## Build and flash Kobuki Turtlebot 2 firmware
@@ -216,7 +221,7 @@ After installation, the following packages should be present in your system:
 +-- crazyflie-clients-python
 ```
 
-Make sure that all ROS2 or MicroROS nodes created along with the following steps **can reach each other using its network interfaces**. 
+Make sure that all ROS 2 or micro-ROS nodes created along with the following steps **can reach each other using its network interfaces**.
 
 ## Run Kobuki Turtlebot 2 Node
 
@@ -243,15 +248,15 @@ python3 bin/cfclient
 
 This command should open the Crazyflie Client and print a serial device path in the terminal (something like /dev/pts/0).
 
-Run (in another prompt) a **MicroXRCE Agent**:
+Run (in another prompt) a **Micro XRCE-DDS Agent**:
 ```
 MicroXRCEAgent serial --dev [serial device]
 ```
 
-**MicroXRCE Agent** should receive an incoming client connection and */drone/attitude* and */drone/position* topics should be published. Check it with `ros2 topic echo /drone/attitude` and `ros2 topic echo /drone/position`
+**Micro XRCE-DDS Agent** should receive an incoming client connection and */drone/attitude* and */drone/position* topics should be published. Check it with `ros2 topic echo /drone/attitude` and `ros2 topic echo /drone/position`
 
 
-## Run external ROS2 nodes
+## Run external ROS 2 nodes
 
 Run commands:
 ```
