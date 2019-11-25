@@ -33,7 +33,7 @@ Each of these concepts has its role and meaning:
 * Subscribe is the action of reflecting an interest in receiving all the Messages of a defined Topic.
 It is handled in by the Broker.
 
-![](./mqtt.png)
+![](./mqtt.png){:.img-responsive and style="max-width: 50%; margin-left: auto; margin-right: auto;"}
 
 All this is done over a TCP protocol allowing the connection between Clients and Brokers over WANs and the Internet.
 Such a connection is made statically.
