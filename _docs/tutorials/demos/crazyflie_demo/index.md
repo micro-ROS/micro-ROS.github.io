@@ -43,10 +43,10 @@ The **Kobuki Turtlebot 2** robot is controlled using a UART protocol through a c
 
 The **external ROS 2 nodes** are rclpy tools with some different functionalities:
 - *attitude_to_vel.py*
- - Converts Crazyflie */drone/attitude* to Kobuki Turtlebot 2 */cmd_vel* so that drone pitch is mapped to robot linear velocity and drone roll to angular valocity.
- - Converts Crazyflie publications on */drone/attitude* and */drone/attitude* topics to *tf2_msgs/TFMessage* messages (required by RVIZ visualizer)
+  - Converts Crazyflie */drone/attitude* to Kobuki Turtlebot 2 */cmd_vel* so that drone pitch is mapped to robot linear velocity and drone roll to angular valocity.
+  - Converts Crazyflie publications on */drone/attitude* and */drone/attitude* topics to *tf2_msgs/TFMessage* messages (required by RVIZ visualizer)
 - *odom_to_tf.py*
- - Converts Kobuki Turtlebot 2 publications on */robot_pose* topic to *tf2_msgs/TFMessage* messages (required by RVIZ visualizer).
+  - Converts Kobuki Turtlebot 2 publications on */robot_pose* topic to *tf2_msgs/TFMessage* messages (required by RVIZ visualizer).
 
 The following image shows the described setup.
 
