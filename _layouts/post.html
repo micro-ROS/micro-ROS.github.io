@@ -44,7 +44,10 @@ layout: default
                     </i>
 		        {% endif %}
 		        {% if page.meta %} • {{ page.meta }}{% endif %}</p>
-            <div  id="markdown-content-container">{{ content }}</div>
+            <div  id="markdown-content-container">
+                {{ content }}
+                {% include share-buttons.html %}
+            </div>
             <hr>
             <ul class="pager">
                 {% if page.previous %}
@@ -62,6 +65,5 @@ layout: default
                 {% endif %}
             </ul>
         </div>
-
     </div>
 </div>
