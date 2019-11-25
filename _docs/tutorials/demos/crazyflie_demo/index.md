@@ -197,7 +197,7 @@ Build Olimex STM32-E407 firmware:
 ```
 ros2 run micro_ros_setup create_firmware_ws.sh
 cd firmware/NuttX
-tools/configure.sh configs/olimex-stm32-e407/drive_base # FOR EXAMPLE!
+tools/configure.sh configs/olimex-stm32-e407/drive_base
 cd ../..
 ros2 run micro_ros_setup build_firmware.sh
  ```
