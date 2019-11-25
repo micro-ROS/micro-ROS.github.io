@@ -20,6 +20,7 @@
    - concepts/middleware/Micro_XRCE-DDS
    - concepts/middleware/FIROS2
    - concepts/middleware/rosserial
+   - concepts/middleware/IoT
 
 - title: RTOS
   docs:
