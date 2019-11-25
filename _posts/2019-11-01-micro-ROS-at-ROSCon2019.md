@@ -32,6 +32,10 @@ Also, in this area, and grabbing almost all the attraction of the public, there 
     <source src="/img/posts/2019-11-01-micro-ROS-at-ROSCon2019.mp4" type="video/mp4">
 </video>
 
+## Slides 
+
+<embed src="/download/2019-11-01_ROSCon_micro-ros.pdf" type="application/pdf" width="100%" height="450px"/>
+
 ## Raising interest
 
 During the whole duration of the conference, micro-ROS attracted much attention, and the demonstration was continuously being shown and explained.
