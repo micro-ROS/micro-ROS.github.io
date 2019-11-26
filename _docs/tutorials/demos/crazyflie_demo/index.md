@@ -127,7 +127,7 @@ sudo apt install gcc-arm-embedded dfu-util
 Download and build the **Crazyflie 2.1** firmware repository:
 ```bash
 mkdir crazyflie_firmware
-git clone https://github.com/eProsima/crazyflie-firmware -b cf_micro-xrce-dds
+git clone https://github.com/eProsima/crazyflie-firmware -b crazyflie_demo
 cd crazyflie_firmware
 git submodule init
 git submodule update
