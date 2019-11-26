@@ -75,7 +75,7 @@ This setup uses the following hardware:
 [Install Micro XCRE-DDS](https://micro-xrce-dds.readthedocs.io/en/latest/installation.html). Recommended procedure:
 
 ```bash
-git clone https://github.com/eProsima/Micro-XRCE-DDS.git
+git clone https://github.com/eProsima/Micro-XRCE-DDS.git -b v1.1.0
 cd Micro-XRCE-DDS
 mkdir build && cd build
 cmake ..
@@ -127,7 +127,7 @@ sudo apt install gcc-arm-embedded dfu-util
 Download and build the **Crazyflie 2.1** firmware repository:
 ```bash
 mkdir crazyflie_firmware
-git clone https://github.com/eProsima/crazyflie-firmware -b cf_micro-xrce-dds
+git clone https://github.com/eProsima/crazyflie-firmware -b crazyflie_demo
 cd crazyflie_firmware
 git submodule init
 git submodule update
