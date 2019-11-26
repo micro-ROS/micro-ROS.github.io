@@ -75,7 +75,7 @@ This setup uses the following hardware:
 [Install Micro XCRE-DDS](https://micro-xrce-dds.readthedocs.io/en/latest/installation.html). Recommended procedure:
 
 ```bash
-git clone https://github.com/eProsima/Micro-XRCE-DDS.git
+git clone https://github.com/eProsima/Micro-XRCE-DDS.git -b v1.1.0
 cd Micro-XRCE-DDS
 mkdir build && cd build
 cmake ..
