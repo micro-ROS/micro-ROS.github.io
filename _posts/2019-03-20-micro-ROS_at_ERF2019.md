@@ -11,10 +11,10 @@ In the forum and as part of the TG Software & System Engineering Meeting, Ingo L
 
 The micro-ROS community demo was presented, making use of a Kobuki, one of the project reference platforms, Olimex STM32 E407 and micro-ROS stack. This community use case was also present in the exibitions area, as part of the Bosch booth.
 
-### Slides 
+## Slides 
 
 <embed src="/download/OFERA-Presentation_ERF2019.pdf" type="application/pdf" width="100%" height="450px"/>
 
-### Videos
+## Videos
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Ca0wmFLi_oY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

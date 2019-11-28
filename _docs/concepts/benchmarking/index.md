@@ -54,23 +54,23 @@ plugins can be shared and this improves re-usability as much as possible.
 The Shadow builder alone only parse comments from the application and pass it
 along to the Trace Framework Abstraction (TFA) Core. The TFA core is aware of
 the plugins that are available, all the plugins’ capabilities and platform
-target. The process goes a explained below: 
+target. The process goes as explained below: 
 
  * The line containing the functionality Benchmarking::XX::YY will be checked
    against all the available plugins.
- * Plugin that are capable to handle functionality will respond with a piece of
+ * Plugins that are capable of handling functionality will respond with a piece of
    code that will be replaced with a piece of code.
  * Then the output file will be added in a folder corresponding to the platform
    type and benchmarking type.
 
 Being generic is the key for this benchmarking tool. The plugins will in
 contrary bring the specific implementation needed to benchmark  a specific
-platform. Every plugins will to provide information as  requested by the parser:
+platform. Every plugin will provide information as  requested by the parser:
 
- * Provide list of supported platform. 
+ * Provide a list of supported platforms. 
  * Provide a list of functions that are handled.
  * Provide snippets codes that will be added for benchmarking.
- * Provide list of patches and/or patch code
+ * Provide a list of patches and/or patch code
  * Optional provide an end script to run and execute the benchmarks
 
 
@@ -107,9 +107,9 @@ will allow to inject some code.
 
 The binary generation is the process of compiling the source code. In order to
 benchmark, previously to compile the source code, it is necessary to instrument
-the code. The code will instrumented in a transparent way for the
+the code. The code will be instrumented in a transparent way for the
 programmer/user. Therefore, a configuration file provided by the programmer will
-be parsed and code inject as described in a configuration file. 
+be parsed and code injected as described in a configuration file. 
 
 ### Receiving inputs
 
@@ -119,7 +119,7 @@ The binary generation's pipeline receives two inputs to work with:
 
 In short, the configuration describes:
 
- * What is bench-marked (sources).
+ * What is benchmarked (sources).
  * Where to benchmark.
  * What type of benchmark.
  * Optionally against what base line to compare (base line source)
@@ -138,16 +138,16 @@ TFA's plugins registered in the TFA module.
 
 ### TFA Execution
 
-Once parsed and check against the TFA module capabilities, the Shadow
+Once parsed and checked against the TFA module capabilities, the Shadow
 Builder will be in charge of translating configuration into source code. The
-translated sources will be achieved also in cooperation with the TFA module. The
+translated sources will also be achieved in cooperation with the TFA module. The
 detailed steps of the TFA can be found here. At the end of this step, the TFA
 will generate the new forged source code ready for compilation. In addition to
 patched source code, the TFA will generate scripts that will the benchmarks.
 
 ### Compilation
 
-The compilation will happen for every kind of benchmarkings and
+The compilation will happen for every kind of benchmarks and
 platforms targeted. Depending on the kind of benchmark that is being executed,
 there will be one or more binaries per benchmarks session. The number of binary
 generated also depends on what plugins are provided by the user to the shadow
