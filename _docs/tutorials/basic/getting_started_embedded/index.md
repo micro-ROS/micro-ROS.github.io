@@ -19,7 +19,7 @@ For that purpose, we are going to use a [Olimex STM32-E407](https://www.olimex.c
 
 At this example, we are going to flash the board with a binary that contains a NuttX App. This NuttX App is a micro-ROS client. This client will try to connect to the micro-ROS Agent running at your computer and exchange data using Micro XRCE-DDS.
 
-For that purpose, firs install [this](https://github.com/micro-ROS/docker/tree/11622d6e0602cd03c59b730097d15ab6f1061d73/Embedded/NuttX/precompiled/micro-ROS/olimex_stm32-e407) container at your Linux machine.
+For that purpose, firs install [this](https://github.com/micro-ROS/docker/tree/pre_refactor/Embedded/NuttX/precompiled/micro-ROS/olimex_stm32-e407) container at your Linux machine.
 
 
 
@@ -65,7 +65,7 @@ _Need to complete the tutorial!_
 
 In this case, instead of running the complete micro-ROS stuck, we will run a DDS level example. For that purpose, the embedded board will execute a Micro XRCE-DDS example that will communicate with an Agent that is running in your Linux machine.
 
-First of all, downlod the [Docker machine](https://github.com/micro-ROS/docker/blob/11622d6e0602cd03c59b730097d15ab6f1061d73/Embedded/NuttX/precompiled/micro-ROS/olimex_stm32-e407/Dockerfile) containing all the tools. Along with all the dependencies, this image contains micro-ROS publish/subscribe pre-built examples ready to flash and run on the board.
+First of all, downlod the [Docker machine](https://github.com/micro-ROS/docker/blob/pre_refactor/Embedded/NuttX/precompiled/micro-ROS/olimex_stm32-e407/Dockerfile) containing all the tools. Along with all the dependencies, this image contains micro-ROS publish/subscribe pre-built examples ready to flash and run on the board.
 
 ## Build
 
