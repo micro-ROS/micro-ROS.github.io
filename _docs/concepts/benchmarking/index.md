@@ -54,23 +54,23 @@ plugins can be shared and this improves re-usability as much as possible.
 The Shadow builder alone only parse comments from the application and pass it
 along to the Trace Framework Abstraction (TFA) Core. The TFA core is aware of
 the plugins that are available, all the plugins’ capabilities and platform
-target. The process goes a explained below: 
+target. The process goes as explained below: 
 
  * The line containing the functionality Benchmarking::XX::YY will be checked
    against all the available plugins.
- * Plugin that are capable to handle functionality will respond with a piece of
+ * Plugin that is capable of handling functionality will respond with a piece of
    code that will be replaced with a piece of code.
  * Then the output file will be added in a folder corresponding to the platform
    type and benchmarking type.
 
 Being generic is the key for this benchmarking tool. The plugins will in
 contrary bring the specific implementation needed to benchmark  a specific
-platform. Every plugins will to provide information as  requested by the parser:
+platform. Every plugin will provide information as  requested by the parser:
 
- * Provide list of supported platform. 
+ * Provide a list of the supported platform. 
  * Provide a list of functions that are handled.
  * Provide snippets codes that will be added for benchmarking.
- * Provide list of patches and/or patch code
+ * Provide a list of patches and/or patch code
  * Optional provide an end script to run and execute the benchmarks
 
 
