@@ -179,7 +179,7 @@ git clone -b Micro-XRCE-DDS_Bridge https://github.com/eProsima/crazyflie-clients
 Create a workspace for building **micro-ROS**:
 ```
 source /opt/ros/crystal/setup.bash
-sudo apt install python-rosdep
+sudo apt install python-rosdep curl flex ed gperf openocd automake ed bison libncurses5-dev gcc-arm-none-eabi clang clang-tidy usbutils
 mkdir -p kobuki-firmware/src
 cd kobuki-firmware
 git clone --recursive -b crazyflie_demo https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
@@ -189,16 +189,31 @@ source install/local_setup.bash
 
 Build **micro-ROS Agent**:
 ```
-colcon build --packages-select micro_ros_setup
-source install/local_setup.bash
+ros2 run micro_ros_setup create_agent_ws.sh
+colcon build
+source install/local_setup.sh
+```
+
+Install tools:
+```
+git clone https://bitbucket.org/nuttx/tools.git ~/tools
+pushd ~/tools/kconfig-frontends >/dev/null
+./configure --enable-mconf --disable-nconf --disable-gconf --disable-qconf 
+LD_RUN_PATH=/usr/local/lib && make && make install && ldconfig
+popd >/dev/null
 ```
 
 Build Olimex STM32-E407 firmware:
 ```
 ros2 run micro_ros_setup create_firmware_ws.sh
 cd firmware/NuttX
-tools/configure.sh configs/olimex-stm32-e407/drive_base
+tools/configure.sh configs/olimex-stm32-e407/uros
 cd ../..
+
+#Put here your agent IP and port
+find ./firmware/mcu_ws/ -name rmw_microxrcedds.config -exec sed -i "s/CONFIG_IP=127.0.0.1/CONFIG_IP=192.168.8.10/g" {} \;
+find ./firmware/mcu_ws/ -name rmw_microxrcedds.config -exec sed -i "s/CONFIG_PORT=8888/CONFIG_PORT=9999/g" {} \;
+
 ros2 run micro_ros_setup build_firmware.sh
  ```
 
