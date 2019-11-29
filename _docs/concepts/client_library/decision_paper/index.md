@@ -88,7 +88,7 @@ rcutils defines allocator struct (rcutils_allocator_t) and helper-functions ([al
 
 For the rmw layer, an ['API for pre-allocating messages in the middleware'](https://github.com/ros2/rmw/issues/159) is currently discussed.
 
-A list of issues on dynamic memory management and real-time is also discussed in the context of Autoware at [AutowareAuto/AutowareAuto#65](https://gitlab.com/AutowareAuto/AutowareAuto/issues/65), but without the specific requirements by microcontrollers.
+A list of issues on dynamic memory management and real-time is also discussed in the context of Autoware at [AutowareAuto/AutowareAuto#65](https://gitlab.com/autowarefoundation/autoware.auto/AutowareAuto/issues/65), but without the specific requirements by microcontrollers.
 
 Questions:
 

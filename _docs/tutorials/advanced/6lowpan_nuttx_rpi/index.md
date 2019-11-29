@@ -13,7 +13,7 @@ This guide will show how to set-up a Raspberry Pi 3 (RPI) running Raspbian and a
 - Olimex-STM32-E407 board.
 - Two PMODRF2 module which are base on the MRF24J40 module.
 - PC with Ubuntu (It works fine with Ubuntu 16.04)
-- NuttX source code, you can find a Docker file with all the tools [here](https://github.com/micro-ROS/docker/tree/master/Embedded/NuttX/development/stm32-e407).
+- NuttX source code, you can find a Docker file with all the tools [here](https://github.com/micro-ROS/docker/tree/pre_refactor/Embedded/NuttX/development/stm32-e407).
 ## How to set-up 6lowpan RPI?
 
 First, we need to connect the PMODRF2 module to the RPI, so we need to set the next connections:
