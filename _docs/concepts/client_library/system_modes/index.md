@@ -108,18 +108,11 @@ A simple example is provided at:
 
 ## Roadmap
 
-**2018**
-*   Extended lifecycle concept and implementation for ROS 2 and micro-ROS.
-*   Modeling concept to specify system hierarchy as well as system modes of systems, subsystems, and their mapping along the system hierarchy down to nodes.
-*   Mode inference and mode manager in C++ for ROS 2.
-
-**2019**
+**2020**
 *   Specific implementation of mode manager for micro-ROS as may be necessary.
 *   Diagnostics framework for micro-ROS, interoperating with ROS 2 diagnostics.
 *   MCU-specific diagnostics functions for resource usage on RTOS layer, latencies, statistics from middleware, etc.
 *   Integration of mode manager with real-time executor and/or roslaunch.
-
-**2020**
 *   Lightweight concept for specifying error propagations between nodes and subsystems.
 
 _Note: The extension of the ACTIVE state by modes (substates) was originally planned for 2020 but brought forward in 2018._
