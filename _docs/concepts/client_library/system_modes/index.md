@@ -15,8 +15,10 @@ Table of contents
   - [Mode Inference](#mode-inference)
   - [Mode Manager](#mode-manager)
 - [Roadmap](#roadmap)
+  - [2018](#2018)
+  - [2019](#2019)
+  - [2020](#2020)
 - [Acknowledgments](#acknowledgments)
-
 
 ## Introduction and Goal
 
@@ -24,9 +26,9 @@ Modern robotic software architectures often follow a layered approach. The layer
 
 We observed three different but closely interwoven aspects to be handled on the deliberation layer:
 
-1.  **Task Handling**: Orchestration of the actual task, the *straight-forward*, *error-free* flow.
-2.  **Contingency Handling**: Handling of task-specific contingencies, e.g., expectable retries and failure attempts, obstacles, low battery.
-3.  **System Error Handling**: Handling of exceptions, e.g., sensor/actuator failures.
+1. **Task Handling**: Orchestration of the actual task, the *straight-forward*, *error-free* flow.
+2. **Contingency Handling**: Handling of task-specific contingencies, e.g., expectable retries and failure attempts, obstacles, low battery.
+3. **System Error Handling**: Handling of exceptions, e.g., sensor/actuator failures.
 
 The mechanisms being used to orchestrate the skills are service and action calls, re-parameterizations, set values, activating/deactivating of components, etc. We distinguish between *function-oriented calls* to a running skill component (set values, action queries, etc.) and *system-oriented calls* to individual or multiple components (switching between component modes, restart, shutdown, etc.).
 
@@ -44,17 +46,15 @@ This goal is illustrated in the following example architecture, which is describ
 
 The main features of the approach are (detailed in the remainder):
 
-1.  _Extended Lifecycle_: Extensible concept to specify the runtime states of components, i.e ROS 2 lifecycle nodes.
-2.  _System Hierarchy and Modes_: Modeling approach for specifying a ROS system in terms of its system hierarchy and _system modes_, i.e. different (sub-)system configurations.
-3.  _Mode Manager_: A module to manage and change the system runtime configuration.
-4.  _Mode Inference_: A module for deriving the entire system state and mode from observable system information, i.e. states, modes, and parameters of its components.
-5.  _Diagnostics_: Diagnosis module for deriving relevant information from the operating systems, the hardware and the functional components.
-
+1. _Extended Lifecycle_: Extensible concept to specify the runtime states of components, i.e ROS 2 lifecycle nodes.
+2. _System Hierarchy and Modes_: Modeling approach for specifying a ROS system in terms of its system hierarchy and _system modes_, i.e. different (sub-)system configurations.
+3. _Mode Manager_: A module to manage and change the system runtime configuration.
+4. _Mode Inference_: A module for deriving the entire system state and mode from observable system information, i.e. states, modes, and parameters of its components.
+5. _Diagnostics_: Diagnosis module for deriving relevant information from the operating systems, the hardware and the functional components.
 
 ## Requirements
 
 The list of requirements is maintained in the doc folder of the micro-ROS system modes repository, at:  https://github.com/micro-ROS/system_modes/blob/master/system_modes/doc/requirements.md
-
 
 ## Background: ROS 2 Lifecycle
 
@@ -63,7 +63,6 @@ Our approach is based on the ROS 2 Lifecycle. The primary goal of the ROS 2 life
 The description of the concept can be found at:   [http://design.ros2.org/articles/node_lifecycle.html](http://design.ros2.org/articles/node_lifecycle.html)  
 The implementation of the Lifecycle Node is described at:  
 [https://index.ros.org/doc/ros2/Managed-Nodes/](https://index.ros.org/doc/ros2/Managed-Nodes/).
-
 
 ## Main Features
 
@@ -105,18 +104,29 @@ The documentation and code can be found at:
 A simple example is provided at:  
 [github.com:system_modes_examples/README.md#setup](https://github.com/micro-ROS/system_modes/blob/master/system_modes_examples/README.md#setup)
 
-
 ## Roadmap
 
-**2020**
-*   Specific implementation of mode manager for micro-ROS as may be necessary.
-*   Diagnostics framework for micro-ROS, interoperating with ROS 2 diagnostics.
-*   MCU-specific diagnostics functions for resource usage on RTOS layer, latencies, statistics from middleware, etc.
-*   Integration of mode manager with real-time executor and/or roslaunch.
-*   Lightweight concept for specifying error propagations between nodes and subsystems.
+### 2018
+
+- Requirements for behavior system composition in robotics systems
+- Modeling concept to specify system hierarchy as well as system modes of systems, subsystems, and their mapping along the system hierarchy down to nodes
+- Python prototype of system modes concept (ROS-independent)
+
+### 2019
+
+- Extended lifecycle concept and implementation for ROS 2 C++
+- Mode inference and mode manager for ROS 2 C++
+- ROS diagnostics port from ROS 1 to ROS 2
+- Concept for bottom-up system modes rules
+
+### 2020
+
+- Diagnostics framework for micro-ROS, interoperating with ROS 2 diagnostics
+- MCU-specific diagnostics functions for resource usage on RTOS layer, latencies, statistics from middleware, etc.
+- Integration of mode manager with real-time executor and/or roslaunch
+- Lightweight concept for specifying error propagations between nodes and subsystems
 
 _Note: The extension of the ACTIVE state by modes (substates) was originally planned for 2020 but brought forward in 2018._
-
 
 ## Acknowledgments
 
