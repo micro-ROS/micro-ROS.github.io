@@ -124,7 +124,7 @@ A simple example is provided at:
 - Diagnostics framework for micro-ROS, interoperating with ROS 2 diagnostics
 - MCU-specific diagnostics functions for resource usage on RTOS layer, latencies, statistics from middleware, etc.
 - Integration of mode manager with real-time executor and/or roslaunch
-- Lightweight concept for specifying error propagations between nodes and subsystems
+- Lightweight concept for specifying error propagation and recovery mechanisms
 
 _Note: The extension of the ACTIVE state by modes (substates) was originally planned for 2020 but brought forward in 2018._
 
