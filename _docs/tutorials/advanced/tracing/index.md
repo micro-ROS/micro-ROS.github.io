@@ -54,12 +54,19 @@ $ cd ros2_ws/
 
 Then clone everything using the following `.repos` file. It includes the core ROS 2 packages with instrumented versions of `rcl` and `rclcpp`, as well as the tracing tools and tracing analysis repos.
 
+#### Clone source on ROS 2 eloquent
+```bash
+$ wget https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing/raw/master/tracing.repos
+$ vcs import src < tracing.repos
+```
+#### Clone source on ROS 2 dashing
+You can also use tracing on dashing already, but will have to build from scratch
 ```bash
 $ wget https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing/raw/master/all.repos
 $ vcs import src < all.repos
 ```
 
-Let's build everything and source!
+#### Let's build everything and source!
 
 ```bash
 $ colcon build --symlink-install --cmake-args " -DWITH_LTTNG=ON"
