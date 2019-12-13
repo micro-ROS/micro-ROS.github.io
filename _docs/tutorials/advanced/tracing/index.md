@@ -9,7 +9,7 @@ redirect_from: /tracing/
 2. [Setup](#setup)
 3. [Simple tracing example](#simple-tracing-example)
 4. [Callback duration analysis](#callback-duration-analysis)
-5. [Upcoming work](#upcoming-work)
+5. [Further Information](#relevant-links)
 
 ## Introduction
 
