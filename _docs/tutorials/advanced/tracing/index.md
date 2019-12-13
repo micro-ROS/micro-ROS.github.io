@@ -48,29 +48,22 @@ If the ROS 2 development tools and dependencies are not installed on your machin
 Now we'll download all the necessary packages. First, create your workspace.
 
 ```bash
-$ mkdir ~/ros2_ws
+$ mkdir -p ~/ros2_ws/src
 $ cd ros2_ws/
 ```
 
-Then clone everything using the following `.repos` file. It includes the core ROS 2 packages with instrumented versions of `rcl` and `rclcpp`, as well as the tracing tools and tracing analysis repos.
+The `rcl` and `rclcpp` instrumentation has been integrated into Eloquent, so we simply need to recompile `ros2_tracing` & compile `tracetools_analysis`.
 
-#### Clone source on ROS 2 eloquent
 ```bash
 $ wget https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing/raw/master/tracing.repos
 $ vcs import src < tracing.repos
 ```
-#### Clone source on ROS 2 dashing
-You can also use tracing on dashing already, but will have to build from scratch
-```bash
-$ wget https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing/raw/master/all.repos
-$ vcs import src < all.repos
-```
 
-#### Let's build everything and source!
+Now let's build and source.
 
 ```bash
-$ colcon build --symlink-install --cmake-args " -DWITH_LTTNG=ON"
-$ source ./install/local_setup.bash
+$ colcon build --symlink-install
+$ source install/local_setup.bash
 ```
 
 ## Simple tracing example
@@ -91,7 +84,7 @@ $ ros2 launch tracetools_launch example.launch.py
 
 As shown above, you should see a few output lines, and that's it.
 
-You can take a look at the trace's events using `babeltrace`.
+By default, traces are written in the `~/.ros/tracing/` directory. You can take a look at the trace's events using `babeltrace`.
 
 ```bash
 $ cd ~/.ros/tracing/
@@ -108,13 +101,12 @@ $ babeltrace my-tracing-session/ust/
 <img src="/img/tutorials/tracing_babeltrace.svg" style="padding: 10px;" />
 </center>
 
-The last part of the `babeltrace` output is shown above. This is a human-readable version of the raw Common Trace Format (CTF) data, which is a list of events. Each event has a timestamp, an event type, some information on the process that generated the event, and the fields corresponding to the event type. The last events of our trace are pairs of `ros2:callback_start` and `ros2:callback_end` events. Each contains a reference to its corresponding callback.
+The last part of the `babeltrace` output is shown above. This is a human-readable version of the raw Common Trace Format (CTF) data, which is a list of events. Each event has a timestamp, an event type, some information on the process that generated the event, and the fields corresponding to the event type. The last events of our trace are pairs of `ros2:callback_start` and `ros2:callback_end` events. Each one contains a reference to its corresponding callback.
 
-It's now time to process the trace data! The `tracetools_analysis` package provides tools to import and process the results. We can first convert the CTF data to a pickle file. Then we can process it to get `pandas` dataframes which we can use later to run analyses.
+It's now time to process the trace data! The `tracetools_analysis` package provides tools to import a trace and process it. Since reading a CTF trace is slow, it first converts it to a file which we can read much faster later on. Then we can process it to get `pandas` dataframes and use those to run analyses.
 
 ```bash
-$ ros2 run tracetools_analysis convert ~/.ros/tracing/my-tracing-session/ust
-$ ros2 run tracetools_analysis process ~/.ros/tracing/my-tracing-session/ust/pickle
+$ ros2 trace-analysis process ~/.ros/tracing/my-tracing-session/ust/
 ```
 
 <center>
@@ -143,16 +135,6 @@ The resulting plots for the `/ping` and `/pong` subscriptions are shown below. W
 <img src="/img/tutorials/tracing_analysis_plots.png" />
 </center>
 
-## Upcoming work
+## Relevant links
 
-Now that the groundwork is done, the next steps are:
-
-* Submit PRs for `rcl` and `rclcpp` instrumentation. We are aiming for the instrumentation to be included in ROS 2 Eloquent (November 2019).
-* Add more analyses.
-* Test on real hardware, and compare analysis results to other tools.
-* Release first version of packages.
-* Work on providing swappable `tracetools` packages (a default package with tracing being disabled, and another one with tracing being enabled).
-
-The tracing packages can be found [here](https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing). The analysis tools can be found [here](https://gitlab.com/micro-ROS/ros_tracing/tracetools_analysis).
-
-Let us know if you have any questions, or if you'd like to get involved!
+The tracing packages can be found in the [`ros2_tracing` repo](https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing). The analysis tools can be found in the [`tracetools_analysis` repo](https://gitlab.com/micro-ROS/ros_tracing/tracetools_analysis).
