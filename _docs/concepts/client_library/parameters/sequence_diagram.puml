@@ -1,0 +1,53 @@
+@startuml
+
+skinparam monochrome true
+skinparam componentStyle uml2
+
+participant "rclcpp::SyncParametersClient"  as sync_client
+participant "rclcpp::AsyncParametersClient" as async_client
+participant "rclcpp::Client<ServiceT>"      as client
+participant "rcl"                           as rcl
+participant "rclcpp::Executor"              as executor
+
+note left of client
+        **ServiceT** = rcl_interfaces::srv::SetParameters
+
+        **ServiceT::Request** = rcl_interfaces::srv::SetParameters_Request
+        **ServiceT::Response** = rcl_interfaces::srv::SetParameters_Response
+
+        **ServiceT::Request::SharedPtr** = std::shared_ptr<rcl_interfaces::srv::SetParameters_Request>
+        **ServiceT::Response::SharedPtr** = std::shared_ptr<rcl_interfaces::srv::SetParameters_Response>
+
+        **SharedRequest** = ServiceT::Request::SharedPtr
+        **SharedResponse** = ServiceT::Response::SharedPtr
+
+        **SharedFuture** = std::shared_future<SharedResponse>
+
+        **CallbackType** = std::function<void (SharedFuture)>
+end note
+
+sync_client     ->  async_client    :   **set_parameters**(\n  const std::vector<rclcpp::Parameter>& **parameters**,\n  std:function<T> callback = nullptr)
+async_client    ->  async_client    :   **compute_request**()\n  -> (SharedRequest) **request**
+async_client    ->  client          :   **async_send_request**(\n  SharedRequest **request**,\n  CallbackType **cb**) 
+client          ->  client          :   **get_client_handle**()\n  ->  (rcl_client_t*) **client**
+client          ->  rcl             :   **rcl_send_request**(\n  const rcl_client_t* **client**,\n  const void* **request**,\n  int64_t* **sequence_number**)
+client          ->  client          :   **add_pending_request**(\n  int64_t **sequence_number**,\n  SharedPromise **promise**,\n  CallbackType **cb**,\n  SharedFuture **future**)
+async_client    <-- client          :   (SharedFuture) **future**
+note left 
+    **future** is not used here, but it is the parameter of **cb**
+end note
+sync_client     <-- async_client    :   (std::shared_future<std::vector<rcl_interface:msg::SetParameterResult>>)\n  **set_parameter_result**
+sync_client     ->  executor        :   **spin_until_future_complete**(??)
+group spin_once(timeout)
+    rcl <-  executor    :   **rcl_wait**(timeout)
+    rcl --> executor    :   (rcl_ret_t) status
+    group execute_client()
+        rcl     <-  executor    :   **rcl_take_response**(\n  &client,\n  &request_header,\n  &response)
+        rcl     --> executor    :   (rcl_ret_t) status
+        client  <-  executor    :   **handle_response**(\n  request_header,\n  response)
+        client  --> executor    :   void
+    end
+end
+sync_client     <-- executor        :   (rclcpp::executor::FutureReturnCode) exec_result
+
+@enduml
