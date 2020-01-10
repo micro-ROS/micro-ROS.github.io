@@ -42,6 +42,7 @@
    - tutorials/advanced/debugging_vscode
    - tutorials/advanced/6lowpan_nuttx_rpi
    - tutorials/advanced/tracing
+   - tutorials/advanced/microros_nuttx_bsp
 
 - title: Demos
   docs:

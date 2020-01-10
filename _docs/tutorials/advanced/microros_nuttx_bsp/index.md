@@ -1,5 +1,5 @@
 ---
-title: Adding Micro-ROS to a NuttX BSP
+title: Adding Micro-ROS to a NuttX board configuration
 permalink: /docs/tutorials/advanced/microros_nuttx_bsp/
 ---
 
