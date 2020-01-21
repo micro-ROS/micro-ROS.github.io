@@ -30,6 +30,7 @@ exclude:
   - README.md
   - old
   - .git
+  - vendor/bundle
 
 timezone: Europe/Berlin
 defaults:
