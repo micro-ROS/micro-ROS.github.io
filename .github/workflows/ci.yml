@@ -34,4 +34,4 @@ jobs:
         bundle install
 
     - name: Test web site changes
-      run: ./script/cibuild
+      run: ./scripts/cibuild
