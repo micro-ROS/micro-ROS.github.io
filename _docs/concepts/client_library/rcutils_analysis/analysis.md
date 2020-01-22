@@ -26,7 +26,7 @@ Dynamic memory allocation is also found when dealing with error handling in `rcu
 ### error_handling.h
 
 * Macro **RCUTILS_SAFE_FWRITE_TO_STDERR** in `rcutils` error_handling.h:
-[Check here](https://github.com/micro*ROS/rcutils/commit/bcaa00a6ed12fc62d05dc5e44521a1648fd2d07f#diff-1b06d4a1ccca0f0dff66d961923143a1L42)
+[Check here](https://github.com/micro-ROS/rcutils/commit/bcaa00a6ed12fc62d05dc5e44521a1648fd2d07f#diff-1b06d4a1ccca0f0dff66d961923143a1L42)
   * Problem: use `fwrite` to print to stderr and relies on a filesytem
   * Appears in:
     * rcl/rcl/src/rcl/expand_topic_name.c
