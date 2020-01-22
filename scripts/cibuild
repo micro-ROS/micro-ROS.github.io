@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 set -e # halt script on error
 
-IGNORE_HREFS=$(ruby -e 'puts %w{
+CHANGED_FILES=$(git diff --name-only master)
+if  grep -q "_docs" <<< $CHANGED_FILES; then
+    TOUCHED=${TOUCHED:+$TOUCHED }micro-ros.github.io//docs
+else if grep -q "_posts" <<< $CHANGED_FILES; then
+    TOUCHED=${TOUCHED:+$TOUCHED,}micro-ros.github.io//blog
+    fi
+fi
+
+IGNORE_HREFS=${IGNORE_HREFS:+$IGNORE_HREFS,}$(ruby -e "puts %w{
   vimeo.com
-  micro-ros.github.io//blog
-  }.map{|h| "/#{h}/"}.join(",")'
+  ${TOUCHED}
+  }.map{|h| \"/#{h}/\"}.join(\",\")"
 )
 
+echo "Ignoring urls: " $IGNORE_HREFS
 bundle exec jekyll build
 bundle exec htmlproofer --check_html --check-favicon --assume-extension --empty-alt-ignore --only-4xx --url-ignore $IGNORE_HREFS $@ ./_site
