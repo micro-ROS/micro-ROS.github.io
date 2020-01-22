@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e # halt script on error
 
-CHANGED_FILES=$(git diff --name-only master)
+CHANGED_FILES=$(git diff --name-only origin/master)
 if  grep -q "_docs" <<< $CHANGED_FILES; then
     TOUCHED=${TOUCHED:+$TOUCHED }micro-ros.github.io//docs
 else if grep -q "_posts" <<< $CHANGED_FILES; then
