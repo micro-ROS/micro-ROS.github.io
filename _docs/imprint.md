@@ -1,5 +1,5 @@
 ---
-permalink: /imprint
+permalink: /docs/imprint
 title: Imprint
 ---
 
