@@ -39,12 +39,11 @@ All this is done over a TCP protocol allowing the connection between Clients and
 Such a connection is made statically, i.e., the client must know the Broker address before a first connection is made.
 These communications could obey three different QoS specifying the delivery behaviour:
 
-* QoS0.
-    It does not guarantee delivery.
-* QoS1.
-    Guarantees delivery but not protect against duplicity.
-* QoS2.
-    Guarantees delivery and protects against duplicity.
+| QoS | Guaranteed delivery | Duplicity protection |
+|:-:|:-:|:-:|
+| QoS0 | No | No |
+| QoS1 | Yes | No |
+| QoS2 | Yes | Yes |
 
 As mentioned before, there is the concept of Topic in this kind of middleware.
 The Topic's type is set by the application as well as its name.
