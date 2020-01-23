@@ -19,14 +19,14 @@ It has been designed as a lightweight message protocol to be used over TCP trans
 
 The communication mechanism of MQTT is based on a client-server architecture.
 This means that clients (MQTT Clients) are connected to a server (MQTT Broker) which is in charge of orchestrating the exchange of data using a publish-subscribe messaging pattern.
-That is, clients, publish messages associated with a particular Topic in the Broker, and this last redirects these messages to the clients subscribed to the Topic.
+In other words, clients publish messages associated with a particular Topic in the Broker, and this last redirects these messages to the clients subscribed to the Topic.
 
-So in MQTT, we can speak of some key concepts: Broker, client, Topic, Message, Publish and subscribe.
+So in MQTT, we can speak of some key concepts: Broker, Client, Topic, Message, Publish and Subscribe.
 Each of these concepts has its role and meaning:
 
 * The Broker acts as the backbone of the system.
     Dealing with the messages of topics.
-* The Clients are the parts in charge of publishing and receiving subscriptions data from the Broker.
+* The Clients are the parts in charge of publishing and receiving subscription data from the Broker.
 * The Topic is a channel of information.
 * Message a piece of information on a defined Topic.
 * Publish is the action of sending a Message for a defined Topic to the Broker.
@@ -36,8 +36,7 @@ It is handled in by the Broker.
 ![](./mqtt.png){:.img-responsive and style="max-width: 50%; margin-left: auto; margin-right: auto;"}
 
 All this is done over a TCP protocol allowing the connection between Clients and Brokers over WANs and the Internet.
-Such a connection is made statically.
-That is, the client must know the broker address before a first connection is made.
+Such a connection is made statically, i.e., the client must know the Broker address before a first connection is made.
 These communications could obey three different QoS specifying the delivery behaviour:
 
 * QoS0.
@@ -50,7 +49,7 @@ These communications could obey three different QoS specifying the delivery beha
 As mentioned before, there is the concept of Topic in this kind of middleware.
 The Topic's type is set by the application as well as its name.
 Publications are done using the Topic name and a set of data with a user-defined format.
-Analogously, the subscriptions are done to Topic names, while the data interpretation is the responsibility of the Clients.
+Analogously, subscriptions are done to Topic names, while the data interpretation is the responsibility of the Clients.
 MQTT standard does not mark how this topic-type tuple is related, so the responsibility of topic understanding resides on the user side.
 
 This architecture and communication pattern natively allows the interchange of data between devices (M2M protocol), composing this way a good IoT middleware.
@@ -58,7 +57,7 @@ This architecture and communication pattern natively allows the interchange of d
 ## DDS-XRCE
 
 The DDS for eXtremely Resource-Constrained Environments (DDS-XRCE) is a wire protocol, adopted by the Object Management Group (OMG),
-whose aim is to provide access to the DDS data-space from low resource devices.
+whose aim is to provide access to the DDS (Data Distribution Service) data-space from low resource devices.
 As in the MQTT case, the DDS-XRCE follows a client-server architecture where clients (XRCE Clients) are connected to a server (XRCE Agent).
 In contrast to MQTT, the XRCE Agent is not in charge of managing the publication/subscription of Topics, but it acts on behalf of the XRCE Clients in the DDS global data-space.
 That is, the DDS-XRCE protocol allows the XRCE Clients to act as first-class citizens in a traditional DDS network.
