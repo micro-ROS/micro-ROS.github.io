@@ -14,9 +14,11 @@ permalink: /docs/concepts/client_library/real-time_executor/
     * [Scheduling Semantics](#scheduling-semantics)
 
 
-*   [Rcl LET-Executor](#rcl-let-executor)
-    * [Concept](#concept)
-    * [Example](#example)
+*   [RCLC-Executor](#rclc-executor)
+    * [Requirement Analysis](#requirement-analysis)
+    * [Features](#features)
+    * [Executor API](#executor-api)
+    * [Examples](#examples)
     * [Download](#download)
 
 
@@ -94,131 +96,110 @@ In a recent paper [CB2019](#CB2019), the rclcpp Executor has been analyzed in de
 Due to these findings, the authors present an alternative approach to provide determinism and to apply well-known schedulability analyses to a ROS 2 systems. A response time analysis is described under reservation-based scheduling.
 
 ## RCLC-Executor
-In this section we introduce an RCLC-Exeucutor, which is an Executor for C-Applications based on RCL-layer. First the requirements for the RCLC-Executor are motivated, then the features are described and finally examples are provided how to use the RCLC-Executor.
+Here we introduce an RCLC-Executor, which is a ROS2-Executor based on RCL-layer for applications written in the C language. Often embedded applications require real-time to guarantee end-to-end latencies and need deterministic runtime behavior to correctly re-play test data. However, this is difficult with the default ROS2 Executor because of its complex semantics, as discussed in the previous section.
 
-### Requirements for an RCLC-Executor in ROS2
-First we discuss a common use-case in embedded systems which uses the time-triggered principle to guarantee deterministic and real-time behavior. Then we analyse several software design patterns which can be used to ensure deterministic behavior. Based on these requirements we introduce an RCLC-Executor.
+First, we will analyse the requirements for such applications and, secondly, derive simple features for an Executor to enable deterministic and real-time behavior. Then we will present the API of the RCLC-Executor and provide example usages of the RCLC-Executor to address these requirements.
 
-#### Time-triggered use-case for embedded real-time applications
-In embedded systems, real-time behavior is approached by using the time-triggered paradigm, that is all processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure 1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are pre-empted multiple times depicted with dashed boxes.
+### Requirement Analysis
+First we discuss a use-case in the embedded domain, in which the time-triggered paradigm is often used to guarantee deterministic and real-time behavior. Then we analyse software design patterns in mobile robotics which enable deterministic behavior.
+
+#### Real-time embedded application used-case
+In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure 1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are pre-empted multiple times depicted with empty dashed boxes.
 
 <img src="png/scheduling_01.png" alt="Schedule with fixed periods" width="350"/>
 
 Figure 1: Fixed periodic preemptive scheduling
 
-To each process one or multiple tasks can be assigned, as shown in Figure 2. These tasks are executed co-operativly.
+To each process one or multiple tasks can be assigned, as shown in Figure 2. These tasks are executed sequentially, which is often called co-operativ scheduling.
 
 <img src="png/scheduling_02.png" alt="Schedule with fixed periods" width="250"/>
 
 Figure 2: Processes with sequentially executed tasks.
 
-While there are many possibilities to assign priorities to a given number of processes,
-the rate-monotonic scheduling assignment, in which processes with a shorter period get a higher priority has been shown as optimal if the processor utilization is less than 69% [LL1973](#LL1973).
+While there are different ways to assign priorities to a given number of processes,
+the rate-monotonic scheduling assignment, in which processes with a shorter period have a higher priority, has been shown optimal if the processor utilization is less than 69% [LL1973](#LL1973).
 
- In the last decades many different approaches have been presented, however fixed-periodic pre-emptive scheduling is still widely used in embedded real-time systems [KZH2015](#KZH2015]). Like Linux, real-time operating systems (like NuttX, Zephyr, FreeRTOS, QNX etc.) support fixed-periodic preemptive scheduling and the assignment of priorities.
+ In the last decades many different scheduling approaches have been presented, however fixed-periodic pre-emptive scheduling is still widely used in embedded real-time systems [KZH2015](#KZH2015]). This becomes also obvious, when looking at the features of current operating systems. Like Linux, real-time operating systems, such as NuttX, Zephyr, FreeRTOS, QNX etc., support fixed-periodic preemptive scheduling and the assignment of priorities, which makes the time-triggered paradigm the dominant design principle in this domain.
 
-Data consistency is often an issue when preemptive scheduling is used, if data is being shared across multiple processes via global variables. Due to scheduling effects and varying execution times of processes, writing to these variables can occur sometimes sooner or later. This results in an latency jitter of update times. Race conditions can occur, when multiple processes access these variables at the same time. So solve this issue, the concept of logical-execution time (LET) was introduced in [HHK2001](#HHK2001), in which communication of data occurs only at periodic time instances: Reading data only at the beginning of the period and writing data only at the end of the period. The cost of an additional latency is traded with data consistency and reduced jitter. This concept has also been applied in real-time embedded systems in the automotive domain [NSP2018](#NSP2018).
+However, data consistency is often an issue when preemptive scheduling is used and if data is being shared across multiple processes via global variables. Due to scheduling effects and varying execution times of processes, writing and reading these variables could occur sometimes sooner or later. This results in an latency jitter of update times (the timepoint at which a variable change becomes visible to other processes). Race conditions can occur when multiple processes access a variable at the same time. So solve this problem, the concept of logical-execution time (LET) was introduced in [HHK2001](#HHK2001), in which communication of data occurs only at pre-defined periodic time instances: Reading data only at the beginning of the period and writing data only at the end of the period. The cost of an additional latency delay is traded for data consistency and reduced jitter. This concept has also recently been applied to automotive applications  [NSP2018](#NSP2018).
 
 <img src="png/scheduling_LET.png" alt="Schedule with fixed periods" />
 
 Figure 3: Data communication without and with Logical Execution Time paradigm.
 
-An Example of the LET-concept is shown in Figure 2. Two processes are communicating data: the timepoint when this data is written is at the end of the process. In the default case, the process p<sub>3</sub> and already p<sub>4</sub> receive the update. At the right side of the figure, the same scenario is shown with LET-semantics, in which the data is communicated only a period-boundaries. In this case the lower process communicates at the end of the period, so that p<sub>3</sub> and p<sub>5</sub> receive the new data.
+An Example of the LET-concept is shown in Figure 2. Assume that two processes are communicating data via one global variable. The timepoint when this data is written is at the end of the processing time. In the default case (left side), the process p<sub>3</sub> and p<sub>4</sub> receive the update. At the right side of the figure, the same scenario is shown with LET-semantics. Here, the data is communicated only at period boundaries. In this case, the lower process communicates at the end of the period, so that always process p<sub>3</sub> and p<sub>5</sub> receive the new data.
 
-The described real-time embedded use case relies on the following conecpts:
-- periodic execution
-- assginement of fixed priorities
-- preemptive scheduling on process level
-- co-operative scheduling within a process
-- LET for data synchronization
+The described embedded use case relies on the following concepts:
+- periodic execution of processes
+- assignment of fixed priorities to processes
+- preemptive scheduling of processes
+- co-operative scheduling of tasks within a process (sequential execution)
+- data synchronization with LET-semantics
 
-While periodic task activation is possible in ROS2 by using timers as well as using preemptive scheduling and setting priorities on the granularity of threads/processes that correspond to the ROS nodes, it is not possible to sequentially execute tasks. Furthermore data is read from the DDS queue just before it is executed and data is written by using publish-method within the application code. The `spin_period` function of the rclcpp-Executor allows to check for data at a fixed rate and executing those callbacks for which data is available, however, with this spin-function it is not possible to trigger all callbacks irrespective wheter data is available or not.
+While periodic activation is possible in ROS2 by using timers, preemptive scheduling is supported by the operating system and assigning priorities on the granularity of threads/processes that correspond to the ROS nodes; it is not possible to sequentially execute callbacks, which have no data-dependency. Furthermore data is read from the DDS queue just before the callback is executed and data is written sometime during the time the application is executed. While the `spin_period` function of the rclcpp-Executor allows to check for data at a fixed period and executing those callbacks for which data is available, however, with this spin-function does not execute all callbacks irrespective wheter data is available or not. So `spin_period` is not helpful to periodically execute a number of callbacks (aka tasks within a process). So we need a mechanism that triggers the execution of multiple callbacks (aka tasks) based on a timer. Data transmission is achieved via DDS which does not allow to implement a LET-semantics. To summarize, we derive the following requirements:
 
+Derived Requirements:
+- trigger the execution of multiple callbacks
+- sequential processing of callbacks
+- data synchronization with LET semantics
 
 #### Software design patterns in mobile robotics
 
-In this section we describe common software design patterns in mobile robotics to achieve deterministic behavior. For each design pattern we describe the motivation and the derived requirements for an Executor.
+In this section we describe common software design patterns which are used in mobile robotics to achieve deterministic behavior. For each design pattern we describe the concept and the derived requirements for a deterministic Executor.
 
-##### Sense-plan-act Pipeline
+##### Sense-plan-act pipeline
 
-Motivation:
+Concept:
 
-A common design paradigm is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and act-phase to steer the mobile robot. Of course, more phases are possible, here this shall only serve as an example. Such a processing pipeline is presented in Figure 4.
-<img src="png/sensePlanActScheme.png" alt="Sense Plan Act Pipeline" />
+A common design paradigm in mobile robotics is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and an actuation-phase to steer the mobile robot. Of course, more phases are possible, here these three phases shall serve as an example. Such a processing pipeline is shown in Figure 4.
+
+<img src="png/sensePlanActScheme.png" alt="Sense Plan Act Pipeline" width="700"/>
 
 Figure 4: Multiple sensors driving a Sense-Plan-Act pipeline.
 
-Typically multiple sensors are used for the perception of the environment. For example an IMU and a Laser. The main goal for the localization algorithm is to work always on the latest data. One way to achive this is to execute first all sensor drivers in the sense-phase. Currently this is not possible with ROS2-Executor because the order of execution cannot be determined. One could design such a pipeline with data-driven principle, however if one topic of the sensing phase is subscribed by a callback in a later phase, then the order of processing muliple subscribers for the same topic is arbitrary.
+Typically multiple sensors are used to perceive the environment. For example an IMU and a laser scanner. The quality of localization algorithms highly depend on how old such sensor data is when it is processed. Ideally the latest data of all sensors should be processed. One way to achive this is to execute first all sensor drivers in the sense-phase and then process all algorithms in the plan-phase.
 
-For this sense-plan-act pattern, we could define one executor for each phase. The plan-phase would be triggered e.g. only when the sense-phase has finished, that is both the callbacks for the IMU and Laser have finished.
+Currently, such a processing order cannot be defined with the default ROS2-Executor. One could in principle design a data-driven pipeline, however if e.g. the Laser scan is needed by some other callback in the sense-phase as well as in the plan-phase, the processing order of these subscribers is arbitrary.
+
+For this sense-plan-act pattern, we could define one executor for each phase. The plan-phase would be triggered only when all callbacks in the sense-phase have finished.
 
 Derived Requirements:
 - triggered execution of callbacks
 
 ##### Synchronization of multiple rates
 
-Motivation:
+Concept:
 
-Often multiple sensors are being used to sense the invironment for mobile robotics. While an IMU sensor provides data samples at a very high rate (e.g 500Hz), laser scans are availabe at a much slower frequency (e.g. 10Hz) determined by the revolution time. Then the question is, how to fuse these data samles with different frequencies deterministically.
+Often multiple sensors are being used to sense the invironment for mobile robotics. While an IMU sensor provides data samples at a very high rate (e.g 500Hz), laser scans are availabe at a much slower frequency (e.g. 10Hz) determined by the revolution time. Then the challenge is, how to deterministically fuse sensor data with different frequencies. This problem is depicted in Figure 5.
 
 <img src="png/sensorFusion_01.png" alt="Sychronization of multiple rates" width="300" />
 
 Figure 5: How to deterministically process multi-frequent sensor data.
 
-Due to scheduling effects, the callback for the laser scan might be called just before or after an IMU data is received. One way of sensor fusion is take this into account in the software itself and write additional synchronization code. Obviously, being an application specific solution.
+Due to scheduling effects, the callback for evaluating the laser scan might be called just before or just after an IMU data is received. One way to tackle this is to write additional synchronization code inside the application. Obviously, this is a cumbersome and not-portable solution.
 
-
-An Alternative would be to evalute the IMU sample and laser scan by synchronizing their frequency. For example process always 50 IMU samples and one laser scan. This is symbolized in Figure 6, in which a pre-processing callback aggregates the IMU samples and sends a message with ten samples at 10Hz rate as well. With a trigger, that checks for both messages, the aggregates IMU message as well as the laser scan, sensor fusion callback is guaranteed to process at a synchronized sampling rate.
+An Alternative would be to evalute the IMU sample and the laser scan by synchronizing their frequency. For example by processing always 50 IMU samples with one laser scan. This approach is shown in Figure 6. A pre-processing callback aggregates the IMU samples and sends an aggregated message with 50 samples at 10Hz rate. Now both messages have the same frequency. With a trigger condition, which fires when both messages are available, the sensor fusion algorithm can expect always synchronized input data.
 
 <img src="png/sensorFusion_02.png" alt="Sychnronization with a trigger" width="400" />
 
 Figure 6: Synchronization of multiple input data with a trigger.
 
-
-<!--
-Gliederung:
-- requirements time-triggered use-case
-- robotics software architectures
-- why it is not possible to use ROS2 Executor for this?
-  - erstmal gibt es keinen Executor als C API
-  - no general trigger concept
-    - message filter concept to order/align messages - but not part of executor (only based on timestamping) general trigger does not exist
-    - each callback is called whenever new data is available (kind-of) in case multiple input data is available - order aka priority cannot be defined
-    (message filters based on timestamp could be helpful - but that is outside the Executor and a cpp-framework - does not work with RCL layer alone)
-  - sequential execution (e.g. to define co-operative task execution) not possible - currently the order of processing is implicit by collection of callbacks in the nodes and in which order the executor processes multiple nodes. user has no say about it.
-  - deterministic semantic for time-triggered systems (LET)
-
-- Executor with deterministic Features
-  - trigger
-  - sequential execution
-  - LET semantics, and Round Robin semantics (ROS2 rclcpp executor default)
-
--  solutions for the given use-cases (als bild - oder textuell? minimal-bsp)
-   - time triggered use case
-   - sense-plan act
-   - sensor fusion
-   - high priority path  
-
-
-ROS2 lacking possiblility to co-relate activation of tasks (without data-dependency)
-=> derived requirement: Executor would be to trigger the processing of the laser based on the number of IMU samples
--->
-
+In ROS2 this is currently not possible to model because of the lack of a trigger concept in the ROS2 Executor. Message filters could be used to synchronize input data based on the timestamp in the header, but this is only available in rclcpp (and not in rcl). Further more, it would be more efficient to have such a trigger concept directly in the Executor.
 <!--
 TODO
 - Bilder erweitern mit drei boxen: request IMU, process laser, fusion
   dann wird klarer was mit den Daten wird
 - Aus dem Bild die Beschreibung löschen
 -->
-An other approach is to activly request IMU data each time a laser scan message is received.  This concept is shown in Figure 7. Upon arrival of a laser scan mesage, first a request for the aggregated IMU samples is issued and processed. Secondly, the laser scan is processed and then the sensor fusion. Here we see two design principles, the trigger and sequential execution.:
+Another idea would be to activly request for IMU data only when a laser scan is received. This concept is shown in Figure 7. Upon arrival of a laser scan mesage, first, a message with aggregated IMU samples is requested. Then, the laser scan is processed and later the sensor fusion algorithm. An Executor, which would support sequential execution of callbacks, could realize this idea.
 
 <img src="png/sensorFusion_03.png" alt="Sychronization with sequence" width="350" />
 
-Figure 7: Sychnronization with trigger and sequential order.
+Figure 7: Synchronization with sequential processing.
 
 
-Derived Requirements:
-- trigger which executes a callback based on availabilty of input data
+Derived Requirements from both concepts:
+- triggered execution
 - sequential procesing of callbacks
 
 ##### High priority path
@@ -235,84 +216,87 @@ Assuming a simplified control loop with the activities sense-plan-act, the obsta
 Derived requirements:
 - sequential processing of callbacks
 
+### Features
 
-### Features of RCLC-Executor
-
-[Executor Features]
-In order address the requirements for the real-time embedded use-case, we have designed an Executor with the following main features:
-- user-defined sequential execution of callbacks (aka tasks)
+Based on the real-time embedded use-case as well as the software architecture patterns in mobile robotics we propose an Executor with the following main features:
+- user-defined sequential execution of callbacks
 - trigger condition to activate processing
-- LET-semantics for data communication
+- data synchronization: LET-semantics or rclcpp Executor semantics
 
-The Executor is based on the RCL library and is written in C.
-The lifespan of the Executor can be divided in two phases: Configuration and Running.
+As stated before, this Executor is based on the RCL library and is written in C to nativly support micro-controller applications written in C. These features are now described in more detail.
 
-in more detail:
+#### Sequential execution
 
-Sequential execution:
+- At configuration, the user defines the order of handles
+- At configuration, the defines, if the handle shall only called when new data is available (ON_NEW_DATA) or if the callback shall always be called (ALWAYS).
+- At runtime, all handles are processed in the user-defined order
+  - if the configuration of handle is ON_NEW_DATA, then the corresponding callback is only called if new data is available
+  - if the configuration of the handle is ALWAYS, then the corresponding callback is always executed
 
-- Define the order execution order in which the tasks (callbacks, timers, etc. ) are processed
+#### Trigger condition
 
-
-Trigger condition
-
-- Given a set of handles, a trigger condition based on the input data of these handles shall decide all these handles shall be processed
+- Given a set of handles, a trigger condition based on the input data of these handles shall decide when the processing is started.
 
 - Avaiable options:
-  - AND operation: meaning when all data is available for all handles
-  - ANY operation: when one input data is available
-  - ONE: one particular handle is ready
-  - User-defined function: the user can implement more sophisticated logic
+  - AND operation: fires when input data is available for all handles
+  - ANY operation: fires when input data is available for at least one handle
+  - ONE: fires when input data for a user-specified handle is available
+  - User-defined function: user can implement more sophisticated logic
 
-LET-Semantics
+#### LET-Semantics
+- Assumption: time-triggered system, the executor is activated periodically
+- When the trigger fires, reads all input data and makes a local copy
+- Processes all callbacks in sequential order
+- Write output data at the end of the executor's period (Note: this is not implemented yet)
 
-- Particularly for periodic systems
-- Read input data at the beginning, make a local copy
-- Process callbacks
-- Write output data at the end of period
+Additionally we have implemented the current rclcpp Executor semantics:
+- waiting for new data for all handles (rcl_wait)
+- using trigger condition ANY
+- if trigger fires, start processing handles in pre-defined sequential order
+- request from DDS-queue the new data just before the handle is executed (rcl_take)
 
-Default-Semantics (compatability with ROS2)
-
-- When data becomes available for a handle, process the callback of the corresponding handle
-
-### RCLC-Executor API
-
+### Executor API
+The API of the RCLC-Executor can be divided in two phases: Configuration and Running.
 #### Configuration phase
-During the configuration phase, the user has to define
+During the configuration phase, the user shall define:
 - the total number of callbacks
 - the sequence of the callbacks
-- trigger contition (optional)
-- data communcation semantics (optional)
+- trigger contition (optional, default: ANY)
+- data communcation semantics (optional, default ROS2)
 
-As the Executor is intended for embedded controllers, dynamic memory management is crucial. So at initialization of the Executor, the user defines the total number of callbacks. The necessary dynamic memory will be allocated only in this phase and no more memory in the running phase. This makes this Executor static in the sense, that during runtime no additional callbacks can be added.
+As the Executor is intended for embedded controllers, dynamic memory management is crucial. Therefore at initialization of the RCLC-Executor, the user defines the total number of callbacks. The necessary dynamic memory will be allocated only in this phase and no more memory in the running phase. This makes this Executor static in the sense, that during runtime no additional callbacks can be added.
 
-Then, the user assigns all callbacks (e.g. for subscriptions and timers) to the Executor. The order in which this takes place, defines the sequential order or processing in the running phase. For callbask the user can specify, if the callback shall be executed when new data is available or always (ON_NEW_DATA, ALWAYS). The second case is useful when the callback is expected to be called e.g. in a fixed rate.
+Then, the user adds handles and the corresponding callbacks (e.g. for subscriptions and timers) to the Executor. The order in which this takes place, defines later the sequential processing order during runtime.
 
-A trigger condition defines when the processing of these callbacks begins. For convenience some default conditions have been defined:
+For each handle the user can specify, if the callback shall be executed only if new data is available (ON_NEW_DATA) or if the callback shall always be executed (ALWAYS). The second option is useful when the callback is expected to be called at a fixed rate.
+
+The trigger condition defines when the processing of these callbacks shall start. For convenience some default conditions have been defined:
 - trigger_any(default) : start executing if any callback has new data
 - trigger_and : start executing if all callbacks have new data
-- trigger_one(&data) : start executing if 'data' has been received
+- trigger_one(&`data`) : start executing if `data` has been received
 - user_defined_function: the user can also define its own function with more complex logic
 
-With 'trigger_any' being the default, the usual ROS2 semantics is selected.
+With 'trigger_any' being the default, the current semantics of the rclcpp Executor is selected.
 
 The data communication semantics can be
 - ROS2 (default)
-- LET semantics
+- LET
+
 To be compatible with ROS2 rclcpp Executor, the existing rclcpp semantics is implemented as 'ROS2'. That is, with the spin-function the DDS-queue is constantly monitored for new data (rcl_wait). If new data becomes available, then is fetched from DDS (rcl_take) immediately before the callback is executed. All callbacks are processed in the user-defined order, this is the only difference to the rclcpp Executor, in which no order can be specified.
 
 Secondly, the LET semantics is implemented such that at the beginning of processing all available data is fetched (rcl_take) and buffered and then the callbacks are processed in the pre-defined operating on the buffered copy.
 
-TODO add API calls
-
-
 #### Running phase
 
-As the main functionality, the Executor has a spin-function which constantly checks for new data at the DDS-queue, like the rclcpp Executor in ROS2. If the trigger condition is satisfied then all available data from the DDS queue is processed according to the specified semantics (ROS or LET) in the user-defined sequential order. After all callbacks have been processed the DDS is checked for new data again.
+As the main functionality, the Executor has a `spin`-function which constantly checks for new data at the DDS-queue, like the rclcpp Executor in ROS2. If the trigger condition is satisfied then all available data from the DDS queue is processed according to the specified semantics (ROS or LET) in the user-defined sequential order. After all callbacks have been processed the DDS is checked for new data again.
 
-TODO add API calls
+Available spin functions are
+- `spin_some`  - spin one time
+- `spin_period` - spin with a period
+- `spin` - spin indefinitly
 
 ### Examples
+
 #### Embedded use-case
 
 With seqential execution the co-operative scheduling of tasks within a process can be modeled. The trigger condition is used to periodically activate the process which will then execute all callbacks in a pre-defined order. Data will be communicated using the LET-semantics. Every Executor is executed in its own tread, to which an appropriate priority can be assigned.
