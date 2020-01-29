@@ -296,7 +296,7 @@ Available spin functions are
 - `spin` - spin indefinitly
 
 ### Examples
-
+We provide the relevant code snippets how to setup the RCLC-Executor for the embedded use case and for the software design patterns in mobile robotics applications as described above.
 #### Embedded use-case
 
 With seqential execution the co-operative scheduling of tasks within a process can be modeled. The trigger condition is used to periodically activate the process which will then execute all callbacks in a pre-defined order. Data will be communicated using the LET-semantics. Every Executor is executed in its own tread, to which an appropriate priority can be assigned.
@@ -362,10 +362,8 @@ rclc_executor_spin(&exe);
 #### Sense-plan-act pipeline
 
 In this example we want to realise a sense-plan-act pipeline in a single thread. The trigger condition is demonstrated by activating
-the sense-phase when both data for the Laser and IMU are available. Three executors are necessary `exe_sense`, `exe_plan`
-and `exe_act`. The two sensor acquisition callbacks `sense_Laser` and `sense_IMU` are registered in the Executor `exe_sense`.
-The trigger condition ALL is responsible to activate the sense-phase only when all data for these two callbacks are available.
-Finally all three Executors are spinning using a `while`-loop and the `spin_some` function.
+the sense-phase when both data for the Laser and IMU are available. Three executors are necessary `exe_sense`, `exe_plan` and `exe_act`. The two sensor acquisition callbacks `sense_Laser` and `sense_IMU` are registered in the Executor `exe_sense`.
+The trigger condition ALL is responsible to activate the sense-phase only when all data for these two callbacks are available. Finally all three Executors are spinning using a `while`-loop and the `spin_some` function.
 
 The definitions of callbacks are omitted.
 
