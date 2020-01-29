@@ -238,7 +238,7 @@ As stated before, this Executor is based on the RCL library and is written in C 
 - Given a set of handles, a trigger condition based on the input data of these handles shall decide when the processing is started.
 
 - Avaiable options:
-  - AND operation: fires when input data is available for all handles
+  - ALL operation: fires when input data is available for all handles
   - ANY operation: fires when input data is available for at least one handle
   - ONE: fires when input data for a user-specified handle is available
   - User-defined function: user can implement more sophisticated logic
@@ -272,7 +272,7 @@ For each handle the user can specify, if the callback shall be executed only if 
 
 The trigger condition defines when the processing of these callbacks shall start. For convenience some default conditions have been defined:
 - trigger_any(default) : start executing if any callback has new data
-- trigger_and : start executing if all callbacks have new data
+- trigger_all : start executing if all callbacks have new data
 - trigger_one(&`data`) : start executing if `data` has been received
 - user_defined_function: the user can also define its own function with more complex logic
 
@@ -352,109 +352,131 @@ rclc_executor_add_subscription(&exe, &sub2, &my_sub_cb2, ALWAYS);
 rclc_executor_add_subscription(&exe, &sub3, &my_sub_cb3, ALWAYS);
 rclc_executor_add_timer(&exe, &timer);
 // trigger when handle 'timer' is ready
-rclc_executor_trigger_one(&exe, &timer);
+rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &timer);
 // select LET-semantics
 rclc_executor_data_comm_semantics(&exe, LET);
 // spin forever
 rclc_executor_spin(&exe);
 ```
 
-While these Executor features are well suited for the embedded use-case, we identified also a number of software design patterns in robotics which are improving deterministic execution.
-
 #### Sense-plan-act pipeline
 
+In this example we want to realise a sense-plan-act pipeline in a single thread. The trigger condition is demonstrated by activating
+the sense-phase when both data for the Laser and IMU are available. Three executors are necessary `exe_sense`, `exe_plan`
+and `exe_act`. The two sensor acquisition callbacks `sense_Laser` and `sense_IMU` are registered in the Executor `exe_sense`.
+The trigger condition ALL is responsible to activate the sense-phase only when all data for these two callbacks are available.
+Finally all three Executors are spinning using a `while`-loop and the `spin_some` function.
+
+The definitions of callbacks are omitted.
+
+```C
+...
+rcl_subscription_t sense_Laser, sense_IMU, plan, act;
+rcle_let_executor_t exe_sense, exe_plan, exe_act;
+// initialize executors
+rclc_executor_init(&exe_sense, &context, 2, ...);
+rclc_executor_init(&exe_plan, &context, 1, ...);
+rclc_executor_init(&exe_act, &context, 1, ...);
+// executor for sense-phase
+rclc_executor_add_subscription(&exe_sense, &sense_Laser, &my_sub_cb1, ON_NEW_DATA);
+rclc_executor_add_subscription(&exe_sense, &sense_IMU, &my_sub_cb2, ON_NEW_DATA);
+rclc_let_executor_set_trigger(&exe_sense, rclc_executor_trigger_all, NULL);
+// executor for plan-phase
+rclc_executor_add_subscription(&exe_plan, &plan, &my_sub_cb3, ON_NEW_DATA);
+// executor for act-phase
+rclc_executor_add_subscription(&exe_act, &act, &my_sub_cb4, ON_NEW_DATA);
+
+// spin all executors
+while (true) {
+  rclc_executor_spin_some(&exe_sense);
+  rclc_executor_spin_some(&exe_plan);
+  rclc_executor_spin_some(&exe_act);
+}
+```
 #### Sensor fusion
 
-- Multiple rates
-- Co-relating task activation
+The sensor fusion synchronizing the multiple rates with a trigger is shown below.
 
+```C
+...
+rcl_subscription_t aggr_IMU, sense_Laser, sense_IMU;
+rcle_let_executor_t exe_aggr, exe_sense;
+// initialize executors
+rclc_executor_init(&exe_aggr, &context, 1, ...);
+rclc_executor_init(&exe_sense, &context, 2, ...);
+// executor for aggregate IMU data
+rclc_executor_add_subscription(&exe_aggr, &aggr_IMU, &my_sub_cb1, ON_NEW_DATA);
+// executor for sense-phase
+rclc_executor_add_subscription(&exe_sense, &sense_Laser, &my_sub_cb2, ON_NEW_DATA);
+rclc_executor_add_subscription(&exe_sense, &sense_IMU, &my_sub_cb3, ON_NEW_DATA);
+rclc_executor_set_trigger(&exe_sense, rclc_executor_trigger_all, NULL);
+
+// spin all executors
+while (true) {
+  rclc_executor_spin_some(&exe_aggr);
+  rclc_executor_spin_some(&exe_sense);
+}
+```
+
+The setup for the sensor fusion using sequential execution is shown below.
+Note that the sequetial order is `sense_IMU`, which will request the aggregated IMU message, and then `sense_Laser`
+while the trigger will fire, when a laser message is received.
+
+```C
+...
+rcl_subscription_t sense_Laser, sense_IMU;
+rcle_let_executor_t exe_sense;
+// initialize executor
+rclc_executor_init(&exe_sense, &context, 2, ...);
+// executor for sense-phase
+rclc_executor_add_subscription(&exe_sense, &sense_IMU, &my_sub_cb1, ALWAYS);
+rclc_executor_add_subscription(&exe_sense, &sense_Laser, &my_sub_cb2, ON_NEW_DATA);
+rclc_executor_set_trigger(&exe_sense, rclc_executor_trigger_one, &sense_Laser);
+// spin
+rclc_executor_spin(&exe_sense);
+```
 #### High priorty path
 
+This example shows the sequential processing order to execute the obstacle avoidance `obst_avoid`
+after the callbacks of the sense-phase and before the callback of the planning phase `plan`.
+The control loop is started when a laser message is received. Then an aggregated IMU message is requested,
+like in the example above. Then all the other callbacks are always executed. This assumes that these callbacks
+communicate via a global data structure. Race conditions cannot occur, because the callbacks
+run all in one thread.
 
+```C
+...
+rcl_subscription_t sense_Laser, sense_IMU, plan, act, obst_avoid;
+rcle_let_executor_t exe;
+// initialize executors
+rclc_executor_init(&exe, &context, 5, ...);
+// define processing order
+rclc_executor_add_subscription(&exe, &sense_IMU, &my_sub_cb1, ALWAYS);
+rclc_executor_add_subscription(&exe, &sense_Laser, &my_sub_cb2, ON_NEW_DATA);
+rclc_executor_add_subscription(&exe, &obst_avoid, &my_sub_cb3, ALWAYS);
+rclc_executor_add_subscription(&exe, &plan, &my_sub_cb4, ALWAYS);
+rclc_executor_add_subscription(&exe, &act, &my_sub_cb5, ALWAYS);
+rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &sense_Laser);
+// spin
+rclc_executor_spin(&exe);
+```
 
 ### Summary
 
-C executor with standard ROS2 semantics. If you want more deterministic behavior, you can do that for data-driven or time-driven software architectures.
-
-- Standard ROS2 semantic (react on every DDS event)
-
-- Can define trigger (AND, ANY, ONE, user-defined function)
-
-- Sequential processing order
-
-- LET semantics
+The RCLC Executor is an Executor for C applications and can be used with default rclcpp Executor semantics. If additional deterministic behavior is necessary, the user can rely on pre-defined sequential execution, trigged execution and LET-Semantics for data synchronization.
 
 ### Future work
 
-- Full LET semantic (sending at the end of the period)
-  - one publisher that periodically publish
-  - if multiple periods are implemented in multiple threads, need to
-    make publishing in each phase atomic.
-- support client, services, guard conditions as handles
+- Full LET semantics (writing data at the end of the period)
+  - one publisher that periodically publishes
+  - if Executors are running in multiple threads,
+    publishing needs to be atomic
+- add support for handle types: client, services, guard conditions
 
 
-### Download - UPDATE!
-The LET-Executor can be downloaded from the micro-ROS GitHub [rcl_executor repository](https://github.com/micro-ROS/rcl_executor). The package [rcl_executor](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor) provides the LET-Executor library with a step-by-step tutorial and the package [rcl_executor_examples](https://github.com/micro-ROS/rcl_executor/tree/dashing/rcl_executor_examples) provides an example, how to use the LET-Executor.
+### Download
+The RCLC-Executor can be downloaded from the micro-ROS GitHub [rclc repository](https://github.com/micro-ROS/rclc). The package [rclc](https://github.com/micro-ROS/rclc/tree/feature/new_api_and_LET_executor_trigger/rclc) provides the RCLC-Executor library and the package [rclc_examples](https://github.com/micro-ROS/rclc/tree/feature/new_api_and_LET_executor_trigger/rclc_examples) provides an example, how to use the LET-Executor.
 
-
-REMOVE THIS STUFF BELOW HERE
-
-## Rcl LET-Executor
-This section describes the rcl-LET-Executor. It is a first step towards deterministic execution by providing static order scheduling with a let semantics. The abbreviation let stands for Logical-Execution-Time (LET) and is a known concept in automotive domain to simplify synchronization in process scheduling. If refers to the concept to schedule multiple ready tasks in such a way, that first all input data is read for all tasks, and then all tasks are executed. This removes any inter-dependence of input data among these ready tasks and hence input data synchronization is not necessary any more[[BP2017](#BP2017)] [[EK2018](#EK2018)].
-
-
-
-### Concept
-The LET-Executor consists of tho phases, configuration and running phase. First, in configuration phase, the total number of handles are defined. A handle is the term in the rcl-layer to generalize _timers_, _subscriptions_, _services_ etc.. Also in this phase, the execution order of the callbacks is defined. Secondly, in the running phase, the availability of input data for all handles is requested from the DDS-queue, then all received input data is stored and, finally, all callbacks corresponding to the handles are executed in the specified order. With this two-step approach, the LET-Executor guarantees a deterministic callback execution (pre-defined static order) and implements the LET semantics while executing the callbacks.
-
-### Example
-
-We provide an example for using the LET-Executor. First, the callbacks _my\_sub\_cb_ and my_timer\_cb_ are defined for a subscription and a timer, respectivly. Then, the ROS _context_ and the ROS _node_ are defined as well as the subscription object _sub_ and the timer object _timer_.
-
-The Executor is initialized with two handles. Then, the _add_ functions define the static execution order of the handles. In this example, the subscription _sub_ shall be processed before the timer _timer_. Finally, the Executor is activated with the _spin\_period_ function, which is continuously called every 20 ms.
-```C
-#include "rcl_executor/let_executor.h"
-
-// define subscription callback
-void my_sub_cb(const void * msgin)
-{
-  // ...
-}
-
-// define timer callback
-void my_timer_cb(rcl_timer_t * timer, int64_t last_call_time)
-{
-  // ...
-}
-
-// necessary ROS 2 objects
-rcl_context_t context;   
-rcl_node_t node;
-rcl_subscription_t sub;
-rcl_timer_t timer;
-rcle_let_executor_t exe;
-
-// define ROS context
-context = rcl_get_zero_initialized_context();
-// initialize ROS node
-rcl_node_init(&node, &context,...);
-
-// create a subscription
-rcl_subscription_init(&sub, &node, ...);
-
-// create a timer
-rcl_timer_init(&timer, &my_timer_cb, ... );
-
-// initialize executor with two handles
-rcle_let_executor_init(&exe, &context, 2, ...);
-
-// define static execution order of handles
-rcle_let_executor_add_subscription(&exe, &sub, &my_sub_cb, ...);
-rcle_let_executor_add_timer(&exe, &timer);
-
-// spin with a period of 20ms
-rcle_let_executor_spin_period(&exe, 20);
-```
 
 
 ## Callback-group-level Executor
