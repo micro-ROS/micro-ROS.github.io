@@ -76,7 +76,7 @@ Questions:
 
 Only very basic concepts (node, subscription and publisher) implemented so far. Whole library has just 500 LoC in sum.
 
-Has OSRF plans for it in the midterm? They have mentioned it on the roadmap, [ROS 2 roadmap](https://github.com/micro-ROS/rclc/tree/feature/api_documentation).
+Has OSRF plans for it in the midterm? They have mentioned it on the roadmap, [rclc master](https://github.com/micro-ROS/rclc).
 
 ## Dynamic Memory Management in ROS 2
 
@@ -124,7 +124,7 @@ A design document of Fast RTPS approach: [https://github.com/eProsima/Fast-RTPS/
 
 Libstdc++ makes use of dynamic memory allocation and provides features which may not be available on microcontrollers, i.e. not portable to relevant RTOS. Also, its resource consumption (in particular code size) might be relevant. Nevertheless, C++ may be used on microcontrollers.
 
-First, it is possible to use a subset only, which does not require libstdc++ at all. A tiny demo with rclc is provided at [https://github.com/micro-ROS/rclc/blob/example/c_with_templates/rclc/include/rclc/rclc.h#L24](https://github.com/micro-ROS/rclc/blob/example/c_with_templates/rclc/include/rclc/rclc.h#L24) and [https://github.com/micro-ROS/micro-ROS_experiments/blob/experiment/c_with_templates/c_with_templates/main.cpp](https://github.com/micro-ROS/micro-ROS_experiments/blob/experiment/c_with_templates/c_with_templates/main.cpp).
+First, it is possible to use a subset only, which does not require libstdc++ at all. A tiny demo with rclc is provided at [https://github.com/micro-ROS/micro-ROS_experiments/blob/experiment/c_with_templates/c_with_templates/main.cpp](https://github.com/micro-ROS/micro-ROS_experiments/blob/experiment/c_with_templates/c_with_templates/main.cpp).
 
 Further links:
 
