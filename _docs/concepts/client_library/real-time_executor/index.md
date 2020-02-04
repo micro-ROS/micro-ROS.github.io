@@ -218,7 +218,7 @@ Derived requirements:
 
 ### Features
 
-Based on the real-time embedded use-case as well as the software architecture patterns in mobile robotics we propose an Executor with the following main features:
+Based on the real-time embedded use-case as well as the software architecture patterns in mobile robotics, we propose an Executor with the following main features:
 - user-defined sequential execution of callbacks
 - trigger condition to activate processing
 - data synchronization: LET-semantics or rclcpp Executor semantics
