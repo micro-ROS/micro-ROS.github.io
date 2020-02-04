@@ -249,11 +249,13 @@ As stated before, this Executor is based on the RCL library and is written in C 
 - Processes all callbacks in sequential order
 - Write output data at the end of the executor's period (Note: this is not implemented yet)
 
-Additionally we have implemented the current rclcpp Executor semantics:
+Additionally we have implemented the current rclcpp Executor semantics ("RCLCPP"):
 - waiting for new data for all handles (rcl_wait)
 - using trigger condition ANY
 - if trigger fires, start processing handles in pre-defined sequential order
 - request from DDS-queue the new data just before the handle is executed (rcl_take)
+
+The selection of the Executor semantics is optional. The default semantics is "RCLCPP". 
 
 ### Executor API
 The API of the RCLC-Executor can be divided in two phases: Configuration and Running.
