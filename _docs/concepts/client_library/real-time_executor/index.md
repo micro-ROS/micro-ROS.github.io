@@ -69,7 +69,7 @@ ROS 2 allows to bundle multiple nodes in one operating system process. To coordi
 
 The ROS 2 design defines one Executor (instance of [rclcpp::executor::Executor](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/executor.hpp)) per process, which is typically created either in a custom main function or by the launch system. The Executor coordinates the execution of all callbacks issued by these nodes by checking for available work (timers, services, messages, subscriptions, etc.) from the DDS queue and dispatching it to one or more threads, implemented in [SingleThreadedExecutor](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/executors/single_threaded_executor.hpp) and [MultiThreadedExecutor](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/executors/multi_threaded_executor.hpp), respectively.
 
-The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor looks up the wait queues, which notifies it of any pending callback in the DDS queue. If there are multiple pending callbacks, the ROS 2 Executor executes them in an in the order as they were registred at the Executor.
+The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor looks up the wait sets, which notifies it of any pending callback in the DDS queue. If there are multiple pending callbacks, the ROS 2 Executor executes them in an in the order as they were registered at the Executor.
 
 ### Architecture
 
@@ -96,7 +96,7 @@ In a recent paper [CB2019](#CB2019), the rclcpp Executor has been analyzed in de
 Due to these findings, the authors present an alternative approach to provide determinism and to apply well-known schedulability analyses to a ROS 2 systems. A response time analysis is described under reservation-based scheduling.
 
 ## RCLC-Executor
-Here we introduce an RCLC-Executor, which is a ROS2-Executor based on RCL-layer for applications written in the C language. Often embedded applications require real-time to guarantee end-to-end latencies and need deterministic runtime behavior to correctly re-play test data. However, this is difficult with the default ROS2 Executor because of its complex semantics, as discussed in the previous section.
+Here we introduce the rclc Executor, which is a ROS 2 Executor implemented based on and for the rcl API, for applications written in the C language. Often embedded applications require real-time to guarantee end-to-end latencies and need deterministic runtime behavior to correctly replay test data. However, this is difficult with the default ROS 2 Executor because of its complex semantics, as discussed in the previous section.
 
 First, we will analyse the requirements for such applications and, secondly, derive simple features for an Executor to enable deterministic and real-time behavior. Then we will present the API of the RCLC-Executor and provide example usages of the RCLC-Executor to address these requirements.
 
@@ -104,7 +104,7 @@ First, we will analyse the requirements for such applications and, secondly, der
 First we discuss a use-case in the embedded domain, in which the time-triggered paradigm is often used to guarantee deterministic and real-time behavior. Then we analyse software design patterns in mobile robotics which enable deterministic behavior.
 
 #### Real-time embedded application used-case
-In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure 1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are pre-empted multiple times depicted with empty dashed boxes.
+In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure 1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are preempted multiple times depicted with empty dashed boxes.
 
 <img src="png/scheduling_01.png" alt="Schedule with fixed periods" width="350"/>
 
@@ -119,7 +119,7 @@ Figure 2: Processes with sequentially executed tasks.
 While there are different ways to assign priorities to a given number of processes,
 the rate-monotonic scheduling assignment, in which processes with a shorter period have a higher priority, has been shown optimal if the processor utilization is less than 69% [LL1973](#LL1973).
 
- In the last decades many different scheduling approaches have been presented, however fixed-periodic pre-emptive scheduling is still widely used in embedded real-time systems [KZH2015](#KZH2015]). This becomes also obvious, when looking at the features of current operating systems. Like Linux, real-time operating systems, such as NuttX, Zephyr, FreeRTOS, QNX etc., support fixed-periodic preemptive scheduling and the assignment of priorities, which makes the time-triggered paradigm the dominant design principle in this domain.
+ In the last decades many different scheduling approaches have been presented, however fixed-periodic preemptive scheduling is still widely used in embedded real-time systems [KZH2015](#KZH2015]). This becomes also obvious, when looking at the features of current operating systems. Like Linux, real-time operating systems, such as NuttX, Zephyr, FreeRTOS, QNX etc., support fixed-periodic preemptive scheduling and the assignment of priorities, which makes the time-triggered paradigm the dominant design principle in this domain.
 
 However, data consistency is often an issue when preemptive scheduling is used and if data is being shared across multiple processes via global variables. Due to scheduling effects and varying execution times of processes, writing and reading these variables could occur sometimes sooner or later. This results in an latency jitter of update times (the timepoint at which a variable change becomes visible to other processes). Race conditions can occur when multiple processes access a variable at the same time. So solve this problem, the concept of logical-execution time (LET) was introduced in [HHK2001](#HHK2001), in which communication of data occurs only at pre-defined periodic time instances: Reading data only at the beginning of the period and writing data only at the end of the period. The cost of an additional latency delay is traded for data consistency and reduced jitter. This concept has also recently been applied to automotive applications  [NSP2018](#NSP2018).
 
@@ -228,7 +228,7 @@ As stated before, this Executor is based on the RCL library and is written in C 
 #### Sequential execution
 
 - At configuration, the user defines the order of handles
-- At configuration, the defines, if the handle shall only called when new data is available (ON_NEW_DATA) or if the callback shall always be called (ALWAYS).
+- At configuration, the user defines whether the handle shall be called only when new data is available (ON_NEW_DATA) or whether the callback shall always be called (ALWAYS).
 - At runtime, all handles are processed in the user-defined order
   - if the configuration of handle is ON_NEW_DATA, then the corresponding callback is only called if new data is available
   - if the configuration of the handle is ALWAYS, then the corresponding callback is always executed
@@ -237,7 +237,7 @@ As stated before, this Executor is based on the RCL library and is written in C 
 
 - Given a set of handles, a trigger condition based on the input data of these handles shall decide when the processing is started.
 
-- Avaiable options:
+- Available options:
   - ALL operation: fires when input data is available for all handles
   - ANY operation: fires when input data is available for at least one handle
   - ONE: fires when input data for a user-specified handle is available
@@ -261,7 +261,7 @@ The API of the RCLC-Executor can be divided in two phases: Configuration and Run
 During the configuration phase, the user shall define:
 - the total number of callbacks
 - the sequence of the callbacks
-- trigger contition (optional, default: ANY)
+- trigger condition (optional, default: ANY)
 - data communcation semantics (optional, default ROS2)
 
 As the Executor is intended for embedded controllers, dynamic memory management is crucial. Therefore at initialization of the RCLC-Executor, the user defines the total number of callbacks. The necessary dynamic memory will be allocated only in this phase and no more memory in the running phase. This makes this Executor static in the sense, that during runtime no additional callbacks can be added.
