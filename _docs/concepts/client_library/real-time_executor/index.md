@@ -223,7 +223,7 @@ Based on the real-time embedded use-case as well as the software architecture pa
 - trigger condition to activate processing
 - data synchronization: LET-semantics or rclcpp Executor semantics
 
-As stated before, this Executor is based on the RCL library and is written in C to nativly support micro-controller applications written in C. These features are now described in more detail.
+As stated before, this Executor is based on the RCL library and is written in C to nativly support microcontroller applications written in C. These features are now described in more detail.
 
 #### Sequential execution
 
