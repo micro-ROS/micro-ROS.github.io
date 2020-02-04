@@ -261,7 +261,7 @@ The API of the RCLC-Executor can be divided in two phases: Configuration and Run
 During the configuration phase, the user shall define:
 - the total number of callbacks
 - the sequence of the callbacks
-- trigger contition (optional, default: ANY)
+- trigger condition (optional, default: ANY)
 - data communcation semantics (optional, default ROS2)
 
 As the Executor is intended for embedded controllers, dynamic memory management is crucial. Therefore at initialization of the RCLC-Executor, the user defines the total number of callbacks. The necessary dynamic memory will be allocated only in this phase and no more memory in the running phase. This makes this Executor static in the sense, that during runtime no additional callbacks can be added.
