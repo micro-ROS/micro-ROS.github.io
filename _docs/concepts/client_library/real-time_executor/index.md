@@ -227,7 +227,7 @@ As stated before, this Executor is based on the RCL library and is written in C 
 
 #### Sequential execution
 
-- At configuration, the user defines the order of handles
+- At configuration, the user defines the order of handles.
 - At configuration, the user defines whether the handle shall be called only when new data is available (ON_NEW_DATA) or whether the callback shall always be called (ALWAYS).
 - At runtime, all handles are processed in the user-defined order
   - if the configuration of handle is ON_NEW_DATA, then the corresponding callback is only called if new data is available
