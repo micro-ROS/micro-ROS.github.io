@@ -104,7 +104,7 @@ First, we will analyse the requirements for such applications and, secondly, der
 First we discuss a use-case in the embedded domain, in which the time-triggered paradigm is often used to guarantee deterministic and real-time behavior. Then we analyse software design patterns in mobile robotics which enable deterministic behavior.
 
 #### Real-time embedded application used-case
-In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure 1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are pre-empted multiple times depicted with empty dashed boxes.
+In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure 1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are preempted multiple times depicted with empty dashed boxes.
 
 <img src="png/scheduling_01.png" alt="Schedule with fixed periods" width="350"/>
 
