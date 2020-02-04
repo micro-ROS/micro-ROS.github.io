@@ -127,7 +127,7 @@ However, data consistency is often an issue when preemptive scheduling is used a
 
 Figure 3: Data communication without and with Logical Execution Time paradigm.
 
-An Example of the LET-concept is shown in Figure 2. Assume that two processes are communicating data via one global variable. The timepoint when this data is written is at the end of the processing time. In the default case (left side), the process p<sub>3</sub> and p<sub>4</sub> receive the update. At the right side of the figure, the same scenario is shown with LET-semantics. Here, the data is communicated only at period boundaries. In this case, the lower process communicates at the end of the period, so that always process p<sub>3</sub> and p<sub>5</sub> receive the new data.
+An Example of the LET concept is shown in Figure 3. Assume that two processes are communicating data via one global variable. The timepoint when this data is written is at the end of the processing time. In the default case (left side), the process p<sub>3</sub> and p<sub>4</sub> receive the update. At the right side of the figure, the same scenario is shown with LET semantics. Here, the data is communicated only at period boundaries. In this case, the lower process communicates at the end of the period, so that always process p<sub>3</sub> and p<sub>5</sub> receive the new data.
 
 The described embedded use case relies on the following concepts:
 - periodic execution of processes
@@ -166,7 +166,7 @@ Derived Requirements:
 
 Concept:
 
-Often multiple sensors are being used to sense the invironment for mobile robotics. While an IMU sensor provides data samples at a very high rate (e.g 500Hz), laser scans are availabe at a much slower frequency (e.g. 10Hz) determined by the revolution time. Then the challenge is, how to deterministically fuse sensor data with different frequencies. This problem is depicted in Figure 5.
+Often multiple sensors are being used to sense the invironment for mobile robotics. While an IMU sensor provides data samples at a very high rate (e.g., 500 Hz), laser scans are availabe at a much slower frequency (e.g. 10Hz) determined by the revolution time. Then the challenge is, how to deterministically fuse sensor data with different frequencies. This problem is depicted in Figure 5.
 
 <img src="png/sensorFusion_01.png" alt="Sychronization of multiple rates" width="300" />
 
@@ -180,7 +180,7 @@ An Alternative would be to evalute the IMU sample and the laser scan by synchron
 
 Figure 6: Synchronization of multiple input data with a trigger.
 
-In ROS2 this is currently not possible to model because of the lack of a trigger concept in the ROS2 Executor. Message filters could be used to synchronize input data based on the timestamp in the header, but this is only available in rclcpp (and not in rcl). Further more, it would be more efficient to have such a trigger concept directly in the Executor.
+In ROS 2, this is currently not possible to be modeled because of the lack of a trigger concept in the ROS2 Executor. Message filters could be used to synchronize input data based on the timestamp in the header, but this is only available in rclcpp (and not in rcl). Further more, it would be more efficient to have such a trigger concept directly in the Executor.
 <!--
 TODO
 - Bilder erweitern mit drei boxen: request IMU, process laser, fusion
@@ -214,16 +214,16 @@ Derived requirements:
 
 ### Features
 
-Based on the real-time embedded use-case as well as the software architecture patterns in mobile robotics we propose an Executor with the following main features:
+Based on the real-time embedded use-case as well as the software architecture patterns in mobile robotics, we propose an Executor with the following main features:
 - user-defined sequential execution of callbacks
 - trigger condition to activate processing
 - data synchronization: LET-semantics or rclcpp Executor semantics
 
-As stated before, this Executor is based on the RCL library and is written in C to nativly support micro-controller applications written in C. These features are now described in more detail.
+As stated before, this Executor is based on the RCL library and is written in C to nativly support microcontroller applications written in C. These features are now described in more detail.
 
 #### Sequential execution
 
-- At configuration, the user defines the order of handles
+- At configuration, the user defines the order of handles.
 - At configuration, the user defines whether the handle shall be called only when new data is available (ON_NEW_DATA) or whether the callback shall always be called (ALWAYS).
 - At runtime, all handles are processed in the user-defined order
   - if the configuration of handle is ON_NEW_DATA, then the corresponding callback is only called if new data is available
