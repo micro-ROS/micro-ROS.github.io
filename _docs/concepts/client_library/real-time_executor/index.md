@@ -96,7 +96,7 @@ In a recent paper [CB2019](#CB2019), the rclcpp Executor has been analyzed in de
 Due to these findings, the authors present an alternative approach to provide determinism and to apply well-known schedulability analyses to a ROS 2 systems. A response time analysis is described under reservation-based scheduling.
 
 ## RCLC-Executor
-Here we introduce an RCLC-Executor, which is a ROS2-Executor based on RCL-layer for applications written in the C language. Often embedded applications require real-time to guarantee end-to-end latencies and need deterministic runtime behavior to correctly re-play test data. However, this is difficult with the default ROS2 Executor because of its complex semantics, as discussed in the previous section.
+Here we introduce the rclc Executor, which is a ROS 2 Executor implemented based on and for the rcl API, for applications written in the C language. Often embedded applications require real-time to guarantee end-to-end latencies and need deterministic runtime behavior to correctly replay test data. However, this is difficult with the default ROS 2 Executor because of its complex semantics, as discussed in the previous section.
 
 First, we will analyse the requirements for such applications and, secondly, derive simple features for an Executor to enable deterministic and real-time behavior. Then we will present the API of the RCLC-Executor and provide example usages of the RCLC-Executor to address these requirements.
 
