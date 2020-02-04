@@ -170,7 +170,7 @@ Derived Requirements:
 
 Concept:
 
-Often multiple sensors are being used to sense the invironment for mobile robotics. While an IMU sensor provides data samples at a very high rate (e.g 500Hz), laser scans are availabe at a much slower frequency (e.g. 10Hz) determined by the revolution time. Then the challenge is, how to deterministically fuse sensor data with different frequencies. This problem is depicted in Figure 5.
+Often multiple sensors are being used to sense the invironment for mobile robotics. While an IMU sensor provides data samples at a very high rate (e.g., 500 Hz), laser scans are availabe at a much slower frequency (e.g. 10Hz) determined by the revolution time. Then the challenge is, how to deterministically fuse sensor data with different frequencies. This problem is depicted in Figure 5.
 
 <img src="png/sensorFusion_01.png" alt="Sychronization of multiple rates" width="300" />
 
