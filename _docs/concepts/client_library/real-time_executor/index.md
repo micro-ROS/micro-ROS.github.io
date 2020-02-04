@@ -231,7 +231,7 @@ As stated before, this Executor is based on the RCL library and is written in C 
 - At configuration, the user defines whether the handle shall be called only when new data is available (ON_NEW_DATA) or whether the callback shall always be called (ALWAYS).
 - At runtime, all handles are processed in the user-defined order
   - if the configuration of handle is ON_NEW_DATA, then the corresponding callback is only called if new data is available
-  - if the configuration of the handle is ALWAYS, then the corresponding callback is always executed
+  - if the configuration of the handle is ALWAYS, then the corresponding callback is always. If no data is available, then the callback is called with no data (e.g. NULL pointer). 
 
 #### Trigger condition
 
