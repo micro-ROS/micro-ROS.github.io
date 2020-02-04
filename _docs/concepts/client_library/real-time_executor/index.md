@@ -143,12 +143,8 @@ Derived Requirements:
 - sequential processing of callbacks
 - data synchronization with LET semantics
 
-#### Software design patterns in mobile robotics
-
-In this section we describe common software design patterns which are used in mobile robotics to achieve deterministic behavior. For each design pattern we describe the concept and the derived requirements for a deterministic Executor.
-
-##### Sense-plan-act pipeline
-
+#### Sense-plan-act pipeline in robotics
+Now we describe common software design patterns which are used in mobile robotics to achieve deterministic behavior. For each design pattern we describe the concept and the derived requirements for a deterministic Executor.
 Concept:
 
 A common design paradigm in mobile robotics is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and an actuation-phase to steer the mobile robot. Of course, more phases are possible, here these three phases shall serve as an example. Such a processing pipeline is shown in Figure 4.
@@ -166,7 +162,7 @@ For this sense-plan-act pattern, we could define one executor for each phase. Th
 Derived Requirements:
 - triggered execution of callbacks
 
-##### Synchronization of multiple rates
+#### Synchronization of multiple rates
 
 Concept:
 
@@ -202,7 +198,7 @@ Derived Requirements from both concepts:
 - triggered execution
 - sequential procesing of callbacks
 
-##### High priority path
+#### High-priority processing path
 Motivation:
 
 Often a robot has to fullfill several activities at the same time. For example following a path and avoiding obstacles. While path following is a permanent activity, obstacle avoidance is trigged by the environment and should be immediately reacted upon. Therefore one would like to specify priorities to activities. This is depicted in Figure 8:
