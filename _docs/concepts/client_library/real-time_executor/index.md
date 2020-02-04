@@ -119,7 +119,7 @@ Figure 2: Processes with sequentially executed tasks.
 While there are different ways to assign priorities to a given number of processes,
 the rate-monotonic scheduling assignment, in which processes with a shorter period have a higher priority, has been shown optimal if the processor utilization is less than 69% [LL1973](#LL1973).
 
- In the last decades many different scheduling approaches have been presented, however fixed-periodic preemptive scheduling is still widely used in embedded real-time systems [KZH2015](#KZH2015]). This becomes also obvious, when looking at the features of current operating systems. Like Linux, real-time operating systems, such as NuttX, Zephyr, FreeRTOS, QNX etc., support fixed-periodic preemptive scheduling and the assignment of priorities, which makes the time-triggered paradigm the dominant design principle in this domain.
+ In the last decades many different scheduling approaches have been presented, however fixed-periodic preemptive scheduling is still widely used in embedded real-time systems [KZH2015](#KZH2015). This becomes also obvious, when looking at the features of current operating systems. Like Linux, real-time operating systems, such as NuttX, Zephyr, FreeRTOS, QNX etc., support fixed-periodic preemptive scheduling and the assignment of priorities, which makes the time-triggered paradigm the dominant design principle in this domain.
 
 However, data consistency is often an issue when preemptive scheduling is used and if data is being shared across multiple processes via global variables. Due to scheduling effects and varying execution times of processes, writing and reading these variables could occur sometimes sooner or later. This results in an latency jitter of update times (the timepoint at which a variable change becomes visible to other processes). Race conditions can occur when multiple processes access a variable at the same time. So solve this problem, the concept of logical-execution time (LET) was introduced in [HHK2001](#HHK2001), in which communication of data occurs only at pre-defined periodic time instances: Reading data only at the beginning of the period and writing data only at the end of the period. The cost of an additional latency delay is traded for data consistency and reduced jitter. This concept has also recently been applied to automotive applications  [NSP2018](#NSP2018).
 
@@ -475,7 +475,7 @@ The RCLC Executor is an Executor for C applications and can be used with default
 
 
 ### Download
-The RCLC-Executor can be downloaded from the micro-ROS GitHub [rclc repository](https://github.com/micro-ROS/rclc). The package [rclc](https://github.com/micro-ROS/rclc/tree/feature/new_api_and_LET_executor_trigger/rclc) provides the RCLC-Executor library and the package [rclc_examples](https://github.com/micro-ROS/rclc/tree/feature/new_api_and_LET_executor_trigger/rclc_examples) provides an example, how to use the LET-Executor.
+The RCLC-Executor can be downloaded from the micro-ROS GitHub [rclc repository](https://github.com/micro-ROS/rclc). The package [rclc](https://github.com/micro-ROS/rclc/rclc) provides the RCLC-Executor library and the package [rclc_examples](https://github.com/micro-ROS/rclc/tree/feature/rclc_examples) provides an example, how to use the LET-Executor.
 
 
 
