@@ -231,7 +231,7 @@ As stated before, this Executor is based on the RCL library and is written in C 
 - At configuration, the user defines whether the handle shall be called only when new data is available (ON_NEW_DATA) or whether the callback shall always be called (ALWAYS).
 - At runtime, all handles are processed in the user-defined order
   - if the configuration of handle is ON_NEW_DATA, then the corresponding callback is only called if new data is available
-  - if the configuration of the handle is ALWAYS, then the corresponding callback is always. If no data is available, then the callback is called with no data (e.g. NULL pointer). 
+  - if the configuration of the handle is ALWAYS, then the corresponding callback is always. If no data is available, then the callback is called with no data (e.g. NULL pointer).
 
 #### Trigger condition
 
@@ -255,7 +255,7 @@ Additionally we have implemented the current rclcpp Executor semantics ("RCLCPP"
 - if trigger fires, start processing handles in pre-defined sequential order
 - request from DDS-queue the new data just before the handle is executed (rcl_take)
 
-The selection of the Executor semantics is optional. The default semantics is "RCLCPP". 
+The selection of the Executor semantics is optional. The default semantics is "RCLCPP".
 
 ### Executor API
 The API of the RCLC-Executor can be divided in two phases: Configuration and Running.
@@ -475,7 +475,7 @@ The RCLC Executor is an Executor for C applications and can be used with default
 
 
 ### Download
-The RCLC-Executor can be downloaded from the micro-ROS GitHub [rclc repository](https://github.com/micro-ROS/rclc). The package [rclc](https://github.com/micro-ROS/rclc/rclc) provides the RCLC-Executor library and the package [rclc_examples](https://github.com/micro-ROS/rclc/tree/feature/rclc_examples) provides an example, how to use the LET-Executor.
+The RCLC-Executor can be downloaded from the micro-ROS GitHub [rclc repository](https://github.com/micro-ROS/rclc). The [rclc package](https://github.com/micro-ROS/rclc/tree/master/rclc) provides the RCLC-Executor library and the [rclc_examples package](https://github.com/micro-ROS/rclc/tree/master/rclc_examples) provides an example, how to use the LET-Executor.
 
 
 
