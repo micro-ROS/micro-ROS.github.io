@@ -237,7 +237,7 @@ As stated before, this Executor is based on the RCL library and is written in C 
 
 - Given a set of handles, a trigger condition based on the input data of these handles shall decide when the processing is started.
 
-- Avaiable options:
+- Available options:
   - ALL operation: fires when input data is available for all handles
   - ANY operation: fires when input data is available for at least one handle
   - ONE: fires when input data for a user-specified handle is available
