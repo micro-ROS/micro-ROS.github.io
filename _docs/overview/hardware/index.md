@@ -12,7 +12,7 @@ By default, micro-ROS uses [NuttX RTOS](https://nuttx.org/). This RTOS has a big
 + NXP/Freescale i.MX1/6 and i.MX RT
 + Silicon Labs EFM32 Gecko and Giant Gecko
 
-Please check [this link](http://nuttx.org/doku.php?id=wiki:platforms:supported-platforms) to check the complete list and the status of each board. In case you are interested in porting new boards or MCUs, please check the [next link](http://www.nuttx.org/Documentation/NuttxPortingGuide.html).
+Please check [this link](https://cwiki.apache.org/confluence/display/NUTTX/Supported+Platforms) to check the complete list and the status of each board. In case you are interested in porting new boards or MCUs, please check the [next link](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide).
 
 Even though many development boards could be used, we have chosen two of them as references. This page lists the hardware platforms that we use to test and develop micro-ROS, and also accessories that we frequently refer to, such as add-on boards, and JTAG probes.
 
