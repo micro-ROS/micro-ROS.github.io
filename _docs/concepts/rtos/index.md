@@ -23,7 +23,7 @@ Unfortunately, these resources normally are not POSIX compliant, so the use of a
 
 <img align="left" width="125" height="125" src="https://upload.wikimedia.org/wikipedia/commons/b/b0/NuttX_logo.png">
 
-[NuttX](http://www.nuttx.org/) is a RTOS that emphasizes its compliance with standards (such us POSIX) and small footprint, it can be fit in 8 to 32 bit microcontrollers. The use of POSIX and ANSI standards, together with the mimic it does to UNIX APIs, makes it friendly to the developers that are used to Linux. The RTOS is licensed under BSD license and makes use of GNU toolchain. In order to obtain more information, please visit [NuttX overview page](http://nuttx.org/Documentation/NuttX.html#overview).
+[NuttX](http://www.nuttx.org/) is a RTOS that emphasizes its compliance with standards (such us POSIX) and small footprint, it can be fit in 8 to 32 bit microcontrollers. The use of POSIX and ANSI standards, together with the mimic it does to UNIX APIs, makes it friendly to the developers that are used to Linux. The RTOS is licensed under BSD license and makes use of GNU toolchain. In order to obtain more information, please visit [NuttX overview page](https://cwiki.apache.org/confluence/display/NUTTX/NuttX+Overview).
 
 <br/><br/>
 
