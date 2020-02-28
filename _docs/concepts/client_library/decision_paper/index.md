@@ -134,7 +134,7 @@ Further links:
 
 ### Libcxx
 
-During early stages of NuttX support, eProsima did a small POC using libcxx support provided by NuttX. [http://nuttx.org/doku.php?id=wiki:nshhowtos:llvm-stdcxx](http://nuttx.org/doku.php?id=wiki:nshhowtos:llvm-stdcxx). The POC was done using the Assis branch of libcxx however some changes on the makefile were required to be able to compile NuttX.
+During early stages of NuttX support, eProsima did a small POC using libcxx support provided by NuttX. [LLVM libc++ for NuttX](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=139629545). The POC was done using the Assis branch of libcxx however some changes on the makefile were required to be able to compile NuttX.
 
 Another options are stripped-down libstdc++ variants with reduced feature sets optimized for embedded applications:
 
