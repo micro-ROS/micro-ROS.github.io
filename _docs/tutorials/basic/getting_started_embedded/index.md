@@ -120,4 +120,4 @@ wrote 65536 bytes from file nuttx.bin in 2.157869s (29.659 KiB/s)
 
 At this point, you should have your board flashed with NuttX image containing an `nsh` application and a publisher and a subscriber using Micro XRCE-DDS.
 
-_To be completed!_
+
