@@ -98,8 +98,8 @@ lowpan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1280
   - pub/sub: If you write **pub**, it will create a micro-ROS publisher, which will publish an integer numbers up to one thousand. Otherwise, if you write **sub** it will create a subscriber that will be subscribe to the ``std_msgs_msg_Int32`` topic.
 
 - Once you execute the app, it will ask you if you want to configure the 6LoWPAN network. (Necessary to configure each time that you reboot the board)
-  - Introduce your ID. It must be a hexadecimal number between 0 and FF.
   - This will return connection data, you should save the ``inet_6_addr`` and ``HWaddr``.
+  - Note: If you want to change the ID of the radio, you can do it on the menuconfig of NuttX on the example configuration.
 
 ```bash
 nsh> uros_6lowpan fe80::bc81:c3b9:5c14:1ab 8888 pub
