@@ -47,7 +47,7 @@ Let's continue with the next step
 
 To create and flash the firmware, we're going to use the micro-ROS build system.
 
-You can find the instructions on the next link: [Micro-ROS build system](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/README.md).
+You can find the instructions at the following link: [Micro-ROS build system](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/README.md).
 For this particular guide, it is necessary to use the branch ``dashing`` and use the configuration profile ``uros_6lowpan``.
 
 Once you follow all the instructions on the build system, and the board is flashed everything is ready.
