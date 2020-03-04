@@ -21,7 +21,7 @@ At this moment this communication protocol is only available for NuttX RTOS. You
 - Micro-ROS hardware bridge.
 
 **Important!**
-You can find a guide of how to set-up the Micro-ROS hardware bridge on the next link: [uROS hardware bridge guide](https://github.com/micro-ROS/micro-ROS-bridge_RPI/blob/new_bridge_tools/Readme.md)
+You can find a guide on how to set-up the Micro-ROS hardware bridge at the following link: [uROS hardware bridge guide](https://github.com/micro-ROS/micro-ROS-bridge_RPI/blob/new_bridge_tools/Readme.md).
 On the micro-ROS hardware bridge guide, you can find everything that you need to set-up this device base.
 
 # Configure the board
