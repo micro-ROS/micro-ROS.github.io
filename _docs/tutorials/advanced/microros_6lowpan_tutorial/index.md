@@ -90,7 +90,7 @@ lowpan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1280
 2) Create UDP 6LoWPAN micro-ROS Agent	 4) Create TCP micro-ROS Agent		  6) Quit
 #? 
 ```
-- The value **inet6** is the IPV6 direction of the Raspberry Pi over the 6LoWPAN interface. Copy it, because is necessary on further steps.
+- The value **inet6** is the IPV6 direction of the Raspberry Pi over the 6LoWPAN interface. Copy it, because is necessary for the subsequent steps.
 
 - Go to the Olimex-STM32-E407 board and execute the micro-ROS 6lowpan application, by typing the next command:
 ```bash
