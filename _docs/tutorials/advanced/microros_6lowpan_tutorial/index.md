@@ -99,7 +99,7 @@ uros_6lowpan <Agent_IP> <Agent_Port> <pub/sub>```
   - Agent_PORT: In this field, you should write the port that you want to open for micro-ROS communications.
   - pub/sub: If you write **pub**, it will create a micro-ROS publisher, which will publish an integer numbers up to one thousand. Otherwise, if you write **sub** it will create a subscriber that will be subscribe to the ``std_msgs_msg_Int32`` topic.
 
-- Once you execute the app, it will ask you if you want to configure the 6LoWPAN network. (Necessary to configure each time that you reboot the board)
+- Once you execute the app, it will ask you if you want to configure the 6LoWPAN network. (Necessary to configure each time you reboot the board)
   - This will return connection data, you should save the ``inet_6_addr`` and ``HWaddr``.
   - Note: If you want to change the ID of the radio, you can do it on the menuconfig of NuttX on the example configuration.
 
