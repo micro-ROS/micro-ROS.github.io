@@ -55,7 +55,7 @@ Once you follow all the instructions in the build system and flash the board, ev
 # How to use it?
 
 - Turn on the Olimex-STM32-E407 board and open the NSH console on a terminal.
-- Check if all the applications are ready by typing ``?`` on the console. It should then return the next:
+- Check if all the applications are ready by typing ``?`` on the console. It should return the following:
 
 ```bash
 help usage:  help [-v] [<cmd>]
