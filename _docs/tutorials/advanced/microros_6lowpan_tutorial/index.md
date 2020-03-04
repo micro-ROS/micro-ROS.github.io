@@ -7,7 +7,7 @@ In this guide, we will show how to use Micro-ROS over 6LoWPAN communication.
 
 # What is 6LoWPAN?
 
-6LoWPAN is an acronym base of IPv6 over Low -Power Wireless Personal Area Networks. This communication protocol allows wireless communication over IEEE 802.15.4 based network using IPv6.  Some of the main advantages are:
+6LoWPAN is an acronym of IPv6 over Low-Power Wireless Personal Area Networks. This communication protocol allows wireless communication over IEEE 802.15.4 based networks using IPv6.  Some of the main advantages are:
 - Easy to route from radio devices to the Internet, thanks to the usage of the IP packets.
 - Easy to use on UDP and TCP server/clients.
 - A protocol designed for low power and constrained devices. Perfect for Micro-ROS remote sensors.
@@ -134,7 +134,6 @@ wpan0   Link encap:6LoWPAN HWaddr 00:be:ad:de:00:de:fa:00 at UP
 
 - Finally, on the Olimex board, push ``y`` to confirm that everything is ready and it will start the micro-ROS application.
   
-
 
 
 
