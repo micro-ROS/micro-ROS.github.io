@@ -49,6 +49,15 @@ To create and flash the firmware, we're going to use the micro-ROS build system.
 You can find the instructions at the following link: [Micro-ROS build system](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/README.md).
 For this particular guide, it is necessary to use the branch ``dashing`` and the configuration profile ``uros_6lowpan``.
 
+### Temporary solution
+
+Due to the build system is work in progress, you need to do the next modifications, but is just temporary:
+
+- Open ``uros_ws/firmware/mcu_ws/uros/rmw_microxrcedds/rmw_microxrcedds_c/CMakeLists.txt`` and on the line 42 change value of ``RMW_UXRCE_STREAM_HISTORY`` from 4 to 55.
+- Open ``uros_ws/firmware/mcu_ws/eProsima/Micro-XRCE-DDS-Client/client.config`` and modify the value of ``CONFIG_UDP_TRANSPORT_MTU`` from 512 to 40.
+
+This set the appropiate MTU and history for 6LoWPAN communications on NuttX.
+
 Once you follow all the instructions in the build system and flash the board, everything is ready.
 
 # How to use it?
