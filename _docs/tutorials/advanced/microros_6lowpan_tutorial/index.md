@@ -29,7 +29,7 @@ On the micro-ROS hardware bridge guide, you can find everything that you need to
 The configuration of the board is divided into two parts: the set-up of the hardware and the set-up of the software.
 
 ## Set-up the hardware
-First we're going to connect the Pmodrf2 radio. To do so, follow the next wiring table:
+First we're going to connect the PmodRF2 radio. To do so, follow the wiring table below:
 
 - `Board D13` -> `MRF24J40 SCLK`
 - `Board D12` -> `MRF24J40 MISO`
