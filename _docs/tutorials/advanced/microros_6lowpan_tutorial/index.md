@@ -14,7 +14,7 @@ In this guide, we will show how to use Micro-ROS over 6LoWPAN communication.
 
 # What do you need to try?
 
-At this moment this communication protocol is only available for NuttX RTOS. You need the next devices to try this guide:
+At this moment this communication protocol is only available for NuttX RTOS. You need the following devices to implement the steps highlighted in this guide:
 
 - Olimex-STM32-E407 board. [Link](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)
 - PModRF2 Radio [Link](https://store.digilentinc.com/pmod-rf2-ieee-802-15-rf-transceiver/)
@@ -134,6 +134,5 @@ wpan0   Link encap:6LoWPAN HWaddr 00:be:ad:de:00:de:fa:00 at UP
 
 - Finally, on the Olimex board, push ``y`` to confirm that everything is ready and it will start the micro-ROS application.
   
-
 
 
