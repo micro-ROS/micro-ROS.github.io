@@ -12,7 +12,7 @@ In this guide, we will show how to use Micro-ROS over 6LoWPAN communication.
 - Easy to use on UDP and TCP server/clients.
 - A protocol designed for low power and constrained devices. Perfect for Micro-ROS remote sensors.
 
-# What do you need to try?
+# Needed devices
 
 At this moment this communication protocol is only available for NuttX RTOS. You need the following devices to implement the steps highlighted in this guide:
 
@@ -134,5 +134,4 @@ wpan0   Link encap:6LoWPAN HWaddr 00:be:ad:de:00:de:fa:00 at UP
 
 - Finally, on the Olimex board, push ``y`` to confirm that everything is ready and it will start the micro-ROS application.
   
-
 
