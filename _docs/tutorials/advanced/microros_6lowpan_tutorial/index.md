@@ -38,7 +38,7 @@ First we're going to connect the PmodRF2 radio. To do so, follow the wiring tabl
 - `Board D8` -> `MRF24J40 INT`
 
 The ``D`` letter refers to the Arduino header pins of the board.
-To help on the set-up process, you can find the pinout of the radio on the next link: [PmodRF2 pinout](https://reference.digilentinc.com/reference/pmod/pmodrf2/start)
+To ease the set-up process, you can find the pinout of the radio at the following link: [PmodRF2 pinout](https://reference.digilentinc.com/reference/pmod/pmodrf2/start)
 
 The last point is to connect a mini-USB cable to the OTG2 USB port (The USB port next to the Ethernet port).
 
