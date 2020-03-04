@@ -128,7 +128,7 @@ wpan0   Link encap:6LoWPAN HWaddr 00:be:ad:de:00:de:fa:00 at UP
 ```
 - After this step, the application on the Olimex board will be blocked waiting for a user input confirming that the Agent on the hardware bridge is ready to receive data.
 
-- Come back to the hardware bridge, now we're going to add a new 6lowpan device. Push ``1 + enter``. (Note: This step is only necessary if you're attaching for the first time a new device)
+- Go back to the hardware bridge, now we're going to add a new 6LoWPAN device. Push ``1 + enter``. (Note: This step is only necessary if you're attaching for the first time a new device)
   - First, introduce the IPV6 of the Olimex board (inet6_addr)
   - Introduce the hardware address of the Olimex board (Hwaddr).
   - Now the device is registered and ready to establish communication.
