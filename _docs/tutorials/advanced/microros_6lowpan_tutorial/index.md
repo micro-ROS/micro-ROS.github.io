@@ -95,7 +95,7 @@ lowpan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1280
 - Go to the Olimex-STM32-E407 board and execute the micro-ROS 6lowpan application, by typing the next command:
 ```bash
 uros_6lowpan <Agent_IP> <Agent_Port> <pub/sub>```
-  - Agent_IP: In this field, you should write the IP of the Agent, on this specific example, the IP that you copy on the previous step.
+  - Agent_IP: In this field, you should write the IP of the Agent for this specific example (it is the IP that you should have copied in the previous step).
   - Agent_PORT: Write the port that you want to open for micro-ROS communications.
   - pub/sub: If you write **pub**, it will create a micro-ROS publisher, which will publish an integer numbers up to one thousand. Otherwise, if you write **sub** it will create a subscriber that will be subscribe to the ``std_msgs_msg_Int32`` topic.
 
