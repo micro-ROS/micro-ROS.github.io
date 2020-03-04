@@ -42,7 +42,6 @@ To ease the set-up process, you can find the pinout of the radio at the followin
 
 The last step is to connect a mini-USB cable to the OTG2 USB port (The USB port next to the Ethernet port).
 
-Let's continue with the next step
 ## Set-up the software
 
 To create and flash the firmware, we're going to use the micro-ROS build system.
