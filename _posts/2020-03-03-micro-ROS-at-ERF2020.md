@@ -11,6 +11,6 @@ All partners of the EU project behind micro-ROS together organized a booth to di
 
 Our booth attracted a lot of interest: Many attendees visited us not only to talk about the demos and the status of micro-ROS, but also to discuss on the latest ROS 2 developments.
 
-In the ERF workshop on "Overcoming the boundaries of today's Robotics Software Engineering", Ralph Lange from Bosch Corporate Research also had the change to provide a short update on micro-ROS.
+In the ERF workshop on "Overcoming the boundaries of today's Robotics Software Engineering", Ralph Lange from Bosch Corporate Research also had the possibility to provide a short update on micro-ROS.
 
 <embed src="/download/2020-03-04_micro-ROS_talk_at_ERF.pdf" type="application/pdf" width="100%" height="450px"/>
