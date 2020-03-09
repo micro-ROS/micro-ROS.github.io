@@ -9,9 +9,8 @@ All partners of the EU project behind micro-ROS together organized a booth to di
 
 <img alt="micro-ROS display" src="/img/posts/2020-03-03-micro-ROS-at-ERF2020_photo1.jpg" width="100%"/>
 
-Our booth attracted a lof of interest: Many attendees visited us not only to talk about the demos and the status of micro-ROS, but also to discuss on the latest ROS 2 developments.
+Our booth attracted a lot of interest: Many attendees visited us not only to talk about the demos and the status of micro-ROS, but also to discuss on the latest ROS 2 developments.
 
 In the ERF workshop on "Overcoming the boundaries of today's Robotics Software Engineering", Ralph Lange from Bosch Corporate Research also had the change to provide a short update on micro-ROS.
 
 <embed src="/download/2020-03-04_micro-ROS_talk_at_ERF.pdf" type="application/pdf" width="100%" height="450px"/>
-
