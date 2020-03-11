@@ -7,11 +7,11 @@ redirect_from: /docs/tutorials/
 
 ## Programming client/service with rcl
 
-ROS 2 services is another communication mechanism between nodes. Services implement a client-server paradigms based on ROS 2 messages and types. Further information about ROS 2 services can be found [here](https://index.ros.org/doc/ros2/Tutorials/Services/Understanding-ROS2-Services/)
+ROS 2 services is another communication mechanism between nodes. Services implement a client-server paradigm based on ROS 2 messages and types. Further information about ROS 2 services can be found [here](https://index.ros.org/doc/ros2/Tutorials/Services/Understanding-ROS2-Services/)
 
-Ready to use code related to this tutorial can be found in `micro-ROS-demos/rcl/addtwoints_server` and `micro-ROS-demos/rcl/addtwoints_client` folders.
+Ready to use code related to this tutorial can be found in [`micro-ROS-demos/rcl/addtwoints_server`](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/addtwoints_server/main.c) and [`micro-ROS-demos/rcl/addtwoints_client`](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/addtwoints_client/main.c) folders.
 
-Starting from a code where RCL is init and a micro-ROS node is created, these steps are required in order to generate a service server:
+Starting from a code where RCL is initialized and a micro-ROS node is created, these steps are required in order to generate a service server:
 
 ```c
 // Creating service server and options
