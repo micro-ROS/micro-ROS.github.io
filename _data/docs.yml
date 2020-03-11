@@ -48,7 +48,7 @@
    - tutorials/advanced/microros_nuttx_bsp
 
 - title: Micro-XRCE-DDS RMW Configuration
-   docs:
+  docs:
     - tutorials/basic/microxrcedds_rmw_configuration
     
 - title: Demos
