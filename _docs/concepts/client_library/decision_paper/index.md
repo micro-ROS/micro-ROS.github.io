@@ -95,9 +95,7 @@ Questions:
 * Is it possible to avoid a large heap at all by providing tiny heaps for each concept (node, subscription, publisher) on the corresponding data types on top-most layer? Can each allocation on the lower layers be clearly assigned/related to one instance on the top-most layer?
 * Is a two-phase approach -- allow dynamic allocation in some initialization phase but not in a later run phase -- possible? How much effort is it to implement? Would such an approach be acceptable for some safety-certified implementation?
 
-As a first experiment, we implemented a simple node and subscriber directly against the rcl in the C programming language and counted the allocations and frees. The code can be found at [https://github.com/micro-ROS/micro-ROS_experiments/tree/experiment/measure_allocations/rcl_int32_subscriber](https://github.com/micro-ROS/micro-ROS_experiments/tree/experiment/measure_allocations/rcl_int32_subscriber).
-
-In detail, we counted the calls of the standard C memory functions (malloc, realloc, free) and the calls of the functions of the default allocator (which uses the standard C memory functions) in rcutils/allocator.c
+As a first experiment, we implemented a simple node and subscriber directly against the rcl in the C programming language and counted the allocations and frees. In detail, we counted the calls of the standard C memory functions (malloc, realloc, free) and the calls of the functions of the default allocator (which uses the standard C memory functions) in rcutils/allocator.c
 
 With the Micro XRCE-DDS middleware, we obtained the following numbers:
 
@@ -122,9 +120,7 @@ A design document of Fast RTPS approach: [https://github.com/eProsima/Fast-RTPS/
 
 ## Embedded C++ and the C++ library
 
-Libstdc++ makes use of dynamic memory allocation and provides features which may not be available on microcontrollers, i.e. not portable to relevant RTOS. Also, its resource consumption (in particular code size) might be relevant. Nevertheless, C++ may be used on microcontrollers.
-
-First, it is possible to use a subset only, which does not require libstdc++ at all. A tiny demo with rclc is provided at [https://github.com/micro-ROS/micro-ROS_experiments/blob/experiment/c_with_templates/c_with_templates/main.cpp](https://github.com/micro-ROS/micro-ROS_experiments/blob/experiment/c_with_templates/c_with_templates/main.cpp).
+Libstdc++ makes use of dynamic memory allocation and provides features which may not be available on microcontrollers, i.e. not portable to relevant RTOS. Also, its resource consumption (in particular code size) might be relevant. Nevertheless, C++ may be used on microcontrollers. It is even possible to use a subset only, which does not require libstdc++ at all.
 
 Further links:
 
