@@ -492,25 +492,25 @@ The different callbacks of the Drive-Base node are distributed to different Exec
 ### API Changes
 
 In this section, we describe the necessary changes to the Executor API:
-*   [include/rclcpp/callback\_group.hpp](https://github.com/micro-ROS/rclcpp/blob/cbg-executor-0.5.1/rclcpp/include/rclcpp/callback_group.hpp):
+*   [include/rclcpp/callback\_group.hpp](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1/rclcpp/include/rclcpp/callback_group.hpp):
 
     * Introduced an enum to distinguish up to three real-time classes (requirements) per node (RealTimeCritical, SoftRealTime, BestEffort)
     * Changed association with Executor instance from nodes to callback groups.
-*   [include/rclcpp/executor.hpp](https://github.com/micro-ROS/rclcpp/blob/cbg-executor-0.5.1/rclcpp/include/rclcpp/executor.hpp)
+*   [include/rclcpp/executor.hpp](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1/rclcpp/include/rclcpp/executor.hpp)
 
     * Added functions to add and remove individual callback groups in addition to whole nodes.
 
     * Replaced private vector of nodes with a map from callback groups to nodes.
 
-*   [include/rclcpp/memory\_strategy.hpp](https://github.com/micro-ROS/rclcpp/blob/cbg-executor-0.5.1/rclcpp/include/rclcpp/memory_strategy.hpp)
+*   [include/rclcpp/memory\_strategy.hpp](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1/rclcpp/include/rclcpp/memory_strategy.hpp)
 
     * Changed all functions that expect a vector of nodes to the just mentioned map.
-*   [include/rclcpp/node.hpp](https://github.com/micro-ROS/rclcpp/blob/cbg-executor-0.5.1/rclcpp/include/rclcpp/node.hpp) and [include/rclcpp/node_interfaces/node_base.hpp](https://github.com/micro-ROS/rclcpp/blob/cbg-executor-0.5.1/rclcpp/include/rclcpp/node_interfaces/node_base.hpp)
+*   [include/rclcpp/node.hpp](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1/rclcpp/include/rclcpp/node.hpp) and [include/rclcpp/node_interfaces/node_base.hpp](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1/rclcpp/include/rclcpp/node_interfaces/node_base.hpp)
 
     * Extended arguments of create\_callback\_group function for the real-time class.
     * Removed the get\_associated\_with\_executor\_atomic function.
 
-All the changes can be found in the branches [cbg-executor-0.5.1](https://github.com/micro-ROS/rclcpp/tree/cbg-executor-0.5.1/rclcpp) and [cbg-executor-0.6.1](https://github.com/micro-ROS/rclcpp/tree/cbg-executor-0.6.1/rclcpp) for the corresponding version 0.5.1 and 0.6.1 of the rclcpp in the fork at [github.com/micro-ROS/rclcpp/](https://github.com/micro-ROS/rclcpp/).
+All the changes can be found in the branches [cbg-executor-0.5.1](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1) and [cbg-executor-0.6.1](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.6.1/rclcpp) for the corresponding version 0.5.1 and 0.6.1 of the rclcpp in the fork at [github.com/boschresearch/ros2_rclcpp/](https://github.com/boschresearch/ros2_rclcpp/).
 
 ### Meta Executor Concept
 
@@ -529,7 +529,7 @@ With the test bench, we validated the functioning of the approach - here on ROS 
 
 ![Results from Callback-group-level Executor test bench](cbg-executor_test-bench_results.png)
 
-The test bench is provided in the [bg-executor_ping-pong_cpp](https://github.com/micro-ROS/micro-ROS_experiments/tree/experiment/cbg-executor-0.6.1/cbg-executor_ping-pong) package of the [micro-ROS_experiments](https://github.com/microROS/micro-ROS_experiments/) repository.
+The test bench is provided in the [cbg-executor_ping-pong_cpp](https://github.com/boschresearch/ros2_examples/tree/experiment/cbg-executor-0.6.1/rclcpp/cbg-executor_ping-pong) package of the [ros2_examples](https://github.com/boschresearch/ros2_examples/) fork.
 
 ## Related Work
 
