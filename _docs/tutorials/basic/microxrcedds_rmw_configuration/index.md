@@ -1,5 +1,5 @@
 ---
-title: RMW Micro-XRCE-DDS Configuration
+title: RMW & Micro XRCE-DDS Configuration
 permalink: /docs/tutorials/basic/microxrcedds_rmw_configuration/
 ---
 

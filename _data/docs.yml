@@ -52,10 +52,6 @@
    - tutorials/advanced/tracing
    - tutorials/advanced/zephyr_emulator
 
-- title: Micro-XRCE-DDS RMW Configuration
-  docs:
-    - tutorials/basic/microxrcedds_rmw_configuration
-    
 - title: Demos
   docs:
    - tutorials/demos/kobuki_demo
