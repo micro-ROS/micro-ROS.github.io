@@ -21,7 +21,7 @@ Composition of node components at compile-, link- or dlopen-time | Composition a
 Support for nodes with managed lifecycles | Very basic support provided by [rcl_lifecycle](https://github.com/ros2/rcl/tree/master/rcl_lifecycle/) out of the box for micro-ROS. *Further convenience functions are planned.*
 DDS-Security support | DDS security is supported at micro-ROS-Agent. *Security mechanisms in Micro XRCE-DDS are planned for future releases.*
 Command-line introspection tools using an extensible framework | From a remote microprocessor all standard ROS 2 tools can be used to introspect the micro-ROS nodes on an MCU. Micro-ROS nodes appear as ROS 2 nodes (by the agent). Note, however, that the node graph API is currently *not* available on the MCU.
-Launch system for coordinating multiple nodes | No launch system for the micro-ROS nodes on an MCU available. Such system would depend highly on the RTOS. The system-modes concept developed with micro-ROS allows runtime configuration/orchestration of ROS 2 and micro-ROS nodes together.
+Launch system for coordinating multiple nodes | No launch system for the micro-ROS nodes on an MCU available. Such a system would depend highly on the RTOS. The system-modes concept developed with micro-ROS allows runtime configuration/orchestration of ROS 2 and micro-ROS nodes together.
 Namespace support for nodes and topics | Available just as in ROS 2.
 Static remapping of ROS names | *Should be available if passed as argument via standard rcl API - to be checked.*
 Demos of an all-ROS 2 mobile robot | Demos of several ROS 2 + micro-ROS robots available. See [https://micro-ros.github.io/docs/tutorials/demos/](https://micro-ros.github.io/docs/tutorials/demos/).
