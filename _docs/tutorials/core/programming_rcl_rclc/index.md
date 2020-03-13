@@ -42,7 +42,7 @@ rcl_wait_set_t wait_set = rcl_get_zero_initialized_wait_set();
 rcl_wait_set_init(&wait_set, 0, 0, 0, 1, 0, 0, &context, rcl_get_default_allocator());
 ```
 
-First of all, seeing `AddTwoInts.srv` type definition it is possible to determine request and reply elements of the service. Service client will make a request with two integers and service server should send its sum as a response.
+First of all, by looking at `AddTwoInts.srv` type definition it is possible to determine request and reply elements of the service. Service client will make a request with two integers and service server should send its sum as a response.
 
 ```
 int64 a
