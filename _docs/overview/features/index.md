@@ -9,7 +9,7 @@ All *status in italics* point to on-going works or open issues. If you could mak
 
 Feature | Status
 -- | --
-Discovery, transport and serialization over DDS | Use of resource-optimized middleware standard [DDS for Extremely Resource Constrained Environments (DDS-XRCE)](https://www.omg.org/spec/DDS-XRCE/), implemented by [Micro-XRCE-DDS](https://github.com/eProsima/Micro-XRCE-DDS) and compatible with standard DDS via agent on connected stronger microprocessor.
+Discovery, transport and serialization over DDS | Use of resource-optimized middleware standard [DDS for Extremely Resource Constrained Environments (DDS-XRCE)](https://www.omg.org/spec/DDS-XRCE/), implemented by [Micro XRCE-DDS](https://github.com/eProsima/Micro-XRCE-DDS) and compatible with standard DDS via an XRCE Agent on connected stronger microprocessor.
 Support for multiple DDS implementations, chosen at runtime | Support is possible in principle, but at compile-time only. So far there is only one DDS-XRCE implementation available, namely [Micro-DDS-XRCE](https://github.com/eProsima/Micro-XRCE-DDS).
 Common core client library that is wrapped by language-specific libraries | micro-ROS uses the core library [rcl](https://github.com/ros2/rcl/) from ROS 2 mainly as-is. The [rclc](https://github.com/micro-ROS/rclc) package provides convenience functions and an executor for use of rcl+rclc as an API for the C programming language. The standard rclcpp may be used on MCUs with sufficient RAM.
 Publish/subscribe over topics | Concept available as known from ROS 2. Convenience functions for creation of publishers and subscriptions in C provided in [rclc](https://github.com/micro-ROS/rclc). *However, currently, micro-ROS supports fixed-size message types only.*
