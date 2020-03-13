@@ -37,6 +37,7 @@
    - tutorials/basic/getting_started
    - tutorials/basic/getting_started_embedded
    - tutorials/basic/getting_started_simulator
+   - tutorials/basic/microxrcedds_rmw_configuration
 
 - title: Advanced Tutorials
   docs:
@@ -47,10 +48,6 @@
    - tutorials/advanced/tracing
    - tutorials/advanced/microros_nuttx_bsp
 
-- title: Micro-XRCE-DDS RMW Configuration
-  docs:
-    - tutorials/basic/microxrcedds_rmw_configuration
-    
 - title: Demos
   docs:
    - tutorials/demos/kobuki_demo
