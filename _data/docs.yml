@@ -7,7 +7,6 @@
    - overview/comparison
 
 
-
 - title: Client Library
   docs:
    - concepts/client_library
@@ -27,11 +26,15 @@
 - title: RTOS
   docs:
    - concepts/rtos
+   - concepts/rtos/FreeRTOS
+   - concepts/rtos/NuttX
+   - concepts/rtos/Zephyr
+   - concepts/rtos/comparison
+   - concepts/rtos/integration_with_colcon
 
 - title: Benchmarking
   docs:
    - concepts/benchmarking
-
 
 
 - title: Basic Tutorials
