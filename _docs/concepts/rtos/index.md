@@ -1,9 +1,9 @@
 ---
-title: Real-Time Operating Systems (RTOS)
+title: Why a Real-Time Operating System?
 permalink: /docs/concepts/rtos/
 ---
 
-The use of Real-Time Operating Systems (RTOS) is a general practice in nowadays embedded systems. These embedded devices typically consist of a resource-constrained microcontroller that executes an application where the interaction with external components is performed. In many cases, this application contains a time-critical task where a time-deadline or deterministic response is required.
+The use of Real-Time Operating Systems (RTOS) is a general practice in nowadays embedded systems. These embedded devices typically consist of a resource-constrained microcontroller that executes an application where the interaction with external components is performed. In many cases, this application contains a time-critical task where a deadline or deterministic response is required.
 
 Bare-metal applications are also used nowadays, but it requires a very low-level programming skills and lacks of hardware abstraction layers that RTOSes offers. On the other hand, RTOSes typically uses hardware abstraction layers (HAL) that eases the use of hardware resources, such us timers and communication buses, making easier the development and allowing the reuse of code. In addition, they offer thread and tasks entities that, together with the use of schedulers, provides the necessary tools to implement determinism in the applications. The scheduling normally consists of different algorithms where the user can choose from. Another feature that RTOSes normally offers is the stack management, helping in the correct memory usage of the MCU, a valuable resource in embedded-systems.
 
@@ -15,22 +15,10 @@ As the Operating Systems (OS) that are available for computers, the RTOSes also 
 
 Notice that the RTOS call are made by several top layers in the micro-ROS stack. The main one using the RTOS primitives is the middleware. The middleware requires accessing to the transport resources of the RTOS (serial, UDP or 6LOWPAN communications for example), it also requires of the time resources of the RTOS to operate properly. In addition, it is expected that the micro-ROS client library could have access to RTOS resources to have control of mechanisms such as scheduling or power management, so the developer could optimize the application in many domains.
 
-Unfortunately, these resources normally are not POSIX compliant, so the use of abstraction layers at RTOS level is required. These layers will allow to abstract the RTOSes in use and provide unified calls to control aforementioned resources.
+By now, micro-ROS supports three RTOSes, which all come with (basic) POSIX implementations:
 
-## NuttX RTOS
+* [FreeRTOS](FreeRTOS/)
+* [NuttX](NuttX/)
+* [Zephyr](Zephyr/)
 
-<br/><br/>
-
-<img align="left" width="125" height="125" src="https://upload.wikimedia.org/wikipedia/commons/b/b0/NuttX_logo.png">
-
-[NuttX](http://www.nuttx.org/) is a RTOS that emphasizes its compliance with standards (such us POSIX) and small footprint, it can be fit in 8 to 32 bit microcontrollers. The use of POSIX and ANSI standards, together with the mimic it does to UNIX APIs, makes it friendly to the developers that are used to Linux. The RTOS is licensed under BSD license and makes use of GNU toolchain. In order to obtain more information, please visit [NuttX overview page](https://cwiki.apache.org/confluence/display/NUTTX/NuttX+Overview).
-
-<br/><br/>
-
-## Supported development boards
-
-Check [supported board](/docs/overview/hardware/) section for more information about the boards we are currently using.
-
-## Getting started with NuttX and micro-ROS
-
-In order to obtain more information about how to get started using this RTOS, please check our [tutorials section](/docs/tutorials/basic/getting_started/).
+Most important, we [integrated these RTOSes with the ROS meta build system colcon](integration_with_colcon/).
