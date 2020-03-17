@@ -49,6 +49,7 @@
    - tutorials/advanced/6lowpan_nuttx_rpi
    - tutorials/advanced/tracing
    - tutorials/advanced/microros_nuttx_bsp
+   - tutorials/advanced/microros_6lowpan_tutorial
 
 - title: Demos
   docs:
