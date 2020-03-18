@@ -1,6 +1,6 @@
 ---
 title: RMW & Micro XRCE-DDS Configuration
-permalink: /docs/tutorials/basic/microxrcedds_rmw_configuration/
+permalink: /docs/tutorials/core/microxrcedds_rmw_configuration/
 ---
 
 Since micro-ROS is intended to work on extremely low resources systems, its middleware layer is highly configurable. This configurability, along with the fact that the middleware layer does not use dynamic memory, allows the users to determine how much static memory is going to be allocated.

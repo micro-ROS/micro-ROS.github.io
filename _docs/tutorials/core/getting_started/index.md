@@ -1,6 +1,6 @@
 ---
 title: Getting Started 
-permalink: /docs/tutorials/basic/getting_started/
+permalink: /docs/tutorials/core/getting_started/
 redirect_from: /docs/tutorials/basic/
 redirect_from: /docs/tutorials/
 ---
