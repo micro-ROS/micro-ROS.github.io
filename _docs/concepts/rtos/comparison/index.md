@@ -99,11 +99,3 @@ Table:
 Some Related Work:
 * [Choosing the right RTOS for IoT platform, Milinkovic et al, INFOTEH-JAHORINA Vol. 14, 2015](http://infoteh.rs.ba/zbornik/2015/radovi/RSS-2/RSS-2-2.pdf): comparison of FreeRTOS, ChibiOS/RT, Erika, RIOT
 * [FreeRTOS Architecture](http://www.aosabook.org/en/freertos.html)
-
-## Supported development boards
-
-Check [supported board](/docs/overview/hardware/) section for more information about the boards we are currently using.
-
-## Getting started with NuttX and micro-ROS
-
-In order to obtain more information about how to get started using this RTOS, please check our [tutorials section](/docs/tutorials/basic/getting_started/).
