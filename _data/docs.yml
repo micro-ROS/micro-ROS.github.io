@@ -44,15 +44,24 @@
    - tutorials/basic/getting_started_simulator
    - tutorials/basic/microxrcedds_rmw_configuration
 
-- title: Advanced Tutorials
+- title: Advanced Tutorials With Nuttx
   docs:
-   - tutorials/advanced/nuttx_getting_started
-   - tutorials/advanced/debugging_gdb_openocd
-   - tutorials/advanced/debugging_vscode
-   - tutorials/advanced/6lowpan_nuttx_rpi
-   - tutorials/advanced/tracing
-   - tutorials/advanced/microros_nuttx_bsp
-   - tutorials/advanced/microros_6lowpan_tutorial
+   - tutorials/advanced/nuttx/nuttx_getting_started
+   - tutorials/advanced/nuttx/debugging_gdb_openocd
+   - tutorials/advanced/nuttx/debugging_vscode
+   - tutorials/advanced/nuttx/6lowpan_nuttx_rpi
+   - tutorials/advanced/nuttx/tracing
+   - tutorials/advanced/nuttx/microros_nuttx_bsp
+   - tutorials/advanced/nuttx/microros_6lowpan_tutorial
+
+- title: Advanced Tutorials With FreeRTOS
+   docs:
+    - tutorials/advanced/freertos_getting_started
+
+- title: Advanced Tutorials With Zephyr
+  docs:
+    - tutorials/advanced/zephyr_getting_started
+  
 
 - title: Demos
   docs:

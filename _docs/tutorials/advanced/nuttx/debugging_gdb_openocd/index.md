@@ -1,6 +1,6 @@
 ---
 title: Debugging a NuttX target with GDB and OpenOCD
-permalink: /docs/tutorials/advanced/debugging_gdb_openocd/
+permalink: /docs/tutorials/advanced/nuttx/debugging_gdb_openocd/
 author: Ingo Lütkebohle
 ---
 

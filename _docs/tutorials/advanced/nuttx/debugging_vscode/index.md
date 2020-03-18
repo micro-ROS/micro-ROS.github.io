@@ -1,6 +1,6 @@
 ---
 title: Debugging with Visual Studio Code
-permalink: /docs/tutorials/advanced/debugging_vscode/
+permalink: /docs/tutorials/advanced/nuttx/debugging_vscode/
 author: Ingo Lütkebohle
 ---
 

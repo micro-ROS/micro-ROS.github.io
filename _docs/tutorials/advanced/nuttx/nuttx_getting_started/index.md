@@ -1,6 +1,6 @@
 ---
 title: NuttX Getting Started
-permalink: /docs/tutorials/advanced/nuttx_getting_started/
+permalink: /docs/tutorials/advanced/nuttx/nuttx_getting_started/
 ---
 
 This document wants to be a small guideline for rapidly start using
