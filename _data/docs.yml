@@ -56,7 +56,7 @@
    - tutorials/advanced/nuttx/microros_6lowpan_tutorial
 
 - title: Advanced Tutorials With FreeRTOS
-   docs:
+  docs:
     - tutorials/advanced/freertos_getting_started
 
 - title: Advanced Tutorials With Zephyr
