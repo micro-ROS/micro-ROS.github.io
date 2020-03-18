@@ -57,11 +57,11 @@
 
 - title: Advanced Tutorials With FreeRTOS
   docs:
-    - tutorials/advanced/freertos_getting_started
+    - tutorials/advanced/freertos/freertos_getting_started
 
 - title: Advanced Tutorials With Zephyr
   docs:
-    - tutorials/advanced/zephyr_getting_started
+    - tutorials/advanced/zephyr/zephyr_getting_started
   
 
 - title: Demos

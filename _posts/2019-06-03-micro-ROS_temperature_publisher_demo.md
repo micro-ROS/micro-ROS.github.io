@@ -14,6 +14,3 @@ The next video shows this demo running.
     <source src="/download/Dashing_post_micro-ROS_temp_publisher.mp4" type="video/mp4">
 </video>
 **(This video doesn't work on Chrome)**
-
-You can find all the details and how to reproduce in the next link:
-[micro-ROS temperature publisher demo](https://github.com/micro-ROS/micro-ROS_temperature_publisher_demo)
