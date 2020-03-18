@@ -90,7 +90,7 @@ Table:
 
 <sup>4</sup> Executing every task in round-robin fashion but only for a pre-defined time slice.
 
-<sup>5</sup> ARM Cortex M3 EFM32GG390F1024 Giant Gecko family (Silicon Labs). [EFM32G880F120-STK](http://nuttx.org/doku.php?id=documentation:about) ARM Cortex M3 EFM32GG390F1024 Giant Gecko family (Silicon Labs).
+<sup>5</sup> ARM Cortex M3 EFM32GG390F1024 Giant Gecko family (Silicon Labs). EFM32G880F120-STK ARM Cortex M3 EFM32GG390F1024 Giant Gecko family (Silicon Labs).
 
 <sup>6</sup> [Note: Time slicing](https://www.freertos.org/Documentation/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)
 
