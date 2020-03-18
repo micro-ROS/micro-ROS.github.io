@@ -98,4 +98,4 @@ Table:
 
 Some Related Work:
 * [Choosing the right RTOS for IoT platform, Milinkovic et al, INFOTEH-JAHORINA Vol. 14, 2015](http://infoteh.rs.ba/zbornik/2015/radovi/RSS-2/RSS-2-2.pdf): comparison of FreeRTOS, ChibiOS/RT, Erika, RIOT
-* [FreeRTOS Architecture](http://www.aosabook.org/en/freertos.html)
+* [FreeRTOS Architecture](https://www.freertos.org/)
