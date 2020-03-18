@@ -15,5 +15,3 @@ The next video shows this demo running.
 </video>
 **(This video doesn't work on Chrome)**
 
-You can find all the details and how to reproduce in the next link:
-[micro-ROS temperature publisher demo](https://github.com/micro-ROS/micro-ROS_temperature_publisher_demo)
