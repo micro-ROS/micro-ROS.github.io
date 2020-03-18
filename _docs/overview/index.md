@@ -20,7 +20,7 @@ Major repositories in order of the layers are:
 
 * Applications:
   * Kobuki demo: [embedded robot driver](https://github.com/micro-ROS/apps/tree/kobuki_rcl_port/examples/kobuki) and [remote ROS 2 software](https://github.com/micro-ROS/micro-ROS_kobuki_demo)
-  * [Temperature demo](https://github.com/micro-ROS/micro-ROS_temperature_publisher_demo)
+  * Broken URL: Temperature demo
 * Client library:
   * Extensions to rcl, i.e. the ROS 2 C API: [rcl_executor](https://github.com/micro-ROS/rcl_executor), ...
   * Extensions for rclcpp: [system_modes](https://github.com/micro-ROS/system_modes/), [TF improvements](https://github.com/micro-ROS/geometry2), ...
