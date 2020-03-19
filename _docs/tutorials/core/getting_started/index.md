@@ -1,7 +1,7 @@
 ---
 title: Getting Started 
 permalink: /docs/tutorials/core/getting_started/
-redirect_from: /docs/tutorials/basic/
+redirect_from: /docs/tutorials/core/
 redirect_from: /docs/tutorials/
 ---
 
