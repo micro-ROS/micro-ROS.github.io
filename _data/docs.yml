@@ -37,7 +37,7 @@
    - concepts/benchmarking
 
 
-- title: Basic Tutorials
+- title: Core Tutorials
   docs:
    - tutorials/core/getting_started
    - tutorials/core/getting_started_embedded
