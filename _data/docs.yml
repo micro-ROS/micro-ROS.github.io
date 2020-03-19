@@ -72,3 +72,6 @@
     - tutorials/advanced/zephyr/zephyr_getting_started
   
 
+- title: Advanced Tutorials with Linux
+  docs:
+    - tutorials/advanced/linux/tracing
