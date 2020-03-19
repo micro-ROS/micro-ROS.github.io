@@ -1,6 +1,6 @@
 ---
 title: Micro-ROS 6LoWPAN Guide 
-permalink: /docs/tutorials/advanced/microros_6lowpan_tutorial/
+permalink: /docs/tutorials/advanced/nuttx/microros_6lowpan_tutorial/
 ---
 
 In this guide, we will show how to use Micro-ROS over 6LoWPAN communication.

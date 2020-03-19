@@ -1,6 +1,6 @@
 ---
 title: 6LOWPAN communications between NuttX and a Raspberry Pi
-permalink: /docs/tutorials/advanced/6lowpan_nuttx_rpi/
+permalink: /docs/tutorials/advanced/nuttx/6lowpan_nuttx_rpi/
 ---
 
 

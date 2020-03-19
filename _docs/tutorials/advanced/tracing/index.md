@@ -1,15 +1,15 @@
 ---
 title: Getting started with ROS 2 tracing
 author: christophebedard
-permalink: /docs/tutorials/advanced/tracing/
+permalink: /docs/tutorials/advanced/nuttx/tracing/
 redirect_from: /tracing/
 ---
 
-1. [Introduction](#introduction)
-2. [Setup](#setup)
-3. [Simple tracing example](#simple-tracing-example)
-4. [Callback duration analysis](#callback-duration-analysis)
-5. [Further Information](#relevant-links)
+- [Introduction](#introduction)
+- [Setup](#setup)
+- [Simple tracing example](#simple-tracing-example)
+- [Callback duration analysis](#callback-duration-analysis)
+- [Relevant links](#relevant-links)
 
 ## Introduction
 
