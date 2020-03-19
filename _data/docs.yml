@@ -55,7 +55,7 @@
    - tutorials/advanced/nuttx/microros_nuttx_bsp
    - tutorials/advanced/nuttx/microros_6lowpan_tutorial
 
-- title: Advanced Tutorials With FreeRTOS
+- title: Advanced Tutorials with FreeRTOS
   docs:
     - tutorials/advanced/freertos/freertos_getting_started
 
