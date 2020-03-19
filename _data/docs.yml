@@ -45,7 +45,7 @@
    - tutorials/core/programming_rcl_rclc
    - tutorials/core/microxrcedds_rmw_configuration
 
-- title: Advanced Tutorials With Nuttx
+- title: Advanced Tutorials with Nuttx
   docs:
    - tutorials/advanced/nuttx/nuttx_getting_started
    - tutorials/advanced/nuttx/debugging_gdb_openocd
