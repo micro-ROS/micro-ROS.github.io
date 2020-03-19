@@ -82,7 +82,7 @@ For this example we are going to create a ping pong app where a node sends a pin
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
-To start creating this app, lets configure the RMW with the required static memory. You can read more about RMW and Micro XRCE-DDS Configuration [here](/docs/tutorials/basic/microxrcedds_rmw_configuration/) The `app-colcon.meta` should look like:
+To start creating this app, lets configure the RMW with the required static memory. You can read more about RMW and Micro XRCE-DDS Configuration [here](/docs/tutorials/core/microxrcedds_rmw_configuration/) The `app-colcon.meta` should look like:
 
 ```
 {
