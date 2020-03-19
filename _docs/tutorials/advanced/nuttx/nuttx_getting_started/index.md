@@ -1,6 +1,8 @@
 ---
 title: NuttX Getting Started
 permalink: /docs/tutorials/advanced/nuttx/nuttx_getting_started/
+redirect_from: /docs/tutorials/advanced/
+redirect_from: /docs/tutorials/
 ---
 
 This document wants to be a small guideline for rapidly start using
