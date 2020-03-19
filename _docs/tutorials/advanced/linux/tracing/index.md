@@ -2,8 +2,9 @@
 title: Getting started with ROS 2 tracing
 author: christophebedard
 permalink: /docs/tutorials/advanced/linux/tracing/
-redirect_from: /docs/tutorials/advanced/tracing/
-redirect_from: /tracing/
+redirect_from:
+  - /docs/tutorials/advanced/tracing/
+  - /tracing/
 ---
 
 - [Introduction](#introduction)
