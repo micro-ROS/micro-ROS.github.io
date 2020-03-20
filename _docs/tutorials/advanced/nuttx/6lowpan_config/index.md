@@ -3,11 +3,16 @@ title: Configure 6LoWPAN communications
 permalink: /docs/tutorials/advanced/nuttx/6lowpan_config/
 ---
 
+|  RTOS |  Board Compatible |
+|:-----:|:-----------------:|
+| NuttX | Olimex-STM32-E407 |
 
 This guide will show how to set-up a Raspberry Pi 3 (RPI) running Raspbian and an Olimex STM32 E407 board running NuttX to have 6lowpan communication between them.
-Note: This tutorial doesn't use micro-ROS, is just a proof of concept of the 6LoWPAN communications.
 
-## What do we need?
+
+**Disclaimer**: This tutorial doesn't use micro-ROS, is just a proof of concept of the 6LoWPAN communications.
+
+## Hardware requirements:
 
 - Raspberry Pi 3
 - micro-SD card (almost 16gb) with Raspbian lite already installed.
@@ -15,7 +20,8 @@ Note: This tutorial doesn't use micro-ROS, is just a proof of concept of the 6Lo
 - Two PMODRF2 module which are base on the MRF24J40 module.
 - PC with Ubuntu (It works fine with Ubuntu 16.04)
 - NuttX source code, you can find a Docker file with all the tools [here](https://github.com/micro-ROS/docker/tree/pre_refactor/Embedded/NuttX/development/stm32-e407).
-## How to set-up 6lowpan RPI?
+
+## Set-up 6LoWPAN communications on the Raspberry PI
 
 First, we need to connect the PMODRF2 module to the RPI, so we need to set the next connections:
 
@@ -60,7 +66,7 @@ The last point is to set-up the network.
 Now the RPI is ready to send and receive messages from a NuttX board or another RPI.
 
 
-## How to set-up 6lowpan in NuttX?
+## Set-Up 6LoWPAN communications on NuttX
 
 First, we need to do the connections between the [Olimex board](/docs/overview/hardware) and the PMODRF2 module.
 
@@ -70,39 +76,46 @@ First, we need to do the connections between the [Olimex board](/docs/overview/h
 - `Board D10` -> `MRF24J40 CS`
 - `Board D8` -> `MRF24J40 INT`
 
-Once the wiring is finished, we need to compile and upload the firmware. Type the next commands:
+### Create firmware
 
-Go to the main folder of NuttX and type the command to configure the board:
-`./scripts/configure.sh olimex-stm32-e407 mrf24j40-6lowpan`
-
-Compile:
-`make`
-
-Upload:
-`./scripts/flash.sh olimex-stm32-e407`
-
-It should return somenthing like this:
-
-- Configuration:
+For this tutorial we're going to execute the next configuration on the Micro-ROS build system:
+```bash
+ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
+ros2 run micro_ros_setup configure_firmware.sh mrf24j40-6lowpan
 ```
-Copy files
-Refreshing...
+
+Once the board is configured, we need to build it by typing the next command:
+```bash
+ros2 run micro_ros_setup build_firmware.sh
 ```
-- Compilation:
-```
+
+If the compilation succed, it should return the next output:
+```bash
 CP: nuttx.hex
 CP: nuttx.bin
 ```
-- Upload the firmware
+
+### Flash the firmware
+Once the firmware is ready, you need to do the next connections:
+- Connect the JTAG flasher device to the JTAG port.
+- Connect the mini-USB port to the USB-OTG2 port.
+- Check if the radio connections are fine.
+
+Now flash the board by typing the next command:
+```bash
+ros2 run micro_ros_setup flash_firmware.sh
 ```
-wrote 131072 bytes from file nuttx.bin in 3.763846s (34.008 KiB/s)
+
+This should return this output once the process is finished:
+```bash
+wrote 49152 bytes from file nuttx.bin in 6.279262s (7.644 KiB/s)
 Info : Listening on port 6666 for tcl connections
 Info : Listening on port 4444 for telnet connections
 ```
-(The number of written bytes could be different in each board)
 
+## NuttX network configuration
 
-Finally, connect the mini USB cable to the USB OTG2, and the console should return the next:
+Push the reset buttom and type to times enter. Now the NSH console should be output throught the terminal. Type ``?`` to check if every application is flashed. It should appear the next output.
 
 ```bash
 nsh> ?
@@ -160,10 +173,6 @@ Available commands
  -To exit type: quit
 
 ```
-
-**At this point the network is ready to work!**
-
-Finally type ``quit`` two times to close the app and come back to the main menu.
 
 ## Sending a message from NuttX to Raspbian:
 
@@ -231,12 +240,12 @@ lowpan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1280
 As you can see there is two IP in this network interface. But you need to remember the second one. We will use later with NuttX.
 `fe80::9c6e:87a5:eb60:84d0``
 
-Go to the place where lives the repo that you downloaded previously. Go to ``micro-ROS-bridge_RPI/RPI_6lowpan/Examples/6lowpan_recv``
+Go to the place where lives the repo that you downloaded previously. Go to ``micro-ROS-bridge_RPI/6LowPAN_Tests/6lowpan_recv``
 Finally, execute `recv_demo` telling to open the `61616` port. Type this command: ``./recv_demo 61616``
 
 At this point, the RPI is ready to receive incoming packages.
 
-### NuttX part:
+### NuttX side
 
 Execute ``udp_6lowpan`` application.
 This will ask you if you want to configure the network. Type N, because is already configured.
@@ -296,7 +305,7 @@ Then, once deleted, add the Nuttx device it permanently (until reboot):
  $ sudo ip neigh add fe80::2be:adde:de:fa00 dev lowpan0 00:be:ad:de:00:de:fa:00
 ```
 
-### NuttX part:
+### NuttX side
 First, we need the ip of the board, so type ``ifconfig`` in the main menu. This should return somenthing like this:
 ```bash
 wpan0   Link encap:6LoWPAN HWaddr 00:be:ad:de:00:de:fa:00 at UP                 
@@ -337,7 +346,7 @@ Introduce the reception port
 Listening on 61616 for input packets   
 ```
 
-### Raspbian Part:
+### Raspbian side
 
 Go to the places that lives the previous download repo. Then go to this folder: ``/micro-ROS-bridge_RPI/6LowPAN_Tests/6lowpan_send``
 
