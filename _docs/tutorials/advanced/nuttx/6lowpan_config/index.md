@@ -1,10 +1,11 @@
 ---
-title: 6LOWPAN communications between NuttX and a Raspberry Pi
-permalink: /docs/tutorials/advanced/nuttx/6lowpan_nuttx_rpi/
+title: Configure 6LoWPAN communications
+permalink: /docs/tutorials/advanced/nuttx/6lowpan_config/
 ---
 
 
 This guide will show how to set-up a Raspberry Pi 3 (RPI) running Raspbian and an Olimex STM32 E407 board running NuttX to have 6lowpan communication between them.
+Note: This tutorial doesn't use micro-ROS, is just a proof of concept of the 6LoWPAN communications.
 
 ## What do we need?
 
@@ -34,10 +35,10 @@ In the next links you can see the pinout of each board:
 - [PMODRF2 pionut.](https://reference.digilentinc.com/reference/pmod/pmodrf2/start)
 
 Once you've set all the wires, power-on the RPI and download the next repository inside the RPI:
-- https://github.com/micro-ROS/micro-ROS-bridge_RPI
+- https://github.com/micro-ROS/micro-ROS-bridge_RPI/
 
 Execute the next command:
-```sudo ./micro-ROS-bridge_RPI/RPI_6lowpan/script.sh```
+```sudo ./micro-ROS-bridge_RPI/micro-ROS-HB.sh```
 
 If everything goes fine, at the end of the script, the board should restart. After the start-up, type the next command to see if the configuration and the connections are fine:
 ```dmesg | grep mrf24j40```
@@ -51,7 +52,6 @@ The last point is to set-up the network.
 
 - Set the PAN ID: ``sudo iwpan dev wpan0 set pan_id 0xabcd``
 - Set the page and channel: ``sudo iwpan phy phy0 set channel 0 26``
-- Set the short address: ``sudo iwpan dev wpan0 set short_addr 0x4204`` (Each board must a different one)
 - Attach the phy layer to the lowpan: ``sudo ip link add link wpan0 name lowpan0 type lowpan``
 - Bring up the WPAN0 interface: ``sudo ip link set wpan0 up``
 - Bring up the RPI lowpan: ``sudo ip link set lowpan0 up``
@@ -285,8 +285,7 @@ If this does not work, do as follow:
 Check if the Nuttx address is part within the Linux/Raspbian neighborhood table.
 If it is saved there, remove it:
 ```bash
- $ ip neigh  # a bunch of address shall appear including yours (if you send a
-	message already)
+ $ ip neigh 
    fe80::2be:adde:de:fa00 dev lowpan0  FAILED
  $ sudo ip neigh delete fe80::2be:adde:de:fa00 dev lowpan0 # Remove it.
 ```
@@ -294,8 +293,7 @@ If it is saved there, remove it:
 Then, once deleted, add the Nuttx device it permanently (until reboot):
 
 ```bash
- $ sudo ip neigh add fe80::2be:adde:de:fa00 dev lowpan0 00:be:ad:de:00:de:fa:00 # Add it with the
-corret  Hardware address.
+ $ sudo ip neigh add fe80::2be:adde:de:fa00 dev lowpan0 00:be:ad:de:00:de:fa:00
 ```
 
 ### NuttX part:
@@ -341,7 +339,7 @@ Listening on 61616 for input packets
 
 ### Raspbian Part:
 
-Go to the places that lives the previous download repo. Then go to this folder: ``/micro-ROS-bridge_RPI/RPI_6lowpan/Examples/6lowpan_send``
+Go to the places that lives the previous download repo. Then go to this folder: ``/micro-ROS-bridge_RPI/6LowPAN_Tests/6lowpan_send``
 
 And execute with root privileges the next app: ``send_demo``.
 These demos have two arguments: The first is the port to open in the destination and the second is the destination IP. An example of this specific demo could be:
