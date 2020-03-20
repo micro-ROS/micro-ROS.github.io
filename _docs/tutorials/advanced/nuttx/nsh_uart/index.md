@@ -3,7 +3,18 @@ title: NSH console over UART
 permalink: /docs/tutorials/advanced/nuttx/nsh_uart/
 ---
 
+|  RTOS |  Board Compatible |
+|:-----:|:-----------------:|
+| NuttX | Olimex-STM32-E407 |
+
 NSH is a system console that can be used through different interfaces. On this tutorial, we will show how to use it over the UART peripheral. The UART (Universal Asynchronous Receiver-Transmitter) is a communication peripheral implemented on a micro-controller, which allows bidirectional serial communication.
+
+## Hardware requirements:
+- [Olimex-STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)
+- [JTAG Flasher device](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY/)
+- USB-TTL232 cable.
+
+## Create the firmware
 
 For this tutorial we're going to execute the next configuration on the Micro-ROS build system:
 ```bash
@@ -21,6 +32,7 @@ If the compilation succed, it should return the next output:
 CP: nuttx.hex
 CP: nuttx.bin
 ```
+## Flash the firmware
 
 The firmware is ready, is just necessary to upload it. Now you need to do the next connection:
 - Connect the JTAG flasher device.
@@ -45,6 +57,7 @@ wrote 49152 bytes from file nuttx.bin in 6.279262s (7.644 KiB/s)
 Info : Listening on port 6666 for tcl connections
 Info : Listening on port 4444 for telnet connections
 ```
+## Connect to the console
 
 Finally, connect the USB cable to the PC and open a terminal. Type the command ``dmesg`` to know the direction of the device. It should return something like this:
 ```bash

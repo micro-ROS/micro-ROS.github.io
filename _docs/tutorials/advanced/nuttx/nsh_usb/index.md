@@ -3,9 +3,19 @@ title: NSH console over USB
 permalink: /docs/tutorials/advanced/nuttx/nsh_usb/
 ---
 
-(Only available for Olimex-STM32-E407 with NuttX)
+|  RTOS |  Board Compatible |
+|:-----:|:-----------------:|
+| NuttX | Olimex-STM32-E407 |
 
 NSH is a system console that can be use throught the next interfaces: USB,UART and Telnet. With this console you can execute apps, set system configuration and see the state of the system.
+
+## Hardware requirements:
+- [Olimex-STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)
+- [JTAG Flasher device](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY/)
+- Mini USB cable.
+
+
+## Create the firmware
 
 For this tutorial we're going to execute the next configuration on the Micro-ROS build system:
 ```bash
@@ -23,6 +33,7 @@ If the compilation succed, it should return the next output:
 CP: nuttx.hex
 CP: nuttx.bin
 ```
+## Flash the firmware
 
 Now is ready to upload the firmware to the board. Connect the JTAG flasher device to the board and the mini USB cable to the USB-OTG2 port. Like on the down below image.
 ![](images/olimex_nsh_usb.jpg)
@@ -38,6 +49,7 @@ wrote 49152 bytes from file nuttx.bin in 6.279262s (7.644 KiB/s)
 Info : Listening on port 6666 for tcl connections
 Info : Listening on port 4444 for telnet connections
 ```
+## Connect to the console
 
 Finally to use the NSH console, you need to follow the next steps:
 - Push the reset button. The green LED will turn on to say that is working properly.

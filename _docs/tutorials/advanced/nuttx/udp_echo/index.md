@@ -7,15 +7,15 @@ permalink: /docs/tutorials/advanced/nuttx/udp_echo/
 |:-----:|:-----------------:|
 | NuttX | Olimex-STM32-E407 |
 
+On this tutorial, we will see how to use a UDP echo server on NuttX to test a basic UDP server. 
+UDP (User datagram protocol) is a connectionless protocol with a minimum protocol mechanism. This protocol is focused on time-sensitive applications which is preferable to lose packages rather than delayed packets.
+
 ## Hardware requirements:
 - [Olimex-STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)
 - [JTAG Flasher device](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY/)
 - Ethernet Cable.
 - Mini USB cable.
 
-
-On this tutorial, we will see how to use a UDP echo server on NuttX to test a basic UDP server. 
-UDP (User datagram protocol) is a connectionless protocol with a minimum protocol mechanism. This protocol is focused on time-sensitive applications which is preferable to lose packages rather than delayed packets.
 
 ## Create the firmware
 
