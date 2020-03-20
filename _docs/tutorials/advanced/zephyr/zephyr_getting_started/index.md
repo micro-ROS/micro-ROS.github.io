@@ -76,7 +76,7 @@ mkdir src
 touch src/app.c app-colcon.meta
 ```
 
-You will also need some other Zephyr related files: a `CMakeLists.txt` in order to define the building process and a `prj.conf` where Zephyr is configured. You have this two files [here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong), for now it is ok to copy them.
+You will also need some other Zephyr related files: a `CMakeLists.txt` in order to define the building process and a `prj.conf` where Zephyr is configured. You have these two files [here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong), for now it is ok to copy them.
 
 For this example we are going to create a ping pong app where a node sends a ping package with a unique identifier using a publisher and the same package is received by a pong subscriber. The node will also answer to:
 
