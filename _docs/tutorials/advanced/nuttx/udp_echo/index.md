@@ -144,7 +144,7 @@ server: 0. Receiving up 1024 bytes
 ```
 ## PC side
 
-Open a new console and run a UDP client connect to the port 80 of the NuttX board. For this example we are using netcat, on the bottom line you can see on example:
+Open a new console and run a UDP client connect to the port 80 of the NuttX board. For this example we are using netcat, on the bottom line you can see an example:
 
 ```bash
 netcat -u 192.168.1.130 80
