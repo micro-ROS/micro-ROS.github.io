@@ -63,7 +63,6 @@
    - tutorials/advanced/nuttx/6lowpan_config
    - tutorials/advanced/nuttx/debugging_gdb_openocd
    - tutorials/advanced/nuttx/debugging_vscode
-   - tutorials/advanced/nuttx/tracing
    - tutorials/advanced/nuttx/microros_nuttx_bsp
    - tutorials/advanced/nuttx/microros_6lowpan_tutorial
 
