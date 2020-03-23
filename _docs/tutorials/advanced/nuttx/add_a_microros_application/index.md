@@ -282,7 +282,7 @@ Execute the next command:
 ros2 run micro_ros_setup configure_firmware.sh uros
 ```
 
-This set the Ethernet and Micro-ROS required configuration, but we're going to modify it, to add our application.
+This sets the Ethernet and Micro-ROS required configuration. However, in order to add our application, we're going to modify it.
 
 ### Modify the configuration
 On a console, type the next commands:
