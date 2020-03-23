@@ -37,7 +37,7 @@ At this point we have everything ready in our workspace to develop a new applica
 
 ### Create Kconfig file
 
-On this step, you need to create an empty file called **Kconfig**, inside the application folder. These files contain the configuration menu to configure the application and add to the build system list of NuttX.
+For this step, you need to create an empty file called **Kconfig**, inside the application folder. These files contain the configuration menu to configure the application and add it to the build system list of NuttX.
 
 On the next lines you can see an example of a basic generic implementation:
 ```bash
