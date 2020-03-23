@@ -3,8 +3,7 @@ title: Zephyr Emulator
 permalink: /docs/tutorials/advanced/zephyr/zephyr_emulator/
 ---
 
-
-This tutorial aims to create a new micro-ROS application on **[Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)** evaluation board with **[Zephyr RTOS](https://www.zephyrproject.org/)**
+This tutorial aims to create a new micro-ROS application on with **[Zephyr RTOS](https://www.zephyrproject.org/)** emulator (also known as [Native POSIX](https://docs.zephyrproject.org/latest/boards/posix/native_posix/doc/index.html)).
 
 <div>
 <img width="400" style="padding-right: 25px;" src="imgs/3.jpg">
@@ -14,14 +13,7 @@ This tutorial aims to create a new micro-ROS application on **[Olimex STM32-E407
 
 ## Required hardware
 
-This tutorial uses the following hardware:
-
-| Item | |
-|---------------|----------------------------------------------------------|
-| Olimex STM32-E407 | [Link](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) |
-| Olimex ARM-USB-TINY-H | [Link](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/) |
-| USB-Serial Cable Female | [Link](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/) |
-
+This tutorial requires no hardware beyond a Linux host computer.
 
 ## Adding a new micro-ROS app
 
@@ -50,14 +42,14 @@ source install/local_setup.bash
 ```
 
 
-Now, let's create a firmware workspace that targets all the required code and tools for Olimex development board and Zephyr:
+Now, let's create a firmware workspace that targets all the required code and tools for Zephyr emulator:
 
 ```bash
 # Create step
-ros2 run micro_ros_setup create_firmware_ws.sh zephyr olimex-stm32-e407
+ros2 run micro_ros_setup create_firmware_ws.sh zephyr host
 ```
 
-Now you have all the required tools to crosscompile micro-ROS and Zephyr for Olimex STM32-E407 development board. At this point, you must know that the micro-ROS build system is a four-step workflow:
+Now you have all the required tools to compile micro-ROS and Zephyr. At this point, you must know that the micro-ROS build system is a four-step workflow:
 
 <!-- TODO (pablogs9): Remove and link to build-system tutorial when done -->
 1. **Create**: retrieves all the required packages for a specific RTOS and hardware platform.
@@ -65,7 +57,7 @@ Now you have all the required tools to crosscompile micro-ROS and Zephyr for Oli
 3. **Build**: generates a binary file ready for being loaded in the hardware.
 4. **Flash**: load the micro-ROS software in the hardware.
 
-micro-ROS apps for Olimex + Zephyr are located at `firmware/zephyr_apps/apps`. In order to create a new application, create a new folder containing two files: the app code (inside a `src` folder) and the RMW configuration.
+micro-ROS apps for Zephyr emulator are located at `firmware/zephyr_apps/apps`. In order to create a new application, create a new folder containing two files: the app code (inside a `src` folder) and the RMW configuration.
 
 ```bash
 # Creating a new app
@@ -76,7 +68,7 @@ mkdir src
 touch src/app.c app-colcon.meta
 ```
 
-You will also need some other Zephyr related files: a `CMakeLists.txt` in order to define the building process and a `prj.conf` where Zephyr is configured. You have these two files [here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong), for now it is ok to copy them.
+You will also need some other Zephyr related files: a `CMakeLists.txt` in order to define the building process and a `prj.conf` where Zephyr is configured. You have these two files [here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/host_ping_pong), for now it is ok to copy them.
 
 For this example we are going to create a ping pong app where a node sends a ping package with a unique identifier using a publisher and the same package is received by a pong subscriber. The node will also answer to:
 
@@ -114,6 +106,7 @@ Meanwhile `src/app.c` should look like the following code:
 
 #include <stdio.h>
 #include <unistd.h>
+#include <time.h>
 
 #include <zephyr.h>
 
@@ -146,7 +139,7 @@ void main(void)
   rcl_publisher_t pong_publisher = rcl_get_zero_initialized_publisher();
   rcl_publisher_init(&pong_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Header), "/microROS/pong", &pong_publisher_ops);
 
-  // Create a best efforts pong subscriber
+  // Create a best effort pong subscriber
   rcl_subscription_options_t pong_subscription_ops = rcl_subscription_get_default_options();
   pong_subscription_ops.qos.reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
   rcl_subscription_t pong_subscription = rcl_get_zero_initialized_subscription();
@@ -196,6 +189,26 @@ void main(void)
     
     // Run session for 100 ms
     rcl_wait(&wait_set, RCL_MS_TO_NS(100));
+    
+    // Check if some pong message is received
+    if (wait_set.subscriptions[index_pong_subscription]) {
+      rc = rcl_take(wait_set.subscriptions[index_pong_subscription], &rcv_msg, NULL, NULL);
+      if(rc == RCL_RET_OK && strcmp(msg.frame_id.data,rcv_msg.frame_id.data) == 0) {
+          pong_count++;
+          printf("Pong for seq %s (%d)\n", rcv_msg.frame_id.data, pong_count);
+      }
+    }
+
+    // Check if some ping message is received and pong it
+    if (wait_set.subscriptions[index_ping_subscription]) {
+      rc = rcl_take(wait_set.subscriptions[index_ping_subscription], &rcv_msg, NULL, NULL);
+
+      // Dont pong my own pings
+      if(rc == RCL_RET_OK && strcmp(msg.frame_id.data,rcv_msg.frame_id.data) != 0){
+        printf("Ping received with seq %s. Answering.\n", rcv_msg.frame_id.data);
+        rcl_publish(&pong_publisher, (const void*)&rcv_msg, NULL);
+      }
+    }
 
     // Check if it is time to send a ping
     if (iterations++ % 50 == 0) {
@@ -215,37 +228,16 @@ void main(void)
       printf("Ping send seq %s\n", msg.frame_id.data);  
     }
     
-    // Check if some pong message is received
-    if (wait_set.subscriptions[index_pong_subscription]) {
-      rc = rcl_take(wait_set.subscriptions[index_pong_subscription], &rcv_msg, NULL, NULL);
-
-      if(rc == RCL_RET_OK && strcmp(msg.frame_id.data,rcv_msg.frame_id.data) == 0) {
-          pong_count++;
-          printf("Pong for seq %s (%d)\n", rcv_msg.frame_id.data, pong_count);
-      }
-    }
-
-    // Check if some ping message is received and pong it
-    if (wait_set.subscriptions[index_ping_subscription]) {
-      rc = rcl_take(wait_set.subscriptions[index_ping_subscription], &rcv_msg, NULL, NULL);
-
-      // Dont pong my own pings
-      if(rc == RCL_RET_OK && strcmp(msg.frame_id.data,rcv_msg.frame_id.data) != 0){
-        printf("Ping received with seq %s. Answering.\n", rcv_msg.frame_id.data);
-        rcl_publish(&pong_publisher, (const void*)&rcv_msg, NULL);
-      }
-    }
-    
     usleep(10000);
   } while (true);
 }
 ```
 
-Once the new folder is created, let's configure our new app with a serial transport on the USB:
+Once the new folder is created, let's configure our new app with a UDP transport that looks for the agent on the port UDP/8888 at localhost:
 
 ```bash
 # Configure step
-ros2 run micro_ros_setup configure_firmware.sh my_brand_new_app --transport serial-usb
+ros2 run micro_ros_setup configure_firmware.sh my_brand_new_app --transport udp --ip 127.0.0.1 --port 8888
 ```
 
 When the configuring step ends, just build the firmware:
@@ -255,20 +247,8 @@ When the configuring step ends, just build the firmware:
 ros2 run micro_ros_setup build_firmware.sh
 ```
 
-Once the build has successfully ended, let's power and connect the board.  First, connect Olimex ARM-USB-TINY-H JTAG programmer to the board's JTAG port:
+Now you have a Zephyr + micro-ROS app ready to run on your own computer.
 
-<img width="400" style="padding-right: 25px;" src="imgs/2.jpg">
-
-Make sure that the board power supply jumper (PWR_SEL) is in the 3-4 position in order to power the board from the JTAG connector:
-
-<img width="400" style="padding-right: 25px;" src="imgs/1.jpg">
-
-You should see the red LED lighting. It is time to flash the board:
-
-```bash
-# Flash step
-ros2 run micro_ros_setup flash_firmware.sh
-```
 ## Running the micro-ROS app
 
 The micro-ROS app is ready to connect to a micro-ROS-Agent and start talking with the rest of the ROS 2 world.
@@ -283,18 +263,19 @@ ros2 run micro_ros_setup create_agent_ws.sh
 colcon build
 ```
 
-Then connect the Olimex development board to the computer using the USB OTG 2 connector (the miniUSB connector that is furthest from the Ethernet port).
-
-***TIP:** Color codes are applicable to [this cable](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/). Make sure to match Olimex Rx with Cable Tx and vice-versa. Remember GND!*
-
 Then run the agent:
 
 ```bash
 # Run a micro-ROS agent
-ros2 run micro_ros_agent micro_ros_agent serial --dev [device]
+ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 ```
 
-***TIP:** you can use this command to find your serial device name: `ls /dev/serial/by-id/*`. Probably it will be something like `/dev/serial/by-id/usb-ZEPHYR_Zephyr_microROS_3536510100290035-if00`*
+And run the Zephyr app: 
+
+```bash
+# Flash/run step
+ros2 run micro_ros_setup flash_firmware.sh
+```
 
 And finally, let's check that everything is working. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings
 
@@ -364,3 +345,37 @@ stamp:
 frame_id: fake_ping
 ---
 ```
+
+## Multiple Ping Pong nodes
+
+One of the advantages of having an emulator is that you don't need to buy a bunch of hardware in order to test some multi-node micro-ROS apps. So, with the same micro-ROS agent of the last section, let's open four different command lines and run thw following on each:
+
+```bash
+cd microros_ws
+
+# This is an alternative way of executing the Zephyr emulator
+./firmware/build/zephyr/zephyr.exe
+```
+
+As soon as all micro-ROS node are up and connected to the micro-ROS agent you will see them interacting:
+
+```
+pgarrido@pgarrido$ ./firmware/build/zephyr/zephyr.exe
+*** Booting Zephyr OS build zephyr-v2.2.0-492-gc73cb85b4ae9  ***
+UDP mode => ip: 127.0.0.1 - port: 8888
+Ping send seq 1711620172_1742614911                         <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"
+Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping 
+Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping 
+Pong for seq 1711620172_1742614911 (3)                      <---- The third mate pongs my ping 
+Ping received with seq 1845948271_546591567. Answering.     <---- A ping is received from a mate identified as "546591567", let's pong it.
+Ping received with seq 232977719_1681483056. Answering.     <---- A ping is received from a mate identified as "1681483056", let's pong it.
+Ping received with seq 1134264528_1107823050. Answering.    <---- A ping is received from a mate identified as "1107823050", let's pong it.
+Ping send seq 324239260_1742614911
+Pong for seq 324239260_1742614911 (1)
+Pong for seq 324239260_1742614911 (2)
+Pong for seq 324239260_1742614911 (3)
+Ping received with seq 1435780593_546591567. Answering.
+Ping received with seq 2034268578_1681483056. Answering.
+```
+
+***TIP:** use the help flag to discover some Zephyr emulation features `./firmware/build/zephyr/zephyr.exe -h`*
