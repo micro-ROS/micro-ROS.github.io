@@ -2,10 +2,12 @@
 title: Add a new Micro-ROS application
 permalink: /docs/tutorials/advanced/nuttx/add_a_microros_application/
 ---
-# Add a Micro-ROS application to NuttX
 
-In this tutorial, we will show the process of how to add a new micro-ROS application to NuttX.
-This application is a basic example of a Ping-Pong Micro-ROS application over Ethernet communication.
+|  RTOS | Board Compatible  | ROS2 Version |
+|:-----:|-------------------|:------------:|
+| NuttX | Olimex-STM32-E407 |    Dashing   |
+
+In this tutorial, we will follow a guide of how to **add a new Micro-ROS application** on the NuttX RTOS. During this guide, we will start with how to create a configuration profile for our application, following of how to create a micro-ROS pingpong application and finalizing of how we can add our new application to NuttX.
 
 ## Build the Micro-ROS build system
 
