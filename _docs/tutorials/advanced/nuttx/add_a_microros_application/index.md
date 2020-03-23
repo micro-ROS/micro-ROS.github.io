@@ -95,7 +95,7 @@ include $(APPDIR)/Application.mk
 
 ### Create Make.defs file
 Create an empty file called **Make.defs**, inside of the application folder.
-You need to add the next lines:
+You need to add the following lines:
 ```Makefile
 ifeq ($(CONFIG_UROS_PINGPONG_EXAMPLE),y)
     CONFIGURED_APPS += examples/uros_pingpong
