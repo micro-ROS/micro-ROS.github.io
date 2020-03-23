@@ -6,8 +6,6 @@ permalink: /docs/tutorials/advanced/zephyr/zephyr_emulator/
 This tutorial aims to create a new micro-ROS application on with **[Zephyr RTOS](https://www.zephyrproject.org/)** emulator (also known as [Native POSIX](https://docs.zephyrproject.org/latest/boards/posix/native_posix/doc/index.html)).
 
 <div>
-<img width="400" style="padding-right: 25px;" src="imgs/3.jpg">
-
 <img  width="300" style="padding-right: 25px;" src="imgs/4.jpg">
 </div>
 
