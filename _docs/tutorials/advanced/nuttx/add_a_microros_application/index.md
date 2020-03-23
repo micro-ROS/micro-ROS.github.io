@@ -107,7 +107,7 @@ This file will add the folder as an application if you set the option on the con
 ### Create the main file
 
 Create a file named ``uros_pingpong_main.c``.
-On the next lines we will show a pinpong example:
+In the box below, we will show a pinpong example:
 ```c
 //Nuttx specific library
 #include <nuttx/config.h>
