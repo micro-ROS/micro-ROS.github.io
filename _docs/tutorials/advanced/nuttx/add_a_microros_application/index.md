@@ -299,7 +299,7 @@ This will open the NuttX menu config, which allows you to modify the configurati
 ``Application Configuration -> Examples ``
 ![](images/nuttx_menuconfig.png)
 
-- This will show a list of the available application, you need to find: ``micro-ROS Ping-Pong`` and click ``y`` to add.
+- This will show a list of the available applications. You need to find: ``micro-ROS Ping-Pong`` and click ``y`` to add it.
 ![](images/nuttx_examples.png)
 
 - Now push three times the key ``ESC`` to close the menu. This will ask you if you want to save the save your new configuration, and you need to push ``Yes``
