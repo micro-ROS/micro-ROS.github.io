@@ -320,7 +320,7 @@ Finally create a folder called ``uros_pingpong`` on ``uros_ws/firmware/nuttx/con
 
 ## Build your application
 
-Now is everything ready it only left to continue with the build system instructions. Execute the next command on the build system to start the build process:
+Now that everything is ready, the only thing left to do is to continue with the build system instructions. Execute the next command on the build system to start the build process:
 ```bash
 ros2 run micro_ros_setup configure_firmware.sh uros_pingpong
 ros2 run micro_ros_setup build_firmware.sh
