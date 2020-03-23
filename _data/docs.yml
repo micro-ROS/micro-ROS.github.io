@@ -31,6 +31,7 @@
    - concepts/rtos/Zephyr
    - concepts/rtos/comparison
    - concepts/rtos/integration_with_colcon
+   - concepts/rtos/supported_hardware
 
 - title: Benchmarking
   docs:
