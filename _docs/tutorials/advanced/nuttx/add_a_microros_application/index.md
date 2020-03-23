@@ -326,7 +326,7 @@ ros2 run micro_ros_setup configure_firmware.sh uros_pingpong
 ros2 run micro_ros_setup build_firmware.sh
 ```
 
-If it returns the next output, your build succed and your application was implemented properly.
+If it returns the next output, your build step succeded and your application was implemented properly.
 
 ```bash
 AR:   stm32_boot.o stm32_bringup.o stm32_spi.o libatomic.o stm32_autoleds.o stm32_buttons.o stm32_appinit.o stm32_usb.o 
