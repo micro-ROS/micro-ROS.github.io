@@ -64,7 +64,7 @@ endif
 ### Create Makefile 
 
 Create an empty file called **Makefile**, inside of the application folder.
-On the next lines you can see an example of a generic implementation:
+Below, you can see an example of a generic implementation:
 ```Makefile
 -include $(TOPDIR)/Make.defs
 
