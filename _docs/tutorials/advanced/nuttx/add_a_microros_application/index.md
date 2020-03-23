@@ -308,7 +308,7 @@ This will open the NuttX menu config, which allows you to modify the configurati
 
 ### Add your configuration
 
-Open a console and execute the next commands:
+Open a console and execute the following commands:
 ```bash
 cd uros_ws/firmware/nuttx
 make savedefconfig
