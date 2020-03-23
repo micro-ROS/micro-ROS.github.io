@@ -275,7 +275,7 @@ Once the application is ready, the only thing left to do is to create the right 
 
 ## Create a config profile
 
-Create a specific configuration from scratch can be a challenging task, so we're going to start from an already existing one and modify it to our new application.
+Create a specific configuration from scratch can be a challenging task, so we're going to start from an already existing one and modify it for our new application.
 
 Execute the next command:
 ```bash
