@@ -28,7 +28,7 @@ This step will download all the required software.
 ```bash
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 ```
-At this moment we have everything ready in our workspace to develop a new application. On the next steps, we will start the development of the app itself.elf.
+At this point we have everything ready in our workspace to develop a new application. With the next steps, we will start the development of the app itself.
 
 ## Aplication development
 
