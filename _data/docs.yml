@@ -69,6 +69,7 @@
 - title: Advanced Tutorials with Zephyr
   docs:
     - tutorials/advanced/zephyr/zephyr_getting_started
+    - tutorials/advanced/zephyr/zephyr_emulator
   
 
 - title: Advanced Tutorials with Linux
