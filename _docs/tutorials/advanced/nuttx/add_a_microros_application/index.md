@@ -271,7 +271,7 @@ int uros_pingpong_main(int argc, char* argv[])
 }
 ```
 
-Now the application is ready, it only left to create the right configuration.
+Once the application is ready, the only thing left to do is to create the right configuration.
 
 ## Create a config profile
 
