@@ -39,7 +39,7 @@ At this point we have everything ready in our workspace to develop a new applica
 
 For this step, you need to create an empty file called **Kconfig**, inside the application folder. These files contain the configuration menu to configure the application and add it to the build system list of NuttX.
 
-On the next lines you can see an example of a basic generic implementation:
+In the next lines you can see an example of a basic generic implementation:
 ```bash
 config UROS_PINGPONG_EXAMPLE
 	bool "micro-ROS Ping Pong"
