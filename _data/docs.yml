@@ -74,4 +74,5 @@
 
 - title: Advanced Tutorials with Linux
   docs:
+    - tutorials/advanced/linux/linux_getting_started
     - tutorials/advanced/linux/tracing
