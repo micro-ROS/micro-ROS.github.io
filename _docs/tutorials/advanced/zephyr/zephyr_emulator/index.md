@@ -39,11 +39,20 @@ colcon build
 source install/local_setup.bash
 ```
 
+Let's install last version of CMake:
+
+```bash
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
+sudo apt install software-properties-common
+sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+sudo apt update
+sudo apt install cmake -y
+```
 
 Now, let's create a firmware workspace that targets all the required code and tools for Zephyr emulator:
 
 ```bash
-# Create step
+# Create firmware step
 ros2 run micro_ros_setup create_firmware_ws.sh zephyr host
 ```
 
@@ -55,7 +64,7 @@ Now you have all the required tools to compile micro-ROS and Zephyr. At this poi
 3. **Build**: generates a binary file ready for being loaded in the hardware.
 4. **Flash**: load the micro-ROS software in the hardware.
 
-micro-ROS apps for Zephyr emulator are located at `firmware/zephyr_apps/apps`. In order to create a new application, create a new folder containing two files: the app code (inside a `src` folder) and the RMW configuration.
+micro-ROS apps for Zephyr emulator are located at `firmware/zephyr_apps/apps`. In order to create a new application, create a new folder containing two files: the app code (inside a `src` folder) and the RMW configuration. You will also need some other Zephyr related files: a `CMakeLists.txt` to define the building process and a `prj.conf` where Zephyr is configured. You have these two files [here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/host_ping_pong), for now, it is ok to copy them.
 
 ```bash
 # Creating a new app
@@ -64,12 +73,15 @@ mkdir my_brand_new_app
 cd my_brand_new_app
 mkdir src
 touch src/app.c app-colcon.meta
+
+# Copying CMakeLists.txt and prj.conf
+wget https://raw.githubusercontent.com/micro-ROS/zephyr_apps/dashing/apps/host_ping_pong/CMakeLists.txt
+wget https://raw.githubusercontent.com/micro-ROS/zephyr_apps/dashing/apps/host_ping_pong/prj.conf
+
 popd
 ```
 
-You will also need some other Zephyr related files: a `CMakeLists.txt` in order to define the building process and a `prj.conf` where Zephyr is configured. You have these two files [here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/host_ping_pong), for now it is ok to copy them.
-
-For this example we are going to create a ping pong app where a node sends a ping package with a unique identifier using a publisher and the same package is received by a pong subscriber. The node will also answer to:
+For this example we are going to create a ping pong app where a node sends a ping package with a unique identifier using a publisher and the same package is received by a pong subscriber. The node will also answer to pings received from other nodes with a pong message:
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
