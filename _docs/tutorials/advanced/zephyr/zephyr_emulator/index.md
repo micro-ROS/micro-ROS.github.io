@@ -292,7 +292,7 @@ source install/local_setup.bash
 ros2 run micro_ros_setup flash_firmware.sh
 ```
 
-And finally, let's check that everything is working in another command line. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings
+And finally, let's check that everything is working in another command line. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings:
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
