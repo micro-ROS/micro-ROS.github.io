@@ -280,7 +280,8 @@ First of all, create and build a micro-ROS agent:
 ros2 run micro_ros_setup create_agent_ws.sh
 
 # Build micro-ROS-Agent packages, this may take a while.
-colcon build
+colcon build --metas src
+source install/local_setup.bash
 ```
 
 Then connect the Olimex development board to the computer using the USB OTG 2 connector (the miniUSB connector that is furthest from the Ethernet port).
