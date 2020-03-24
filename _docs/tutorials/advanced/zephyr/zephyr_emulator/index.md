@@ -282,9 +282,12 @@ Then run the agent:
 ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 ```
 
-And run the Zephyr app: 
+And run the Zephyr app in another command line (remember sourcing ROS 2 and micro-ROS installation): 
 
 ```bash
+source /opt/ros/$ROS_DISTRO/setup.bash
+source install/local_setup.bash
+
 # Flash/run step
 ros2 run micro_ros_setup flash_firmware.sh
 ```
