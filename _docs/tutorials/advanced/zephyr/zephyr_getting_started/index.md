@@ -74,6 +74,7 @@ mkdir my_brand_new_app
 cd my_brand_new_app
 mkdir src
 touch src/app.c app-colcon.meta
+cd ../../../
 ```
 
 You will also need some other Zephyr related files: a `CMakeLists.txt` in order to define the building process and a `prj.conf` where Zephyr is configured. You have these two files [here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong), for now it is ok to copy them.
