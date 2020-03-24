@@ -292,9 +292,11 @@ source install/local_setup.bash
 ros2 run micro_ros_setup flash_firmware.sh
 ```
 
-And finally, let's check that everything is working. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings
+And finally, let's check that everything is working in another command line. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings
 
 ```bash
+source /opt/ros/$ROS_DISTRO/setup.bash
+
 # Subscribe to micro-ROS ping topic
 ros2 topic echo /microROS/ping
 ```
@@ -318,13 +320,17 @@ frame_id: '730417256_1085377743'
 On another command line, let's subscribe to the pong topic
 
 ```bash
+source /opt/ros/$ROS_DISTRO/setup.bash
+
 # Subscribe to micro-ROS pong topic
 ros2 topic echo /microROS/pong
 ```
 
-At this point, we know that our app is publishing pings. Let's check if it also answers to someone else pings:
+At this point, we know that our app is publishing pings. Let's check if it also answers to someone else pings in a new command line:
 
 ```bash
+source /opt/ros/$ROS_DISTRO/setup.bash
+
 # Send a fake ping
 ros2 topic pub --once /microROS/ping std_msgs/msg/Header '{frame_id: "fake_ping"}'
 ```
