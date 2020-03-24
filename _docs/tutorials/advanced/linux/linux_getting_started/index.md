@@ -57,7 +57,7 @@ touch app.c CMakeLists.cmake
 popd
 ```
 
-For this example we are going to create a ping pong app where a node sends a ping package with a unique identifier using a publisher and the same package is received by a pong subscriber. The node will also answer to:
+For this example we are going to create a ping pong app where a node sends a ping package with a unique identifier using a publisher and the same package is received by a pong subscriber. The node will also answer to pings received from other nodes with a pong message:
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
@@ -275,16 +275,21 @@ Then run the agent:
 ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 ```
 
-Then run the app:
+Then run the app in another command line (remember sourcing ROS 2 and micro-ROS installation): 
 
 ```bash
+source /opt/ros/$ROS_DISTRO/setup.bash
+source install/local_setup.bash
+
 # Run a micro-ROS agent
 ros2 run micro_ros_demos_rcl my_brand_new_app
 ```
 
-And finally, let's check that everything is working. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings
+And finally, let's check that everything is working in another command line. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings:
 
 ```bash
+source /opt/ros/$ROS_DISTRO/setup.bash
+
 # Subscribe to micro-ROS ping topic
 ros2 topic echo /microROS/ping
 ```
@@ -308,13 +313,18 @@ frame_id: '730417256_1085377743'
 On another command line, let's subscribe to the pong topic
 
 ```bash
+source /opt/ros/$ROS_DISTRO/setup.bash
+
 # Subscribe to micro-ROS pong topic
 ros2 topic echo /microROS/pong
 ```
 
-At this point, we know that our app is publishing pings. Let's check if it also answers to someone else pings:
+At this point, we know that our app is publishing pings. Let's check if it also answers to someone else pings in a new command line:
 
 ```bash
+source /opt/ros/$ROS_DISTRO/setup.bash
+
+
 # Send a fake ping
 ros2 topic pub --once /microROS/ping std_msgs/msg/Header '{frame_id: "fake_ping"}'
 ```
