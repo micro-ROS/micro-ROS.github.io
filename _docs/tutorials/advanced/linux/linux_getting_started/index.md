@@ -324,7 +324,6 @@ At this point, we know that our app is publishing pings. Let's check if it also 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
 
-
 # Send a fake ping
 ros2 topic pub --once /microROS/ping std_msgs/msg/Header '{frame_id: "fake_ping"}'
 ```
