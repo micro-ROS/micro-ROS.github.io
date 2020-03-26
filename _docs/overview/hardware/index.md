@@ -15,7 +15,7 @@ micro-ROS targets mid-range and high-performance 32-bits microcontrollers famili
 + RISC-V boards
 
 <!-- TODO (pablogs): Update this paragraph to a more generic porting guide link  -->
-Please check [this link](https://cwiki.apache.org/confluence/display/NUTTX/Supported+Platforms) to check the complete list and the status of each board. In case you are interested in porting new boards or MCUs, please check the [next link](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide).
+Please check [this link](https://cwiki.apache.org/confluence/display/NUTTX/Supported+Platforms) to see the complete list and the status of each board. In case you are interested in porting new boards or MCUs, please check the [next link](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide).
 
 Even though many development boards could be used, we have chosen two of them as references. This page lists the hardware platforms that we use to test and develop micro-ROS, and also accessories that we frequently refer to, such as add-on boards, and JTAG probes.
 
