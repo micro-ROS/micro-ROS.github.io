@@ -19,7 +19,7 @@ Please check [this link](https://cwiki.apache.org/confluence/display/NUTTX/Suppo
 
 Even though many development boards could be used, we have chosen two of them as references. This page lists the hardware platforms that we use to test and develop micro-ROS, and also accessories that we frequently refer to, such as add-on boards, and JTAG probes.
 
-For the ease of use, micro-ROS provides a ready to use examples for some development boards. These out-of-the-box examples aim to show micro-ROS capabilities and they are also a starting point for developing embedded ROS 2 applications.
+For the ease of use, micro-ROS provides a ready to use example for some development boards. These out-of-the-box examples aim to show micro-ROS capabilities and they are also a starting point for developing embedded ROS 2 applications.
 
 ## Reference Platforms {#evaluation-boards}
 
