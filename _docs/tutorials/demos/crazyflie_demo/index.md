@@ -139,7 +139,7 @@ Push the reset button of the drone. The drone will perform an internal check sta
 Finally, you need to do the next steps:
 - Connect the USB radio dongle.
 - Push the button scan on the Crazyflie Client.
-- On the left menu, it should appear an interface called ```` select it.
+- On the left menu, it should appear an interface called ``radio://0/80/250K`` select it.
 - Finally, push the button ``connect``
 
 The part of the menu that you need to manipulate is highlighted on the next image:
