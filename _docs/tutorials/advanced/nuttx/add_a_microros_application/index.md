@@ -316,7 +316,7 @@ cd uros_ws/firmware/NuttX
 make savedefconfig
 ```
 
-This will generate a file called ``defconfig`` on ``uros_ws/firmware/nuttx``. This file is a config profile with all the required configuration to run your specific configuration which includes your application.
+This will generate a file called ``defconfig`` inside of ``uros_ws/firmware/NuttX``. This file is a config profile with all the required configuration to run your specific configuration which includes your application.
 
 Finally create a folder called ``uros_pingpong`` into ``uros_ws/firmware/NuttX/configs/olimex-stm32-e407`` and move the defconfig file to uros_pingpong folder.
 
