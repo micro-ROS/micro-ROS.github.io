@@ -287,7 +287,7 @@ ros2 run micro_ros_setup configure_firmware.sh uros
 This sets the Ethernet and Micro-ROS required configuration. However, in order to add our application, we're going to modify it.
 
 ### Modify the configuration
-On a console, type the next commands:
+Now type the following commands:
 ```bash
 cd uros_ws/firmware/nuttx
 make menuconfig
