@@ -40,7 +40,7 @@ Ports for micro-ROS on all supported RTOS are available for this board. Examples
 
 ### Development tools
 
-In order to flash and debug the board, it is required to get a JTAG probe. We recommend getting on of the next JTAG probes:
+In order to flash and debug the board, it is required to get a JTAG probe. We recommend getting one of the following JTAG probes:
 
 + [ARM-USB-OCD-H](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-OCD-H/)
 + [ARM-USB-TINY-H](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/)
