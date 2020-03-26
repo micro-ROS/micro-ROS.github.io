@@ -3,7 +3,7 @@ title: Supported Hardware
 permalink: /docs/overview/hardware/
 ---
 
-micro-ROS targets mid-range and high-performance 32-bits microcontrollers families. For now, most of the ports are based on the [STM32 series](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html) from ST. These kinds of MCU feature ARM Cortex-M processors with many peripherals such as GPIO, communication or coprocessors.  By default, micro-ROS uses [NuttX RTOS](https://nuttx.org/), but it also has ports for [FreeRTOS](https://www.freertos.org/) and [Zephyr](https://www.zephyrproject.org/). These RTOSes have a big variety of supported MCUs and development boards. The next list shows some of them:
+micro-ROS targets mid-range and high-performance 32-bits microcontrollers families. For now, most of the ports are based on the [STM32 series](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html) from ST. These kinds of MCU feature ARM Cortex-M processors with many peripherals such as GPIO, communication or coprocessors.  By default, micro-ROS uses [NuttX RTOS](https://nuttx.org/), but it also has ports for [FreeRTOS](https://www.freertos.org/) and [Zephyr](https://www.zephyrproject.org/). These RTOSes have a big variety of supported MCUs and development boards. The follwing list shows some of them:
 
 + MicroChip PIC32MX Family
 + Atmel SAMA5Dx
