@@ -5,6 +5,7 @@
    - overview/hardware
    - overview/transports
    - overview/comparison
+   - overview/docker_ci_status
 
 
 - title: Client Library
