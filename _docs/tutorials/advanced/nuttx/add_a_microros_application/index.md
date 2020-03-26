@@ -289,7 +289,7 @@ This sets the Ethernet and Micro-ROS required configuration. However, in order t
 ### Modify the configuration
 Now type the following commands:
 ```bash
-cd uros_ws/firmware/nuttx
+cd uros_ws/firmware/NuttX
 make menuconfig
 ```
 
