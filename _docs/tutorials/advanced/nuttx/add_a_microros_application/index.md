@@ -34,7 +34,7 @@ At this point we have everything ready in our workspace to develop a new applica
 
 ## Aplication development
 
-- Go to: ``uros_ws/firmware/apps/example``
+- Go to: ``uros_ws/firmware/apps/examples``
 - Create a folder called ``uros_pingpong``
 
 ### Create Kconfig file
