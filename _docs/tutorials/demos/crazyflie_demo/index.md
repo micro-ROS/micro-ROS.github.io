@@ -5,7 +5,11 @@ redirect_from:
   - /crazyflie_demo/
 ---
 
-This demo is a proof concept, which aims to demonstrate the versatility of the Micro-ROS project to be adapted to an already exciting product, with constrain memory size and respecting the original firmware. On this demonstration, we're going to work with the [Crazyflie 2.1 Drone](https://www.bitcraze.io/products/crazyflie-2-1/). This is a tiny and open-source drone which has the next characteristics:
+|   RTOS   | Board Compatible | ROS2 Version |
+|:--------:|------------------|:------------:|
+| freeRTOS | Crazyflie 2.1    |    Dashing   |
+
+This demo is a proof of concept, which aims to demonstrate the versatility of the Micro-ROS project to be adapted to an already exciting product, with constrain memory size and respecting the original firmware. On this demonstration, we're going to work with the [Crazyflie 2.1 Drone](https://www.bitcraze.io/products/crazyflie-2-1/). This is a tiny and open-source drone which has the next characteristics:
 - STM32F405 (Cortex-M4, 168MHz, 192kb SRAM, 1Mb flash)
 - Radio and power management by nRF51822 MCU (Up to 1 Km of range)
 - BMI088 IMU
@@ -139,10 +143,9 @@ Finally, you need to do the next steps:
 - Finally, push the button ``connect``
 
 The part of the menu that you need to manipulate is highlighted on the next image:
+![](images/cfclient_config.png)
 
-
-Now everything is ready and the Crazyflie Client should return the telemetry data and the RVIZ should start to show drone trajectory like on the bottom image:
-<!--- Add Image with drone working properly-->
+Now everything is ready and the Crazyflie Client should return the telemetry data and the RVIZ should start to show drone trajectory.
 
 Finally, if you want to close these utilities, you need to execute the next command:
 ```bash
