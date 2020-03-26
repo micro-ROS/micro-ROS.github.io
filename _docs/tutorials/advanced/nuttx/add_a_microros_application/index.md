@@ -37,6 +37,8 @@ At this point we have everything ready in our workspace to develop a new applica
 - Go to: ``uros_ws/firmware/apps/examples``
 - Create a folder called ``uros_pingpong``
 
+Now we're going to considerer the folder application the next folder: ``uros_ws/firmware/apps/examples/uros_ws/firmware/apps/examples``
+
 ### Create Kconfig file
 
 For this step, you need to create an empty file called **Kconfig**, inside the application folder. These files contain the configuration menu to configure the application and add it to the build system list of NuttX.
@@ -281,6 +283,7 @@ Create a specific configuration from scratch can be a challenging task, so we're
 
 Execute the next command:
 ```bash
+cd ~/uros_ws
 ros2 run micro_ros_setup configure_firmware.sh uros
 ```
 
@@ -295,7 +298,6 @@ make menuconfig
 
 This will open the NuttX menu config, which allows you to modify the configuration of the RTOS, including adding a new application.
 
-<!-- Add image of the menu-->
 
 - On the menu, you need to follow the next path:
 ``Application Configuration -> Examples ``
@@ -306,7 +308,6 @@ This will open the NuttX menu config, which allows you to modify the configurati
 
 - Now push three times the key ``ESC`` to close the menu. You will be asked if you want to save the save your new configuration, and you need to click ``Yes``.
 
-<!-- Add image of the save screen-->
 
 ### Add your configuration
 
@@ -324,6 +325,7 @@ Finally create a folder called ``uros_pingpong`` into ``uros_ws/firmware/NuttX/c
 
 Now that everything is ready, the only thing left to do is to continue with the build system instructions. Execute the next command on the build system to start the build process:
 ```bash
+cd ~/uros_ws
 ros2 run micro_ros_setup configure_firmware.sh uros_pingpong
 ros2 run micro_ros_setup build_firmware.sh
 ```
