@@ -246,25 +246,22 @@ Don't forget to register your app in `src/uros/micro-ROS-demos/rcl/CMakeLists.tx
 export_executable(my_brand_new_app)
 ```
 
-When the configuring step ends, just build the firmware:
-
-```bash
-# Build step
-ros2 run micro_ros_setup build_firmware.sh
-```
-
 ## Running the micro-ROS app
 
 The micro-ROS app is ready to connect to a micro-ROS-Agent and start talking with the rest of the ROS 2 world.
 
-First of all, create and build a micro-ROS agent:
+First of all, create a micro-ROS agent:
 
 ```bash
 # Download micro-ROS-Agent packages
 ros2 run micro_ros_setup create_agent_ws.sh
+```
 
-# Build micro-ROS-Agent packages, this may take a while.
-colcon build --metas src
+When the all client and agent packages are ready, just build them all:
+
+```bash
+# Build step
+ros2 run micro_ros_setup build_firmware.sh
 source install/local_setup.bash
 ```
 
@@ -374,7 +371,7 @@ source install/local_setup.bash
 ros2 run micro_ros_demos_rcl my_brand_new_app
 ```
 
-As soon as all micro-ROS node are up and connected to the micro-ROS agent you will see them interacting:
+As soon as all micro-ROS nodes are up and connected to the micro-ROS agent you will see them interacting:
 
 ```
 pgarrido@pgarrido$ ros2 run micro_ros_demos_rcl my_brand_new_app
