@@ -25,7 +25,7 @@ This tutorial uses the following hardware:
 
 ## Adding a new micro-ROS app
 
-First of all make sure that you have a **ROS 2** installation.
+First of all, make sure that you have a **ROS 2** installation.
 
 ***TIP:** if you are familiar with Docker containers, this image may be useful: [ros:dashing](https://hub.docker.com/layers/ros/library/ros/dashing/images/sha256-b796c14ea663537129897769aa6c715a851ca08dffd4875ef2ecaa31a4dbd431?context=explore)*
 
