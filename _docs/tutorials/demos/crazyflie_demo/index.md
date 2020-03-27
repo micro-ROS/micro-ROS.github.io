@@ -121,7 +121,7 @@ docker-compose up -d
 ```
 This last step could take a while the first time that you execute it, but later on executions, it will execute almost immediately.
 
-If everything goes fine, it should appear RVIZ and CrazyFlies Client. Each application has the next utility:
+If everything goes fine, it should appear RVIZ and CrazyFlies Client. Each application has the following utility:
 - RVIZ: Shows an animation of the drone, drawing de flight trajectory on screen. This data are obtained from the ROS2 topic published by the drone.
 - CrazyFlie Client: Shows the telemetry status of the drone, allows us to modify the configuration of the device and works as a communication bridge between the CrazyFlie radio protocol and the micro-ROS network.
 
