@@ -16,11 +16,11 @@ This tutorial aims to create a new micro-ROS application on **[Olimex STM32-E407
 
 This tutorial uses the following hardware:
 
-| Item | |
-|---------------|----------------------------------------------------------|
-| Olimex STM32-E407 | [Link](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) |
-| Olimex ARM-USB-TINY-H | [Link](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/) |
-| USB-Serial Cable Female | [Link](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/) |
+| Item |
+|---------------|
+| [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware) |
+| [Olimex ARM-USB-TINY-H](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/) |
+| [USB-Serial Cable Female](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/) |
 
 
 ## Adding a new micro-ROS app
@@ -41,7 +41,7 @@ cd microros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
 # Update dependencies using rosdep
-rosdep update
+sudo apt update && rosdep update
 rosdep install --from-path src --ignore-src -y
 
 # Build micro-ROS tools and source them
