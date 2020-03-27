@@ -116,7 +116,7 @@ sudo apt-get install docker-compose
 # Execute xhost
 xhost +
 
-# Execute docker compose to build all the requiered work space
+# Execute docker compose to build all the required workspace
 docker-compose up -d
 ```
 This last step could take a while the first time that you execute it, but later on executions, it will execute almost immediately.
