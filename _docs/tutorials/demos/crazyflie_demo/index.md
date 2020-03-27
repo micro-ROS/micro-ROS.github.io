@@ -32,7 +32,7 @@ Along the following sections, we will see the functionalities of this micro-ROS 
 * 1 x [Crazyflie-compatible remote controller](https://www.bitcraze.io/docs/crazyflie-clients-python/master/inputdevices/).
 
 ## Reproduce the demo
-On the next points, we will see a set of steps that you need to follow to succeed in the demo reproduction.
+Below, we will see a set of steps that you need to follow to succeed in the demo reproduction.
 (Note: Is necessary to install previously ROS2 Dashing, you can find instructions here: [ROS2 Dashing](https://index.ros.org/doc/ros2/Installation/Dashing/))
 ### WorkSpace set-up and configuration
 
