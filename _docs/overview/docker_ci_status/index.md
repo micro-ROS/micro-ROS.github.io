@@ -11,7 +11,7 @@ permalink: /docs/overview/docker_ci_status/
 | micro-ros-agent | Image containing a pre-compiled micro-ROS-Agent, ready to use as standalone application | [![Docker Automated build](https://img.shields.io/docker/cloud/automated/microros/micro-ros-agent.svg?logo=docker)](https://hub.docker.com/r/microros/micro-ros-agent/)[![Docker Build Status](https://img.shields.io/docker/cloud/build/microros/micro-ros-agent.svg?logo=docker)](https://hub.docker.com/r/microros/micro-ros-agent/)[![Compare Images](https://images.microbadger.com/badges/image/microros/micro-ros-agent.svg)](https://microbadger.com/images/microros/micro-ros-agent)
 | micro-ros-demos | Contains precompiled micro-ROS-demos, ready to use to view micro-ROS funcionality | [![Docker Automated build](https://img.shields.io/docker/cloud/automated/microros/micro-ros-demos.svg?logo=docker)](https://hub.docker.com/r/microros/micro-ros-demos/)[![Docker Build Status](https://img.shields.io/docker/cloud/build/microros/micro-ros-demos.svg?logo=docker)](https://hub.docker.com/r/microros/micro-ros-demos/)[![Compare Images](https://images.microbadger.com/badges/image/microros/micro-ros-demos.svg)](https://microbadger.com/images/microros/micro-ros-demos)
 
-## Github Continuos Integration Test Status
+## Github Continuous Integration Test Status
 
 <!--Add future CI test-->
 
@@ -19,4 +19,3 @@ permalink: /docs/overview/docker_ci_status/
 -|-|-:
 |[micro-ROS-build](https://github.com/micro-ROS/micro-ros-build)| Micro-ROS tool to build and flash Micro-ROS to every supported platform.|[![GitHub Actions status](https://github.com/micro-ROS/micro-ros-build/workflows/CI/badge.svg)](https://github.com/micro-ROS/micro-ros-build/actions)
 |[micro-ROS.github.io](https://github.com/micro-ROS/micro-ROS.github.io)| Micro-ROS official webpage repository.|[![GitHub Actions status](https://github.com/micro-ROS/micro-ROS.github.io/workflows/CI/badge.svg)](https://github.com/micro-ROS/micro-ROS.github.io/actions)
-
