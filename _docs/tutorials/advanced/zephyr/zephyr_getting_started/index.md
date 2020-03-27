@@ -79,7 +79,11 @@ popd
 
 You will also need some other Zephyr related files: a `CMakeLists.txt` in order to define the building process and a `prj.conf` where Zephyr is configured. You have these two files [here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong), for now it is ok to copy them.
 
-For this example we are going to create a ping pong app where a node sends a ping package with a unique identifier using a publisher and the same package is received by a pong subscriber. The node will also answer to pings received from other nodes with a pong message:
+```bash
+pushd firware/zephyr_apps/apps
+wget https://raw.githubusercontent.com/micro-ROS/zephyr_apps/dashing/apps/ping_pong/CMakeLists.txt
+wget https://raw.githubusercontent.com/micro-ROS/zephyr_apps/dashing/apps/ping_pong/prj.conf
+popd
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
