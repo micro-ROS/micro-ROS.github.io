@@ -9,7 +9,7 @@ redirect_from:
 |:--------:|------------------|:------------:|
 | freeRTOS | Crazyflie 2.1    |    Dashing   |
 
-This demo is a proof of concept, which aims to demonstrate the versatility of the Micro-ROS project to be adapted to an already exciting product, with constrain memory size and respecting the original firmware. On this demonstration, we're going to work with the [Crazyflie 2.1 Drone](https://www.bitcraze.io/products/crazyflie-2-1/). This is a tiny and open-source drone which has the next characteristics:
+This demo is a proof of concept, which aims to demonstrate the versatility of the Micro-ROS project to be adapted to an already exciting product, with constrained memory size and respecting the original firmware. In this demonstration, we're going to work with the [Crazyflie 2.1 Drone](https://www.bitcraze.io/products/crazyflie-2-1/). This is a tiny and open-source drone which has the following characteristics:
 - STM32F405 (Cortex-M4, 168MHz, 192kb SRAM, 1Mb flash)
 - Radio and power management by nRF51822 MCU (Up to 1 Km of range)
 - BMI088 IMU
