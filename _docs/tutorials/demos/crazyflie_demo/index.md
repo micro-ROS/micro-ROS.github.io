@@ -22,7 +22,7 @@ This demo is a proof of concept, which aims to demonstrate the versatility of th
 
 The main goal of this demo is to be able to fit Micro-ROS inside of the already existing firmware, which, with all the features active, uses around 60% of the MCU RAM and X of the flash memory. Thanks to the modular design of micro-ROS and the versatile configuration system, it is possible to fit micro-ROS full stack into this tiny device.
 
-On the next points, we will see the functionalities of this micro-ROS demo and how you can reproduce it.
+Along the following sections, we will see the functionalities of this micro-ROS demo and how you can reproduce it.
 
 ## Required hardware:
 
