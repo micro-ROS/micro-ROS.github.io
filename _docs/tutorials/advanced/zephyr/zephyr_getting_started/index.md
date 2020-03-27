@@ -298,7 +298,7 @@ ros2 run micro_ros_agent micro_ros_agent serial --dev [device]
 
 ***TIP:** you can use this command to find your serial device name: `ls /dev/serial/by-id/*`. Probably it will be something like `/dev/serial/by-id/usb-ZEPHYR_Zephyr_microROS_3536510100290035-if00`*
 
-And finally, let's check that everything is working  in another command line. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings
+And finally, let's check that everything is working in another command line. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
