@@ -31,7 +31,7 @@ cd microros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
 # Update dependencies using rosdep
-apt update && apt install python3-colcon-metadata
+sudo apt update && sydo apt install python3-colcon-metadata
 rosdep update
 rosdep install --from-path src --ignore-src -y
 
@@ -43,7 +43,7 @@ source install/local_setup.bash
 Let's install the last version of CMake:
 
 ```bash
-apt install wget
+sudo apt install wget
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
 sudo apt install software-properties-common
 sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
