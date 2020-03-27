@@ -155,7 +155,7 @@ docker-compose down
 
 ## Demo functionality
 
-Once everything is ready you can check on the ROS2 network the telemetry of the drone. In the next image, you see the available topics and how to interact with RVIZ.
+Once everything is ready you can check on the ROS2 network the telemetry of the drone. In the image below, you can see the available topics and how to interact with RVIZ.
 
 ![](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/micro-ROS/micro-ROS_crazyflie_demo/master/assets/diagrams/architecture.puml)
 
