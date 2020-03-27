@@ -165,6 +165,6 @@ On the other hand, in the image below you can see a simplified diagram of how th
 
 ## Annex
 
-It is possible to fly the drone at the same time that micro-ROS is running inside of it. To do so, you need to follow the next guide which explains how to connect a compatible controller to the host PC to flight it.
+It is possible to fly the drone at the same time that micro-ROS is running. To do so, you need to follow the guide linked below, which explains how to connect a compatible controller to the host PC to fly it.
 
 [Crazyflies flight Controller](https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/inputdevices/)
