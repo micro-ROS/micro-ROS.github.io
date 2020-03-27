@@ -159,7 +159,7 @@ Once everything is ready you can check on the ROS2 network the telemetry of the 
 
 ![](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/micro-ROS/micro-ROS_crazyflie_demo/master/assets/diagrams/architecture.puml)
 
-On the other hand, on the next image you can see a simplified diagram of how is performed the communication path between the drone and the ROS2 network:
+On the other hand, in the image below you can see a simplified diagram of how the communication path between the drone and the ROS2 network is performed:
 
 ![](images/micro-ROS_crazyflie.png)
 
