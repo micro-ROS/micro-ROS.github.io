@@ -344,7 +344,7 @@ ros2 topic pub --once /microROS/ping std_msgs/msg/Header '{frame_id: "fake_ping"
 Now, we should see on the ping subscriber our fake ping along with the board pings:
 
 ```
-pgarrido@pgarrido:~$ ros2 topic echo /microROS/ping
+user@user:~$ ros2 topic echo /microROS/ping
 stamp:
   sec: 0
   nanosec: 0
