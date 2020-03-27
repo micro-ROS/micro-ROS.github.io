@@ -68,7 +68,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh freertos crazyflie21
 ros2 run micro_ros_setup configure_firmware.sh crazyflie_position_publisher
 ```
 
-Now the firmware should be ready to be compile.
+Now the firmware should be ready to be compiled.
 
 ### Build the firmware
 
