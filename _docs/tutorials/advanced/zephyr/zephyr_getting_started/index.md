@@ -365,7 +365,7 @@ frame_id: '2084670932_1085377743'
 And in the pong subscriber, we should see the board's answer to our fake ping:
 
 ```
-pgarrido@pgarrido:~$ ros2 topic echo /microROS/pong
+user@user:~$ ros2 topic echo /microROS/pong
 stamp:
   sec: 0
   nanosec: 0
