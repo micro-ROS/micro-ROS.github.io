@@ -44,7 +44,7 @@ To create the workspace and set the proper configuration for this demo, you need
 # Source ROS2 Dashing
 source /opt/ros/$ROS_DISTRO/setup.bash
 
-# Create work-space folder
+# Create workspace folder
 mkdir uros_ws && cd uros_ws
 
 # Download the micro-ROS build system
