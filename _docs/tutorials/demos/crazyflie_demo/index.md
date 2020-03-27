@@ -62,7 +62,7 @@ source install/local_setup.bash
 
 ```bash
 # Create specific Crazyflie freertos workspace
-ros2 run micro_ros_setup create_firmware_ws.sh freertos crazyflie
+ros2 run micro_ros_setup create_firmware_ws.sh freertos crazyflie21
 
 # Set the application configuration
 ros2 run micro_ros_setup configure_firmware.sh crazyflie_position_publisher
@@ -106,8 +106,9 @@ Now your drone is flashed and ready with micro-ROS. Disconnect the USB cable and
 
 The first step is to set-up your PC, to do so, you need to follow the next steps:
 ```bash
-# Download the micro-ROS_crazyflie_demo
+# Download the micro-ROS_crazyflie_demo and go inside the folder
 git clone https://github.com/micro-ROS/micro-ROS_crazyflie_demo
+cd micro-ROS_crazyflie_demo
 
 # Install docker compose
 sudo apt-get install docker-compose
