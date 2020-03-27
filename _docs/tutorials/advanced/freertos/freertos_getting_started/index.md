@@ -68,11 +68,11 @@ micro-ROS apps for Olimex + FreeRTOS are located at `firmware/freertos_apps/apps
 
 ```bash
 # Creating a new app
-cd firmware/freertos_apps/apps
+pushd firmware/freertos_apps/apps
 mkdir my_brand_new_app
 cd my_brand_new_app
 touch app.c app-colcon.meta
-cd ../../../
+popd
 ```
 
 For this example we are going to create a ping pong app where a node sends a ping package with a unique identifier using a publisher and the same package is received by a pong subscriber. The node will also answer to:

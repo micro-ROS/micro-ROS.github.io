@@ -15,7 +15,7 @@ This tutorial requires no hardware beyond a Linux host computer.
 
 ## Adding a new micro-ROS app
 
-First of all make sure that you have a **ROS 2** installation.
+First of all, make sure that you have a **ROS 2** installation.
 
 ***TIP:** if you are familiar with Docker containers, this image may be useful: [ros:dashing](https://hub.docker.com/layers/ros/library/ros/dashing/images/sha256-b796c14ea663537129897769aa6c715a851ca08dffd4875ef2ecaa31a4dbd431?context=explore)*
 
@@ -31,6 +31,7 @@ cd microros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
 # Update dependencies using rosdep
+apt update && apt install python3-colcon-metadata
 rosdep update
 rosdep install --from-path src --ignore-src -y
 
@@ -39,14 +40,15 @@ colcon build
 source install/local_setup.bash
 ```
 
-Let's install last version of CMake:
+Let's install the last version of CMake:
 
 ```bash
+apt install wget
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
 sudo apt install software-properties-common
 sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 sudo apt update
-sudo apt install cmake -y
+sudo apt install cmake
 ```
 
 Now, let's create a firmware workspace that targets all the required code and tools for Zephyr emulator:
@@ -271,7 +273,7 @@ First of all, create and build a micro-ROS agent:
 ros2 run micro_ros_setup create_agent_ws.sh
 
 # Build micro-ROS-Agent packages, this may take a while.
-colcon build --metas src
+colcon build
 source install/local_setup.bash
 ```
 
@@ -286,7 +288,7 @@ And run the Zephyr app in another command line (remember sourcing ROS 2 and micr
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
-source install/local_setup.bash
+source microros_ws/install/local_setup.bash
 
 # Flash/run step
 ros2 run micro_ros_setup flash_firmware.sh
@@ -304,7 +306,7 @@ ros2 topic echo /microROS/ping
 You should see the topic messages published by the Ping Pong node every 5 seconds:
 
 ```
-pgarrido@pgarrido:~$ ros2 topic echo /microROS/ping
+user@user:~$ ros2 topic echo /microROS/ping
 stamp:
   sec: 20
   nanosec: 867000000
@@ -338,7 +340,7 @@ ros2 topic pub --once /microROS/ping std_msgs/msg/Header '{frame_id: "fake_ping"
 Now, we should see on the ping subscriber our fake ping along with the board pings:
 
 ```
-pgarrido@pgarrido:~$ ros2 topic echo /microROS/ping
+user@user:~$ ros2 topic echo /microROS/ping
 stamp:
   sec: 0
   nanosec: 0
@@ -369,7 +371,7 @@ frame_id: fake_ping
 
 ## Multiple Ping Pong nodes
 
-One of the advantages of having an emulator is that you don't need to buy a bunch of hardware in order to test some multi-node micro-ROS apps. So, with the same micro-ROS agent of the last section, let's open four different command lines and run thw following on each:
+One of the advantages of having an emulator is that you don't need to buy a bunch of hardware in order to test some multi-node micro-ROS apps. So, with the same micro-ROS agent of the last section, let's open four different command lines and run the following on each:
 
 ```bash
 cd microros_ws
