@@ -310,7 +310,7 @@ ros2 topic echo /microROS/ping
 You should see the topic messages published by the Ping Pong node every 5 seconds:
 
 ```
-pgarrido@pgarrido:~$ ros2 topic echo /microROS/ping
+user@user:~$ ros2 topic echo /microROS/ping
 stamp:
   sec: 20
   nanosec: 867000000
