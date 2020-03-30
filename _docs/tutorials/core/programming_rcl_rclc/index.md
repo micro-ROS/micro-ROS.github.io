@@ -1,8 +1,6 @@
 ---
 title: Programming with rcl and rclc
 permalink: /docs/tutorials/core/programming_rcl_rclc/
-redirect_from: /docs/tutorials/core/
-redirect_from: /docs/tutorials/
 ---
 
 ## Programming client/service with rcl
