@@ -23,7 +23,7 @@ cd microros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
 # Update dependencies using rosdep
-rosdep update
+sudo apt update && rosdep update
 rosdep install --from-path src --ignore-src -y
 
 # Build micro-ROS tools and source them
