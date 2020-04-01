@@ -294,7 +294,7 @@ ros2 topic echo /microROS/ping
 You should see the topic messages published by the Ping Pong node every 5 seconds:
 
 ```
-pgarrido@pgarrido:~$ ros2 topic echo /microROS/ping
+user@user:~$ ros2 topic echo /microROS/ping
 stamp:
   sec: 20
   nanosec: 867000000
@@ -328,7 +328,7 @@ ros2 topic pub --once /microROS/ping std_msgs/msg/Header '{frame_id: "fake_ping"
 Now, we should see on the ping subscriber our fake ping along with the board pings:
 
 ```
-pgarrido@pgarrido:~$ ros2 topic echo /microROS/ping
+user@user:~$ ros2 topic echo /microROS/ping
 stamp:
   sec: 0
   nanosec: 0
@@ -349,7 +349,7 @@ frame_id: '2084670932_1085377743'
 And in the pong subscriber, we should see the board's answer to our fake ping:
 
 ```
-pgarrido@pgarrido:~$ ros2 topic echo /microROS/pong
+user@user:~$ ros2 topic echo /microROS/pong
 stamp:
   sec: 0
   nanosec: 0
@@ -374,7 +374,7 @@ ros2 run micro_ros_demos_rcl my_brand_new_app
 As soon as all micro-ROS nodes are up and connected to the micro-ROS agent you will see them interacting:
 
 ```
-pgarrido@pgarrido$ ros2 run micro_ros_demos_rcl my_brand_new_app
+user@user$ ros2 run micro_ros_demos_rcl my_brand_new_app
 UDP mode => ip: 127.0.0.1 - port: 8888
 Ping send seq 1711620172_1742614911                         <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"
 Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping 
