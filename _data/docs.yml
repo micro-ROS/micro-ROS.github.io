@@ -48,9 +48,9 @@
 - title: Demos
   docs:
    - tutorials/demos/kobuki_demo
+   - tutorials/demos/crazyflie_demo
    - tutorials/demos/tof_demo
    - tutorials/demos/fiware_demo
-   - tutorials/demos/crazyflie_demo
    - tutorials/demos/complete_demo
 
 - title: Advanced Tutorials with Nuttx
