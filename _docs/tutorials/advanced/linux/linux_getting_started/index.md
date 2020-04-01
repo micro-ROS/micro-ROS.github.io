@@ -53,7 +53,7 @@ micro-ROS apps for Linux are located at `src/uros/micro-ROS-demos/rcl/`. In orde
 pushd src/uros/micro-ROS-demos/rcl/
 mkdir my_brand_new_app
 cd my_brand_new_app
-touch app.c CMakeLists.cmake
+touch app.c CMakeLists.txt
 popd
 ```
 
@@ -61,7 +61,7 @@ For this example we are going to create a ping pong app where a node sends a pin
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
-To start creating this app, the `CMakeLists.cmake` file should looks like: 
+To start creating this app, the `CMakeLists.txt` file should looks like: 
 
 ```cmake
 cmake_minimum_required(VERSION 3.5)
