@@ -1,5 +1,6 @@
 ---
 title: Time of Flight Sensor Demo
+layout: docs_noheader
 permalink: /docs/tutorials/demos/tof_demo/
 ---
 
