@@ -151,7 +151,7 @@ netcat -u 192.168.1.130 80
 hello micro-ROS!
 hello micro-ROS!
 ```
-When you write something on the UDP client, it should receive the same message and on NuttX it should appear the next output:
+When you write something in the UDP client, it should receive the same message and the next output should appear in NuttX:
 
 ```bash
 server: 0. Received 17 bytes from 192.168.1.132:53394
