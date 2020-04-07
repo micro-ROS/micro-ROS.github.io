@@ -78,7 +78,7 @@ First, we need to do the connections between the [Olimex board](/docs/overview/h
 
 ### Create firmware
 
-For this tutorial we're going to execute the next configuration on the Micro-ROS build system:
+For this tutorial we're going to execute the configuration below in the Micro-ROS build system:
 ```bash
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 ros2 run micro_ros_setup configure_firmware.sh mrf24j40-6lowpan
