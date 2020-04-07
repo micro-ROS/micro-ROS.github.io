@@ -65,7 +65,7 @@ Finally, to use the NSH console you need to follow the steps listed below:
 [20614.746274] usbcore: registered new interface driver cdc_acm
 [20614.746277] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
 ```
-- On this previous example the device is the ``ttyACM0``.
+- In this example the device is the ``ttyACM0``.
 - Open this port with your serial communication app. There are different serial communications applications, but we're goint to use on this tutorial [minicom](https://linux.die.net/man/1/minicom). Type the next command to execute it.
 ```bash
 sudo minicom -D /dev/ttyACM0
