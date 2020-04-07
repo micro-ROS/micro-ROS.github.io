@@ -44,7 +44,7 @@ The firmware is ready, it is just necessary to upload it. Now you need to do the
 It should look like this:
 ![](images/olimex_uart.jpg)
 
-Note: You can find multiple USB-TTL232 devices available. But despite the Olimex board is 5V tolerant, we recommend to use a 3V3 USB-TTL232 cable. The [Olimex Official cable](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/) is our recommendation but any is compatible.
+Note: You can find multiple USB-TTL232 devices available. But, even though the Olimex board is 5V tolerant, we recommend to use a 3V3 USB-TTL232 cable. The [Olimex Official cable](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/) is our recommendation but any is compatible.
 
 Now flash the board by typing the next command:
 ```bash
