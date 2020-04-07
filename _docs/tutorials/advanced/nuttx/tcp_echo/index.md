@@ -98,7 +98,7 @@ Builtin Apps:
   tcpecho  
 nsh> 
 ```
-The next step we will check the IP of the Olimex-STM32-E407 board, to do so you need to execute the next commands:
+In the following step we will check the IP of the Olimex-STM32-E407 board. To do so you need to execute the commands below:
 - Mount the PROC fyle system: 
 ```
 mount -t procfs /proc
