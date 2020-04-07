@@ -44,7 +44,7 @@ Once the firmware is ready, you need to do the following connections:
 The board should look like this:
 ![](images/olimex_ethernet.jpg)
 
-Now flash the board by typing the next command:
+Now flash the board by typing the command:
 ```bash
 ros2 run micro_ros_setup flash_firmware.sh
 ```
