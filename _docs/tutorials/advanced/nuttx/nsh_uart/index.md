@@ -36,7 +36,7 @@ CP: nuttx.bin
 
 The firmware is ready, it is just necessary to upload it. Now you need to do the following connection:
 - Connect the JTAG flasher device.
-- Connect the USB TTL-232 with the next pin out:
+- Connect the USB TTL-232 with these pins out:
     - `USART3 TX` -> `TTL232 RX`
     - `USART3 RX` -> `TTL232 TX`
     - `GND Board` -> `TTL232 GND`
