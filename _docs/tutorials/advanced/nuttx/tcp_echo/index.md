@@ -62,7 +62,7 @@ Info : Listening on port 4444 for telnet connections
 Now you need to open the NSH console of NuttX. To do so, follow these steps:
 
 - Push the reset button. The green LED will turn on to say that it is working properly.
-- Look for the device by typing ``dmesg`` on the console, this should return somenthing like this:
+- Look for the device by typing ``dmesg`` on the console. This should return something like this:
 ```bash
 [20614.570781] usb 1-2: new full-speed USB device number 7 using xhci_hcd
 [20614.724366] usb 1-2: New USB device found, idVendor=0525, idProduct=a4a7, bcdDevice= 1.01
