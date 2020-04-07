@@ -10,7 +10,7 @@ permalink: /docs/tutorials/advanced/nuttx/6lowpan_config/
 This guide will show how to set-up a Raspberry Pi 3 (RPI) running Raspbian and an Olimex STM32 E407 board running NuttX to have 6lowpan communication between them.
 
 
-**Disclaimer**: This tutorial doesn't use micro-ROS, is just a proof of concept of the 6LoWPAN communications.
+**Disclaimer**: This tutorial doesn't use micro-ROS, it is just a proof of concept of the 6LoWPAN communication.
 
 ## Hardware requirements:
 
