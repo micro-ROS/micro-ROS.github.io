@@ -237,7 +237,7 @@ lowpan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1280
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-As you can see there is two IP in this network interface. But you need to remember the second one. We will use later with NuttX.
+As you can see, there are two IPs in this network interface, but we are interested only in the second one. Save it because we will use it later with NuttX.
 `fe80::9c6e:87a5:eb60:84d0``
 
 Go to the place where lives the repo that you downloaded previously. Go to ``micro-ROS-bridge_RPI/6LowPAN_Tests/6lowpan_recv``
