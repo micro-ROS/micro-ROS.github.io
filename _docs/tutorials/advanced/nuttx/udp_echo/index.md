@@ -61,7 +61,7 @@ Info : Listening on port 4444 for telnet connections
 
 ### NuttX side
 
-Now you need to open the NSH console of NuttX to do so,follow the next steps:
+Now you need to open the NSH console of NuttX. To do so, follow these steps:
 
 - Push the reset button. The green LED will turn on to say that is working properly.
 - Look for the device by typing ``dmesg`` on the console, this should return somenthing like this:
