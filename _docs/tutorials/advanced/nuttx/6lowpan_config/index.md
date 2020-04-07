@@ -240,7 +240,7 @@ lowpan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1280
 As you can see, there are two IPs in this network interface, but we are interested only in the second one. Save it because we will use it later with NuttX.
 `fe80::9c6e:87a5:eb60:84d0``
 
-Go to the place where lives the repo that you downloaded previously. Go to ``micro-ROS-bridge_RPI/6LowPAN_Tests/6lowpan_recv``
+Go to the place where you previously downloaded the repo. From there, go to ``micro-ROS-bridge_RPI/6LowPAN_Tests/6lowpan_recv``
 Finally, execute `recv_demo` telling to open the `61616` port. Type this command: ``./recv_demo 61616``
 
 At this point, the RPI is ready to receive incoming packages.
