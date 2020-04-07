@@ -134,7 +134,7 @@ ifdown eth0
 ifup eth0
 ```
 
-The board is now connected to the network and ready to execute the TCP echo server. To execute the application, just type ``tcpecho`` and it should return the next output:
+The board is now connected to the network and ready to execute the TCP echo server. To execute the application, just type ``tcpecho`` and it should output:
 
 ```bash
 nsh> tcpecho
