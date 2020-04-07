@@ -43,7 +43,7 @@ In the next links you can see the pinout of each board:
 Once you've set all the wires, power-on the RPI and download the next repository inside the RPI:
 - https://github.com/micro-ROS/micro-ROS-bridge_RPI/
 
-Execute the next command:
+Execute the command:
 ```sudo ./micro-ROS-bridge_RPI/micro-ROS-HB.sh```
 
 If everything goes fine, at the end of the script, the board should restart. After the start-up, type the next command to see if the configuration and the connections are fine:
