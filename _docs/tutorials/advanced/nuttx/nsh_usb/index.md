@@ -7,7 +7,7 @@ permalink: /docs/tutorials/advanced/nuttx/nsh_usb/
 |:-----:|:-----------------:|
 | NuttX | Olimex-STM32-E407 |
 
-NSH is a system console that can be use throught the next interfaces: USB,UART and Telnet. With this console you can execute apps, set system configuration and see the state of the system.
+NSH is a system console that can be used through the following interfaces: USB,UART and Telnet. With this console you can execute apps, set system configurations and see the state of the system.
 
 ## Hardware requirements:
 - [Olimex-STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)
