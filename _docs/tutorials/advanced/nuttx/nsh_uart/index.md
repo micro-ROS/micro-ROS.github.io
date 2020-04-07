@@ -7,7 +7,7 @@ permalink: /docs/tutorials/advanced/nuttx/nsh_uart/
 |:-----:|:-----------------:|
 | NuttX | Olimex-STM32-E407 |
 
-NSH is a system console that can be used through different interfaces. On this tutorial, we will show how to use it over the UART peripheral. The UART (Universal Asynchronous Receiver-Transmitter) is a communication peripheral implemented on a micro-controller, which allows bidirectional serial communication.
+NSH is a system console that can be used through different interfaces. In this tutorial, we will show how to use it over the UART peripheral. The UART (Universal Asynchronous Receiver-Transmitter) is a communication peripheral implemented on a micro-controller, which allows bidirectional serial communication.
 
 ## Hardware requirements:
 - [Olimex-STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)
