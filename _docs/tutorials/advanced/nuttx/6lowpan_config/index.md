@@ -241,7 +241,7 @@ As you can see, there are two IPs in this network interface, but we are interest
 `fe80::9c6e:87a5:eb60:84d0``
 
 Go to the place where you previously downloaded the repo. From there, go to ``micro-ROS-bridge_RPI/6LowPAN_Tests/6lowpan_recv``
-Finally, execute `recv_demo` telling to open the `61616` port. Type this command: ``./recv_demo 61616``
+Finally, execute `recv_demo`, specifying to open the `61616` port. To do so, type this command: ``./recv_demo 61616``
 
 At this point, the RPI is ready to receive incoming packages.
 
