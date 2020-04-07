@@ -23,7 +23,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 ros2 run micro_ros_setup configure_firmware.sh nsh
 ```
 
-Once the board is configured, we need to build it by typing the next command:
+Once the board is configured, we need to build it by typing the next:
 ```bash
 ros2 run micro_ros_setup build_firmware.sh
 ```
