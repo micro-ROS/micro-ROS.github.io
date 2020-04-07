@@ -299,7 +299,7 @@ If it is saved there, remove it:
  $ sudo ip neigh delete fe80::2be:adde:de:fa00 dev lowpan0 # Remove it.
 ```
 
-Then, once deleted, add the Nuttx device it permanently (until reboot):
+Then, once deleted, add the Nuttx device permanently (until reboot):
 
 ```bash
  $ sudo ip neigh add fe80::2be:adde:de:fa00 dev lowpan0 00:be:ad:de:00:de:fa:00
