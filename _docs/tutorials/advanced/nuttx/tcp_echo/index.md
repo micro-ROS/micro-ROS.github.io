@@ -75,7 +75,7 @@ Now you need to open the NSH console of NuttX. To do so, follow these steps:
 [20614.746277] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
 ```
 - In this example the device is the ``ttyACM0``.
-- Open this port with your serial communication app. There are different serial communications applications, but we're goint to use on this tutorial [minicom](https://linux.die.net/man/1/minicom). Type the next command to execute it.
+- Open this port with your serial communication app. There are different serial communication applications, but in this tutorial we're going to use [minicom](https://linux.die.net/man/1/minicom). Type the next command to execute it.
 ```bash
 sudo minicom -D /dev/ttyACM0
 ```
