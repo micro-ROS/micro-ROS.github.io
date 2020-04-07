@@ -142,7 +142,7 @@ Start TCP echo server
 ```
 ## PC side
 
-Open a new console to run a TCP client. Connect it to the port 80 of the NuttX board. For this example we are using ``netcat``, on the bottom line you can see an example:
+Open a new console to run a TCP client. Connect it to the port 80 of the NuttX board. For this example we are using ``netcat``. Here you can see an example:
 
 ```bash
 netcat 192.168.1.130 80
