@@ -7,7 +7,7 @@ permalink: /docs/tutorials/advanced/nuttx/tcp_echo/
 |:-----:|:-----------------:|
 | NuttX | Olimex-STM32-E407 |
 
-On this tutorial, we will see how to use a TCP echo server on NuttX, to test a basic TCP server.TCP (Transmission Control Protocol) is connection-oriented protocol, and a connection between client and server is established (passive open) before data can be sent.
+In this tutorial, we will see how to use a TCP echo server on NuttX, to test a basic TCP server. TCP (Transmission Control Protocol) is a connection-oriented protocol, and a connection between client and server is established (passive open) before data can be sent.
 
 ## Hardware requirements:
 - [Olimex-STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)
