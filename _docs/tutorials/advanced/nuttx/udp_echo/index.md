@@ -19,7 +19,7 @@ UDP (User datagram protocol) is a connectionless protocol with a minimum protoco
 
 ## Create the firmware
 
-For this tutorial we're going to execute the next configuration on the Micro-ROS build system:
+For this tutorial we're going to execute the following configuration in the Micro-ROS build system:
 ```bash
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 ros2 run micro_ros_setup configure_firmware.sh udpecho
