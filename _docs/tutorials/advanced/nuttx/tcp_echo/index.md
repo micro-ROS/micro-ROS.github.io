@@ -80,7 +80,7 @@ Now you need to open the NSH console of NuttX. To do so, follow these steps:
 sudo minicom -D /dev/ttyACM0
 ```
 
-Once the port is open, **you need to push two time the key enter** and it should pops up the next menu:
+Once the port is open, **you need to push two times the Enter key** and the next menu should pop up:
 
 ```bash
 NuttShell (NSH)
