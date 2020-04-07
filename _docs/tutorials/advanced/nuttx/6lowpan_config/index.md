@@ -291,7 +291,7 @@ The Linux 6lowpan utility needs to have a ping response before sending a data pa
 
 If this does not work, do as follow:
 
-Check if the Nuttx address is part within the Linux/Raspbian neighborhood table.
+Check if the Nuttx address is part of the Linux/Raspbian neighborhood table.
 If it is saved there, remove it:
 ```bash
  $ ip neigh 
