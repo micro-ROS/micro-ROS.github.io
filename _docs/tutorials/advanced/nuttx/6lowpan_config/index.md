@@ -248,7 +248,7 @@ At this point, the RPI is ready to receive incoming packages.
 ### NuttX side
 
 Execute ``udp_6lowpan`` application.
-This will ask you if you want to configure the network. Type N, because is already configured.
+This will ask you if you want to configure the network. Type N, because it is already configured.
 Now you're in the main menu of the App. Type ``write`` to start the sending mode and will ask for the next data:
 - The destination IP: This is the IP of the RPI which we saved previously.
 - The destination port: For this specific example is 61617.
