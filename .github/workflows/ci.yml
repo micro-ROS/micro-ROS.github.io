@@ -12,6 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+      with:
+        submodules: true
 
     - name: Set up Ruby 2.7
       uses: actions/setup-ruby@v1

@@ -1,0 +1,8 @@
+[submodule "_includes/crazyflie_demo"]
+	path = _includes/crazyflie_demo
+	url = https://github.com/micro-ROS/micro-ROS_crazyflie_demo
+	branch = master
+[submodule "_includes/sensors_demo"]
+	path = _includes/sensors_demo
+	url = https://github.com/micro-ROS/micro-ROS_sensors_demo
+	branch = master
