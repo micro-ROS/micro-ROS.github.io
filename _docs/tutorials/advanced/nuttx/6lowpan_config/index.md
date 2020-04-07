@@ -23,7 +23,7 @@ This guide will show how to set-up a Raspberry Pi 3 (RPI) running Raspbian and a
 
 ## Set-up 6LoWPAN communications on the Raspberry PI
 
-First, we need to connect the PMODRF2 module to the RPI, so we need to set the next connections:
+First, we need to connect the PMODRF2 module to the RPI, so we need to set the following connections:
 
 |  | RPI | PMODRF2 |
 | -- | -- | -- |
