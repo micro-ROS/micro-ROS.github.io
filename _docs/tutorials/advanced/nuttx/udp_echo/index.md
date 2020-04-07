@@ -42,7 +42,7 @@ Once the firmware is ready, you need to do these connections:
 - Connect the mini-USB port to the USB-OTG2 port.
 - Connect the ethernet cable to the ethernet socket.
 
-The board it should look like this:
+The board should look like this:
 ![](images/olimex_ethernet.jpg)
 
 Now flash the board by typing the next command:
