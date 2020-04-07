@@ -84,7 +84,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 ros2 run micro_ros_setup configure_firmware.sh mrf24j40-6lowpan
 ```
 
-Once the board is configured, we need to build it by typing the next command:
+Once the board is configured, we need to build it by typing the command:
 ```bash
 ros2 run micro_ros_setup build_firmware.sh
 ```
