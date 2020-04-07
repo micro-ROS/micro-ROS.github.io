@@ -306,7 +306,7 @@ Then, once deleted, add the Nuttx device permanently (until reboot):
 ```
 
 ### NuttX side
-First, we need the ip of the board, so type ``ifconfig`` in the main menu. This should return somenthing like this:
+First, we need the IP of the board, so type ``ifconfig`` in the main menu. This should return something like this:
 ```bash
 wpan0   Link encap:6LoWPAN HWaddr 00:be:ad:de:00:de:fa:00 at UP                 
         inet6 addr: fe80::2be:adde:de:fa00/64                                   
