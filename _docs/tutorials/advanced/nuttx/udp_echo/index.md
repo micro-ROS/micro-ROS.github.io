@@ -130,7 +130,7 @@ nsh>
 ```
 As you can see the IP address of the ``eth0`` is :192.168.1.130. This is the IP of the board.
 
-**Note**: If you received an incorrect IP or 0 value on the field inet addr, you need to execute the next commands:
+**Note**: If you received an incorrect IP or 0 value on the field inet addr, you need to execute the commands:
 ```
 ifdown eth0
 ifup eth0
