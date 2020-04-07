@@ -350,7 +350,7 @@ Listening on 61616 for input packets
 
 Go to the place where you previously downloaded the repo. Then go to this folder: ``/micro-ROS-bridge_RPI/6LowPAN_Tests/6lowpan_send``.
 
-And execute with root privileges the next app: ``send_demo``.
+Now execute with root privileges the next app: ``send_demo``.
 These demos have two arguments: The first is the port to open in the destination and the second is the destination IP. An example of this specific demo could be:
 ``sudo send_demo 61616 fe80::2be:adde:de:fa00``
 
