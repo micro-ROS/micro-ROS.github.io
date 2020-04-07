@@ -108,7 +108,7 @@ mount -t procfs /proc
 ifconfig
 ```
 
-This will return the next output:
+This will return as an output:
 
 ```bash
 nsh> mount -t procfs /proc
