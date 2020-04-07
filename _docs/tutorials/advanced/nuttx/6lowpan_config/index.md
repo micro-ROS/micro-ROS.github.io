@@ -115,7 +115,7 @@ Info : Listening on port 4444 for telnet connections
 
 ## NuttX network configuration
 
-Push the reset buttom and type to times enter. Now the NSH console should be output throught the terminal. Type ``?`` to check if every application is flashed. It should appear the next output.
+Push the reset button and type Enter two times. Now the NSH console should be output through the terminal. Type ``?`` to check if every application is flashed. The following output should appear.
 
 ```bash
 nsh> ?
