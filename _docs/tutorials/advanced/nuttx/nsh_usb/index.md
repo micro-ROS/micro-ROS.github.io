@@ -35,7 +35,7 @@ CP: nuttx.bin
 ```
 ## Flash the firmware
 
-Now is ready to upload the firmware to the board. Connect the JTAG flasher device to the board and the mini USB cable to the USB-OTG2 port. Like on the down below image.
+Now you're ready to upload the firmware to the board. Connect the JTAG flasher device to the board and the mini USB cable to the USB-OTG2 port like in the image below.
 ![](images/olimex_nsh_usb.jpg)
 
 Now flash the board by typing the next command:
