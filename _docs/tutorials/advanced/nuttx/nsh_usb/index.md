@@ -71,7 +71,7 @@ Finally, to use the NSH console you need to follow the steps listed below:
 sudo minicom -D /dev/ttyACM0
 ```
 
-Once the port is open, **you need to push two time the key enter** and it should pops up the next menu:
+Once the port is open, **you need to push two times the Enter key** and it should the menu below should pop up:
 ```bash
 nsh> ?
 help usage:  help [-v] [<cmd>]
