@@ -17,7 +17,7 @@ This guide will show how to set-up a Raspberry Pi 3 (RPI) running Raspbian and a
 - Raspberry Pi 3
 - micro-SD card (almost 16gb) with Raspbian lite already installed.
 - Olimex-STM32-E407 board.
-- Two PMODRF2 module which are base on the MRF24J40 module.
+- Two PMODRF2 modules which are based on the MRF24J40 module.
 - PC with Ubuntu (It works fine with Ubuntu 16.04)
 - NuttX source code, you can find a Docker file with all the tools [here](https://github.com/micro-ROS/docker/tree/pre_refactor/Embedded/NuttX/development/stm32-e407).
 
