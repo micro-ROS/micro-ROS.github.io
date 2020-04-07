@@ -16,7 +16,7 @@ ROSSerial is a protocol for wrapping standard ROS serialized messages and multip
 
 - Examples and Use Cases. 
 
-It is worth saying that this option can be equally compared with micro-ROS because this approach is thought to work with ROS1, instead of micro-ROS which is focus on ROS2.
+It is worth saying that this option cannot be fully compared with micro-ROS because this approach is meant to work with ROS1, instead of micro-ROS which is focused on ROS2.
 
 Reference:[ROSserial Wiki](http://wiki.ros.org/rosserial)
 
