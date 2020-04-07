@@ -348,7 +348,7 @@ Listening on 61616 for input packets
 
 ### Raspbian side
 
-Go to the places that lives the previous download repo. Then go to this folder: ``/micro-ROS-bridge_RPI/6LowPAN_Tests/6lowpan_send``
+Go to the place where you previously downloaded the repo. Then go to this folder: ``/micro-ROS-bridge_RPI/6LowPAN_Tests/6lowpan_send``.
 
 And execute with root privileges the next app: ``send_demo``.
 These demos have two arguments: The first is the port to open in the destination and the second is the destination IP. An example of this specific demo could be:
