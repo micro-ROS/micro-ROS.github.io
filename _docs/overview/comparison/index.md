@@ -34,7 +34,7 @@ ROS2 is composed of several layers. Some have been modified to be able to run on
     - common_interfaces
     - rcl_interfaces
 
-As a final data, it looks like the development is frozen. Due to, the last commit  was on [July 2018](https://github.com/astralien3000/riot-ros2/commits/master).
+As a final data, it looks like the development is frozen. This consideration is due to the fact that the last commit goes back to [July 2018](https://github.com/astralien3000/riot-ros2/commits/master).
 
 Reference:[RIOT-ROS2](https://github.com/astralien3000/riot-ros2/wiki)
 
