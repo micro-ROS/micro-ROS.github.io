@@ -52,7 +52,7 @@ Info : Listening on port 4444 for telnet connections
 ## Connect to the console
 
 Finally, to use the NSH console you need to follow the steps listed below:
-- Push the reset button. The green LED will turn on to say that is working properly.
+- Push the reset button. The green LED will turn on to say that it is working properly.
 - Look for the device by typing ``dmesg`` on the console, this should return somenthing like this:
 ```bash
 [20614.570781] usb 1-2: new full-speed USB device number 7 using xhci_hcd
