@@ -89,7 +89,7 @@ Once the board is configured, we need to build it by typing the next command:
 ros2 run micro_ros_setup build_firmware.sh
 ```
 
-If the compilation succed, it should return the next output:
+If the compilation succeds, it should return the following output:
 ```bash
 CP: nuttx.hex
 CP: nuttx.bin
