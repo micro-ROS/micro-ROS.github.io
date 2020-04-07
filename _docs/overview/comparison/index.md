@@ -8,7 +8,7 @@ Micro-ROS is a project that aims to bring ROS2 to the microcontrollers world. He
 
 ## ROSSerial
 
-ROSSerial is a protocol for wrapping standard ROS serialized messages and multiplexing multiple topics and services over a character device such as a serial port or network socket. In addition to a protocol definition, there are three types of packages found in this suite:
+ROSSerial is a protocol for wrapping standard ROS serialized messages and multiplexing multiple topics and services over a device such as a serial port or network socket. In addition to a protocol definition, there are three types of packages found in this suite:
 
 - Client Libraries: Client libraries allow users to easily get ROS nodes up and running on various systems. These clients are ports of the general ANSI C++ rosserial_client library. 
 
