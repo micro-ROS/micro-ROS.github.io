@@ -37,7 +37,7 @@ CP: nuttx.bin
 ```
 
 ## Flash the firmware
-Once the firmware is ready, you need to do the next connections:
+Once the firmware is ready, you need to do these connections:
 - Connect the JTAG flasher device to the JTAG port.
 - Connect the mini-USB port to the USB-OTG2 port.
 - Connect the ethernet cable to the ethernet socket.
