@@ -18,7 +18,8 @@ mkdir uros_ws && cd uros_ws
 
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
-rosdep update && rosdep install --from-path src --ignore-src -y
+sudo apt update && rosdep update
+rosdep install --from-path src --ignore-src -y
 
 colcon build
 
