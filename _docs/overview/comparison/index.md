@@ -42,7 +42,7 @@ Reference:[RIOT-ROS2](https://github.com/astralien3000/riot-ros2/wiki)
 
 |  | rosserial | RIOT-ROS2 | micro-ROS |
 |-------|-----------|-----------|-----------|
-| OS | bare-metal | RIOT | NuttX,freeRTOS and Zephyr |
+| OS | bare-metal | RIOT | NuttX, FreeRTOS and Zephyr |
 | Communications architecture | Bridged | N/A| Bridged |
 | Message format | ROS1 | N/A |CDR (from DDS) |
 | Communication links | UART | UART | UART, SPI, IP (UDP), 6LowPAN, ... |
