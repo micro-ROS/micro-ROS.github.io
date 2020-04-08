@@ -56,7 +56,6 @@
 - title: Advanced Tutorials with Nuttx
   docs:
    - tutorials/advanced/nuttx/nuttx_getting_started
-   - tutorials/advanced/nuttx/add_a_microros_application
    - tutorials/advanced/nuttx/nsh_usb
    - tutorials/advanced/nuttx/nsh_uart
    - tutorials/advanced/nuttx/udp_echo
