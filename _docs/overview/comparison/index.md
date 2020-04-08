@@ -24,7 +24,7 @@ Reference: [ROSserial Wiki](http://wiki.ros.org/rosserial)
 
 RIOT-ROS2 is a modification of the main ROS2 stack, to make it able to run on microcontrollers thanks to the RIOT Operating System.
 
-ROS2 is composed of several layers. Some have been modified to be able to run on the microcontroller, this is a list of the available layers for RIOS-ROS2 project:
+ROS 2 is composed of several layers. Some have been modified to be able to run on the microcontroller, this is a list of the available layers for RIOS-ROS2 project:
 - ROS Client Library bindings: RCLC
 - ROS Client Library: RCL
 - ROS MiddleWare: rmw_ndn
