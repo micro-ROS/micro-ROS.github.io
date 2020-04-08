@@ -4,7 +4,7 @@ permalink: /docs/overview/comparison/
 ---
 
 
-Micro-ROS is a project that aims to bring ROS2 to the microcontrollers world. Here, we will perform an analysis of the alternative options, and eventually show a comparison table.
+Micro-ROS brings ROS 2 to microcontrollers. Here, we perform an analysis of the related approaches and eventually show a comparison table.
 
 ## ROSSerial
 
