@@ -14,10 +14,11 @@ fi
 
 IGNORE_HREFS=${IGNORE_HREFS:+$IGNORE_HREFS,}$(ruby -e "puts %w{
   vimeo.com
+  omg.org
   ${ADDITIONS}
   }.map{|h| \"/#{h}/\"}.join(\",\")"
 )
 
 echo "Ignoring urls: " $IGNORE_HREFS
 bundle exec jekyll build
-bundle exec htmlproofer --check_html --check-favicon --assume-extension --empty-alt-ignore --only-4xx --url-ignore $IGNORE_HREFS $@ ./_site
+bundle exec htmlproofer --check_html --http-status-ignore "429" --check-favicon --assume-extension --empty-alt-ignore --only-4xx --url-ignore $IGNORE_HREFS $@ ./_site
