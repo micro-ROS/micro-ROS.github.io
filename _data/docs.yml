@@ -56,6 +56,7 @@
 - title: Advanced Tutorials with Nuttx
   docs:
    - tutorials/advanced/nuttx/nuttx_getting_started
+   - tutorials/advanced/nuttx/add_a_microros_application
    - tutorials/advanced/nuttx/debugging_gdb_openocd
    - tutorials/advanced/nuttx/debugging_vscode
    - tutorials/advanced/nuttx/6lowpan_nuttx_rpi
