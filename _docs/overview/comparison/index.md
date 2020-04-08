@@ -12,7 +12,7 @@ ROSSerial is a protocol for wrapping standard ROS serialized messages and multip
 
 - Client Libraries: Client libraries allow users to easily get ROS nodes up and running on various systems. These clients are ports of the general ANSI C++ rosserial_client library. 
 
-- ROS-side Interfaces: Devices running rosserial code require a node on the host machine to bridge the connection from the serial protocol to the more general ROS network. This package aims to accomplish this bridge task.
+- ROS-side Interfaces: These packages provide a node for the host machine to bridge the connection from the rosserial protocol to the more general ROS network.
 
 - Examples and Use Cases. 
 
