@@ -65,7 +65,7 @@ Now the basic NSH configuration is set. With the steps that follow, we will set 
 
 ## Micro-ROS configuration.
 
-On the previous console execute the next commands:
+In the same console as before, run the commands:
 ```bash
 cd firmware/NuttX
 make menuconfig
