@@ -65,6 +65,7 @@
    - tutorials/advanced/nuttx/debugging_gdb_openocd
    - tutorials/advanced/nuttx/debugging_vscode
    - tutorials/advanced/nuttx/microros_nuttx_bsp
+   - tutorials/advanced/nuttx/add_microros_config
    - tutorials/advanced/nuttx/microros_6lowpan_tutorial
 
 - title: Advanced Tutorials with FreeRTOS
