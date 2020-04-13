@@ -15,7 +15,7 @@ This guide is not guarantee to work on every NuttX supported board, because each
 
 ## Required hardware
 
-- Any NuttX supported board with at least the next characteristics:
+- Any NuttX supported board with at least these characteristics:
     - STM32 MCU.
     - RAM: 125 Kb.
     - Flash: 512 kb.
