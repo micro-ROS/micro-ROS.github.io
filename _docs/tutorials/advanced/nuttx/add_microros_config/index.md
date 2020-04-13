@@ -11,7 +11,7 @@ In this tutorial, we will see how to set a basic Micro-ROS configuration for Nut
 
 ## Disclamer
 
-This guide does not warranty the succeed on every NuttX supported board, because each one has a different level of peripheral implementation and memory available.
+This guide is not guarantee to work on every NuttX supported board, because each one has a different level of peripheral implementation and memory available.
 
 ## Required hardware
 
