@@ -71,7 +71,7 @@ cd firmware/NuttX
 make menuconfig
 ```
 
-This should show this menu:
+The menu below should appear:
 ![](images/nuttx_menuconfig.png)
 
 Note: Remember that you should follow this previous tutorial before starting it. [Adding Micro-ROS to a NuttX board configuration](https://micro-ros.github.io/docs/tutorials/advanced/nuttx/microros_nuttx_bsp/)
