@@ -45,7 +45,7 @@ source install/local_setup.bash
 
 ## Set the base configuration
 
- In this guide, for example, we will give Micro-ROS support for the [Olimex-STM32-H407 board](https://www.olimex.com/Products/ARM/ST/STM32-H407/open-source-hardware).
+ In this guide we will give Micro-ROS support for the [Olimex-STM32-H407 board](https://www.olimex.com/Products/ARM/ST/STM32-H407/open-source-hardware) as an example.
 
 This board is a simplified version of our supported Olimex-STM32-E407 board. 
 
