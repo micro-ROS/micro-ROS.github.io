@@ -76,7 +76,7 @@ The menu below should appear:
 
 Note: Remember that you should follow this previous tutorial before starting it. [Adding Micro-ROS to a NuttX board configuration](https://micro-ros.github.io/docs/tutorials/advanced/nuttx/microros_nuttx_bsp/)
 
-On the menu, you need to set the next configuration.
+In the menu, you need to set the following configuration.
 
 - System Type > STM32 Peripheral Support > USART3
 - RTOS Features > Clocks and Timers > Support CLOCK_MONOTONIC
