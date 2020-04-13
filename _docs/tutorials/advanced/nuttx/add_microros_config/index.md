@@ -9,7 +9,7 @@ permalink: /docs/tutorials/advanced/nuttx/add_microros_config/
 
 In this tutorial, we will see how to set a basic Micro-ROS configuration for NuttX over serial communication. Since this guide is only focused on setting the configuration, you should check the tutorial linked here before: [Adding Micro-ROS to a NuttX board configuration](https://micro-ros.github.io/docs/tutorials/advanced/nuttx/microros_nuttx_bsp/)
 
-## Disclamer
+**Disclamer**
 
 This guide is not guarantee to work on every NuttX supported board, because each one has a different level of peripheral implementation and memory available.
 
