@@ -25,7 +25,7 @@ This guide is not guarantee to work on every NuttX supported board, because each
 
 ## Workspace set-up
 
-We're going to create the Micro-ROS workspace, to do so, we will execute the following commands on a console:
+As a first thing, we're going to create a Micro-ROS workspace. To do so, we will execute the following commands on a console:
 
 ```
 source /opt/ros/$ROS_DISTRO/setup.bash
