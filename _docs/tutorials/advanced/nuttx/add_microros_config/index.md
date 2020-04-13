@@ -55,7 +55,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-h407
 ros2 run micro_ros_setup configure_firmware.sh nsh
 ```
 
-If everything goes fine, it should output the next message:
+If everything goes fine, it should output the message:
 ```bash
 Copy files
 Refreshing...
