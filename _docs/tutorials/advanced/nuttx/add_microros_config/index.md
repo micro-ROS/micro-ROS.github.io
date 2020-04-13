@@ -49,7 +49,7 @@ source install/local_setup.bash
 
 This board is a simplified version of our supported Olimex-STM32-E407 board. 
 
-On the previous console, execute the following commands to set the basic configuration:
+In the previous console, execute the following commands to set the basic configuration:
 ```bash
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-h407
 ros2 run micro_ros_setup configure_firmware.sh nsh
