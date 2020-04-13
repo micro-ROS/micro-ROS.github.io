@@ -96,7 +96,7 @@ cd ../..
 ros2 run micro_ros_setup build_firmware.sh
 ```
 
-If everything goes fine, it should return the next output:
+If everything goes fine, it should return the following output:
 ```bash
 CP: nuttx.hex
 CP: nuttx.bin
