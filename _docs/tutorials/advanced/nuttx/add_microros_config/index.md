@@ -90,7 +90,7 @@ In the menu, you need to set the following configuration.
 
 Push two times the key "ESC" and set yes, when it asks you if you want to save it.
 
-Now the configuration is properly set, is just left to compile it. To do so, continue on the same console and execute the commands:
+Now the configuration is properly set, the only thing left is to compile it. To do so, continue in the same console and execute the commands:
 ```
 cd ../..
 ros2 run micro_ros_setup build_firmware.sh
