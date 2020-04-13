@@ -61,7 +61,7 @@ Copy files
 Refreshing...
 ```
 
-Now is set the basic NSH configuration. On the forward steps, we will set the required configuration to run Micro-ROS on this board.
+Now the basic NSH configuration is set. With the steps that follow, we will set the required configuration to run Micro-ROS on this board.
 
 ## Micro-ROS configuration.
 
