@@ -1,5 +1,5 @@
 ---
-title: Getting Started with an embedded board (WIP)
+title: Getting Started with an embedded board 
 permalink: /docs/tutorials/core/getting_started_embedded/
 ---
 
