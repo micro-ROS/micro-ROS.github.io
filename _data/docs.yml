@@ -40,7 +40,7 @@
 
 - title: Core Tutorials
   docs:
-   - tutorials/core/getting_started
+   - tutorials/core/overview
    - tutorials/core/getting_started_embedded
    - tutorials/core/getting_started_simulator
    - tutorials/core/programming_rcl_rclc
