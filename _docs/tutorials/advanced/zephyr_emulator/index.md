@@ -1,6 +1,6 @@
 ---
 title: Zephyr Emulator
-permalink: /docs/tutorials/advanced/zephyr/zephyr_emulator/
+permalink: /docs/tutorials/advanced/zephyr_emulator/
 ---
 
 This tutorial aims to create a new micro-ROS application on with **[Zephyr RTOS](https://www.zephyrproject.org/)** emulator (also known as [Native POSIX](https://docs.zephyrproject.org/latest/boards/posix/native_posix/doc/index.html)).
