@@ -25,6 +25,8 @@ Then, you may launch Jekyll to build and serve the website continuously by
 bundle exec jekyll serve
 ```
 
+For the includes of README.md files on the micro-ROS demos (in the tutorials chapter) from the corresponding repositories, please init and update the corresponding git submodules (i.e. `git submodule init ; git submodule update`).
+
 ## Testing generated site
 
 To test the generated HTML site, you can use `html-proofer` gem.
