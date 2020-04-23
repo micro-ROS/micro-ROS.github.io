@@ -1,5 +1,5 @@
 ---
-title: First micro-ROS application on Linux
+title: First micro-ROS Application on Linux
 permalink: /docs/tutorials/core/first_application_linux/
 ---
 

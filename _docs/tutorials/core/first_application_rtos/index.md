@@ -1,5 +1,5 @@
 ---
-title: First micro-ROS application on an RTOS
+title: First micro-ROS Application on an RTOS
 permalink: /docs/tutorials/core/first_application_rtos/
 ---
 
