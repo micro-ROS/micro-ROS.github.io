@@ -1,5 +1,5 @@
 ---
-title: Optimize Middleware Configuration
+title: Optimizing the Middleware Configuration
 permalink: /docs/tutorials/core/microxrcedds_rmw_configuration/
 ---
 
