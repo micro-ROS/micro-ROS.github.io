@@ -1,5 +1,5 @@
 ---
-title: RMW & Micro XRCE-DDS Configuration
+title: Optimize Middleware Configuration
 permalink: /docs/tutorials/core/microxrcedds_rmw_configuration/
 ---
 
