@@ -5,13 +5,22 @@ redirect_from: /docs/tutorials/core/
 redirect_from: /docs/tutorials/
 ---
 
-## Supported Configurations
+This chapter provides you a number of tutorials to learn micro-ROS and relevant tools for the different RTOS supported by micro-ROS. We divided this chapter into two sections core tutorials and advanced tutorials.
 
-| Host OS  | Version  | ROS Version  |  Status | 
-|----------|----------|--------------|---------------|
-| Ubuntu   | 18.04.   | Crystal      |  Supported, see [Installation](https://github.com/micro-ROS/micro-ros-build/blob/crystal/micro_ros_setup/README.md) |   |
-| Ubuntu   | 18.04.   | Dashing      |  Supported, see [Installation](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/README.md) |
+If you are new to micro-ROS, we strongly suggest that you take the tutorials in the following order:
 
-If you manage to install on a different version, please [open an issue](https://github.com/micro-ROS/micro-ros-build/issues/new) with information, and we'll add the info here!
+* [**First micro-ROS application on Linux**](../first_application_linux/)
 
-For Ubuntu 16.04., the main issue is that there are no pre-built ROS 2 packages for recent ROS 2 releases available. If you build ROS 2 from source, it should be possible to also get micro-ROS running there.
+  This tutorial teaches you how to install the micro-ROS framework and tools. Then it will guide you to developed your own first micro-ROS application under Linux. (If you already know ROS 2, you will see that the tools are well integrated with standard ROS 2.)
+
+* [**First micro-ROS application on an RTOS**](../first_application_RTOS/)
+
+  In this tutorial, you will learn how to build the application from the previous tutorial for an Real-Time Operating System (RTOS). You will see how to flash a microcontroller board with the application and how to communicate with it from a microprocessor running ROS 2 on Linux. (The tutorial covers all three RTOS supported by micro-ROS, namely NuttX, FreeRTOS, and Zephyr. The choice is up to you!)
+
+* [**Programming with rcl and rclc**](../programming_rcl_rclc/)
+
+  You'll learn the concepts of the micro-ROS C API in this tutorial in depth. If you are already familiar with the ROS 2 C++ API or even the underlying ROS Client Support Library (rcl), you'll learn this very quickly.
+
+* [**Optimizing the Middleware Configuration**](../microxrcedds_rmw_configuration/)
+
+  In this tutorial, we'll guide you through the configuration of the middleware between a microcontroller and the micro-ROS agent running on some Linux-based microprocessor, to optimize it for your specific use-case an application.
