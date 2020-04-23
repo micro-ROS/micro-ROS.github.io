@@ -1,9 +1,9 @@
 ---
-title: Linux Getting Started
-permalink: /docs/tutorials/advanced/linux/linux_getting_started/
+title: First micro-ROS application on Linux
+permalink: /docs/tutorials/core/first_application_linux/
 ---
 
-This tutorial aims to create a new micro-ROS application on Linux for testing purposes.
+This tutorial aims to create a first micro-ROS application on Linux for testing purposes.
 
 ## Adding a new micro-ROS app
 

@@ -1,5 +1,5 @@
 ---
-title: NuttX getting started
+title: First micro-ROS application on an RTOS
 permalink: /docs/tutorials/advanced/nuttx/nuttx_getting_started/
 ---
 
