@@ -5,10 +5,35 @@ permalink: /docs/tutorials/core/programming_rcl_rclc/
 
 In this tutorial, you'll learn the basics of the micro-ROS C API. The major concepts (publishers, subscriptions, services,timers, ...) are identical with ROS 2. They even rely on the same implementation, as the micro-ROS C API is based on the ROS 2 client support library (rcl), enriched with a set of convenience functions by the package rclc. That is, rclc does not add a new layer of types on top of rcl (like rclcpp and rclpy do) but only provides functions that ease the programming with the rcl types. New types are introduced only for concepts that are missing in rcl. The most important such concept is the rclc Executor.
 
+* [Creating a node](#node)
 * [Publishers and subscriptions](#pub_sub)
 * [Services](#services)
 * [Timers](#timers)
 * [Rclc Executor](#rclc_executor)
+
+
+## <a name="node"/>Creating a Node
+
+To simplify the creation of a node with rcl, rclc provides two functions `rclc_support_init(..)` and `rclc_node_init_default(..)` in [rclc/init.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/init.h) and [rclc/node.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/node.h), respectively. The first lines of the main function of a micro-ROS programm are:
+
+```c
+rcl_allocator_t allocator = rcl_get_default_allocator();
+rclc_support_t support;
+rcl_ret_t rc;
+
+rc = rclc_support_init(&support, argc, argv, &allocator);
+if (rc != RCL_RET_OK) {
+  ...  // Some error reporting.
+  return -1;
+}
+
+rcl_node_t my_node = rcl_get_zero_initialized_node();
+rc = rclc_node_init_default(&my_node, "my_node_name", "my_namespace", &support);
+if (rc != RCL_RET_OK) {
+  ...  // Some error reporting.
+  return -1;
+}
+```
 
 
 ## <a name="pub_sub"/>Publishers and Subscriptions
