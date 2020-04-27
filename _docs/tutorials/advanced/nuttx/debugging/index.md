@@ -4,7 +4,7 @@ permalink: /docs/tutorials/advanced/nuttx/debugging/
 author: Ingo Lütkebohle (merged by Tomasz Kołcon)
 ---
 
-This tutorial consists of 2 parts: debugging a NuttX target with GDB and OpenOCD and debugging with Visual Studio Code. The first one describes tools installation and debugging via command line. The second focuses on the description of debugging using the modern IDE.
+This tutorial consists of two parts: First, debugging a NuttX target with GDB and OpenOCD. This part covers tool installation and debugging via command line. Second, debugging with Visual Studio Code, i.e. using a modern IDE.
 
 ## Debugging a NuttX target with GDB and OpenOCD
 
