@@ -69,7 +69,3 @@
    - tutorials/advanced/nuttx/add_microros_config
    - tutorials/advanced/nuttx/microros_6lowpan_tutorial
 
-- title: Getting Started Tutorials with FreeRTOS and Zephyr
-  docs:
-    - tutorials/advanced/freertos/freertos_getting_started
-    - tutorials/advanced/zephyr/zephyr_getting_started
