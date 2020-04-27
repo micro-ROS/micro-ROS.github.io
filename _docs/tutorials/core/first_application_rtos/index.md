@@ -93,11 +93,11 @@ Ooptions available at this configuration step are:
 
 At this point, in order to build your first micro-ROS application you can take one of these examples as reference:
 
-|          | APP         | OPTIONS                      |                                  Configured app                                  |
-| :------: | ----------- | ---------------------------- | :------------------------------------------------------------------------------: |
-|  NuttX   | `ping_pong` | `???`                        |                                                                                  |
-| FreeRTOS | `ping_pong` | `--transport serial --dev 3` | [Source](https://github.com/micro-ROS/freertos_apps/tree/dashing/apps/ping_pong) |
-|  Zephyr  | `ping_pong` | `--transport serial-usb`     |  [Source](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong)  |
+|          | APP             | OPTIONS                      |                                  Configured app                                  |
+| :------: | --------------- | ---------------------------- | :------------------------------------------------------------------------------: |
+|  NuttX   | `uros_pingpong` |                              | [Source](https://github.com/micro-ROS/apps/tree/dashing/examples/uros_pingpong)  |
+| FreeRTOS | `ping_pong`     | `--transport serial --dev 3` | [Source](https://github.com/micro-ROS/freertos_apps/tree/dashing/apps/ping_pong) |
+|  Zephyr  | `ping_pong`     | `--transport serial-usb`     |  [Source](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong)  |
 
 
 These reference example consists on a ping pong app where a micro-ROS node sends a ping package with a unique identifier using a publisher and the same package is received by pong subscribers (in another ROS 2 o micro-ROS node). Ping pong node will also answer to pings received from other nodes with a pong message:
@@ -115,6 +115,24 @@ The files contained in a micro-ROS app is slightly RTOS specific. The following 
             <th></th>
         </tr>
     </thead>
+   <tr>
+    <td rowspan="4">Nuttx</td>
+    <td >app.c</td>
+    <td >micro-ROS app code.</span></td>
+    <td rowspan="4"><a href="https://github.com/micro-ROS/apps/tree/dashing/examples/uros_pingpong">Sample app</a></td>
+  </tr>
+  <tr>
+    <td >Kconfig</span></a></td>
+    <td >Nuttx Kconfig configuration</td>
+  </tr>
+  <tr>
+    <td>Make.defs</span></a></td>
+    <td>Nuttx build system definitios</td>
+  </tr>
+  <tr>
+    <td >Makefile</span></a></td>
+    <td >Nuttx specific app build script</td>
+  </tr>
   <tr>
     <td rowspan="2">FreeRTOS</td>
     <td >app.c</td>
