@@ -1,13 +1,13 @@
 ---
-title: NuttX getting started
-permalink: /docs/tutorials/advanced/nuttx/nuttx_getting_started/
+title: First micro-ROS Application on an RTOS
+permalink: /docs/tutorials/core/first_application_rtos/
 ---
 
 |  RTOS | Board Compatible  | ROS2 Version |
 |:-----:|-------------------|:------------:|
 | NuttX | Olimex-STM32-E407 |    Dashing   |
 
-In this tutorial, we will follow a guide of how to **add a new Micro-ROS application** on the NuttX RTOS. During this guide, we will start with how to create a configuration profile for our application, following of how to create a micro-ROS pingpong application and finalizing of how we can add our new application to NuttX.
+In this tutorial, we will follow a guide of how to **add a first micro-ROS application** on the NuttX RTOS. During this guide, we will start with how to create a configuration profile for our application, following of how to create a micro-ROS pingpong application and finalizing of how we can add our new application to NuttX.
 
 ## Build the Micro-ROS build system
 

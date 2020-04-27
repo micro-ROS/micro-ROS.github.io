@@ -1,9 +1,10 @@
 ---
-title: Linux Getting Started
-permalink: /docs/tutorials/advanced/linux/linux_getting_started/
+title: First micro-ROS Application on Linux
+permalink: /docs/tutorials/core/first_application_linux/
 ---
 
-This tutorial aims to create a new micro-ROS application on Linux for testing purposes.
+This tutorial teaches you how to create a first micro-ROS application on Linux for testing purposes. In the follow-up tutorial [*First micro-ROS application on an RTOS*](/docs/tutorials/core/first_application_rtos/), you'll learn how to build and bring this application on a microcontroller running the RTOS NuttX, FreeRTOS, or Zephyr.
+
 
 ## Adding a new micro-ROS app
 

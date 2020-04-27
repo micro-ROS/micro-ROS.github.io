@@ -3,6 +3,8 @@ title: FreeRTOS Getting Started
 permalink: /docs/tutorials/advanced/freertos/freertos_getting_started/
 ---
 
+**Please note that this tutorial will soon be integrated with [First micro-ROS application on an RTOS](/docs/tutorials/core/first_application_rtos/)!**
+
 This tutorial aims to create a new micro-ROS application on **[Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)** evaluation board with **[FreeRTOS RTOS](https://www.freertos.org/)**
 
 <div>
