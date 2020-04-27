@@ -1,5 +1,5 @@
 ---
-title: Debugging a NuttX
+title: Debugging a NuttX Application
 permalink: /docs/tutorials/advanced/nuttx/debugging/
 author: Ingo Lütkebohle (merged by Tomasz Kołcon)
 ---
