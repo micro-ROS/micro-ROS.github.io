@@ -69,7 +69,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh [RTOS] olimex-stm32-e407
 ```
 The options available here are:
 
-|          | RTOS       |
+| RTOS | `[RTOS]` |
 | :------: | ---------- |
 |  NuttX   | `nuttx`    |
 | FreeRTOS | `freertos` |
