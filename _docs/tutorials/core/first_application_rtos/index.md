@@ -59,7 +59,7 @@ The build system's workflow is a four-step procedure:
 
 Further information about micro-ROS build system can be found [here](https://github.com/micro-ROS/micro-ros-build/tree/dashing/micro_ros_setup)
 
-## Creating a new firmware workspace
+## Step 1: Creating a new firmware workspace
 
 In order to accomplish the first step, a new firmware workspace can be created using the following command. The created workspace is platform and RTOS specific.
 
@@ -77,7 +77,7 @@ The options available here are:
 
 Once the command is executed, a folder named `firmware` must be present in your workspace.
 
-## Configuring the firmware
+## Step 2: Configuring the firmware
 
 The configuration step will set up the main micro-ROS options and will select the required application. It can be executed with the following command:
 
@@ -85,6 +85,7 @@ The configuration step will set up the main micro-ROS options and will select th
 # Configure step
 ros2 run micro_ros_setup configure_firmware.sh [APP] [OPTIONS]
 ```
+
 The options available for this configuration step are:
   - `--transport` or `-t`: `udp`, `tcp`, `serial` or any hardware-specific transport label
   - `--dev` or `-d`: agent string descriptor in a serial-like transport
@@ -118,19 +119,19 @@ The files that a micro-ROS app are RTOS-dependent. The table below clarifies whi
    <tr>
     <td rowspan="4">Nuttx</td>
     <td >app.c</td>
-    <td >micro-ROS app code.</span></td>
+    <td >micro-ROS app code.</td>
     <td rowspan="4"><a href="https://github.com/micro-ROS/apps/tree/dashing/examples/uros_pingpong">Sample app</a></td>
   </tr>
   <tr>
-    <td >Kconfig</span></a></td>
+    <td >Kconfig</td>
     <td >Nuttx Kconfig configuration</td>
   </tr>
   <tr>
-    <td>Make.defs</span></a></td>
+    <td>Make.defs</td>
     <td>Nuttx build system definitios</td>
   </tr>
   <tr>
-    <td >Makefile</span></a></td>
+    <td >Makefile</td>
     <td >Nuttx specific app build script</td>
   </tr>
   <tr>
@@ -147,24 +148,129 @@ The files that a micro-ROS app are RTOS-dependent. The table below clarifies whi
   <tr>
     <td rowspan="4">Zephyr</td>
     <td >src/app.c</td>
-    <td >micro-ROS app code.</span></td>
+    <td >micro-ROS app code.</td>
     <td rowspan="4"><a href="https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong">Sample app</a></td>
   </tr>
   <tr>
-    <td >app-colcon.meta</span></a></td>
+    <td >app-colcon.meta</td>
     <td >micro-ROS app specific colcon configuration. Detailed info <a href="https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/">here</a>.</td>
   </tr>
   <tr>
-    <td>CMakeLists.txt</span></a></td>
+    <td>CMakeLists.txt</td>
     <td>CMake file for Zephyr app building</td>
   </tr>
   <tr>
-    <td >prj.conf</span></a></td>
+    <td >prj.conf</td>
     <td >Zephyr specific app configuration</td>
   </tr>
 </table>
 
-## Building the firmware
+The following steps are RTOS-specific commands for creating a new app once the firmware folder is created inside `microros_ws`:
+
+### Nuttx
+
+Create a new app:
+
+```bash
+# Go to app folder inside firmware
+cd firmware/apps/examples
+
+# Create your app folder and required files. Contents of these file can be found in column Sample app in table above
+mkdir uros_pingpong
+cd uros_pingpong
+touch Kconfig
+touch Makefile
+touch uros_pingpong_main.c
+touch Make.defs
+```
+
+Create a specific configuration. We're going to start from an already existing one and modify it for our new application.
+
+Execute the next command:
+```bash
+cd microros_ws
+ros2 run micro_ros_setup configure_firmware.sh uros
+```
+
+This sets the Ethernet and micro-ROS required configuration. However, in order to add our application, we're going to modify it:
+
+```bash
+cd firmware/NuttX
+make menuconfig
+```
+
+This will open the NuttX menu config, which allows you to modify the configuration of the RTOS, including adding a new application.
+
+
+- On the menu, you need to follow the next path:
+``Application Configuration -> Examples ``
+![](imgs/nuttx_menuconfig.png)
+
+- This will show a list of the available applications. You need to find: ``micro-ROS Ping-Pong`` and click ``y`` to add it.
+![](imgs/nuttx_examples.png)
+
+- Now push three times the key ``ESC`` to close the menu. You will be asked if you want to save the save your new configuration, and you need to click ``Yes``.
+
+
+To save your configuration execute the following commands:
+
+```bash
+cd uros_ws/firmware/NuttX
+make savedefconfig
+```
+
+This will generate a file called ``defconfig`` inside of ``uros_ws/firmware/NuttX``. This file is a config profile with all the required configuration to run your specific configuration which includes your application.
+
+Finally create a folder called ``uros_pingpong`` into ``uros_ws/firmware/NuttX/configs/olimex-stm32-e407`` and move the defconfig file to uros_pingpong folder so you can execute:
+
+```bash
+# Configure step
+ros2 run micro_ros_setup configure_firmware.sh uros_pingpong
+```
+
+### FreeRTOS
+
+Create a new app:
+
+```bash
+# Create your app folder and required files. Contents of these file can be found in column Sample app in table above
+pushd firmware/freertos_apps/apps
+mkdir ping_pong
+cd ping_pong
+touch app.c app-colcon.meta
+popd
+```
+
+Now you are ready to call:
+
+```bash
+# Configure step
+ros2 run micro_ros_setup configure_firmware.sh ping_pong [OPTIONS]
+```
+
+### Zephyr 
+
+Create a new app:
+
+```bash
+# Create your app folder and required files. Contents of these file can be found in column Sample app in table above
+pushd firmware/zephyr_apps/apps
+mkdir my_brand_new_app
+cd my_brand_new_app
+mkdir src
+touch src/app.c app-colcon.meta
+touch CMakeLists.txt prj.conf
+popd
+```
+
+Now you are ready to call:
+
+```bash
+# Configure step
+ros2 run micro_ros_setup configure_firmware.sh ping_pong [OPTIONS]
+```
+
+## Step 3: Building the firmware
 
 When the configuring step ends, just build the firmware:
 
@@ -173,7 +279,7 @@ When the configuring step ends, just build the firmware:
 ros2 run micro_ros_setup build_firmware.sh
 ```
 
-## Flashing the firmware
+## Step 4: Flashing the firmware
 
 Flashing the firmware into the platform may vary across hardware platforms. Regarding this tutorial's target platform (**[Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)**), JTAG interface is going to be used to flash the firmware.
 
@@ -206,7 +312,7 @@ colcon build
 source install/local_setup.bash
 ```
 
-Then, depending on the selected transport the board connection to the agent may differ:
+Then, depending on the selected transport and RTOS, the board connection to the agent may differ:
 
 | RTOS | micro-ROS Client to Agent |
 | :------: | ------------------------- |
