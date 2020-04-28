@@ -104,7 +104,7 @@ These reference example consist in a ping pong app where a micro-ROS node sends 
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
-The files contained in a micro-ROS app is slightly RTOS specific. The following table aims to clarify which files are required for creating a new app:
+The files that a micro-ROS app are RTOS-dependent. The table below clarifies which files are required for creating a new app in the three RTOSes supported:
 
 <table >
     <thead>
