@@ -156,7 +156,7 @@ mkdir uros_pingpong
 cd uros_pingpong
 touch Kconfig
 touch Makefile
-touch uros_pingpong_main.c
+touch app.c
 touch Make.defs
 ```
 
