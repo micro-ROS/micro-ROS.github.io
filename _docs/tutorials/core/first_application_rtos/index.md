@@ -70,7 +70,7 @@ The options available for this configuration step are:
 
 At this point, in order to build your first micro-ROS application you can use one of these examples as a reference:
 
-|          | `[APP]`         | `[OPTIONS]`                  |                                  Configured app                                  |
+|  RTOS        | `[APP]`         | `[OPTIONS]`                  |                                  Configured app                                  |
 | :------: | --------------- | ---------------------------- | :------------------------------------------------------------------------------: |
 |  NuttX   | `uros_pingpong` |                              | [Source](https://github.com/micro-ROS/apps/tree/dashing/examples/uros_pingpong)  |
 | FreeRTOS | `ping_pong`     | `--transport serial --dev 3` | [Source](https://github.com/micro-ROS/freertos_apps/tree/dashing/apps/ping_pong) |
