@@ -75,7 +75,7 @@ The options available here are:
 | FreeRTOS | `freertos` |
 |  Zephyr  | `zephyr`   |
 
-Once the command finished, a folder named `firmware` must be present in your workspace.
+Once the command is executed, a folder named `firmware` must be present in your workspace.
 
 ## Configuring the firmware
 
