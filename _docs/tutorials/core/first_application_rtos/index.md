@@ -208,7 +208,7 @@ source install/local_setup.bash
 
 Then, depending on the selected transport the board connection to the agent may differ:
 
-|          | micro-ROS Client to Agent |
+| RTOS | micro-ROS Client to Agent |
 | :------: | ------------------------- |
 |  NuttX   | Serial                    |
 | FreeRTOS | Serial                    |
