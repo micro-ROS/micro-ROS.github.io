@@ -91,7 +91,7 @@ Ooptions available at this configuration step are:
   - `--ip` or `-i`: agent IP in a network-like transport
   - `--port` or `-p`: agent port in a network-like transport
 
-At this point, in order to build your first micro-ROS application you can take one of these examples as reference:
+At this point, in order to build your first micro-ROS application you can use one of these examples as a reference:
 
 |          | APP             | OPTIONS                      |                                  Configured app                                  |
 | :------: | --------------- | ---------------------------- | :------------------------------------------------------------------------------: |
