@@ -12,7 +12,7 @@ redirect_from:
 | FreeRTOS | Olimex-STM32-E407 |   Dashing    |
 |  Zephyr  | Olimex-STM32-E407 |   Dashing    |
 
-This tutorial is an entry point for using micro-ROS in one of the supported RTOS: Nuttx, FreeRTOS or Zephyr. The target hardware for this tutorial is **[Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)** evaluation board.
+This tutorial is an entry point for using micro-ROS in one of the supported RTOS: Nuttx, FreeRTOS, or Zephyr. The target hardware for this tutorial is the **[Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)** evaluation board.
 
 ## Required hardware
 
