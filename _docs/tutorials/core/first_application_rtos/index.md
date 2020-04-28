@@ -45,7 +45,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh [RTOS] olimex-stm32-e407
 ```
 The options available here are:
 
-| RTOS | `[RTOS]` |
+|   RTOS   | `[RTOS]`   |
 | :------: | ---------- |
 |  NuttX   | `nuttx`    |
 | FreeRTOS | `freertos` |
@@ -70,7 +70,7 @@ The options available for this configuration step are:
 
 At this point, in order to build your first micro-ROS application you can use one of these examples as a reference:
 
-|          | APP             | OPTIONS                      |                                  Configured app                                  |
+|          | `[APP]`         | `[OPTIONS]`                  |                                  Configured app                                  |
 | :------: | --------------- | ---------------------------- | :------------------------------------------------------------------------------: |
 |  NuttX   | `uros_pingpong` |                              | [Source](https://github.com/micro-ROS/apps/tree/dashing/examples/uros_pingpong)  |
 | FreeRTOS | `ping_pong`     | `--transport serial --dev 3` | [Source](https://github.com/micro-ROS/freertos_apps/tree/dashing/apps/ping_pong) |
@@ -290,7 +290,7 @@ source install/local_setup.bash
 
 Then, depending on the selected transport and RTOS, the board connection to the agent may differ:
 
-| RTOS | micro-ROS Client to Agent |
+|   RTOS   | micro-ROS Client to Agent |
 | :------: | ------------------------- |
 |  NuttX   | Serial                    |
 | FreeRTOS | Serial                    |
