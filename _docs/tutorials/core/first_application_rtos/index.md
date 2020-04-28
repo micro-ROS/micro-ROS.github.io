@@ -85,7 +85,7 @@ The configuration step will set up the main micro-ROS options and will select th
 # Configure step
 ros2 run micro_ros_setup configure_firmware.sh [APP] [OPTIONS]
 ```
-Ooptions available at this configuration step are:
+The options available for this configuration step are:
   - `--transport` or `-t`: `udp`, `tcp`, `serial` or any hardware-specific transport label
   - `--dev` or `-d`: agent string descriptor in a serial-like transport
   - `--ip` or `-i`: agent IP in a network-like transport
