@@ -14,6 +14,17 @@ redirect_from:
 
 This tutorial is an entry point for using micro-ROS in one of the supported RTOS: Nuttx, FreeRTOS, or Zephyr. The target hardware for this tutorial is the **[Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)** evaluation board.
 
+First of all, make sure that you have a **ROS 2** environment and the **micro-ROS build system** installed in the computer. If not, please check  [**First micro-ROS application on Linux**](../first_application_linux/) tutorial in order to learn how to start with micro-ROS.
+
+The build system's workflow in the case of embedded systems is a four-step procedure:
+
+* **Create step:** downloads all required code repositories and cross-compilation toolchains for the specific hardware platform. Among these repositories, it will also download a collection of ready to use micro-ROS apps.
+* **Configure step:** user can select in this step which app is going to be crosscompiled by the toolchain. Some other options, such as transport, agent address or port will be also selected in this step.
+* **Build step:** here is where cross-compilation takes place and platform-specific binaries are generated.
+* **Flash step:** generated binaries are flashed onto hardware platform memory so micro-ROS app can be executed.
+
+Further information about micro-ROS build system can be found [here](https://github.com/micro-ROS/micro-ros-build/tree/dashing/micro_ros_setup)
+
 ## Required hardware
 
 The following hardware will be used:
@@ -23,41 +34,6 @@ The following hardware will be used:
 | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)                       |
 | [Olimex ARM-USB-TINY-H](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/)                                 |
 | [USB-Serial Cable Female](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/) |
-
-## Installing the micro-ROS build system
-
-First of all, make sure that you have a **ROS 2** installation in the computer. On the **ROS 2** installation open a command line and follow these steps:
-
-```bash
-# Source the ROS 2 installation
-source /opt/ros/$ROS_DISTRO/setup.bash
-
-# Create a workspace and download the micro-ROS tools
-mkdir microros_ws 
-cd microros_ws
-git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
-
-# Update dependencies using rosdep
-sudo apt update && rosdep update
-rosdep install --from-path src --ignore-src -y
-
-# Build micro-ROS tools and source them
-colcon build
-source install/local_setup.bash
-```
-
-***TIP:** if you are familiar with Docker containers, this image may be useful: [ros:dashing](https://hub.docker.com/layers/ros/library/ros/dashing/images/sha256-b796c14ea663537129897769aa6c715a851ca08dffd4875ef2ecaa31a4dbd431?context=explore)*
-
-These instructions will setup a workspace with a ready to use micro-ROS build system. This build system is in charge of downloading the required cross-compilation tools and building the apps for the required platforms. 
-
-The build system's workflow is a four-step procedure:
-
-* **Create step:** downloads all required code repositories and cross-compilation toolchains for the specific hardware platform. Among these repositories, it will also download a collection of ready to use micro-ROS apps.
-* **Configure step:** user can select in this step which app is going to be crosscompiled by the toolchain. Some other options, such as transport, agent address or port will be also selected in this step.
-* **Build step:** here is where cross-compilation takes place and platform-specific binaries are generated.
-* **Flash step:** generated binaries are flashed onto hardware platform memory so micro-ROS app can be executed.
-
-Further information about micro-ROS build system can be found [here](https://github.com/micro-ROS/micro-ros-build/tree/dashing/micro_ros_setup)
 
 ## Step 1: Creating a new firmware workspace
 
