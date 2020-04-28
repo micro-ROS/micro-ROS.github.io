@@ -141,7 +141,7 @@ The files that a micro-ROS app needs are RTOS-dependent. The table below clarifi
   </tr>
 </table>
 
-The following steps are RTOS-specific commands for creating a new app once the firmware folder is created inside `microros_ws`:
+The following steps are RTOS-specific commands for creating a new app once the firmware folder is created inside `microros_ws`. Please refer to the table above in order to get an idea of the content that the RTOS-specific files described below needed to create your own app should contain.
 
 ### Nuttx
 
