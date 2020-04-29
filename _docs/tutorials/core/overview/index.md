@@ -1,8 +1,9 @@
 ---
 title: Overview
 permalink: /docs/tutorials/core/overview/
-redirect_from: /docs/tutorials/core/
-redirect_from: /docs/tutorials/
+redirect_from:
+  - /docs/tutorials/core/
+  - /docs/tutorials/
 ---
 
 This chapter provides you a number of tutorials to learn micro-ROS and relevant tools for the different RTOS supported by micro-ROS. We divided this chapter into two sections core tutorials and advanced tutorials.
