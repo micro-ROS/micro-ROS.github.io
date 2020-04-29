@@ -54,7 +54,7 @@ if (RCL_RET_OK != rc) {
 }
 ```
 
-Publishing a message:
+Initializing a message:
 
 ```c
 std_msgs__msg__String__init(&pub_msg);
@@ -64,7 +64,7 @@ snprintf(pub_string, 13, "%s", "Hello World!");
 rosidl_generator_c__String__assignn(&pub_msg, pub_string, PUB_MSG_SIZE);
 ```
 
-Creating a subscription by `rclc_subscription_init_default(..)` from [rclc/subscription.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/subscription.h), respectively:
+Creating a subscription by `rclc_subscription_init_default(..)` from [rclc/subscription.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/subscription.h):
 
 ```c
 rcl_subscription_t my_sub = rcl_get_zero_initialized_subscription();
@@ -204,11 +204,7 @@ A timer can be created with the rclc-package with the function
 // create a timer, which will call the publisher with period=`timer_timeout` ms in the 'my_timer_callback'
 rcl_timer_t my_timer = rcl_get_zero_initialized_timer();
 const unsigned int timer_timeout = 1000;
-rc = rclc_timer_init_default(
-  &my_timer,
-  &support,
-  RCL_MS_TO_NS(timer_timeout),
-  my_timer_callback);
+rc = rclc_timer_init_default(&my_timer, &support, RCL_MS_TO_NS(timer_timeout), my_timer_callback);
 if (rc != RCL_RET_OK) {
   printf("Error in rcl_timer_init_default.\n");
   return -1;
