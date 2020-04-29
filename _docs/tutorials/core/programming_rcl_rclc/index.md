@@ -37,7 +37,7 @@ if (rc != RCL_RET_OK) {
 
 ## <a name="pub_sub"/>Publishers and Subscriptions
 
-Publisher and subscribers are created with the rclc-package.
+Publishers and subscribers are most easily created with the rclc package.
 
 Creating a publisher by `rclc_publisher_init_default(..)` from [rclc/publisher.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/publisher.h):
 
