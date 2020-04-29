@@ -53,6 +53,17 @@ The options available here are:
 
 Once the command is executed, a folder named `firmware` must be present in your workspace.
 
+***NOTE:** if you are targetting Zephyr RTOS make sure you have the latest version of CMake:*
+
+```bash
+sudo apt install wget
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
+sudo apt install software-properties-common
+sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+sudo apt update
+sudo apt install cmake
+```
+
 ## Step 2: Configuring the firmware
 
 The configuration step will set up the main micro-ROS options and will select the required application. It can be executed with the following command:
