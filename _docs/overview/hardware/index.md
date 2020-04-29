@@ -33,10 +33,7 @@ The [Olimex LTD STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/op
 
 It contains 196KB of RAM and 1MB of Flash. It is a very complete board thanks to the wide variety of communication interfaces it offers: USB OTG, Ethernet, SD Card slot, SPI, CAN or I2C buses are exposed. The board contains various expansion options available: Arduino-like headers for attaching daughter boards, many pins exposed, as well as a UEXT connector. This connector is a custom pin-out bus and is used to attach sensor breakouts that manufacturer sells.
 
-Ports for micro-ROS on all supported RTOS are available for this board. Examples on how to start developing with this board are available:
- - [Zephyr](/docs/tutorials/advanced/zephyr/zephyr_getting_started/)
- - [Nuttx](/docs/tutorials/advanced/nuttx/nuttx_getting_started/)
- - [FreeRTOS](/docs/tutorials/advanced/freertos/freertos_getting_started/)
+Ports for micro-ROS on all supported RTOS are available for this board. Please see our [**First micro-ROS Application on an RTOS**](/docs/tutorials/core/first_application_rtos/) tutorial for how to start developing with this board.
 
 ### Development tools
 

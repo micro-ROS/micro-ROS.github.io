@@ -19,4 +19,4 @@ Check [supported board](/docs/overview/hardware/) section for more information a
 
 ## Getting started with NuttX and micro-ROS
 
-In order to obtain more information about how to get started using this RTOS, please check our [tutorials section](/docs/tutorials/core/getting_started/).
+In order to obtain more information about how to get started using this RTOS, please check our [tutorials section](/docs/tutorials/core/first_application_rtos/).

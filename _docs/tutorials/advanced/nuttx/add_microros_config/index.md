@@ -74,7 +74,7 @@ make menuconfig
 The menu below should appear:
 ![](images/nuttx_menuconfig.png)
 
-Note: Remember that you should follow this previous tutorial before starting it. [Adding Micro-ROS to a NuttX board configuration](https://micro-ros.github.io/docs/tutorials/advanced/nuttx/microros_nuttx_bsp/)
+Note: Remember that you should follow this previous tutorial before starting it. [Adding Micro-ROS to a NuttX board configuration](https://micro-ros.github.io/docs/tutorials/advanced/microros_nuttx_bsp/)
 
 In the menu, you need to set the following configuration.
 
