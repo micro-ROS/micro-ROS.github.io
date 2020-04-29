@@ -36,50 +36,43 @@ if (rc != RCL_RET_OK) {
 ```
 
 ## <a name="pub_sub"/>Publishers and Subscriptions
-Publisher and subscribers are created with the rclc-package with the following functions
-`rclc_publisher_init_default(..)` and `rclc_subscription_init_default(..)` in [rclc/publisher.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/publisher.h) and [rclc/node.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/subscription.h), respectively:
 
+Publisher and subscribers are created with the rclc-package.
+
+Creating a publisher by `rclc_publisher_init_default(..)` from [rclc/publisher.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/publisher.h):
 
 ```c
-// create publisher
 rcl_publisher_t my_pub;
-std_msgs__msg__String pub_msg;
-const char * topic_name = "topic_0";
-const rosidl_message_type_support_t * my_type_support =
-  ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String);
+std_msgs__msg__String my_msg;
+const char * my_topic = "topic_0";
+const rosidl_message_type_support_t * my_type_support = ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String);
 
-rc = rclc_publisher_init_default(
-  &my_pub,
-  &my_node,
-  my_type_support,
-  topic_name);
+rc = rclc_publisher_init_default(&my_pub, &my_node, &my_type_support, &my_topic_name);
 if (RCL_RET_OK != rc) {
-  printf("Error in rclc_publisher_init_default %s.\n", topic_name);
+  printf("Error in rclc_publisher_init_default.\n");
   return -1;
 }
-// create publisher message
+```
+
+Publishing a message:
+
+```c
 std_msgs__msg__String__init(&pub_msg);
 const unsigned int PUB_MSG_SIZE = 20;
 char pub_string[PUB_MSG_SIZE];
 snprintf(pub_string, 13, "%s", "Hello World!");
 rosidl_generator_c__String__assignn(&pub_msg, pub_string, PUB_MSG_SIZE);
+```
 
-// create subscription
+Creating a subscription by `rclc_subscription_init_default(..)` from [rclc/subscription.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/subscription.h), respectively:
+
+```c
 rcl_subscription_t my_sub = rcl_get_zero_initialized_subscription();
-rc = rclc_subscription_init_default(
-  &my_sub,
-  &my_node,
-  my_type_support,
-  topic_name);
+rc = rclc_subscription_init_default(&my_sub, &my_node, &my_type_support, &my_topic_name);
 if (rc != RCL_RET_OK) {
-  printf("Failed to create subscriber %s.\n", topic_name);
+  printf("Failed to create subscriber.\n");
   return -1;
-} else {
-  printf("Created subscriber %s:\n", topic_name);
 }
-
-// initialize string message for subscriber
-std_msgs__msg__String__init(&sub_msg);
 ```
 
 ## <a name="services"/>Services
