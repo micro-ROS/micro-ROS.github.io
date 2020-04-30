@@ -5,7 +5,8 @@ permalink: /docs/tutorials/advanced/zephyr_emulator/
 
 This tutorial aims at creating a new micro-ROS application on with **[Zephyr RTOS](https://www.zephyrproject.org/)** emulator (also known as [Native POSIX](https://docs.zephyrproject.org/latest/boards/posix/native_posix/doc/index.html)). 
 
-This tutorial assumes that **[First micro-ROS Application on an RTOS](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/)** has been accomplished and user has basic knowledge about micro-ROS and ROS 2. The target app in this tutorial is the same ping pong app explained that tutorial 
+To follow this tutorial, it is assumed that the user is already familiar with the **[First micro-ROS Application on an RTOS](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/)** tutorial. The target app in this tutorial is the same ping pong app.
+Another requirement is that the user has a basic knowledge of micro-ROS and ROS 2.
 
 <div>
 <img  width="300" style="padding-right: 25px;" src="imgs/4.jpg">
