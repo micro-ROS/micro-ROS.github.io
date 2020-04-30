@@ -17,7 +17,7 @@ This tutorial requires no hardware beyond a Linux host computer.
 
 ## Building a Zephyr emulator application
 
-Once the micro-ROS build system is ready, let's create a new Zephyr firmware for host platform:
+Once the micro-ROS build system is ready, let's create a new Zephyr firmware for the host platform:
 
 ```bash
 # Create firmware step
