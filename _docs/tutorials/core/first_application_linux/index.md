@@ -44,7 +44,7 @@ source install/local_setup.bash
 
 ***TIP:** if you are familiar with Docker containers, this image may be useful: [micro-ros:base](https://github.com/micro-ROS/docker/blob/dashing/base/Dockerfile)*
 
-These instructions will setup a workspace with a ready to use micro-ROS build system. This build system is in charge of downloading the required cross-compilation tools and building the apps for the required platforms. 
+These instructions will setup a workspace with a ready-to-use micro-ROS build system. This build system is in charge of downloading the required cross-compilation tools and building the apps for the required platforms. 
 
 The build system's workflow is a four-step procedure:
 
