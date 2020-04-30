@@ -88,7 +88,7 @@ At this point, in order to build your first micro-ROS application you can use on
 |  Zephyr  | `ping_pong`     | `--transport serial-usb`     |  [Source](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong)  |
 
 
-These reference example consist in a ping pong app where a micro-ROS node sends a ping package with a unique identifier using a publisher. The same package is received by pong subscribers (in another ROS 2 o micro-ROS node). The ping pong node will also answer to pings received from other nodes with a pong message, as elucidated by the diagram below:
+These reference examples consist in a ping pong app in which a micro-ROS node sends a ping package with a unique identifier using a publisher. The same package is received by pong subscribers (in another ROS 2 o micro-ROS node). The ping pong node will also answer to pings received from other nodes with a pong message, as elucidated by the diagram below:
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
