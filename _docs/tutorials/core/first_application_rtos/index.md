@@ -20,7 +20,7 @@ The build system's workflow in the case of embedded systems is a four-step proce
 
 * **Create step:** downloads all required code repositories and cross-compilation toolchains for the specific hardware platform. Among these repositories, it will also download a collection of ready to use micro-ROS apps.
 * **Configure step:** user can select in this step which app is going to be crosscompiled by the toolchain. Some other options, such as transport, agent address or port will be also selected in this step.
-* **Build step:** here is where cross-compilation takes place and platform-specific binaries are generated.
+* **Build step:** Here is where the cross-compilation takes place and the platform-specific binaries are generated.
 * **Flash step:** generated binaries are flashed onto hardware platform memory so micro-ROS app can be executed.
 
 Further information about micro-ROS build system can be found [here](https://github.com/micro-ROS/micro-ros-build/tree/dashing/micro_ros_setup)
