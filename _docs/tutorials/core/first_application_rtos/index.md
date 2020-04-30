@@ -43,6 +43,7 @@ In order to accomplish the first step, a new firmware workspace can be created u
 # Create step
 ros2 run micro_ros_setup create_firmware_ws.sh [RTOS] olimex-stm32-e407
 ```
+Note that the created workspace is platform and RTOS specific.
 The options available here are:
 
 |   RTOS   | `[RTOS]`   |
