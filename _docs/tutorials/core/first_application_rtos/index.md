@@ -18,7 +18,7 @@ First of all, make sure that you have a **ROS 2** environment and the **micro-RO
 
 The build system's workflow in the case of embedded systems is a four-step procedure:
 
-* **Create step:** downloads all required code repositories and cross-compilation toolchains for the specific hardware platform. Among these repositories, it will also download a collection of ready to use micro-ROS apps.
+* **Create step:** This step is in charge of downloading all the required code repositories and cross-compilation toolchains for the specific hardware platform. Among these repositories, it will also download a collection of ready to use micro-ROS apps.
 * **Configure step:** user can select in this step which app is going to be crosscompiled by the toolchain. Some other options, such as transport, agent address or port will be also selected in this step.
 * **Build step:** Here is where the cross-compilation takes place and the platform-specific binaries are generated.
 * **Flash step:** generated binaries are flashed onto hardware platform memory so micro-ROS app can be executed.
