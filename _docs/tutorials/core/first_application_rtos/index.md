@@ -189,7 +189,7 @@ make menuconfig
 This will open the NuttX menu config, which allows you to modify the configuration of the RTOS, including adding a new application.
 
 
-- On the menu, you need to follow the next path:
+- On the menu, follow the path:
 ``Application Configuration -> Examples ``
 ![](imgs/nuttx_menuconfig.png)
 
