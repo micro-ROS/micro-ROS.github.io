@@ -34,20 +34,15 @@ mkdir host_ping_pong
 cd host_ping_pong
 mkdir src
 
-# Contents of app.c are here: https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/src/main.c
 touch src/app.c 
-
-# Contents of app-colcon.meta are here: https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/app-colcon.meta
 touch app-colcon.meta
-
-# Contents of app-colcon.meta are here: https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/CMakeLists.txt
 touch CMakeLists.txt
-
-# Contents of app-colcon.meta are here: https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/prj.conf
 touch prj.conf
 
 popd
 ```
+
+The contents of the files can be found here: [app.c](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/src/main.c), [app-colcon.meta](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/app-colcon.meta), [CMakeLists.txt](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/CMakeLists.txt) and [prj.conf](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/prj.conf).
 
 Once the app folder is created, let's configure our new app with a UDP transport that looks for the agent on the port UDP/8888 at localhost:
 
