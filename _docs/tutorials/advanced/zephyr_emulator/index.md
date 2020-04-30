@@ -25,15 +25,28 @@ Once the micro-ROS build system is ready, let's create a new Zephyr firmware for
 ros2 run micro_ros_setup create_firmware_ws.sh zephyr host
 ```
 
-
 micro-ROS apps for Zephyr emulator are located at `firmware/zephyr_apps/apps`. In order to create a new application, create a new folder containing two files: the app code (inside a `src` folder) and the RMW configuration. You will also need some other Zephyr related files: a `CMakeLists.txt` to define the building process and a `prj.conf` where Zephyr is configured. There is a sample proyect [here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/host_ping_pong), for now, it is ok to copy them.
 
-Make sure your app's `CMakeLists.txt` is compatible with `native_posix`:
+```bash
+# Creating a new app
+pushd firmware/zephyr_apps/apps
+mkdir host_ping_pong
+cd host_ping_pong
+mkdir src
 
-```
-...
-set(COMPATIBLE_BOARDS native_posix)
-....
+# Contents of app.c are here: https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/src/main.c
+touch src/app.c 
+
+# Contents of app-colcon.meta are here: https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/app-colcon.meta
+touch app-colcon.meta
+
+# Contents of app-colcon.meta are here: https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/CMakeLists.txt
+touch CMakeLists.txt
+
+# Contents of app-colcon.meta are here: https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/host_ping_pong/prj.conf
+touch prj.conf
+
+popd
 ```
 
 Once the app folder is created, let's configure our new app with a UDP transport that looks for the agent on the port UDP/8888 at localhost:
