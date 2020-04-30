@@ -37,7 +37,7 @@ The following hardware will be used:
 
 ## Step 1: Creating a new firmware workspace
 
-In order to accomplish the first step, a new firmware workspace can be created using the following command. The created workspace is platform and RTOS specific.
+In order to accomplish the first step, a new firmware workspace can be created using the command:
 
 ```bash
 # Create step
