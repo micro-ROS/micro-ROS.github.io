@@ -173,7 +173,7 @@ touch Make.defs
 
 Create a specific configuration. We're going to start from an already existing one and modify it for our new application.
 
-Execute the next command:
+Execute the following command:
 ```bash
 cd microros_ws
 ros2 run micro_ros_setup configure_firmware.sh uros
