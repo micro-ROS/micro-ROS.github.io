@@ -180,6 +180,17 @@ cd microros_ws
 ros2 run micro_ros_setup configure_firmware.sh uros
 ```
 
+Install required `kconfig-frontends`:
+
+```bash
+git clone https://bitbucket.org/nuttx/tools.git firmware/tools
+
+pushd firmware/tools/kconfig-frontends
+./configure --enable-mconf --disable-nconf --disable-gconf --disable-qconf 
+LD_RUN_PATH=/usr/local/lib && make && sudo make install && sudo ldconfig
+popd
+```
+
 This sets the Ethernet and micro-ROS required configuration. However, in order to add our application, we're going to modify it:
 
 ```bash
