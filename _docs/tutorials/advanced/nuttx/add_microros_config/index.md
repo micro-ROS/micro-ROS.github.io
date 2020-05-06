@@ -7,7 +7,7 @@ permalink: /docs/tutorials/advanced/nuttx/add_microros_config/
 |:-----:|:------------:|
 | NuttX |   Dashing   |
 
-In this tutorial, we will see how to set a basic Micro-ROS configuration for NuttX over serial communication. Since this guide is only focused on setting the configuration, you should check the tutorial linked here before: [Adding Micro-ROS to a NuttX board configuration](https://micro-ros.github.io/docs/tutorials/advanced/nuttx/microros_nuttx_bsp/)
+In this tutorial, we will see how to set a basic Micro-ROS configuration for NuttX over serial communication. Since this guide is only focused on setting the configuration, you should check the tutorial linked here before: [First micro-ROS Application on an RTOS](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/)
 
 **Disclamer**
 
@@ -74,7 +74,7 @@ make menuconfig
 The menu below should appear:
 ![](images/nuttx_menuconfig.png)
 
-Note: Remember that you should follow this previous tutorial before starting it. [Adding Micro-ROS to a NuttX board configuration](https://micro-ros.github.io/docs/tutorials/advanced/microros_nuttx_bsp/)
+Note: Remember that you should follow this previous tutorial before starting it. [First micro-ROS Application on an RTOS](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/)
 
 In the menu, you need to set the following configuration.
 
