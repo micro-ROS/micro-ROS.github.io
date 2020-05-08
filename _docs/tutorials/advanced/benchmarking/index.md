@@ -27,7 +27,7 @@ benchmark the time spent on a simple looping function.
 Before getting to the heart of the matter, it is needed to meet the following
 requirements:
 
- 1. It is assumed that the the **shadow builder** and **trace framework abstraction**
+ 1. It is assumed that the **shadow builder** and **trace framework abstraction**
 terminology and mechanisms are a known. If this is not the case, the
 documentation related to the benchmarking is available in
 [here](https://github.com/micro-ROS/benchmarking_shadow-builder/blob/master/README.md).
@@ -540,4 +540,3 @@ cd src_root/build/
 The output should be put in the folder configured in the bcf configuration file
 (by default should /tmp/output/) under the folder then session's name (test by
 default) appended by the date and time when the benchmarking was started.
-
