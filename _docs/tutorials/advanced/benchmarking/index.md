@@ -32,10 +32,10 @@ terminology and mechanisms are a known. If this is not the case, the
 documentation related to the benchmarking is available in
 [here](https://github.com/micro-ROS/benchmarking_shadow-builder/blob/master/README.md).
 
- 2. Using linux, preferably Linux Ubuntu 18.04 and above, all debian based
+ 2. Using linux, preferably Ubuntu 18.04 and above, all Debian-based
     distros should do the job.
 
- 3. Some knowledge about c and c++ programing
+ 3. Some knowledge about C and C++ programming
 
 
 Once all the checkboxes ticked the tutorial can begin.
@@ -49,34 +49,34 @@ How to do so ? --> Is there a plugin already supporting it? Yes, then to do. And
 the code to profil can be instrumented.
 
 If no plugin supports it, then a plugin has to be created.
-Then another set of question arise which are (according to the context):
+Then, another set of questions arises, which are (according to the context):
 
- 1. How could it benifit to many others? 
- 2. What piece of code would be used to measure the time? (in C or C++).
- 3. What plaform can it support? (OS,CPU etc...).
- 4. How the code shall be instrumented?
+ 1. How could it benefit to others? 
+ 2. What piece of code would be used to measure the time? (In C or C++?)
+ 3. What platform can it support? (OS, CPU, etc.)
+ 4. How should the code be instrumented?
 
 
-The answers to this question would be:
+The answers to these questions would be:
 
  1. Create a generic plugin and write a documentation that would be
     understandable for a normal user and an expert user.
- 2. Using the timespec ang clock_gettime Linux syscall.
- 3. From previous answer --> OS: Linux any cpu as long as it has the same Linux api.
+ 2. Using the `timespec` and `clock_gettime` Linux syscall.
+ 3. From previous answer --> OS: Linux on any CPU as long as it has the same Linux API.
  4. Using a simple way using the comment as follow 
-    /** Benchmarking::plugin_name::function */ . The choice for the current
-    tutorial would be /** Benchmarking::TimeBenchmarking::Timer */
+   ` /** Benchmarking::plugin_name::function */` . The choice for the current
+    tutorial would be `/** Benchmarking::TimeBenchmarking::Timer */`
 
  
 
-These answers provided us with the minimun necessary for the creation of plugin.
+These answers provide us with the minimum necessary for the creation of a plugin.
 
-### Create a tfa - plugin
+## Create a TFA-Plugin
 
-### Files tree structure
+### File tree structure
 
-The final code shall be located in the folder path
-src_root_sb/tfa-plugin/TimeBenchmarking with the following structure:
+The final code shall be located in
+`src_root_sb/tfa-plugin/TimeBenchmarking` with the following structure:
 
 TimeBenchmarking
 	├── CMakeLists.txt
@@ -89,17 +89,17 @@ TimeBenchmarking
 
 ### Register a new plugin into the TFA core of the shadow builder
 
-The shadow-builder is relying on tfa's plugins to be executed to answer the
-parser dispatch. Therefore the need of some interoperability is needed.
+The shadow-builder is relying on TFA's plugins to be executed to answer the
+parser dispatch. Therefore, the need of some interoperability is needed.
 
 Every new plugins are written by implementing the IPlugin interface as shown in
-the file src_root/tfa_core/inc/tfa/IPlugin.h. All what the interface needs to do is to
+the file `src_root/tfa_core/inc/tfa/IPlugin.h`. All what the interface needs to do is to
 implement the pure virtual function. A simple example would be as in the
 plugin_test:
 
-in the plugin header:
+In the plugin header:
 
-``` cpp
+```cpp
 class TimeBenchmarking: public IPlugin {
 public:
 	TimeBenchmarking();
@@ -116,9 +116,9 @@ extern "C" void destroy(IPlugin* p) {
 	delete p;
 }
 ``` 
-in the plugin source code:
+In the plugin source code:
 
-``` cpp
+```cpp
 TimeBenchmarking::TimeBenchmarking() {}
 
 TimeBenchmarking::~TimeBenchmarking()
@@ -141,7 +141,7 @@ Just as a reminder, the listener is an object derivated from the interface
 replace by a piece of code.
 
 The declaration of the object shall be as display below:
-``` cpp
+```cpp
 class Timer: public ITFACommentListener
 {
 public:
@@ -152,11 +152,11 @@ public:
 ```
 
 As shown above, the class is inheriting from the ITFACommentListenner classe. 
-the ITFACommentListener as one pure virtual method called runnableComments.
+The ITFACommentListener has one pure-virtual method called runnableComments.
 This means your plugin has to implement the method runnableComments(...).
 
 
-``` cpp
+```cpp
 Timer::Timer()
  :
 	 ITFACommentListener("Benchmarking::User::Timer")
@@ -170,7 +170,7 @@ Status Timer::runnableComments(const TFACommentInfo& cleanComment,
 }
 ```
 
-Now the functions are correclty implemented. The timer needs several things to
+Now, the functions are correctly implemented. The timer needs several things to
 measure the time spent in a function:
 
  1. Start the timer before the function, get an intial timestamp
@@ -182,7 +182,7 @@ This basically means that the plugin will neeed a way to get the timestamps, as
 discussed before, by using the clock_gettime, and print it to the user by using
 printf.
 
-A tag can be provided by several parameters. This will be usefull for the sack of
+A tag can be provided by several parameters. This will be useful for the sake of
 the timer:
 
  * A parameter to identify what's is the timer's status (i.e. start or stop)
@@ -259,7 +259,7 @@ Status Timer::runnableComments(const TFACommentInfo& cleanComment,
 {
 	const std::vector<std::string> params = comment.getParams();
 
-	if (params[0] == "declare" && params.size() == 1) {
+	if (params.size() == 1 && params[0] == "declare") {
 		replacement = "#include <time.h>\n";
 		replacement += "#include <stdio.h>\n";
 		return Status::returnStatusOkay();
@@ -453,7 +453,7 @@ It shall look like the following:
 
 ```cmake
 project(TimeBenchmarking VERSION 0.1 DESCRIPTION "MY Plugin")
-set(CMAKE_CXX_STANDARD 14)            # Enable c++14 standard
+set(CMAKE_CXX_STANDARD 14)
 
 set(PLUGIN_NAME "TimeBenchmarking")
 
@@ -485,7 +485,7 @@ subdirectory of the plugin:
 
 ```cmake
 cmake_minimum_required(VERSION 3.10)  # CMake version check
-set(CMAKE_CXX_STANDARD 14) # Enable c++14 standard
+set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(plugin_test)
 add_subdirectory(myplugin)
@@ -505,7 +505,7 @@ shadow-builder.
 ### TFA configuration
 
 An example fo the configuration file is in the source tree at
-src_root/res/tfa-res/tfa.xml
+`src_root/res/tfa-res/tfa.xml`.
 
 This file only keeps track of the path where to look for plugins. Watch out! this
 file is a template and renewed at each compilation. 
