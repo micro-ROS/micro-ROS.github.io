@@ -1,6 +1,9 @@
 ---
 title: First micro-ROS Application on an RTOS
 permalink: /docs/tutorials/core/first_application_rtos/
+redirect_from:
+  - /docs/tutorials/advanced/freertos/freertos_getting_started/
+  - /docs/tutorials/advanced/zephyr/zephyr_getting_started/
 ---
 
 |  RTOS | Board Compatible  | ROS2 Version |

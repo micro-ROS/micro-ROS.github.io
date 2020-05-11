@@ -132,18 +132,6 @@ This switches to thread 2 and then inspects the local variables, of which there 
 In my case, this is the NSH thread which is waiting for some input.
 
 
-### Conclusion
-
-This concludes this basic tutorial on getting gdb to run with OpenOCD and NuttX support.
-
-Using gdb on the command line is considered a bit cumbersome by many. So if you know your way
-around an IDE with gdb support, integrating it should be easy. We leave that as an exercise
-for the reader ;-)
-
-There are also IDEs with microcontroller support -- stay tuned for another tutorial with more
-details on that.
-
-
 ## Debugging with Visual Studio Code
 
 This is a follow-up to the [tutorial above](#debugging-a-nuttx-target-with-gdb-and-openocd), because the set up done in that tutorial is a pre-requisite to debugging with Visual Studio Code.

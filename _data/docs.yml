@@ -50,6 +50,7 @@
   docs:
    - tutorials/advanced/microros_nuttx_bsp
    - tutorials/advanced/tracing
+   - tutorials/advanced/benchmarking
    - tutorials/advanced/zephyr_emulator
 
 - title: Demos
