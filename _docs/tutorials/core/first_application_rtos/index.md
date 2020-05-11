@@ -92,7 +92,7 @@ These reference examples consist in the ping-pong app, from the [First micro-ROS
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
-The files that a micro-ROS app needs are RTOS-dependent. The table below clarifies which files are required for creating a new app in the three RTOSes supported:
+The files that a micro-ROS app needs are RTOS-dependent, but they differ only in the includes and signature of the main function. The remaining lines are RTOS-independent micro-ROS code. The table below clarifies which files are required for creating a new app in the three RTOSes supported:
 
 <table >
     <thead>
