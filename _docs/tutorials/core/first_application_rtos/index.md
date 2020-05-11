@@ -348,7 +348,7 @@ ros2 run micro_ros_agent micro_ros_agent serial --dev [device]
 ## Test the sample micro-ROS app behaviour
 
 Once the micro-ROS app is built and flashed, and the board is connected to a micro-ROS agent, let's check that everything is working in a new command line. 
-We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings:
+We are going to listen to ping topic to check whether the Ping Pong node is publishing its own ping messages:
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
