@@ -53,7 +53,7 @@ The options available here are:
 
 Once the command is executed, a folder named `firmware` must be present in your workspace.
 
-***NOTE:** if you are targetting Zephyr RTOS make sure you have the latest version of CMake:*
+***NOTE:** if you are targetting Zephyr, make sure you have the latest version of CMake:*
 
 ```bash
 sudo apt install wget
