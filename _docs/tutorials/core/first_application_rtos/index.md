@@ -29,7 +29,6 @@ Further information about micro-ROS build system can be found [here](https://git
 
 The following hardware will be used:
 
-| Item                                                                                                              |
 | ----------------------------------------------------------------------------------------------------------------- |
 | [Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)                       |
 | [Olimex ARM-USB-TINY-H](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/)                                 |
