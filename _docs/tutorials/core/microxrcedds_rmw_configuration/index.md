@@ -9,14 +9,14 @@ Therefore, in such as scenarios, memory management is a keep concept.
 
 With that in mind, micro-ROS try to address the memory management issue prioritizing the use of static memory instead of dynamic memory and optimizing the memory footprint of the applications. This, of course, has a cost that the users must agree to pay, a precompile tunning.
 
-This tutorial shows which are the memory resources managed by micro-ROS and how to tuning them for a particular application.
+This tutorial explains which are the memory resources managed by micro-ROS and how to tune them for a particular application.
 
 ## Memory resources
 
 ### Micro XRCE-DDS
 
 Micro XRCE-DDS messages flows between Client and Agent throw **streams**.
-A stream represents an independent ordered flow of information, that  is, it is a sort of messaging queue.
+A stream represents an independent ordered flow of information, that is, it is a sort of messaging queue.
 There are two kinds of streams, **best-effort** and **reliable**.
 Both, best-effort and reliable streams, have a raw buffer (`uint8_t` array) associated with them, but the layout is different.
 
@@ -53,7 +53,7 @@ The figure below summarizes the relation between the `rcl` entities and the CMak
 
 ![](./imgs/micro_ros_memory.svg)
 
-Another important memory resource managed by the rmw-microxrce is the message history.
+Another important memory resource managed by the rmw-microxrcedds is the message history.
 The rmw-microxrcedds uses static-memory message queue in order to keep the subscription messages before the user read these.
 The size of this message queue could be set by the `RMW_UXRCE_MAX_HISTORY`.
 
