@@ -3,15 +3,14 @@ title: Optimizing the Middleware Configuration
 permalink: /docs/tutorials/core/microxrcedds_rmw_configuration/
 ---
 
-micro-ROS targets microcontroller, devices with low memory resources which normally are use in industrial or production environments where safety is one of the main requirements.
-For example, most of the safety-critical embedded software certifications do not allow the use of dynamic memory allocation after the initialization phase.
-Therefore, in such as scenarios, memory management is a keep concept.
-
+micro-ROS targets microcontroller, devices with low memory resources.
 With that in mind, micro-ROS try to address the memory management issue prioritizing the use of static memory instead of dynamic memory and optimizing the memory footprint of the applications. This, of course, has a cost that the users must agree to pay, a precompile tunning.
 
 This tutorial explains which are the memory resources managed by micro-ROS and how to tune them for a particular application.
 
 ## Memory resources
+
+micro-ROS deal with two different memory resources related with Micro XRCE-DDS library and its RMW implementation named rmw-microxrcedds.
 
 ### Micro XRCE-DDS
 
@@ -21,7 +20,7 @@ There are two kinds of streams, **best-effort** and **reliable**.
 Both, best-effort and reliable streams, have a raw buffer (`uint8_t` array) associated with them, but the layout is different.
 
 On the one hand, best-effort streams could be interpreted as a single message queue.
-Therefore, the raw buffer is use simple buffer where only one message is popped/pushed.
+Therefore, the raw buffer a single data buffer where only one message is popped/pushed.
 
 ![](./imgs/best_effort_stream.svg)
 
@@ -43,7 +42,7 @@ In the case of `RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT` best-effort streams are 
 
 ### rmw-microxrcedds
 
-The RMW implementation for Micro XRCE-DDS (rmw-microxrcedds) uses static memory for allocating the resources associated with the `rcl` and `rclc` entities.
+rmw-microxrcedds uses static memory for allocating the resources associated with the `rcl` and `rclc` entities.
 This static memory is managed thanks to independent memory pools for each kind of entity.
 The size of these memory pools could be set through CMake flags,
 for example, the `RMW_UXRCE_MAX_PUBLISHERS` sets the size of the `rcl_publisher_t`'s pool memory.
