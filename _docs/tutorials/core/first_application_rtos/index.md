@@ -1,5 +1,5 @@
 ---
-title: First micro-ROS Application on an RTOS
+title: First micro-ROS Application on Zephyr, FreeRTOS, or NuttX
 permalink: /docs/tutorials/core/first_application_rtos/
 redirect_from:
   - /docs/tutorials/advanced/freertos/freertos_getting_started/
