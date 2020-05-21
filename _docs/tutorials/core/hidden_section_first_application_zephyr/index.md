@@ -1,16 +1,14 @@
 ---
 title: First micro-ROS Application on Zephyr
-permalink: /docs/tutorials/core/hidden_section_first_application_zephyr/
-redirect_from:
-  - /docs/tutorials/advanced/zephyr/zephyr_getting_started/
+permalink: /docs/tutorials/advanced/zephyr/zephyr_getting_started/
 ---
 
 This tutorial aims to create a new micro-ROS application on **[Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)** evaluation board with **[Zephyr RTOS](https://www.zephyrproject.org/)**
 
 <div>
-<img width="400" style="padding-right: 25px;" src="imgs/3.jpg">
+<img width="400" style="padding-right: 25px;" src="/docs/tutorials/core/hidden_section_first_application_zephyr/imgs/3.jpg">
 
-<img  width="300" style="padding-right: 25px;" src="imgs/4.jpg">
+<img  width="300" style="padding-right: 25px;" src="/docs/tutorials/core/hidden_section_first_application_zephyr/imgs/4.jpg">
 </div>
 
 ## Required hardware
@@ -259,11 +257,11 @@ ros2 run micro_ros_setup build_firmware.sh
 
 Once the build has successfully ended, let's power and connect the board.  First, connect Olimex ARM-USB-TINY-H JTAG programmer to the board's JTAG port:
 
-<img width="400" style="padding-right: 25px;" src="imgs/2.jpg">
+<img width="400" style="padding-right: 25px;" src="/docs/tutorials/core/hidden_section_first_application_zephyr/imgs/2.jpg">
 
 Make sure that the board power supply jumper (PWR_SEL) is in the 3-4 position in order to power the board from the JTAG connector:
 
-<img width="400" style="padding-right: 25px;" src="imgs/1.jpg">
+<img width="400" style="padding-right: 25px;" src="/docs/tutorials/core/hidden_section_first_application_zephyr/imgs/1.jpg">
 
 You should see the red LED lighting. It is time to flash the board:
 
