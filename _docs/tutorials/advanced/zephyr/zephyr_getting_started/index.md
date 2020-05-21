@@ -1,8 +1,6 @@
 ---
 title: First micro-ROS Application on Zephyr
-permalink: /docs/tutorials/core/hidden_section_first_application_zephyr/
-redirect_from:
-  - /docs/tutorials/advanced/zephyr/zephyr_getting_started/
+permalink: /docs/tutorials/advanced/zephyr/zephyr_getting_started/
 ---
 
 This tutorial aims to create a new micro-ROS application on **[Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)** evaluation board with **[Zephyr RTOS](https://www.zephyrproject.org/)**
