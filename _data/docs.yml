@@ -45,7 +45,6 @@
    - tutorials/core/first_application_rtos
    - tutorials/core/programming_rcl_rclc
    - tutorials/core/microxrcedds_rmw_configuration
-   - tutorials/core/hidden_section_first_application_zephyr
 
 - title: Advanced Tutorials
   docs:
@@ -53,6 +52,7 @@
    - tutorials/advanced/tracing
    - tutorials/advanced/benchmarking
    - tutorials/advanced/zephyr_emulator
+   - tutorials/advanced/zephyr/zephyr_getting_started
 
 - title: Demos
   docs:
