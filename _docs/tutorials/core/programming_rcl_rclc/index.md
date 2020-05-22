@@ -215,11 +215,108 @@ if (rc != RCL_RET_OK) {
 
 ## <a name="rclc_executor"/>RCLC Executor
 
-The rclc-package is a [ROS 2](http://www.ros2.org/) package, which provides convenience functions to create ROS Client Library(RCL) data types and an RCLC-Executor to manage the execution for applications written in the C programming language. A complete documentation of the API and examples can be found [rclc package](https://github.com/ros2/rclc/tree/master/rclc) and [rclc example package](https://github.com/ros2/rclc/tree/master/rclc_examples), respectivly.
-The convenience functions can be used to create RCL objects, like publishers, subscribers, timers and nodes in a simplified API: The convenience functions, aka the rclc-package does not introduce any additional types but uses the data types of RCL only.
-The rclc Executor provides an API to configure the communication objects like subscriptions and timers and a defined semantics to execute corresponding callbacks, like the rclcpp Executor for C++.
-As described in [CB2019](#CB2019), it is difficult to reason about end-to-end latencies because of the complex semantics of the rclcpp Executor.
-Therefore, the RCLC Executor provides a number of features for deterministic and real-time execution.
+The rclc Executor provides an C-API to manage the execution of communication objects, like subscriptions and timers, like the rclcpp Executor for C++.
+Due to the complex semantics of the rclcpp Executor, it is difficult to reason about end-to-end latencies and to give real-time guarantees.
+To resolve these issues, the rclc Executor provides additional features for deterministic execution.
+
+### Minimal setup
+This example demonstrates a minimal setup of the rclc Executor.
+
+First, you include the header files [rclc/rclc.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/rclc.h). and [rclc/executor.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/executor.h).. After defining the `executor` you need to call the function `rclc_executor_get_zero_initialized_executor()` which returns a properly zero-initialized executor object.
+
+```c
+#include<rclc/rclc.h>
+#include<rclc/executor.h>
+
+main(int argc, const char * argv[]) {
+  rclc_executor_t executor;
+  executor = rclc_executor_get_zero_initialized_executor();
+```
+In the next step, executor is initialized with the RCL `context`, the number of communication objects `num_handles` and an `allocator`. The number of communication objects defines the total number of times and subscriptions, the executor shall manage. In this example, the executor will be setup with one timer and one subscription.
+
+The `context` can be created with the convenience function `rclc_support_init()`, which creates a `support` variable of the type `rclc_support_t`, containing also other rcl objects necessary for the executor. To dynamically create memory, the `rclc_support_init()` function also needs an `allocator`, which is defined first.
+
+```c
+
+  rcl_allocator_t allocator = rcl_get_default_allocator();
+  rclc_support_t support;
+  rcl_ret_t rc;
+
+  // create init_options
+  rc = rclc_support_init(&support, argc, argv, &allocator);
+  if (rc != RCL_RET_OK) {
+    printf("Error rclc_support_init.\n");
+    return -1;
+  }
+
+  // compute total number of subsribers and timers
+  unsigned int num_handles = 1 + 1;
+  rclc_executor_init(&executor, &support.context, num_handles, &allocator);
+```
+
+To add a subscription the function `rclc_c_executor_add_subscription` is used. Assuming you have created a susbscription `my_sub` with its message `sub_msg`and its callback `my_subscriber_callback`, the code looks like this:
+
+continue Here
+
+ and a timer `my_timer`, as described above, the following code snippet shows the configuration for the executor:
+
+```c
+// add subscription to executor
+rc = rclc_executor_add_subscription(&executor, &my_sub, &sub_msg, &my_subscriber_callback,
+    ON_NEW_DATA);
+if (rc != RCL_RET_OK) {
+  printf("Error in rclc_executor_add_subscription. \n");
+}
+
+rclc_executor_add_timer(&executor, &my_timer);
+if (rc != RCL_RET_OK) {
+  printf("Error in rclc_executor_add_timer.\n");
+}
+```
+
+```c
+  // set timeout for rcl_wait()
+  unsigned int rcl_wait_timeout = 1000;   // in ms
+  rc = rclc_executor_set_timeout(&executor, RCL_MS_TO_NS(rcl_wait_timeout));
+  if (rc != RCL_RET_OK) {
+    printf("Error in rclc_executor_set_timeout.");
+  }
+  ```
+
+
+
+
+  A key feature of the rclc-Executor is, that the order of these functions to add handles matters. It defines the processing order when multiple messages have arrived or timers are ready. This provides full control over the execution order to the user.
+
+  There are are several functions, how to start the executor, one is `rclc_executor_spin_some(...)`, which allows the user to specify a timeout in nanoseconds.
+
+  Finally the code snippet shows how to destroy the objects for the node, publisher, subscriber and the executor with the respective fini-methods.
+
+  ```c
+
+
+
+
+
+
+    for (;;) {
+      // timeout specified in ns (here 1s)
+      rclc_executor_spin_some(&executor, 1000 * (1000 * 1000));
+    }
+
+    // clean up
+    rc = rclc_executor_fini(&executor);
+    rc += rcl_publisher_fini(&my_pub, &my_node);
+    rc += rcl_timer_fini(&my_timer);
+    rc += rcl_subscription_fini(&my_sub, &my_node);
+    rc += rcl_node_fini(&my_node);
+    rc += rclc_support_fini(&support);
+
+    if (rc != RCL_RET_OK) {
+      printf("Error while cleaning up!\n");
+      return -1;
+    }
+  ```
 
 ### rclc Executor Features
 The rclc Executor is a ROS 2 Executor implemented based on and for the rcl API, for applications written in the C language.
@@ -366,73 +463,6 @@ The function `rlce_executor_fini` frees the dynamically allocated memory of the 
 
 We provide the relevant code snippets how to setup the rclc Executor for typical software design patterns in mobile robotics applications and for real-time embedded use-cases.
 
-#### Minimal example of rclc Executor
-This example demonstrates a minimal setup of the rclc Executor.
-  The Executor is configured and setup with the functions
-  `rclc_executor_get_zero_initialized_executor(..)`, `rclc_executor_set_timeout(..)`, `rclc_executor_add_subscription(...)`, `rclc_executor_add_timer(...)`, `rclc_executor_spin_some(...)` and `rclc_executor_fini(...)` in [rclc/executor.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/executor.h).
-
-  Assuming that you have created a subscription and a timer, as described above, the following code snippet shows the configuration of the RCLC-executor.
-
-  The executor is configured with 2 handles, aka one subscription and one timer. The `support.context` is the ROS 2 context, as shown above with `rclc_support_init(...)`.
-
-  The timeout is the waiting time for new handles to get ready, for example new messages arrive or timers are ready. The unit of the timeout is milliseconds.
-
-  A subscription `my_sub`, a place-holder for it's message `sub_msg` and it's corresponding callback `my_subscriber_callback` is added to the executor with the function `rclc_executor_add_subscription(...)`
-
-  A timers is added to the executor with the function `rclc_executor_add_timer(...)`
-
-  A key feature of the rclc-Executor is, that the order of these functions to add handles matters. It defines the processing order when multiple messages have arrived or timers are ready. This provides full control over the execution order to the user.
-
-  There are are several functions, how to start the executor, one is `rclc_executor_spin_some(...)`, which allows the user to specify a timeout in nanoseconds.
-
-  Finally the code snippet shows how to destroy the objects for the node, publisher, subscriber and the executor with the respective fini-methods.
-
-  ```c
-  rclc_executor_t executor;
-
-    // compute total number of subsribers and timers
-    unsigned int num_handles = 1 + 1;
-    printf("Debug: number of DDS handles: %u\n", num_handles);
-    executor = rclc_executor_get_zero_initialized_executor();
-    rclc_executor_init(&executor, &support.context, num_handles, &allocator);
-
-    // set timeout for rcl_wait()
-    unsigned int rcl_wait_timeout = 1000;   // in ms
-    rc = rclc_executor_set_timeout(&executor, RCL_MS_TO_NS(rcl_wait_timeout));
-    if (rc != RCL_RET_OK) {
-      printf("Error in rclc_executor_set_timeout.");
-    }
-
-    // add subscription to executor
-    rc = rclc_executor_add_subscription(&executor, &my_sub, &sub_msg, &my_subscriber_callback,
-        ON_NEW_DATA);
-    if (rc != RCL_RET_OK) {
-      printf("Error in rclc_executor_add_subscription. \n");
-    }
-
-    rclc_executor_add_timer(&executor, &my_timer);
-    if (rc != RCL_RET_OK) {
-      printf("Error in rclc_executor_add_timer.\n");
-    }
-
-    for (;;) {
-      // timeout specified in ns (here 1s)
-      rclc_executor_spin_some(&executor, 1000 * (1000 * 1000));
-    }
-
-    // clean up
-    rc = rclc_executor_fini(&executor);
-    rc += rcl_publisher_fini(&my_pub, &my_node);
-    rc += rcl_timer_fini(&my_timer);
-    rc += rcl_subscription_fini(&my_sub, &my_node);
-    rc += rcl_node_fini(&my_node);
-    rc += rclc_support_fini(&support);
-
-    if (rc != RCL_RET_OK) {
-      printf("Error while cleaning up!\n");
-      return -1;
-    }
-  ```
 #### Example sense-plan-act pipeline in mobile robotics
 
 A common design paradigm in mobile robotics is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and an actuation-phase to steer the mobile robot.
