@@ -420,13 +420,90 @@ return 0;
 This completes the example. The source code can be found in [rclc-examples/example_executor_convenience.c](https://github.com/micro-ROS/rclc-examples/example_executor_convenience.c).
 
 #### Example 2: Triggered rclc_executor
+Sesor fusion is the first step in robotic applications when multiple sensor are used to improve localization precision. These sensors can have different frequencies, for example, a high frequency IMU sensor and a low frequency laser scanner. One way is to trigger execution upon arrival of a laser scan and only then evaluate the most recent data from the aggregated IMU data.
 
-rclc_example_trigger
+This example demonstrates the additional feature of the rclc executor to trigger the execution of callbacks based on the availability of input data.
+
+We setup one executor with two publishers, one with 100ms and one with 1000ms period. Then we setup one executor for two subsciptions. Their callbacks shall both be executed if the message of the publisher with the lower frequency arrives.
+
+You learn in this tutorial
+- how to write custom-defined trigger conditions
+- how to run multiple executors
+- how to setup communication objects only using rcl API
+
+We start with the necessary includes for string and int messages as well as the rclc executor:
+```C
+#include <stdio.h>
+#include <unistd.h>
+#include <std_msgs/msg/string.h>
+#include <std_msgs/msg/int32.h>
+#include <rclc/executor.h>
+```
+Then, global variables are defined, which are initialized in main and also used in the callbacks:
+```C
+rcl_publisher_t my_pub;
+rcl_publisher_t my_int_pub;
+std_msgs__msg__String sub_msg;
+std_msgs__msg__Int32 pub_int_msg;
+int pub_int_value;
+std_msgs__msg__Int32 sub_int_msg;
+int pub_string_value;
+```
+For the custom-defined trigger conditions, the type `pub_trigger_object_t` and the type `sub_trigger_object_t` are defined.
+```C
+typedef struct
+{
+  rcl_timer_t * timer1;
+  rcl_timer_t * timer2;
+} pub_trigger_object_t;
+
+typedef struct
+{
+  rcl_subscription_t * sub1;
+  rcl_subscription_t * sub2;
+} sub_trigger_object_t;
+```
+The executor for the publishers, shall publish when any of corresponding timers for the publishers is ready. That is the or-logic. You could also use the predefined  `rclc_executor_trigger_any` trigger condition, but this example shows, how you can write your own trigger conditions. 
+
+In principle the condition gets a list of handles, the length of this list, and the pre-defined condition type, in this case we expect `pub_trigger_object_t`. First, the parameter `obj` is cased to this type (`comm_obj`). Then, each element of the handle list is checked for new data (or a timer is ready) by evaluating the field `handles[i].data_available` and its handle pointer is compared to the pointer of the communicatoin object. If at least one timer is ready, then the trigger condition returns true.
+```C
+bool pub_trigger(rclc_executor_handle_t * handles, unsigned int size, void * obj)
+{
+  if (handles == NULL) {
+    printf("Error in pub_trigger: 'handles' is a NULL pointer\n");
+    return false;
+  }
+  if (obj == NULL) {
+    printf("Error in pub_trigger: 'obj' is a NULL pointer\n");
+    return false;
+  }
+  pub_trigger_object_t * comm_obj = (pub_trigger_object_t *) obj;
+  bool timer1 = false;
+  bool timer2 = false;
+  //printf("pub_trigger ready set: ");
+  for (unsigned int i = 0; i < size; i++) {
+    if (handles[i].data_available == true) {
+      void * handle_ptr = rclc_executor_handle_get_ptr(&handles[i]);
+      if (handle_ptr == comm_obj->timer1) {
+        timer1 = true;
+      }
+      if (handle_ptr == comm_obj->timer2) {
+        timer2 = true;
+      }
+    }
+  }
+  if (timer1 || timer2) {
+    return true;
+  } else {
+    return false;
+  }
+}
+```
 
 The source code can be found in [rclc-examples/example_executor_trigger.c](https://github.com/micro-ROS/rclc-examples/example_executor_trigger.c).
 
 
-#### Example 2: Sense-plan-act pipeline in mobile robotics
+#### Example 3: Sense-plan-act pipeline in mobile robotics
 
 A common design paradigm in mobile robotics is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and an actuation-phase to steer the mobile robot. Of course, more phases are possible, here these three phases shall serve as an example.
 Such a processing pipeline is shown in Figure 1.
