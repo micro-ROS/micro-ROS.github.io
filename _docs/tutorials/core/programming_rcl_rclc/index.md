@@ -216,26 +216,62 @@ if (rc != RCL_RET_OK) {
 ## <a name="rclc_executor"/>RCLC Executor
 The rclc Executor provides an C-API to manage the execution of communication objects, like subscriptions and timers, like the rclcpp Executor for C++. Due to the complex semantics of the rclcpp Executor, it is difficult to reason about end-to-end latencies and to give real-time guarantees. To improve determinism, the rclc Executor provides also some additional features. But first, we are providing as simple example how to setup the rclc Executor with one subscription and one timer.
 
-### 'Hello World' example
+### Example 1: 'Hello World'
 To start with, we provide a very simple example for an rclc Executor with one timer and one subscription, so to say, a 'Hello world' example.
 
+The 'Hello world' example consists of a publisher, sending a 'hello world' message to a subscriber, which then prints out the received message on the console.
 
-First, you include the header files [rclc/rclc.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/rclc.h). and [rclc/executor.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/executor.h).. After defining the `executor` you need to call the function `rclc_executor_get_zero_initialized_executor()` which returns a properly zero-initialized executor object:
+First, you include some header files, in particular the [rclc/rclc.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/rclc.h) and [rclc/executor.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/executor.h).
 
 ```c
-#include<rclc/rclc.h>
-#include<rclc/executor.h>
-
-main(int argc, const char * argv[]) {
-  rclc_executor_t executor;
-  executor = rclc_executor_get_zero_initialized_executor();
+#include <stdio.h>
+#include <std_msgs/msg/string.h>
+#include <rclc/rclc.h>
+#include <rclc/executor.h>
 ```
-In the next step, executor is initialized with the RCL `context`, the number of communication objects `num_handles` and an `allocator`. The number of communication objects defines the total number of times and subscriptions, the executor shall manage. In this example, the executor will be setup with one timer and one subscription.
 
-The `context` can be created with the convenience function `rclc_support_init()`, which creates a `support` variable of the type `rclc_support_t`, containing also other rcl objects necessary for the executor. To dynamically create memory, the `rclc_support_init()` function also needs an `allocator`, which is defined first:
-
+We define a publisher and two strings, which will be used later.
 ```c
+rcl_publisher_t my_pub;
+std_msgs__msg__String pub_msg;
+std_msgs__msg__String sub_msg;
+```
+The subscription callback casts the message parameter `msgin` to an equivalent type of `std_msgs::msg::String` in C and prints out the received message.
 
+```C
+void my_subscriber_callback(const void * msgin)
+{
+  const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
+  if (msg == NULL) {
+    printf("Callback: msg NULL\n");
+  } else {
+    printf("Callback: I heard: %s\n", msg->data.data);
+  }
+}
+```
+The timer callback publishes the message `pub_msg` with the publisher `my_pub`, which is initialized later in `main()`.
+
+```C
+void my_timer_callback(rcl_timer_t * timer, int64_t last_call_time)
+{
+  rcl_ret_t rc;
+  UNUSED(last_call_time);
+  if (timer != NULL) {
+    rc = rcl_publish(&my_pub, &pub_msg, NULL);
+    if (rc == RCL_RET_OK) {
+      printf("Published message %s\n", pub_msg.data.data);
+    } else {
+      printf("timer_callback: Error publishing message %s\n", pub_msg.data.data);
+    }
+  } else {
+    printf("timer_callback Error: timer parameter is NULL\n");
+  }
+}
+```
+First, some initialization for ROS 2 is necessary to create later rcl objects. That is an `allocator` for dynamic memory allocation, and a `support` object, which contains some rcl-objects simplifying the initialization of an rcl-node, an rcl-subscription, an rcl-timer and an rclc executor.
+```C
+int main(int argc, const char * argv[])
+{
   rcl_allocator_t allocator = rcl_get_default_allocator();
   rclc_support_t support;
   rcl_ret_t rc;
@@ -246,18 +282,88 @@ The `context` can be created with the convenience function `rclc_support_init()`
     printf("Error rclc_support_init.\n");
     return -1;
   }
+```
 
+Next, you define a ROS 2 node `my_node` with `rcl_get_zero_initialized_node()` and initialize it with `rclc_executor_init_default()`:
+```C
+  // create rcl_node
+  rcl_node_t my_node = rcl_get_zero_initialized_node();
+  rc = rclc_node_init_default(&my_node, "node_0", "executor_examples", &support);
+  if (rc != RCL_RET_OK) {
+    printf("Error in rclc_node_init_default\n");
+    return -1;
+  }
+```
+You can create a publisher to publish topic 'topic_0' with type std_msg::msg::String with the following code:
+```C
+const char * topic_name = "topic_0";
+const rosidl_message_type_support_t * my_type_support =
+  ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String);
+
+rc = rclc_publisher_init_default(&my_pub, &my_node, my_type_support, topic_name);
+if (RCL_RET_OK != rc) {
+  printf("Error in rclc_publisher_init_default %s.\n", topic_name);
+  return -1;
+}
+```
+Note, that variable `my_pub` was defined globally, so it can be used by the timer callback.
+
+You can create a timer `my_timer` with a period of one second which will execute the callback `my_timer_callback` like this:
+```C
+  rcl_timer_t my_timer = rcl_get_zero_initialized_timer();
+  const unsigned int timer_timeout = 1000; // in ms
+  rc = rclc_timer_init_default(&my_timer, &support, RCL_MS_TO_NS(timer_timeout), my_timer_callback);
+  if (rc != RCL_RET_OK) {
+    printf("Error in rcl_timer_init_default.\n");
+    return -1;
+  } else {
+    printf("Created timer with timeout %d ms.\n", timer_timeout);
+  }
+```
+The string `Hello World!` can be assigned directly to the message of the publisher `pub_msg.data`. First the publisher message is initialized with `std_msgs__msg__String__init`. Then you need to allocate memory for `pub_msg.data.data`, set the maximum capacity `pub_msg.data.capacity` and set the length of the message `pub_msg.data.size` accordingly. You can assign the content of the message with `snprintf` of `pub_msg.data.data`.
+```C
+  // assign message to publisher
+  std_msgs__msg__String__init(&pub_msg);
+  const unsigned int PUB_MSG_CAPACITY = 20;
+  pub_msg.data.data = malloc(PUB_MSG_CAPACITY);
+  pub_msg.data.capacity = PUB_MSG_CAPACITY;
+  snprintf(pub_msg.data.data, pub_msg.data.capacity, "Hello World!");
+  pub_msg.data.size = strlen(pub_msg.data.data);
+```
+
+A subscription `my_sub`can be defined like this:
+```C
+  rcl_subscription_t my_sub = rcl_get_zero_initialized_subscription();
+  rc = rclc_subscription_init_default(&my_sub, &my_node, my_type_support, topic_name);
+  if (rc != RCL_RET_OK) {
+    printf("Failed to create subscriber %s.\n", topic_name);
+    return -1;
+  } else {
+    printf("Created subscriber %s:\n", topic_name);
+  }
+```
+The global messsage for this subscription `sub_msg` needs to be initialized with:
+```C
+  std_msgs__msg__String__init(&sub_msg);
+```
+
+Now, all preliminary steps are done, and you can define and initialized the rclc executor with:
+```c
+  rclc_executor_t executor;
+  executor = rclc_executor_get_zero_initialized_executor();
+```
+In the next step, executor is initialized with the ROS 2 `context`, the number of communication objects `num_handles` and an `allocator`. The number of communication objects defines the total number of times and subscriptions, the executor shall manage. In this example, the executor will be setup with one timer and one subscription.
+
+```C
   // total number of handles = #subscriptions + #timers
   unsigned int num_handles = 1 + 1;
   rclc_executor_init(&executor, &support.context, num_handles, &allocator);
 ```
 
-Now, you can add a subscription with the function `rclc_c_executor_add_subscription`. Assuming you have created the subscription `my_sub` with its message `sub_msg`and its callback `my_subscriber_callback`, the code looks like this:
+Now, you can add a subscription with the function `rclc_c_executor_add_subscription` with the previously defined subscription `my_sub`, its message `sub_msg`and its callback `my_subscriber_callback`:
 
-```c
-// add subscription to executor
-rc = rclc_executor_add_subscription(&executor, &my_sub, &sub_msg, &my_subscriber_callback,
-    ON_NEW_DATA);
+```C
+rc = rclc_executor_add_subscription(&executor, &my_sub, &sub_msg, &my_subscriber_callback, ON_NEW_DATA);
 if (rc != RCL_RET_OK) {
   printf("Error in rclc_executor_add_subscription. \n");
 }
@@ -267,7 +373,7 @@ The option `ON_NEW_DATA` selects the execution semantics of the spin-method. In 
 Note: Another execution semantics is `ALWAYS`, which means, that the subscription callback is always executed when the spin-method of the executor is called. This option might be useful in cases in which the callback shall be executed at a fixed rate irrespective of new data is available or not. If you choose this option, then the callback will be executed with message argument `NULL`, if no new data is available. Therefore you need to make sure, that your callback can also accept `NULL` as message argument.
 
 
-Likewise, you can add a timer with the function `rclc_c_executor_add_timer`. Assuming you have created the timer `my_timer`, then the code looks like this:
+Likewise, you can add the timer `my_timer` with the function `rclc_c_executor_add_timer`:
 ```c
 rclc_executor_add_timer(&executor, &my_timer);
 if (rc != RCL_RET_OK) {
@@ -279,12 +385,20 @@ A key feature of the rclc-Executor is, that the order of these `rclc-executor-ad
 In this example, if the timer is ready and also a new message for the subscription is available, then the timer is executed first and then the subscription. Such a behavior cannot be defined currently with the rclcpp Executor.
 
 The easiest way to run the Executor is to call `rclc_executor_spin()`:
-```c
+```C
   rclc_executor_spin(&executor);
 ```
-This function runs forever without coming back. Nevertheless, this is the clean-up code for the example and finalizes the `main()` function:
+This function runs forever without coming back. In this example we want to publish the message only ten times. Therefore we are using another spin-method `rclc_executor_spin_some`, which spins once and returns. The timeout for waiting for new messages is one second
+```C
+for (unsigned int i = 0; i < 10; i++) {
+  // timeout specified in nanoseconds (here 1s)
+  rclc_executor_spin_some(&executor, 1000 * (1000 * 1000));
+}
+```
 
-```c   
+At the end, you need to free dynamically allocated memory:
+
+```C   
   // clean up
   rc = rclc_executor_fini(&executor);
   rc += rcl_publisher_fini(&my_pub, &my_node);
@@ -292,19 +406,27 @@ This function runs forever without coming back. Nevertheless, this is the clean-
   rc += rcl_subscription_fini(&my_sub, &my_node);
   rc += rcl_node_fini(&my_node);
   rc += rclc_support_fini(&support);
+  std_msgs__msg__String__fini(&pub_msg);
+  std_msgs__msg__String__fini(&sub_msg);
 
   if (rc != RCL_RET_OK) {
     printf("Error while cleaning up!\n");
     return -1;
   }
+return 0;
 } // main
 ```
 
 This completes the example. The source code can be found in [rclc-examples/example_executor_convenience.c](https://github.com/micro-ROS/rclc-examples/example_executor_convenience.c).
 
-### Deterministic execution with the rclc-Executor
-We demonstrate, how to use the rclc-Executors for a deterministic run-time behavior in mobile robotics.
-#### Example sense-plan-act pipeline in mobile robotics
+#### Example 2: Triggered rclc_executor
+
+rclc_example_trigger
+
+The source code can be found in [rclc-examples/example_executor_trigger.c](https://github.com/micro-ROS/rclc-examples/example_executor_trigger.c).
+
+
+#### Example 2: Sense-plan-act pipeline in mobile robotics
 
 A common design paradigm in mobile robotics is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and an actuation-phase to steer the mobile robot. Of course, more phases are possible, here these three phases shall serve as an example.
 Such a processing pipeline is shown in Figure 1.
@@ -365,7 +487,7 @@ while (true) {
   rclc_executor_spin_some(&exe_act, 1000000000);
 }
 ```
-#### Example synchronization of multiple rates
+#### Example 3: Synchronization input data with multiple rates
 
 Often multiple sensors are being used to sense the environment for mobile robotics.
 While an IMU sensor provides data samples at a very high rate (e.g. 500 Hz), laser scans are available at a much slower frequency (e.g. 10Hz) determined by the revolution time.
@@ -411,7 +533,7 @@ while (true) {
   rclc_executor_spin_some(&exe_sense);
 }
 ```
-##### Synchronization by activly requesting data
+#### Example 3: Synchronization by activly requesting data
 
 Another idea would be to actively request for IMU data only when a laser scan is received.
 This concept is shown in Figure 4.
@@ -439,7 +561,7 @@ rclc_executor_set_trigger(&exe_sense, rclc_executor_trigger_one, &sense_Laser);
 // spin
 rclc_executor_spin(&exe_sense);
 ```
-#### Example high-priority processing path
+#### Example 4: high-priority processing path
 
 Often a robot has to fullfill several activities at the same time. For example following a path and avoiding obstacles.
 While path following is a permanent activity, obstacle avoidance is triggered by the environment and should be immediately reacted upon.
@@ -473,140 +595,3 @@ rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &sense_Laser);
 // spin
 rclc_executor_spin(&exe);
 ```
-
-#### Example real-time embedded application use-case
-
-In embedded applications, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated.
-Processes can be assigned priorities to allow pre-emptions.
-Figure 6 shows an example, in which three processes with fixed periods are shown.
-The middle and lower process are preempted multiple times depicted with empty dashed boxes.
-
-<img src="doc/scheduling_01.png" alt="Schedule with fixed periods" width="350"/>
-
-Figure 6: Fixed periodic preemptive scheduling
-
-To each process one or multiple tasks can be assigned, as shown in Figure 7.
-These tasks are executed sequentially, which is often called cooperative scheduling.
-
-<img src="doc/scheduling_02.png" alt="Schedule with fixed periods" width="250"/>
-
-Figure 7: Processes with sequentially executed tasks.
-
-While there are different ways to assign priorities to a given number of processes, the rate-monotonic scheduling assignment, in which processes with a shorter period have a higher priority, has been shown optimal if the processor utilization is less than 69% [LL1973](#LL1973).
-
-In the last decades many different scheduling approaches have been presented, however fixed-periodic preemptive scheduling is still widely used in embedded real-time systems [KZH2015](#KZH2015).
-This becomes also obvious, when looking at the features of current operating systems.
-Like Linux, real-time operating systems, such as NuttX, Zephyr, FreeRTOS, QNX etc., support fixed-periodic preemptive scheduling and the assignment of priorities, which makes the time-triggered paradigm the dominant design principle in this domain.
-
-However, data consistency is often an issue when preemptive scheduling is used and if data is being shared across multiple processes via global variables.
-Due to scheduling effects and varying execution times of processes, writing and reading these variables could occur sometimes sooner or later.
-This results in an latency jitter of update times (the timepoint at which a variable change becomes visible to other processes).
-Race conditions can occur when multiple processes access a variable at the same time. To solve this problem, the concept of logical-execution time (LET) was introduced in [HHK2001](#HHK2001), in which communication of data occurs only at pre-defined periodic time instances: Reading data only at the beginning of the period and writing data only at the end of the period.
-The cost of an additional latency delay is traded for data consistency and reduced jitter.
-This concept has also recently been applied to automotive applications  [NSP2018](#NSP2018).
-
-<img src="doc/scheduling_LET.png" alt="Schedule with fixed periods" />
-
-Figure 8: Data communication without and with Logical Execution Time paradigm.
-
-An Example of the LET concept is shown in Figure 8.
-Assume that two processes are communicating data via one global variable.
-The timepoint when this data is written is at the end of the processing time.
-In the default case (left side), the process p<sub>3</sub> and p<sub>4</sub> receive the update.
-At the right side of the figure, the same scenario is shown with LET semantics.
-Here, the data is communicated only at period boundaries.
-In this case, the lower process communicates at the end of the period, so that always process p<sub>3</sub> and p<sub>5</sub> receive the new data.
-
-The described embedded use case relies on the following concepts:
-- periodic execution of processes
-- assignment of fixed priorities to processes
-- preemptive scheduling of processes
-- co-operative scheduling of tasks within a process (sequential execution)
-- data synchronization with LET-semantics
-
-
-With sequential execution the co-operative scheduling of tasks within a process can be modeled.
-The trigger condition is used to periodically activate the process which will then execute all callbacks in a pre-defined order.
-Data will be communicated using the LET-semantics.
-Every Executor is executed in its own tread, to which an appropriate priority can be assigned.
-
-In the following example, the Executor is setup with 4 handles.
-We assume a process has three subscriptions `sub1`, `sub2`, `sub3`.
-The sequential processing order is given by the order as they are added to the Executor.
-A timer `timer` defines the period.
-The `trigger_one` with the parameter `timer` is used, so that whenever the timer is ready, all callbacks are processed. Finally the data communication semantics LET is defined.
-```C
-#include "rcl_executor/let_executor.h"
-
-// define subscription callback
-void my_sub_cb1(const void * msgin)
-{
-  // ...
-}
-// define subscription callback
-void my_sub_cb2(const void * msgin)
-{
-  // ...
-}
-// define subscription callback
-void my_sub_cb3(const void * msgin)
-{
-  // ...
-}
-
-// define timer callback
-void my_timer_cb(rcl_timer_t * timer, int64_t last_call_time)
-{
-  // ...
-}
-
-// necessary ROS 2 objects
-rcl_context_t context;   
-rcl_node_t node;
-rcl_subscription_t sub1, sub2, sub3;
-rcl_timer_t timer;
-rcle_let_executor_t exe;
-
-// define ROS context
-context = rcl_get_zero_initialized_context();
-// initialize ROS node
-rcl_node_init(&node, &context,...);
-// create subscriptions
-rcl_subscription_init(&sub1, &node, ...);
-rcl_subscription_init(&sub2, &node, ...);
-rcl_subscription_init(&sub3, &node, ...);
-// create a timer
-rcl_timer_init(&timer, &my_timer_cb, ... );
-// initialize executor with four handles
-rclc_executor_init(&exe, &context, 4, ...);
-// define static execution order of handles
-rclc_executor_add_subscription(&exe, &sub1, &my_sub_cb1, ALWAYS);
-rclc_executor_add_subscription(&exe, &sub2, &my_sub_cb2, ALWAYS);
-rclc_executor_add_subscription(&exe, &sub3, &my_sub_cb3, ALWAYS);
-rclc_executor_add_timer(&exe, &timer);
-// trigger when handle 'timer' is ready
-rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &timer);
-// select LET-semantics
-rclc_executor_data_comm_semantics(&exe, LET);
-// spin forever
-rclc_executor_spin(&exe);
-```
-
-
-
-  #### References
-  * [CB2019]<a name="CB2019"> </a> D. Casini, T. Blaß, I. Lütkebohle, B. Brandenburg: Response-Time Analysis of ROS 2 Processing Chains under Reservation-Based Scheduling, in Euromicro-Conference on Real-Time Systems 2019. [[Paper](http://drops.dagstuhl.de/opus/volltexte/2019/10743/)].[[slides]](https://t-blass.de/talks/ECRTS2019.pdf)
-
-  * [EK2018]<a name="EK2018"></a> R. Ernst, S. Kuntz, S. Quinton, M. Simons: The Logical Execution Time Paradigm: New Perspectives for Multicore Systems, February 25-28 2018 (Dagstuhl Seminar 18092). [[Paper]](http://drops.dagstuhl.de/opus/volltexte/2018/9293/pdf/dagrep_v008_i002_p122_18092.pdf)
-
-  * [BP2017]<a name="BP2017"></a> A. Biondi, P. Pazzaglia, A. Balsini,  M. D. Natale: Logical Execution Time Implementation and Memory Optimization Issues in AUTOSAR Applications for Multicores, International Worshop on Analysis Tools and Methodologies for Embedded and Real-Time Systems (WATERS2017), Dubrovnik, Croatia.[[Paper]](https://pdfs.semanticscholar.org/4a9e/b9a616c25fd0b4a4f7810924e73eee0e7515.pdf)
-
-  * [LL1973]<a name="LL1973"></a> Liu, C. L.; Layland, J.:Scheduling algorithms for multiprogramming in a hard real-time environment, Journal of the ACM, 20 (1): 46–61, 1973.
-
-  * [HHK2001]<a name="HHK2001"></a> Henzinger T.A., Horowitz B., Kirsch C.M. (2001) Giotto: A Time-Triggered Language for Embedded Programming. In: Henzinger T.A., Kirsch C.M. (eds) Embedded Software. EMSOFT 2001. Lecture Notes in Computer Science, vol 2211. Springer, Berlin, Heidelberg
-
-  * [NSP2018]<a name="NSP2018"></a> A. Naderlinger, S. Resmerita, and W. Pree: LET for Legacy and Model-based Applications,
-  Proceedings of The Logical Execution Time Paradigm: New Perspectives for Multicore Systems (Dagstuhl Seminar 18092), Wadern, Germany, February 2018.
-
-  * [KZH2015]<a name="KZH2015"></a> S. Kramer, D. Ziegenbein, and A. Hamann: Real World Automotive Benchmarks For Free, International Workshop on Analysis Tools and Methodologies for Embedded adn Real-Time Sysems (WATERS), 2015.[[Paper]](https://www.ecrts.org/forum/download/file.php?id=9&sid=efda71c95b6afdd240d72cc1e491bb8b)
-  * [micro-ROS] [micro-ROS project](https://micro-ros.github.io/)
