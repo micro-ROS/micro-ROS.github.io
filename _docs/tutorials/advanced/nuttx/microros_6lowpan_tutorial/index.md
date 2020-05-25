@@ -1,5 +1,5 @@
 ---
-title: Micro-ROS 6LoWPAN Guide 
+title: 6LoWPAN Guide 
 permalink: /docs/tutorials/advanced/nuttx/microros_6lowpan_tutorial/
 ---
 
