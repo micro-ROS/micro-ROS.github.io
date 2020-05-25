@@ -64,8 +64,7 @@
 
 - title: Nuttx-specific Tutorials
   docs:
-   - tutorials/advanced/nuttx/nsh_usb
-   - tutorials/advanced/nuttx/nsh_uart
+   - tutorials/advanced/nuttx/nsh
    - tutorials/advanced/nuttx/6lowpan
    - tutorials/advanced/nuttx/debugging
    - tutorials/advanced/nuttx/add_microros_config
