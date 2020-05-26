@@ -31,7 +31,7 @@ cd microros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
 # Update dependencies using rosdep
-sudo apt update && sydo apt install python3-colcon-metadata
+sudo apt update && sudo apt install python3-colcon-metadata
 rosdep update
 rosdep install --from-path src --ignore-src -y
 
