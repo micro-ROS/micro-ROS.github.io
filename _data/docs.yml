@@ -52,7 +52,6 @@
    - tutorials/advanced/tracing
    - tutorials/advanced/benchmarking
    - tutorials/advanced/zephyr_emulator
-   - tutorials/advanced/zephyr/zephyr_getting_started
 
 - title: Demos
   docs:
