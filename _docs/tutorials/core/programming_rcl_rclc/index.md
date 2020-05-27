@@ -380,15 +380,15 @@ if (rc != RCL_RET_OK) {
   printf("Error in rclc_executor_add_timer.\n");
 }
 ```
-A key feature of the rclc-Executor is, that the order of these `rclc-executor-add-* `-functions matters. It defines static processing order of the callbacks when the spin-function is called.
+A key feature of the rclc-Executor is, that the order of these `rclc-executor-add-* `-functions matters. The order in which these functions are called, defines the static processing order of the callbacks when the spin-function of the executor is running.
 
-In this example, if the timer is ready and also a new message for the subscription is available, then the timer is executed first and then the subscription. Such a behavior cannot be defined currently with the rclcpp Executor.
+In this example, the timer was added to the executor before the subscription. Therefore, if the timer is ready and also a new message for the subscription is available, then the timer is executed first and after it the subscription. Such a behavior cannot be defined currently with the rclcpp Executor and is useful to implement a deterministic execution semantics.
 
-The easiest way to run the Executor is to call `rclc_executor_spin()`:
+Finally, you can run the executor with `rclc_executor_spin()`:
 ```C
   rclc_executor_spin(&executor);
 ```
-This function runs forever without coming back. In this example we want to publish the message only ten times. Therefore we are using another spin-method `rclc_executor_spin_some`, which spins once and returns. The timeout for waiting for new messages is one second
+This function runs forever without coming back. In this example, however, we want to publish the message only ten times. Therefore we are using the spin-method `rclc_executor_spin_some`, which spins only once and returns. The wait timeout for checking for new messages at the DDS-queue or waiting timers to get ready is configured to be one second.
 ```C
 for (unsigned int i = 0; i < 10; i++) {
   // timeout specified in nanoseconds (here 1s)
@@ -417,7 +417,7 @@ return 0;
 } // main
 ```
 
-This completes the example. The source code can be found in [rclc-examples/example_executor_convenience.c](https://github.com/micro-ROS/rclc-examples/example_executor_convenience.c).
+This completes the example. The source code can be found in the package rclc-examples [rclc-examples/example_executor_convenience.c](https://github.com/micro-ROS/rclc-examples/example_executor_convenience.c).
 
 #### Example 2: Triggered rclc_executor
 Sesor fusion is the first step in robotic applications when multiple sensor are used to improve localization precision. These sensors can have different frequencies, for example, a high frequency IMU sensor and a low frequency laser scanner. One way is to trigger execution upon arrival of a laser scan and only then evaluate the most recent data from the aggregated IMU data.
@@ -463,7 +463,7 @@ typedef struct
   rcl_subscription_t * sub2;
 } sub_trigger_object_t;
 ```
-The executor for the publishers, shall publish when any of corresponding timers for the publishers is ready. That is the or-logic. You could also use the predefined  `rclc_executor_trigger_any` trigger condition, but this example shows, how you can write your own trigger conditions. 
+The executor for the publishers, shall publish when any of corresponding timers for the publishers is ready. That is the or-logic. You could also use the predefined  `rclc_executor_trigger_any` trigger condition, but this example shows, how you can write your own trigger conditions.
 
 In principle the condition gets a list of handles, the length of this list, and the pre-defined condition type, in this case we expect `pub_trigger_object_t`. First, the parameter `obj` is cased to this type (`comm_obj`). Then, each element of the handle list is checked for new data (or a timer is ready) by evaluating the field `handles[i].data_available` and its handle pointer is compared to the pointer of the communicatoin object. If at least one timer is ready, then the trigger condition returns true.
 ```C
@@ -499,6 +499,136 @@ bool pub_trigger(rclc_executor_handle_t * handles, unsigned int size, void * obj
   }
 }
 ```
+The trigger condition for the subscription `sub_trigger`shall implement an AND-logic. That is, only if both subscriptions have received a new message, then the executor shall start processing the callbacks.
+
+The implementation is analogous to `pub_trigger`. The only difference is, that this trigger returns true, if both subscriptions have been found in the handle list. This is implemented in the condition `sub1 && sub2` of the last if-statement.
+
+```C
+bool sub_trigger(rclc_executor_handle_t * handles, unsigned int size, void * obj)
+{
+  if (handles == NULL) {
+    printf("Error in sub_trigger: 'handles' is a NULL pointer\n");
+    return false;
+  }
+  if (obj == NULL) {
+    printf("Error in sub_trigger: 'obj' is a NULL pointer\n");
+    return false;
+  }
+  sub_trigger_object_t * comm_obj = (sub_trigger_object_t *) obj;
+  bool sub1 = false;
+  bool sub2 = false;
+  //printf("sub_trigger ready set: ");
+  for (unsigned int i = 0; i < size; i++) {
+    if (handles[i].data_available == true) {
+      void * handle_ptr = rclc_executor_handle_get_ptr(&handles[i]);
+
+      if (handle_ptr == comm_obj->sub1) {
+        sub1 = true;
+      }
+      if (handle_ptr == comm_obj->sub2) {
+        sub2 = true;
+      }
+    }
+  }
+  if (sub1 && sub2) {
+    return true;
+  } else {
+    return false;
+  }
+}
+```
+Like in the HelloWorld-example, the subscription callbacks just prints out the received message.
+
+The `my_string_subscriber` callback prints out the string of the message `msg->data.data`:
+```C
+void my_string_subscriber_callback(const void * msgin)
+{
+  const std_msgs__msg__String * msg = (const std_msgs__msg__String *)msgin;
+  if (msg == NULL) {
+    printf("my_string_subscriber_callback: msgin is NULL\n");
+  } else {
+    printf("Callback 1: %s\n", msg->data.data);
+  }
+}
+```
+
+The integer callback prints out the received integer `msg->data`:
+```C
+void my_int_subscriber_callback(const void * msgin)
+{
+  const std_msgs__msg__Int32 * msg = (const std_msgs__msg__Int32 *)msgin;
+  if (msg == NULL) {
+    printf("my_int_subscriber_callback: msgin is NULL\n");
+  } else {
+    printf("Callback 2: %d\n", msg->data);
+  }
+}
+```
+To publish messages with different frequencies, we setup two timers.
+One timer to publish a string message, the `my_timer_string_callback` and one timer to publish the integer, the `my_timer_int_callback`.
+
+In the `my_timer_string_callback`, the message `pub_msg` is created and filled with the string `Hello World` plus an integer, which is incremented by one, each time the timer callback is called. The the message is published with `rcl_publish()`
+
+The macro `UNUSED` is a workaround for the linter warning, that the second parameter `last_call_time` is not used.
+```C
+#define UNUSED(x) (void)x;
+void my_timer_string_callback(rcl_timer_t * timer, int64_t last_call_time)
+{
+  rcl_ret_t rc;
+  UNUSED(last_call_time);
+  if (timer != NULL) {
+    //printf("Timer: time since last call %d\n", (int) last_call_time);
+
+    std_msgs__msg__String pub_msg;
+    std_msgs__msg__String__init(&pub_msg);
+    const unsigned int PUB_MSG_CAPACITY = 20;
+    pub_msg.data.data = malloc(PUB_MSG_CAPACITY);
+    pub_msg.data.capacity = PUB_MSG_CAPACITY;
+    snprintf(pub_msg.data.data, pub_msg.data.capacity, "Hello World!%d", pub_string_value++);
+    pub_msg.data.size = strlen(pub_msg.data.data);
+
+    rc = rcl_publish(&my_pub, &pub_msg, NULL);
+    if (rc == RCL_RET_OK) {
+      printf("Published: %s\n", pub_msg.data.data);
+    } else {
+      printf("Error in my_timer_string_callback: publishing message %s\n", pub_msg.data.data);
+    }
+    std_msgs__msg__String__fini(&pub_msg);
+  } else {
+    printf("Error in my_timer_string_callback: timer parameter is NULL\n");
+  }
+}
+```
+Likewise, the `my_timer_int_callback` increments the integer value `pub_int_value` in every call and assigns it to the message field `pub_int_msg.data`. Then the message is published with `rcl_publish()`
+```C
+void my_timer_int_callback(rcl_timer_t * timer, int64_t last_call_time)
+{
+  rcl_ret_t rc;
+  UNUSED(last_call_time);
+  if (timer != NULL) {
+    //printf("Timer: time since last call %d\n", (int) last_call_time);
+    pub_int_msg.data = pub_int_value++;
+    rc = rcl_publish(&my_int_pub, &pub_int_msg, NULL);
+    if (rc == RCL_RET_OK) {
+      printf("Published: %d\n", pub_int_msg.data);
+    } else {
+      printf("Error in my_timer_int_callback: publishing message %d\n", pub_int_msg.data);
+    }
+  } else {
+    printf("Error in my_timer_int_callback: timer parameter is NULL\n");
+  }
+}
+```
+
+Now were are all set for the `main()` function:
+
+
+CONTINUE HERE:
+- change source code to use the rclc-convenience functions
+- later change also the name example_convenience to example_helloWorld
+- have everything complete? or only partial example - tuturial shall be complete!
+
+
 
 The source code can be found in [rclc-examples/example_executor_trigger.c](https://github.com/micro-ROS/rclc-examples/example_executor_trigger.c).
 
