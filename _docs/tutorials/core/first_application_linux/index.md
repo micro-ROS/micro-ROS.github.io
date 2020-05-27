@@ -5,14 +5,24 @@ permalink: /docs/tutorials/core/first_application_linux/
 
 This tutorial teaches you how to create a first micro-ROS application on Linux for testing purposes. In the follow-up tutorial [*First micro-ROS application on an RTOS*](/docs/tutorials/core/first_application_rtos/), you'll learn how to build and bring this application on a microcontroller running the RTOS NuttX, FreeRTOS, or Zephyr.
 
+## Installing ROS 2 and the micro-ROS build system
 
-## Adding a new micro-ROS app
+First of all, let's take a Ubuntu 18.04 LTS computer and install **ROS 2 Dashing Diademata**:
 
-First of all, make sure that you have a **ROS 2** installation.
+```
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
-***TIP:** if you are familiar with Docker containers, this image may be useful: [ros:dashing](https://hub.docker.com/layers/ros/library/ros/dashing/images/sha256-b796c14ea663537129897769aa6c715a851ca08dffd4875ef2ecaa31a4dbd431?context=explore)*
+sudo apt update && sudo apt install curl gnupg2 lsb-release
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 
-On the **ROS 2** installation open a command line and follow these steps:
+sudo sh -c 'echo "deb http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
+sudo apt update
+sudo apt install ros-dashing-desktop
+```
+
+Once you have a **ROS 2** installation in the computer, follow these steps to install the micro-ROS build system:
 
 ```bash
 # Source the ROS 2 installation
@@ -32,224 +42,84 @@ colcon build
 source install/local_setup.bash
 ```
 
-Now, let's create a firmware workspace that targets all the required code and tools:
+***TIP:** if you are familiar with Docker containers, this image may be useful: [micro-ros:base](https://github.com/micro-ROS/docker/blob/dashing/base/Dockerfile)*
+
+These instructions will setup a workspace with a ready-to-use micro-ROS build system. This build system is in charge of downloading the required cross-compilation tools and building the apps for the required platforms. 
+
+The build system's workflow is a four-step procedure:
+
+* **Create step:** This step is in charge of downloading all the required code repositories and cross-compilation toolchains for the specific hardware platform. Among these repositories, it will also download a collection of ready to use micro-ROS apps.
+* **Configure step:** In this step, the user can select which app is going to be cross-compiled by the toolchain. Some other options, such as transport, agent address or port will be also selected in this step.
+* **Build step:** Here is where the cross-compilation takes place and the platform-specific binaries are generated.
+* **Flash step:** The binaries generated in the previous step are flashed onto the hardware platform memory, in order to allow the execution of the micro-ROS app.
+Further information about micro-ROS build system can be found [here](https://github.com/micro-ROS/micro-ros-build/tree/dashing/micro_ros_setup).
+
+## Creating a new micro-ROS app
+
+Once the build system is installed, let's create a firmware workspace that targets all the required code and tools:
 
 ```bash
 # Create step
 ros2 run micro_ros_setup create_firmware_ws.sh host
 ```
 
-Now you have all the required tools to build micro-ROS. At this point, you must know that the micro-ROS build system is a four-step workflow:
-
-<!-- TODO (pablogs9): Remove and link to build-system tutorial when done -->
-1. **Create**: retrieves all the required packages for a specific RTOS and hardware platform.
-2. **Configure**: configures the downloaded packages with options such as the micro-ROS application, the selected transport layer or the micro-ROS agent IP address (in network transports).
-3. **Build**: generates a binary file ready for being loaded in the hardware.
-4. **Flash**: load the micro-ROS software in the hardware.
-
-micro-ROS apps for Linux are located at `src/uros/micro-ROS-demos/rcl/`. In order to create a new application, create a new folder containing two files: the app code and the CMake file.
+micro-ROS apps for Linux are located at `src/uros/micro-ROS-demos/rcl/`. In order to create a new application, create a new folder containing two files: the app code and the CMake file. You can check the complete content of these file [here](https://github.com/micro-ROS/micro-ROS-demos/tree/dashing/rcl/ping_pong).
 
 ```bash
 # Creating a new app
 pushd src/uros/micro-ROS-demos/rcl/
-mkdir my_brand_new_app
-cd my_brand_new_app
+mkdir ping_pong
+cd ping_pong
 touch app.c CMakeLists.txt
 popd
+```
+
+Don't forget to register your app in `src/uros/micro-ROS-demos/rcl/CMakeLists.txt` by adding the following line:
+
+```
+export_executable(ping_pong)
 ```
 
 For this example we are going to create a ping pong app where a node sends a ping package with a unique identifier using a publisher and the same package is received by a pong subscriber. The node will also answer to pings received from other nodes with a pong message:
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
-To start creating this app, the `CMakeLists.txt` file should looks like: 
+The app logic of this demo is contained in  [`app.c`](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/ping_pong/main.c). A thorough review of this file can show how to create a micro-ROS publisher or subscriber, as shown below. 
 
-```cmake
-cmake_minimum_required(VERSION 3.5)
-
-project(my_brand_new_app LANGUAGES C)
-
-find_package(ament_cmake REQUIRED)
-find_package(rcl REQUIRED)
-find_package(std_msgs REQUIRED)
-find_package(rmw_microxrcedds REQUIRED)
-
-add_executable(${PROJECT_NAME} app.c)
-
-ament_target_dependencies(${PROJECT_NAME}
-  rcl
-  std_msgs
-  rmw_microxrcedds
-  )
-
-install(TARGETS ${PROJECT_NAME}
-  DESTINATION ${PROJECT_NAME}
-  )
-```
-
-Meanwhile `app.c` should look like the following code:
-
+**For more in depth learning about RCL and RCLC programming [check this section](https://micro-ros.github.io/docs/tutorials/core/programming_rcl_rclc/).**
 ```c
-#include <rcl/rcl.h>
-#include <rcl/error_handling.h>
-#include <std_msgs/msg/header.h>
-
-#include <rmw_uros/options.h>
-
-#include <stdio.h>
-#include <unistd.h>
-#include <pthread.h>
-
-#define STRING_BUFFER_LEN 100
-
-// Publishing ping guard condition thread
-void * trigger_guard_condition(void *args){
-  rcl_guard_condition_t * guard_condition = (rcl_guard_condition_t *)args;
-
-  while(true){
-    rcl_trigger_guard_condition(guard_condition);
-    sleep(5);
-  }
-}
-
-int main(int argc, const char * const * argv)
-{
-  //Init RCL options
-  rcl_init_options_t options = rcl_get_zero_initialized_init_options();
-  rcl_init_options_init(&options, rcl_get_default_allocator());
-  
-  // Init RCL context
-  rcl_context_t context = rcl_get_zero_initialized_context();
-  rcl_init(0, NULL, &options, &context);
-
-  // Create a node
-  rcl_node_options_t node_ops = rcl_node_get_default_options();
-  rcl_node_t node = rcl_get_zero_initialized_node();
-  rcl_node_init(&node, "pingpong_node", "", &context, &node_ops);
-
+...
   // Create a reliable ping publisher
   rcl_publisher_options_t ping_publisher_ops = rcl_publisher_get_default_options();
   rcl_publisher_t ping_publisher = rcl_get_zero_initialized_publisher();
   rcl_publisher_init(&ping_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Header), "/microROS/ping", &ping_publisher_ops);
+...
 
-  // Create a best effort pong publisher
-  rcl_publisher_options_t pong_publisher_ops = rcl_publisher_get_default_options();
-  pong_publisher_ops.qos.reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
-  rcl_publisher_t pong_publisher = rcl_get_zero_initialized_publisher();
-  rcl_publisher_init(&pong_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Header), "/microROS/pong", &pong_publisher_ops);
-
+...
   // Create a best effort  pong subscriber
   rcl_subscription_options_t pong_subscription_ops = rcl_subscription_get_default_options();
   pong_subscription_ops.qos.reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
   rcl_subscription_t pong_subscription = rcl_get_zero_initialized_subscription();
   rcl_subscription_init(&pong_subscription, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Header), "/microROS/pong", &pong_subscription_ops);
-
-  // Create a best effort ping subscriber
-  rcl_subscription_options_t ping_subscription_ops = rcl_subscription_get_default_options();
-  ping_subscription_ops.qos.reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
-  rcl_subscription_t ping_subscription = rcl_get_zero_initialized_subscription();
-  rcl_subscription_init(&ping_subscription, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Header), "/microROS/ping", &ping_subscription_ops);
-
-  // Create guard condition
-  rcl_guard_condition_t guard_condition = rcl_get_zero_initialized_guard_condition();
-  rcl_guard_condition_options_t guard_condition_options = rcl_guard_condition_get_default_options();
-  rcl_guard_condition_init(&guard_condition, &context, guard_condition_options);
-
-  pthread_t guard_condition_thread;
-  pthread_create(&guard_condition_thread, NULL, trigger_guard_condition, &guard_condition);
-
-  // Create a wait set
-  rcl_wait_set_t wait_set = rcl_get_zero_initialized_wait_set();
-  rcl_wait_set_init(&wait_set, 2, 1, 0, 0, 0, 0, &context, rcl_get_default_allocator());
-
-  // Create and allocate the pingpong publication message
-  std_msgs__msg__Header msg;
-  char msg_buffer[STRING_BUFFER_LEN];
-  msg.frame_id.data = msg_buffer;
-  msg.frame_id.capacity = STRING_BUFFER_LEN;
-
-  // Create and allocate the pingpong subscription message
-  std_msgs__msg__Header rcv_msg;
-  char rcv_buffer[STRING_BUFFER_LEN];
-  rcv_msg.frame_id.data = rcv_buffer;
-  rcv_msg.frame_id.capacity = STRING_BUFFER_LEN;
-
-  // Set device id and sequence number;
-  int device_id = rand();
-  int seq_no;
-  
-  int pong_count = 0;
-  struct timespec ts;
-  rcl_ret_t rc;
-
-    do {
-    // Clear and set the waitset
-    rcl_wait_set_clear(&wait_set);
-    
-    size_t index_pong_subscription;
-    rcl_wait_set_add_subscription(&wait_set, &pong_subscription, &index_pong_subscription);
-
-    size_t index_ping_subscription;
-    rcl_wait_set_add_subscription(&wait_set, &ping_subscription, &index_ping_subscription);
-
-    size_t index_guardcondition;
-    rcl_wait_set_add_guard_condition(&wait_set, &guard_condition, &index_guardcondition);
-    
-    // Run session for 100 ms
-    rcl_wait(&wait_set, RCL_MS_TO_NS(100));
-    
+...
+... 
     // Check if some pong message is received
     if (wait_set.subscriptions[index_pong_subscription]) {
       rc = rcl_take(wait_set.subscriptions[index_pong_subscription], &rcv_msg, NULL, NULL);
-      if(rc == RCL_RET_OK && strcmp(msg.frame_id.data,rcv_msg.frame_id.data) == 0) {
-          pong_count++;
-          printf("Pong for seq %s (%d)\n", rcv_msg.frame_id.data, pong_count);
+      if(rc == RCL_RET_OK) {
+          // Subscription app logic
       }
     }
 
-    // Check if some ping message is received and pong it
-    if (wait_set.subscriptions[index_ping_subscription]) {
-      rc = rcl_take(wait_set.subscriptions[index_ping_subscription], &rcv_msg, NULL, NULL);
-
-      // Dont pong my own pings
-      if(rc == RCL_RET_OK && strcmp(msg.frame_id.data,rcv_msg.frame_id.data) != 0){
-        printf("Ping received with seq %s. Answering.\n", rcv_msg.frame_id.data);
-        rcl_publish(&pong_publisher, (const void*)&rcv_msg, NULL);
-      }
-    }
-
-    // Check if it is time to send a ping
-    if (wait_set.guard_conditions[index_guardcondition]) {
-      // Generate a new random sequence number
-      seq_no = rand();
-      sprintf(msg.frame_id.data, "%d_%d", seq_no, device_id);
-      msg.frame_id.size = strlen(msg.frame_id.data);
-      
-      // Fill the message timestamp
-      clock_gettime(CLOCK_REALTIME, &ts);
-      msg.stamp.sec = ts.tv_sec;
-      msg.stamp.nanosec = ts.tv_nsec;
-
-      // Reset the pong count and publish the ping message
-      pong_count = 0;
-      rcl_publish(&ping_publisher, (const void*)&msg, NULL);
-      printf("Ping send seq %s\n", msg.frame_id.data);  
-    }
-    
-    usleep(10000);
-  } while (true);
-}
-```
-
-Don't forget to register your app in `src/uros/micro-ROS-demos/rcl/CMakeLists.txt` by adding the following line:
-
-```
-export_executable(my_brand_new_app)
+...
+    // Reset the pong count and publish the ping message
+    rcl_publish(&ping_publisher, (const void*)&msg, NULL);
+...
 ```
 
 ## Running the micro-ROS app
 
-The micro-ROS app is ready to connect to a micro-ROS-Agent and start talking with the rest of the ROS 2 world.
+The micro-ROS app is ready to be built and connected to a micro-ROS-Agent to start talking with the rest of the ROS 2 world.
 
 First of all, create a micro-ROS agent:
 
@@ -280,7 +150,7 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 source install/local_setup.bash
 
 # Run a micro-ROS agent
-ros2 run micro_ros_demos_rcl my_brand_new_app
+ros2 run micro_ros_demos_rcl ping_pong
 ```
 
 And finally, let's check that everything is working in another command line. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings:
