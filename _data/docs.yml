@@ -66,8 +66,7 @@
   docs:
    - tutorials/advanced/nuttx/nsh_usb
    - tutorials/advanced/nuttx/nsh_uart
-   - tutorials/advanced/nuttx/6lowpan_config
+   - tutorials/advanced/nuttx/6lowpan
    - tutorials/advanced/nuttx/debugging
    - tutorials/advanced/nuttx/add_microros_config
-   - tutorials/advanced/nuttx/microros_6lowpan_tutorial
 

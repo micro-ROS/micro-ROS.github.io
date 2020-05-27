@@ -3,5 +3,6 @@
     "spellright.documentTypes": [
         "latex",
         "plaintext"
-    ]
+    ],
+    "editor.formatOnSave": true
 }
