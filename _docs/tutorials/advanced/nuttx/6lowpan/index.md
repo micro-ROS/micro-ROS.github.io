@@ -10,13 +10,13 @@ In this guide, we will show how to use micro-ROS over 6LoWPAN communication.
 6LoWPAN is an acronym o IPv6 over Low-Power Wireless Personal Area Networks.
 This communication protocol allows wireless communication over IEEE 802.15.4 based networks using IPv6. Some of the main advantages are:
 - Easy to route from radio devices to the Internet, thanks to the usage of the IP packets.
-- Easy to use on UDP and TCP server/clients.j
+- Easy to use on UDP and TCP server/clients.
 - A protocol designed for low power and constrained devices, perfect or micro-ROS remote sensors.
 
 # Needed hardware
 
-At this moment, 6LoWPAN in only available for NuttX RTOS.
-You need the following devices to implement the steps highlighted in this guide:
+At present, 6LoWPAN is only available for the NuttX RTOS.
+In order to implement the steps highlighted in this guide, you need the following devices:
 
 - Raspberry Pi.
 - [Olimex-STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware).
@@ -102,7 +102,7 @@ lowpan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1280
 ```bash
 uros_6lowpan <Agent_IP> <Agent_Port> <pub/sub>
 ```
-  where `Agent_IP`is IPv6 copying previously, `Agent_PORT` is the port selected at Agent and `pub/sub` controls the application behavior, in case of `pub` it will behalf as publisher and as a subscriber in `sub` option.
+  where `Agent_IP` is the IPv6 copied previously, `Agent_PORT` is the port selected for the Agent and `pub/sub` controls the application behavior: in case of `pub` it will act as publisher and as in case of `sub`, it will act as a subscriber.
 
 - Once you execute the app, ti will ask you if you want to configure the 6LoWPAN network.
   - This will return connection data, you should save the `inet_6_addr` and `HWaddr`.
