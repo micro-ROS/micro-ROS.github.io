@@ -214,12 +214,10 @@ if (rc != RCL_RET_OK) {
 ```
 
 ## <a name="rclc_executor"/>RCLC Executor
-The rclc Executor provides an C-API to manage the execution of communication objects, like subscriptions and timers, like the rclcpp Executor for C++. Due to the complex semantics of the rclcpp Executor, it is difficult to reason about end-to-end latencies and to give real-time guarantees. To improve determinism, the rclc Executor provides also some additional features. But first, we are providing as simple example how to setup the rclc Executor with one subscription and one timer.
+The rclc Executor provides a C-API to manage to execute communication objects, like subscriptions and timers, the same way as the rclcpp Executor does for C++. Due to the complex semantics of the rclcpp Executor, it is difficult to reason about end-to-end latencies and to give real-time guarantees. To improve determinism, the rclc Executor provides also some additional features. But first, we are providing as simple example how to setup the rclc Executor with one subscription and one timer.
 
 ### Example 1: 'Hello World'
-To start with, we provide a very simple example for an rclc Executor with one timer and one subscription, so to say, a 'Hello world' example.
-
-The 'Hello world' example consists of a publisher, sending a 'hello world' message to a subscriber, which then prints out the received message on the console.
+To start with, we provide a very simple example for an rclc Executor with one timer and one subscription, so to say, a 'Hello world' example. It consists of a publisher, sending a 'hello world' message to a subscriber, which then prints out the received message on the console.
 
 First, you include some header files, in particular the [rclc/rclc.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/rclc.h) and [rclc/executor.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/executor.h).
 
@@ -268,7 +266,7 @@ void my_timer_callback(rcl_timer_t * timer, int64_t last_call_time)
   }
 }
 ```
-First, some initialization for ROS 2 is necessary to create later rcl objects. That is an `allocator` for dynamic memory allocation, and a `support` object, which contains some rcl-objects simplifying the initialization of an rcl-node, an rcl-subscription, an rcl-timer and an rclc executor.
+After defining the callback functions, we present now the `main()` function. First, some initialization for ROS 2 is necessary to create later rcl objects. That is an `allocator` for dynamic memory allocation, and a `support` object, which contains some rcl-objects simplifying the initialization of an rcl-node, an rcl-subscription, an rcl-timer and an rclc-executor.
 ```C
 int main(int argc, const char * argv[])
 {
@@ -308,7 +306,7 @@ if (RCL_RET_OK != rc) {
 ```
 Note, that variable `my_pub` was defined globally, so it can be used by the timer callback.
 
-You can create a timer `my_timer` with a period of one second which will execute the callback `my_timer_callback` like this:
+You can create a timer `my_timer` with a period of one second, which executes the callback `my_timer_callback` like this:
 ```C
   rcl_timer_t my_timer = rcl_get_zero_initialized_timer();
   const unsigned int timer_timeout = 1000; // in ms
@@ -342,7 +340,7 @@ A subscription `my_sub`can be defined like this:
     printf("Created subscriber %s:\n", topic_name);
   }
 ```
-The global messsage for this subscription `sub_msg` needs to be initialized with:
+The global message for this subscription `sub_msg` needs to be initialized with:
 ```C
   std_msgs__msg__String__init(&sub_msg);
 ```
@@ -419,27 +417,69 @@ return 0;
 
 This completes the example. The source code can be found in the package rclc-examples [rclc-examples/example_executor_convenience.c](https://github.com/micro-ROS/rclc-examples/example_executor_convenience.c).
 
-#### Example 2: Triggered rclc_executor
-Sesor fusion is the first step in robotic applications when multiple sensor are used to improve localization precision. These sensors can have different frequencies, for example, a high frequency IMU sensor and a low frequency laser scanner. One way is to trigger execution upon arrival of a laser scan and only then evaluate the most recent data from the aggregated IMU data.
+#### Example 2: Triggered execution
+In robotic applications often multiple sensors are used to improve localization precision. These sensors can have different frequencies, for example, a high frequency IMU sensor and a low frequency laser scanner. One way is to trigger execution upon arrival of a laser scan and only then evaluate the most recent data from the aggregated IMU data.
 
 This example demonstrates the additional feature of the rclc executor to trigger the execution of callbacks based on the availability of input data.
 
 We setup one executor with two publishers, one with 100ms and one with 1000ms period. Then we setup one executor for two subsciptions. Their callbacks shall both be executed if the message of the publisher with the lower frequency arrives.
 
+The output of this code example will look like this:
+
+```C
+Created timer 'my_string_timer' with timeout 100 ms.
+Created 'my_int_timer' with timeout 1000 ms.
+Created subscriber topic_0:
+Created subscriber topic_1:
+Executor_pub: number of DDS handles: 2
+Executor_sub: number of DDS handles: 2
+Published: Hello World! 0
+Published: Hello World! 1
+Published: Hello World! 2
+Published: Hello World! 3
+Published: Hello World! 4
+Published: Hello World! 5
+Published: Hello World! 6
+Published: Hello World! 7
+Published: Hello World! 8
+Published: Hello World! 9
+Published: 0
+Callback 1: Hello World! 9  <---
+Callback 2: 0               <---
+Published: Hello World! 10
+Published: Hello World! 11
+Published: Hello World! 12
+Published: Hello World! 13
+Published: Hello World! 14
+Published: Hello World! 15
+Published: Hello World! 16
+Published: Hello World! 17
+Published: Hello World! 18
+Published: Hello World! 19
+Published: 1
+Callback 1: Hello World! 19 <---
+Callback 2: 1               <---
+```
+This output shows, that the callbacks are executed, only if both message have received new data. In that case, the latest data of high-frequency topic is used.
+
 You learn in this tutorial
+- how to use pre-defined trigger conditions
 - how to write custom-defined trigger conditions
 - how to run multiple executors
-- how to setup communication objects only using rcl API
+- how to setup quality-of-service parameters for a subscription
 
-We start with the necessary includes for string and int messages as well as the rclc executor:
+We start with the necessary includes for string and int messages, `<std_msgs/msg/string.h>' and
+`std_msgs/msg/int32.h` respectivly. Then the necessary includes follow for the rclc convenience functions `rclc.h`and teh the rclc executor `executor.h`:
 ```C
 #include <stdio.h>
 #include <unistd.h>
 #include <std_msgs/msg/string.h>
 #include <std_msgs/msg/int32.h>
+
 #include <rclc/executor.h>
+#include <rclc/rclc.h>
 ```
-Then, global variables are defined, which are initialized in main and also used in the callbacks:
+Then, global variables for the publishers and subscriptions as well as their messages are defined, which are initialized in the `main()` function and used in the corresponding callbacks:
 ```C
 rcl_publisher_t my_pub;
 rcl_publisher_t my_int_pub;
@@ -622,183 +662,251 @@ void my_timer_int_callback(rcl_timer_t * timer, int64_t last_call_time)
 
 Now were are all set for the `main()` function:
 
-
-CONTINUE HERE:
-- change source code to use the rclc-convenience functions
-- later change also the name example_convenience to example_helloWorld
-- have everything complete? or only partial example - tuturial shall be complete!
-
-
-
-The source code can be found in [rclc-examples/example_executor_trigger.c](https://github.com/micro-ROS/rclc-examples/example_executor_trigger.c).
-
-
-#### Example 3: Sense-plan-act pipeline in mobile robotics
-
-A common design paradigm in mobile robotics is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and an actuation-phase to steer the mobile robot. Of course, more phases are possible, here these three phases shall serve as an example.
-Such a processing pipeline is shown in Figure 1.
-
-<img src="doc/sensePlanActScheme.png" alt="Sense Plan Act Pipeline" width="700"/>
-
-Figure 1: Multiple sensors driving a Sense-Plan-Act pipeline.
-
-Typically multiple sensors are used to perceive the environment.
-For example an IMU and a laser scanner.
-The quality of localization algorithms highly depend on how old such sensor data is when it is processed.
-Ideally the latest data of all sensors should be processed.
-One way to achieve this is to execute first all sensor drivers in the sense-phase and then process all algorithms in the plan-phase.
-
-For this sense-plan-act pattern, we can define one rclc executor for each phase.
-The plan-phase would be triggered only when all callbacks in the sense-phase have finished.
-
-In this example we want to realise a sense-plan-act pipeline in a single thread. The trigger condition is demonstrated by activating the sense-phase when both data for the Laser and IMU are available. We define  one Laser subscription `sense_Laser` and one for IMU subscription `sense_IMU`. Forthermore, one for each phase: `plan` and `act`. Three executors are necessary `exe_sense`, `exe_plan` and `exe_act`. The configuration of the subscriptions and the definitions of the corresponding callbacks are omitted.
-
 ```C
-rcl_subscription_t sense_Laser, sense_IMU, plan, act;
-rclc_executor_t exe_sense, exe_plan, exe_act;
-exe_sense = rclc_get_zero_initialized_executor();
-exe_plan = rclc_get_zero_initialized_executor();
-exe_act = rclc_get_zero_initialized_executor();
-```
-The executor `exe_sense` executes the two handles `sense_Laser` and `sense_IMU`, while the other two executors only one handle, the `plan` and the `act` subscription, respectivly:
+int main(int argc, const char * argv[])
+{
+  rcl_allocator_t allocator = rcl_get_default_allocator();
+  rclc_support_t support;
+  rcl_ret_t rc;
 
-```C
-rclc_executor_init(&exe_sense, &context, 2, ...);
-rclc_executor_init(&exe_plan, &context, 1, ...);
-rclc_executor_init(&exe_act, &context, 1, ...);
-```
-The two sensor acquisition callbacks `sense_Laser` and `sense_IMU` are registered in the executor `exe_sense`. The trigger condition `rclc_executor_trigger_all` is set to activate the sense-phase only if new data for both callbacks is available.
-
-```C
-// executor for sense-phase
-rclc_executor_add_subscription(&exe_sense, &sense_Laser, &my_sub_cb1, ON_NEW_DATA);
-rclc_executor_add_subscription(&exe_sense, &sense_IMU, &my_sub_cb2, ON_NEW_DATA);
-rclc_executor_set_trigger(&exe_sense, rclc_executor_trigger_all, NULL);
-```
-The `plan` subscription is configured in the executor `exe-plan`, and likewise the `act` subscription in the executor `exe_act`:
-```C
-// executor for plan-phase
-rclc_executor_add_subscription(&exe_plan, &plan, &my_sub_cb3, ON_NEW_DATA);
-// executor for act-phase
-rclc_executor_add_subscription(&exe_act, &act, &my_sub_cb4, ON_NEW_DATA);
+  // create init_options
+  rc = rclc_support_init(&support, argc, argv, &allocator);
+  if (rc != RCL_RET_OK) {
+    printf("Error rclc_support_init.\n");
+    return -1;
+  }
 ```
 
+First rcl is initialized with the `rclc_support_init` using the default `allocator`. The rclc-support objects are saved in `support`. Next, a node `my_node`with the name `node_0`and namespace `executor_examples`is created with:
+```C
+// create rcl_node
+  rcl_node_t my_node = rcl_get_zero_initialized_node();
+  rc = rclc_node_init_default(&my_node, "node_0", "executor_examples", &support);
+  if (rc != RCL_RET_OK) {
+    printf("Error in rclc_node_init_default\n");
+    return -1;
+  }
+```
 
-Finally all three Executors are spinning using a `while`-loop and the `spin_some` function with a rcl-wait timeout of one second (parameter of the timeout is in nanoseconds).
+A publisher `my_string_pub`, which publishes a string message and its corresponding timer `my_string_timer`with a 100ms period is created like this:
+```C
+// create a publisher 1
+  // - topic name: 'topic_0'
+  // - message type: std_msg::msg::String
+  const char * topic_name = "topic_0";
+  const rosidl_message_type_support_t * my_type_support = ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, String);
+
+  rc = rclc_publisher_init_default(&my_string_pub, &my_node, my_type_support, topic_name);
+  if (RCL_RET_OK != rc) {
+    printf("Error in rclc_publisher_init_default %s.\n", topic_name);
+    return -1;
+  }
+
+  // create timer 1
+  // - publishes 'my_string_pub' every 'timer_timeout' ms
+  rcl_timer_t my_string_timer = rcl_get_zero_initialized_timer();
+  const unsigned int timer_timeout = 100;
+  rc = rclc_timer_init_default(&my_string_timer, &support, RCL_MS_TO_NS(timer_timeout), my_timer_string_callback);
+  if (rc != RCL_RET_OK) {
+    printf("Error in rclc_timer_init_default.\n");
+    return -1;
+  } else {
+    printf("Created timer 'my_string_timer' with timeout %d ms.\n", timer_timeout);
+  }
+  ```
+Note, that the previously defined `my_timer_string_callback` is connected to this timer.
+Likewise, a second publisher `my_int_pub, which publishes an int message and its corresponding timer `my_int_timer` with 1000ms period is created like this:
+```C
+// create publisher 2
+  // - topic name: 'topic_1'
+  // - message type: std_msg::msg::Int
+  const char * topic_name_1 = "topic_1";
+  const rosidl_message_type_support_t * my_int_type_support =
+    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
+  rc = rclc_publisher_init_default(&my_int_pub, &my_node, my_int_type_support, topic_name_1);
+  if (RCL_RET_OK != rc) {
+    printf("Error in rclc_publisher_init_default %s.\n", topic_name_1);
+    return -1;
+  }
+
+  // create timer 2
+  // - publishes 'my_int_pub' every 'timer_int_timeout' ms
+  rcl_timer_t my_int_timer = rcl_get_zero_initialized_timer();
+  const unsigned int timer_int_timeout = 10 * timer_timeout;
+  rc = rclc_timer_init_default(&my_int_timer, &support, RCL_MS_TO_NS(timer_int_timeout), my_timer_int_callback);
+  if (rc != RCL_RET_OK) {
+    printf("Error in rclc_timer_init_default.\n");
+    return -1;
+  } else {
+    printf("Created timer with timeout %d ms.\n", timer_int_timeout);
+  }
+```
+Note, that the `my_timer_int_callback` is connected to the `my_int_timer`. The data variables used for the publisher messages in the timer callbacks need to be initialized first:
 
 ```C
-// spin all executors
-while (true) {
-  rclc_executor_spin_some(&exe_sense, 1000000000);
-  rclc_executor_spin_some(&exe_plan, 1000000000);
-  rclc_executor_spin_some(&exe_act, 1000000000);
+std_msgs__msg__Int32__init(&int_pub_msg);
+int_pub_value = 0;
+string_pub_value = 0;
+```
+The first subscription `my_string_sub` is created with the function `rcl_subscription_init` because we change the quality-of-service parameter to 'last-is-best'. That is, a new message will overwrite the older message, if it has not been processed by the subscription. Also the message `string_sub_msg` needs to be initialized.
+```C
+// create subscription 1
+  rcl_subscription_t my_string_sub = rcl_get_zero_initialized_subscription();
+  rcl_subscription_options_t my_subscription_options = rcl_subscription_get_default_options();
+  my_subscription_options.qos.depth = 0; // qos: last is best = register semantics
+  rc = rcl_subscription_init(&my_string_sub, &my_node, my_type_support, topic_name, &my_subscription_options);
+
+  if (rc != RCL_RET_OK) {
+    printf("Failed to create subscriber %s.\n", topic_name);
+    return -1;
+  } else {
+    printf("Created subscriber %s:\n", topic_name);
+  }
+  // initialize subscription message
+  std_msgs__msg__String__init(&string_sub_msg);
+```
+
+The second subscription `my_int_sub` is created with the rclc convenience function `rclc_subscription_default` and the message `int_sub_msg` is properly initialized.
+
+```C
+// create subscription 2
+  rcl_subscription_t my_int_sub = rcl_get_zero_initialized_subscription();
+  rc = rclc_subscription_init_default(&my_int_sub, &my_node, my_int_type_support, topic_name_1);
+  if (rc != RCL_RET_OK) {
+    printf("Failed to create subscriber %s.\n", topic_name_1);
+    return -1;
+  } else {
+    printf("Created subscriber %s:\n", topic_name_1);
+  }
+  // initialize subscription message
+  std_msgs__msg__Int32__init(&int_sub_msg);
+```
+
+In this example, we are using two executors, one to schedule the publishers, and one to schedule the subscriptions:
+```C
+rclc_executor_t executor_pub;
+rclc_executor_t executor_sub;
+```
+
+The executor `executor_pub` is first created with  `rclc_executor_get_zero_initialized_executor()` and has two handles (aka 2 timers).
+```C
+// Executor for publishing messages
+  unsigned int num_handles_pub = 2;
+  printf("Executor_pub: number of DDS handles: %u\n", num_handles_pub);
+  executor_pub = rclc_executor_get_zero_initialized_executor();
+  rclc_executor_init(&executor_pub, &support.context, num_handles_pub, &allocator);
+
+  rc = rclc_executor_add_timer(&executor_pub, &my_string_timer);
+  if (rc != RCL_RET_OK) {
+    printf("Error in rclc_executor_add_timer 'my_string_timer'.\n");
+  }
+
+  rc = rclc_executor_add_timer(&executor_pub, &my_int_timer);
+  if (rc != RCL_RET_OK) {
+    printf("Error in rclc_executor_add_timer 'my_int_timer'.\n");
+  }
+```
+
+Both timers are added to the exececutor with the function `rclc_executor_add_timer`:
+
+```C
+rc = rclc_executor_add_timer(&executor_pub, &my_string_timer);
+if (rc != RCL_RET_OK) {
+  printf("Error in rclc_executor_add_timer 'my_string_timer'.\n");
+}
+
+rc = rclc_executor_add_timer(&executor_pub, &my_int_timer);
+if (rc != RCL_RET_OK) {
+  printf("Error in rclc_executor_add_timer 'my_int_timer'.\n");
 }
 ```
-#### Example 3: Synchronization input data with multiple rates
-
-Often multiple sensors are being used to sense the environment for mobile robotics.
-While an IMU sensor provides data samples at a very high rate (e.g. 500 Hz), laser scans are available at a much slower frequency (e.g. 10Hz) determined by the revolution time.
-Then the challenge is, how to deterministically fuse sensor data with different frequencies. This problem is depicted in Figure 2.
-
-<img src="doc/sensorFusion_01.png" alt="Sychronization of multiple rates" width="300" />
-
-Figure 2: How to deterministically process multi-frequent sensor data.
-
-Due to scheduling effects, the callback for evaluating the laser scan might be called just before or just after an IMU data is received.
-One way to tackle this is to write additional synchronization code inside the application.
-Obviously, this is a cumbersome and not-portable solution.
-
-##### Synchronizing by data frequency
-An Alternative would be to evaluate the IMU sample and the laser scan by synchronizing their frequency.
-For example by processing always 50 IMU samples with one laser scan. This approach is shown in Figure 3.
-A pre-processing callback aggregates the IMU samples and sends an aggregated message with 50 samples at 10Hz rate.
-Now both messages have the same frequency.
-With a trigger condition, which fires when both messages are available, the sensor fusion algorithm can expect always synchronized input data.
-
-<img src="doc/sensorFusion_02.png" alt="Sychnronization with a trigger" width="400" />
-
-Figure 3: Synchronization of multiple input data with a trigger.
-
-This sensor fusion synchronizing approach is shown below.
+Also the second publisher has two handles, the two subscriptions:
 ```C
-...
-rcl_subscription_t aggr_IMU, sense_Laser, sense_IMU;
-rcle_let_executor_t exe_aggr, exe_sense;
-// initialize executors
-rclc_executor_init(&exe_aggr, &context, 1, ...);
-rclc_executor_init(&exe_sense, &context, 2, ...);
-// executor for aggregate IMU data
-rclc_executor_add_subscription(&exe_aggr, &aggr_IMU, &my_sub_cb1, ON_NEW_DATA);
-// executor for sense-phase
-rclc_executor_add_subscription(&exe_sense, &sense_Laser, &my_sub_cb2, ON_NEW_DATA);
-rclc_executor_add_subscription(&exe_sense, &sense_IMU, &my_sub_cb3, ON_NEW_DATA);
-rclc_executor_set_trigger(&exe_sense, rclc_executor_trigger_all, NULL);
+unsigned int num_handles_sub = 2;
+printf("Executor_sub: number of DDS handles: %u\n", num_handles_sub);
+executor_sub = rclc_executor_get_zero_initialized_executor();
+rclc_executor_init(&executor_sub, &support.context, num_handles_sub, &allocator);
+```
+Which are added with the function `rclc_executor_add_subscription`:
 
-// spin all executors
-while (true) {
-  rclc_executor_spin_some(&exe_aggr);
-  rclc_executor_spin_some(&exe_sense);
+```C
+// add subscription to executor
+rc = rclc_executor_add_subscription(
+  &executor_sub, &my_string_sub, &string_sub_msg,
+  &my_string_subscriber_callback,
+  ON_NEW_DATA);
+if (rc != RCL_RET_OK) {
+  printf("Error in rclc_executor_add_subscription 'my_string_sub'. \n");
+}
+
+// add int subscription to executor
+rc = rclc_executor_add_subscription(
+  &executor_sub, &my_int_sub, &int_sub_msg,
+  &my_int_subscriber_callback,
+  ON_NEW_DATA);
+if (rc != RCL_RET_OK) {
+  printf("Error in rclc_executor_add_subscription 'my_int_sub'. \n");
 }
 ```
-#### Example 3: Synchronization by activly requesting data
 
-Another idea would be to actively request for IMU data only when a laser scan is received.
-This concept is shown in Figure 4.
-Upon arrival of a laser scan message, first, a message with aggregated IMU samples is requested.
-Then, the laser scan is processed and later the sensor fusion algorithm.
-An Executor, which would support sequential execution of callbacks, could realize this idea.
-
-<img src="doc/sensorFusion_03.png" alt="Sychronization with sequence" width="350" />
-
-Figure 4: Synchronization with sequential processing.
-
-The setup for the sensor fusion using sequential execution is shown below.
-Note, that the sequential order is `sense_IMU`, which will request the aggregated IMU message, and then `sense_Laser` while the trigger will fire, when a laser message is received.
-
+The trigger condition of the executor, which publishes messages, shall execute when any timer is readdy. This can be configured with the function `rclc_executor_set_trigger` and the parameter `rclc_executor_trigger_any`.
+While the executor for the subscriptions shall only execute if both messages have arrived. Therefore the trigger parameter `rclc_executor_trigger_any` can be used:
 ```C
-...
-rcl_subscription_t sense_Laser, sense_IMU;
-rcle_let_executor_t exe_sense;
-// initialize executor
-rclc_executor_init(&exe_sense, &context, 2, ...);
-// executor for sense-phase
-rclc_executor_add_subscription(&exe_sense, &sense_IMU, &my_sub_cb1, ALWAYS);
-rclc_executor_add_subscription(&exe_sense, &sense_Laser, &my_sub_cb2, ON_NEW_DATA);
-rclc_executor_set_trigger(&exe_sense, rclc_executor_trigger_one, &sense_Laser);
-// spin
-rclc_executor_spin(&exe_sense);
+rc = rclc_executor_set_trigger(&executor_pub, rclc_executor_trigger_any, NULL);
+rc = rclc_executor_set_trigger(&executor_sub, rclc_executor_trigger_all, NULL);
 ```
-#### Example 4: high-priority processing path
-
-Often a robot has to fullfill several activities at the same time. For example following a path and avoiding obstacles.
-While path following is a permanent activity, obstacle avoidance is triggered by the environment and should be immediately reacted upon.
-Therefore one would like to specify priorities to activities. This is depicted in Figure 5:
-
-<img src="doc/highPriorityPath.png" alt="HighPriorityPath" width="500" />
-
-Figure 5: Managing high priority path with sequential order.
-
-Assuming a simplified control loop with the activities sense-plan-act, the obstacle avoidance, which might temporarily stop the robot, should be processed before the planning phase. In this example we assume that these activities are processed in one thread.
-
-The following code-snippet shows the sequential processing order to execute the obstacle avoidance `obst_avoid` with a higher priority then the 'plan' phase.
-The control loop is started when a laser message is received.
-Then an aggregated IMU message is requested, like in the example above.
-Then all the other callbacks are always executed. This assumes that these callbacks communicate via a global data structure.
-Race conditions cannot occur, because all callbacks all in a single thread.
-
+Finally, the executors spin-some functions can be started. The sleep-time between the executors is intended for communication time for DDS.
 ```C
-...
-rcl_subscription_t sense_Laser, sense_IMU, plan, act, obst_avoid;
-rcle_let_executor_t exe;
-// initialize executors
-rclc_executor_init(&exe, &context, 5, ...);
-// define processing order
-rclc_executor_add_subscription(&exe, &sense_IMU, &my_sub_cb1, ALWAYS);
-rclc_executor_add_subscription(&exe, &sense_Laser, &my_sub_cb2, ON_NEW_DATA);
-rclc_executor_add_subscription(&exe, &obst_avoid, &my_sub_cb3, ALWAYS);
-rclc_executor_add_subscription(&exe, &plan, &my_sub_cb4, ALWAYS);
-rclc_executor_add_subscription(&exe, &act, &my_sub_cb5, ALWAYS);
-rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &sense_Laser);
-// spin
-rclc_executor_spin(&exe);
+for (unsigned int i = 0; i < 100; i++) {
+  // timeout specified in ns                 (here: 1s)
+  rclc_executor_spin_some(&executor_pub, 1000 * (1000 * 1000));
+  usleep(1000); // 1ms
+  rclc_executor_spin_some(&executor_sub, 1000 * (1000 * 1000));
+}
 ```
+This example is concluded with the clean-up code:
+```C
+// clean up
+rc = rclc_executor_fini(&executor_pub);
+rc += rclc_executor_fini(&executor_sub);
+rc += rcl_publisher_fini(&my_string_pub, &my_node);
+rc += rcl_publisher_fini(&my_int_pub, &my_node);
+rc += rcl_timer_fini(&my_string_timer);
+rc += rcl_timer_fini(&my_int_timer);
+rc += rcl_subscription_fini(&my_string_sub, &my_node);
+rc += rcl_subscription_fini(&my_int_sub, &my_node);
+rc += rcl_node_fini(&my_node);
+rc += rclc_support_fini(&support);
+
+std_msgs__msg__Int32__fini(&int_pub_msg);
+std_msgs__msg__String__fini(&string_sub_msg);
+std_msgs__msg__Int32__fini(&int_sub_msg);
+
+if (rc != RCL_RET_OK) {
+  printf("Error while cleaning up!\n");
+  return -1;
+}
+return 0;
+}
+```
+
+
+
+In case the default trigger conditions are not sufficient, then the user can define custom logic conditions.
+The source code of the custom-programmed trigger condition has already been presented.
+The following code will setup the executor accordingly:
+```C
+ pub_trigger_object_t comm_obj_pub;
+ comm_obj_pub.timer1 = &my_string_timer;
+ comm_obj_pub.timer2 = &my_int_timer;
+
+ sub_trigger_object_t comm_obj_sub;
+ comm_obj_sub.sub1 = &my_string_sub;
+ comm_obj_sub.sub2 = &my_int_sub;
+
+ rc = rclc_executor_set_trigger(&executor_pub, pub_trigger, &comm_obj_pub);
+ rc = rclc_executor_set_trigger(&executor_sub, sub_trigger, &comm_obj_sub);
+```
+The custom structs `pub_trigger_object_t` are used to save the pointer of the handles. The timers `my_string_timer` and `my_int_timer` for the publishing executor; and, likewise, the subscriptions `my_string_sub` and `my_int_sub` for the subscribing executor. The configuration is done also with the `rclc_executor_set_trigger` by passing the trigger function and the trigger object, e.g. `pub_trigger` and `comm_obj_pub` for the `executor_pub`, respectivly.
+
+The complete source code of this example can be found in the file [rclc-examples/example_executor_trigger.c](https://github.com/micro-ROS/rclc-examples/example_executor_trigger.c).
