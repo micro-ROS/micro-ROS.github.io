@@ -214,7 +214,14 @@ if (rc != RCL_RET_OK) {
 ```
 
 ## <a name="rclc_executor"/>RCLC Executor
-The rclc Executor provides a C-API to manage to execute communication objects, like subscriptions and timers, the same way as the rclcpp Executor does for C++. Due to the complex semantics of the rclcpp Executor, it is difficult to reason about end-to-end latencies and to give real-time guarantees. To improve determinism, the rclc Executor provides also some additional features. But first, we are providing as simple example how to setup the rclc Executor with one subscription and one timer.
+The rclc Executor provides a C-API to manage to execute communication objects, like subscriptions and timers, the same way as the rclcpp Executor does for C++. Due to the complex semantics of the rclcpp Executor, it is difficult to reason about end-to-end latencies and to give real-time guarantees. To improve determinism, the rclc Executor provides also some additional features.
+
+In this tutorial we provide two examples:
+- Example 1: Hello-World example consisting of one executor and one publisher, timer and subscription.
+- Example 2: Triggered Execution example, demonstrating the capability of synchronizing the execution of callbacks based on the availability of new messages
+
+
+Further examples for using the rclc Executor in mobile robotics scenarios and real-time embedded applications can be found in the [rclc](https://github.com/micro-ROS/rclc/tree/master/rclc) repository.
 
 ### Example 1: 'Hello World'
 To start with, we provide a very simple example for an rclc Executor with one timer and one subscription, so to say, a 'Hello world' example. It consists of a publisher, sending a 'hello world' message to a subscriber, which then prints out the received message on the console.
