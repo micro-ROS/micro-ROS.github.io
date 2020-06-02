@@ -213,7 +213,7 @@ if (rc != RCL_RET_OK) {
 }
 ```
 
-## <a name="rclc_executor"/>RCLC Executor
+## <a name="rclc_executor"/>rclc Executor
 The rclc Executor provides a C API to manage the execution of subscription and timer callbacks, similar to the [rclcpp Executor](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/executor.hpp) for C++. The rclc Executor is optimized for resource-constrained devices and provides additional features that allow the manual implementation of deterministic schedules with bounded end-to-end latencies.
 
 In this tutorial we provide two examples:
