@@ -856,7 +856,7 @@ if (rc != RCL_RET_OK) {
 }
 ```
 
-The trigger condition of the executor, which publishes messages, shall execute when any timer is readdy. This can be configured with the function `rclc_executor_set_trigger` and the parameter `rclc_executor_trigger_any`.
+The trigger condition of the executor, which publishes messages, shall execute when any timer is ready. This can be configured with the function `rclc_executor_set_trigger` and the parameter `rclc_executor_trigger_any`.
 While the executor for the subscriptions shall only execute if both messages have arrived. Therefore the trigger parameter `rclc_executor_trigger_any` can be used:
 ```C
 rc = rclc_executor_set_trigger(&executor_pub, rclc_executor_trigger_any, NULL);
