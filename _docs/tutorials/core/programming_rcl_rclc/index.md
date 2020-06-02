@@ -584,7 +584,7 @@ bool sub_trigger(rclc_executor_handle_t * handles, unsigned int size, void * obj
   }
 }
 ```
-Like in the HelloWorld-example, the subscription callbacks just prints out the received message.
+Like in the Hello-World example, the subscription callbacks just prints out the received message.
 
 The `my_string_subscriber` callback prints out the string of the message `msg->data.data`:
 ```C
