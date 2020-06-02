@@ -429,7 +429,7 @@ In robotic applications often multiple sensors are used to improve localization 
 
 This example demonstrates the additional feature of the rclc executor to trigger the execution of callbacks based on the availability of input data.
 
-We setup one executor with two publishers, one with 100ms and one with 1000ms period. Then we setup one executor for two subsciptions. Their callbacks shall both be executed if the message of the publisher with the lower frequency arrives.
+We setup one executor with two publishers, one with 100ms and one with 1000ms period. Then we setup one executor for two subscriptions. Their callbacks shall both be executed if the message of the publisher with the lower frequency arrives.
 
 The output of this code example will look like this:
 
