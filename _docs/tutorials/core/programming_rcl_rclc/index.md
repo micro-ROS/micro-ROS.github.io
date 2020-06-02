@@ -721,7 +721,7 @@ A publisher `my_string_pub`, which publishes a string message and its correspond
     printf("Created timer 'my_string_timer' with timeout %d ms.\n", timer_timeout);
   }
   ```
-Note, that the previously defined `my_timer_string_callback` is connected to this timer.
+Note that the previously defined `my_timer_string_callback` is connected to this timer.
 Likewise, a second publisher `my_int_pub, which publishes an int message and its corresponding timer `my_int_timer` with 1000ms period is created like this:
 ```C
 // create publisher 2
