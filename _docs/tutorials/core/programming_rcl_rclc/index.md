@@ -512,7 +512,7 @@ typedef struct
 ```
 The executor for the publishers shall publish when any of corresponding timers for the publishers is ready. That is the or-logic. You could also use the predefined  `rclc_executor_trigger_any` trigger condition, but this example shows how you can write your own trigger conditions.
 
-In principle the condition gets a list of handles, the length of this list, and the pre-defined condition type, in this case we expect `pub_trigger_object_t`. First, the parameter `obj` is cased to this type (`comm_obj`). Then, each element of the handle list is checked for new data (or a timer is ready) by evaluating the field `handles[i].data_available` and its handle pointer is compared to the pointer of the communicatoin object. If at least one timer is ready, then the trigger condition returns true.
+In principle, the condition gets a list of handles, the length of this list, and the pre-defined condition type. In this case, we expect `pub_trigger_object_t`. First, the parameter `obj` is cased to this type (`comm_obj`). Then, each element of the handle list is checked for new data (or a timer is ready) by evaluating the field `handles[i].data_available` and its handle pointer is compared to the pointer of the communicatoin object. If at least one timer is ready, then the trigger condition returns true.
 ```C
 bool pub_trigger(rclc_executor_handle_t * handles, unsigned int size, void * obj)
 {
