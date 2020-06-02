@@ -375,7 +375,7 @@ if (rc != RCL_RET_OK) {
 ```
 The option `ON_NEW_DATA` selects the execution semantics of the spin-method. In this example, the callback of the subscription `my_sub`is only called if new data is available.
 
-Note: Another execution semantics is `ALWAYS`, which means, that the subscription callback is always executed when the spin-method of the executor is called. This option might be useful in cases in which the callback shall be executed at a fixed rate irrespective of new data is available or not. If you choose this option, then the callback will be executed with message argument `NULL`, if no new data is available. Therefore you need to make sure, that your callback can also accept `NULL` as message argument.
+Note: Another execution semantics is `ALWAYS`, which means, that the subscription callback is always executed when the spin-method of the executor is called. This option might be useful in cases in which the callback shall be executed at a fixed rate irrespective of new data is available or not. If you choose this option, then the callback will be executed with message argument `NULL` if no new data is available. Therefore you need to make sure, that your callback also accepts `NULL` as message argument.
 
 
 Likewise, you can add the timer `my_timer` with the function `rclc_c_executor_add_timer`:
