@@ -539,11 +539,7 @@ bool pub_trigger(rclc_executor_handle_t * handles, unsigned int size, void * obj
       }
     }
   }
-  if (timer1 || timer2) {
-    return true;
-  } else {
-    return false;
-  }
+  return (timer1 || timer2);
 }
 ```
 The trigger condition for the subscription `sub_trigger`shall implement an AND-logic. That is, only if both subscriptions have received a new message, then the executor shall start processing the callbacks.
@@ -577,11 +573,7 @@ bool sub_trigger(rclc_executor_handle_t * handles, unsigned int size, void * obj
       }
     }
   }
-  if (sub1 && sub2) {
-    return true;
-  } else {
-    return false;
-  }
+  return (sub1 && sub2);
 }
 ```
 Like in the Hello-World example, the subscription callbacks just prints out the received message.
@@ -619,6 +611,7 @@ In the `my_timer_string_callback`, the message `pub_msg` is created and filled w
 The macro `UNUSED` is a workaround for the linter warning, that the second parameter `last_call_time` is not used.
 ```C
 #define UNUSED(x) (void)x;
+
 void my_timer_string_callback(rcl_timer_t * timer, int64_t last_call_time)
 {
   rcl_ret_t rc;
