@@ -385,7 +385,7 @@ if (rc != RCL_RET_OK) {
   printf("Error in rclc_executor_add_timer.\n");
 }
 ```
-A key feature of the rclc-Executor is, that the order of these `rclc-executor-add-* `-functions matters. The order in which these functions are called, defines the static processing order of the callbacks when the spin-function of the executor is running.
+A key feature of the rclc Executor is that the order of these `rclc-executor-add-* `-functions matters. The order in which these functions are called defines the static processing order of the callbacks when the spin-function of the executor is running.
 
 In this example, the timer was added to the executor before the subscription. Therefore, if the timer is ready and also a new message for the subscription is available, then the timer is executed first and after it the subscription. Such a behavior cannot be defined currently with the rclcpp Executor and is useful to implement a deterministic execution semantics.
 
