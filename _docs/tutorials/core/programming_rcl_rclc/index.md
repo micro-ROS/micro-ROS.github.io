@@ -748,7 +748,7 @@ Likewise, a second publisher `my_int_pub, which publishes an int message and its
     printf("Created timer with timeout %d ms.\n", timer_int_timeout);
   }
 ```
-Note, that the `my_timer_int_callback` is connected to the `my_int_timer`. The data variables used for the publisher messages in the timer callbacks need to be initialized first:
+Note that the `my_timer_int_callback` is connected to the `my_int_timer`. The data variables used for the publisher messages in the timer callbacks need to be initialized first:
 
 ```C
 std_msgs__msg__Int32__init(&int_pub_msg);
