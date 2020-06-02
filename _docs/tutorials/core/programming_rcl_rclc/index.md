@@ -529,7 +529,7 @@ bool pub_trigger(rclc_executor_handle_t * handles, unsigned int size, void * obj
   bool timer2 = false;
   //printf("pub_trigger ready set: ");
   for (unsigned int i = 0; i < size; i++) {
-    if (handles[i].data_available == true) {
+    if (handles[i].data_available) {
       void * handle_ptr = rclc_executor_handle_get_ptr(&handles[i]);
       if (handle_ptr == comm_obj->timer1) {
         timer1 = true;
