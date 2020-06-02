@@ -269,7 +269,7 @@ void my_timer_callback(rcl_timer_t * timer, int64_t last_call_time)
       printf("Error in timer_callback: Message %s could not be published\n", pub_msg.data.data);
     }
   } else {
-    printf("timer_callback Error: timer parameter is NULL\n");
+    printf("Error in timer_callback: timer parameter is NULL\n");
   }
 }
 ```
