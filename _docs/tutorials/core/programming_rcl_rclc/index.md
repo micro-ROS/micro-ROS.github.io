@@ -684,7 +684,7 @@ int main(int argc, const char * argv[])
   }
 ```
 
-First rcl is initialized with the `rclc_support_init` using the default `allocator`. The rclc-support objects are saved in `support`. Next, a node `my_node`with the name `node_0`and namespace `executor_examples`is created with:
+First rcl is initialized with the `rclc_support_init` using the default `allocator`. The rclc-support objects are saved in `support`. Next, a node `my_node` with the name `node_0` and namespace `executor_examples` is created with:
 ```C
 // create rcl_node
   rcl_node_t my_node = rcl_get_zero_initialized_node();
