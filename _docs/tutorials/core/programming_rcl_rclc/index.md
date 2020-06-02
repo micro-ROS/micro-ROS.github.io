@@ -695,7 +695,7 @@ First rcl is initialized with the `rclc_support_init` using the default `allocat
   }
 ```
 
-A publisher `my_string_pub`, which publishes a string message and its corresponding timer `my_string_timer`with a 100ms period is created like this:
+A publisher `my_string_pub`, which publishes a string message and its corresponding timer `my_string_timer` with a 100ms period is created like this:
 ```C
 // create a publisher 1
   // - topic name: 'topic_0'
