@@ -273,7 +273,7 @@ void my_timer_callback(rcl_timer_t * timer, int64_t last_call_time)
   }
 }
 ```
-After defining the callback functions, we present now the `main()` function. First, some initialization for ROS 2 is necessary to create later rcl objects. That is an `allocator` for dynamic memory allocation, and a `support` object, which contains some rcl-objects simplifying the initialization of an rcl-node, an rcl-subscription, an rcl-timer and an rclc-executor.
+After defining the callback functions, we present now the `main()` function. First, some initialization is necessary to create later rcl objects. That is an `allocator` for dynamic memory allocation, and a `support` object, which contains some rcl-objects simplifying the initialization of an rcl-node, an rcl-subscription, an rcl-timer and an rclc-executor.
 ```C
 int main(int argc, const char * argv[])
 {
