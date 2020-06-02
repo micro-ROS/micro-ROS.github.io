@@ -218,7 +218,7 @@ The rclc Executor provides a C API to manage the execution of subscription and t
 
 In this tutorial we provide two examples:
 - Example 1: Hello-World example consisting of one executor and one publisher, timer and subscription.
-- Example 2: Triggered Execution example, demonstrating the capability of synchronizing the execution of callbacks based on the availability of new messages
+- Example 2: Triggered execution example, demonstrating the capability of synchronizing the execution of callbacks based on the availability of new messages
 
 
 Further examples for using the rclc Executor in mobile robotics scenarios and real-time embedded applications can be found in the [rclc](https://github.com/micro-ROS/rclc/tree/master/rclc) repository.
