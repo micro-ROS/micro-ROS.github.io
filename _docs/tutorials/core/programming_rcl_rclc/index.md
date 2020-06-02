@@ -214,7 +214,7 @@ if (rc != RCL_RET_OK) {
 ```
 
 ## <a name="rclc_executor"/>RCLC Executor
-The rclc Executor provides a C-API to manage to execute communication objects, like subscriptions and timers, the same way as the rclcpp Executor does for C++. Due to the complex semantics of the rclcpp Executor, it is difficult to reason about end-to-end latencies and to give real-time guarantees. To improve determinism, the rclc Executor provides also some additional features.
+The rclc Executor provides a C API to manage the execution of subscription and timer callbacks, similar to the [rclcpp Executor](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/executor.hpp) for C++. The rclc Executor is optimized for resource-constrained devices and provides additional features that allow the manual implementation of deterministic schedules with bounded end-to-end latencies.
 
 In this tutorial we provide two examples:
 - Example 1: Hello-World example consisting of one executor and one publisher, timer and subscription.
