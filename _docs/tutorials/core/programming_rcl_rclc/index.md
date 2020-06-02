@@ -755,7 +755,7 @@ std_msgs__msg__Int32__init(&int_pub_msg);
 int_pub_value = 0;
 string_pub_value = 0;
 ```
-The first subscription `my_string_sub` is created with the function `rcl_subscription_init` because we change the quality-of-service parameter to 'last-is-best'. That is, a new message will overwrite the older message, if it has not been processed by the subscription. Also the message `string_sub_msg` needs to be initialized.
+The first subscription `my_string_sub` is created with the function `rcl_subscription_init` because we change the quality-of-service parameter to 'last-is-best'. That is, a new message will overwrite the older message if it has not been processed by the subscription. Also the message `string_sub_msg` needs to be initialized.
 ```C
 // create subscription 1
   rcl_subscription_t my_string_sub = rcl_get_zero_initialized_subscription();
