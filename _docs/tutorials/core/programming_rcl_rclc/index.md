@@ -357,7 +357,7 @@ Now, all preliminary steps are done, and you can define and initialized the rclc
   rclc_executor_t executor;
   executor = rclc_executor_get_zero_initialized_executor();
 ```
-In the next step, executor is initialized with the ROS 2 `context`, the number of communication objects `num_handles` and an `allocator`. The number of communication objects defines the total number of times and subscriptions, the executor shall manage. In this example, the executor will be setup with one timer and one subscription.
+In the next step, executor is initialized with the ROS 2 `context`, the number of communication objects `num_handles` and an `allocator`. The number of communication objects defines the total number of timers and subscriptions, the executor shall manage. In this example, the executor will be setup with one timer and one subscription.
 
 ```C
   // total number of handles = #subscriptions + #timers
