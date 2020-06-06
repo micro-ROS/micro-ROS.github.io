@@ -71,16 +71,14 @@ make menuconfig
 
 This will open the NuttX menu config, which allows you to modify the configuration of the RTOS, including adding a new application.
 
-
 - On the menu, follow the path:
 ``Application Configuration -> Examples ``
-![](imgs/nuttx_menuconfig.png)
+![](../imgs/nuttx_menuconfig.png)
 
 - A list of the available applications will appear. You need to find: ``micro-ROS Ping-Pong`` and click ``y`` to add it.
-![](imgs/nuttx_examples.png)
+![](../imgs/nuttx_examples.png)
 
 - Now push three times the key ``ESC`` to close the menu. You will be asked if you want to save your new configuration, and you need to click ``Yes``.
-
 
 To save your configuration execute the following commands:
 

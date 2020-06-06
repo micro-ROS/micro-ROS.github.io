@@ -4,7 +4,7 @@
 
 Olimex development board is connected to the computer using the usb to serial cable:
 
-<img width="400" style="padding-right: 25px;" src="imgs/5.jpg">
+<img width="400" style="padding-right: 25px;" src="../imgs/5.jpg">
 
 ***TIP:** Color codes are applicable to [this cable](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/). Make sure to match Olimex Rx with Cable Tx and vice-versa. Remember GND!*
 

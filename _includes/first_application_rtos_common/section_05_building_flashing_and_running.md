@@ -13,11 +13,11 @@ Flashing the firmware into the platform may vary across hardware platforms. Rega
 
 Connect [Olimex ARM-USB-TINY-H](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY-H/) to the board:
 
-<img width="400" style="padding-right: 25px;" src="imgs/2.jpg">
+<img width="400" style="padding-right: 25px;" src="../imgs/2.jpg">
 
 Make sure that the board power supply jumper (PWR_SEL) is in the 3-4 position in order to power the board from the JTAG connector:
 
-<img width="400" style="padding-right: 25px;" src="imgs/1.jpg">
+<img width="400" style="padding-right: 25px;" src="../imgs/1.jpg">
 
 Once you have your computer connected to the Olimex board through the JTAG adapter, run the flash step:
 
