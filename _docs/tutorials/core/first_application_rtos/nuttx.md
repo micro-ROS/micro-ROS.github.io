@@ -105,3 +105,5 @@ ros2 run micro_ros_setup configure_firmware.sh uros_pingpong
 |  Zephyr  | USB                       |
 
 {% include first_application_rtos_common/section_06_agent.md %}
+
+This completes the First micro-ROS Application on NuttX tutorial. Do you want to [go back](../) and try a different RTOS, i.e. FreeRTOS or Zephyr?
