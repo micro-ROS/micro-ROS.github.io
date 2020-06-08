@@ -1,50 +1,60 @@
 ---
-title: NSH console over UART
-permalink: /docs/tutorials/advanced/nuttx/nsh_uart/
+title: NSH console over UART & USB
+permalink: /docs/tutorials/advanced/nuttx/nsh/
 ---
 
-|  RTOS |  Board Compatible |
-|:-----:|:-----------------:|
+| RTOS  | Board compatible  |
+| :---: | :---------------: |
 | NuttX | Olimex-STM32-E407 |
 
-NSH is a system console that can be used through different interfaces. In this tutorial, we will show how to use it over the UART peripheral. The UART (Universal Asynchronous Receiver-Transmitter) is a communication peripheral implemented on a micro-controller, which allows bidirectional serial communication.
+NSH is a system console that can be used through different interfaces.
+In this tutorial, we will show how to use it over the UART and USB peripherals.
 
 ## Hardware requirements:
+
 - [Olimex-STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)
 - [JTAG Flasher device](https://www.olimex.com/Products/ARM/JTAG/ARM-USB-TINY/)
 - USB-TTL232 cable.
+- Mini USB cable.
 
 ## Create the firmware
 
-For this tutorial we're going to execute the following configuration in the Micro-ROS build system:
+For this tutorial we are going to execute the following configuration in micro-ros-build:
+
 ```bash
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
+# For UART
 ros2 run micro_ros_setup configure_firmware.sh nsh_uart
+# For USB
+ros2 run micro_ros_setup configure_firmware.sh nsh
 ```
 
 Once the board is configured, we need to build it by typing the command:
+
 ```bash
 ros2 run micro_ros_setup build_firmware.sh
 ```
 
-If the compilation succeds, it should return this output:
+If the compilation succeeds, it should return this output:
 ```bash
 CP: nuttx.hex
 CP: nuttx.bin
 ```
-## Flash the firmware
 
-The firmware is ready, it is just necessary to upload it. Now you need to do the following connection:
+# Flash the firmware
+
+The firmware is ready, it is just necessary to upload it.
+Now you need to do the following connections:
 - Connect the JTAG flasher device.
-- Connect the USB TTL-232 with these pins out:
-    - `USART3 TX` -> `TTL232 RX`
-    - `USART3 RX` -> `TTL232 TX`
-    - `GND Board` -> `TTL232 GND`
+- Connect the USB TTL-232 to the USART3 in case of UART communication:
+  - `USART3 TX` -> `TTL232 RX`
+  - `USART3 RX` -> `TTL232 TX`
+  - `GND Board` -> `TTL232 GND`
 
-It should look like this:
 ![](images/olimex_uart.jpg)
+- Connect the mini USB to the OTG2 for USB communication.
 
-Note: You can find multiple USB-TTL232 devices available. But, even though the Olimex board is 5V tolerant, we recommend to use a 3V3 USB-TTL232 cable. The [Olimex Official cable](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/) is our recommendation but any is compatible.
+![](images/olimex_nsh_usb.jpg)
 
 Now flash the board by typing the next command:
 ```bash
@@ -52,15 +62,21 @@ ros2 run micro_ros_setup flash_firmware.sh
 ```
 
 This should return this output once the process is finished:
+
 ```bash
 wrote 49152 bytes from file nuttx.bin in 6.279262s (7.644 KiB/s)
 Info : Listening on port 6666 for tcl connections
 Info : Listening on port 4444 for telnet connections
 ```
+
 ## Connect to the console
 
-Finally, connect the USB cable to the PC and open a terminal. Type the command ``dmesg`` to know the direction of the device. It should return something like this:
+Finally, to use the NSH console you need to follow the steps listed below:
+- Push the reset button. The green LED will turn on to say that it is working properly.
+- Look for the device by typing `dmesg` on the console, this should return something like this:
+
 ```bash
+# For UART
 [17154.225244] usb 1-2: new full-speed USB device number 6 using xhci_hcd
 [17154.380060] usb 1-2: New USB device found, idVendor=0403, idProduct=6001, bcdDevice= 6.00
 [17154.380066] usb 1-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
@@ -75,16 +91,30 @@ Finally, connect the USB cable to the PC and open a terminal. Type the command `
 [17154.402762] usb 1-2: Detected FT232RL
 [17154.403058] usb 1-2: FTDI USB Serial Device converter now attached to ttyUSB0
 
+# For USB
+[20614.570781] usb 1-2: new full-speed USB device number 7 using xhci_hcd
+[20614.724366] usb 1-2: New USB device found, idVendor=0525, idProduct=a4a7, bcdDevice= 1.01
+[20614.724372] usb 1-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[20614.724375] usb 1-2: Product: CDC/ACM Serial
+[20614.724378] usb 1-2: Manufacturer: NuttX
+[20614.724381] usb 1-2: SerialNumber: 0
+[20614.745693] cdc_acm 1-2:1.0: ttyACM0: USB ACM device
+[20614.746274] usbcore: registered new interface driver cdc_acm
+[20614.746277] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
 ```
-
-In this specific situation, the device is assigned to ``dev/ttyUSB0`` but it could be a different number.
+In this specific situation, the device is assigned to `dev/ttyUSB0` and `dev/ttyACM0` for UART and USB communication respectively. Note that the last number could be different.
 
 Finally, execute the next command to open the NSH console:
 ```
+# For UART
 sudo minicom -D /dev/ttyUSB0
+
+# For USB
+sudo minicom -D /dev/ttyACM0
 ```
 
-Once the application is executed, push enter and it should return the next menu:
+Once the port is opened, **you need to push two times the Enter key** and it should show the next menu:
+
 ```bash
 nsh> ?
 help usage:  help [-v] [<cmd>]
@@ -96,5 +126,3 @@ help usage:  help [-v] [<cmd>]
 Builtin Apps:
 nsh>
 ```
-
-Note: If you don't succeed with theses steps, check if you set a baud rate of 115200 bps and the configuration is set to 8N1 with no hardware and software flow control.
