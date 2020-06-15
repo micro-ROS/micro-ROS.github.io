@@ -1,6 +1,6 @@
 The target hardware for this tutorial is the **[Olimex STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)** evaluation board.
 
-First of all, make sure that you have a **ROS 2** environment and the **micro-ROS build system** installed in the computer. If not, please check the [**First micro-ROS application on Linux**](../first_application_linux/) tutorial in order to learn how to start with micro-ROS.
+First of all, make sure that you have a **ROS 2** environment and the **micro-ROS build system** installed in the computer. If not, please check the [**First micro-ROS application on Linux**](../../first_application_linux/) tutorial in order to learn how to start with micro-ROS.
 
 The build system's workflow in the case of embedded systems is a four-step procedure:
 
