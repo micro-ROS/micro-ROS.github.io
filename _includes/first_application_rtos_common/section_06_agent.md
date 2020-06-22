@@ -102,3 +102,24 @@ stamp:
 frame_id: fake_ping
 ---
 ```
+
+### Multiple Ping Pong nodes
+
+If you have multiple boards, by connecting them to the same ROS 2 space it is possible to see them interacting. In the case you only have one board, it is possible to see your micro-ROS ping pong app running on hardware interacting with the [ping pong app from the Linux tutorial](../../first_application_linux). When multiple ping pong nodes coexists, it is possible to see their output like this micro-ROS for Linux app:
+
+```
+UDP mode => ip: 127.0.0.1 - port: 8888
+Ping send seq 1711620172_1742614911                      <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"
+Pong for seq 1711620172_1742614911 (1)                   <---- The first mate pongs my ping 
+Pong for seq 1711620172_1742614911 (2)                   <---- The second mate pongs my ping 
+Pong for seq 1711620172_1742614911 (3)                   <---- The third mate pongs my ping 
+Ping received with seq 1845948271_546591567. Answering.  <---- A ping is received from a mate identified as "546591567", let's pong it.
+Ping received with seq 232977719_1681483056. Answering.  <---- A ping is received from a mate identified as "1681483056", let's pong it.
+Ping received with seq 1134264528_1107823050. Answering. <---- A ping is received from a mate identified as "1107823050", let's pong it.
+Ping send seq 324239260_1742614911
+Pong for seq 324239260_1742614911 (1)
+Pong for seq 324239260_1742614911 (2)
+Pong for seq 324239260_1742614911 (3)
+Ping received with seq 1435780593_546591567. Answering.
+Ping received with seq 2034268578_1681483056. Answering.
+```

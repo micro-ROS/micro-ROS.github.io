@@ -1,1 +1,5 @@
-After you have completed the [First micro-ROS application on Linux tutorial](../../first_application_linux), you are know ready to flash a microcontroller with this application based on a Real-Time Operating System (RTOS). Micro-ROS currently supports three different RTOS, namely NuttX, FreeRTOS, and Zephyr.
+After you have completed the [First micro-ROS application on Linux tutorial](../../first_application_linux), you are now ready to flash a microcontroller with this application based on a Real-Time Operating System (RTOS). Micro-ROS currently supports three different RTOS, namely NuttX, FreeRTOS, and Zephyr.
+
+To follow this tutorial, it is assumed that the user is already familiar with the **[First micro-ROS Application on an RTOS](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/)** tutorial. The target app in this tutorial is the same ping pong app. Another requirement is that the user has a basic knowledge of micro-ROS and ROS 2.
+
+The target app in this tutorial is the same ping pong app. Another requirement is that the user has a basic knowledge of micro-ROS and ROS 2.
