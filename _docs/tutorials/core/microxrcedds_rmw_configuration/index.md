@@ -1,14 +1,14 @@
 ---
-title: Optimizing the Middleware Configuration
+title: Middleware Configuration
 permalink: /docs/tutorials/core/microxrcedds_rmw_configuration/
 ---
 
 micro-ROS targets microcontroller, devices with low memory resources.
 With that in mind, micro-ROS try to address the memory management issue prioritizing the use of static memory instead of dynamic memory and optimizing the memory footprint of the applications. This, of course, has a cost that the users must agree to pay, a precompile tunning.
 
-This tutorial explains which are the memory resources managed by micro-ROS and how to tune them for a particular application.
+This tutorial explains which are the memory resources managed by micro-ROS and how to tune them for a particular application. It also address the RMW run-time configuration API where the user can configure micro-ROS Agent endpoints or Micro XRCE-DDS session client key.
 
-## Memory resources
+## Memory resources optimization
 
 micro-ROS deal with two different memory resources related with Micro XRCE-DDS library and its RMW implementation named rmw-microxrcedds.
 
@@ -78,3 +78,37 @@ For example, the [ping-pong](https://micro-ros.github.io//docs/tutorials/core/fi
   }
 }
 ```
+
+## Run-time configuration
+
+There are some build time parameters related to client to agent connection (such as **CONFIG_RMW_DEFAULT_UDP_PORT**, **CONFIG_RMW_DEFAULT_UDP_IP** and **CONFIG_RMW_DEFAULT_SERIAL_DEVICE**) that can be configured both at build time or at run-time. This means that you can set them in the mentioned [configuration file](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/config/host/generic/client-host-colcon.meta) and that micro-ROS provides a user configuration API for configuring some RMW and middleware parameters at run-time.
+
+The following example code shows the [API](https://github.com/micro-ROS/rmw-microxrcedds/blob/dashing/rmw_microxrcedds_c/include/rmw_uros/options.h) calls needed to set the agent's IP address, port or serial device:
+
+```c 
+#include <rmw_uros/options.h>
+
+// Init RCL options and context
+rcl_init_options_t init_options = rcl_get_zero_initialized_init_options();
+rcl_context_t context = rcl_get_zero_initialized_context();
+rcl_init_options_init(&init_options, rcl_get_default_allocator());
+
+// Take RMW options from RCL options
+rmw_init_options_t* rmw_options = rcl_init_options_get_rmw_init_options(&init_options);
+
+// TCP/UDP case: Set RMW IP parameters
+rmw_uros_options_set_udp_address("127.0.0.1", "8888", rmw_options);
+
+// Serial case: Set RMW serial device parameters
+mw_uros_options_set_serial_device("/dev/ttyAMA0", rmw_options)
+
+// Set RMW client key
+rmw_uros_options_set_client_key(0xBA5EBA11, rmw_options);
+
+// Init RCL
+rcl_init(0, NULL, &init_options, &context);
+
+// ... micro-ROS code ...
+```
+
+Notice that is also possible to set the Micro XRCE-DDS `client_key`, which would otherwise be set randomly. This feature is useful for reusing DDS entities already created on the agent side. Further information can be found [here](https://micro-xrce-dds.readthedocs.io/en/latest/deployment.html#configurate-the-publisher).
