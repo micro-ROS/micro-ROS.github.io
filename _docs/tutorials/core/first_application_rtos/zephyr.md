@@ -27,8 +27,6 @@ sudo apt update
 sudo apt install cmake
 ```
 
-(The created workspace is platform- and RTOS-specific. Use `nuttx` or `freertos` instead of `zephyr` to choose NuttX or FreeRTOS, respectively.)
-
 {% include first_application_rtos_common/section_03_configuring_firmware.md %}
 
 |    RTOS    | `[APP]`         | `[OPTIONS]`                  |                                   Configured app                                   |
