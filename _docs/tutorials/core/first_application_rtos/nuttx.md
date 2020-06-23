@@ -16,8 +16,6 @@ In this tutorial, you'll learn the use of micro-ROS with NuttX.
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 ```
 
-(The created workspace is platform- and RTOS-specific. Use `freertos` or `zephyr` instead of `nuttx` to choose FreeRTOS or Zephyr, respectively.)
-
 {% include first_application_rtos_common/section_03_configuring_firmware.md %}
 
 |  RTOS        | `[APP]`         | `[OPTIONS]`                  |                                  Configured app                                  |
