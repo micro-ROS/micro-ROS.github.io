@@ -20,7 +20,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 
 |  RTOS        | `[APP]`         | `[OPTIONS]`                  |                                  Configured app                                  |
 | :------: | --------------- | ---------------------------- | :------------------------------------------------------------------------------: |
-|  **NuttX**   | **`uros_pingpong`** |                              | [**Source**](https://github.com/micro-ROS/apps/tree/dashing/examples/uros_pingpong)  |
+|  **NuttX**   | **`uros_pingpong`** |                              | [**Source**](https://github.com/micro-ROS/apps/tree/feature/pingpong_app/examples/uros_pingpong)  |
 | FreeRTOS | `ping_pong`     | `--transport serial --dev 3` | [Source](https://github.com/micro-ROS/freertos_apps/tree/dashing/apps/ping_pong)  |
 |  Zephyr  | `ping_pong`     | `--transport serial-usb`     |  [Source](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong)  |
 
