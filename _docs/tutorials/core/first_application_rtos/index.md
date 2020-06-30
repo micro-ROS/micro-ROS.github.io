@@ -106,7 +106,7 @@ The files that a micro-ROS app needs are RTOS-dependent, but they differ only in
     <td rowspan="4">Nuttx</td>
     <td >app.c</td>
     <td >micro-ROS app code.</td>
-    <td rowspan="4"><a href="https://github.com/micro-ROS/apps/tree/dashing/examples/uros_pingpong">Sample app</a></td>
+    <td rowspan="4"><a href="https://github.com/micro-ROS/apps/tree/feature/pingpong_app/examples/uros_pingpong">Sample app</a></td>
   </tr>
   <tr>
     <td >Kconfig</td>
