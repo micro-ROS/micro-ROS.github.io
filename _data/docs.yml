@@ -61,7 +61,7 @@
    - tutorials/demos/crazyflie_demo
    - tutorials/demos/tof_demo
    - tutorials/demos/fiware_demo
-   - tutorials/demos/complete_demo
+   - tutorials/demos/combined_demos
 
 - title: Nuttx-specific Tutorials
   docs:

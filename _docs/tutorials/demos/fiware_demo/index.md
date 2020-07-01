@@ -1,5 +1,6 @@
 ---
-title: Interfacing with the FIWARE Context Broker
+title: Interfacing with FIWARE Context Broker
 permalink: /docs/tutorials/demos/fiware_demo/
 ---
-WIP
+
+Work-in-progress.
