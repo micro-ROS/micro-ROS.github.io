@@ -9,14 +9,16 @@ In addition to the above tutorials, we created a collection of demos that showca
 
 Choose yourself:
 
-|              | [**Kobuki Demo**](../kobuki_demo) | [**Crazyflie Demo**](../crazyflie_demo) | [**ToF Sensor Demo**](../tof_demo) |
+|              | [**Kobuki Demo**](../kobuki_demo/) | [**Crazyflie Demo**](../crazyflie_demo/) | [**ToF Sensor Demo**](../tof_demo/) |
 | --- | :-: | :-: | :-: |
 | _RTOS_       | NuttX                             | FreeRTOS                                | Zephyr                             |
 | _Hardware\*_ | Kobuki, Olimex LTD STM32-E407     | Crazyflie, radio, flow deck             | ST B-L475E-IOT01A Discovery kit    |
 | _HW Costs\*_ | ≈ 360$                            | ≈ 330$                                  | ≈ 60$                              |
 |              | <img src="kobuki.png" style="margin:auto;"/> | <img src="crazyflie.png" style="margin:auto;"/> |                 |
 
-<div style="font-size:80%;color:gray;text-align:right;">*As a matter of course, you'll need a computer/laptop, various cables,<br/>and further auxiliary equipment. The hardware costs are only<br/>a rough estimate and may depend on where you live.</div>
+<div style="font-size:80%;color:gray;text-align:right;margin-bottom:1em;">*As a matter of course, you'll need a computer/laptop, various cables, and<br/>further auxiliary equipment. The hardware costs are only a rough estimate.</div>
 
+The demos may also interface with the FIWARE Context Broker, which is the core of the [FIWARE](https://www.fiware.org/) open source initiative for context data management. Learn more at [**Interfacing with FIWARE Context Broker**](../fiware_demo/).
 
+Finally, the demos can be combined in several ways to demonstrate further functionalities. Turn to [**Combined Demos**](../combined_demos/) to learn more about these combinations and how to launch them.
 
