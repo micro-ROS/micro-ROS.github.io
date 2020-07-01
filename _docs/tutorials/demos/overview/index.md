@@ -14,7 +14,7 @@ Choose yourself:
 | _RTOS_       | NuttX                             | FreeRTOS                                | Zephyr                             |
 | _Hardware\*_ | Kobuki, Olimex LTD STM32-E407     | Crazyflie, radio, flow deck             | ST B-L475E-IOT01A Discovery kit    |
 | _HW Costs\*_ | ≈ 360$                            | ≈ 330$                                  | ≈ 60$                              |
-|              | <img src="kobuki.png" style="margin:auto;"/> | <img src="crazyflie.png" style="margin:auto;"/> |                 |
+|              | <img src="kobuki.png" style="margin:auto;"/> | <img src="crazyflie.png" style="margin:auto;"/> |  <img src="tof_sensor.png" style="margin:auto;"/> |
 
 <div style="font-size:80%;color:gray;text-align:right;margin-bottom:1em;">*As a matter of course, you'll need a computer/laptop, various cables, and<br/>further auxiliary equipment. The hardware costs are only a rough estimate.</div>
 
