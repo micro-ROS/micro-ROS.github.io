@@ -7,9 +7,15 @@ This tutorial teaches you how to create a first micro-ROS application on Linux f
 
 ## Installing ROS 2 and the micro-ROS build system
 
-First of all, let's take a Ubuntu 18.04 LTS computer and install **ROS 2 Dashing Diademata**:
+These instructions will setup a workspace with a ready-to-use micro-ROS build system. This build system is in charge of downloading the required cross-compilation tools and building the apps for the required platforms.
 
-```
+There are two options, either installing **ROS 2 Dashing Diademata** on Ubuntu 18.04 LTS or using Docker.
+
+### Installing the micro-ROS build system on **ROS 2 Dashing Diademata** on Ubuntu 18.04 LTS
+
+First of all, let’s take a Ubuntu 18.04 LTS computer and install **ROS 2 Dashing Diademata**:
+
+```bash
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -22,15 +28,15 @@ sudo apt update
 sudo apt install ros-dashing-desktop
 ```
 
-Once you have a **ROS 2** installation in the computer, follow these steps to install the micro-ROS build system:
+Once you have a **ROS 2** installation on the computer, follow these steps to install the micro-ROS build system:
 
 ```bash
 # Source the ROS 2 installation
 source /opt/ros/$ROS_DISTRO/setup.bash
 
 # Create a workspace and download the micro-ROS tools
-mkdir microros_ws 
-cd microros_ws
+mkdir uros_ws
+cd uros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
 # Update dependencies using rosdep
@@ -42,9 +48,13 @@ colcon build
 source install/local_setup.bash
 ```
 
-***TIP:** if you are familiar with Docker containers, this image may be useful: [micro-ros:base](https://github.com/micro-ROS/docker/blob/dashing/base/Dockerfile)*
+### Installing the micro-ROS build system using Docker
 
-These instructions will setup a workspace with a ready-to-use micro-ROS build system. This build system is in charge of downloading the required cross-compilation tools and building the apps for the required platforms. 
+```bash
+docker run -it microros/base:dashing
+```
+
+## micro-ROS build system workflow
 
 The build system's workflow is a four-step procedure:
 
@@ -84,7 +94,7 @@ For this example we are going to create a ping pong app where a node sends a pin
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
-The app logic of this demo is contained in  [`app.c`](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/ping_pong/main.c). A thorough review of this file can show how to create a micro-ROS publisher or subscriber, as shown below. 
+The app logic of this demo is contained in  [`app.c`](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/ping_pong/main.c). A thorough review of this file can show how to create a micro-ROS publisher or subscriber, as shown below.
 
 **For more in depth learning about RCL and RCLC programming [check this section](https://micro-ros.github.io/docs/tutorials/core/programming_rcl_rclc/).**
 ```c
@@ -102,7 +112,7 @@ The app logic of this demo is contained in  [`app.c`](https://github.com/micro-R
   rcl_subscription_t pong_subscription = rcl_get_zero_initialized_subscription();
   rcl_subscription_init(&pong_subscription, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Header), "/microROS/pong", &pong_subscription_ops);
 ...
-... 
+...
     // Check if some pong message is received
     if (wait_set.subscriptions[index_pong_subscription]) {
       rc = rcl_take(wait_set.subscriptions[index_pong_subscription], &rcv_msg, NULL, NULL);
@@ -143,7 +153,7 @@ Then run the agent:
 ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 ```
 
-Then run the app in another command line (remember sourcing ROS 2 and micro-ROS installation): 
+Then run the app in another command line (remember sourcing ROS 2 and micro-ROS installation):
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
@@ -234,7 +244,7 @@ frame_id: fake_ping
 One of the advantages of having an Linux micro-ROS app is that you don't need to buy a bunch of hardware in order to test some multi-node micro-ROS apps. So, with the same micro-ROS agent of the last section, let's open four different command lines and run the following on each:
 
 ```bash
-cd microros_ws
+cd uros_ws
 
 source /opt/ros/$ROS_DISTRO/setup.bash
 source install/local_setup.bash
@@ -248,9 +258,9 @@ As soon as all micro-ROS nodes are up and connected to the micro-ROS agent you w
 user@user$ ros2 run micro_ros_demos_rcl my_brand_new_app
 UDP mode => ip: 127.0.0.1 - port: 8888
 Ping send seq 1711620172_1742614911                         <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"
-Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping 
-Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping 
-Pong for seq 1711620172_1742614911 (3)                      <---- The third mate pongs my ping 
+Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping
+Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping
+Pong for seq 1711620172_1742614911 (3)                      <---- The third mate pongs my ping
 Ping received with seq 1845948271_546591567. Answering.     <---- A ping is received from a mate identified as "546591567", let's pong it.
 Ping received with seq 232977719_1681483056. Answering.     <---- A ping is received from a mate identified as "1681483056", let's pong it.
 Ping received with seq 1134264528_1107823050. Answering.    <---- A ping is received from a mate identified as "1107823050", let's pong it.
