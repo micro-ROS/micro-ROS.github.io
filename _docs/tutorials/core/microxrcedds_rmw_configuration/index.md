@@ -4,41 +4,43 @@ permalink: /docs/tutorials/core/microxrcedds_rmw_configuration/
 ---
 
 micro-ROS targets microcontroller, devices with low memory resources.
-With that in mind, micro-ROS try to address the memory management issue prioritizing the use of static memory instead of dynamic memory and optimizing the memory footprint of the applications. This, of course, has a cost that the users must agree to pay, a precompile tunning.
+With that in mind, micro-ROS try to address the memory management issue prioritizing the use of static memory instead of dynamic memory and optimizing the memory footprint of the applications.
+This, of course, has a cost that the users must agree to pay, a precompile tunning.
 
-This tutorial explains which are the memory resources managed by micro-ROS and how to tune them for a particular application. It also address the RMW run-time configuration API where the user can configure micro-ROS Agent endpoints or Micro XRCE-DDS session client key.
+This tutorial explains which are the memory resources managed by micro-ROS and how to tune them for a particular application.
+It also addresses the RMW run-time configuration API where the user can configure the micro-ROS Agent endpoints or the Micro XRCE-DDS session `client_key`.
 
 ## Memory resources optimization
 
-micro-ROS deal with two different memory resources related with Micro XRCE-DDS library and its RMW implementation named rmw-microxrcedds.
+micro-ROS deals with two different memory resources related with the Micro XRCE-DDS library and its RMW implementation named rmw-microxrcedds.
 
 ### Micro XRCE-DDS
 
-Micro XRCE-DDS messages flows between Client and Agent throw **streams**.
-A stream represents an independent ordered flow of information, that is, it is a sort of messaging queue.
+Micro XRCE-DDS messages flow between Client and Agent throw **streams**.
+A stream represents an independent ordered flow of information, so it is a sort of messaging queue.
 There are two kinds of streams, **best-effort** and **reliable**.
-Both, best-effort and reliable streams, have a raw buffer (`uint8_t` array) associated with them, but the layout is different.
+Both best-effort and reliable streams, have a raw buffer (`uint8_t` array) associated with them, but the layout is different.
 
 On the one hand, best-effort streams could be interpreted as a single message queue.
-Therefore, the raw buffer a single data buffer where only one message is popped/pushed.
+Therefore, the raw buffer is a single data buffer where only one message is popped/pushed.
 
 ![](./imgs/best_effort_stream.svg)
 
-On the other hand, reliable streams contains multiple messages which are popped/pushed according to the reliable communication protocol described in the DDS-XRCE specification.
-It is achieved splitting the raw buffer into chucks, each one of those could contain a single message.
+On the other hand, reliable streams contain multiple messages which are popped/pushed according to the reliable communication protocol described in the DDS-XRCE specification.
+It is achieved splitting the raw buffer into chucks, each of which each contains a single message.
 
 ![](./imgs/reliable_strea.svg)
 
-The size of the best-effort and reliable stream can be set by two sets of CMake flags.
+The size of the best-effort and reliable stream can be configured by two sets of CMake flags.
 
-* `UCLIENT_UDP_TRANSPORT_MTU`, `UCLIENT_TCP_TRANSPORT_MTU` and `UCLIENT_SERIAL_TRANSPORT_MTU` (depending of the transport selected): control the size of the best-effort stream buffer which matches with the size of each chunk of the reliable stream.
+* `UCLIENT_UDP_TRANSPORT_MTU`, `UCLIENT_TCP_TRANSPORT_MTU` and `UCLIENT_SERIAL_TRANSPORT_MTU` (depending on the transport selected): these flags control the size of the best-effort stream buffer which matches with the size of each chunk of the reliable stream.
 * `RMW_UXRCE_MAX_HISTORY`: sets the number of slots for the reliable streams.
 
 The size of the stream sets indirectly the maximum message size (MMS) of the micro-ROS application.
 This MMS is (`UCLIENT_<XXX>_TRANSPORT_MTU` - 12 B) for best-effort messages and (`UCLIENT_<XXX>_TRANSPORT_MTU` * (`RMW_UXRCE_MAX_HISTORY` - 12 B)) in the case of reliable messages.
 
 The use of best-effort or reliable stream is handled by the `rmw_qos_reliability_policy_t` set in the `rmw_qos_profile_t` for a particular publisher or subscription.
-In the case of `RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT` best-effort streams are used and for `RMW_QOS_POLICY_RELIABILITY_RELIABLE` reliable streams.
+In the case of `RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT` best-effort streams are used and for `RMW_QOS_POLICY_RELIABILITY_RELIABLE` reliable streams are used instead.
 
 ### rmw-microxrcedds
 
@@ -48,16 +50,16 @@ The size of these memory pools could be set through CMake flags,
 for example, the `RMW_UXRCE_MAX_PUBLISHERS` sets the size of the `rcl_publisher_t`'s pool memory.
 It should be noted that the size of these memory pools restricts the maximum number of entities that a micro-ROS application could use.
 
-The figure below summarizes the relation between the `rcl` entities and the CMake flags, which the size of the memory pool associated with such entity.
+The figure below summarizes the relation between the `rcl` entities and the CMake flags, which set the size of the memory pool associated with such entities.
 
 ![](./imgs/micro_ros_memory.svg)
 
 Another important memory resource managed by the rmw-microxrcedds is the message history.
-The rmw-microxrcedds uses static-memory message queue in order to keep the subscription messages before the user read these.
+The rmw-microxrcedds uses a static-memory message queue where to to keep the subscription messages before the user reads them.
 The size of this message queue could be set by the `RMW_UXRCE_MAX_HISTORY`.
 
-It is worth noting that all the afore mentioned CMake flags shall be set in a `.meta` for each platform supported in [micro-ros-build](https://github.com/micro-ROS/micro-ros-build).
-For example, the [ping-pong](https://micro-ros.github.io//docs/tutorials/core/first_application_linux/) the host [configuration file](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/config/host/generic/client-host-colcon.meta) which can be optimized with the following modifications:
+It is worth noting that all the aforementioned CMake flags shall be set in a `.meta` for each platform supported in [micro-ros-build](https://github.com/micro-ROS/micro-ros-build).
+For example, in the [ping-pong application](https://micro-ros.github.io//docs/tutorials/core/first_application_linux/) the host [configuration file](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/config/host/generic/client-host-colcon.meta) can be optimized with the following modifications:
 
 ```
 {
@@ -81,11 +83,12 @@ For example, the [ping-pong](https://micro-ros.github.io//docs/tutorials/core/fi
 
 ## Run-time configuration
 
-There are some build time parameters related to client to agent connection (such as **CONFIG_RMW_DEFAULT_UDP_PORT**, **CONFIG_RMW_DEFAULT_UDP_IP** and **CONFIG_RMW_DEFAULT_SERIAL_DEVICE**) that can be configured both at build time or at run-time. This means that you can set them in the mentioned [configuration file](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/config/host/generic/client-host-colcon.meta) and that micro-ROS provides a user configuration API for configuring some RMW and middleware parameters at run-time.
+There are some build time parameters related to Client-to-Agent connection (such as **CONFIG_RMW_DEFAULT_UDP_PORT**, **CONFIG_RMW_DEFAULT_UDP_IP** and **CONFIG_RMW_DEFAULT_SERIAL_DEVICE**) that can be configured either at build time or at run-time.
+This means that you can set them in the [configuration file](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/config/host/generic/client-host-colcon.meta) mentioned above and that micro-ROS provides a user configuration API for setting some RMW and middleware parameters at run-time.
 
 The following example code shows the [API](https://github.com/micro-ROS/rmw-microxrcedds/blob/dashing/rmw_microxrcedds_c/include/rmw_uros/options.h) calls needed to set the agent's IP address, port or serial device:
 
-```c 
+```c
 #include <rmw_uros/options.h>
 
 // Init RCL options and context
@@ -111,4 +114,4 @@ rcl_init(0, NULL, &init_options, &context);
 // ... micro-ROS code ...
 ```
 
-Notice that is also possible to set the Micro XRCE-DDS `client_key`, which would otherwise be set randomly. This feature is useful for reusing DDS entities already created on the agent side. Further information can be found [here](https://micro-xrce-dds.readthedocs.io/en/latest/deployment.html#configurate-the-publisher).
+Notice that it is also possible to set the Micro XRCE-DDS `client_key`, which would otherwise be set randomly. This feature is useful for reusing DDS entities already created on the agent side. Further information can be found [here](https://micro-xrce-dds.readthedocs.io/en/latest/deployment.html#configurate-the-publisher).
