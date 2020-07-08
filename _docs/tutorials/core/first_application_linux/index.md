@@ -17,7 +17,7 @@ export LANG=en_US.UTF-8
 sudo apt update && sudo apt install curl gnupg2 lsb-release
 curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 
-sudo sh -c 'echo "deb http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
+sudo sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
 sudo apt update
 sudo apt install ros-dashing-desktop
 ```
@@ -26,25 +26,28 @@ Once you have a **ROS 2** installation in the computer, follow these steps to in
 
 ```bash
 # Source the ROS 2 installation
-source /opt/ros/$ROS_DISTRO/setup.bash
+source /opt/ros/dashing/setup.bash
+sudo apt install git python-rosdep python3-colcon-common-extensions python3-vcstool python3-argcomplete -y
 
 # Create a workspace and download the micro-ROS tools
-mkdir microros_ws 
-cd microros_ws
+mkdir uros_ws
+cd uros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
 # Update dependencies using rosdep
+sudo rosdep init
 sudo apt update && rosdep update
 rosdep install --from-path src --ignore-src -y
 
 # Build micro-ROS tools and source them
 colcon build
+rm -rf log/ build/ src/*
 source install/local_setup.bash
 ```
 
 ***TIP:** if you are familiar with Docker containers, this image may be useful: [micro-ros:base](https://github.com/micro-ROS/docker/blob/dashing/base/Dockerfile)*
 
-These instructions will setup a workspace with a ready-to-use micro-ROS build system. This build system is in charge of downloading the required cross-compilation tools and building the apps for the required platforms. 
+These instructions will setup a workspace with a ready-to-use micro-ROS build system. This build system is in charge of downloading the required cross-compilation tools and building the apps for the required platforms.
 
 The build system's workflow is a four-step procedure:
 
@@ -63,18 +66,24 @@ Once the build system is installed, let's create a firmware workspace that targe
 ros2 run micro_ros_setup create_firmware_ws.sh host
 ```
 
-micro-ROS apps for Linux are located at `src/uros/micro-ROS-demos/rcl/`. In order to create a new application, create a new folder containing two files: the app code and the CMake file. You can check the complete content of these file [here](https://github.com/micro-ROS/micro-ROS-demos/tree/dashing/rcl/ping_pong).
+micro-ROS apps for Linux are located at `src/uros/micro-ROS-demos/rcl/`.
+
+In order to create a new application, create a new folder containing two files: the app code and the CMake file.
+
+You can check the complete content of these files [here](https://github.com/micro-ROS/micro-ROS-demos/tree/dashing/rcl/ping_pong).
+
+The files for the ping_pong app are created automatically, but in general the files need to be created for a new app like this:
 
 ```bash
 # Creating a new app
 pushd src/uros/micro-ROS-demos/rcl/
 mkdir ping_pong
 cd ping_pong
-touch app.c CMakeLists.txt
+touch main.c CMakeLists.txt
 popd
 ```
 
-Don't forget to register your app in `src/uros/micro-ROS-demos/rcl/CMakeLists.txt` by adding the following line:
+The ping_pong app has been automatically registered, but in general, new apps need to be registered by adding the following line in `src/uros/micro-ROS-demos/rcl/CMakeLists.txt`:
 
 ```
 export_executable(ping_pong)
@@ -84,7 +93,7 @@ For this example we are going to create a ping pong app where a node sends a pin
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
-The app logic of this demo is contained in  [`app.c`](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/ping_pong/main.c). A thorough review of this file can show how to create a micro-ROS publisher or subscriber, as shown below. 
+The app logic of this demo is contained in  [`main.c`](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/ping_pong/main.c). A thorough review of this file can show how to create a micro-ROS publisher or subscriber, as shown below.
 
 **For more in depth learning about RCL and RCLC programming [check this section](https://micro-ros.github.io/docs/tutorials/core/programming_rcl_rclc/).**
 ```c
@@ -102,7 +111,7 @@ The app logic of this demo is contained in  [`app.c`](https://github.com/micro-R
   rcl_subscription_t pong_subscription = rcl_get_zero_initialized_subscription();
   rcl_subscription_init(&pong_subscription, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Header), "/microROS/pong", &pong_subscription_ops);
 ...
-... 
+...
     // Check if some pong message is received
     if (wait_set.subscriptions[index_pong_subscription]) {
       rc = rcl_take(wait_set.subscriptions[index_pong_subscription], &rcv_msg, NULL, NULL);
@@ -143,7 +152,7 @@ Then run the agent:
 ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 ```
 
-Then run the app in another command line (remember sourcing ROS 2 and micro-ROS installation): 
+Then run the app in another command line (remember sourcing ROS 2 and micro-ROS installation):
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
@@ -234,7 +243,7 @@ frame_id: fake_ping
 One of the advantages of having an Linux micro-ROS app is that you don't need to buy a bunch of hardware in order to test some multi-node micro-ROS apps. So, with the same micro-ROS agent of the last section, let's open four different command lines and run the following on each:
 
 ```bash
-cd microros_ws
+cd uros_ws
 
 source /opt/ros/$ROS_DISTRO/setup.bash
 source install/local_setup.bash
@@ -248,9 +257,9 @@ As soon as all micro-ROS nodes are up and connected to the micro-ROS agent you w
 user@user$ ros2 run micro_ros_demos_rcl my_brand_new_app
 UDP mode => ip: 127.0.0.1 - port: 8888
 Ping send seq 1711620172_1742614911                         <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"
-Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping 
-Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping 
-Pong for seq 1711620172_1742614911 (3)                      <---- The third mate pongs my ping 
+Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping
+Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping
+Pong for seq 1711620172_1742614911 (3)                      <---- The third mate pongs my ping
 Ping received with seq 1845948271_546591567. Answering.     <---- A ping is received from a mate identified as "546591567", let's pong it.
 Ping received with seq 232977719_1681483056. Answering.     <---- A ping is received from a mate identified as "1681483056", let's pong it.
 Ping received with seq 1134264528_1107823050. Answering.    <---- A ping is received from a mate identified as "1107823050", let's pong it.
