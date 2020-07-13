@@ -33,9 +33,6 @@ mkdir microros_ws
 cd microros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
-# Install rosdep
-sudo apt install python-rosdep
-
 # Update dependencies using rosdep
 sudo apt update && rosdep update
 rosdep install --from-path src --ignore-src -y
