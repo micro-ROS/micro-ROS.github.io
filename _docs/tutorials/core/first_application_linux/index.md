@@ -26,7 +26,7 @@ Once you have a **ROS 2** installation in the computer, follow these steps to in
 
 ```bash
 # Source the ROS 2 installation
-source /opt/ros/dashing/setup.bash
+source /opt/ros/$ROS_DISTRO/setup.bash
 
 # Create a workspace and download the micro-ROS tools
 mkdir microros_ws 
