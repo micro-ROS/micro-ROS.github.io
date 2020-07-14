@@ -7,19 +7,10 @@ This tutorial teaches you how to create a first micro-ROS application on Linux f
 
 ## Installing ROS 2 and the micro-ROS build system
 
-First of all, let's take a Ubuntu 18.04 LTS computer and install **ROS 2 Dashing Diademata**:
+First of all, install **ROS 2 Dashing Diademata** on your Ubuntu 18.04 LTS computer. To do so from sources, please follow the instructions [here](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Development-Setup/). To do so from binaries, via Debian packages, please follow the instructions detailed [here](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/). Alternatively, you can use a docker container with a fresh ROS 2 Dashing installation, by running the command:
 
-```
-sudo locale-gen en_US en_US.UTF-8
-sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-sudo apt update && sudo apt install curl gnupg2 lsb-release
-curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-
-sudo sh -c 'echo "deb http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
-sudo apt update
-sudo apt install ros-dashing-desktop
+```bash
+docker pull ros:dashing
 ```
 
 Once you have a **ROS 2** installation in the computer, follow these steps to install the micro-ROS build system:
@@ -33,9 +24,10 @@ mkdir microros_ws
 cd microros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
-# Install and initialize rosdep
+# Install rosdep and vcs
 sudo apt install python-rosdep
 sudo rosdep init
+pip install vcs
 
 # Update dependencies using rosdep
 sudo apt update && rosdep update
