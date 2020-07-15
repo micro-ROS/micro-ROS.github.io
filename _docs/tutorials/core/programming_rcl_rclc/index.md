@@ -215,13 +215,13 @@ if (rc != RCL_RET_OK) {
 
 ## <a name="lifecycle"/>Lifecycle
 
-The rclc lifecycle package provides convenience functions in C to bundle an rclc node with the ROS 2 Node Lifecycle state machine, similar to the [rclcpp Lifecycle Node](https://github.com/ros2/rclcpp/blob/master/rclcpp_lifecycle/include/rclcpp_lifecycle/lifecycle_node.hpp) for C++.
+The rclc lifecycle package provides convenience functions in C to bundle an rcl node with the ROS 2 Node Lifecycle state machine, similar to the [rclcpp Lifecycle Node](https://github.com/ros2/rclcpp/blob/master/rclcpp_lifecycle/include/rclcpp_lifecycle/lifecycle_node.hpp) for C++.
 
 This tutorial show-cases how to set up an rclc lifecycle node, transition through its lifecycle states, and assign callbacks to lifecycle transitions.
 
 ### Initialization
 
-Creation of a lifecycle node as a bundle of an rcl node and the rcl Node Lifecycle state machine.
+Creation of a lifecycle node as a bundle of an rcl node and the rcl lifecycle state machine.
 
 ```C
 #include "rclc_lifecycle/rclc_lifecycle.h"
@@ -233,19 +233,19 @@ rcl_ret_t rc;
 // create rcl node
 rc = rclc_support_init(&support, argc, argv, &allocator);
 rcl_node_t my_node = rcl_get_zero_initialized_node();
-rc = rclc_node_init_default(&my_node, "lifecycle_node", "rclc", &support);
+rc = rclc_node_init_default(&my_node, "my_lifecycle_node", "rclc", &support);
 
 // rcl state machine
-rcl_lifecycle_state_machine_t state_machine_ =
+rcl_lifecycle_state_machine_t state_machine =
   rcl_lifecycle_get_zero_initialized_state_machine();
 ...
 
 // create the lifecycle node
-rclc_lifecycle_node_t lifecycle_node;
+rclc_lifecycle_node_t my_lifecycle_node;
 rcl_ret_t rc = rclc_make_node_a_lifecycle_node(
-  &lifecycle_node,
+  &my_lifecycle_node,
   &my_node,
-  &state_machine_,
+  &state_machine,
   &allocator);
 ```
 
@@ -254,13 +254,13 @@ Optionally create hooks for lifecycle state changes.
 ```C
 // declare callback
 rcl_ret_t my_on_configure() {
-  printf("  >>> lifecycle_node: on_configure() callback called.\n");
+  printf("  >>> my_lifecycle_node: on_configure() callback called.\n");
   return RCL_RET_OK;
 }
 ...
 
 // register callbacks
-rclc_lifecycle_register_on_configure(&lifecycle_node, &my_on_configure);
+rclc_lifecycle_register_on_configure(&my_lifecycle_node, &my_on_configure);
 ```
 
 ### Running
@@ -270,11 +270,11 @@ Change states of the lifecycle node, e.g.
 ```C
 bool publish_transition = true;
 rc += rclc_lifecycle_change_state(
-  &lifecycle_node,
+  &my_lifecycle_node,
   lifecycle_msgs__msg__Transition__TRANSITION_CONFIGURE,
   publish_transition);
 rc += rclc_lifecycle_change_state(
-  &lifecycle_node,
+  &my_lifecycle_node,
   lifecycle_msgs__msg__Transition__TRANSITION_ACTIVATE,
   publish_transition);
 ...
@@ -287,14 +287,14 @@ Except for error processing transitions, transitions are usually triggered from 
 To clean everything up, simply do
 
 ```C
-rc += rcl_lifecycle_node_fini(&lifecycle_node, &allocator);
+rc += rcl_lifecycle_node_fini(&my_lifecycle_node, &allocator);
 ```
 
 ### Example and Limitations
 
-An example, how to use the RCLC Lifecycle Node is given in the file `lifecycle_node.c` in the [rclc_examples](https://github.com/micro-ROS/rclc/tree/master/rclc_examples) package.
+An example of the rclc Lifecycle Node is given in the file `lifecycle_node.c` in the [rclc_examples](https://github.com/micro-ROS/rclc/tree/master/rclc_examples) package.
 
-The state machine publishes state changes, however, lifecycle services are not yet exposed via ROS 2 services (tbd).
+The state machine publishes state changes, however, lifecycle services are not yet exposed via ROS 2 services ([micro-ROS/rclc#40](https://github.com/micro-ROS/rclc/issues/40)).
 
 ## <a name="rclc_executor"/>rclc Executor
 
