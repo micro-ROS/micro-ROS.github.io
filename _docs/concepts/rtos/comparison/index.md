@@ -53,7 +53,7 @@ Table:
 | Round-Robin <sup>4</sup>                                     | yes                                      | yes <sup>6</sup>                                                                                                         | [co-operative](https://docs.zephyrproject.org/latest/reference/kernel/scheduling/index.html)    |
 | Sporadic Server                                              | yes                                      | no                                                                                                                       | no                                                                                              |
 | Reservation Based Scheduling (RBS)                           | no                                       | no                                                                                                                       | no                                                                                              |
-| Rate Monotonic Scheduling (RMS)                              | ?                                        | yes <sup>10</sup>                                                                                                        | no                                                                                              |
+| Rate Monotonic Scheduling (RMS)                              | ?                                        | yes <sup>10</sup>                                                                                                        | yes <sup>10</sup>                                                                               |
 | Semaphore /Mutex Management                                  | yes (Priority Inheritance)               | yes                                                                                                                      | yes                                                                                             |
 | **IO**                                                       |                                          |                                                                                                                          |                                                                                                 |
 | I2C                                                          | yes                                      | yes <sup>8</sup>                                                                                                         | yes                                                                                             |
@@ -102,7 +102,7 @@ FreeRTOS reference distribution repository at https://github.com/aws/amazon-free
 
 <sup>9</sup> FreeRTOS ethernet support is provided through the FreeRTOS+TCP stack.
 
-<sup>10</sup> Rate Monotonic Scheduling is achievable using unique thread priorities across all threads.
+<sup>10</sup> Rate Monotonic Scheduling can be achieved by assigning the priorities of threads with the so-called rate-monotonic policy. That is, the thread with the highest rate has the highest priority and the thread with the lowest rate the lowest priority. It is assumed that all threads are activated periodically with fixed rates.
 
 Some Related Work:
 * [Choosing the right RTOS for IoT platform, Milinkovic et al, INFOTEH-JAHORINA Vol. 14, 2015](http://infoteh.rs.ba/zbornik/2015/radovi/RSS-2/RSS-2-2.pdf): comparison of FreeRTOS, ChibiOS/RT, Erika, RIOT
