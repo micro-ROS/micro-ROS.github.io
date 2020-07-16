@@ -7,29 +7,22 @@ This tutorial teaches you how to create a first micro-ROS application on Linux f
 
 ## Installing ROS 2 and the micro-ROS build system
 
-First of all, let's take a Ubuntu 18.04 LTS computer and install **ROS 2 Dashing Diademata**:
+First of all, install **ROS 2 Dashing Diademata** on your Ubuntu 18.04 LTS computer.
+To do so from binaries, via Debian packages, follow the instructions detailed
+[here](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/) instead.
+Alternatively, you can use a docker container with a fresh ROS 2 Dashing installation. The minimum docker that serves
+the purpose is the image run by the command:
 
+```bash
+docker pull ros:dashing-ros-base
 ```
-sudo locale-gen en_US en_US.UTF-8
-sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-sudo apt update && sudo apt install curl gnupg2 lsb-release
-curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-
-sudo sh -c 'echo "deb http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
-sudo apt update
-sudo apt install ros-dashing-desktop
-```
-
-Once you have a **ROS 2** installation in the computer, follow these steps to install the micro-ROS build system:
 
 ```bash
 # Source the ROS 2 installation
-source /opt/ros/$ROS_DISTRO/setup.bash
+source /opt/ros/dashing/setup.bash
 
 # Create a workspace and download the micro-ROS tools
-mkdir microros_ws 
+mkdir microros_ws
 cd microros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
@@ -44,7 +37,7 @@ source install/local_setup.bash
 
 ***TIP:** if you are familiar with Docker containers, this image may be useful: [micro-ros:base](https://github.com/micro-ROS/docker/blob/dashing/base/Dockerfile)*
 
-These instructions will setup a workspace with a ready-to-use micro-ROS build system. This build system is in charge of downloading the required cross-compilation tools and building the apps for the required platforms. 
+These instructions will setup a workspace with a ready-to-use micro-ROS build system. This build system is in charge of downloading the required cross-compilation tools and building the apps for the required platforms.
 
 The build system's workflow is a four-step procedure:
 
@@ -63,72 +56,48 @@ Once the build system is installed, let's create a firmware workspace that targe
 ros2 run micro_ros_setup create_firmware_ws.sh host
 ```
 
-micro-ROS apps for Linux are located at `src/uros/micro-ROS-demos/rcl/`. In order to create a new application, create a new folder containing two files: the app code and the CMake file. You can check the complete content of these file [here](https://github.com/micro-ROS/micro-ROS-demos/tree/dashing/rcl/ping_pong).
+This step is in charge, among other things, of creating a set of micro-ROS apps for Linux, that are located at
+`src/uros/micro-ROS-demos/rcl`. Each app is represented by a folder containing two files: a `.c` file with the app code
+and the CMake file. The former contains the logic of the application, whereas the latter contains the script to
+compile it.
 
-```bash
-# Creating a new app
-pushd src/uros/micro-ROS-demos/rcl/
-mkdir ping_pong
-cd ping_pong
-touch app.c CMakeLists.txt
-popd
-```
-
-Don't forget to register your app in `src/uros/micro-ROS-demos/rcl/CMakeLists.txt` by adding the following line:
+For the user to create its custom application, a folder `<my_app>` will need to be registered in this location,
+containing the two files just described. Also, any such new application folder needs to be registered in
+`src/uros/micro-ROS-demos/rcl/CMakeLists.txt` by adding the following line:
 
 ```
-export_executable(ping_pong)
+export_executable(<my_app>)
 ```
 
-For this example we are going to create a ping pong app where a node sends a ping package with a unique identifier using a publisher and the same package is received by a pong subscriber. The node will also answer to pings received from other nodes with a pong message:
+In this tutorial, we will focus on the out-of-the-box `ping_pong` application located at
+`src/uros/micro-ROS-demos/rcl/ping_pong`.
+You can check the complete content of this app
+[here](https://github.com/micro-ROS/micro-ROS-demos/tree/dashing/rcl/ping_pong).
+
+This example showcases a micro-ROS node with two publisher-subscriber pairs associated with a `ping` and a `pong`
+topics, respectively.
+The node sends a `ping` package with a unique identifier, using a `ping` publisher.
+If the `ping` subscriber receives a `ping` from an external node, the `pong` publisher responds to the incoming `ping`
+with a `pong`. To test that this logic is correctly functioning, we implement communication with a ROS 2 node that:
+
+* Listens to the topics published by the `ping` subscriber.
+* Publishes a `fake_ping` package, that is received by the micro-ROS `ping` subscriber.
+  As a consequence, the `pong` publisher on the micro-ROS application will publish a `pong`, to signal that it received
+  the `fake_ping` correctly.
+
+The diagram below clarifies the communication flow between these entities:
 
 ![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
 
-The app logic of this demo is contained in  [`app.c`](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/ping_pong/main.c). A thorough review of this file can show how to create a micro-ROS publisher or subscriber, as shown below. 
+The app logic of this demo is contained in
+[`app.c`](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/ping_pong/main.c).
+A thorough review of this file is illustrative of how to create a micro-ROS publisher or subscriber.
 
-**For more in depth learning about RCL and RCLC programming [check this section](https://micro-ros.github.io/docs/tutorials/core/programming_rcl_rclc/).**
-```c
-...
-  // Create a reliable ping publisher
-  rcl_publisher_options_t ping_publisher_ops = rcl_publisher_get_default_options();
-  rcl_publisher_t ping_publisher = rcl_get_zero_initialized_publisher();
-  rcl_publisher_init(&ping_publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Header), "/microROS/ping", &ping_publisher_ops);
-...
-
-...
-  // Create a best effort  pong subscriber
-  rcl_subscription_options_t pong_subscription_ops = rcl_subscription_get_default_options();
-  pong_subscription_ops.qos.reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
-  rcl_subscription_t pong_subscription = rcl_get_zero_initialized_subscription();
-  rcl_subscription_init(&pong_subscription, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Header), "/microROS/pong", &pong_subscription_ops);
-...
-... 
-    // Check if some pong message is received
-    if (wait_set.subscriptions[index_pong_subscription]) {
-      rc = rcl_take(wait_set.subscriptions[index_pong_subscription], &rcv_msg, NULL, NULL);
-      if(rc == RCL_RET_OK) {
-          // Subscription app logic
-      }
-    }
-
-...
-    // Reset the pong count and publish the ping message
-    rcl_publish(&ping_publisher, (const void*)&msg, NULL);
-...
-```
-
-## Running the micro-ROS app
-
-The micro-ROS app is ready to be built and connected to a micro-ROS-Agent to start talking with the rest of the ROS 2 world.
-
-First of all, create a micro-ROS agent:
-
-```bash
-# Download micro-ROS-Agent packages
-ros2 run micro_ros_setup create_agent_ws.sh
-```
-
-When the all client and agent packages are ready, just build them all:
+Once the app has been created, the build step is in order.
+Notice that, with respect to the four-steps workflow delined above, we would expect a configuration step to happen
+before building the app. However, given that we are compiling micro-ROS in the host machine rather than in a board,
+the cross-compilation implemented by this configure step is not required in this case.
+We can then proceed to build the firmware and source the local installation:
 
 ```bash
 # Build step
@@ -136,14 +105,38 @@ ros2 run micro_ros_setup build_firmware.sh
 source install/local_setup.bash
 ```
 
-Then run the agent:
+## Create the micro-ROS agent
+
+The micro-ROS app is now ready to be connected to a micro-ROS agent to start talking with the rest of the ROS 2
+world.
+
+To do that, let's first of all create a micro-ROS agent:
+
+```bash
+# Download micro-ROS-Agent packages
+ros2 run micro_ros_setup create_agent_ws.sh
+```
+
+Now, let's build the agent packages and, when this is done, source the installation:
+
+```bash
+# Build step
+colcon build
+source install/local_setup.bash
+```
+
+## Running the micro-ROS app
+
+At this point, you have both the client and the agent correctly installed in your host machine.
+
+To start micro-ROS, first run the agent:
 
 ```bash
 # Run a micro-ROS agent
 ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 ```
 
-Then run the app in another command line (remember sourcing ROS 2 and micro-ROS installation): 
+And then, in another command line, run the micro-ROS node (remember sourcing the ROS 2 and micro-ROS installations):
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
@@ -153,7 +146,12 @@ source install/local_setup.bash
 ros2 run micro_ros_demos_rcl ping_pong
 ```
 
-And finally, let's check that everything is working in another command line. We are going to listen to ping topic to check whether the Ping Pong node is publishing its own pings:
+## Testing the micro-ROS app
+
+Now, we want to check that everything is working.
+
+Open another command line. We are going to listen to the `ping` topic
+with ROS 2 to check whether the micro-ROS Ping Pong node is correctly publishing the expected pings:
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
@@ -178,7 +176,11 @@ frame_id: '730417256_1085377743'
 ---
 ```
 
-On another command line, let's subscribe to the pong topic
+At this point, we know that our app is publishing pings.
+Let's check if it also answers to someone else's pings, publishing a pong as an answer.
+
+So, first of all, let's subscribe with ROS 2 to the `pong` topic
+(notice that initially we don't expect to receive any pong, since none has been sent yet):
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
@@ -187,7 +189,7 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 ros2 topic echo /microROS/pong
 ```
 
-At this point, we know that our app is publishing pings. Let's check if it also answers to someone else pings in a new command line:
+And now, let's publish a `fake_ping` with ROS 2 from yet another command line:
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
@@ -196,7 +198,8 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 ros2 topic pub --once /microROS/ping std_msgs/msg/Header '{frame_id: "fake_ping"}'
 ```
 
-Now, we should see on the ping subscriber our fake ping along with the board pings:
+Now, we should see this `fake_ping` both in the `ping` subscriber console (the second that we opened),
+along with the micro-ROS pings:
 
 ```
 user@user:~$ ros2 topic echo /microROS/ping
@@ -217,7 +220,9 @@ frame_id: '2084670932_1085377743'
 ---
 ```
 
-And in the pong subscriber, we should see the board's answer to our fake ping:
+Also, we expect that, because of having received the `fake_ping`, the micro-ROS `pong` publisher will answer with a
+`pong`. As a consequence, in the `pong` subscriber console (the third that we opened),
+we should see the micro-ROS app answer to our `fake_ping`:
 
 ```
 user@user:~$ ros2 topic echo /microROS/pong
@@ -228,10 +233,12 @@ frame_id: fake_ping
 ---
 ```
 
-
 ## Multiple Ping Pong nodes
 
-One of the advantages of having an Linux micro-ROS app is that you don't need to buy a bunch of hardware in order to test some multi-node micro-ROS apps. So, with the same micro-ROS agent of the last section, let's open four different command lines and run the following on each:
+One of the advantages of having an Linux micro-ROS app is that you don't need to buy a bunch of hardware in order to
+test some multi-node micro-ROS apps.
+So, with the same micro-ROS agent of the last section, let's open four different command lines and run the following on
+each:
 
 ```bash
 cd microros_ws
@@ -239,7 +246,7 @@ cd microros_ws
 source /opt/ros/$ROS_DISTRO/setup.bash
 source install/local_setup.bash
 
-ros2 run micro_ros_demos_rcl my_brand_new_app
+ros2 run micro_ros_demos_rcl ping_pong
 ```
 
 As soon as all micro-ROS nodes are up and connected to the micro-ROS agent you will see them interacting:
@@ -248,9 +255,9 @@ As soon as all micro-ROS nodes are up and connected to the micro-ROS agent you w
 user@user$ ros2 run micro_ros_demos_rcl my_brand_new_app
 UDP mode => ip: 127.0.0.1 - port: 8888
 Ping send seq 1711620172_1742614911                         <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"
-Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping 
-Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping 
-Pong for seq 1711620172_1742614911 (3)                      <---- The third mate pongs my ping 
+Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping
+Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping
+Pong for seq 1711620172_1742614911 (3)                      <---- The third mate pongs my ping
 Ping received with seq 1845948271_546591567. Answering.     <---- A ping is received from a mate identified as "546591567", let's pong it.
 Ping received with seq 232977719_1681483056. Answering.     <---- A ping is received from a mate identified as "1681483056", let's pong it.
 Ping received with seq 1134264528_1107823050. Answering.    <---- A ping is received from a mate identified as "1107823050", let's pong it.
