@@ -3,7 +3,11 @@ title: First micro-ROS Application on Linux
 permalink: /docs/tutorials/core/first_application_linux/
 ---
 
-This tutorial teaches you how to create a first micro-ROS application on Linux for testing purposes. In the follow-up tutorial [*First micro-ROS application on an RTOS*](/docs/tutorials/core/first_application_rtos/), you'll learn how to build and bring this application on a microcontroller running the RTOS NuttX, FreeRTOS, or Zephyr.
+This tutorial teaches you how to try a first micro-ROS application on Linux for testing purposes.
+In the follow-up tutorial [*First micro-ROS application on an RTOS*](/docs/tutorials/core/first_application_rtos/),
+you'll learn how to build and bring this application on a microcontroller running the RTOS NuttX, FreeRTOS, or Zephyr.
+Finally in the tutorial [*Zephyr Emulator*](/docs/tutorials/advanced/zephyr_emulator/) you'll learn how to test
+a micro-ROS application on a Zephyr emulator.
 
 ## Installing ROS 2 and the micro-ROS build system
 
@@ -52,7 +56,7 @@ Further information about micro-ROS build system can be found [here](https://git
 Once the build system is installed, let's create a firmware workspace that targets all the required code and tools:
 
 ```bash
-# Create step
+# Create firmware step
 ros2 run micro_ros_setup create_firmware_ws.sh host
 ```
 

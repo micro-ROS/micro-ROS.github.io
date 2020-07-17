@@ -3,7 +3,7 @@ title: Zephyr Emulator
 permalink: /docs/tutorials/advanced/zephyr_emulator/
 ---
 
-This tutorial aims at creating a new micro-ROS application on with **[Zephyr RTOS](https://www.zephyrproject.org/)** emulator (also known as [Native POSIX](https://docs.zephyrproject.org/latest/boards/posix/native_posix/doc/index.html)). 
+This tutorial aims at creating a new micro-ROS application on with **[Zephyr RTOS](https://www.zephyrproject.org/)** emulator (also known as [Native POSIX](https://docs.zephyrproject.org/latest/boards/posix/native_posix/doc/index.html)).
 
 To follow this tutorial, it is assumed that the user is already familiar with the **[First micro-ROS Application on an RTOS](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/)** tutorial. The target app in this tutorial is the same ping pong app.
 Another requirement is that the user has a basic knowledge of micro-ROS and ROS 2.
@@ -34,7 +34,7 @@ mkdir host_ping_pong
 cd host_ping_pong
 mkdir src
 
-touch src/app.c 
+touch src/app.c
 touch app-colcon.meta
 touch CMakeLists.txt
 touch prj.conf
@@ -82,7 +82,7 @@ Then run the agent:
 ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 ```
 
-And run the Zephyr app in another command line (remember sourcing ROS 2 and micro-ROS installation): 
+And run the Zephyr app in another command line (remember sourcing ROS 2 and micro-ROS installation):
 
 ```bash
 source /opt/ros/$ROS_DISTRO/setup.bash
@@ -185,9 +185,9 @@ pgarrido@pgarrido$ ./firmware/build/zephyr/zephyr.exe
 *** Booting Zephyr OS build zephyr-v2.2.0-492-gc73cb85b4ae9  ***
 UDP mode => ip: 127.0.0.1 - port: 8888
 Ping send seq 1711620172_1742614911                         <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"
-Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping 
-Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping 
-Pong for seq 1711620172_1742614911 (3)                      <---- The third mate pongs my ping 
+Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping
+Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping
+Pong for seq 1711620172_1742614911 (3)                      <---- The third mate pongs my ping
 Ping received with seq 1845948271_546591567. Answering.     <---- A ping is received from a mate identified as "546591567", let's pong it.
 Ping received with seq 232977719_1681483056. Answering.     <---- A ping is received from a mate identified as "1681483056", let's pong it.
 Ping received with seq 1134264528_1107823050. Answering.    <---- A ping is received from a mate identified as "1107823050", let's pong it.
