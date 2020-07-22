@@ -8,7 +8,6 @@ redirect_from:
 ## Target platform
 
 In this tutorial, you'll learn the use of micro-ROS with Zephyr by testing a Ping Pong application.
-
 {% include first_application_common/target_hardware.md %}
 * [USB-to-mini-USB cable](https://www.olimex.com/Products/Components/Cables/CABLE-USB-A-MINI-1.8M/)
 
@@ -19,22 +18,7 @@ In this tutorial, you'll learn the use of micro-ROS with Zephyr by testing a Pin
 ros2 run micro_ros_setup create_firmware_ws.sh zephyr olimex-stm32-e407
 ```
 
-Once the command is executed, a folder named `firmware` must be present in your workspace.
-
-This step is in charge, among other things, of creating a set of micro-ROS apps for the specific platform you are
-addressing.
-In the case of Zephyr, these are located at `firmware/zephyr_apps/apps`.
-Each app is represented by a folder containing the following files:
-
-* `src/main.c`: This file contains the logic of the application.
-* `app-colcon.meta`: This file contains the micro-ROS app specific colcon configuration. Detailed info on how to
-  configure the RMW via this file can be found
-  [here](https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/).
-* `CMakeLists.txt`: This is the CMake file containing the script to compile the application.
-* `prj.conf`: This is a Zephyr specific app configuration file.
-
-For the user to create its custom application, a folder `<my_app>` will need to be registered in this location,
-containing the four files just described.
+{% include first_application_common/zephyr_common.md %}
 
 {% include first_application_common/config.md %}
 
@@ -70,4 +54,4 @@ to the computer using the USB OTG 2 connector (the miniUSB connector that is fur
 
 {% include first_application_common/run_app.md %}
 
-{% include first_application_common/test_app.md %}
+{% include first_application_common/test_app_rtos.md %}

@@ -2,7 +2,6 @@
 
 The micro-ROS app is now ready to be connected to a micro-ROS agent to start talking with the rest of the ROS 2
 world.
-
 To do that, let's first of all create a micro-ROS agent:
 
 ```bash

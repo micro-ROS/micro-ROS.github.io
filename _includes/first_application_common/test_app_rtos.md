@@ -32,7 +32,7 @@ frame_id: '730417256_1085377743'
 At this point, we know that our micro-ROS app is publishing pings.
 Let's check if it also answers to someone else's pings. If this works, it'll publish a pong.
 
-So, first of all, let's subscribe with ROS 2 to the `pong` topic
+So, first of all, let's subscribe with ROS 2 to the `pong` topic from a new shell
 (notice that initially we don't expect to receive any pong, since none has been sent yet):
 
 ```bash
@@ -51,7 +51,7 @@ source /opt/ros/dashing/setup.bash
 ros2 topic pub --once /microROS/ping std_msgs/msg/Header '{frame_id: "fake_ping"}'
 ```
 
-Now, we should see this `fake_ping` in the `ping` subscriber console (the first that we opened),
+Now, we should see this `fake_ping` in the `ping` subscriber console,
 along with the board's pings:
 
 ```
@@ -74,7 +74,7 @@ frame_id: '2084670932_1085377743'
 ```
 
 Also, we expect that, because of having received the `fake_ping`, the micro-ROS `pong` publisher will answer with a
-`pong`. As a consequence, in the `pong` subscriber console (the second that we opened),
+`pong`. As a consequence, in the `pong` subscriber console,
 we should see the board's answer to our `fake_ping`:
 
 ```

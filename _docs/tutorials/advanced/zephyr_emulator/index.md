@@ -20,22 +20,7 @@ by testing a Ping Pong application.
 ros2 run micro_ros_setup create_firmware_ws.sh zephyr host
 ```
 
-Once the command is executed, a folder named `firmware` must be present in your workspace.
-
-This step is in charge, among other things, of creating a set of micro-ROS apps for the specific platform you are
-addressing.
-In the case of Zephyr, these are located at `firmware/zephyr_apps/apps`.
-Each app is represented by a folder containing the following files:
-
-* `src/main.c`: This file contains the logic of the application.
-* `app-colcon.meta`: This file contains the micro-ROS app specific colcon configuration. Detailed info on how to
-  configure the RMW via this file can be found
-  [here](https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/).
-* `CMakeLists.txt`: This is the CMake file containing the script to compile the application.
-* `prj.conf`: This is a Zephyr specific app configuration file.
-
-For the user to create its custom application, a folder `<my_app>` will need to be registered in this location,
-containing the four files just described.
+{% include first_application_common/zephyr_common.md %}
 
 {% include first_application_common/config.md %}
 
@@ -119,107 +104,7 @@ To start micro-ROS, you just need to run the agent:
 ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 ```
 
-## Testing the micro-ROS app
-
-At this point, the micro-ROS app is built and flashed and the board is connected to a micro-ROS agent.
-We now want to check that everything is working.
-
-Open a new command line. We are going to listen to the `ping` topic
-with ROS 2 to check whether the micro-ROS Ping Pong node is correctly publishing the expected pings:
-
-```bash
-source /opt/ros/dashing/setup.bash
-
-# Subscribe to micro-ROS ping topic
-ros2 topic echo /microROS/ping
-```
-
-You should see the topic messages published by the Ping Pong node every 5 seconds:
-
-```
-user@user:~$ ros2 topic echo /microROS/ping
-stamp:
-  sec: 20
-  nanosec: 867000000
-frame_id: '1344887256_1085377743'
----
-stamp:
-  sec: 25
-  nanosec: 942000000
-frame_id: '730417256_1085377743'
----
-```
-
-At this point, we know that our app is publishing pings.
-Let's check if it also answers to someone else's pings. If this works, it'll publish a pong.
-
-So, first of all, let's subscribe with ROS 2 to the `pong` topic
-(notice that initially we don't expect to receive any pong, since none has been sent yet):
-
-```bash
-source /opt/ros/dashing/setup.bash
-
-# Subscribe to micro-ROS pong topic
-ros2 topic echo /microROS/pong
-```
-
-And now, let's publish a `fake_ping` with ROS 2 from yet another command line:
-
-```bash
-source /opt/ros/dashing/setup.bash
-
-# Send a fake ping
-ros2 topic pub --once /microROS/ping std_msgs/msg/Header '{frame_id: "fake_ping"}'
-```
-
-Now, we should see this `fake_ping` in the `ping` subscriber console (the second that we opened),
-along with the micro-ROS pings:
-
-```
-user@user:~$ ros2 topic echo /microROS/ping
-stamp:
-  sec: 0
-  nanosec: 0
-frame_id: fake_ping
----
-stamp:
-  sec: 305
-  nanosec: 973000000
-frame_id: '451230256_1085377743'
----
-stamp:
-  sec: 310
-  nanosec: 957000000
-frame_id: '2084670932_1085377743'
----
-```
-
-Also, we expect that, because of having received the `fake_ping`, the micro-ROS node will answer with a `pong`:
-
-```
-user@user:~$ ros2 run micro_ros_setup flash_firmware.sh
-Ping send seq 1706097268_1085377743
-Ping send seq 181171802_1085377743
-Ping send seq 1385567526_1085377743
-Ping send seq 926583793_1085377743
-Ping send seq 1831510138_1085377743
-Ping received with seq fake_ping. Answering.
-Ping send seq 1508705084_1085377743
-Ping send seq 1702133625_1085377743
-Ping send seq 176104820_1085377743
-```
-
-As a consequence, in the `pong` subscriber console (the third that we opened),
-we should see the micro-ROS app answer to our `fake_ping`:
-
-```
-user@user:~$ ros2 topic echo /microROS/pong
-stamp:
-  sec: 0
-  nanosec: 0
-frame_id: fake_ping
----
-```
+{% include first_application_common/test_app_host.md %}
 
 ## Multiple Ping Pong nodes
 
@@ -237,7 +122,7 @@ cd microros_ws
 As soon as all micro-ROS node are up and connected to the micro-ROS agent you will see them interacting:
 
 ```
-pgarrido@pgarrido$ ./firmware/build/zephyr/zephyr.exe
+user@user:~$ ./firmware/build/zephyr/zephyr.exe
 *** Booting Zephyr OS build zephyr-v2.2.0-492-gc73cb85b4ae9  ***
 UDP mode => ip: 127.0.0.1 - port: 8888
 Ping send seq 1711620172_1742614911                         <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"

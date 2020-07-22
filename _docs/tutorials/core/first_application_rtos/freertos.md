@@ -1,14 +1,13 @@
 ---
-title: First micro-ROS Application on Zephyr
-permalink: /docs/tutorials/core/first_application_rtos/zephyr/
+title: First micro-ROS Application on FreeRTOS
+permalink: /docs/tutorials/core/first_application_rtos/freertos/
 redirect_from:
-  - /docs/tutorials/advanced/zephyr/zephyr_getting_started/
+  - /docs/tutorials/advanced/freertos/freertos_getting_started/
 ---
 
 ## Target platform
 
 In this tutorial, you'll learn the use of micro-ROS with FreeRTOS by testing a Ping Pong application.
-
 {% include first_application_common/target_hardware.md %}
 * [USB-to-Serial Cable Female](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-SERIAL-F/)
 
@@ -70,4 +69,4 @@ Make sure to match Olimex Rx with Cable Tx and vice-versa. Remember GND!*
 
 {% include first_application_common/run_app.md %}
 
-{% include first_application_common/test_app.md %}
+{% include first_application_common/test_app_rtos.md %}
