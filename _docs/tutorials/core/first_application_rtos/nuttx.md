@@ -55,7 +55,7 @@ Install required `kconfig-frontends`:
 git clone https://bitbucket.org/nuttx/tools.git firmware/tools
 
 pushd firmware/tools/kconfig-frontends
-./configure --enable-mconf --disable-nconf --disable-gconf --disable-qconf 
+./configure --enable-mconf --disable-nconf --disable-gconf --disable-qconf
 LD_RUN_PATH=/usr/local/lib && make && sudo make install && sudo ldconfig
 popd
 ```
