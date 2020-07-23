@@ -6,6 +6,7 @@ When the configuring step ends, just build the firmware:
 # Build step
 ros2 run micro_ros_setup build_firmware.sh
 ```
+
 ## Flashing the firmware
 
 Flashing the firmware into the platform varies across hardware platforms.

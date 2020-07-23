@@ -39,13 +39,13 @@ export_executable(<my_app>)
 In this tutorial, we will focus on the out-of-the-box `ping_pong` application located at
 `src/uros/micro-ROS-demos/rcl/ping_pong`.
 You can check the complete content of this app
-[here](https://github.com/micro-ROS/micro-ROS-demos/tree/dashing/rcl/ping_pong).
+[here](https://github.com/micro-ROS/micro-ROS-demos/tree/foxy/rclc/ping_pong).
 
 {% include first_application_common/pingpong_logic.md %}
 
 The contents of the host app specific files can be found here:
-[main.c](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/ping_pong/main.c) and
-[CMakeLists.txt](https://github.com/micro-ROS/micro-ROS-demos/blob/dashing/rcl/ping_pong/CMakeLists.txt).
+[main.c](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/ping_pong/main.c) and
+[CMakeLists.txt](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/ping_pong/CMakeLists.txt).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
 ## Building the firmware
@@ -77,7 +77,7 @@ ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 And then, in another command line, run the micro-ROS node (remember sourcing the ROS 2 and micro-ROS installations):
 
 ```bash
-source /opt/ros/dashing/setup.bash
+source /opt/ros/foxy/setup.bash
 source install/local_setup.bash
 
 # Run a micro-ROS agent
@@ -96,7 +96,7 @@ each:
 ```bash
 cd microros_ws
 
-source /opt/ros/dashing/setup.bash
+source /opt/ros/foxy/setup.bash
 source install/local_setup.bash
 
 ros2 run micro_ros_demos_rcl ping_pong

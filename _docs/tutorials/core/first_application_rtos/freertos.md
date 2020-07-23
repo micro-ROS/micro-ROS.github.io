@@ -43,14 +43,15 @@ run the configuration command above by specifying the `[APP]` and `[OPTIONS]` pa
 # Configure step with ping_pong app and serial-usb transport
 ros2 run micro_ros_setup configure_firmware.sh ping_pong --transport serial --dev 3
 ```
+
 You can check the complete content of the `ping_pong` app
-[here](https://github.com/micro-ROS/freertos_apps/tree/dashing/apps/ping_pong).
+[here](https://github.com/micro-ROS/freertos_apps/tree/foxy/apps/ping_pong).
 
 {% include first_application_common/pingpong_logic.md %}
 
 The contents of the FreeRTOS app specific files can be found here:
-[app.c](https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/ping_pong/app.c) and
-[app-colcon.meta](https://github.com/micro-ROS/freertos_apps/blob/dashing/apps/ping_pong/app-colcon.meta).
+[app.c](https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/ping_pong/app.c) and
+[app-colcon.meta](https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/ping_pong/app-colcon.meta).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
 {% include first_application_common/build_and_flash.md %}
@@ -64,9 +65,11 @@ connected to the computer using the usb to serial cable.
 <img width="400" style="padding-right: 25px;" src="../imgs/5.jpg">
 
 ***TIP:** Color codes are applicable to
-[this cable](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-Serial-Cable-F/).
+[this cable](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-SERIAL-F/).
 Make sure to match Olimex Rx with Cable Tx and vice-versa. Remember GND!*
 
 {% include first_application_common/run_app.md %}
 
 {% include first_application_common/test_app_rtos.md %}
+
+This completes the First micro-ROS Application on FreeRTOS tutorial. Do you want to [go back](../) and try a different RTOS, i.e. NuttX or Zephyr?

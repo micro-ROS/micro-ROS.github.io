@@ -31,15 +31,15 @@ run the configuration command above by specifying the `[APP]` and `[OPTIONS]` pa
 ros2 run micro_ros_setup configure_firmware.sh ping_pong --transport serial-usb
 ```
 You can check the complete content of the `ping_pong` app
-[here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong).
+[here](https://github.com/micro-ROS/zephyr_apps/tree/foxy/apps/ping_pong).
 
 {% include first_application_common/pingpong_logic.md %}
 
 The contents of the Zephyr app specific files can be found here:
-[main.c](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/src/main.c),
-[app-colcon.meta](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/app-colcon.meta),
-[CMakeLists.txt](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/CMakeLists.txt)
-and [prj.conf](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/prj.conf).
+[main.c](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c),
+[app-colcon.meta](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/app-colcon.meta),
+[CMakeLists.txt](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/CMakeLists.txt)
+and [serial-usb.conf](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/serial-usb.conf).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
 {% include first_application_common/build_and_flash.md %}
@@ -55,3 +55,5 @@ to the computer using the USB OTG 2 connector (the miniUSB connector that is fur
 {% include first_application_common/run_app.md %}
 
 {% include first_application_common/test_app_rtos.md %}
+
+This completes the First micro-ROS Application on Zepjyr tutorial. Do you want to [go back](../) and try a different RTOS, i.e. NuttX or FreeRTOS?

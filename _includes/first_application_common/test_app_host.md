@@ -6,7 +6,7 @@ Open a new command line. We are going to listen to the `ping` topic
 with ROS 2 to check whether the micro-ROS Ping Pong node is correctly publishing the expected pings:
 
 ```bash
-source /opt/ros/dashing/setup.bash
+source /opt/ros/foxy/setup.bash
 
 # Subscribe to micro-ROS ping topic
 ros2 topic echo /microROS/ping
@@ -35,7 +35,7 @@ So, first of all, let's subscribe with ROS 2 to the `pong` topic from a new shel
 (notice that initially we don't expect to receive any pong, since none has been sent yet):
 
 ```bash
-source /opt/ros/dashing/setup.bash
+source /opt/ros/foxy/setup.bash
 
 # Subscribe to micro-ROS pong topic
 ros2 topic echo /microROS/pong
@@ -44,7 +44,7 @@ ros2 topic echo /microROS/pong
 And now, let's publish a `fake_ping` with ROS 2 from yet another command line:
 
 ```bash
-source /opt/ros/dashing/setup.bash
+source /opt/ros/foxy/setup.bash
 
 # Send a fake ping
 ros2 topic pub --once /microROS/ping std_msgs/msg/Header '{frame_id: "fake_ping"}'

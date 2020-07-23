@@ -10,7 +10,8 @@ Each app is represented by a folder containing the following files:
   configure the RMW via this file can be found
   [here](https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/).
 * `CMakeLists.txt`: This is the CMake file containing the script to compile the application.
-* `prj.conf`: This is a Zephyr specific app configuration file.
+* `<transport>.conf`: This is a Zephyr specific and transport-dependent app configuration file.
+`<transport>` can be `serial`, `serial-usb` and `host-udp`. 
 
 For the user to create its custom application, a folder `<my_app>` will need to be registered in this location,
 containing the four files just described.

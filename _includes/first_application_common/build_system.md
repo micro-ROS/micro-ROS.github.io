@@ -1,20 +1,20 @@
 ## Installing ROS 2 and the micro-ROS build system
 
-First of all, install **ROS 2 Dashing Diademata** on your Ubuntu 18.04 LTS computer.
+First of all, install **ROS 2 Foxy FitzRoy** on your Ubuntu 18.04 LTS computer.
 To do so from binaries, via Debian packages, follow the instructions detailed
 [here](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/).
-Alternatively, you can use a docker container with a fresh ROS 2 Dashing installation. The minimum docker that serves
+Alternatively, you can use a docker container with a fresh ROS 2 foxy installation. The minimum docker that serves
 the purpose is the image run by the command:
 
 ```bash
-docker pull ros:dashing-ros-base
+docker pull ros:foxy
 ```
 
 Once you have a ROS 2 installation in the computer, follow these steps to install the micro-ROS build system:
 
 ```bash
 # Source the ROS 2 installation
-source /opt/ros/dashing/setup.bash
+source /opt/ros/foxy/setup.bash
 
 # Create a workspace and download the micro-ROS tools
 mkdir microros_ws
