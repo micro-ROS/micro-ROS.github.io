@@ -2,7 +2,7 @@
 
 At this point, you have both the client and the agent correctly installed.
 
-To start micro-ROS, you just need to run the agent:
+To give micro-ROS access to the ROS 2 dataspace, you just need to run the agent:
 
 ```bash
 # Run a micro-ROS agent

@@ -21,7 +21,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
 
 Once the command is executed, a folder named `firmware` must be present in your workspace.
 
-This step is in charge, among other things, of creating a set of micro-ROS apps for the specific platform you are
+This step is in charge, among other things, of downloading a set of micro-ROS apps for the specific platform you are
 addressing.
 In the case of NuttX, these are located [here](https://github.com/micro-ROS/apps/tree/foxy/examples).
 Each app is represented by a folder containing the following files:
@@ -77,7 +77,7 @@ To add the `uros_pingpong` application, follow the steps listed below:
 * A list of the available applications will appear. You need to find: `micro-ROS Ping-Pong` and press the space bar to add it.
 * Navigate to the bottom menu with the left and right arrows, and click on the `Exit` button.
 * When you're back to the `Application Configuration` menu, go to `micro-ROS ---> Transport (UDP transport)`.
-* A list of the available transports will appear. You need to go to `Serial transport` and press the space bar to add it. After that, you'll be automatically redirected to the previous menu.
+* A list of the available transports will appear. You need to go to `Serial transport` and press the space bar to set the Serial port as micro-ROS transport. After that, you'll be automatically redirected to the previous menu.
 * Navigate to the bottom menu with the left and right arrows, and click on the `Save` button.
 * You will be asked if you want to save your new `.config` configuration, and you need to click `Ok`, and then `Exit`.
 * Finally, push three times the `Esc` key to close the menu.
@@ -123,7 +123,7 @@ Make sure to match Olimex Rx with Cable Tx and vice-versa. Remember GND!*
 
 At this point, you have both the client and the agent correctly installed.
 
-To start micro-ROS, you first need to run the agent:
+To give micro-ROS access to the ROS 2 dataspace, run the agent:
 
 ```bash
 # Run a micro-ROS agent
@@ -141,7 +141,8 @@ sudo minicom -D [device] -b 115200
 
 ***TIP:** you can use this command to find your serial device name: `ls /dev/serial/by-id/*`. Select the one that starts with `usb-NuttX`.*
 
-From inside the Minicom application, press three times the `Enter` key. Once you enter the Minicom command line, type:
+From inside the Minicom application, press three times the `Enter` key until Nuttx Shell (NSH) appears.
+Once you enter the NSH command line, type:
 
 ```bash
 uros_pingpong

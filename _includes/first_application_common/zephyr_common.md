@@ -1,6 +1,6 @@
 Once the command is executed, a folder named `firmware` must be present in your workspace.
 
-This step is in charge, among other things, of creating a set of micro-ROS apps for the specific platform you are
+This step is in charge, among other things, of downloading a set of micro-ROS apps for the specific platform you are
 addressing.
 In the case of Zephyr, these are located at `firmware/zephyr_apps/apps`.
 Each app is represented by a folder containing the following files:

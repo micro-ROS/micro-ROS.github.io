@@ -95,7 +95,6 @@ with the [ping pong app from the Linux tutorial](../../first_application_linux).
 it is possible to see their output like this micro-ROS for Linux app:
 
 ```
-UDP mode => ip: 127.0.0.1 - port: 8888
 Ping send seq 1711620172_1742614911                      <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"
 Pong for seq 1711620172_1742614911 (1)                   <---- The first mate pongs my ping
 Pong for seq 1711620172_1742614911 (2)                   <---- The second mate pongs my ping

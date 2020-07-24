@@ -13,6 +13,6 @@ Now, let's build the agent packages and, when this is done, source the installat
 
 ```bash
 # Build step
-colcon build
+ros2 run micro_ros_setup build_agent.sh
 source install/local_setup.bash
 ```

@@ -20,7 +20,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh host
 
 Once the command is executed, a folder named `firmware` must be present in your workspace.
 
-This step is in charge, among other things, of creating a set of micro-ROS apps for Linux, that are located at
+This step is in charge, among other things, of downloading a set of micro-ROS apps for Linux, that are located at
 `src/uros/micro-ROS-demos/rcl`.
 Each app is represented by a folder containing the following files:
 
@@ -67,7 +67,7 @@ source install/local_setup.bash
 
 At this point, you have both the client and the agent correctly installed in your host machine.
 
-To start micro-ROS, first run the agent:
+To give micro-ROS access to the ROS 2 dataspace, run the agent:
 
 ```bash
 # Run a micro-ROS agent
@@ -80,8 +80,8 @@ And then, in another command line, run the micro-ROS node (remember sourcing the
 source /opt/ros/foxy/setup.bash
 source install/local_setup.bash
 
-# Run a micro-ROS agent
-ros2 run micro_ros_demos_rcl ping_pong
+# Run a micro-ROS node
+ros2 run micro_ros_demos_rclc ping_pong
 ```
 
 {% include first_application_common/test_app_host.md %}
@@ -99,14 +99,13 @@ cd microros_ws
 source /opt/ros/foxy/setup.bash
 source install/local_setup.bash
 
-ros2 run micro_ros_demos_rcl ping_pong
+ros2 run micro_ros_demos_rclc ping_pong
 ```
 
 As soon as all micro-ROS nodes are up and connected to the micro-ROS agent you will see them interacting:
 
 ```
-user@user:~$ ros2 run micro_ros_demos_rcl ping_pong
-UDP mode => ip: 127.0.0.1 - port: 8888
+user@user:~$ ros2 run micro_ros_demos_rclc ping_pong
 Ping send seq 1711620172_1742614911                         <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"
 Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping
 Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping

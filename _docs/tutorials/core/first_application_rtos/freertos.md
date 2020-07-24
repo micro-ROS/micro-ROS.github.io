@@ -20,7 +20,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh freertos olimex-stm32-e407
 
 Once the command is executed, a folder named `firmware` must be present in your workspace.
 
-This step is in charge, among other things, of creating a set of micro-ROS apps for the specific platform you are
+This step is in charge, among other things, of downloading a set of micro-ROS apps for the specific platform you are
 addressing.
 In the case of FreeRTOS, these are located at `firmware/freertos_apps/apps`.
 Each app is represented by a folder containing the following files:
