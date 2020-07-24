@@ -56,4 +56,4 @@ to the computer using the USB OTG 2 connector (the miniUSB connector that is fur
 
 {% include first_application_common/test_app_rtos.md %}
 
-This completes the First micro-ROS Application on Zepjyr tutorial. Do you want to [go back](../) and try a different RTOS, i.e. NuttX or FreeRTOS?
+This completes the First micro-ROS Application on Zephyr tutorial. Do you want to [go back](../) and try a different RTOS, i.e. NuttX or FreeRTOS?
