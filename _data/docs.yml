@@ -59,6 +59,7 @@
    - tutorials/demos/kobuki_demo
    - tutorials/demos/crazyflie_demo
    - tutorials/demos/tof_demo
+   - tutorials/demos/openmanipulator_demo
    - tutorials/demos/fiware_demo
    - tutorials/demos/combined_demos
 
