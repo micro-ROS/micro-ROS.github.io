@@ -5,70 +5,55 @@ redirect_from:
   - /docs/tutorials/advanced/zephyr/zephyr_getting_started/
 ---
 
-{% include first_application_rtos_common/section_01_intro.md %}
+## Target platform
 
-In this tutorial, you'll learn the use of micro-ROS with Zephyr.
+In this tutorial, you'll learn the use of micro-ROS with Zephyr by testing a Ping Pong application.
+{% include first_application_common/target_hardware.md %}
+* [USB-to-mini-USB cable](https://www.olimex.com/Products/Components/Cables/CABLE-USB-A-MINI-1.8M/)
 
-{% include first_application_rtos_common/section_02_target_hardware_and_workspace.md %}
+{% include first_application_common/build_system.md %}
 
 ```bash
 # Create step
 ros2 run micro_ros_setup create_firmware_ws.sh zephyr olimex-stm32-e407
 ```
 
-**NOTE for Zephyr: Make sure you have the latest version of CMake!**
+{% include first_application_common/zephyr_common.md %}
+
+{% include first_application_common/config.md %}
+
+In this tutorial, we will use a USB transport (labeled as `serial-usb`) and focus on the out-of-the-box `ping_pong`
+application located at `firmware/zephyr_apps/apps/ping_pong`. To execute this application with the chosen transport,
+run the configuration command above by specifying the `[APP]` and `[OPTIONS]` parameters as below:
 
 ```bash
-sudo apt install wget
-wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
-sudo apt install software-properties-common
-sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
-sudo apt update
-sudo apt install cmake
-```
-
-{% include first_application_rtos_common/section_03_configuring_firmware.md %}
-
-|    RTOS    | `[APP]`         | `[OPTIONS]`                  |                                   Configured app                                   |
-| :--------: | --------------- | ---------------------------- | :--------------------------------------------------------------------------------: |
-|   NuttX    | `uros_pingpong` |                              |  [Source](https://github.com/micro-ROS/apps/tree/dashing/examples/uros_pingpong)   |
-|  FreeRTOS  | `ping_pong`     | `--transport serial --dev 3` |  [Source](https://github.com/micro-ROS/freertos_apps/tree/dashing/apps/ping_pong)  |
-| **Zephyr** | **`ping_pong`** | **`--transport serial-usb`** | [**Source**](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong) |
-
-{% include first_application_rtos_common/section_04_demo_description.md %}
-
-micro-ROS apps for Zephyr are located at `firmware/zephyr_apps/apps`. In order to create a new application, create a new folder containing two files: the app code (inside a `src` folder) and the RMW configuration. You will also need some other Zephyr related files: a `CMakeLists.txt` to define the building process and a `prj.conf` where Zephyr is configured. There is a sample proyect [here](https://github.com/micro-ROS/zephyr_apps/tree/dashing/apps/ping_pong), for now, it is ok to copy them.
-
-Create a new app:
-
-```bash
-# Create your app folder and required files. Contents of these file can be found in column Sample app in table above
-pushd firmware/zephyr_apps/apps
-mkdir ping_pong
-cd ping_pong
-mkdir src
-touch src/app.c app-colcon.meta
-touch CMakeLists.txt prj.conf
-popd
-```
-
-The contents of the files can be found here: [app.c](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/src/main.c), [app-colcon.meta](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/app-colcon.meta), [CMakeLists.txt](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/CMakeLists.txt) and [prj.conf](https://github.com/micro-ROS/zephyr_apps/blob/dashing/apps/ping_pong/prj.conf).
-
-Once the app folder is created, let's configure our new app with a UDP transport that looks for the agent on the port UDP/8888 at localhost:
-
-```bash
-# Configure step
+# Configure step with ping_pong app and serial-usb transport
 ros2 run micro_ros_setup configure_firmware.sh ping_pong --transport serial-usb
 ```
+You can check the complete content of the `ping_pong` app
+[here](https://github.com/micro-ROS/zephyr_apps/tree/foxy/apps/ping_pong).
 
-{% include first_application_rtos_common/section_05_building_flashing_and_running.md %}
+{% include first_application_common/pingpong_logic.md %}
 
-|    RTOS    | micro-ROS Client to Agent |
-| :--------: | ------------------------- |
-|   NuttX    | Serial                    |
-|  FreeRTOS  | Serial                    |
-| **Zephyr** | **USB**                   |
+The contents of the Zephyr app specific files can be found here:
+[main.c](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c),
+[app-colcon.meta](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/app-colcon.meta),
+[CMakeLists.txt](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/CMakeLists.txt)
+and [serial-usb.conf](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/serial-usb.conf).
+A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
-{% include first_application_rtos_common/section_06_agent.md %}
+{% include first_application_common/build_and_flash.md %}
+
+{% include first_application_common/agent_creation.md %}
+
+Then, depending on the selected transport and RTOS, the board connection to the agent may differ.
+In this tutorial, we're using the Olimex STM32-E407 USB connection, for which the Olimex development board is connected
+to the computer using the USB OTG 2 connector (the miniUSB connector that is furthest from the Ethernet port).
+
+<img width="400" style="padding-right: 25px;" src="../imgs/6.jpg">
+
+{% include first_application_common/run_app.md %}
+
+{% include first_application_common/test_app_rtos.md %}
 
 This completes the First micro-ROS Application on Zephyr tutorial. Do you want to [go back](../) and try a different RTOS, i.e. NuttX or FreeRTOS?

@@ -54,7 +54,7 @@ The last step is to connect a mini-USB cable to the OTG2 USB port (this USB port
 
 To create and flash the firmware, we are going to use the micro-ROS build system.
 You can find the instructions at the micro-ros-build's [README](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/README.md).
-For this particular guide, it is necessary yo use the branch `dashing` and the configuration profile `uros_6lowpan`.
+For this particular guide, it is necessary to use the branch `dashing` and the configuration profile `uros_6lowpan`.
 
 Once you follow all the instructions in the build system and flash the board, everything is ready.
 
