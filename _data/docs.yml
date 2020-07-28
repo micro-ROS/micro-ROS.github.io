@@ -6,6 +6,7 @@
    - overview/transports
    - overview/comparison
    - overview/docker_ci_status
+   - overview/users_and_clients
 
 
 - title: Client Library
