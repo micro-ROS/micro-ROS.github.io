@@ -46,10 +46,12 @@ use_cases:
 <style type="text/css">
 .modal {
   display: none; 
-  position: absolute;
-  z-index: 1; 
+  position: fixed;
+  z-index: 3; 
   left: 0;
   top: 0;
+  width: 100%; 
+  height: 100%; 
   overflow: auto; 
   background-color: rgb(0,0,0); 
   background-color: rgba(0,0,0,0.4);
@@ -61,6 +63,29 @@ use_cases:
   padding: 20px;
   border: 1px solid #888;
   width: 50%; 
+}
+
+.logoImage {
+  max-height: 100px;
+  max-width: 240px;
+}
+
+.photo-gallery{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.flex-item {
+  flex: 1 0 33%;
+  margin: 5px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 </style>
@@ -99,39 +124,39 @@ window.onload = () => {
 
 <!-- CONTENT -->
 <h2>OFERA Consortium Members</h2>
-<ul class="photo-gallery" style="column-count: 2; list-style-type: none;">
+<div class="photo-gallery">
   {% for image in page.ofera_consortium %}
-    <li>
-        <img src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" height="800" onclick="open_modal('{{ image.text }}')"/>
-    </li>
+    <div class="flex-item">
+        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
+    </div>
   {% endfor %}
-</ul>
+</div>
 
 
 <h2>Partners</h2>
-<ul class="photo-gallery" style="column-count: 2; list-style-type: none;">
+<div class="photo-gallery">
   {% for image in page.partners_list %}
-    <li>
-        <img src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
-    </li>
+    <div class="flex-item">
+        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
+    </div>
   {% endfor %}
-</ul>
+</div>
 
 <h2>Middleware Users</h2>
-<ul class="photo-gallery" style="column-count: 2; list-style-type: none;">
+<div class="photo-gallery">
   {% for image in page.mw_users %}
-    <li>
-        <img src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
-    </li>
+    <div class="flex-item">
+        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
+    </div>
   {% endfor %}
-</ul>
+</div>
 
 
 <h2>Use-cases</h2>
-<ul class="photo-gallery" style="column-count: 3; list-style-type: none;">
+<div class="photo-gallery">
   {% for image in page.use_cases %}
-    <li>
-        <img src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
-    </li>
+    <div class="flex-item">
+        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
+    </div>
   {% endfor %}
-</ul>
+</div>
