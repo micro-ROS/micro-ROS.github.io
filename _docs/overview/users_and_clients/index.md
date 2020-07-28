@@ -8,7 +8,9 @@ ofera_consortium:
   - path: images/Bosch.png
     text: Some text 1 ads
   - path: images/Fiware.png
-    text: Some text 2
+    text: The FIWARE Foundation is the legal independent body providing shared resources to help achieving the FIWARE mission that is to develop an open sustainable ecosystem around the FIWARE open source platform, created to drive the definition of public, royalty-free and implementation-driven software platform standards that ease the creation of Smart Applications in multiple sectors.
+    title: FIWARE
+    url: www.fiware.org
   - path: images/PIAP.png
     text: Some text 3
 
@@ -94,11 +96,16 @@ use_cases:
 window.onload = () => {
     var modal_close = document.getElementById("myModal-close");
     var modal_content = document.getElementById("myModal-content");
+    var modal_title = document.getElementById("myModal-title");
+    var modal_url = document.getElementById("myModal-url");
     var modal = document.getElementById("myModal");
 
-    open_modal = (txt) => {
+    open_modal = (title,url,txt) => {
         modal.style.display = "block";
         modal_content.innerHTML = txt
+        modal_title.innerHTML = title
+        modal_url.innerHTML = url
+        modal_url.href = "http://" + url
     }
 
     close_modal = () => {
@@ -118,7 +125,9 @@ window.onload = () => {
 <div id="myModal" class="modal">
   <div class="modal-content">
     <span id="myModal-close" class="close" onclick="close_modal()">&times;</span>
-    <p id="myModal-content"></p>
+    <h2 id="myModal-title"></h2>
+    <p><a id="myModal-url" href="" target="_blank" style="margin-bottom: 10px;"></a></p>
+    <p id="myModal-content" style="text-align: justify;"></p>
   </div>
 </div>
 
@@ -127,7 +136,7 @@ window.onload = () => {
 <div class="photo-gallery">
   {% for image in page.ofera_consortium %}
     <div class="flex-item">
-        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
+        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.title }}','{{ image.url }}','{{ image.text }}')"/>
     </div>
   {% endfor %}
 </div>
@@ -137,7 +146,7 @@ window.onload = () => {
 <div class="photo-gallery">
   {% for image in page.partners_list %}
     <div class="flex-item">
-        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
+        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.title }}','{{ image.url }}','{{ image.text }}')"/>
     </div>
   {% endfor %}
 </div>
@@ -146,7 +155,7 @@ window.onload = () => {
 <div class="photo-gallery">
   {% for image in page.mw_users %}
     <div class="flex-item">
-        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
+        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.title }}','{{ image.url }}','{{ image.text }}')"/>
     </div>
   {% endfor %}
 </div>
@@ -156,7 +165,7 @@ window.onload = () => {
 <div class="photo-gallery">
   {% for image in page.use_cases %}
     <div class="flex-item">
-        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.text }}')"/>
+        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.title }}','{{ image.url }}','{{ image.text }}')"/>
     </div>
   {% endfor %}
 </div>
