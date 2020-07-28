@@ -8,7 +8,7 @@ ofera_consortium:
     title: eProsima
     url: www.eprosima.com
   - path: images/Bosch.png
-    text: Bosch is a German multinational engineering and technology company. The company's core operating areas are spread across four business sectors, namely mobility (hardware and software), consumer goods (including household appliances and power tools), industrial technology (including drive and control) and energy and building technology.
+    text: Bosch is a German multinational engineering and technology company. The core operating areas of the company are spread across four business sectors, namely mobility (hardware and software), consumer goods (including household appliances and power tools), industrial technology (including drive and control) and energy and building technology.
     title: Bosch
     url: www.bosch.com
   - path: images/Fiware.png
@@ -31,15 +31,15 @@ partners_list:
     url: www.zephyrproject.org
 
 mw_users:
-  - path: images/renesas.png
+  - path: images/Renesas.png
     text: Renesas is a global semiconductor company delivering trusted embedded design innovation with complete semiconductor solutions that enable billions of connected, intelligent devices to enhance the way people work and live.
     title: Renesas
     url: www.renesas.com
-  - path: images/robotis.png
+  - path: images/Robotis.png
     text: SRobotis is a global robot solutions provider and one of the leading manufacturers of robotic hardware. The company is the exclusive producer of the DYNAMIXEL brand of all-in-one smart servos. Robotis specializes in the manufacture of robotic hardware and full robot platforms for use in all fields of study and industry, as well as educational robotics kits for all ages and skill levels.
     title: Robotis
     url: www.robotis.us
-  - path: images/dronecode.png
+  - path: images/Dronecode.png
     text: Dronecode is a nonprofit hosted under the Linux Foundation, dedicated to fostering open-source components and their communities. Working with top developers, end-users, and adopting vendors to create opportunities for collaboration.
     title: Dronecode
     url: www.dronecode.org
