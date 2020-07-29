@@ -12,11 +12,11 @@ It uses the eProsima middleware Micro XRCE-DDS 1.3.0, fully compatible with the 
 
 micro-ROS Foxy also features the implementation of the RCLC, an additional API that complements the ROS Client Support Library (RCL).
 The RCLC library is written in the C language and implements functionalities of the standard ROS 2 RCLCPP layer, adapting them to the capabilities and needs
-of the low-resource devices targeted by micro-ROS. Among them, LET Executors and the Lyfecycle.
+of the low-resource devices targeted by micro-ROS. Among them, the LET Executor and the Lifecycle.
 The RCLC Executor provides a C API to manage the execution of subscription and timer callbacks, similar to the RCLCPP Executor.
 It is optimized for resource-constrained devices and provides additional features that allow the manual implementation
 of deterministic schedules with bounded end-to-end latencies.
-The RCLC Lifecycle package provides convenience functions in C to bundle an RCL node with the ROS 2 Node Lifecycle state machine, similar to th
+The RCLC Lifecycle package provides convenience functions in C to bundle an RCL node with the ROS 2 Node Lifecycle state machine, similar to the
 RCLCPP Lifecycle Node.
 
 Finally, new demos and examples, combining the different hardware platforms and RTOSes supported and written in the new RCLC API,

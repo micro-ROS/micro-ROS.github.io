@@ -3,7 +3,7 @@ title: micro-ROS at PX4 Developers Summit
 author: francesca-finocchiaro
 ---
 
-micro-ROS and its Middleware, Micro XRCE-DDS, were presented in a webinar held within the framework of the the 2020 PX4 Developer Summit.
+micro-ROS and its middleware, Micro XRCE-DDS, were presented in a webinar held within the framework of the the 2020 PX4 Developer Summit.
 
 The PX4 Developer Summit is a 2-day event in which professionals from all over the world exchange technological insights of the drone sector.
 With around 50 speakers from companies like NXP, Microsoft, Open Robotics, Auterion, Dronecode and of course PX4, the topics vary from software development to hardware components.
