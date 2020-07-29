@@ -58,7 +58,7 @@ int64 int64_test
 uint64 uint64_test
 ```
 
-Now, you can build your micro-ROS workspace as usual. Check [**First micro-ROS application on an RTOS**](../first_application_rtos/) for more details of how to build a micro-ROS environment. 
+Now, you can build your micro-ROS workspace as usual. Check [**First micro-ROS application on an RTOS**](../first_application_rtos/) for more details on how to build a micro-ROS environment. 
 
 In your micro-ROS application code, you can use your new message type as usual:
 
