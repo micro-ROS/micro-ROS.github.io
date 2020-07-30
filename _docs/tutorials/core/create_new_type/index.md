@@ -108,7 +108,7 @@ Also, include the dependency in `package.xml`:
 ...
 ```
 
-The message definition in `msg/MyCustomMessage.msg` now can add types from `geometry_msgs` package:
+The message definition in `msg/MyCustomMessage.msg` can now include types from the `geometry_msgs` package:
 
 ```
 ...
