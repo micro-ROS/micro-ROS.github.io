@@ -3,7 +3,7 @@ title: How to create a new micro-ROS type
 permalink: /docs/tutorials/core/create_new_type/
 ---
 
-This tutorial starts in an already create micro-ROS environment. Check [**First micro-ROS application on an RTOS**](../first_application_rtos/) for more details of how to build a micro-ROS environment.
+This tutorial starts in a previously created micro-ROS environment. Check [**First micro-ROS application on an RTOS**](../first_application_rtos/) for more details on how to build a micro-ROS environment.
 
 Once your micro-ROS workspace is created, go to `firmware/mcu_ws` and run the package creating command:
 
