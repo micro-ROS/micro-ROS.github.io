@@ -117,7 +117,7 @@ uint64 uint64_test
 geometry_msgs/Point32 point32_test
 ```
 
-And finally, in your code you can access to this new member of your custom type:
+And finally, in your code you can access this new member of your custom type:
 
 
 ```c
