@@ -3,7 +3,7 @@ title: How to create a new micro-ROS type
 permalink: /docs/tutorials/core/create_new_type/
 ---
 
-This tutorial starts in a previously created micro-ROS environment. Check [**First micro-ROS application on an RTOS**](../first_application_rtos/) for more details on how to build a micro-ROS environment.
+This tutorial starts in a previously created micro-ROS environment. Check [**First micro-ROS application on an RTOS**](../first_application_rtos/) for instructions about how to create a micro-ROS environment for embedded platforms.
 
 Once your micro-ROS workspace is created, go to `firmware/mcu_ws` and run the package creating command:
 
@@ -56,7 +56,7 @@ int64 int64_test
 uint64 uint64_test
 ```
 
-Now, you can build your micro-ROS workspace as usual. Check [**First micro-ROS application on an RTOS**](../first_application_rtos/) for more details on how to build a micro-ROS environment. 
+Now, you can build your micro-ROS workspace as usual. As explained in [**First micro-ROS application on an RTOS**](../first_application_rtos/) the `ros2 run micro_ros_setup build_firmware.sh` command will build all packages located inside `mcu_ws`. 
 
 In your micro-ROS application code, you can use your new message type as usual:
 
