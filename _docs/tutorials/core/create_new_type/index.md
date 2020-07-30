@@ -56,7 +56,7 @@ int64 int64_test
 uint64 uint64_test
 ```
 
-Now, you can build your micro-ROS workspace as usual. As explained in [**First micro-ROS application on an RTOS**](../first_application_rtos/) the `ros2 run micro_ros_setup build_firmware.sh` command will build all packages located inside `mcu_ws`. 
+Now, you can build your micro-ROS workspace as usual. As explained in [**First micro-ROS application on an RTOS**](../first_application_rtos/), the `ros2 run micro_ros_setup build_firmware.sh` command will build all packages located inside `mcu_ws`. 
 
 In your micro-ROS application code, you can use your new message type as usual:
 
