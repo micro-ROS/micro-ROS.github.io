@@ -82,7 +82,7 @@ You can find further information in the [ROS 2 Create custom ROS 2 msg and srv f
 
 ## Using type composition
 
-It is possible to create custom types that include members from another ROS 2 message types packages. For example let's add a memeber with type `Point32` from the ROS 2 package `geometry_msgs`.
+It is possible to create custom types that include members from another ROS 2 message types packages. For example let's add a member with type `Point32` from the ROS 2 package `geometry_msgs`.
 
 First of all, you have to include the dependency in the `CMakeLists.txt`: 
 
