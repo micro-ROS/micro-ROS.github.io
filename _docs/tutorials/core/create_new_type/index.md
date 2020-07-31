@@ -136,3 +136,5 @@ msg.point32_test.z = 3.12;
 
 ...
 ```
+
+Note that in order for the micro_ros_agent to register these new types, the package with the custom types you've created above, should also be cloned to the host workspace, e.g. `~/uros_ws/src`, and compiled there as well before running the agent.
