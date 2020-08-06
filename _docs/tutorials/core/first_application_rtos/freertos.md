@@ -50,7 +50,7 @@ You can check the complete content of the `ping_pong` app
 {% include first_application_common/pingpong_logic.md %}
 
 The contents of the FreeRTOS app specific files can be found here:
-[app.c](https://github.com/micro-ROS/freertos_apps/blob/foxy/nuttx_apps/ping_pong/app.c) and
+[app.c](https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/ping_pong/app.c) and
 [app-colcon.meta](https://github.com/micro-ROS/freertos_apps/blob/foxy/nuttx_apps/ping_pong/app-colcon.meta).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
