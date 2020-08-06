@@ -14,4 +14,4 @@ This new version include the next improvements:
 You can find the repositories here:
 
 - [NuttX](https://github.com/micro-ROS/NuttX)
-- [NuttX Apps](https://github.com/micro-ROS/apps)
+- [NuttX Apps](https://github.com/micro-ROS/nuttx_apps)
