@@ -36,7 +36,7 @@ containing the two files just described.
 {% include first_application_common/config.md %}
 
 In this tutorial, we will use a Serial transport (labeled as `serial`) and focus on the out-of-the-box `ping_pong`
-application located at `firmware/freertos_apps/nuttx_apps/ping_pong`. To execute this application with the chosen transport,
+application located at `firmware/freertos_apps/apps/ping_pong`. To execute this application with the chosen transport,
 run the configuration command above by specifying the `[APP]` and `[OPTIONS]` parameters as below:
 
 ```bash
