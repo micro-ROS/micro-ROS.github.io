@@ -43,7 +43,7 @@ The contents of the Zephyr app specific files can be found here:
 [main.c](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c),
 [app-colcon.meta](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/app-colcon.meta),
 [CMakeLists.txt](https://github.com/micro-ROS/zephyr_apps/blob/foxy/nuttx_apps/ping_pong/CMakeLists.txt)
-and [host-udp.conf](https://github.com/micro-ROS/zephyr_apps/blob/foxy/nuttx_apps/ping_pong/host-udp.conf).
+and [host-udp.conf](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/host-udp.conf).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
 ## Building the firmware
