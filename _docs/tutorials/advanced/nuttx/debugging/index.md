@@ -153,7 +153,7 @@ In the extensions marketplace, enter "cortex", then install "Cortex-Debug". Depe
 
 ### Set up your project for debugging
 
-Open your project folder in Visual Studio Code -- this is usually the `NuttX` folder, or a subdirectory of `nuttx_apps`.
+Open your project folder in Visual Studio Code -- this is usually the `NuttX` folder, or a subdirectory of `apps`.
 
 #### Create a Visual Studio Code launch configuration for NuttX
 
