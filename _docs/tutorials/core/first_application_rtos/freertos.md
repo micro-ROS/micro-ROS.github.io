@@ -22,7 +22,7 @@ Once the command is executed, a folder named `firmware` must be present in your 
 
 This step is in charge, among other things, of downloading a set of micro-ROS apps for the specific platform you are
 addressing.
-In the case of FreeRTOS, these are located at `firmware/freertos_apps/nuttx_apps`.
+In the case of FreeRTOS, these are located at `firmware/freertos_apps/apps`.
 Each app is represented by a folder containing the following files:
 
 * `app.c`: This file contains the logic of the application.
