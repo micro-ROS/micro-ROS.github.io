@@ -25,7 +25,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh zephyr host
 {% include first_application_common/config.md %}
 
 In this tutorial, we will use a UDP transport that looks for the agent on the port UDP/8888 at localhost, and focus on
-the out-of-the-box `ping_pong` application located at `firmware/zephyr_apps/nuttx_apps/ping_pong`.
+the out-of-the-box `ping_pong` application located at `firmware/zephyr_apps/apps/ping_pong`.
 To execute this application with the chosen transport, run the configuration command above by specifying the `[APP]`
 and `[OPTIONS]` parameters as below:
 
