@@ -31,7 +31,7 @@ run the configuration command above by specifying the `[APP]` and `[OPTIONS]` pa
 ros2 run micro_ros_setup configure_firmware.sh ping_pong --transport serial-usb
 ```
 You can check the complete content of the `ping_pong` app
-[here](https://github.com/micro-ROS/zephyr_apps/tree/foxy/nuttx_apps/ping_pong).
+[here](https://github.com/micro-ROS/zephyr_apps/tree/foxy/apps/ping_pong).
 
 {% include first_application_common/pingpong_logic.md %}
 
