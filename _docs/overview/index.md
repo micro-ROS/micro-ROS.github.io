@@ -19,7 +19,7 @@ We have also prepared a [comparison](/docs/overview/comparison) to other approac
 Major repositories in order of the layers are:
 
 * Applications:
-  * Kobuki demo: [embedded robot driver](https://github.com/micro-ROS/apps/tree/kobuki_rcl_port/examples/kobuki) and [remote ROS 2 software](https://github.com/micro-ROS/micro-ROS_kobuki_demo)
+  * Kobuki demo: [embedded robot driver](https://github.com/micro-ROS/nuttx_apps/tree/kobuki_rcl_port/examples/kobuki) and [remote ROS 2 software](https://github.com/micro-ROS/micro-ROS_kobuki_demo)
 * Client library:
   * Extensions to rcl, i.e. the ROS 2 C API: [rcl_executor](https://github.com/micro-ROS/rcl_executor), ...
   * Extensions for rclcpp: [system_modes](https://github.com/micro-ROS/system_modes/), [TF improvements](https://github.com/micro-ROS/geometry2), ...
@@ -30,7 +30,7 @@ Major repositories in order of the layers are:
   * Agent (bridge) to ROS 2: [micro-ROS-Agent](https://github.com/micro-ROS/micro-ROS-Agent)
 * RTOS:
   * Our [NuttX fork](https://github.com/micro-ROS/NuttX), but most additions were contributed back.
-  * Example applications for NuttX directly are in [apps](https://github.com/micro-ROS/apps)
+  * Example applications for NuttX directly are in [nuttx_apps](https://github.com/micro-ROS/nuttx_apps)
 
 Most repositories can be found in GitHub's micro-ROS organization at [github.com/micro-ROS/](https://github.com/micro-ROS/).
 

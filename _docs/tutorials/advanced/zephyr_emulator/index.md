@@ -25,7 +25,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh zephyr host
 {% include first_application_common/config.md %}
 
 In this tutorial, we will use a UDP transport that looks for the agent on the port UDP/8888 at localhost, and focus on
-the out-of-the-box `ping_pong` application located at `firmware/zephyr_apps/apps/ping_pong`.
+the out-of-the-box `ping_pong` application located at `firmware/zephyr_apps/nuttx_apps/ping_pong`.
 To execute this application with the chosen transport, run the configuration command above by specifying the `[APP]`
 and `[OPTIONS]` parameters as below:
 
@@ -35,15 +35,15 @@ ros2 run micro_ros_setup configure_firmware.sh host_ping_pong --transport udp --
 ```
 
 You can check the complete content of the `ping_pong` app
-[here](https://github.com/micro-ROS/zephyr_apps/tree/foxy/apps/ping_pong).
+[here](https://github.com/micro-ROS/zephyr_apps/tree/foxy/nuttx_apps/ping_pong).
 
 {% include first_application_common/pingpong_logic.md %}
 
 The contents of the Zephyr app specific files can be found here:
-[main.c](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c),
-[app-colcon.meta](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/app-colcon.meta),
-[CMakeLists.txt](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/CMakeLists.txt)
-and [host-udp.conf](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/host-udp.conf).
+[main.c](https://github.com/micro-ROS/zephyr_apps/blob/foxy/nuttx_apps/ping_pong/src/main.c),
+[app-colcon.meta](https://github.com/micro-ROS/zephyr_apps/blob/foxy/nuttx_apps/ping_pong/app-colcon.meta),
+[CMakeLists.txt](https://github.com/micro-ROS/zephyr_apps/blob/foxy/nuttx_apps/ping_pong/CMakeLists.txt)
+and [host-udp.conf](https://github.com/micro-ROS/zephyr_apps/blob/foxy/nuttx_apps/ping_pong/host-udp.conf).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
 ## Building the firmware

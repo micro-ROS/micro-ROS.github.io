@@ -22,7 +22,7 @@ Once the command is executed, a folder named `firmware` must be present in your 
 
 This step is in charge, among other things, of downloading a set of micro-ROS apps for the specific platform you are
 addressing.
-In the case of FreeRTOS, these are located at `firmware/freertos_apps/apps`.
+In the case of FreeRTOS, these are located at `firmware/freertos_apps/nuttx_apps`.
 Each app is represented by a folder containing the following files:
 
 * `app.c`: This file contains the logic of the application.
@@ -36,7 +36,7 @@ containing the two files just described.
 {% include first_application_common/config.md %}
 
 In this tutorial, we will use a Serial transport (labeled as `serial`) and focus on the out-of-the-box `ping_pong`
-application located at `firmware/freertos_apps/apps/ping_pong`. To execute this application with the chosen transport,
+application located at `firmware/freertos_apps/nuttx_apps/ping_pong`. To execute this application with the chosen transport,
 run the configuration command above by specifying the `[APP]` and `[OPTIONS]` parameters as below:
 
 ```bash
@@ -45,13 +45,13 @@ ros2 run micro_ros_setup configure_firmware.sh ping_pong --transport serial --de
 ```
 
 You can check the complete content of the `ping_pong` app
-[here](https://github.com/micro-ROS/freertos_apps/tree/foxy/apps/ping_pong).
+[here](https://github.com/micro-ROS/freertos_apps/tree/foxy/nuttx_apps/ping_pong).
 
 {% include first_application_common/pingpong_logic.md %}
 
 The contents of the FreeRTOS app specific files can be found here:
-[app.c](https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/ping_pong/app.c) and
-[app-colcon.meta](https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/ping_pong/app-colcon.meta).
+[app.c](https://github.com/micro-ROS/freertos_apps/blob/foxy/nuttx_apps/ping_pong/app.c) and
+[app-colcon.meta](https://github.com/micro-ROS/freertos_apps/blob/foxy/nuttx_apps/ping_pong/app-colcon.meta).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
 {% include first_application_common/build_and_flash.md %}
