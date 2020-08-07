@@ -135,7 +135,7 @@ window.onload = () => {
 </div>
 
 <!-- CONTENT -->
-<h2>OFERA Consortium Members</h2>
+<h2>Members of the EU project OFERA</h2>
 <div class="photo-gallery">
   {% for image in page.ofera_consortium %}
     <div class="flex-item">

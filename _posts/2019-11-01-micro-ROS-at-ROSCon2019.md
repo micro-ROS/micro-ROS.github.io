@@ -42,4 +42,4 @@ During the whole duration of the conference, micro-ROS attracted much attention,
 Most of the visitors were already working on microcontrollers. They also had an interest in communicating with ROS 2 but struggling their way to through, that is one of the reasons why micro-ROS attracted their attention.
 
 As final remark.
-Aside from OFERA consortium, Renesas was showcasing the use of Micro XRCE-DDS in their  RX65N MCU based platform, GR-ROSE.
+Aside from members of the EU project OFERA, Renesas was showcasing the use of Micro XRCE-DDS in their RX65N MCU based platform, GR-ROSE.

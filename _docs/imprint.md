@@ -22,7 +22,7 @@ Jaime Martin Losa.
 
 # Edited by:
 
-OFERA Consortium members:
+Members of the EU project [OFERA](http://ofera.eu/):
 
 * eProsima.
 * Robert Bosch GmbH.
