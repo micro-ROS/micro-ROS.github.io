@@ -1,0 +1,53 @@
+Third Party Licenses
+====================
+
+The micro-ros.github.io repository includes material from the projects
+listed below (Third Party IP). The original copyright notice and the
+license under which we received such Third Party IP, are set forth below.
+
+
+
+--------------------------------------------------------------------------
+Overview
+--------------------------------------------------------------------------
+
+micro-ros.github.io is based on the MIT-licensed template Jekyll Doc Theme
+by Can Güney Aksakalli and contributors. The template files and source
+code can be identified by the commits by his user name aksakalli
+(https://github.com/aksakalli/) and by the user names of the contributors
+in the git history. Starting point for the development of this website
+was the version as of 23 September 2018, cf. commit 3cc3f49.
+
+Name:      Jekyll Doc Theme
+Version:   commit 3cc3f49 from 23 September 2018 + selected updates
+URL:       https://github.com/aksakalli/jekyll-doc-theme
+License:   MIT license
+Copyright: Copyright (c) 2017 Can Güney Aksakalli
+
+
+
+--------------------------------------------------------------------------
+Licenses
+--------------------------------------------------------------------------
+
+MIT License
+
+Copyright (c) 2017 Can Güney Aksakalli
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
