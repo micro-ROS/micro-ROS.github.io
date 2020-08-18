@@ -49,22 +49,7 @@ In order to flash and debug the board, it is required to get a JTAG probe. We re
 + [CAD files](https://github.com/OLIMEX/STM32F4)
 + [User Manual](https://www.olimex.com/Products/ARM/ST/STM32-E407/resources/STM32-E407.pdf)
 
-## STM32L1 Discovery
-
-![](https://www.st.com/content/ccc/fragment/product_related/rpn_information/board_photo/48/0b/aa/9b/b5/d7/43/89/32l152cdiscovery.jpg/files/32l152cdiscovery.jpg/_jcr_content/translations/en.32l152cdiscovery.jpg)
-
-The (STM32L1 Discovery Kit)[https://www.st.com/en/evaluation-tools/32l152cdiscovery.html] is an open hardware design, ultra low power and low-cost entry board for developing custom applications. It contains an STM32L152RCT6 Cortex-M3 microcontroller manufactured by ST Microelectronics. This part number contains 32KB of RAM and 256KB of flash memory. It also includes an ST-Link in-circuit debugger that allows flashing and debugging the target microcontroller.
-
-### Resources
-
-+ [Vendor main page](https://www.st.com/en/evaluation-tools/32l152cdiscovery.html)
-+ [User Manual](https://www.st.com/content/ccc/resource/technical/document/user_manual/08/f8/63/f5/7b/3d/40/ff/DM00027954.pdf/files/DM00027954.pdf/jcr:content/translations/en.DM00027954.pdf)
-+ [Schematics in PDF](https://www.st.com/resource/en/schematic_pack/32l152cdiscovery_sch.zip)
-+ [Bill of Material](https://www.st.com/resource/en/bill_of_materials/32l152cdiscovery_bom.zip)
-+ [Gerber files](https://www.st.com/resource/en/bill_of_materials/32l152cdiscovery_bom.zip)
-
-
-## STM32L4 Discovery kit IoT 
+## STM32L4 Discovery kit IoT
 
 The [ST B-L475E-IOT01A](https://www.st.com/en/evaluation-tools/b-l475e-iot01a.html) evaluation board is a ready to use IoT kit. This board supports an out-of-the-box micro-ROS + Zephyr port.
 
@@ -73,7 +58,7 @@ The [ST B-L475E-IOT01A](https://www.st.com/en/evaluation-tools/b-l475e-iot01a.ht
 The STM32L4 Discovery kit IoT enables a wide diversity of applications by exploiting low-power communication, multiway sensing and Arm Cortex M4 core-based STM32L4 Series features.
 The support for Arduino and PMOD connectivity provides unlimited expansion capabilities with a large choice of specialized add-on boards.
 
-This board features a STM32L475E MCU with 1 MB of Flash memory and 128 KB of RAM. In addition to the MCU peripherals, the board includes: 
+This board features a STM32L475E MCU with 1 MB of Flash memory and 128 KB of RAM. In addition to the MCU peripherals, the board includes:
  - 64 Mb SPI Flash memory
  - Bluetooth V4.1 module (SPBTLE-RF)
  - 915 MHz low-power RF module (SPSGRF-915)
@@ -94,7 +79,7 @@ Examples on how to start developing with this board are available [here](/docs/t
 
 ## Crazyflie 2.1 Drone
 
-As an integration example, the open-source [Crazyflie 2.1](https://www.bitcraze.io/products/crazyflie-2-1/) platform has its own micro-ROS + FreeRTOS port. 
+As an integration example, the open-source [Crazyflie 2.1](https://www.bitcraze.io/products/crazyflie-2-1/) platform has its own micro-ROS + FreeRTOS port.
 
 <img width="400" src="imgs/3.jpg">
 
