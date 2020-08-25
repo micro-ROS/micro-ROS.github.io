@@ -1,6 +1,6 @@
 ---
 title: How to use custom QoS in micro-ROS
-permalink: /docs/tutorials/core/create_entities_by_refs/
+permalink: /docs/tutorials/core/create_dds_entities_by_ref/
 ---
 
 
