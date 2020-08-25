@@ -47,6 +47,7 @@
    - tutorials/core/programming_rcl_rclc
    - tutorials/core/microxrcedds_rmw_configuration
    - tutorials/core/create_new_type
+   - tutorials/core/create_dds_entities_by_ref
 
 - title: Advanced Tutorials
   docs:
