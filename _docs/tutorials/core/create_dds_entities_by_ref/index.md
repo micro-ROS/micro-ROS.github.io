@@ -149,7 +149,7 @@ This code will tell the micro-ROS Agent to create a publisher using just a text 
 
 When writting this XML file, special care about ROS2 to DDS name mangling has to be taken into account. Read more information about this [here](http://design.ros2.org/articles/topic_and_service_names.html#mapping-of-ros-2-topic-and-service-names-to-dds-concepts).
 
-Once we have this file ready just run the micro-ROS agent with the `-r` parameter:
+Once you have this file ready, just run the micro-ROS agent with the `-r` parameter:
 
 ```
 ros2 run micro_ros_agent micro_ros_agent [PARAMETERS] -r custom_qos.refs
