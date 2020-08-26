@@ -4,7 +4,7 @@ permalink: /docs/tutorials/core/create_dds_entities_by_ref/
 ---
 
 
-This tutorial explains the procedure for creating micro-ROS entities using fully configurable QoS settings. The micro-ROS default middleware (Micro XRCE-DDS Client) enables the user to use two approaches for creating ROS 2 (DDS) entities in the micro-ROS Agent (Please check the [architecture section](https://micro-ros.github.io/docs/overview/) for detailed information):
+This tutorial explains the procedure for creating micro-ROS entities using fully configurable QoS settings. The micro-ROS default middleware (Micro XRCE-DDS Client) allows the user to take two different approaches for creating ROS 2 (DDS) entities in the micro-ROS Agent (Please check the [architecture section](https://micro-ros.github.io/docs/overview/) for detailed information):
 - By XML (the default option in micro-ROS RMW)
 - By reference
 
