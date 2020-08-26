@@ -63,7 +63,7 @@ For those familiar with the QoS XML format in DDS (click [here](https://fast-dds
 
 ```
 
-But these QoS configurations may not fit in some user requirements. For these cases, micro-ROS allows the users to write their custom XML QoS and run the agent with a predefinied set of QoS. Each entity will has its label and the micro-ROS client will create the entities using just this reference.
+But these QoS configurations may not fit some user's requirements. For these cases, micro-ROS allows the users to write their custom XML QoS and run the agent with a predefined set of QoS. Each entity will have its own label and the micro-ROS client will create the entities using just this reference.
 
 In parallel using references will also reduce the memory consumption of the micro-ROS client inside the MCU. This is because the parts of the code where XML are handled are just not build with the references approach.
 
