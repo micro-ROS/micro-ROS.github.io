@@ -8,7 +8,7 @@ To do so from binaries, via Debian packages, follow the instructions detailed
 the purpose is the container run by the command:*
 
 ```bash
-docker run -it --net=host ros:foxy
+docker run -it --net=host -v /dev:/dev --privileged ros:foxy
 ```
 
 Once you have a ROS 2 installation in the computer, follow these steps to install the micro-ROS build system:
