@@ -70,7 +70,7 @@ Additionally, using references will also reduce the memory consumption of the mi
 Let's see how to create a micro-ROS node that creates entities with custom QoS. First of all, independently of which RTOS you have selected in [First micro-ROS Application on an RTOS
 ](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/) tutorial, you should have an app configuration file named `app-colcon.meta`.
 
-Inside this `app-colcon.meta` file we can set application specific CMake options for the micro-ROS packages that are going to be cross-compiled. So, let setup the `rmw_microxrcedds` in order to use references. Your `app-colcon.meta` should look like:
+Inside this `app-colcon.meta` file we can set application specific CMake options for the micro-ROS packages that are going to be crosscompiled. So, let's setup the `rmw_microxrcedds` in order to use references; your `app-colcon.meta` should look like this:
 
 ```
 {
@@ -86,7 +86,7 @@ Inside this `app-colcon.meta` file we can set application specific CMake options
 }
 ```
 
-Of course you can combine these configurations with others, e.i the ones described in the [Middleware Configuration](https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/) tutorial.
+Of course you can combine these configurations with others, e.g. the ones described in the [Middleware Configuration](https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/) tutorial.
 
 Once you have this parameter, write your micro-ROS application using RCLC default convenience functions. Just remember that now you are not providing the topic name but a "QoS reference label":
 
@@ -117,7 +117,7 @@ This code will tell the micro-ROS Agent to create a publisher using just a text 
         </rtps>
     </participant>
 
-    <topic profile_name="std_msgs_msg_Int32__t">
+    <topic profile_name="my_qos_label__t">
         <name>rt/my_topic_name</name>
         <dataType>std_msgs::msg::dds_::Int32_</dataType>
         <historyQos>
@@ -126,7 +126,7 @@ This code will tell the micro-ROS Agent to create a publisher using just a text 
         </historyQos>
     </topic>
 
-    <data_writer profile_name="std_msgs_msg_Int32__dw">
+    <data_writer profile_name="my_qos_label__dw">
         <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
         <qos>
           <reliability>
