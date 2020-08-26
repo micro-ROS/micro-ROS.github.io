@@ -70,7 +70,7 @@ In parallel using references will also reduce the memory consumption of the micr
 Let's see how to create a micro-ROS node that creates entities with custom QoS. First of all, independently of which RTOS you have selected in [First micro-ROS Application on an RTOS
 ](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/) tutorial, you should have an app configuration file named `app-colcon.meta`.
 
-Inside this `app-colcon.meta` file we can set application specific CMake options for the micro-ROS packages that are going to be crosscompile. So, let setup the `rmw_microxrcedds` in order to use references, your `app-colcon.meta` should looks like:
+Inside this `app-colcon.meta` file we can set application specific CMake options for the micro-ROS packages that are going to be cross-compiled. So, let setup the `rmw_microxrcedds` in order to use references. Your `app-colcon.meta` should look like:
 
 ```
 {
