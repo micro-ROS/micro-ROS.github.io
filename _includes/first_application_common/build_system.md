@@ -8,7 +8,7 @@ To do so from binaries, via Debian packages, follow the instructions detailed
 the purpose is the container run by the command:*
 
 ```bash
-docker run -it --net=host ros:foxy
+docker run -it --net=host -v /dev:/dev --privileged ros:foxy
 ```
 
 Once you have a ROS 2 installation in the computer, follow these steps to install the micro-ROS build system:
@@ -22,12 +22,12 @@ mkdir microros_ws
 cd microros_ws
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
 
-# Install pip
-sudo apt-get install python3-pip
-
 # Update dependencies using rosdep
 sudo apt update && rosdep update
 rosdep install --from-path src --ignore-src -y
+
+# Install pip
+sudo apt-get install python3-pip
 
 # Build micro-ROS tools and source them
 colcon build
