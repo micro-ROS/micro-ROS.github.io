@@ -13,3 +13,5 @@ Zephyr is a fairly new open-source RTOS, developed in a Linux Foundation Project
 * Meta-tool *West*: [https://docs.zephyrproject.org/latest/guides/west/](https://docs.zephyrproject.org/latest/guides/west/)
 * Download: [https://github.com/zephyrproject-rtos/zephyr](https://github.com/zephyrproject-rtos/zephyr)
 * Documentation: [https://docs.zephyrproject.org/latest/](https://docs.zephyrproject.org/latest/)
+
+{% include logos_disclaimer.md %}
