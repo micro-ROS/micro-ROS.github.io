@@ -107,7 +107,7 @@ rcl_publish(&publisher, &msg, NULL);
 ...
 ```
 
-This code, will tell the micro-ROS Agent to create a publisher using just a text label: `my_qos_label`. So the micro-ROS Agent must have a file where these labels are written along with some QoS profiles, let's create a `custom_qos.refs` with the content:
+This code will tell the micro-ROS Agent to create a publisher using just a text label: `my_qos_label`. This implies that the micro-ROS Agent must have a file where these labels are written along with some QoS profiles. Let's create a `custom_qos.refs` with the following content:
 
 ```xml
 <profiles>
