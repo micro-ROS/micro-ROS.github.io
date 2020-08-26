@@ -65,7 +65,7 @@ For those familiar with the QoS XML format in DDS (click [here](https://fast-dds
 
 But these QoS configurations may not fit some user's requirements. For these cases, micro-ROS allows the users to write their custom XML QoS and run the agent with a predefined set of QoS. Each entity will have its own label and the micro-ROS client will create the entities using just this reference.
 
-In parallel using references will also reduce the memory consumption of the micro-ROS client inside the MCU. This is because the parts of the code where XML are handled are just not build with the references approach.
+In parallel using references will also reduce the memory consumption of the micro-ROS client inside the MCU. This is because the parts of the code where XMLs are handled are just not built with the references approach.
 
 Let's see how to create a micro-ROS node that creates entities with custom QoS. First of all, independently of which RTOS you have selected in [First micro-ROS Application on an RTOS
 ](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/) tutorial, you should have an app configuration file named `app-colcon.meta`.
