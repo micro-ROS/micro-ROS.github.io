@@ -3,7 +3,11 @@ title: Supported Hardware
 permalink: /docs/overview/hardware/
 ---
 
-micro-ROS targets mid-range and high-performance 32-bits microcontrollers families. For now, most of the ports are based on the [STM32 series](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html) from ST. These kinds of MCU feature ARM Cortex-M processors with many peripherals such as GPIO, communication or coprocessors.  By default, micro-ROS uses [NuttX RTOS](https://nuttx.org/), but it also has ports for [FreeRTOS](https://www.freertos.org/) and [Zephyr](https://www.zephyrproject.org/). These RTOSes have a big variety of supported MCUs and development boards. The following list shows some of them:
+micro-ROS targets mid-range and high-performance 32-bits microcontrollers families.
+For the moment, all official ports are based on the [STM32 series](https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html) from [ST](https://www.st.com/content/st_com/en.html) and on the [ESP32](https://www.espressif.com/en/products/socs/esp32) from [Espressif](https://www.espressif.com/en).
+The former feature ARM Cortex-M processors with many peripherals such as GPIO, communication or coprocessors, and the second are highly-integrated chips with in-built antenna switches, RF balun, power amplifier, low-noise receive amplifier, filters, and power management modules.
+
+By default, micro-ROS uses [NuttX RTOS](https://nuttx.org/), but it also has ports for [FreeRTOS](https://www.freertos.org/) and [Zephyr](https://www.zephyrproject.org/). These RTOSes have a big variety of supported MCUs and development boards. The following list shows some of them:
 
 + MicroChip PIC32MX Family
 + Atmel SAMA5Dx
@@ -17,13 +21,13 @@ micro-ROS targets mid-range and high-performance 32-bits microcontrollers famili
 <!-- TODO (pablogs): Update this paragraph to a more generic porting guide link  -->
 Please check [this link](https://cwiki.apache.org/confluence/display/NUTTX/Supported+Platforms) to see the complete list and the status of each board. In case you are interested in porting new boards or MCUs, please check the [next link](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide).
 
-Even though many development boards could be used, we have chosen two of them as references. This page lists the hardware platforms that we use to test and develop micro-ROS, and also accessories that we frequently refer to, such as add-on boards, and JTAG probes.
+Among the many boards that can be used potentially by virtue of the variety of RTOSes supported, for the moment we officially supoort the four boards listed and detailed below. These are the hardware platforms that we use to test and develop micro-ROS, with which we also present accessories that we frequently refer to, such as add-on boards, and JTAG probes.
 
 For the ease of use, micro-ROS provides a ready to use example for some development boards. These out-of-the-box examples aim to show micro-ROS capabilities and they are also a starting point for developing embedded ROS 2 applications.
 
 ## Reference Platforms {#evaluation-boards}
 
-This section describes the main characteristic of the selected boards.
+This section describes the main characteristic of the boards officially supported by the micro-ROS project.
 
 ## Olimex LTD STM32-E407
 
@@ -95,3 +99,12 @@ This little drone features a STM32F405 ARM Cortex-M4 MCU running up to 168 MHz w
  - headers with peripheral access: SPI, I2C, UART, 1-wire and GPIO
 
 Examples on how to start developing with this board are available [here](/docs/tutorials/demos/crazyflie_demo/).
+
+## ESP32-DevKitC
+
+The ESP32-DevKitC is a low-footprint and entry-level development board that is part of the [ESP32 series](https://www.espressif.com/en/products/socs/esp32) from [Espressif](https://www.espressif.com/en). The ESP32 is an ultra-low power consumption dual-core system with two Xtensa LX6 CPUs, exposing a large collection of peripherals and with integrated Wi-Fi and dual-mode Bluetooth. The ESP32-DevKitC has all the ESP32 pins exposed and offers a Flash memory of 4 MB, 448 KB ROM for booting and core functions, 520 KB SRAM for data and instructions and 16 KB SRAM in RTC. The ESP32 comes with a native FreeRTOS support, over which the micro-ROS port has been carried out, both with serial and Wi-Fi transports.
+The board specifically supported by the project hosts an [ESP32-WROOM-32E module](https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf), which is an ESP32-D0WD-based module with integrated flash. These modules have the following interfaces: SD card, UART, SPI, SDIO, I²C, LED PWM, Motor PWM, I²C, IR, pulse counter, GPIO, capacitive touch sensor, ADC, DAC, and are well suited for Wi-Fi and Bluetooth/Bluetooth LE-based connectivity applications.
+
+These boards ..
+
+list of features
