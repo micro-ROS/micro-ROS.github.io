@@ -19,7 +19,7 @@ By default, micro-ROS uses [NuttX RTOS](https://nuttx.org/), but it also has por
 + RISC-V boards
 
 <!-- TODO (pablogs): Update this paragraph to a more generic porting guide link  -->
-Please check [this link](https://cwiki.apache.org/confluence/display/NUTTX/Supported+Platforms) to see the complete list and the status of each board. In case you are interested in porting new boards or MCUs, please check the [next link](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide).
+<!-- Please check [this link](https://cwiki.apache.org/confluence/display/NUTTX/Supported+Platforms) to see the complete list and the status of each board. In case you are interested in porting new boards or MCUs, please check the [next link](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide). -->
 
 Among the many boards that can be used potentially by virtue of the variety of RTOSes supported, for the moment we officially supoort the four boards listed and detailed below. These are the hardware platforms that we use to test and develop micro-ROS, with which we also present accessories that we frequently refer to, such as add-on boards, and JTAG probes.
 
@@ -113,3 +113,4 @@ These modules have a complete set of interfaces and peripherals that makes suita
  - Communication interfaces: SPI, I2C, I2S, UART, SDIO, CAN
  - Peripherals: GPIO, ADC/DAC, PWM (LED and Motor drivers)
  - Cryptographic hardware acceleration
+ 
