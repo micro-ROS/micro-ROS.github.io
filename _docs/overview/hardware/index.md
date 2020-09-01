@@ -102,9 +102,14 @@ Examples on how to start developing with this board are available [here](/docs/t
 
 ## ESP32-DevKitC
 
+<img width="400" src="imgs/4.jpg">
+
 The ESP32-DevKitC is a low-footprint and entry-level development board that is part of the [ESP32 series](https://www.espressif.com/en/products/socs/esp32) from [Espressif](https://www.espressif.com/en). The ESP32 is an ultra-low power consumption dual-core system with two Xtensa LX6 CPUs, exposing a large collection of peripherals and with integrated Wi-Fi and dual-mode Bluetooth. The ESP32-DevKitC has all the ESP32 pins exposed and offers a Flash memory of 4 MB, 448 KB ROM for booting and core functions, 520 KB SRAM for data and instructions and 16 KB SRAM in RTC. The ESP32 comes with a native FreeRTOS support, over which the micro-ROS port has been carried out, both with serial and Wi-Fi transports.
-The board specifically supported by the project hosts an [ESP32-WROOM-32E module](https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf), which is an ESP32-D0WD-based module with integrated flash. These modules have the following interfaces: SD card, UART, SPI, SDIO, I²C, LED PWM, Motor PWM, I²C, IR, pulse counter, GPIO, capacitive touch sensor, ADC, DAC, and are well suited for Wi-Fi and Bluetooth/Bluetooth LE-based connectivity applications.
 
-These boards ..
+The board specifically supported by the project hosts an [ESP32-WROOM-32E module](https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf), which is an ESP32-based module with integrated flash. 
 
-list of features
+These modules have a complete set of interfaces and peripherals that makes suitable for micro-ROS wireless applications:
+ - Networking interfaces: Ethernet MAC, Wi-Fi 802.11 b/g/n, Bluetooth v4.2 BR/EDR and BLE
+ - Communication interfaces: SPI, I2C, I2S, UART, SDIO, CAN
+ - Peripherals: GPIO, ADC/DAC, PWM (LED and Motor drivers)
+ - Cryptographic hardware acceleration
