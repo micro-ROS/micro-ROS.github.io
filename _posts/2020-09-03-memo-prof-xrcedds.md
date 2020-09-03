@@ -13,15 +13,15 @@ The results for this analysis are summarized in the graphs below for publisher a
 
 * **Publisher Applications**:
   
-  <img alt="micro-ROS display" src="/img/posts/overall_pub.png" width="80%"/>
+  <img alt="Results for Micro XRCE-DDS publisher application" src="/img/posts/overall_pub.png" width="80%"/>
 
 * **Subscriber Applications**:
   
-  <img alt="micro-ROS display" src="/img/posts/overall_sub.png" width="80%"/>
+  <img alt="Results for Micro XRCE-DDS subscriber application" src="/img/posts/overall_sub.png" width="80%"/>
 
 
 On the server side, we have investigated the memory consumption of an Agent communicating with a mock Client application on Linux that is publishing and subscribing to topics of known size, by measuring the binary size of the compiled agent (which resulted to be of 385 KB) and analysing heap and stack usages. The results for the latter are summarized in the plot below.
 
-<img alt="micro-ROS display" src="/img/posts/Memory_usage_XRCE-DDS_Agent.png" width="60%"/>
+<img alt="Results for Micro XRCE-DDS agent" src="/img/posts/Memory_usage_XRCE-DDS_Agent.png" width="60%"/>
 
 For more information regarding the methodology employed for performing these profilings, refer to the full report published on [eProsima](https://www.eprosima.com/)'s webpage.
