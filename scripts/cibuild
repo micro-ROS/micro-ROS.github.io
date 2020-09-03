@@ -4,12 +4,14 @@ set -e # halt script on error
 # Get the list of added files compared to the origin/master (origin/master is the deployed branch)
 # New files will not be deployed at the moment of this check so htmlproofer should ignore those links refering them.
 ADDED_FILES=$(git diff --name-only --diff-filter=A origin/master)
+
 if  grep -q "_docs" <<< $ADDED_FILES; then
     ADDITIONS=${ADDITIONS:+$ADDITIONS }micro-ros.github.io//docs
     ADDITIONS=${ADDITIONS:+$ADDITIONS }micro-ros.github.io/blob/master/_docs
-else if grep -q "_posts" <<< $ADDED_FILES; then
-    ADDITIONS=${ADDITIONS:+$ADDITIONS,}micro-ros.github.io//blog
-    fi
+fi
+
+if grep -q "_posts" <<< $ADDED_FILES; then
+    ADDITIONS=${ADDITIONS:+$ADDITIONS }micro-ros.github.io//blog
 fi
 
 IGNORE_HREFS=${IGNORE_HREFS:+$IGNORE_HREFS,}$(ruby -e "puts %w{
