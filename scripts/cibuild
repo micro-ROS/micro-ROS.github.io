@@ -11,7 +11,7 @@ if  grep -q "_docs" <<< $ADDED_FILES; then
 fi
 
 if grep -q "_posts" <<< $ADDED_FILES; then
-    ADDITIONS=${ADDITIONS:+$ADDITIONS,}micro-ros.github.io//blog
+    ADDITIONS=${ADDITIONS:+$ADDITIONS }micro-ros.github.io//blog
 fi
 
 IGNORE_HREFS=${IGNORE_HREFS:+$IGNORE_HREFS,}$(ruby -e "puts %w{
