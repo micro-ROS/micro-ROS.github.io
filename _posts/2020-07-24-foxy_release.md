@@ -24,4 +24,4 @@ have been added to the already very complete pool of out-of-the-box and easy to 
 
 Additionally, bug fixes and improvements have been implemented in the RMW and Micro XRCE-DDS Client library.
 
-For a complete list of improvements and bug fixes please read the [release notes](https://github.com/micro-ROS/micro-ros-build/releases).
+For a complete list of improvements and bug fixes please read the [release notes](https://github.com/micro-ROS/micro_ros_setup/releases).
