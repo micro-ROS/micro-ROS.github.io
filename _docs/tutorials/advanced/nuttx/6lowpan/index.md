@@ -66,7 +66,7 @@ cd /uros_ws/firmware/mcu_ws/eProsima/Micro-XRCE-DDS-Client
 git checkout v1.2.5
 ```
 
-Once the modifications done, the binary can be compiled [as explained here](git checkout v1.2.5)
+Once the modifications done, the binary can be compiled [as explained here](https://github.com/micro-ROS/micro_ros_setup/blob/dashing/micro_ros_setup/README.md)
 
 # Configure the Linux machine
 
