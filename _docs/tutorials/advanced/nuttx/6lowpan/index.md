@@ -1,67 +1,116 @@
 ---
-title: 6LoWPAN Guide
+title: Micro-ROS 6LoWPAN guide
 permalink: /docs/tutorials/advanced/nuttx/6lowpan/
 ---
-
-In this guide, we will show how to use micro-ROS over 6LoWPAN communication.
+This guide will describe how to use Micro-ROS over 6LoWPAN communication.
 
 # What is 6LoWPAN?
 
-6LoWPAN is an acronym o IPv6 over Low-Power Wireless Personal Area Networks.
-This communication protocol allows wireless communication over IEEE 802.15.4 based networks using IPv6. Some of the main advantages are:
+6LoWPAN is an acronym of IPv6 over Low-Power Wireless Personal Area Networks.
+This communication protocol allows wireless communication over IEEE 802.15.4 based networks using IPv6. 
+Some of the main advantages are:
+
 - Easy to route from radio devices to the Internet, thanks to the usage of the IP packets.
 - Easy to use on UDP and TCP server/clients.
-- A protocol designed for low power and constrained devices, perfect or micro-ROS remote sensors.
+- A protocol designed for low power and constrained devices. Perfect for Micro-ROS remote sensors.
 
-# Needed hardware
+# Needed devices
 
-At present, 6LoWPAN is only available for the NuttX RTOS.
-In order to implement the steps highlighted in this guide, you need the following devices:
+At this moment this communication protocol is only available for NuttX RTOS. 
+Below the list of what is needed to continue:
 
-- Raspberry Pi.
-- [Olimex-STM32-E407 board](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware).
-- [PmodRF2 Radio](https://store.digilentinc.com/pmod-rf2-ieee-802-15-rf-transceiver/).
-- micro-ROS-bridge-RPI.
+- Olimex-STM32-E407 board. [Link](https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware)
+- PmodRF2 Radio. [Link](https://store.digilentinc.com/pmod-rf2-ieee-802-15-rf-transceiver/)
+- A Linux Ubuntu 18.04 machine with docker installed.
+- A 802.15.4 Radio USB dongle [Link](http://shop.sysmocom.de/products/atusb) plugged into the Linux machine.
 
-**Important!**
-You can find a guide of how to setup the micro-ROS-bridge_RPI at its [repository](https://github.com/micro-ROS/micro-ROS-bridge_RPI/blob/new_bridge_tools/Readme.md).
-In the micro-ROS-bridge-RPI guide, you can find everything that you need to set-up this device base.
+# Configure the Olimex board
 
-# Configure the board
+The configuration of the board is divided into two parts: the set-up of the hardware and the set-up of the software.
 
-The configuration of the board is divided into two parts: hardware and software set-up.
+## Set-up the hardware
 
-## Hardware set-up
+First the PmodRF2 need to be connected to the Olimex board as desribed below:
 
-First we are going to connect the PmodRF2 radio. 
+- `Board D13` -> `MRF24J40 SCLK`
+- `Board D12` -> `MRF24J40 MISO`
+- `Board D11` -> `MRF24J40 MOSI`
+- `Board D10` -> `MRF24J40 CS`,
+- `Board D8` -> `MRF24J40 INT`.
 
-|       | RPi | Olimex | PmodRF2 |
-| ----- | --- | ------ | ------- |
-| VIN   | 1   | D13    | 12      |
-| GND   | 20  | GND    | 11      |
-| RESET | 17  | -      | 8       |
-| INT   | 16  | D8     | 7       |
-| SDI   | 19  | D12    | 2       |
-| SDO   | 21  | D11    | 3       |
-| SCK   | 23  | D13    | 4       |
-| CS    | 26  | D10    | 1       |
+The ``D`` letter refers to the Arduino header pins of the board denoted ``CON4``.
+To ease the set-up process, The radio's pinout can be found at the following link: [PmodRF2 pinout](https://reference.digilentinc.com/reference/pmod/pmodrf2/start)
 
-To ease the set-up process, you can use the [RPi pinout](https://pinout.xyz/#) and [PmodRF2 pinout](https://reference.digilentinc.com/reference/pmod/pmodrf2/start).
+The last step is to connect a mini-USB cable to the OTG2 USB port (The USB port next to the Ethernet port).
 
-The last step is to connect a mini-USB cable to the OTG2 USB port (this USB port next to the Ethernet port).
+## Set-up the software
 
-## Software set-up
+The micro-ROS build system will be use in order to create and flash the
+firmware.
 
-To create and flash the firmware, we are going to use the micro-ROS build system.
-You can find the instructions at the micro_ros_setup's [README](https://github.com/micro-ROS/micro_ros_setup/blob/dashing/micro_ros_setup/README.md).
-For this particular guide, it is necessary to use the branch `dashing` and the configuration profile `uros_6lowpan`.
+Instructions are available at the following link: [Micro-ROS build system](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/README.md).
+For this particular guide, it is necessary to use the branch ``dashing`` and the configuration profile ``uros_6lowpan``.
 
-Once you follow all the instructions in the build system and flash the board, everything is ready.
+### Manual patches
+
+Due to the build system being a work in progress, some of files have to be
+modified.
+
+- Open ``uros_ws/firmware/mcu_ws/eProsima/Micro-XRCE-DDS-Client/client.config`` and modify the value of ``CONFIG_UDP_TRANSPORT_MTU`` from ``512`` to ``450``.
+
+This is an appropiate MTU for 6LoWPAN communications on NuttX.
+Also the micro-XRCE-DDS needs to be to be change to the version 1.2.5 in the docker:
+
+```bash
+cd /uros_ws/firmware/mcu_ws/eProsima/Micro-XRCE-DDS-Client
+git checkout v1.2.5
+```
+
+Once the modifications done, the binary can be compiled [as explained here](git checkout v1.2.5)
+
+# Configure the Linux machine
+
+The Linux machine is where is going to run the agent.
+In order to setup the wireless, some settings have to be set as follow:
+
+```bash
+#Setting up the 6lowpan network
+sudo apt update && sudo apt install iwpan # install the iwpan tool
+sudo ip link set wpan0 down
+sudo ip link set lowpan0 down
+sudo iwpan dev wpan0 set pan_id 0xabcd
+sudo iwpan phy phy0 set channel 0 26 # phy can be phy0 or any other phyN where N [0,1,2,3,4,5,6,7,8,9,10,...]
+sudo ip link add link wpan0 name lowpan0 type lowpan
+sudo ip link set wpan0 up
+sudo ip link set lowpan0 up
+sudo ip link set docker0 down # Necessary to not reroute everything over the docker and use the lowpan0
+sudo ip neigh flush all
+sudo ip neigh add to {**IPV6 of the microROS node**} dev lowpan0 lladdr {**HW 802.15.4 of the micro-controller**} # repeat it for all the device
+```
+
+It appears that depending on the PC configuration, the packets will not be able to be routed correctly from the docker to the lowpan0/wpan0 and vice-versa.
+In order to forward the packet to the correct interface the following commands need to be entered: 
+
+```bash
+#Setting up the 6lowpan routing
+sudo ip -6 route add {**IPV6 of the microROS node**} dev lowpan0 proto kernel metric 50 pref medium
+```
+
+Once hte setup done, the docker may be run:
+```bash
+docker run -it --network host microros/micro-ros-agent:dashing udp6 --port 9999  -v6
+
+[1599566641.351706] info     | UDPv6AgentLinux.cpp | init                     | running...             | port: 9999
+[1599566641.351889] info     | Root.cpp           | set_verbose_level        | logger setup           | verbose_level: 6
+
+```
 
 # How to use it?
 
-- Turn on the Olimex board and open the NSH console on a terminal.
-- Check if all the applications are ready by typing `?` on the console. It should return the following:
+- Olimex-STM32-E407 board must be switched on and a connection to the NSH
+  console established,
+- By typing ``?`` in the console prompt, ``Builtin Apps``` show be displayed as
+  explained below:
 
 ```bash
 help usage:  help [-v] [<cmd>]
@@ -75,41 +124,15 @@ help usage:  help [-v] [<cmd>]
 
 Builtin Apps:
   ping6         i8sak         uros_6lowpan 
+
 ```
-- Now turn-on the RPi and execute the micro-ROS-bridge-RPI tool by typing the next command:
+ - Then the publisher can executed as follow. Note that the ipv6 address (fe80::bc81:c3b9:5c14:1ab) is the
+   ipv6 address of the Linux lowpan0 interface.
+
 
 ```bash
-./ ~/micro-ROS-HB.sh
-```
-- Once everything is configured, it will return the connection data of the 6LoWPAN network:
 
-```bash
-lowpan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1280
-        inet6 fe80::b482:ca65:743b:b6bd  prefixlen 64  scopeid 0x20<link>
-        unspec B6-82-CA-65-74-3B-B6-BD-00-00-00-00-00-00-00-00  txqueuelen 1000  (UNSPEC)
-        RX packets 0  bytes 0 (0.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 21  bytes 2242 (2.1 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-1) Add new 6LoWPAN micro-ROS device	 3) Create UDP micro-ROS Agent		  5) Create Serial micro-ROS Agent server
-2) Create UDP 6LoWPAN micro-ROS Agent	 4) Create TCP micro-ROS Agent		  6) Quit
-#? 
-```
-- The value **inet6** is the IPv6 direction of the RPi over the 6LoWPAN interface. Copy it because is necessary for the subsequent steps.
-- Execute the micro-ROS 6LoWPAN application on the Olimex typing the next command:
-
-```bash
-uros_6lowpan <Agent_IP> <Agent_Port> <pub/sub>
-```
-  where `Agent_IP` is the IPv6 copied previously, `Agent_PORT` is the port selected for the Agent and `pub/sub` controls the application behavior: in case of `pub` it will act as publisher and as in case of `sub`, it will act as a subscriber.
-
-- Once you execute the app, ti will ask you if you want to configure the 6LoWPAN network.
-  - This will return connection data, you should save the `inet_6_addr` and `HWaddr`.
-  - Note: if you want to change the ID of the radio, you can do it on the `menuconfig` of NuttX on the example configuration.
-
-```bash
-nsh> uros_6lowpan fe80::bc81:c3b9:5c14:1ab 8888 pub
+nsh> uros_6lowpan fe80::bc81:c3b9:5c14:1ab 9999 pub
 Do you want to configure the 6lowpan network? (Y/N)
 ifdown wpan0...OK
 i8sak: resetting MAC layer
@@ -131,11 +154,15 @@ wpan0   Link encap:6LoWPAN HWaddr 00:be:ad:de:00:de:fa:00 at UP
             00000000 00000000 00000000 00000000
         Total Errors: 00000000
 ```
+- After this step, the application on the Olimex board will be blocked waiting
+  for a user to press any key and enter. The following output should appear.
 
-- After this step, the application on the Olimex board will be blocked waiting for a user input confirming that the Agent on the bridge is ready to receive data.
+```bash
+Sent: '0'
+Sent: '1'
+Sent: '2'
+...
+```
 
-- Go back to the bridge, now we are going to add a new 6LoWPAN device. Push `1 + enter`. (Note: this step is only necessary if you are attaching for the first time a new device).
-  - First, introduce the IPv6 of the Olimex board (`inet6_addr`).
-  - Introduce the hardware address of the Olimex board (HWaddr).
-  - Now the device is registered and ready to establish communication.
-- The final step on the bridge is to execute the micro-ROS-Agent, to do so, push `2 + enter` and introduce the port to use.
+- The same procedure needs to be followed to run the subscriber but the last
+  parameter of the ``uros_6lowpan`` command should be ``sub``.
