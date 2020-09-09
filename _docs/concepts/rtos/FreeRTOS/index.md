@@ -12,3 +12,5 @@ FreeRTOS is distributed under the MIT license. It is know particularly for is si
 * Main website: [https://www.freertos.org/](https://www.freertos.org/)
 * Download: [https://www.freertos.org/a00104.html](https://www.freertos.org/a00104.html)
 * Documentation: [https://www.freertos.org/Documentation/RTOS_book.html](https://www.freertos.org/Documentation/RTOS_book.html)
+
+{% include logos_disclaimer.md %}

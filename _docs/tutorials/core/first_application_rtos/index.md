@@ -14,3 +14,5 @@ Micro-ROS currently supports three different RTOS, namely NuttX, FreeRTOS, and Z
   <td style="width:33%; text-align:center; vertical-align:bottom; font-weight:bold;"><a href="zephyr/"><img style="margin-left:auto; margin-right:auto; padding-bottom:5px;" width="220" height="114" src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Zephyr-logo.png"><br/>Zephyr</a></td>
  </tr>
 </table>
+
+{% include logos_disclaimer.md %}
