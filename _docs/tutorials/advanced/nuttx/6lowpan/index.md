@@ -30,7 +30,7 @@ The configuration of the board is divided into two parts: the set-up of the hard
 
 ## Set-up the hardware
 
-First the PmodRF2 need to be connected to the Olimex board as desribed below:
+First the PmodRF2 needs to be connected to the Olimex board as desribed below:
 
 - `Board D13` -> `MRF24J40 SCLK`
 - `Board D12` -> `MRF24J40 MISO`
@@ -45,33 +45,33 @@ The last step is to connect a mini-USB cable to the OTG2 USB port (The USB port 
 
 ## Set-up the software
 
-The micro-ROS build system will be use in order to create and flash the
+The micro-ROS build system will be used in order to create and flash the
 firmware.
 
-Instructions are available at the following link: [Micro-ROS build system](https://github.com/micro-ROS/micro-ros-build/blob/dashing/micro_ros_setup/README.md).
+Instructions are available at the following link: [Micro-ROS build system](https://github.com/micro-ROS/micro_ros_setup/blob/dashing/micro_ros_setup/README.md).
 For this particular guide, it is necessary to use the branch ``dashing`` and the configuration profile ``uros_6lowpan``.
 
 ### Manual patches
 
-Due to the build system being a work in progress, some of files have to be
+Due to the build system being a work in progress, some of the files have to be
 modified.
 
 - Open ``uros_ws/firmware/mcu_ws/eProsima/Micro-XRCE-DDS-Client/client.config`` and modify the value of ``CONFIG_UDP_TRANSPORT_MTU`` from ``512`` to ``450``.
 
 This is an appropiate MTU for 6LoWPAN communications on NuttX.
-Also the micro-XRCE-DDS needs to be to be change to the version 1.2.5 in the docker:
+Also the Micro-XRCE-DDS library needs to be to be changed to the version 1.2.5 in the docker:
 
 ```bash
 cd /uros_ws/firmware/mcu_ws/eProsima/Micro-XRCE-DDS-Client
 git checkout v1.2.5
 ```
 
-Once the modifications done, the binary can be compiled [as explained here](https://github.com/micro-ROS/micro_ros_setup/blob/dashing/micro_ros_setup/README.md)
+Once the above modifications are done, the binary can be compiled [as explained here](https://github.com/micro-ROS/micro_ros_setup/blob/dashing/micro_ros_setup/README.md)
 
 # Configure the Linux machine
 
-The Linux machine is where is going to run the agent.
-In order to setup the wireless, some settings have to be set as follow:
+The Linux machine is where the agent is going to be executed. 
+In order to setup the wireless transport, some settings have to be set as follows:
 
 ```bash
 #Setting up the 6lowpan network
@@ -96,7 +96,7 @@ In order to forward the packet to the correct interface the following commands n
 sudo ip -6 route add {**IPV6 of the microROS node**} dev lowpan0 proto kernel metric 50 pref medium
 ```
 
-Once hte setup done, the docker may be run:
+Once the setup is done, the docker may be run:
 ```bash
 docker run -it --network host microros/micro-ros-agent:dashing udp6 --port 9999  -v6
 
@@ -107,7 +107,7 @@ docker run -it --network host microros/micro-ros-agent:dashing udp6 --port 9999 
 
 # How to use it?
 
-- Olimex-STM32-E407 board must be switched on and a connection to the NSH
+- The Olimex-STM32-E407 board must be switched on and a connection to the NSH
   console established,
 - By typing ``?`` in the console prompt, ``Builtin Apps``` show be displayed as
   explained below:
@@ -126,8 +126,8 @@ Builtin Apps:
   ping6         i8sak         uros_6lowpan 
 
 ```
- - Then the publisher can executed as follow. Note that the ipv6 address (fe80::bc81:c3b9:5c14:1ab) is the
-   ipv6 address of the Linux lowpan0 interface.
+ - Then the publisher can be executed as follow. Note that the ipv6 address (fe80::bc81:c3b9:5c14:1ab) is the
+   IPV6 address of the Linux lowpan0 interface.
 
 
 ```bash
