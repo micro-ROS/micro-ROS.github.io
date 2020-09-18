@@ -17,5 +17,5 @@ permalink: /docs/overview/docker_ci_status/
 
 | Repository | Description | Status
 -|-|-:
-|[micro-ROS-build](https://github.com/micro-ROS/micro-ros-build)| Micro-ROS tool to build and flash Micro-ROS to every supported platform.|[![GitHub Actions status](https://github.com/micro-ROS/micro-ros-build/workflows/CI/badge.svg)](https://github.com/micro-ROS/micro-ros-build/actions)
+|[micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup)| Micro-ROS tool to build and flash Micro-ROS to every supported platform.|[![GitHub Actions status](https://github.com/micro-ROS/micro_ros_setup/workflows/CI/badge.svg)](https://github.com/micro-ROS/micro_ros_setup/actions)
 |[micro-ROS.github.io](https://github.com/micro-ROS/micro-ROS.github.io)| Micro-ROS official webpage repository.|[![GitHub Actions status](https://github.com/micro-ROS/micro-ROS.github.io/workflows/CI/badge.svg)](https://github.com/micro-ROS/micro-ROS.github.io/actions)

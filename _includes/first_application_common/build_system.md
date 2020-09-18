@@ -20,7 +20,7 @@ source /opt/ros/foxy/setup.bash
 # Create a workspace and download the micro-ROS tools
 mkdir microros_ws
 cd microros_ws
-git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro-ros-build.git src/micro-ros-build
+git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
 
 # Update dependencies using rosdep
 sudo apt update && rosdep update
@@ -49,7 +49,7 @@ The build system's workflow is a four-step procedure:
 * **Flash step:** The binaries generated in the previous step are flashed onto the hardware platform memory,
   in order to allow the execution of the micro-ROS app.
 Further information about micro-ROS build system can be found
-[here](https://github.com/micro-ROS/micro-ros-build/tree/dashing/micro_ros_setup).
+[here](https://github.com/micro-ROS/micro_ros_setup/tree/dashing/micro_ros_setup).
 
 ## Creating a new firmware workspace
 

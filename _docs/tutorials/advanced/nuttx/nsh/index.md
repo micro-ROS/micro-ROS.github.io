@@ -19,7 +19,7 @@ In this tutorial, we will show how to use it over the UART and USB peripherals.
 
 ## Create the firmware
 
-For this tutorial we are going to execute the following configuration in micro-ros-build:
+For this tutorial we are going to execute the following configuration in micro_ros_setup:
 
 ```bash
 ros2 run micro_ros_setup create_firmware_ws.sh nuttx olimex-stm32-e407
