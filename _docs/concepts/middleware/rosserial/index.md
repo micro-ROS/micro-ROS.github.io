@@ -19,7 +19,7 @@ Rosserial, in those cases, acts as a bridge between hardware communication proto
 
 In the case of the new version of ROS, ROS 2, there was not a solution for such microcontroller-robot integrations.
 But there is a project called micro-ROS bringing ROS2 to microcontrollers.
-One of the capabilities of micro-ROS is the use of serial connexion between a microcontroller and a ROS2 capable computer.
+One of the capabilities of micro-ROS is the use of serial connection between a microcontroller and a ROS2 capable computer.
 Such a connection is possible thanks to the use of OMG's DDS-XRCE standard and a serial transport layer.
 Micro-ROS solution follows the same client-server architecture as rosserial, as it is one of the most suitable architectural approaches when we speak of microcontroller communications.
 
