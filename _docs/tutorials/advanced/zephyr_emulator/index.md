@@ -31,7 +31,7 @@ and `[OPTIONS]` parameters as below:
 
 ```bash
 # Configure step
-ros2 run micro_ros_setup configure_firmware.sh host_ping_pong --transport udp --ip 127.0.0.1 --port 8888
+ros2 run micro_ros_setup configure_firmware.sh ping_pong --transport udp --ip 127.0.0.1 --port 8888
 ```
 
 You can check the complete content of the `ping_pong` app
