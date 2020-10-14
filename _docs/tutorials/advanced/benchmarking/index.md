@@ -78,6 +78,7 @@ These answers provide us with the minimum necessary for the creation of a plugin
 The final code shall be located in
 `src_root_sb/tfa-plugin/TimeBenchmarking` with the following structure:
 
+```
 TimeBenchmarking
 	├── CMakeLists.txt
 	├── inc
@@ -85,6 +86,7 @@ TimeBenchmarking
 	│       └── TimeBenchmarking.h
 	└── src
 	    └── TimeBenchmarking.cpp
+```
 
 
 ### Register a new plugin into the TFA core of the shadow builder
