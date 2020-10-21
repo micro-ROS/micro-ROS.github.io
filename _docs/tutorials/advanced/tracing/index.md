@@ -38,6 +38,12 @@ $ sudo apt-get update
 $ sudo apt-get install lttng-tools lttng-modules-dkms liblttng-ust-dev
 ```
 
+As part of the installation, a new group _tracing_ is created. Add your user to this group by
+```bash
+sudo usermod -aG tracing $USER
+```
+and log off and on to take the new membership effect.
+
 We'll also need these Python packages to read traces and setup a tracing session through ROS.
 
 ```bash
