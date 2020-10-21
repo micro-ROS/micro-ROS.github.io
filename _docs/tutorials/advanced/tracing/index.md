@@ -38,10 +38,12 @@ $ sudo apt-get update
 $ sudo apt-get install lttng-tools lttng-modules-dkms liblttng-ust-dev
 ```
 
-As part of the installation, a new group _tracing_ is created. Add your user to this group by
+As part of the installation, a new group _tracing_ is created. Add your user to this group by running
+
 ```bash
-sudo usermod -aG tracing $USER
+$ sudo usermod -aG tracing $USER
 ```
+
 and log off and on to take the new membership effect.
 
 We'll also need these Python packages to read traces and setup a tracing session through ROS.
@@ -62,7 +64,7 @@ $ cd ros2_ws/
 The `rcl` and `rclcpp` instrumentation has been integrated into Eloquent, so we simply need to recompile `ros2_tracing` & compile `tracetools_analysis`.
 
 ```bash
-$ wget https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing/raw/master/tracing.repos
+$ wget https://gitlab.com/ros-tracing/ros2_tracing/raw/master/tracing.repos
 $ vcs import src < tracing.repos
 ```
 
@@ -134,7 +136,7 @@ arguments=['do_more']
 
 Delete the previous trace directory, and execute the launch file again. Let it run for some time (e.g. 10-20 seconds), then kill it with `Ctrl+C`.
 
-To run an analysis that displays durations of callbacks over time, use [this Jupyter notebook](https://gitlab.com/micro-ROS/ros_tracing/tracetools_analysis/blob/master/tracetools_analysis/analysis/callback_duration.ipynb), which should be under `ros2_ws/src/tracetools_analysis/tracetools_analysis/analysis/`.
+To run an analysis that displays durations of callbacks over time, use [this Jupyter notebook](https://gitlab.com/ros-tracing/tracetools_analysis/blob/master/tracetools_analysis/analysis/callback_duration.ipynb), which should be under `ros2_ws/src/tracetools_analysis/tracetools_analysis/analysis/`.
 
 The resulting plots for the `/ping` and `/pong` subscriptions are shown below. We can see that the durations vary greatly.
 
@@ -144,4 +146,4 @@ The resulting plots for the `/ping` and `/pong` subscriptions are shown below. W
 
 ## Relevant links
 
-The tracing packages can be found in the [`ros2_tracing` repo](https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing). The analysis tools can be found in the [`tracetools_analysis` repo](https://gitlab.com/micro-ROS/ros_tracing/tracetools_analysis).
+The tracing packages can be found in the [`ros2_tracing` repo](https://gitlab.com/ros-tracing/ros2_tracing). The analysis tools can be found in the [`tracetools_analysis` repo](https://gitlab.com/ros-tracing/tracetools_analysis).
