@@ -128,7 +128,7 @@ This is simple, but it isn't really nice visually. We can use a Jupyter notebook
 
 ## Callback duration analysis
 
-Add the following line to the arguments of each of the two `Node` objects in your launch file, which should be under `ros2_ws/src/ros2/tracing/tracetools_launch/launch/`. It will stop the nodes from shutting down after 1 exchange.
+Add the following line to the arguments of each of the two `Node` objects in your launch file, which should be under `ros2_ws/src/ros-tracing/ros2_tracing/tracetools_launch/launch/`. It will stop the nodes from shutting down after 1 exchange.
 
 ```python
 arguments=['do_more']
