@@ -134,7 +134,7 @@ Add the following line to the arguments of each of the two `Node` objects in you
 arguments=['do_more']
 ```
 
-Delete the previous trace directory, and execute the launch file again. Let it run for some time (e.g. 10-20 seconds), then kill it with `Ctrl+C`.
+Delete the previous trace directory, rebuild the workspace, and execute the launch file again. Let it run for some time (e.g. 10-20 seconds), then kill it with `Ctrl+C`.
 
 To run an analysis that displays durations of callbacks over time, use [this Jupyter notebook](https://gitlab.com/ros-tracing/tracetools_analysis/blob/master/tracetools_analysis/analysis/callback_duration.ipynb), which should be under `ros2_ws/src/tracetools_analysis/tracetools_analysis/analysis/`.
 
