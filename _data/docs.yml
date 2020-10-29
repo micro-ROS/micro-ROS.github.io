@@ -36,8 +36,8 @@
 
 - title: Benchmarking
   docs:
-   - concepts/benchmarking
-
+   - concepts/benchmarking/concept
+   - concepts/benchmarking/results
 
 - title: Core Tutorials
   docs:
