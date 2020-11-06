@@ -14,7 +14,6 @@
    - concepts/client_library
    - concepts/client_library/real-time_executor
    - concepts/client_library/system_modes
-   - concepts/client_library/embedded_tf
    - concepts/client_library/decision_paper
    - concepts/client_library/rcutils_analysis
 

@@ -27,4 +27,3 @@ Advanced concepts developed in the context of the client library are documented 
 
 * [Real-Time Executor](real-time_executor/)
 * [System Modes](system_modes/)
-* [Embedded Transform (TF)](embedded_tf/)
