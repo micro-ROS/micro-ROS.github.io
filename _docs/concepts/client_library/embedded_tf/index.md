@@ -21,31 +21,9 @@ One persistent issue with transform graphs has been their resource use. ROS TF w
 micro-ROS will go beyond this state of the art by running the dynamic transform tree in an embedded device, while keeping resource use to a minimum based on an analysis of the spatial and temporal details actually necessary. Further, enabling real-time queries even in the face of concurrent updates through integration will be realized through integration with the micro-ROS real-time executor. It is also planned to integrate the embedded TF will with the node lifecycle to achieve further power-savings
 
 
-## Requirements
-
-Embedded TF requirements are documented at:  [github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/docs/requirements.md](https://github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/docs/requirements.md).
-
-
-## Design
-
-The Embedded TF design is documented at:  [github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/docs/design.md](https://github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/docs/design.md).
-
-
-## Implementation of tf2_filter
-
-Implementation of tf2_filter for ROS 2 and micro-ROS can be found at:  [github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/](https://github.com/micro-ROS/geometry2/blob/ros2/tf2_filter/).
-
-
 ## Roadmap
 
-**2018**
-* Static filter approach in the agent allowing to specify the parts of the kinematic chain that are relevant for an application component on micro-ROS.
-
-**2019**
-* Design and implement an embedded TF implementation which is integrated with the real-time executor in a way that removes the need for costly synchronization primitives.
-
-**2020**
-* Design and implement an API extension, as well as a reference implementation for custom transform representations that increase run-time efficiency.
+This task has been cancelled as discussed in the EU project review in September 2019.
 
 
 ## Acknowledgments
