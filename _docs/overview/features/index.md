@@ -63,7 +63,7 @@ permalink: /docs/overview/features/
   <p>Micro-ROS is made up of well-established components: Famous open-source RTOSs, a standardized middleware, and the standard ROS 2 Client Support Library (rcl). In this way, the amount of micro-ROS-specific code was minimized for long-term maintainability.</p>
 
   <h2>Interoperability with other standards</h2>
-  <p>The micro-ROS stack preserves the modularity of the standard ROS 2 stack. It can be used with a custom middleware layer - and thus standard - or a custom ROS client library. Furthermore, in the context of micro-ROS, we have developed the FIROS2 integration services, which connects the Robot Operating System with the FIWARE Context Broker by the NGSIv2 (Next Generation Service Interface) standard.</p>
+  <p>The micro-ROS stack preserves the modularity of the standard ROS 2 stack. It can be used with a custom middleware layer - and thus standard - or a custom ROS client library. Furthermore, by the [System-Of-Systems Synthesizer](https://soss.docs.eprosima.com/) (SOSS), a fast and lightweight [OMG DDS-XTYPES standard](https://www.omg.org/spec/DDS-XTypes) implementation, further middleware protocols can be connected. For example, we have developed the FIROS2 integration services, which connects ROS and micro-ROS with the [FIWARE Context Broker](https://www.fiware.org/) by the NGSIv2 (Next Generation Service Interface) standard.</p>
   
  </div>
 </section>
