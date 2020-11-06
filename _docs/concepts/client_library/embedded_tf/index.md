@@ -4,16 +4,6 @@ permalink: /docs/concepts/client_library/embedded_tf/
 redirect_from: /embedded_tf/
 ---
 
-Table of contents
-
-- [Introduction and Goal](#introduction-and-goal)
-- [Requirements](#requirements)
-- [Design](#design)
-- [Implementation of tf2_filter](#implementation-of-tf2_filter)
-- [Roadmap](#roadmap)
-- [Acknowledgments](#acknowledgments)
-
-
 ## Introduction and Goal
 
 The TF transform graph, with its support for both a temporal history, and distributed information sources, has been a novel tool for robotics frameworks when it was released in 2008. Functionally, it is based in scene graph concepts known from computer graphics [[Foote 2013]](https://ieeexplore.ieee.org/document/6556373), but these only rarely offer distribution, and did not offer temporal histories at all (mainly, because this is not needed for frame-based rendering applications like in computer graphics). Distributed scene graphs have become more widely available also in computer graphics. In robotics, work by de Laet et al. [[De Laet et al. 2013]](https://ieeexplore.ieee.org/document/6696693) has extended transforms graphs to also contain twist (i.e., angular motion) information, and to provide more compile-time error checking. This is currently not integrated with distribution mechanisms, but could be used on a single system.
