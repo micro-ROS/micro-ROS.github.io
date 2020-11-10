@@ -9,7 +9,7 @@ TODO(ralph-lange): Add few introductory sentences and a nice graphics. Then make
 
 ### Microcontroller-optimized client API supporting all major ROS concepts
 
-Micro-ROS brings all major core concepts such as nodes, publish/subscribe, client/service, parameters, lifecycle, etc. onto microcontrollers (MCU). The client API of micro-ROS (in the C programming language) is based on the standard ROS 2 Client Support Library (rcl) and a set of extensions and convenience functions (rclc).
+Micro-ROS brings all major core concepts such as nodes, publish/subscribe, client/service, node graph, lifecycle, etc. onto microcontrollers (MCU). The client API of micro-ROS (in the C programming language) is based on the standard ROS 2 Client Support Library (rcl) and a set of extensions and convenience functions (rclc).
 
 The combination rcl+rclc is optimized for MCUs. After an initialization phase, it can be used without any dynamic memory allocations. The rclc package provides advanced execution mechanisms allowing implementing well-proven scheduling patterns from embedded systems engineering.
 
@@ -18,7 +18,7 @@ The combination rcl+rclc is optimized for MCUs. After an initialization phase, i
 The micro-ROS agent connects micro-ROS nodes (i.e. components) on MCUs seamlessly with standard ROS 2 systems. This allows accessing micro-ROS nodes with the known ROS 2 tools and APIs just as normal ROS nodes.
 
 ### Multi-RTOS support with generic build system
-Micro-ROS supports three important open-source real-time operating sytems (RTOS): FreeRTOS, Zephyr, and NuttX. It can be ported on any RTOS that comes with a POSIX interface.
+Micro-ROS supports three popular open-source real-time operating sytems (RTOS): FreeRTOS, Zephyr, and NuttX. It can be ported on any RTOS that comes with a POSIX interface.
 
 The RTOS-specific build systems are integrated into few generic setup scripts, which are provided as a ROS 2 package. Therefore, ROS developers can use their usual command line tools. In addition, micro-ROS provides selected integrations with RTOS-specific tool chains (e.g., for ESP-IDF and Zephyr).
 
@@ -42,4 +42,4 @@ This community also create tools around micro-ROS. For example, to optimize micr
 
 Micro-ROS is made up of well-established components: Famous open-source RTOSs, a standardized middleware, and the standard ROS 2 Client Support Library (rcl). In this way, the amount of micro-ROS-specific code was minimized for long-term maintainability. At the same time, the micro-ROS stack preserves the modularity of the standard ROS 2 stack. Micro-ROS can be used with a custom middleware layer - and thus standard - or a custom ROS client library.
 
-Furthermore, by the [System-Of-Systems Synthesizer](https://soss.docs.eprosima.com/) (SOSS), a fast and lightweight [OMG DDS-XTYPES standard](https://www.omg.org/spec/DDS-XTypes) implementation, further middleware protocols can be connected. For example, we have developed the FIROS2 integration services, which connects ROS and micro-ROS with the [FIWARE Context Broker](https://www.fiware.org/) by the NGSIv2 (Next Generation Service Interface) standard.
+Furthermore, by the [System-Of-Systems Synthesizer](https://soss.docs.eprosima.com/) (SOSS), a fast and lightweight [OMG DDS-XTYPES standard](https://www.omg.org/spec/DDS-XTypes) implementation, further middleware protocols can be connected. For example, we have developed the SOSS-FIWARE and SOSS-ROS2 System-Handles, which connect ROS 2 and micro-ROS with the [FIWARE Context Broker](https://www.fiware.org/) by the NGSIv2 (Next Generation Service Interface) standard by leveraging the integration capabilities of the SOSS core.
