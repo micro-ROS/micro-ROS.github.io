@@ -9,9 +9,9 @@ redirect_from:
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 function updateVisibilityOfFeatureDescriptions() {
-  $('.feature').not('feature_is_active').find('.three_dots').css({ 'color': '#BBBBBB' });
+  $('.feature').not('feature_is_active').find('.three_dots').show();
   $('.feature').not('feature_is_active').find('.feature_description').slideUp(500);
-  $('.feature_is_active').find('.three_dots').css({ 'color': 'white' });
+  $('.feature_is_active').find('.three_dots').hide();
   $('.feature_is_active').find('.feature_description').slideDown(500);
 }
 
@@ -32,13 +32,15 @@ $(document).ready( function() {
 </script>
 
 <style>
+  .three_dots {
+    color: #BBBBBB;
+  }
   .feature_title {
     font-weight: bold;
     margin: 0 0 2pt 0;
   }
   .feature_description {
-    text-align: justify;
-    margin-left: 1.6em;
+    margin-left: 3em;
   }
   .feature_description ~ p {
     margin: 0 0 2pt 0;
@@ -98,7 +100,7 @@ Micro-ROS offers **seven key features** that make it ready for use in your micro
  <p class="feature_title">&#9745; Long-term maintainability and interoperability<span class="three_dots"> (...)</span></p>
  <div class="feature_description">
   <p>Micro-ROS is made up of well-established components: Famous open-source RTOSs, a standardized middleware, and the standard ROS 2 Client Support Library (rcl). In this way, the amount of micro-ROS-specific code was minimized for long-term maintainability. At the same time, the micro-ROS stack preserves the modularity of the standard ROS 2 stack. Micro-ROS can be used with a custom middleware layer - and thus standard - or a custom ROS client library.</p>
-  <p>Furthermore, by the [System-Of-Systems Synthesizer](https://soss.docs.eprosima.com/) (SOSS), a fast and lightweight <a href="https://www.omg.org/spec/DDS-XTypes">OMG DDS-XTYPES standard</a> integration tool, further middleware protocols can be connected. For example, we have developed the SOSS-FIWARE and SOSS-ROS2 System-Handles, which connect ROS 2 and micro-ROS with the <a href="https://www.fiware.org/">FIWARE Context Broker</a> by the NGSIv2 (Next Generation Service Interface) standard by leveraging the integration capabilities of the SOSS core.</p>
+  <p>Furthermore, by the <a href="https://soss.docs.eprosima.com/">System-Of-Systems Synthesizer</a> (SOSS), a fast and lightweight <a href="https://www.omg.org/spec/DDS-XTypes">OMG DDS-XTYPES standard</a> integration tool, further middleware protocols can be connected. For example, we have developed the SOSS-FIWARE and SOSS-ROS2 System-Handles, which connect ROS 2 and micro-ROS with the <a href="https://www.fiware.org/">FIWARE Context Broker</a> by the NGSIv2 (Next Generation Service Interface) standard by leveraging the integration capabilities of the SOSS core.</p>
  </div>
 </div>
 
