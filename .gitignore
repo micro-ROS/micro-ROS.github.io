@@ -5,4 +5,4 @@ _site
 .bundle
 vendor/bundle
 Gemfile.lock
-
+.vscode/

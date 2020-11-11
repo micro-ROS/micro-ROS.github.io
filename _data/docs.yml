@@ -1,6 +1,5 @@
 - title: Overview
   docs:
-   - overview
    - overview/features
    - overview/hardware
    - overview/transports
