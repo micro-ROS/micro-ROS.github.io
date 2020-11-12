@@ -37,12 +37,12 @@ $(document).ready( function() {
   }
   .feature_title {
     font-weight: bold;
-    margin: 0 0 2pt 0;
+    margin: 8pt 0 2pt 0;
   }
   .feature_description {
     margin-left: 3em;
   }
-  .feature_description ~ p {
+  .feature_description > p {
     margin: 0 0 2pt 0;
   }
 </style>
