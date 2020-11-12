@@ -12,11 +12,28 @@ layout: default
     </div>
 </div-->
 
+<style>
+    ul#feature_list {
+      list-style: none;
+      padding-left: 0;
+      margin-left: 0;
+    }
+
+    ul#feature_list > li {
+      padding-left: 1em;
+      text-indent: -1em;
+    }
+
+    ul#feature_list > li:before {
+      content: "\2714";
+      padding-right: 3px;
+    }
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h2 class="header-light regular-pad">micro-ROS</h2>
-              <p class="lead">puts ROS 2 onto microcontrollers.</p>
+            <h2 class="header-light regular-pad" style="line-height: 1.3;">&raquo;micro-ROS<br/><span style="color: white;">&raquo;</span>puts ROS 2 onto microcontrollers&laquo;</h2>
         </div>
         <div class="col-md-6 text-center">
             <img src="img/micro-ROS_big_logo.png" alt="micro-ROS" class="img-responsive">
@@ -25,48 +42,82 @@ layout: default
     <hr>
     <div class="row">
         <div class="col-sm-4">
-            <h3 class="text-center"><i class="fa fa-pencil" aria-hidden="true" style="font-size:200%;">&nbsp;</i>Main Ideas</h3>
-            <p style="text-align:justify;">The major changes compared to "regular" ROS 2 is that micro-ROS uses a
-                Real-Time Operating System (RTOS) instead of Linux, and DDS for eXtremely
-                Resource Constrained Environments (DDS-XRCE) instead of classical DDS.
-                Above that, we run the ROS 2 stack! Well, with a few cool improvements
-                for taking advantage of microcontroller specific things, but largely the same.
-            </p>
+            <h3 class="text-center"><i class="fa fa-rocket" aria-hidden="true" style="font-size:180%;">&nbsp;</i>Mission</h3>
+            <p style="text-align:justify;">Bridging the gap between resource-constrained microcontrollers and larger processors in robotic applications that are based on the Robot Operating Systems.</p>
             <p>
                 <iframe width="356" height="200" src="https://www.youtube.com/embed/slMhPRnBVwM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </p>
+            <h3 class="text-center"><i class="fa fa-microchip" aria-hidden="true" style="font-size:180%;">&nbsp;</i>Why Microcontrollers?</h3>
+            <p style="text-align:justify;">Microcontrollers are used in almost every robotic product. Typical reasons are:</p>
+            <ul style="margin-left: 0; padding-left: 1em;">
+                <li>Hardware access</li>
+                <li>Hard, low-latency real-time</li>
+                <li>Power saving</li>
+            </ul>
+            <p style="text-align:justify;">Another important reason is safety, but note that micro-ROS is not developed according to any safety standard.</p>
         </div>
         <div class="col-sm-4">
-            <h3 class="text-center"><i class="fa fa-cogs" aria-hidden="true" style="font-size:200%;">&nbsp;</i>Getting Started</h3>
-            <p style="text-align:justify;">To get you started quickly, header over to the <a href="/docs/tutorials/">tutorials</a> section. The basic ones
-                can even be done without a microcontroller. For more background and details, see the
-            <a href="/docs/concepts/">concepts section</a>.</p>
-        </div>
-        <div class="col-sm-4">
-            <h3 class="text-center"><i class="fa fa-code-fork" aria-hidden="true" style="font-size:200%;">&nbsp;</i>Get Involved</h3>
-            <p style="text-align:justify;">Source code can be found at
-                <a href="https://github.com/micro-ROS/">https://github.com/micro-ROS/</a> and
-                we answer both tickets and pull requests as usual.
-                If you have questions on concepts and development, you're very welcome
-                to post to <a href="https://discourse.ros.org/c/embedded">the embedded category on ROS Discourse</a>.
-                For usage questions, head over to <a href="http://answers.ros.org/">ROS Answers</a>
-                and please tag your question with <a href="https://answers.ros.org/questions/scope:all/sort:activity-desc/tags:embedded/">embedded</a>.
+            <h3 class="text-center"><i class="fa fa-diamond" aria-hidden="true" style="font-size:180%;">&nbsp;</i>Key Features</h3>
+            <ul id="feature_list">
+                <li>Microcontroller-optimized client API supporting all major ROS concepts</li>
+                <li>Seamless integration with ROS 2</li>
+                <li>Multi-RTOS support with generic build system</li>
+                <li>Extremely resource-constrained but flexible middleware</li>
+                <li>Permissive license</li>
+                <li>Vibrant community and ecosystem</li>
+                <li>Long-term maintainability and interoperability</li>
+            </ul>
+            <h3 class="text-center"><i class="fa fa-cubes" aria-hidden="true" style="font-size:180%;">&nbsp;</i>Architecture</h3>
+            <p style="text-align:justify;">The <a href="/docs/overview/features/">architecture of the micro-ROS stack</a> follows the ROS&nbsp;2 architecture. Dark blue components are developed specifically for micro-ROS. Light blue components are taken from the standard ROS 2 stack.</p>
+            <p>
+                <a href="/docs/overview/features/"><img src="img/micro-ROS_architecture.png" alt="micro-ROS architecture" style="max-width: 356px;" /></a>
             </p>
+        </div>
+        <div class="col-sm-4">
+            <h3 class="text-center"><i class="fa fa-pencil" aria-hidden="true" style="font-size:180%;">&nbsp;</i>Getting Started</h3>
+            <p style="text-align:justify;">Our <a href="/docs/tutorials/">tutorials</a> and <a href="/docs/tutorials/demos/">demos</a> give you a quick start with micro-ROS. The <a href="/docs/tutorials/core/first_application_linux/">basic tutorials</a> can even be completed without a microcontroller.</p>
+            <p>
+                <iframe width="356" height="200" src="https://www.youtube.com/embed/wgIKGUGSX7Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </p>
+            <h3 class="text-center"><i class="fa fa-code-fork" aria-hidden="true" style="font-size:180%;">&nbsp;</i>Source Code</h3>
+            <p style="text-align:justify;">Source code can be found at <a href="https://github.com/micro-ROS/">github.com/micro-ROS</a>. It comes under the permissive license Apache 2.0 just as the standard ROS 2 stack.</p>
+            <p style="text-align:justify;">The primary repository is <a href="https://github.com/micro-ROS/micro_ros_setup">micro_ros_setup</a>, which provides command line scripts for creating your first micro-ROS application.</p>
+            <p style="text-align:justify;">Developed an new feature or found a bug? We answer both pull requests and tickets.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <h3 class="text-center"><i class="fa fa-newspaper-o" aria-hidden="true" style="font-size:180%;">&nbsp;</i>News</h3>
+            <p style="text-align:justify;">Read about the latest developments in our <a href="allposts/">blog</a> or attend the next ROS 2 Embedded Working Group Meeting, which take place online on a monthly basis. The meeting link can be found in the <a href="https://index.ros.org/doc/ros2/Governance/#upcoming-ros-events">ROS 2 Events calendar.</a></p>
+            <p>
+                <iframe width="356" height="200" src="https://www.youtube.com/embed/Vbab-YED2Us" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <h3 class="text-center"><i class="fa fa-question-circle-o" aria-hidden="true" style="font-size:180%;">&nbsp;</i>Questions</h3>
+            <p style="text-align:justify;">We are looking forward to answer your questions on concepts and development! You have the choice:</p>
+            <ul style="margin-left: 0; padding-left: 1em;">
+                <li><a href="https://discourse.ros.org/c/embedded">ROS Discourse</a> (in category <a href="https://discourse.ros.org/c/embedded">&ldquo;embedded&rdquo;</a>)</li>
+                <li><a href="https://answers.ros.org/">ROS Answers</a> (tag with <a href="https://answers.ros.org/questions/scope:all/sort:activity-desc/tags:embedded/">&ldquo;embedded&rdquo;</a>)</li>
+                <li><a href="https://micro-ros.slack.com/">micro-ROS Slack Channel</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
             <div id="CommunityInviter"></div>
             <script>
-                window.CommunityInviterAsyncInit = function () {
-                    CommunityInviter.init({
-                        app_url:'micro-ros',
-                        team_id:'micro-ros'
-                    })
-                };
+                    window.CommunityInviterAsyncInit = function () {
+                        CommunityInviter.init({
+                            app_url:'micro-ros',
+                            team_id:'micro-ros'
+                        })
+                    };
                 (function(d, s, id){
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) {return;}
-                    js = d.createElement(s); js.id = id;
-                    js.src = "https://communityinviter.com/js/communityinviter.js";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'Community_Inviter'));
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) {return;}
+                        js = d.createElement(s); js.id = id;
+                        js.src = "https://communityinviter.com/js/communityinviter.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'Community_Inviter'));
             </script>
         </div>
     </div>
