@@ -11,7 +11,15 @@ See [editing instructions](EDITING-INSTRUCTIONS.md)
 
 ## License
 
-The content of this repository and the generated website is open-sourced under the Apache-2.0 license. See the [LICENSE](LICENSE) file for details. Please note the following third-party elements and content:
+The content of this repository and the generated website is open-sourced under the Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0) license.
+You are free to:
+**Share** — copy and redistribute the material in any medium or format for any purpose, even commercially.
+The licensor cannot revoke these freedoms as long as you follow the license terms.
+Under the following terms:
+**Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+**NoDerivatives** — If you remix, transform, or build upon the material, you may not distribute the modified material.
+**No additional restrictions** — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+See the [LICENSE](LICENSE) file for details. Please note the following third-party elements and content:
 
 * The website is based on the MIT-licensed template [Jekyll Doc Theme](https://github.com/aksakalli/jekyll-doc-theme) by [Can Güney Aksakalli](https://github.com/aksakalli/) and contributors. The template files and source code can be identified by the commits by his user name [aksakalli](https://github.com/aksakalli/) and by the user names of the contributors in the git history. Starting point for the development of this website was the version as of 23 September 2018, cf. commit [3cc3f49](https://github.com/micro-ROS/micro-ROS.github.io/commit/3cc3f492b80db80d87a310cbdc3895425a09db5e).
 
