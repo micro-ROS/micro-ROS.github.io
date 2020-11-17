@@ -20,7 +20,7 @@ Common core client library that is wrapped by language-specific libraries | <spa
 Publish/subscribe over topics | <span class="status_flag">&#10003;</span> | Available, but only fixed-size message types supported to avoid dynamic memory allocations.
 Clients and services | <span class="status_flag">&#10003;</span> | Available, but only fixed-size message types supported to avoid dynamic memory allocations.
 ROS 1 -- ROS 2 communication bridge | <span class="status_flag">&ndash;</span> | Not applicable, standard ROS 1 -- ROS 2 bridge can be used via micro-ROS Agent on a stronger microprocessor to communicate with micro-ROS nodes.
-Actions | <span class="status_flag">&#9675;</span> | *Not yet implemented.*
+Actions | <span class="status_flag">&#10003;</span> | Provided by the [rcl\_action](https://github.com/ros2/rcl/tree/master/rcl_action) package.
 Parameters | <span class="status_flag">&#10003;</span> | *To be implemented soon in rclc.*
 Node Graph | <span class="status_flag">&#10003;</span> | Available as in ROS 2.
 Discovery | <span class="status_flag">&#10003;</span> | Available as in ROS 2.
