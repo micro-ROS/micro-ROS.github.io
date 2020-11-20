@@ -106,7 +106,7 @@ _Observations:_
 
 According to the results reported above, the software is running a deterministic way. Indeed, by looking closer, it is noticeable that the running sequence is the same.
 
-Additionally, timing deltas between correlated events have a really low variation when switch (consecutive thread_suspend/thread_resume).
+Additionally, timing deltas between correlated events have a really low variation when switching between events (consecutive thread_suspend/thread_resume).
 
 Moreover, the scheduler performs fast context switches, which on average, last 10 microseconds.
 
