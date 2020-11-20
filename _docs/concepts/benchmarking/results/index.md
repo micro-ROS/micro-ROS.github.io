@@ -17,7 +17,7 @@ permalink: /docs/concepts/benchmarking/results/
 
 ## From tracing to benchmarking
 
-The low-level RTOS was instrumented in specific way that provide different categories of benchmarking results (memory, execution, etc...). The gathered data is following the [Common Trace Format](https://diamon.org/ctf/). The raw trace is later processed using the [Babeltrace API](https://babeltrace.org/)trace manipulation toolkit. The data interpretation is up to the user.
+The low-level RTOS (NuutX) was instrumented in a specific way that provides different categories of benchmarking measurements (memory, execution, etc...). The gathered data is following the [Common Trace Format](https://diamon.org/ctf/). The raw trace is later processed using the [Babeltrace API](https://babeltrace.org/) trace manipulation toolkit. The data interpretation is up to the user.
 
 More information about benchmarks results and methodologies are dealt with within the following [document](https://github.com/micro-ROS/benchmarking-results/blob/master/pdfs/OFERA_55_D5.4_Micro-ROS_benchmarks_-_Final.pdf)
 
@@ -25,16 +25,15 @@ The results, on which the interpretation are done, are available in the [benchma
 
 ### General methodology
 
-Depending on what type of communication medium Micro-ROS is set up with, the methodology may vary. Of course, the variations are small and related to the topology.
+Depending on what type of communication medium micro-ROS is set up with, the methodology may vary. Of course, the variations are small and related to the transport protocol.
 
-In order to achieve benchmarking, the RTOS and the application were instrumented. Depending on the point of interest, different probes were placed in different part of the RTOS. The data format was following a standard called Common Trace Format (V1.8). This standard is even used in Zephyr (competitor of NuttX).
+In order to achieve benchmarking, the RTOS and the application were instrumented. Depending on the target assessment, different probes were placed in different parts of the RTOS. The data format follows a standard called Common Trace Format (V1.8). This standard is also used in Zephyr, one of the RTOSes supported by the micro-ROS project together with NuttX.
 As a matter of fact, the CTF core was ported from Zephyr to NuttX.
 
 Data are retrieved and analysed with babeltrace and the babeltrace python API.
 
-Every events are timed using an internal free-running timer (in the case of NuttX running on the Olimex STM32-E407 TIM2). Thanks to this the device can have time clock with the resolution of nearly 10 nanoseconds. The current configuration of the resolution is 100 nanoseconds, which is more than enough to measure perforances of the communication, considering that the minimal Ethernet (64bytes) frame at 100Mbps.
-
-Using only the timestamped measurements allows to make delta calculation offline.
+All events are timed using an internal free-running timer (in the case of NuttX running on the Olimex STM32-E407 TIM2). Thanks to this the device can have timer clock offering a resolution of nearly 10 nanoseconds. The current configuration of the resolution is 100 nanoseconds, which is more than enough to assess communication perforances, considering that the minimal Ethernet (64bytes) frame at 100Mbps.
+Each measurement is timestamped using the free-running timer mentionned earlier.
 
 The software configuration is likely to change. However the software role will be kept the same:
 
@@ -142,26 +141,27 @@ Below is the representation of the static memory analysis:
 
 _Observations:_
 
-The 6LoWPAN is the medium taking the most of the static memory as this protocol is running on top of IP version 6.
+The 6LoWPAN is the medium consuming most of the static memory as this protocol is running on top of IP version 6.
 
 ## Dynamic memory usage
 
-The graphic below is showing the total number dynamic allocations. Each bin is split into group of chunk memory blocks. For instance a block with the legend colored dark green represents all block that are greater than the previous group of chunk memory, here 16 bytes. But that the are lower or equal to 32 bytes):
+The graphic below is showing the total number dynamic allocations. Each bin is split into group of chunk memory blocks. In each group lies different chunk sizes. The size of each group are comprise between a minimum size, which is the size of the previous group. And a maximum size, which is the size display in the legend.
+For instance a block with the legend colored yellow represents all block that are greater than the previous group of chunk memory, here 16 bytes. But that the are lower or equal to 32 bytes.
 
 ![](./images/bm_allocation_nbr.png){:.img-responsive and style="max-width: 100%; margin-left: auto; margin-right: auto;"}
 
 _Observations:_
 
-Independently on the communication mediums, blocks allocated are not huge and not numerous.
+Independently from the communication mediums, blocks allocated are not huge and not numerous.
 The most of the allocations are happening during initialisation.
 
 
 ## Power consumption
 
-The power consumption categorised by communication medium below:
+Below is depicted energy consumption categorised by communication medium below:
 
 ![](./images/bm_power.png){:.img-responsive and style="max-width: 100%; margin-left: auto; margin-right: auto;"}
 
 _Observations:_
 
-The medium has a high impact on the selection of the communication medium. This high throughput of a communication medium is coming at a price:  power consumption. The Ethernet provides a high throughput, but at the price of a higher power consumption. Serial communciation medium provides a low bitrate with the advantage to consuming a lot less energy.
+The communication medium has a high impact on the throughput, which in turn has an impact on the power consumption. The Ethernet provides a high throughput, but at the price of a higher power consumption. In comparison, the serial communciation medium provides a low bitrate with the advantage to consuming a lot less energy.
