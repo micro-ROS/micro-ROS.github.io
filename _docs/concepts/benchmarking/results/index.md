@@ -63,7 +63,7 @@ _Observations:_
 
 ## Real-time results
 
-Following is the execution benchmarking
+Below we report the execution benchmarking
 
 The data extracted from the Babeltrace show the following about the NuttX scheduler.
 The additional information are:
