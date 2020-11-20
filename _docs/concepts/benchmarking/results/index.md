@@ -44,7 +44,7 @@ The software configuration is likely to change. However the software role will b
 At a hardware level the USB - CDC/ACM console is going to be used on the Olimex STM32-E407 boards for Ethernet and Serial benchmarkings. For 6LoWPAN the serial USART6 will be used as the console to reduce the memory footprint and execution impact. Hence the USB OTG1 of both Olimex STM32-E407 boards shall be connected to a computer. Additional hardware setup must performed but will depend on the type of topology (Ethernet / Serial / 6LoWPAN):
 
 The results shown below are the fruit of a same application: The **publisher**.
-Only the micro-ros related functions were benchmarked. Hence, all the serial/IP/radio configuration parts of the code are benchmarked.
+Only the micro-ROS related functions were benchmarked. Hence, all the serial/IP/radio configuration parts of the code won't be taken into account.
 
 Below the data processing is described. From the serialised binary CTF data to the output from the Babeltrace API:
 
@@ -63,7 +63,7 @@ _Observations:_
 
 ## Real-time results
 
-Following is the execution benchmarking
+Below we report the execution benchmarking
 
 The data extracted from the Babeltrace show the following about the NuttX scheduler.
 The additional information are:
