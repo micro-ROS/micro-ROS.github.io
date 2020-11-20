@@ -46,7 +46,7 @@ At a hardware level the USB - CDC/ACM console is going to be used on the Olimex 
 The results shown below are the fruit of a same application: The **publisher**.
 Only the micro-ros related functions were benchmarked. Hence, all the serial/IP/radio configuration parts of the code are benchmarked.
 
-Below the data processing described. From the serialised binary CTF data to the output from the Babeltrace API:
+Below the data processing is described. From the serialised binary CTF data to the output from the Babeltrace API:
 
 ![](./images/bm_dataflow.png){:.img-responsive and style="max-width: 100%; margin-left: auto; margin-right: auto;"}
 
@@ -104,11 +104,11 @@ The additional information are:
 
 _Observations:_
 
-According to the results taken above, the software is running a deterministic way. Indeed, by looking closer, it is noticeable that the running sequence is the same.
+According to the results reported above, the software is running a deterministic way. Indeed, by looking closer, it is noticeable that the running sequence is the same.
 
 Additionally, timing deltas between correlated events have a really low variation when switch (consecutive thread_suspend/thread_resume).
 
-Moreover, the scheduler performs fast context switches, on average the are around 10 microseconds.
+Moreover, the scheduler performs fast context switches, which on average, last 10 microseconds.
 
 ## Executions
 
@@ -122,7 +122,7 @@ _Observations:_
 
 ## Function call statistics
 
-Below are depicted the function calls count per each communication medium:
+Below are reported the function calls count per each communication medium:
 
 **Ethernet**
 ![](./images/fusage_eth.png){:.img-responsive and style="max-width: 100%; margin-left: auto; margin-right: auto;"}
