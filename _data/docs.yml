@@ -37,10 +37,7 @@
   docs:
    - concepts/benchmarking/concept
    - concepts/benchmarking/results
-
-- title: Memory profiling
-  docs:
-   - concepts/memo_prof
+   - concepts/benchmarking/memo_prof
 
 - title: Core Tutorials
   docs:
