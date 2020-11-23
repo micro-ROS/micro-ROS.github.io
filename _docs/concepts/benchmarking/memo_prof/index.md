@@ -1,6 +1,7 @@
 ---
 title: Memory profiling
-permalink: /docs/concepts/memo_prof/
+redirect_from: /memo_prof/
+permalink: /docs/concepts/benchmarking/memo_prof/
 ---
 
 ## Abstract

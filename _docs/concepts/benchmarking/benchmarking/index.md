@@ -1,7 +1,7 @@
 ---
 title: Benchmarking
 redirect_from: /benchmarking/
-permalink: /docs/concepts/benchmarking/
+permalink: /docs/concepts/benchmarking/benchmarking/
 ---
 
 ## Table of contents
