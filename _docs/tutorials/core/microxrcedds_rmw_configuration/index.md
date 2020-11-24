@@ -114,4 +114,4 @@ rcl_init(0, NULL, &init_options, &context);
 // ... micro-ROS code ...
 ```
 
-Notice that it is also possible to set the Micro XRCE-DDS `client_key`, which would otherwise be set randomly. This feature is useful for reusing DDS entities already created on the agent side. Further information can be found [here](https://micro-xrce-dds.readthedocs.io/en/latest/deployment.html#configurate-the-publisher).
+Notice that it is also possible to set the Micro XRCE-DDS `client_key`, which would otherwise be set randomly. This feature is useful for reusing DDS entities already created on the agent side. Further information can be found [here](https://micro-xrce-dds.readthedocs.io/en/latest/deployment.html#configurate-the-publisher) and [here](https://github.com/micro-ROS/rmw-microxrcedds#rmw-micro-xrce-dds-implementation).

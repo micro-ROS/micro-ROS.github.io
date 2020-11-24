@@ -1,36 +1,113 @@
 ---
-title: Features Status
+title: Features and Architecture
 permalink: /docs/overview/features/
+redirect_from:
+  - /docs/
+  - /docs/overview/
 ---
 
-Status of micro-ROS features. The features list has been compiled from [https://index.ros.org/doc/ros2/Features/](https://index.ros.org/doc/ros2/Features/) and [https://index.ros.org/doc/ros2/Roadmap/](https://index.ros.org/doc/ros2/Roadmap/).
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+function updateVisibilityOfFeatureDescriptions() {
+  $('.feature').not('feature_is_active').find('.three_dots').show();
+  $('.feature').not('feature_is_active').find('.feature_description').slideUp(500);
+  $('.feature_is_active').find('.three_dots').hide();
+  $('.feature_is_active').find('.feature_description').slideDown(500);
+}
 
-All *status in italics* point to on-going works or open issues. If you could make any contribution, please open a pull request at a relevant [micro-ROS repository](https://github.com/micro-ROS/) or contact us via [Slack](https://micro-ros.slack.com/).
+$(document).ready( function() {
+  $('.feature_description').hide();
+  updateVisibilityOfFeatureDescriptions();
 
-Feature | Status
--- | --
-Discovery, transport and serialization over DDS | Use of resource-optimized middleware standard [DDS for Extremely Resource Constrained Environments (DDS-XRCE)](https://www.omg.org/spec/DDS-XRCE/), implemented by [Micro XRCE-DDS](https://github.com/eProsima/Micro-XRCE-DDS) and compatible with standard DDS via an XRCE Agent on connected stronger microprocessor.
-Support for multiple DDS implementations, chosen at runtime | Support is possible in principle, but at compile-time only. So far there is only one DDS-XRCE implementation available, namely [Micro DDS-XRCE](https://github.com/eProsima/Micro-XRCE-DDS).
-Common core client library that is wrapped by language-specific libraries | micro-ROS uses the core library [rcl](https://github.com/ros2/rcl/) from ROS 2 mainly as-is. The [rclc](https://github.com/micro-ROS/rclc) package provides convenience functions and an executor for use of rcl+rclc as an API for the C programming language. The standard rclcpp, which makes extensive use of dynamic data structures, may be used on MCUs with sufficient RAM.
-Publish/subscribe over topics | Concept available as known from ROS 2. Convenience functions for creation of publishers and subscriptions in C provided in [rclc](https://github.com/micro-ROS/rclc). Note that micro-ROS supports fixed-size message types only to avoid dynamic memory allocations.*
-Clients and services | Concept available as known from ROS 2. Note that micro-ROS supports fixed-size message types only to avoid dynamic memory allocations. *Convenience functions for clients and services as well as support by the rclc Executor are under development.*
-ROS 1 -- ROS 2 communication bridge | Not applicable, but the standard ROS 1 -- ROS 2 bridge can be used via micro-ROS-Agent on a stronger microprocessor to communicate with micro-ROS nodes.
-Quality of service settings for handling non-ideal networks | Two QoS semantics, reliable and best-effort semantics, are provided. It can be set at compile-time.
-Inter- and intra-process communication using the same API | No shared-memory interprocess communication on the MCU available, but all communication is performed via the micro-ROS-Agent running on a connected microprocessor. *Efficient shared-memory communication on the MCU is considered as an important feature for future releases.*
-Composition of node components at compile-, link- or dlopen-time | Composition at compile-time only. Composition at runtime would depend highly on the RTOS.
-Support for nodes with managed lifecycles | The [rclc_lifecycle](https://github.com/micro-ROS/rclc/blob/master/rclc_lifecycle/) package provides an `rclc_lifecycle_node` type which bundles an rcl node with the lifecycle state machine as well as corresponding convenience functions.
-DDS-Security support | DDS security is supported at micro-ROS-Agent. *Security mechanisms in Micro XRCE-DDS are planned for future releases.*
-Command-line introspection tools using an extensible framework | From a remote microprocessor all standard ROS 2 tools can be used to introspect the micro-ROS nodes on an MCU. micro-ROS nodes appear as ROS 2 nodes (by the micro-ROS-Agent). Note, however, that the node graph API is currently *not* available on the MCU.
-Launch system for coordinating multiple nodes | No launch system for the micro-ROS nodes on an MCU available. Such a system would depend highly on the RTOS. The system-modes concept developed with micro-ROS allows runtime configuration/orchestration of ROS 2 and micro-ROS nodes together.
-Namespace support for nodes and topics | Available just as in ROS 2.
-Static remapping of ROS names | *Should be available if passed as argument via standard rcl API -- to be checked.*
-Demos of an all-ROS 2 mobile robot | Demos of several ROS 2 + micro-ROS robots available. See [https://micro-ros.github.io/docs/tutorials/demos/](https://micro-ros.github.io/docs/tutorials/demos/).
-Support for real-time code | The [rclc Executor](https://github.com/micro-ROS/rclc/tree/master/rclc) provides mechanisms for implementing real-time-critical applications with micro-ROS.
-Support for "bare-metal" microcontrollers | Bringing ROS 2 onto MCUs is all that micro-ROS is about. A crucial difference to this requirement from the early design phase of ROS 2 is that micro-ROS assumes an RTOS (e.g., [FreeRTOS](https://www.freertos.org/), [Zephyr](https://www.zephyrproject.org/), or [NuttX](http://nuttx.apache.org/)).
-IDL | Same message IDL as with ROS 2, but use of resource-optimized CDR serialization implementation named [Micro-CDR](https://github.com/eProsima/Micro-CDR).
-Build system | Build systems of NuttX, FreeRTOS, and Zephyr are integrated with colcon. Furthermore, micro-ROS is provided as a component for ESP-IDF also as a standalone Zephyr module. The build system is likely the most fragile part of micro-ROS w.r.t. the long-term maintenance, due to the many dependencies.
-Continuous Integration | Currently, the CI for micro-ROS is distributed to GitHub and Gitlab. *Until the end of 2020, all CI should be moved migrated completely to the new CI actions of GitHub.* Please note that those packages that are released for standard ROS 2 are also built and tested on [build.ros2.org](http://build.ros2.org/).
-Documentation | High-level documentation at [micro-ros.github.io](https://micro-ros.github.io/). For detailed information please consult the README.md files in the relevant micro-ROS repositories at [github.com/micro-ROS/](https://github.com/micro-ROS/).
-Logging | *Could be available as part of the standard logging mechanism in principle but not supported by Micro-XRCE-DDS due to dynamic message size. To be checked ...*
-Time-related: Support of rate and sleep with system clock | rcl timers use POSIX API. Tested successfully on NuttX, but the resolution is very low. A higher resolution could be achieved with hardware timers -- which highly depends on the MCU and possibly the RTOS. *This feature requires further investigation.*
-Time-related: Support for simulation time | *Might be supported out of the box, but needs to be checked.* We consider HIL setups with simulation time to be corner cases.
+  $('.feature').click( function() {
+    if ($(this).hasClass("feature_is_active")) {
+      $(this).removeClass("feature_is_active");
+    } else {
+      $('.feature').removeClass("feature_is_active");
+      $(this).addClass("feature_is_active");
+    }
+    updateVisibilityOfFeatureDescriptions();
+  });
+});
+</script>
+
+<style>
+  .three_dots {
+    color: #BBBBBB;
+  }
+  .feature_title {
+    font-weight: bold;
+    margin: 8pt 0 2pt 0;
+  }
+  .feature_description {
+    margin-left: 3em;
+  }
+  .feature_description > p {
+    margin: 0 0 2pt 0;
+  }
+</style>
+
+Micro-ROS offers **seven key features** that make it ready for use in your microcontroller-based robotic project:
+
+<div class="feature feature_is_active">
+ <div class="feature_title">&#10004; Microcontroller-optimized client API supporting all major ROS concepts<span class="three_dots"> (...)</span></div>
+ <div class="feature_description">
+  <p>Micro-ROS brings all major core concepts such as nodes, publish/subscribe, client/service, node graph, lifecycle, etc. onto microcontrollers (MCU). The client API of micro-ROS (in the C programming language) is based on the standard ROS 2 Client Support Library (rcl) and a set of extensions and convenience functions (rclc).</p>
+  <p>The combination rcl+rclc is optimized for MCUs. After an initialization phase, it can be used without any dynamic memory allocations. The rclc package provides advanced execution mechanisms allowing implementing well-proven scheduling patterns from embedded systems engineering.</p>
+ </div>
+</div>
+
+<div class="feature">
+ <p class="feature_title">&#10004; Seamless integration with ROS 2<span class="three_dots"> (...)</span></p>
+ <div class="feature_description">
+  <p>The micro-ROS agent connects micro-ROS nodes (i.e. components) on MCUs seamlessly with standard ROS 2 systems. This allows accessing micro-ROS nodes with the known ROS 2 tools and APIs just as normal ROS nodes.</p>
+ </div>
+</div>
+
+<div class="feature">
+ <p class="feature_title">&#10004; Multi-RTOS support with generic build system<span class="three_dots"> (...)</span></p>
+ <div class="feature_description">
+  <p>Micro-ROS supports three popular open-source real-time operating sytems (RTOS): FreeRTOS, Zephyr, and NuttX. It can be ported on any RTOS that comes with a POSIX interface.</p>
+  <p>The RTOS-specific build systems are integrated into few generic setup scripts, which are provided as a ROS 2 package. Therefore, ROS developers can use their usual command line tools. In addition, micro-ROS provides selected integrations with RTOS-specific tool chains (e.g., for ESP-IDF and Zephyr).</p>
+ </div>
+</div>
+
+<div class="feature">
+ <p class="feature_title">&#10004; Extremely resource-constrained but flexible middleware<span class="three_dots"> (...)</span></p>
+ <div class="feature_description">
+  <p>Micro XRCE-DDS by eProsima meets all requirements for a middleware for deeply embedded systems. That is why micro-ROS has been one of the applications for this implementation of the new DDS for Extremely Resource Constrained Environments (XRCE) standard. For the integration with the ROS middleware interface (rmw) in the micro-ROS stack, static memory pools were introduced to avoid dynamic memory allocations at runtime.</p>
+  <p>The middleware comes with built-in support for serial transports, UDP over Ethernet, Wi-Fi, and 6LoWPAN, and Bluetooth. Furthermore, the Micro XRCE-DDS source code provides templates for implementing support for further transports.</p>
+ </div>
+</div>
+
+<div class="feature">
+ <p class="feature_title">&#10004; Permissive license<span class="three_dots"> (...)</span></p>
+ <div class="feature_description">
+  <p>Micro-ROS comes under the same permissive license as ROS 2, which is Apache License 2.0. This applies to the micro-ROS client library, the middleware layer, and tools.</p>
+  <p>When creating a project with an underlying RTOS, please take into account the license(s) of the RTOS project or vendor.</p>
+ </div>
+</div>
+
+<div class="feature">
+ <p class="feature_title">&#10004; Vibrant community and ecosystem<span class="three_dots"> (...)</span></p>
+ <div class="feature_description">
+  <p>Micro-ROS is developed by a constantly growing, self-organized community backed by the Embedded Working Group, a formal ROS 2 Working Group. The community shares entry level tutorials, provides support via Slack and GitHub, and meets in public Working Group video-calls on a monthly basis. As a matter of course, commercial support is provided for the Micro XRCE-DDS by eProsima.</p>
+  <p>This community also create tools around micro-ROS. For example, to optimize micro-ROS-based applications to the MCU hardware, specific benchmarking tools have been developed. These allow checking memory usage, CPU time consumption and general performance.</p>
+ </div>
+</div>
+
+<div class="feature">
+ <p class="feature_title">&#10004; Long-term maintainability and interoperability<span class="three_dots"> (...)</span></p>
+ <div class="feature_description">
+  <p>Micro-ROS is made up of well-established components: Famous open-source RTOSs, a standardized middleware, and the standard ROS 2 Client Support Library (rcl). In this way, the amount of micro-ROS-specific code was minimized for long-term maintainability. At the same time, the micro-ROS stack preserves the modularity of the standard ROS 2 stack. Micro-ROS can be used with a custom middleware layer - and thus standard - or a custom ROS client library.</p>
+  <p>Furthermore, by the <a href="https://soss.docs.eprosima.com/">System-Of-Systems Synthesizer</a> (SOSS), a fast and lightweight <a href="https://www.omg.org/spec/DDS-XTypes">OMG DDS-XTYPES standard</a> integration tool, further middleware protocols can be connected. For example, we have developed the SOSS-FIWARE and SOSS-ROS2 System-Handles, which connect ROS 2 and micro-ROS with the <a href="https://www.fiware.org/">FIWARE Context Broker</a> by the NGSIv2 (Next Generation Service Interface) standard by leveraging the integration capabilities of the SOSS core.</p>
+ </div>
+</div>
+
+## Layered and Modular Architecture
+
+Micro-ROS follows the [ROS 2 architecture](https://index.ros.org/doc/ros2/) and makes use of its middleware pluggability to use [DDS-XRCE](https://www.omg.org/spec/DDS-XRCE/), which is optimized for microcontrollers. Moreover, it uses POSIX-based RTOS (FreeRTOS, Zephyr, or NuttX) instead of Linux.
+
+<img src="/img/micro-ROS_architecture.png" style="display: block; margin: auto; width: 100%; max-width: 500px;"/>
+
+Dark blue components are developed specifically for micro-ROS. Light blue components are taken from the standard ROS 2 stack. We seek to contribute as much code back to the ROS 2 mainline codebase as possible.
