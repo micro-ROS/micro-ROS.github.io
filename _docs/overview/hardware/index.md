@@ -43,6 +43,8 @@ The micro-ROS hardware support is divided in three categories:
 
 ## Reference micro-ROS board
 
+The micro-ROS reference boards are the one officially supported for all RTOS with complete support for all available transports.
+
 <div class="hardwarecontainer">
   <div class="hardwareitem_description">
     <h3><b>Olimex LTD STM32-E407</b></h3>
@@ -70,6 +72,8 @@ The micro-ROS hardware support is divided in three categories:
 </div>
 
 ## Tier 2 micro-ROS boards
+
+The micro-ROS Tier 2 boards are officially suported boards for one or more RTOS or transports.
 
 <div class="hardwarecontainer">
   <div class="hardwareitem_description">
@@ -217,6 +221,8 @@ The micro-ROS hardware support is divided in three categories:
 
 
 ## Community supported boards
+
+The micro-ROS community supported boards are contributions of micro-ROS' users and community, and are not guaranteed to be officially supported.
 
 <div class="hardwarecontainer">
   <div class="hardwareitem_description">
