@@ -232,7 +232,7 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
         <ul>
             <li>MCU: ARM Cortex-M3 AT91SAM3X8E</li>
             <li>RAM: 96 kB</li>
-            <li>Flash: 512 MB</li>
+            <li>Flash: 512 kB</li>
         </ul>  
         <b>Resources:</b>
         <ul>
@@ -255,7 +255,7 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
         <ul>
             <li>MCU: ARM Cortex-M0+ ATSAMD21G18</li>
             <li>RAM: 32 kB</li>
-            <li>Flash: 256 MB</li>
+            <li>Flash: 256 kB</li>
         </ul>  
         <b>Resources:</b>
         <ul>
