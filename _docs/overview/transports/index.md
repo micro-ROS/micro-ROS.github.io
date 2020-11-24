@@ -7,7 +7,7 @@ micro-ROS uses the resource-optimized [DDS for Extremely Resource Constrained En
 
 It supports are variety of data link and transport protocols. However, the support depends on the underlying RTOS and the selected hardware.
 
-The following table specifies the available transports for the **officially supported** boards and RTOS. You can find detailed information about hardware support [here](/docs/overview/hardware/).
+The following table specifies the available transports for the Reference and Tier-2 micro-ROS boards for each officially supported RTOS. You can find detailed information about hardware support [here](/docs/overview/hardware/).
 
 |                    | [**NuttX**](http://nuttx.apache.org/) | [**FreeRTOS**](https://www.freertos.org/) | [**Zephyr**](https://www.zephyrproject.org/) | [Arduino](https://github.com/micro-ROS/micro_ros_arduino) |
 | ------------------ | :-----------------------------------: | :---------------------------------------: | :------------------------------------------: | :---------------------------------------------------------------------: |
@@ -28,4 +28,3 @@ Regarding the **community supported** boards, at the moment of writing the avail
 | ST Nucleo F446ZE |                   -                   |                   UART                    |                      -                       |                                    -                                    |
 | ST Nucleo H743ZI |                   -                   |                   UART                    |                      -                       |                                    -                                    |
 | ST Nucleo F746ZG |                   -                   |                   UART                    |                      -                       |                                    -                                    |
-
