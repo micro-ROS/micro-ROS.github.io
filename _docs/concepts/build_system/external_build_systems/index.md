@@ -9,7 +9,7 @@ Once you have read about the oficial[ **micro_ros_setup** tool](/docs/concepts/b
 
 The [micro-ROS component for ESP-IDF](https://github.com/micro-ROS/micro_ros_espidf_component) allows to integrate micro-ROS as a component in an Espressif ESP-IDF Build System. This component allows the user to integrate the micro-ROS API and utilities in an already created ESP-IDF project just by cloning or copying a folder. 
 
-The procedure for configuring the built micro-ROS library is based in `colcon.meta`. For more details visit the [Github repository](https://github.com/micro-ROS/micro_ros_espidf_component).
+Configuration of the micro-ROS library is based on the `colcon.meta` file. For more details visit the [Github repository](https://github.com/micro-ROS/micro_ros_espidf_component).
 
 ## micro-ROS module for Zephyr
 
