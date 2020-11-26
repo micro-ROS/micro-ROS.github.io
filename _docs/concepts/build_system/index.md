@@ -75,7 +75,7 @@ ros2 run micro_ros_setup flash_firmware.sh
 
 ### micro-ROS agent
 
-The micro-ROS build system is also able to ease the compilation of the micro-ROS Agent in a ROS 2 workspace using these commands:
+The micro-ROS build system is also able to ease the compilation of the micro-ROS Agent in a ROS 2 workspace by using these commands:
 
 ```bash
 # Download micro-ROS-Agent packages
