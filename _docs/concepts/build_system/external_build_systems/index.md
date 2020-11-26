@@ -3,7 +3,7 @@ title: External Build Systems
 permalink: /docs/concepts/build_system/external_build_systems/
 ---
 
-Once you have read about the oficial[ **micro_ros_setup** tool](/docs/concepts/build_system/), this page will present some other approaches for building micro-ROS as a module or component integrated in other build systems.
+Once you have read about the official[ **micro_ros_setup** tool](/docs/concepts/build_system/), this page will present some other approaches for building micro-ROS as a module or component integrated into other build systems.
 
 ## micro-ROS component for ESP-IDF
 
