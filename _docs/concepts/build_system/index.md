@@ -55,7 +55,7 @@ Once the build system has created the new firmware project, it is possible to co
 ros2 run micro_ros_setup configure_firmware.sh [APP] [OPTIONS]
 ```
 
-Running this command without any argument it will output a list of example application valid for the selected RTOS.
+By running this command without any argument, it will output a list of example applications valid for the selected RTOS.
 Common options available at this configuration step are:
   - `--transport` or `-t`: `udp`, `serial` or any hardware specific transport label
   - `--dev` or `-d`: agent string descriptor in a serial-like transport
