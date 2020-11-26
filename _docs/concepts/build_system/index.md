@@ -43,7 +43,7 @@ Once it is installed the build system tool has some utilities that can be used i
 ros2 run micro_ros_setup create_firmware_ws.sh [RTOS] [HARDWARE BOARD]
 ```
 
-It is possible to obtain a list of the supported hardware by running the command without any argument. By soing so, it possible to see that along with the RTOSes and hardware supported by micro-ROS this build system also provides three extra options:
+It is possible to obtain a list of the supported hardware by running the command without any argument. By doing so, it is possible to see that along with the RTOSes and hardware supported by micro-ROS this build system also provides with three extra options:
 - By using `zephyr` as RTOS and `host` as hardware name, it is possible to obtain a Zephyr RTOS image with your micro-ROS app that runs in your host computer. 
 - By using just `host` as RTOS, micro-ROS will build a set of [micro-ROS demo applications](https://github.com/micro-ROS/micro-ROS-demos) natively in your host machine. This applications behaves just like a micro-ROS app (using the same layers and middleware) but allows the user to debug and test the applications.
 - By using `generate_lib` as RTOS it is possible to configure the build system for generating static libraries (`.a`) and a set of headers (`include`) that can be linked in any other external tool. This option requires a valid CMake toolchain.
