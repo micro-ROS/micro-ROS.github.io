@@ -21,4 +21,4 @@ The procedure for configuring the built micro-ROS library is based in `colcon.me
 
 The [micro-ROS for Arduino](https://github.com/micro-ROS/micro_ros_arduino) support package is a special port of micro-ROS provided as a set of precompiled libraries for specific platforms. The main reason for this approach is that Arduino does not allow the build of a complex library such as micro-ROS, so by using this approach a ready-to-use solution is provided to the Arduino users.
 
-Along with this support package there are [detailed instructions](https://github.com/micro-ROS/micro_ros_arduino#how-to-build-the-precompiled-library) for rebuilding the micro-ROS for Arduino libraries for users that need to tune the default configuration.
+Along with this support package, there are [detailed instructions](https://github.com/micro-ROS/micro_ros_arduino#how-to-build-the-precompiled-library) for rebuilding the micro-ROS for Arduino libraries for users that need to tune the default configuration.
