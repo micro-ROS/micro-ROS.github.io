@@ -48,7 +48,7 @@ It is possible to obtain a list of the supported hardware by running the command
 - By using just `host` as RTOS, micro-ROS will build a set of [micro-ROS demo applications](https://github.com/micro-ROS/micro-ROS-demos) natively in your host machine. This applications behaves just like a micro-ROS app (using the same layers and middleware) but allows the user to debug and test the applications.
 - By using `generate_lib` as RTOS it is possible to configure the build system for generating static libraries (`.a`) and a set of headers (`include`) that can be linked in any other external tool. This option requires a valid CMake toolchain.
 
-Once the build system has create the new firmware project, it is possible to configure it using:
+Once the build system has created the new firmware project, it is possible to configure it using:
 
 ```bash
 # Configure step
