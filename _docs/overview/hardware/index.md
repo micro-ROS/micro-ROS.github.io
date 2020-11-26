@@ -39,7 +39,7 @@ The micro-ROS hardware support is divided in three categories:
 - tier 2 boards and, 
 - community supported boards.
 
-*In order to check the most recent hardware support visit the [micro_ros_setup repo](https://github.com/micro-ROS/micro_ros_setup)*
+*In order to check the most recent hardware support visit the [micro_ros_setup repo](https://github.com/micro-ROS/micro_ros_setup)*.
 
 ## Reference micro-ROS board
 
