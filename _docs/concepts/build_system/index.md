@@ -36,7 +36,7 @@ source install/local_setup.bash
 
 ### micro-ROS client
 
-Once it is installed the build system tool has some utilities that can be used in order to prepare, build, flash and use a micro-ROS application. The micro-ROS buils system is a four step procedure.In the first step, the user can create a new micro-ROS application by configuring the target hardware and RTOS:
+Once installed, the build system tool provides some utilities that can be used in order to prepare, build, flash and use a micro-ROS application. The micro-ROS build system is a four-step procedure. In the first step, the user can create a new micro-ROS application by configuring the target hardware and RTOS:
 
 ```bash
 # Create step
