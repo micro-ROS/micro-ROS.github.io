@@ -43,7 +43,7 @@ The micro-ROS hardware support is divided in three categories:
 
 ## Reference micro-ROS board
 
-The micro-ROS reference boards are the one officially supported for all RTOS with complete support for all available transports.
+The micro-ROS reference boards are the ones officially supported for all RTOSes and with complete support for all available transports.
 
 <div class="hardwarecontainer">
   <div class="hardwareitem_description">
