@@ -11,7 +11,7 @@ micro-ROS provides two ways of building a micro-ROS application for embedded pla
 
 The **micro_ros_setup** tool is in charge of generating micro-ROS images that contain micro-ROS apps for the [supported hardware](/docs/overview/hardware/) boards and [RTOSes](/docs/concepts/rtos/).
 
-As the micro_ros_setup package can be installed as any other ROS 2 package its usage will be through the ROS 2 CLI tool. For example in order to install the micro-ROS build system in a ROS 2 workspace just download it and build with `colcon`:
+As the **micro_ros_setup** package can be installed like any other ROS 2 package, its usage will be through the ROS 2 CLI tool. For example in order to install the micro-ROS build system in a ROS 2 workspace just download it and build it with `colcon`:
 
 ```bash
 # Source the ROS 2 installation
