@@ -32,7 +32,7 @@ Micro-ROS aims to **bring ROS 2 to a wide set of microcontrollers** to allow hav
 
 The main targets of micro-ROS are mid-range 32-bits microcontroller families. Usually, the minimum requirements for running micro-ROS in an embedded platform are memory constrains. Since memory usage in micro-ROS is a complex matter we provide a [complete article](https://micro-ros.github.io/docs/concepts/memo_prof/) describing it and a tutorial on [how to tune the memory consuption](https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/) in the micro-ROS middleware. 
 
-In general micro-ROS will need MCU that have tens of kilobytes of RAM memory and communication peripherals that enables the micro-ROS [client to agent communication](https://micro-ros.github.io//docs/overview/features/).
+In general micro-ROS will need MCUs that have tens of kilobytes of RAM memory and communication peripherals that enable the micro-ROS [Client to Agent communication](https://micro-ros.github.io//docs/overview/features/).
 
 The micro-ROS hardware support is divided in three categories: 
 - reference micro-ROS board, 
