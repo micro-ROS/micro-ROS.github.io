@@ -85,4 +85,4 @@ source install/local_setup.bash
 ros2 run micro_ros_agent micro_ros_agent [OPTIONS]
 ```
 
-***TIP:** Remember that micro-ROS Agent can be also be used with this simple Docker command: `docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agent:foxy [OPTIONS]`*
+***TIP:** Remember that the micro-ROS Agent can be also be used with this simple Docker command: `docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agent:foxy [OPTIONS]`*
