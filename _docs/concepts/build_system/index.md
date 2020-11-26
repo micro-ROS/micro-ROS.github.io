@@ -7,7 +7,7 @@ micro-ROS provides two ways of building a micro-ROS application for embedded pla
 - using the **micro_ros_setup** as a tool integrated in a ROS 2 workspace
 - using external integrations tools. Click [here](/docs/concepts/build_system/external_build_systems/) for more details about this option.
 
-**micro_ros_setup** provides an standalone build system in the form of a ROS 2 package that can be integrated in a common ROS 2 workspace. This tool is available in [micro-ROS/micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup) repository in GitHub.
+**micro_ros_setup** provides a standalone build system in the form of a ROS 2 package that can be integrated in a common ROS 2 workspace. This tool is available in the [micro-ROS/micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup) repository in GitHub.
 
 The micro_ros_setup tools is in charge of generating micro-ROS images that contains micro-ROS apps for the [supported hardware](/docs/overview/hardware/) boards and [RTOS](/docs/concepts/rtos/).
 
