@@ -73,7 +73,7 @@ The micro-ROS reference boards are the ones officially supported for all RTOSes 
 
 ## Tier 2 micro-ROS boards
 
-The micro-ROS Tier 2 boards are officially suported boards for one or more RTOS or transports.
+The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and transports.
 
 <div class="hardwarecontainer">
   <div class="hardwareitem_description">
