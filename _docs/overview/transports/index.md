@@ -5,7 +5,7 @@ permalink: /docs/overview/transports/
 
 micro-ROS uses the resource-optimized [DDS for Extremely Resource Constrained Environments (DDS-XRCE) standard](https://www.omg.org/spec/DDS-XRCE/), implemented by [eProsima's Micro-XRCE-DDS](https://github.com/eProsima/Micro-XRCE-DDS/).
 
-It supports are variety of data link and transport protocols. However, the support depends on the underlying RTOS and the selected hardware.
+It supports a variety of data link and transport protocols. However, the support depends on the underlying RTOS and selected hardware.
 
 The following table specifies the available transports for the Reference and Tier-2 micro-ROS boards for each officially supported RTOS. You can find detailed information about hardware support [here](/docs/overview/hardware/).
 
