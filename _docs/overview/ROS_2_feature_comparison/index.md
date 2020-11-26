@@ -3,7 +3,7 @@ title: ROS 2 Feature Comparison
 permalink: /docs/overview/ROS_2_feature_comparison/
 ---
 
-Comparison of micro-ROS features with ROS 2 features. The following list has been compiled from [https://index.ros.org/doc/ros2/Features/](https://index.ros.org/doc/ros2/Features/) and [https://index.ros.org/doc/ros2/Roadmap/](https://index.ros.org/doc/ros2/Roadmap/), and the features have been organized into sub-tables according to the macrocategories defined in the [Features and Architecture page](http://localhost:4000/docs/overview/features/).
+Comparison of micro-ROS features with ROS 2 features. The following list has been compiled from [https://index.ros.org/doc/ros2/Features/](https://index.ros.org/doc/ros2/Features/) and [https://index.ros.org/doc/ros2/Roadmap/](https://index.ros.org/doc/ros2/Roadmap/), and the features have been organized into sub-tables according to the macrocategories defined in the [Features and Architecture page](https://micro-ros.github.io//docs/overview/features/).
 
 <style>
   .status_flag {
@@ -16,7 +16,7 @@ Comparison of micro-ROS features with ROS 2 features. The following list has bee
 
 ROS 2 Feature | | Availability in micro-ROS
 -- | -- | --
-Common core client library that is wrapped by language-specific libraries | <span class="status_flag">&#10003;&#8728;</span> | Use of the client support library [rcl](https://github.com/ros2/rcl/) from ROS 2 as-is. The [rclc](https://github.com/micro-ROS/rclc) package provides convenience functions and an executor for use of rcl+rclc as client library for the C programming language. *Roadmap: migrate all functionalities to the rclc, so as to make it an independent abraction layer on top of the rcl that serves as user's API.*
+Common core client library that is wrapped by language-specific libraries | <span class="status_flag">&#10003;&#8728;</span> | Use of the client support library [rcl](https://github.com/ros2/rcl/) from ROS 2 as-is. The [rclc](https://github.com/micro-ROS/rclc) package provides convenience functions and an executor for use of rcl+rclc as client library for the C programming language. *Roadmap: migrate all functionalities to the rclc, so as to make it an independent abstraction layer on top of the rcl that serves as user's API.*
 Composition of node components at compile-, link- or dlopen-time | <span class="status_flag">&#10003;</span> | Composition at compile-time only. Composition at runtime would depend highly on the RTOS.
 Support for nodes with managed lifecycles | <span class="status_flag">&#10003;</span> | The [rclc_lifecycle](https://github.com/micro-ROS/rclc/blob/master/rclc_lifecycle/) package provides an `rclc_lifecycle_node` type which bundles an rcl node with the lifecycle state machine as well as corresponding convenience functions.
 
@@ -54,8 +54,8 @@ Logging | <span class="status_flag">&#8727;</span> | *Could be available as part
 
 Feature | | Availability in micro-ROS
 -- | -- | --
-Build system | <span class="status_flag">&#10003;</span> | micro-ROS provides two ways of building a micro-ROS application. The first uses the [micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup) tool integrated in a ROS 2 workspace. With this approach, the build systems of NuttX, FreeRTOS, and Zephyr are integrated with colcon. The other provides micro-ROS as a component of external development frameworks (e.g., ESP-IDF and Zephyr build system).
-Supported hardware | <span class="status_flag">&#10003;</span> | micro-ROS officially supports four boards. For the moments, all official ports are based on the STM32 series from ST and on the ESP32 from Espressif. Find more info [here](https://micro-ros.github.io/docs/overview/hardware/). More ports have been carried out by users, check the [complete list](https://github.com/micro-ROS/micro_ros_setup#supported-platforms).
+Build system | <span class="status_flag">&#10003;</span> | micro-ROS provides two ways of building a micro-ROS application. The first uses the [micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup) tool integrated in a ROS 2 workspace. With this approach, the build systems of NuttX, FreeRTOS, and Zephyr are integrated with colcon. The other provides micro-ROS as a component for external development frameworks (e.g., ESP-IDF and Zephyr build system).
+Supported hardware | <span class="status_flag">&#10003;</span> | micro-ROS officially supports four boards. For the moment, all official ports are based on the STM32 series from ST and on the ESP32 from Espressif. Find more info [here](https://micro-ros.github.io/docs/overview/hardware/). More ports have been carried out by users, check the [complete list](https://github.com/micro-ROS/micro_ros_setup#supported-platforms).
 Supported Operating Systems | <span class="status_flag">&#10003;</span> | micro-ROS is supported by the RTOSes FreeRTOS, Zephyr, NuttX, in addition to Linux and Windows.
 
 ### micro-ROS specific features
@@ -67,7 +67,7 @@ Support for real-time code | <span class="status_flag">&#10003;</span> | Real-ti
 Support for "bare-metal" microcontrollers | <span class="status_flag">&#10003;</span> | Bringing ROS 2 onto MCUs is all that micro-ROS is about. The standard approach to micro-ROS assumes an RTOS underneath (e.g., [FreeRTOS](https://www.freertos.org/), [Zephyr](https://www.zephyrproject.org/), or [NuttX](http://nuttx.apache.org/)). Recent developments aim at loosening this requirement, with the integration into [Arduino IDE](https://github.com/micro-ROS/micro_ros_arduino) being a first step towards true micro-ROS bare-metal support.
 Continuous Integration | <span class="status_flag">&#10003;&#8728;</span> | Currently, the CI for micro-ROS is distributed to GitHub and GitLab. *Until the end of 2020, all CI should be moved migrated completely to the new CI actions of GitHub.* Please note that those packages that are released for standard ROS 2 are also built and tested on [build.ros2.org](http://build.ros2.org/).
 Documentation | <span class="status_flag">&#10003;</span> | High-level documentation at [micro-ros.github.io](https://micro-ros.github.io/). For detailed information please consult the README.md files in the relevant micro-ROS repositories at [github.com/micro-ROS/](https://github.com/micro-ROS/). For information on the middleware implementation, take a look at the [Micro XRCE-DDS documentation](https://micro-xrce-dds.docs.eprosima.com/en/latest/).
-Peer-to-peer functionality | <span class="status_flag">&#10003;&#8728;</span> | Prototypical peer-to-peer functionality implemented over boradcast. No QoS available for the moment. *Roadmap: improve prototype to achieve true point-to-point connection.*
+Peer-to-peer functionality | <span class="status_flag">&#10003;&#8728;</span> | Prototypical peer-to-peer functionality implemented over broadcast. No QoS available for the moment. *Roadmap: improve prototype to achieve true point-to-point connection.*
 Memory footprint | <span class="status_flag">&#10003;</span> | A comprehensive profiling of the memory consumption of typical micro-ROS applications can be found [here](https://micro-ros.github.io/docs/concepts/memo_prof/).
 
 Below, you can find the legend of the symbols used in the tables above.
