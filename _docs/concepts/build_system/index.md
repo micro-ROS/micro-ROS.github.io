@@ -9,7 +9,7 @@ _RTOS-specific integrations:_ We have integrated micro-ROS with several RTOS bui
 
 **micro_ros_setup** provides a standalone build system in the form of a ROS 2 package for use in any normal ROS 2 workspace. This tool is available in the [micro-ROS/micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup) repository.
 
-The **micro_ros_setup** tool is in charge of generating micro-ROS images that contain micro-ROS apps for the [supported hardware](/docs/overview/hardware/) boards and [RTOSes](/docs/concepts/rtos/).
+The **micro_ros_setup** tool allows compiling and generating images that contain micro-ROS apps for the [supported hardware](/docs/overview/hardware/) boards and [RTOSes](/docs/concepts/rtos/).
 
 As the **micro_ros_setup** package can be installed like any other ROS 2 package, its usage will be through the ROS 2 CLI tool. For example in order to install the micro-ROS build system in a ROS 2 workspace just download it and build it with `colcon`:
 
