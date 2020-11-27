@@ -87,7 +87,7 @@ builder process flow:
  * Get appropriate sources.
  * Execute Trace Framework Abstraction Configuration file.
  * Parse the sources file needed Injecting code.
- * Compile the targeted binary for different platform.
+ * Compile the targeted binary for different platforms.
  * If needed, depending what type benchmark is undertaken, compile another
    target binary benchmarking.
 
@@ -168,4 +168,3 @@ The shadow Builder will be executed as follow:
    will return a piece of code that will be added to the source.
  * Once all parsed, the shadow builder will compile for all the different
    platforms requested either by plugins or by user configuration.
-
