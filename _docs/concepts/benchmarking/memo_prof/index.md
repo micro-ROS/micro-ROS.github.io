@@ -1,6 +1,7 @@
 ---
 title: Memory profiling
 redirect_from: /memo_prof/
+redirect_from: /concepts/memo_prof/
 permalink: /docs/concepts/benchmarking/memo_prof/
 ---
 
