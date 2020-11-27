@@ -21,21 +21,21 @@ permalink: /docs/concepts/benchmarking/benchmarking/
 
 ## Introduction to Benchmarking
 
-Developing working and stable application from the scribbles to the final
-executing binary is long and hard tasks. During this process developers may come
-across stabilities issues, perfomances issues. In addition to these issues, some
+Developing a working and stable application, from the scribbles to the final
+executing binary, is a long and hard task. During this process, developers may come
+across stability and perfomance issues. In addition to these issues, some
 specified QoS might be difficult to quantify.  Solving those problems without the
 proper tools might be frustrating, tedious tasks leading to reduce developers
 efficiency. An adapted benchmarking tool could overcome all those development
 obstacles and increase development time.  There are different KPI (Keep
 Performance Indicators) that one might be interested into. In the framework of
-this micro-ROS, the KPI can be freely chosen by the developer. In this way, the
+micro-ROS, the KPI can be freely chosen by the developer. In this way, the
 benchmarking tool will remain flexible and allow the community to constantly add
-some support for a lot of different KPI.
+support for a lot of different KPI.
 
 The problems we want to tackle are: 
 
- * Out there, many benchmarking tools exist. Each of targeting different KPIs. 
+ * Out there, many benchmarking tools exist, each of them targeting different KPIs. 
  * Different platforms (Linux/Nuttx/Baremetal et.c.).
  * Too few time/resources to code benchmarking tool for each.
  * Avoid code overhead: Keep code clarity.
@@ -69,14 +69,14 @@ platform. Every plugin will provide information as  requested by the parser:
 
  * Provide a list of supported platforms. 
  * Provide a list of functions that are handled.
- * Provide snippets codes that will be added for benchmarking.
+ * Provide snippet codes that will be added for benchmarking.
  * Provide a list of patches and/or patch code
  * Optional provide an end script to run and execute the benchmarks
 
 
 ## Shadow Builder
 
-This section will introduce some concept related to the shadow builder (SB).
+This section will introduce some concepts related to the shadow builder (SB).
 
 The Shadow builder is a tool that will transparently instrument the code to
 benchmark. The tools will be able to output an “instrumented code” that will be
@@ -92,12 +92,11 @@ builder process flow:
    target binary benchmarking.
 
 The SB (Shadow Builder) is meant to be as transparent as possible for the user.
-And if the benchmarking is not activated, it should be bypassed.  Get
-appropriate sources
+And if the benchmarking is not activated, it should be bypassed.
 
 The SB is in charge of getting the path/git repository to the source code that
 needs to be benchmarking. The benchmarking. The sources are specified by the
-user in the benchmarking configuration file.  Injecting code
+user in the benchmarking configuration file.
 
 In order to inject code, there are some tools that allow this. CLang AST tool
 will allow to inject some code. 
