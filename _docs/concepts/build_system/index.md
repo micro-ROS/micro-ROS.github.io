@@ -11,7 +11,7 @@ _RTOS-specific integrations:_ We have integrated micro-ROS with several RTOS bui
 
 The **micro_ros_setup** tool allows compiling and generating images that contain micro-ROS apps for the [supported hardware](/docs/overview/hardware/) boards and [RTOSes](/docs/concepts/rtos/).
 
-As the **micro_ros_setup** package can be installed like any other ROS 2 package, its usage will be through the ROS 2 CLI tool. Compiling, generating an image and flashing it on a board can be done just with four ROS 2 commands.A detailed description about the usage of this package can be found in the [tutorial section](/docs/tutorials/core/first_application_linux/).
+As the **micro_ros_setup** package can be installed like any other ROS 2 package, its usage will be through the ROS 2 CLI tool. Compiling, generating an image and flashing it on a board can be done just with four ROS 2 commands. A detailed description about the usage of this package can be found in the [tutorial section](/docs/tutorials/core/first_application_rtos/).
 
 ### micro-ROS client
 
