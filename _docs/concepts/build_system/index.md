@@ -64,4 +64,6 @@ source install/local_setup.bash
 ros2 run micro_ros_agent micro_ros_agent [OPTIONS]
 ```
 
+**Tip 1:** To learn use of the micro_ros_setup build system hands-on, please see the [core tutorials](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/).
+
 ***TIP:** Remember that the micro-ROS Agent can be also be used with this simple Docker command: `docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agent:foxy [OPTIONS]`*
