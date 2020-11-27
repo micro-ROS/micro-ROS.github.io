@@ -5,7 +5,7 @@ permalink: /docs/concepts/build_system/
 
 micro-ROS provides two ways of building a micro-ROS application for embedded platforms:
 - using the **micro_ros_setup** as a tool integrated in a ROS 2 workspace.
-- using external integrations tools. Click [here](/docs/concepts/build_system/external_build_systems/) for more details about this option.
+_RTOS-specific integrations:_ We have integrated micro-ROS with several RTOS build tools. Click [here](/docs/concepts/build_system/external_build_systems/) to learn more.
 
 **micro_ros_setup** provides a standalone build system in the form of a ROS 2 package that can be integrated in a common ROS 2 workspace. This tool is available in the [micro-ROS/micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup) repository in GitHub.
 
