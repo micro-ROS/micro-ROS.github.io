@@ -65,18 +65,18 @@ Micro-ROS offers **seven key features** that make it ready for use in your micro
 </div>
 
 <div class="feature">
- <p class="feature_title">&#10004; Multi-RTOS support with generic build system<span class="three_dots"> (...)</span></p>
- <div class="feature_description">
-  <p>Micro-ROS supports three popular open-source real-time operating sytems (RTOS): FreeRTOS, Zephyr, and NuttX. It can be ported on any RTOS that comes with a POSIX interface.</p>
-  <p>The RTOS-specific build systems are integrated into few generic setup scripts, which are provided as a ROS 2 package. Therefore, ROS developers can use their usual command line tools. In addition, micro-ROS provides selected integrations with RTOS-specific tool chains (e.g., for ESP-IDF and Zephyr).</p>
- </div>
-</div>
-
-<div class="feature">
  <p class="feature_title">&#10004; Extremely resource-constrained but flexible middleware<span class="three_dots"> (...)</span></p>
  <div class="feature_description">
   <p>Micro XRCE-DDS by eProsima meets all requirements for a middleware for deeply embedded systems. That is why micro-ROS has been one of the applications for this implementation of the new DDS for Extremely Resource Constrained Environments (XRCE) standard. For the integration with the ROS middleware interface (rmw) in the micro-ROS stack, static memory pools were introduced to avoid dynamic memory allocations at runtime.</p>
   <p>The middleware comes with built-in support for serial transports, UDP over Ethernet, Wi-Fi, and 6LoWPAN, and Bluetooth. Furthermore, the Micro XRCE-DDS source code provides templates for implementing support for further transports.</p>
+ </div>
+</div>
+
+<div class="feature">
+ <p class="feature_title">&#10004; Multi-RTOS support with generic build system<span class="three_dots"> (...)</span></p>
+ <div class="feature_description">
+  <p>Micro-ROS supports three popular open-source real-time operating sytems (RTOS): FreeRTOS, Zephyr, and NuttX. It can be ported on any RTOS that comes with a POSIX interface.</p>
+  <p>The RTOS-specific build systems are integrated into few generic setup scripts, which are provided as a ROS 2 package. Therefore, ROS developers can use their usual command line tools. In addition, micro-ROS provides selected integrations with RTOS-specific tool chains (e.g., for ESP-IDF and Zephyr).</p>
  </div>
 </div>
 
