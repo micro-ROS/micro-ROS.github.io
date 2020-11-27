@@ -4,12 +4,12 @@ permalink: /docs/concepts/build_system/
 ---
 
 micro-ROS provides two ways of building a micro-ROS application for embedded platforms:
-- using the **micro_ros_setup** as a tool integrated in a ROS 2 workspace.
-- using external integrations tools. Click [here](/docs/concepts/build_system/external_build_systems/) for more details about this option.
+- _micro_ros_setup:_ integrates and hides the RTOS-specific build tools in few scripts provided as a ROS 2 package.
+_RTOS-specific integrations:_ We have integrated micro-ROS with several RTOS build tools. Click [here](/docs/concepts/build_system/external_build_systems/) to learn more.
 
-**micro_ros_setup** provides a standalone build system in the form of a ROS 2 package that can be integrated in a common ROS 2 workspace. This tool is available in the [micro-ROS/micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup) repository in GitHub.
+**micro_ros_setup** provides a standalone build system in the form of a ROS 2 package for use in any normal ROS 2 workspace. This tool is available in the [micro-ROS/micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup) repository.
 
-The **micro_ros_setup** tool is in charge of generating micro-ROS images that contain micro-ROS apps for the [supported hardware](/docs/overview/hardware/) boards and [RTOSes](/docs/concepts/rtos/).
+The **micro_ros_setup** tool allows compiling and generating images that contain micro-ROS apps for the [supported hardware](/docs/overview/hardware/) boards and [RTOSes](/docs/concepts/rtos/).
 
 As the **micro_ros_setup** package can be installed like any other ROS 2 package, its usage will be through the ROS 2 CLI tool. Compiling, generating an image and flashing it on a board can be done just with four ROS 2 commands.A detailed description about the usage of this package can be found in the [tutorial section](/docs/tutorials/core/first_application_linux/).
 
