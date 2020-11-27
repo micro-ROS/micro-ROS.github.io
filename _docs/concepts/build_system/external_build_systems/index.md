@@ -13,7 +13,7 @@ Configuration of the micro-ROS library is based on the `colcon.meta` file. For m
 
 ## micro-ROS module for Zephyr
 
-The [micro-ROS module for Zephyr](https://github.com/micro-ROS/micro_ros_zephyr_module) allows to integrate micro-ROS as a module in a Zephyr RTOS project. This component allows the user to integrate the micro-ROS API and utilities in an already created Zephyr RTOS project just by cloning or copying a folder.
+The [micro-ROS module for Zephyr](https://github.com/micro-ROS/micro_ros_zephyr_module) allows to integrate micro-ROS as a module in a Zephyr-based project. In detail, it enables to integrate the micro-ROS API and utilities in an existing Zephyr project just by cloning or copying a folder.
 
 The procedure for configuring the built micro-ROS library is based in `colcon.meta`. For more details visit the [Github repository](https://github.com/micro-ROS/micro_ros_espidf_component).
 
