@@ -7,6 +7,7 @@
    - overview/ROS_2_feature_comparison
    - overview/docker_ci_status
    - overview/users_and_clients
+   - overview/fiware_interoperability
 
 
 - title: Client Library
@@ -20,7 +21,6 @@
 - title: Middleware
   docs:
    - concepts/middleware/Micro_XRCE-DDS
-   - concepts/middleware/FIROS2
    - concepts/middleware/rosserial
    - concepts/middleware/IoT
 
