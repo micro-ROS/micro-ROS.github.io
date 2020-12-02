@@ -3,6 +3,8 @@ title: 6LoWPAN Guide
 permalink: /docs/tutorials/advanced/nuttx/6lowpan/
 ---
 
+**Disclaimer: this tutorial is currently unmantained**
+
 In this guide, we will show how to use micro-ROS over 6LoWPAN communication.
 
 # What is 6LoWPAN?

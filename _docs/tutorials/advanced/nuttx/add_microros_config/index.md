@@ -3,6 +3,8 @@ title: Micro-ROS configuration for NuttX
 permalink: /docs/tutorials/advanced/nuttx/add_microros_config/
 ---
 
+**Disclaimer: this tutorial is currently unmantained**
+
 |  RTOS | ROS2 Version |
 |:-----:|:------------:|
 | NuttX |   Dashing   |

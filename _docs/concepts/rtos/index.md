@@ -21,4 +21,4 @@ By now, micro-ROS supports three RTOSes, which all come with (basic) POSIX imple
 * [NuttX](NuttX/)
 * [Zephyr](Zephyr/)
 
-Most important, we [integrated these RTOSes with the ROS meta build system colcon](integration_with_colcon/).
+Most important, we [integrated these RTOSes with the micro-ROS build system](/docs/concepts/build_system/).

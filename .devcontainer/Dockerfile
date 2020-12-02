@@ -28,4 +28,3 @@ ENV DEBIAN_FRONTEND=dialog
 # TEST COMMANDS:
 # bundle install
 # bundle exec jekyll serve --incremental
-
