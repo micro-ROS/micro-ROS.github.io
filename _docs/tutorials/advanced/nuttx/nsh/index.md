@@ -3,6 +3,8 @@ title: NSH console over UART & USB
 permalink: /docs/tutorials/advanced/nuttx/nsh/
 ---
 
+**Disclaimer: this tutorial is currently unmantained**
+
 | RTOS  | Board compatible  |
 | :---: | :---------------: |
 | NuttX | Olimex-STM32-E407 |
