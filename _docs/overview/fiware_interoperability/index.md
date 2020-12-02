@@ -3,13 +3,20 @@ title: Interoperability with FIWARE
 permalink: /docs/overview/fiware_interoperability/
 ---
 
+## Motivation
+Among the goals of the micro-ROS project, one of the key issues has been that of providing interoperability with third outstanding and broadly used platforms.
+One of the selected components has been the FIWARE Context Broker, a standard for context data management adopted by several EU boosted initiatives for facilitating the development of smart solutions for different domains.
+
+This section explains how to achieve interoperability between micro-ROS and this platform, passing through the integration of the latter with ROS 2.
+Thanks to this interoperability, the FIWARE's Context Broker becomes micro-ROS' platform of choice for sharing context information with any other system integrated into the FIWARE ecosystem.
+
 ## Interoperability: pros and cons of the different possible solutions
 
 This subsection will explain all the design alternatives for the interoperability between micro-ROS and the FIWARE Context Broker.
-From now on, the developed solution for intercommunicating micro-ROS with FIWARE will be called **FIROS2 integration service**.
+From now on, the developed solution for intercommunicating micro-ROS with FIWARE will be called **FIROS2 Integration Service**.
 
 FIROS2 requires transformation libraries to convert ROS 2 messages into FIWARE NGSIv2 messages and the other way around.
-For each message, one transformation library is required by the integration service (FIROS2).
+For each message, one transformation library is required.
 
 ![image](http://www.plantuml.com/plantuml/svg/ZP712i8m38RlUOempuKvfrv49gYmap05BmCfhfs5hOMslhzjLuQYu1e8_E5Fyf4Mnb9jdtq77UCMhK8jseV5HcXsjq99uA9ZcA1xjQnEvmnxPWnjMIrzBK5giDpVvlXXF9RNNNNuRSqGf6f6guymr-sERHTDfU5AzzGJ39Rt2GkShJddQJeHBfyEj_o6YtQ75pRyWrkDS03XC8Hi1sW8ESeio1mtX0nT47AK3gDWil7_yW80)
 
@@ -29,9 +36,9 @@ On the other hand, using an integration service platform, such as [SOSS](https:/
 ## SOSS: System Of Systems Synthesizer
 
 **SOSS** addresses the task of providing a common interface for communicating software platforms that speak different languages.
-It is composed of a **core** library, which defines set of abstract interfaces and provides some utility classes to form a plugin-based framework.
+It is composed of a **core** library, which defines a set of abstract interfaces and provides some utility classes to form a plugin-based framework.
 
-This pluggable interface allows the user to use one of the supported plugins or System Handles for a specific middleware, such as DDS, ROS2, FIWARE or ROS.
+This pluggable interface allows the user to leverage any of the supported plugins or System Handles for a specific middleware, such as DDS, ROS2, FIWARE, or ROS, for the desired integration.
 
 SOSS can act as an intermediate message-passing tool that, by speaking a common language, centralizes and mediates the integration of several applications running under different communication middlewares.
 A SOSS instance is configured and launched by means of a **YAML** file, which allows the user to provide a mapping between the different topics and services that two or more applications can exchange information about.
@@ -46,15 +53,18 @@ This common representation is provided, user-wise, using IDL definitions, which 
 ## SOSS-FIWARE system handle
 
 The [FIWARE System Handle](https://github.com/eProsima/SOSS-FIWARE/tree/feature/xtypes-support) allows bringing information from and to FIWARE's Context Broker into the SOSS world.
-This [System Handle](https://soss.docs.eprosima.com/en/latest/sh_creation.html) is configured and launched the same way as any SOSS System Handle.
+This [System Handle](https://soss.docs.eprosima.com/en/latest/sh_creation.html) is configured and launched in the same way as any SOSS System Handle.
 
-Besides the standard information included in any System Handle's configuration (such as system's name and type, which would be fiware for this specific System Handle),
+Besides the standard information included in any System Handle's configuration (such as system's name and type, which would be `fiware` for this specific System Handle),
 in the case of the FIWARE System Handle users must specify two extra YAML key-value pairs, which are the host's IP and port in which this System Handle will try to connect to an instance of FIWARE's Orion Context Broker.
 
 Regarding more specific details about the implementation, FIWARE does not allow certain characters in its entities names.
 For this reason, if a type defined in the topics section of the configuration file has in its name a /, the FIWARE System Handle will map that character into two underscores.
 This is something important to notice when connecting to ROS2, because in ROS2 most of the types have a / in their names.
 To deal with this issue, using SOSS [remapping](https://soss.docs.eprosima.com/en/latest/yaml_config.html?highlight=remap#remapping) capabilities come in handy.
+
+Of course, given that micro-ROS applications act as a bridge between microcontrollers and the ROS 2 dataspace (using the micro-ROS Agent), FIROS2 should take care of communicating FIWARE's Context Broker with ROS 2.
+This is exactly the situation reflected in the use case that is explained below.
 
 ## FIROS2 use case: connecting FIWARE with ROS 2
 
