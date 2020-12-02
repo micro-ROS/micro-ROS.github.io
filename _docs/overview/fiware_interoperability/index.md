@@ -63,7 +63,8 @@ For this reason, if a type defined in the topics section of the configuration fi
 This is something important to notice when connecting to ROS2, because in ROS2 most of the types have a / in their names.
 To deal with this issue, using SOSS [remapping](https://soss.docs.eprosima.com/en/latest/yaml_config.html?highlight=remap#remapping) capabilities come in handy.
 
-Of course, given that micro-ROS applications act as a bridge between microcontrollers and the ROS 2 dataspace (using the micro-ROS Agent), FIROS2 should take care of communicating FIWARE's Context Broker with ROS 2.
+Of course, given that micro-ROS applications act as a bridge between microcontrollers and the ROS 2 dataspace (using the micro-ROS Agent), FIROS2 should also take care of communicating FIWARE's Context Broker with ROS 2, leveraging the existing [ROS 2 System Handle](https://github.com/eProsima/soss_v2/tree/feature/xtypes-dds/packages/ros2), which comes natively included into the SOSS package.
+
 This is exactly the situation reflected in the use case that is explained below.
 
 ## FIROS2 use case: connecting FIWARE with ROS 2
