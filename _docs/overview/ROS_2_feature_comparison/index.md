@@ -68,7 +68,7 @@ Support for "bare-metal" microcontrollers | <span class="status_flag">&#10003;</
 Continuous Integration | <span class="status_flag">&#10003;&#8728;</span> | Currently, the CI for micro-ROS is distributed to GitHub and GitLab. *Until the end of 2020, all CI should be moved migrated completely to the new CI actions of GitHub.* Please note that those packages that are released for standard ROS 2 are also built and tested on [build.ros2.org](http://build.ros2.org/).
 Documentation | <span class="status_flag">&#10003;</span> | High-level documentation at [micro-ros.github.io](https://micro-ros.github.io/). For detailed information please consult the README.md files in the relevant micro-ROS repositories at [github.com/micro-ROS/](https://github.com/micro-ROS/). For information on the middleware implementation, take a look at the [Micro XRCE-DDS documentation](https://micro-xrce-dds.docs.eprosima.com/en/latest/).
 Peer-to-peer functionality | <span class="status_flag">&#10003;&#8728;</span> | Prototypical peer-to-peer functionality implemented over broadcast. No QoS available for the moment. *Roadmap: improve prototype to achieve true point-to-point connection.*
-Memory footprint | <span class="status_flag">&#10003;</span> | A comprehensive profiling of the memory consumption of typical micro-ROS applications can be found [here](https://micro-ros.github.io/docs/concepts/memo_prof/).
+Memory footprint | <span class="status_flag">&#10003;</span> | A comprehensive profiling of the memory consumption of typical micro-ROS applications can be found [here](/docs/concepts/benchmarking/memo_prof/).
 
 Below, you can find the legend of the symbols used in the tables above.
 

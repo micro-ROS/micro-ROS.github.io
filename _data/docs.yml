@@ -7,7 +7,6 @@
    - overview/ROS_2_feature_comparison
    - overview/docker_ci_status
    - overview/users_and_clients
-   - overview/fiware_interoperability
 
 
 - title: Client Library
@@ -42,6 +41,10 @@
    - concepts/benchmarking/concept
    - concepts/benchmarking/results
    - concepts/benchmarking/memo_prof
+
+- title: Interoperability with FIWARE
+  docs:
+   - concepts/fiware_interoperability
 
 - title: Core Tutorials
   docs:

@@ -1,6 +1,6 @@
 ---
 title: Interoperability with FIWARE
-permalink: /docs/overview/fiware_interoperability/
+permalink: /docs/concepts/fiware_interoperability/
 ---
 
 ## Motivation
@@ -33,7 +33,7 @@ To accomplish this, two different approaches can be taken:
 While the first approach might result in a more lightweight tool, it has several flaws, for instance a more difficult maintenance and the incapability of communicating with any other middleware, rather than ROS2 or micro-ROS.
 On the other hand, using an integration service platform, such as [SOSS](https://github.com/eProsima/soss_v2), enables automatically the possibility of communicating with a wide (and growing) set of middlewares, if their System Handle implementation is available.
 
-## SOSS: System Of Systems Synthesizer
+## SOSS: System-Of-Systems-Synthesizer
 
 **SOSS** addresses the task of providing a common interface for communicating software platforms that speak different languages.
 It is composed of a **core** library, which defines a set of abstract interfaces and provides some utility classes to form a plugin-based framework.
@@ -50,7 +50,7 @@ This common representation is provided, user-wise, using IDL definitions, which 
 
 <img width="600" src="imgs/soss.png">
 
-## SOSS-FIWARE system handle
+## SOSS-FIWARE System Handle
 
 The [FIWARE System Handle](https://github.com/eProsima/SOSS-FIWARE/tree/feature/xtypes-support) allows bringing information from and to FIWARE's Context Broker into the SOSS world.
 This [System Handle](https://soss.docs.eprosima.com/en/latest/sh_creation.html) is configured and launched in the same way as any SOSS System Handle.
