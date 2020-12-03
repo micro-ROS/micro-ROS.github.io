@@ -37,7 +37,7 @@ Major repositories in order of the layers are:
   * Demo applications for NuttX (discontinued): [nuttx_apps](https://github.com/micro-ROS/nuttx_apps)
   * Demo applications for Raspbian: [raspbian_apps](https://github.com/micro-ROS/raspbian_apps)
 * Client library:
-  * Extensions to rcl, i.e. the ROS 2 Client Library C API: [rcl_executor](https://github.com/micro-ROS/rcl_executor), [rclc](https://github.com/micro-ROS/rclc)...
+  * Extensions to rcl, i.e. the ROS 2 Client Library C API (executor, lifecycle): [rclc](https://github.com/micro-ROS/rclc)
   * Extensions for rclcpp: [system_modes](https://github.com/micro-ROS/system_modes/), ...
 * Middleware:
   * eProsima's open-source implementation of DDS-XRCE:
