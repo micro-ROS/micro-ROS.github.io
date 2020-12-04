@@ -32,15 +32,17 @@ micro-ROS aims to **bring ROS 2 to microcontrollers** to allow having first-clas
 
 The standard approach to micro-ROS assumes a Real-Time Operating System underneath.
 
-Even though recent developments aim at loosening this requirement, with the integration into Arduino IDE being a first step towards true micro-ROS bare-metal support, the RTOS-based support remains the main entrypoint to micro-ROS.
+Even though recent developments aim at loosening this requirement, with the integration into Arduino IDE as an important step towards true micro-ROS bare-metal support, the RTOS-based support remains the main entrypoint to micro-ROS.
 
-micro-ROS is supported by the RTOSes FreeRTOS, Zephyr, NuttX, in addition to Linux and Windows. The features common to all supported RTOSes are a POSIX compliant API to some degree, extremely low to low footprint, and availability of different scheduling algorithms to ensure determinism in micro-ROS apps behavior.
+To date, micro-ROS is supported by the RTOSes FreeRTOS, Zephyr, NuttX, in addition to Linux and Windows. 
+All three RTOSes are downloaded natively with the [micro-ROS build system](https://github.com/micro-ROS/micro_ros_setup), and can be chosen when creating
+a new firmware workspace.
+Dedicated tutorials for running your first micro-ROS application on each of these Operating Systems can be found [here](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/).
+The features common to all supported RTOSes are an API compliant with POSIX to some degree, extremely low to low footprint, and availability of different scheduling algorithms to ensure determinism in micro-ROS apps behavior.
 Find more details about each of the supported RTOSes below, and a more comprehensive explaination on "Why an RTOS?" in the Concepts section, as this page is meant to provide a schematic overview on the matter.
 
 
 ## Real-Time Operating Systems officially supported by the project
-
-The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and transports.
 
 <div class="rtoscontainer">
   <div class="rtositem_description">
@@ -48,15 +50,17 @@ The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and 
     <div>
         <b>Key features:</b>
         <ul>
-            <li>Extremely small footprint</li>
-            <li>RAM: 520 kB</li>
-            <li>Flash: 4 MB</li>
-            <li>Peripherals: Ethernet MAC, Wi-Fi 802.11 b/g/n, Bluetooth v4.2 BR/EDR, BLE, SPI, I2C, I2S, UART, SDIO, CAN, GPIO, ADC/DAC, PWM  </li>
+            <li>Extremely small footprint.</li>
+            <li>POSIX extension available.</li>
+            <li>Memory management tools</li>
+            <li>Standard and idle tasks available with assignable priorities.</li>
+            <li>Transport resources: TCP/IP and lwIP.</li>
         </ul>  
         <b>Resources:</b>
         <ul>
-            <li><a href="https://www.freertos.org/blog.html">Official website</a></li>
+            <li><a href="https://www.freertos.org/blog.html">Official FreeRTOS website</a></li>
             <li><a href="https://www.freertos.org/2020/09/micro-ros-on-freertos.html">micro-ROS on FreeRTOS</a></li>
+            <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/freertos/">First micro-ROS Application on FreeRTOS</a></li>
         </ul>    
     </div>
   </div>
@@ -72,15 +76,20 @@ The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and 
     <div>
         <b>Key features:</b>
         <ul>
-            <li>MCU: ARM Cortex-M4 MK20DX256VLH7</li>
-            <li>RAM: 64 kB</li>
-            <li>Flash: 256 kB</li>
-            <li>Peripherals: USB, SPI, I2C, CAN, I2S... </li>
+            <li>Small footprint.</li>
+            <li>Native POSIX port.</li>
+            <li>Cross Architecture: Huge collection of <a href="https://docs.zephyrproject.org/latest/boards/index.html">supported boards</a>.</li>
+            <li>Extensive suite of Kernel services.</li>
+            <li>Multiple Scheduling Algorithms.</li>
+            <li>Highly configurable/Modular for flexibility.</li>
+            <li>Native Linux, macOS, and Windows Development.</li>
         </ul>  
         <b>Resources:</b>
         <ul>
-            <li><a href="https://www.zephyrproject.org/">Official website</a></li>
+            <li><a href="https://www.zephyrproject.org/">Official Zephyr website</a></li>
             <li><a href="https://www.zephyrproject.org/micro-ros-a-member-of-the-zephyr-project-and-integrated-into-the-zephyr-build-system-as-a-module/">micro-ROS on Zephyr</a></li>
+            <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/zephyr/">First micro-ROS Application on Zephyr</a></li>
+            <li><a href="https://micro-ros.github.io/docs/tutorials/advanced/zephyr_emulator/">First micro-ROS Application on Zephyr Emulator</a></li>
         </ul>
     </div>
   </div>
@@ -94,7 +103,6 @@ The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and 
   <div class="rtositem_description">
     <h3><b>NuttX</b></h3>
     <div>
-        <p>NuttX is a real-time operating system (RTOS) with an emphasis on standards compliance and small footprint. Scalable from 8-bit to 32-bit microcontroller environments, the primary governing standards in NuttX are Posix and ANSI standards. Additional standard APIs from Unix and other common RTOSes (such as VxWorks) are adopted for functionality not available under these standards, or for functionality that is not appropriate for deeply-embedded environments (such as fork()). Apache NuttX is an effort undergoing Incubation at The Apache Software Foundation (ASF), sponsored by the Incubator.</p>
         <b>Key features:</b>
         <ul>
             <li>POSIX compliant interface to a high degree.</li>
@@ -104,9 +112,9 @@ The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and 
         </ul>  
         <b>Resources:</b>
         <ul>
-            <li><a href="https://nuttx.apache.org/">Official website</a></li>
+            <li><a href="https://nuttx.apache.org/">Official NuttX website</a></li>
+            <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/nuttx/">First micro-ROS Application on NuttX</a></li>
         </ul>
-        <b>**Disclaimer: this tutorial is currently unmantained**</b>
     </div>
   </div>
 
@@ -115,10 +123,12 @@ The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and 
   </div>
 </div>
 
-
 ## Bare metal support
 
-The micro-ROS reference boards are the ones officially supported for all RTOSes and with complete support for all available transports.
+Based on the release of micro-ROS as a standalone library + header files and on the support provided to the Arduino IDE, micro-ROS is available as a bare-metal application, too.
+Fin more details in the dedicated [repo](https://github.com/micro-ROS/micro_ros_arduino).
+
+Arduino is an open-source electronics platform based on easy-to-use hardware and software. Arduino boards are able to read inputs and turn it into an output, by sending instructions to the microcontroller on the board. To do so you use the Arduino programming language (based on Wiring), and the Arduino Software (IDE), based on Processing.
 
 <div class="rtoscontainer">
   <div class="rtositem_description">
@@ -126,17 +136,16 @@ The micro-ROS reference boards are the ones officially supported for all RTOSes 
     <div>
         <b>Key features:</b>
         <ul>
-            <li>MCU: STM32F407ZGT6 Cortex-M4F</li>
-            <li>RAM: 196 kB</li>
-            <li>Flash: 1 MB</li>
-            <li>Peripherals:  USB OTG, Ethernet, SD Card slot, SPI, CAN, I2C... </li>
-        </ul>  
-        
+            <li>Inexpensive.</li>
+            <li>Cross-platform.</li>
+            <li>Simple, clear programming environment.</li>
+            <li>Open source and extensible software.</li>
+            <li>Open source and extensible hardware.</li>
+        </ul>
         <b>Resources:</b>
         <ul>
-            <li><a href="https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware">Official website</a></li>
-            <li><a href="https://github.com/OLIMEX/STM32F4/blob/master/HARDWARE/STM32-E407/STM32-E407_Rev_F.pdf">Schematics</a></li>
-            <li><a href="https://www.olimex.com/Products/ARM/ST/STM32-E407/resources/STM32-E407.pdf">User Manual</a></li>
+            <li><a href="https://www.arduino.cc/">Official Arduino Website</a></li>
+            <li><a href="https://github.com/micro-ROS/micro_ros_arduino">micro_ros_arduino repo</a></li>
         </ul>    
     </div>
   </div>

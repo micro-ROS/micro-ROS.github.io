@@ -2,6 +2,7 @@
   docs:
    - overview/features
    - overview/hardware
+   - overview/rtos
    - overview/transports
    - overview/comparison
    - overview/ROS_2_feature_comparison
