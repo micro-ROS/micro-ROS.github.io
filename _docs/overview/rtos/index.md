@@ -5,7 +5,7 @@ permalink: /docs/overview/rtos/
 
 <style>
 .rtoscontainer {
-  height: 300px;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
