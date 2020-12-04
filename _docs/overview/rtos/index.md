@@ -24,7 +24,7 @@ permalink: /docs/overview/rtos/
 }
 
 .rtositem_image img {
-    max-width: 80%;
+    max-width: 70%;
 }
 </style>
 
@@ -44,17 +44,19 @@ Find more details about each of the supported RTOSes below, and a more comprehen
 
 ## Real-Time Operating Systems officially supported by the project
 
+In this section, we review the main features of the three RTOSes supported officially by the project, and link to useful documentation.
+
 <div class="rtoscontainer">
   <div class="rtositem_description">
     <h3><b>FreeRTOS</b></h3>
     <div>
         <b>Key features:</b>
         <ul>
-            <li>Extremely small footprint.</li>
-            <li>POSIX extension available.</li>
+            <li>Extremely small footprint</li>
+            <li>POSIX extension available</li>
             <li>Memory management tools</li>
-            <li>Standard and idle tasks available with assignable priorities.</li>
-            <li>Transport resources: TCP/IP and lwIP.</li>
+            <li>Standard and idle tasks available with assignable priorities</li>
+            <li>Transport resources: TCP/IP and lwIP</li>
         </ul>  
         <b>Resources:</b>
         <ul>
@@ -76,13 +78,13 @@ Find more details about each of the supported RTOSes below, and a more comprehen
     <div>
         <b>Key features:</b>
         <ul>
-            <li>Small footprint.</li>
-            <li>Native POSIX port.</li>
-            <li>Cross Architecture: Huge collection of <a href="https://docs.zephyrproject.org/latest/boards/index.html">supported boards</a>.</li>
-            <li>Extensive suite of Kernel services.</li>
-            <li>Multiple Scheduling Algorithms.</li>
-            <li>Highly configurable/Modular for flexibility.</li>
-            <li>Native Linux, macOS, and Windows Development.</li>
+            <li>Small footprint</li>
+            <li>Native POSIX port</li>
+            <li>Cross Architecture: Huge collection of <a href="https://docs.zephyrproject.org/latest/boards/index.html">supported boards</a></li>
+            <li>Extensive suite of Kernel services</li>
+            <li>Multiple Scheduling Algorithms</li>
+            <li>Highly configurable/Modular for flexibility</li>
+            <li>Native Linux, macOS, and Windows Development</li>
         </ul>  
         <b>Resources:</b>
         <ul>
@@ -105,10 +107,10 @@ Find more details about each of the supported RTOSes below, and a more comprehen
     <div>
         <b>Key features:</b>
         <ul>
-            <li>POSIX compliant interface to a high degree.</li>
+            <li>POSIX compliant interface to a high degree</li>
             <li>Rich Feature OS Set</li>
             <li>Highly scalable</li>
-            <li>Real-Time behavior: fully pre-emptible; fixed priority, round-robin, and “sporadic” scheduling.</li>
+            <li>Real-Time behavior: fully pre-emptible; fixed priority, round-robin, and “sporadic” scheduling</li>
         </ul>  
         <b>Resources:</b>
         <ul>
@@ -125,10 +127,10 @@ Find more details about each of the supported RTOSes below, and a more comprehen
 
 ## Bare metal support
 
-Based on the release of micro-ROS as a standalone library + header files and on the support provided to the Arduino IDE, micro-ROS is available as a bare-metal application, too.
+Based on the release of micro-ROS as a standalone library + header files, and on the support provided to the Arduino IDE, micro-ROS is available as a bare-metal application, too.
 Fin more details in the dedicated [repo](https://github.com/micro-ROS/micro_ros_arduino).
 
-Arduino is an open-source electronics platform based on easy-to-use hardware and software. Arduino boards are able to read inputs and turn it into an output, by sending instructions to the microcontroller on the board. To do so you use the Arduino programming language (based on Wiring), and the Arduino Software (IDE), based on Processing.
+The open-source Arduino Software (IDE) is a library making it easy to program any Arduino board.
 
 <div class="rtoscontainer">
   <div class="rtositem_description">
@@ -136,11 +138,11 @@ Arduino is an open-source electronics platform based on easy-to-use hardware and
     <div>
         <b>Key features:</b>
         <ul>
-            <li>Inexpensive.</li>
-            <li>Cross-platform.</li>
-            <li>Simple, clear programming environment.</li>
-            <li>Open source and extensible software.</li>
-            <li>Open source and extensible hardware.</li>
+            <li>Inexpensive</li>
+            <li>Cross-platform</li>
+            <li>Simple, clear programming environment</li>
+            <li>Open source and extensible software</li>
+            <li>Open source and extensible hardware</li>
         </ul>
         <b>Resources:</b>
         <ul>
@@ -151,7 +153,7 @@ Arduino is an open-source electronics platform based on easy-to-use hardware and
   </div>
 
   <div class="rtositem_image">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/720px-Arduino_Logo.svg.png">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/720px-Arduino_Logo.svg.png" width="500">
   </div>
 </div>
 
