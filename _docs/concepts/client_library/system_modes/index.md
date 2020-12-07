@@ -14,10 +14,12 @@ Table of contents
   - [System Hierarchy and Modes](#system-hierarchy-and-modes)
   - [Mode Inference](#mode-inference)
   - [Mode Manager](#mode-manager)
+  - [Error Handling and Rules (Experimental)](#error-handling-and-rules-experimental)
 - [Roadmap](#roadmap)
   - [2018](#2018)
   - [2019](#2019)
   - [2020](#2020)
+  - [2021](#2021)
 - [Acknowledgments](#acknowledgments)
 
 ## Introduction and Goal
@@ -54,13 +56,15 @@ The main features of the approach are (detailed in the remainder):
 
 ## Requirements
 
-The list of requirements is maintained in the doc folder of the micro-ROS system modes repository, at:  https://github.com/micro-ROS/system_modes/blob/master/system_modes/doc/requirements.md
+The list of requirements is maintained in the doc folder of the micro-ROS system modes repository, at:  
+https://github.com/micro-ROS/system_modes/blob/master/system_modes/doc/requirements.md
 
 ## Background: ROS 2 Lifecycle
 
 Our approach is based on the ROS 2 Lifecycle. The primary goal of the ROS 2 lifecycle is to allows greater control over the state of a ROS system. It allows consistent initialization, restart and/or replacing of system parts during runtime. It provides a default lifecycle for managed ROS 2 nodes and a matching set of tools for managing lifecycle nodes.
 
-The description of the concept can be found at:   [http://design.ros2.org/articles/node_lifecycle.html](http://design.ros2.org/articles/node_lifecycle.html)  
+The description of the concept can be found at:  
+[http://design.ros2.org/articles/node_lifecycle.html](http://design.ros2.org/articles/node_lifecycle.html)
 The implementation of the Lifecycle Node is described at:  
 [https://index.ros.org/doc/ros2/Managed-Nodes/](https://index.ros.org/doc/ros2/Managed-Nodes/).
 
@@ -78,7 +82,7 @@ Documentation and code can be found at:
 We provide a modeling concept for specifying the hierarchical composition of systems recursively from nodes and for specifying the states and modes of systems and (sub-)systems with the extended lifecycle, analogously to nodes. This system modes and hierarchy (SMH) model also includes an application-specific the mapping of the states and modes along the system hierarchy down to nodes.
 
 The description of this model can be found at:  
-[github.com:system_modes/README.md#system-modes](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#system-modes)  
+[github.com:system_modes/README.md#system-modes](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#system-modes)
 A simple example is provided at:  
 [github.com:system_modes_examples/README.md#example-mode-file](https://github.com/micro-ROS/system_modes/blob/master/system_modes_examples/README.md#example-mode-file)
 
@@ -86,12 +90,12 @@ A simple example is provided at:
 
 The mode inference infers the entire system states (and modes) based on the lifecycle states, modes, and parameter configuration of its components, i.e. the ROS 2 lifecyle nodes. It parses the SMH model and subscribes to lifecycle/mode change requests, lifecycle/mode changes, and parameter events.
 
-Based on the lifecycle change events it knows the _actual_ lifecycle state of all nodes. Based on parameter change events it knows the _actual_ parameter values of all nodes, which allows inference of the _modes_ of all nodes based on the SMH model. 
+Based on the lifecycle change events it knows the _actual_ lifecycle state of all nodes. Based on parameter change events it knows the _actual_ parameter values of all nodes, which allows inference of the _modes_ of all nodes based on the SMH model.
 Based on the SMH model and the inferred states and modes of all nodes, states and modes of all (sub-)systems can be _inferred_ bottom-up along the system hierarchy.
 This can be compared to the latest _requested_ states and modes to detect a deviation.
 
 The documentation and code can be found at:  
-[github.com:system_modes/README.md#mode-inference](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-inference)  
+[github.com:system_modes/README.md#mode-inference](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-inference)
 The mode inference can be best observed in the mode monitor, a console-based debugging tool, see:  
 [github.com:system_modes/README.md#mode-monitor](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-monitor)
 
@@ -100,9 +104,25 @@ The mode inference can be best observed in the mode monitor, a console-based deb
 Building upon the _Mode Inference_ mechanism, the mode manager provides additional services and topics to _manage and adapt_ system states and modes according to the specification in the SMH model.
 
 The documentation and code can be found at:  
-[github.com:system_modes/README.md#mode-manager](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-manager)  
+[github.com:system_modes/README.md#mode-manager](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-manager)
 A simple example is provided at:  
 [github.com:system_modes_examples/README.md#setup](https://github.com/micro-ROS/system_modes/blob/master/system_modes_examples/README.md#setup)
+
+### Error Handling and Rules (Experimental)
+
+If the _actual_ state/mode of the system or any of its parts diverges from the _target_ state/mode, we define rules that try to bring the system back to a valid _target_ state/mode, e.g., a degraded mode. Rules work in a bottom-up manner, i.e. starting from correcting nodes before sub-systems before systems. Rules are basically defined in the following way:  
+
+```pseudo
+if:
+ system.target == {target state/mode} && system.actual != {target state/mode} && part.actual == {specific state/mode}
+then:
+ system.target := {specific state/mode}
+```
+
+if _actual_ state/mode and _target_ state/mode diverge, but there is no rule for this exact situation, the bottom-up rules will just try to return the system/part to its _target_ state/mode.
+*Potentiall dangereous, to be discussed:* what's happening, if the system is already on its way. E.g., a system or part was just commanded to transition to _ACTIVE.foo_, but is currently _activating_ (so doing everything right). In this case we have to avoid that the bottom-up rules will trigger.
+
+*Note:* This feature is still experimental and might be subject to major changes. However, if no rules are specified in the model file, this feature is not used.
 
 ## Roadmap
 
@@ -121,12 +141,15 @@ A simple example is provided at:
 
 ### 2020
 
-- Diagnostics framework for micro-ROS, interoperating with ROS 2 diagnostics
-- MCU-specific diagnostics functions for resource usage on RTOS layer, latencies, statistics from middleware, etc.
 - Integration of mode manager with real-time executor and/or roslaunch
 - Lightweight concept for specifying error propagation and recovery mechanisms
 
 _Note: The extension of the ACTIVE state by modes (substates) was originally planned for 2020 but brought forward in 2018._
+
+### 2021
+
+- Diagnostics framework for micro-ROS, interoperating with ROS 2 diagnostics
+- MCU-specific diagnostics functions for resource usage on RTOS layer, latencies, statistics from middleware, etc.
 
 ## Acknowledgments
 
