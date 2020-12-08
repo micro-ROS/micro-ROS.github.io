@@ -136,13 +136,14 @@ if _actual_ state/mode and _target_ state/mode diverge, but there is no rule for
 
 - Extended lifecycle concept and implementation for ROS 2 C++
 - Mode inference and mode manager for ROS 2 C++
-- ROS diagnostics port from ROS 1 to ROS 2
-- Concept for bottom-up system modes rules
+- ROS diagnostics port from ROS 1 to ROS 2 (prerequisite for micro-ROS diagnistics)
+- Lightweight concept for error propagation and recovery mechanisms
 
 ### 2020
 
 - Integration of mode manager with real-time executor and/or roslaunch
-- Lightweight concept for specifying error propagation and recovery mechanisms
+- Lightweight implementation for specifying error propagation and recovery mechanisms
+- ROS diagnostics port from ROS 1 to ROS 2 (prerequisite for micro-ROS diagnistics)
 
 _Note: The extension of the ACTIVE state by modes (substates) was originally planned for 2020 but brought forward in 2018._
 
