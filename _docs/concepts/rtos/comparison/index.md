@@ -46,7 +46,7 @@ Table:
 |                                                              |                                          |                                                                                                                          |                                                                                                 |
 | **Supported Hardware**                                       |                                          |                                                                                                                          |                                                                                                 |
 | Olimex STM32-E407 (Cortex-M4)                                | yes                                      | yes                                                                                                                      | yes, [explicitly](https://docs.zephyrproject.org/latest/reference/kernel/scheduling/index.html) |
-| Bosch XDK <sup>5</sup>                                       | not explicitly, but similar <sup>6</sup> | yes                                                                                                                      | yes                                                                                             |
+| Bosch XDK <sup>5</sup>                                       | not explicitly, but similar <sup>6</sup> | yes                                                                                                                      | no<sup>5</sup>                                                                                  |
 | MPC57xx                                                      | no                                       | no                                                                                                                       | no                                                                                              |
 | **Scheduling**                                               |                                          |                                                                                                                          |                                                                                                 |
 | Priority-based                                               | FIFO                                     | yes                                                                                                                      | yes                                                                                             |
@@ -91,7 +91,7 @@ Table:
 
 <sup>4</sup> Executing every task in round-robin fashion but only for a pre-defined time slice.
 
-<sup>5</sup> ARM Cortex M3 EFM32GG390F1024 Giant Gecko family (Silicon Labs). EFM32G880F120-STK ARM Cortex M3 EFM32GG390F1024 Giant Gecko family (Silicon Labs).
+<sup>5</sup> XDK is based on a microcontroller of the ARM Cortex M3 EFM32GG390F1024 Giant Gecko family by Silicon Labs. Note that the version used in the XDK is not fully supported by Zephyr.
 
 <sup>6</sup> [Note: Time slicing](https://www.freertos.org/Documentation/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)
 
