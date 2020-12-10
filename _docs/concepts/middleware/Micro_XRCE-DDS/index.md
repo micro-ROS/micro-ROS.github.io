@@ -49,7 +49,7 @@ orin its rmw implementation [`rmw_microxrcedds`](https://github.com/micro-ROS/rm
 ### Multi-Transport Support
 
 As part of the profiles discussed in the previous section, the user can choose between several transport layers to communicate the Clients with the Agent.
-Ideed, in contrast to other IoT middleware such as MQTT and CoaP, which work over only a particular transport layer, XRCE supports multiple transport protocols natively.
+Indeed, in contrast to other IoT middleware such as MQTT and CoaP, which work over only a particular transport layer, XRCE supports multiple transport protocols natively.
 In particular, the latest version of Micro XRCE-DDS support: **UDP**, **TCP** and a custom **Serial** transport protocol.
 
 Apart from this, Micro XRCE-DDS has a transport interface for both Agent and Client which allows to implement custom transport in an straightforward manner.
