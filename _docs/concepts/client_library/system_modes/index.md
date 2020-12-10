@@ -10,16 +10,12 @@ Table of contents
 - [Requirements](#requirements)
 - [Background: ROS 2 Lifecycle](#background-ros-2-lifecycle)
 - [Main Features](#main-features)
+  - [Basic Lifecycle](#basic-lifecycle)
   - [Extended Lifecycle](#extended-lifecycle)
   - [System Hierarchy and Modes](#system-hierarchy-and-modes)
   - [Mode Inference](#mode-inference)
   - [Mode Manager](#mode-manager)
-  - [Error Handling and Rules (Experimental)](#error-handling-and-rules-experimental)
-- [Roadmap](#roadmap)
-  - [2018](#2018)
-  - [2019](#2019)
-  - [2020](#2020)
-  - [2021](#2021)
+  - [Error Handling and Rules](#error-handling-and-rules)
 - [Acknowledgments](#acknowledgments)
 
 ## Introduction and Goal
@@ -56,19 +52,27 @@ The main features of the approach are (detailed in the remainder):
 
 ## Requirements
 
-The list of requirements is maintained in the doc folder of the micro-ROS system modes repository, at:  
+The list of requirements is maintained in the doc folder of the micro-ROS system modes repository, at:
 https://github.com/micro-ROS/system_modes/blob/master/system_modes/doc/requirements.md
 
 ## Background: ROS 2 Lifecycle
 
 Our approach is based on the ROS 2 Lifecycle. The primary goal of the ROS 2 lifecycle is to allows greater control over the state of a ROS system. It allows consistent initialization, restart and/or replacing of system parts during runtime. It provides a default lifecycle for managed ROS 2 nodes and a matching set of tools for managing lifecycle nodes.
 
-The description of the concept can be found at:  
+The description of the concept can be found at:
 [http://design.ros2.org/articles/node_lifecycle.html](http://design.ros2.org/articles/node_lifecycle.html)
-The implementation of the Lifecycle Node is described at:  
+The implementation of the Lifecycle Node is described at:
 [https://index.ros.org/doc/ros2/Managed-Nodes/](https://index.ros.org/doc/ros2/Managed-Nodes/).
 
 ## Main Features
+
+### Basic Lifecycle
+
+The ROS 2 Lifecycle has been implemented for micro-ROS as part of the C programming language client library *[rclc](https://github.com/ros2/rclc)*, see [rclc_lifecycle](https://github.com/ros2/rclc/tree/master/rclc_lifecycle) for source-code and documentation.
+
+The rclc_lifecycle package is a ROS 2 package that provides convenience functions to bundle a ROS Client Library (rcl) node with the ROS 2 Node Lifecycle state machine in the C programming language, similar to the [rclcpp Lifecycle Node](https://github.com/ros2/rclcpp/blob/master/rclcpp_lifecycle/include/rclcpp_lifecycle/lifecycle_node.hpp) for C++.
+
+An example, how to use the rclc Lifecycle Node is given in the file `lifecycle_node.c` in the [rclc_examples](https://github.com/ros2/rclc/blob/master/rclc_examples/) package.
 
 ### Extended Lifecycle
 
