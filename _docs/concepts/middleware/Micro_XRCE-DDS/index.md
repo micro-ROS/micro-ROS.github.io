@@ -38,7 +38,7 @@ As it was mentioned above, Micro XRCE-DDS is focused on microcontroller applicat
 A proof of this is the fact that the XRCE Client is completely dynamic memory free.
 From the point of view of the memory footprint, the [latest](https://github.com/eProsima/Micro-XRCE-DDS-Client/releases/latest) version of this library has a memory consumption of less than **75 KB of Flash memory** and around **3 KB of RAM** for a complete publisher and subscriber application handling messages sizes on the order of 512 B.
 For more detailed information on the memory consumption as a function of message size, entity number and internal memory management of the middleware library, please refer to the [Micro XRCE-DDS memory profiling](https://micro-ros.github.io/docs/concepts/middleware/memo_prof/) section.
-Moreover, this library is highly configurable thanks a *profile* concept that enables to choose, add or remove some features in configuration time. That allows customizing the XRCE Client library size, if there are features that are not used.
+Moreover, this library is highly configurable thanks to a *profile* concept that enables to choose, add or remove some features in configuration time. That allows customizing the XRCE Client library size, if there are features that are not used.
 There are several definitions for configuring and building the Client library at compile-time.
 These definitions allow to create a version of the library according to the application requirements, and can be modified in the `client.config` file.
 For incorporating the desired configuration, it is necessary to run the `cmake` command every time the definitions change.
