@@ -48,7 +48,7 @@ The main features of the approach are (detailed in the remainder):
 2. _System Hierarchy and Modes_: Modeling approach for specifying a ROS system in terms of its system hierarchy and _system modes_, i.e. different (sub-)system configurations.
 3. _Mode Manager_: A module to manage and change the system runtime configuration.
 4. _Mode Inference_: A module for deriving the entire system state and mode from observable system information, i.e. states, modes, and parameters of its components.
-5. _Diagnostics_: Diagnosis module for deriving relevant information from the operating systems, the hardware and the functional components.
+5. _Error Handling_: Lightweight concept for specifying an error handling and recovery mechanism.
 
 ## Requirements
 
@@ -112,9 +112,9 @@ The documentation and code can be found at:
 A simple example is provided at:  
 [github.com:system_modes_examples/README.md#setup](https://github.com/micro-ROS/system_modes/blob/master/system_modes_examples/README.md#setup)
 
-### Error Handling and Rules (Experimental)
+### Error Handling and Rules
 
-If the _actual_ state/mode of the system or any of its parts diverges from the _target_ state/mode, we define rules that try to bring the system back to a valid _target_ state/mode, e.g., a degraded mode. Rules work in a bottom-up manner, i.e. starting from correcting nodes before sub-systems before systems. Rules are basically defined in the following way:  
+If the _actual_ state/mode of the system or any of its parts diverges from the _target_ state/mode, we define rules that try to bring the system back to a valid _target_ state/mode, e.g., a degraded mode. Rules work in a bottom-up manner, i.e. starting from correcting nodes before sub-systems before systems. Rules are basically defined in the following way:
 
 ```pseudo
 if:
@@ -123,38 +123,9 @@ then:
  system.target := {specific state/mode}
 ```
 
-if _actual_ state/mode and _target_ state/mode diverge, but there is no rule for this exact situation, the bottom-up rules will just try to return the system/part to its _target_ state/mode.
-*Potentiall dangereous, to be discussed:* what's happening, if the system is already on its way. E.g., a system or part was just commanded to transition to _ACTIVE.foo_, but is currently _activating_ (so doing everything right). In this case we have to avoid that the bottom-up rules will trigger.
+If _actual_ state/mode and _target_ state/mode diverge, but there is no rule for this exact situation, the bottom-up rules will just try to return the system/part to its _target_ state/mode.
 
-*Note:* This feature is still experimental and might be subject to major changes. However, if no rules are specified in the model file, this feature is not used.
-
-## Roadmap
-
-### 2018
-
-- Requirements for behavior system composition in robotics systems
-- Modeling concept to specify system hierarchy as well as system modes of systems, subsystems, and their mapping along the system hierarchy down to nodes
-- Python prototype of system modes concept (ROS-independent)
-
-### 2019
-
-- Extended lifecycle concept and implementation for ROS 2 C++
-- Mode inference and mode manager for ROS 2 C++
-- ROS diagnostics port from ROS 1 to ROS 2 (prerequisite for micro-ROS diagnostics)
-- Lightweight concept for error propagation and recovery mechanisms
-
-### 2020
-
-- Integration of mode manager with real-time executor and/or roslaunch
-- Lightweight implementation for specifying error propagation and recovery mechanisms
-- ROS diagnostics port from ROS 1 to ROS 2 (prerequisite for micro-ROS diagnostics)
-
-_Note: The extension of the ACTIVE state by modes (substates) was originally planned for 2020 but brought forward in 2018._
-
-### 2021
-
-- Diagnostics framework for micro-ROS, interoperating with ROS 2 diagnostics
-- MCU-specific diagnostics functions for resource usage on RTOS layer, latencies, statistics from middleware, etc.
+*Note:* This feature is suited for simple, well-defined rules according to the depicted syntax. For more complex orchestration, integration of system modes with ontological reasoning (*metacontrol*) has been validated and successfully shown in the [MROS project](https://robmosys.eu/mros/), e.g., within a [navigation sub-system of a mobile robot](https://github.com/MROS-RobMoSys-ITP/Pilot-URJC).
 
 ## Acknowledgments
 
