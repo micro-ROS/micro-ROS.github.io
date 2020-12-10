@@ -1,14 +1,14 @@
 ---
-title: Comparison of these RTOS
+title: Comparison between RTOSes
 permalink: /docs/concepts/rtos/comparison/
 ---
 
-The table below compares RTOS 
-* NuttX
-* FreeRTOS
-* Zephyr
+In this section, we present a techincal comparison between the three RTOSes supported by micro-ROS:
+* [NuttX](https://nuttx.apache.org/)
+* [FreeRTOS](https://www.freertos.org/index.html)
+* [Zephyr](https://www.zephyrproject.org/)
 
-regarding the following features:
+The comparison regards the features listed below:
 * Standardized API to Application level
 * Maturity
 * Supported Hardware
@@ -21,14 +21,14 @@ regarding the following features:
 * License
 * POSIX level support
 
-Key questions:
+**Key questions:**
 * Evaluation POSIX-compliance of RTOS. 
 * What is the effort in providing an additional layer for non-POSIX RTOS regarding micro-ROS or ROS 2?
 * Support of RTOS for specific HW platforms
 
-Table:
+## Table of Comparisons
 
-| **OS**                                                       | [NuttX](http://nuttx.org/)               | [FreeRTOS](https://sourceforge.net/projects/freertos/)                                                                   | [Zephyr](https://www.zephyrproject.org/)                                                        |
+| **OS**                                                       | **NuttX**              | **FreeRTOS**                                                                   | **Zephyr**                                                        |
 | ------------------------------------------------------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
 | **Feature**                                                  |                                          |                                                                                                                          |                                                                                                 |
 | **Standardization**                                          |                                          |                                                                                                                          |                                                                                                 |
