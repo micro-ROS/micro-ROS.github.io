@@ -21,7 +21,7 @@ One of the capabilities of Micro XRCE-DDS is the use of serial connection betwee
 Such a connection is possible thanks to the use of OMG's DDS-XRCE standard and a serial transport layer.
 This solution follows the same client-server architecture as rosserial, which it is one of the most suitable approaches when we speak of microcontroller communications.
 
-The elibraries in charge of implementing this architecture are the Client and the Agent.
+The libraries in charge of implementing this architecture are the Client and the Agent.
 Clients generate entities within the Agent which will act on behalf of the Clients on a DDS network.
 
 This usage, as you can see, resembles the one used by rosserial, but they have subtle differences in their implementations which we will expose in this article.
