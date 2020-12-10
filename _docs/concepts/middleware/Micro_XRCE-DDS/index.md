@@ -52,7 +52,7 @@ As part of the profiles discussed in the previous section, the user can choose b
 Indeed, in contrast to other IoT middleware such as MQTT and CoaP, which work over only a particular transport layer, XRCE supports multiple transport protocols natively.
 In particular, the latest version of Micro XRCE-DDS support: **UDP**, **TCP** and a custom **Serial** transport protocol.
 
-Apart from this, Micro XRCE-DDS has a transport interface for both Agent and Client which allows to implement custom transport in an straightforward manner.
+Apart from this, Micro XRCE-DDS has a transport interface for both Agent and Client which allows to implement custom transports in a straightforward manner.
 This makes the port of Micro XRCE-DDS to different platforms and the addition of new transports a seamless task that any user can undertake.
 
 ### Multi-Platform Support
