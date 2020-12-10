@@ -76,18 +76,18 @@ An example, how to use the rclc Lifecycle Node is given in the file `lifecycle_n
 
 ### Extended Lifecycle
 
-In micro-ROS, we extend the ROS 2 lifecycle by allowing to specify modes, i.e. substates, specializing the *active* *state based on the standard ROS 2 parameters mechanism. We implemented this concept based on rcl and rclcpp for ROS 2 and micro-ROS.
+In micro-ROS, we extend the ROS 2 lifecycle by allowing to specify modes, i.e. substates, specializing the *active* state based on the standard ROS 2 parameters mechanism. We implemented this concept based on rclc_lifecycle and rclcpp_lifecycle for ROS 2 and micro-ROS.
 
-Documentation and code can be found at:  
+Documentation and code can be found at:
 [github.com:system_modes/README.md#lifecycle](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#lifecycle)
 
 ### System Hierarchy and Modes
 
 We provide a modeling concept for specifying the hierarchical composition of systems recursively from nodes and for specifying the states and modes of systems and (sub-)systems with the extended lifecycle, analogously to nodes. This system modes and hierarchy (SMH) model also includes an application-specific the mapping of the states and modes along the system hierarchy down to nodes.
 
-The description of this model can be found at:  
+The description of this model can be found at:
 [github.com:system_modes/README.md#system-modes](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#system-modes)
-A simple example is provided at:  
+A simple example is provided at:
 [github.com:system_modes_examples/README.md#example-mode-file](https://github.com/micro-ROS/system_modes/blob/master/system_modes_examples/README.md#example-mode-file)
 
 ### Mode Inference
@@ -98,18 +98,18 @@ Based on the lifecycle change events it knows the _actual_ lifecycle state of al
 Based on the SMH model and the inferred states and modes of all nodes, states and modes of all (sub-)systems can be _inferred_ bottom-up along the system hierarchy.
 This can be compared to the latest _requested_ states and modes to detect a deviation.
 
-The documentation and code can be found at:  
+The documentation and code can be found at:
 [github.com:system_modes/README.md#mode-inference](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-inference)
-The mode inference can be best observed in the mode monitor, a console-based debugging tool, see:  
+The mode inference can be best observed in the mode monitor, a console-based debugging tool, see:
 [github.com:system_modes/README.md#mode-monitor](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-monitor)
 
 ### Mode Manager
 
 Building upon the _Mode Inference_ mechanism, the mode manager provides additional services and topics to _manage and adapt_ system states and modes according to the specification in the SMH model.
 
-The documentation and code can be found at:  
+The documentation and code can be found at:
 [github.com:system_modes/README.md#mode-manager](https://github.com/micro-ROS/system_modes/blob/master/system_modes/README.md#mode-manager)
-A simple example is provided at:  
+A simple example is provided at:
 [github.com:system_modes_examples/README.md#setup](https://github.com/micro-ROS/system_modes/blob/master/system_modes_examples/README.md#setup)
 
 ### Error Handling and Rules
