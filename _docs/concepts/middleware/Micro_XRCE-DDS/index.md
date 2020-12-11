@@ -37,14 +37,14 @@ Furthermore, the [micro-ROS](https://microros.github.io) project, whose goal is 
 As it was mentioned above, Micro XRCE-DDS is focused on microcontroller applications. Therefore, the design and implementation of this middleware have been carried out taking into account the memory constraints of this kind of devices.
 A proof of this is the fact that the XRCE Client is completely dynamic memory free.
 From the point of view of the memory footprint, the [latest](https://github.com/eProsima/Micro-XRCE-DDS-Client/releases/latest) version of this library has a memory consumption of less than **75 KB of Flash memory** and around **3 KB of RAM** for a complete publisher and subscriber application handling messages sizes on the order of 512 B.
-For more detailed information on the memory consumption as a function of message size, entity number and internal memory management of the middleware library, please refer to the [Micro XRCE-DDS memory profiling](https://micro-ros.github.io/docs/concepts/middleware/memo_prof/) section.
+For more detailed information on the memory consumption as a function of message size, entity number and internal memory management of the middleware library, please refer to the [Micro XRCE-DDS memory profiling](/docs/concepts/middleware/memo_prof/) section.
 Moreover, this library is highly configurable thanks to a *profile* concept that enables to choose, add or remove some features in configuration time. That allows customizing the XRCE Client library size, if there are features that are not used.
 There are several definitions for configuring and building the Client library at compile-time.
 These definitions allow to create a version of the library according to the application requirements, and can be modified in the `client.config` file.
 For incorporating the desired configuration, it is necessary to run the `cmake` command every time the definitions change.
 
 For more information on how to configure micro-ROS by opportunely tuning parameters either in the Micro XRCE-DDS library
-orin its rmw implementation [`rmw_microxrcedds`](https://github.com/micro-ROS/rmw-microxrcedds), consult this [tutorial](https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/) and the `rmw_microxrcedds` [README](https://github.com/micro-ROS/rmw-microxrcedds#rmw-micro-xrce-dds-implementation).
+orin its rmw implementation [`rmw_microxrcedds`](https://github.com/micro-ROS/rmw-microxrcedds), consult this [tutorial](/docs/tutorials/core/microxrcedds_rmw_configuration/) and the `rmw_microxrcedds` [README](https://github.com/micro-ROS/rmw-microxrcedds#rmw-micro-xrce-dds-implementation).
 
 ### Multi-Transport Support
 
@@ -76,7 +76,7 @@ Additionally, using references will also reduce the memory consumption of the Cl
 This is because the reference approach allows avoiding to build the parts of the code where XMLs are stored.
 
 Notice that this mechanism is inherited by micro-ROS which, as a consequence, will be able to leverage the same full set of QoS as ROS 2.
-For a comprehensive review on how to use custom QoS in micro-ROS, please visit this [dedicated page](https://micro-ros.github.io/docs/tutorials/core/create_dds_entities_by_ref/) in the tutorials section.
+For a comprehensive review on how to use custom QoS in micro-ROS, please visit this [dedicated page](/docs/tutorials/core/create_dds_entities_by_ref/) in the tutorials section.
 
 
 ## Other links
@@ -86,6 +86,6 @@ For a comprehensive review on how to use custom QoS in micro-ROS, please visit t
 * [XRCE Client on GitHub](https://github.com/eProsima/Micro-XRCE-DDS-Client)
 * [XRCE Agent on GitHub](https://github.com/eProsima/Micro-XRCE-DDS-Agent)
 * [rmw_microxrcedds on GitHub](https://github.com/micro-ROS/rmw-microxrcedds)
-* [Micro XRCE-DDS memory profiling](https://micro-ros.github.io/docs/concepts/middleware/memo_prof/)
-* [Middleware optimization tutorial](https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/).
-* [How to use custom QoS in micro-ROS](https://micro-ros.github.io/docs/tutorials/core/create_dds_entities_by_ref/)
+* [Micro XRCE-DDS memory profiling](/docs/concepts/middleware/memo_prof/)
+* [Middleware optimization tutorial](/docs/tutorials/core/microxrcedds_rmw_configuration/).
+* [How to use custom QoS in micro-ROS](/docs/tutorials/core/create_dds_entities_by_ref/)
