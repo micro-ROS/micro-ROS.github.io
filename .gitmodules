@@ -9,3 +9,6 @@
 [submodule "_includes/openmanipulator_demo"]
 	path = _includes/openmanipulator_demo
 	url = https://github.com/micro-ROS/micro-ROS_openmanipulator_demo
+[submodule "_includes/demobox_demo"]
+	path = _includes/demobox_demo
+	url = https://github.com/micro-ROS/micro-ROS_demobox_demo.git
