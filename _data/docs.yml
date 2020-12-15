@@ -25,12 +25,9 @@
    - concepts/middleware/rosserial
    - concepts/middleware/IoT
 
-- title: RTOS
+- title: RTOSes
   docs:
    - concepts/rtos
-   - concepts/rtos/FreeRTOS
-   - concepts/rtos/NuttX
-   - concepts/rtos/Zephyr
    - concepts/rtos/comparison
 
 - title: Build System
