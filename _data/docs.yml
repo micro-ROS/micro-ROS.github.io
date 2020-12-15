@@ -21,6 +21,7 @@
 - title: Middleware
   docs:
    - concepts/middleware/Micro_XRCE-DDS
+   - concepts/middleware/memo_prof
    - concepts/middleware/rosserial
    - concepts/middleware/IoT
 
