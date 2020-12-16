@@ -10,5 +10,8 @@
 	path = _includes/openmanipulator_demo
 	url = https://github.com/micro-ROS/micro-ROS_openmanipulator_demo
 [submodule "micro-ROS_warehouse_demo"]
-	path = micro-ROS_warehouse_demo
+	path = _includes/warehouse_demo
+	url = https://github.com/micro-ROS/micro-ROS_warehouse_demo.git
+[submodule "_includes/warehouse_demo"]
+	path = _includes/warehouse_demo
 	url = https://github.com/micro-ROS/micro-ROS_warehouse_demo.git

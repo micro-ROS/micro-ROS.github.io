@@ -71,6 +71,7 @@
    - tutorials/demos/openmanipulator_demo
    - tutorials/demos/fiware_demo
    - tutorials/demos/combined_demos
+   - tutorials/demos/warehouse_demo
 
 - title: Nuttx-specific Tutorials
   docs:
