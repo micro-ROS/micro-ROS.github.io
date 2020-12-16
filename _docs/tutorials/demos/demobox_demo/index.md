@@ -1,5 +1,5 @@
 ---
-title: Demo Box: Power and Boot Time
+title: DemoBox Power and Boot Time
 layout: docs_noheader
 permalink: /docs/tutorials/demos/demobox_demo/
 redirect_from:
