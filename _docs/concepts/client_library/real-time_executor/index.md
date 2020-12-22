@@ -507,7 +507,7 @@ In this section, we describe the necessary changes to the Executor API:
     * Extended arguments of create\_callback\_group function for the real-time class.
     * Removed the get\_associated\_with\_executor\_atomic function.
 
-The callback-grouplevel executor has been merged into ROS 2 rclcpp in [pull request 1218](https://github.com/ros2/rclcpp/pull/1218/commits).
+The callback-group-level executor has been merged into ROS 2 rclcpp in [pull request 1218](https://github.com/ros2/rclcpp/pull/1218/commits).
 
 ### Test Bench
 
