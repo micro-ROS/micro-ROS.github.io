@@ -13,7 +13,6 @@ permalink: /docs/concepts/client_library/real-time_executor/
     * [Architecture](#architecture)
     * [Scheduling Semantics](#scheduling-semantics)
 
-
 *   [RCLC-Executor](#rclc-executor)
     * [Requirement Analysis](#requirement-analysis)
     * [Features](#features)
@@ -21,15 +20,11 @@ permalink: /docs/concepts/client_library/real-time_executor/
     * [Examples](#examples)
     * [Download](#download)
 
-
 *   [Callback-group-level Executor](#callback-group-level-executor)
     *   [API Changes](#api-changes)
-    *   [Meta Executor Concept](#meta-executor-concept)
     *   [Test Bench](#test-bench)
 
-
 *   [Related Work](#related-work)
-*   [Roadmap](#roadmap)
 *   [References](#references)
 *   [Acknowledgments](#acknowledgments)
 
@@ -216,6 +211,14 @@ Based on the real-time embedded use-case as well as the software architecture pa
 - data synchronization: LET-semantics or rclcpp Executor semantics
 
 As stated before, this Executor is based on the RCL library and is written in C to nativly support microcontroller applications written in C. These features are now described in more detail.
+
+The rclc-Executor supports all event types like the ROS 2 rclc executor, which are:
+- subscription
+- timer
+- service
+- client
+- guard condition
+
 
 #### Sequential execution
 
@@ -455,7 +458,7 @@ rclc_executor_spin(&exe);
 
 ### Summary
 
-The RCLC Executor is an Executor for C applications and can be used with default rclcpp Executor semantics. If additional deterministic behavior is necessary, the user can rely on pre-defined sequential execution, trigged execution and LET-Semantics for data synchronization.
+The RCLC Executor is an Executor for C applications and can be used with default rclcpp Executor semantics. If additional deterministic behavior is necessary, the user can rely on pre-defined sequential execution, trigged execution and LET-Semantics for data synchronization. The concept of the rclc-Executor has been published in [SLL2020](#SLL2020).
 
 ### Future work
 
@@ -463,11 +466,9 @@ The RCLC Executor is an Executor for C applications and can be used with default
   - one publisher that periodically publishes
   - if Executors are running in multiple threads,
     publishing needs to be atomic
-- add support for handle types: client, services, guard conditions
-
 
 ### Download
-The RCLC-Executor can be downloaded from the micro-ROS GitHub [rclc repository](https://github.com/micro-ROS/rclc). The [rclc package](https://github.com/micro-ROS/rclc/tree/master/rclc) provides the RCLC-Executor library and the [rclc_examples package](https://github.com/micro-ROS/rclc/tree/master/rclc_examples) provides an example, how to use the LET-Executor.
+The RCLC-Executor can be downloaded from the [micro-ROS rclc repository](https://github.com/micro-ROS/rclc). In this repository, the [rclc package](https://github.com/micro-ROS/rclc/tree/master/rclc) provides the RCLC-Executor and the [rclc_examples package](https://github.com/micro-ROS/rclc/tree/master/rclc_examples) provides several demos. Further more, the rclc Executor is also available from the [ros2/rclc repository](https://github.com/ros2/rclc).
 
 
 
@@ -506,26 +507,19 @@ In this section, we describe the necessary changes to the Executor API:
     * Extended arguments of create\_callback\_group function for the real-time class.
     * Removed the get\_associated\_with\_executor\_atomic function.
 
-All the changes can be found in the branches [cbg-executor-0.5.1](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1) and [cbg-executor-0.6.1](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.6.1/rclcpp) for the corresponding version 0.5.1 and 0.6.1 of the rclcpp in the fork at [github.com/boschresearch/ros2_rclcpp/](https://github.com/boschresearch/ros2_rclcpp/).
-
-### Meta Executor Concept
-
-The idea of the Meta Executor is to abstract away the callback-group assignment, thread allocation and other inner workings of the Executors from the user, thereby presenting a simple API that resembles the original Executor interface. Internally, the Meta Executor maintains multiple instances of our Callback-group-level Executor (Cbg-Executor).
-
-The Meta Executor internally binds these Executors to the underlying kernel threads, assigns them a priority, chooses the scheduling mechanism (e.g., SCHED-FIFO policy) and then dispatches them. When adding a node with its list of callback group and real-time profiles to the Meta Executor, it parses the real-time profiles and assigns the node’s callback groups to the relevant internal Executors.
-
-![Illustration of the Meta-Executor concept](meta-executor_concept.png)
+The callback-group-level executor has been merged into ROS 2 rclcpp in [pull request 1218](https://github.com/ros2/rclcpp/pull/1218/commits).
 
 ### Test Bench
 
 As a proof of concept, we implemented a small test bench in the present package cbg-executor_ping-pong_cpp. The test bench comprises a Ping node and a Pong node which exchange real-time and best-effort messages simultaneously with each other. Each class of messages is handled with a dedicated Executor, as illustrated in the following figure.
 
-![Architecture for the Callback-group-level Executor test bench](cbg-executor_test-bench_architecture.png)
-With the test bench, we validated the functioning of the approach - here on ROS 2 v0.5.1 with the Fast-RTPS DDS implementation - on a typical laptop.
+![Architecture for the Callback-group-level Executor test bench](ping_pong_diagram.png)
+With the test bench, we validated the functioning of the approach.
 
-![Results from Callback-group-level Executor test bench](cbg-executor_test-bench_results.png)
+![Results from Callback-group-level Executor test bench](cbg_executor_demo_plot.png)
+In this example, the callback for the high priority task (red line) consumes 10ms and the low priority task (blue line) 40ms in the Pong Node. With a ping rate of 20 Hz, the CPU saturates (10ms\*20+40ms\*20=1000ms). With higher frequencies the high priorty task can continue to send its pong message, while the low priority pong task degrades. With a frequency of 100Hz the high priority task requires 100% CPU utilization. With higher ping rates it keeps sending pong messages with 100Hz, while the low priority task does not get any CPU ressources any more and cannot send any messages.
 
-The test bench is provided in the [cbg-executor_ping-pong_cpp](https://github.com/boschresearch/ros2_examples/tree/experiment/cbg-executor-0.6.1/rclcpp/cbg-executor_ping-pong) package of the [ros2_examples](https://github.com/boschresearch/ros2_examples/) fork.
+The test bench is provided in the [cbg_executor_demo](https://github.com/boschresearch/ros2_demos/tree/cbg_executor_demo/cbg_executor_demo).
 
 ## Related Work
 
@@ -610,32 +604,16 @@ doi: 10.1109/SIMPAR.2018.8376277
 URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8376277&isnumber=8376259
 -->
 
-## Roadmap
-
-2018
-
-* In-depth analysis of the ROS 2 Executor concept.
-* Design and analysis of Callback-group-level Executor.
-* Validated correct functioning of underlying layers and middleware with multiple Executor instances.
-
-2019
-
-* Design and implementation of LET Executor for rcl.
-* Design and implementation of domain-specific Executor for rcl, featuring sense-plan-act semantics
-* In-depth runtime analysis of default rclcpp Executor using ROS 2 tracetools developed in micro-ROS.
-* Design and implementation of static Executor for rclcpp with improved performance.
-* Research of concepts for model-based optimization of end-to-end latencies.
-
-2020
-
-* Integration with a selected advanced scheduling and resource monitoring mechanisms such as reservation-based scheduling.
-* Integration with selected sleep modes and low-power modes.
 
 ## References
 
-* Ralph Lange: Callback-group-level Executor for ROS 2. Lightning talk at ROSCon 2018. Madrid, Spain. Sep 2018. [[Slides]](https://roscon.ros.org/2018/presentations/ROSCon2018_Lightning1_4.pdf) [[Video]](https://vimeo.com/292707644)
+* [L2020]<a name="L2020"></a> Ralph Lange: Advanced Execution Management with ROS 2, ROS-Industrial Conference, Dec 2020 [[Slides]](https://micro-ros.github.io/download/2020-12-16_Advanced_Execution_Management_with_ROS_2.pdf)
 
-* [CB2019]<a name="CB2019"> </a> D. Casini, T. Blaß, I. Lütkebohle, B. Brandenburg: Response-Time Analysis of ROS 2 Processing Chains under Reservation-Based Scheduling, in Euromicro-Conference on Real-Time Systems 2019. [[Paper](http://drops.dagstuhl.de/opus/volltexte/2019/10743/)].[[slides]](https://t-blass.de/talks/ECRTS2019.pdf)
+* [SLL2020]<a name="SLL2020"></a> J. Staschulat, I. Lütkebohle and R. Lange, "The rclc Executor: Domain-specific deterministic scheduling mechanisms for ROS applications on microcontrollers: work-in-progress," 2020 International Conference on Embedded Software (EMSOFT), Singapore, Singapore, 2020, pp. 18-19. [[Paper]](https://ieeexplore.ieee.org/document/9244014) [[Video]](https://whova.com/embedded/session/eswe_202009/1145800/)
+
+* [L2018]<a name="L2018"></a> Ralph Lange: Callback-group-level Executor for ROS 2. Lightning talk at ROSCon 2018. Madrid, Spain. Sep 2018. [[Slides]](https://roscon.ros.org/2018/presentations/ROSCon2018_Lightning1_4.pdf) [[Video]](https://vimeo.com/292707644)
+
+* [CB2019]<a name="CB2019"> </a> D. Casini, T. Blaß, I. Lütkebohle, B. Brandenburg: Response-Time Analysis of ROS 2 Processing Chains under Reservation-Based Scheduling, in Euromicro-Conference on Real-Time Systems 2019. [[Paper]](http://drops.dagstuhl.de/opus/volltexte/2019/10743/) [[slides]](https://t-blass.de/talks/ECRTS2019.pdf)
 
 * [EK2018]<a name="EK2018"></a> R. Ernst, S. Kuntz, S. Quinton, M. Simons: The Logical Execution Time Paradigm: New Perspectives for Multicore Systems, February 25-28 2018 (Dagstuhl Seminar 18092). [[Paper]](http://drops.dagstuhl.de/opus/volltexte/2018/9293/pdf/dagrep_v008_i002_p122_18092.pdf)
 
