@@ -65,7 +65,7 @@ FreeRTOS is distributed under the MIT license. It is know particularly for is si
         </ul>  
         <b>FreeRTOS resources:</b>
         <ul>
-            <li><a href="https://www.freertos.org/index.html">Official FreeRTOS website</a></li>
+            <li><a href="https://www.freertos.org/">Official FreeRTOS website</a></li>
             <li><a href="https://www.freertos.org/a00104.html">Download</a></li>
             <li><a href="https://www.freertos.org/Documentation/RTOS_book.html">Documentation</a></li>
         </ul>
@@ -122,7 +122,7 @@ Zephyr is a fairly new open-source RTOS, developed in a Linux Foundation Project
 
 ### **NuttX**
 
-NuttX emphasizes its compliance with standards - including POSIX - and small footprint. It can be fit on 8- to 32-bit microcontrollers. The use of POSIX and ANSI standards, together with the mimic it does to UNIX APIs, makes it friendly to the developers that are used to Linux. NuttX is licensed under BSD license and makes use of the GNU toolchain.
+NuttX emphasizes its compliance with standards - including POSIX - and small footprint. It can be fit on 8- to 32-bit microcontrollers. The use of POSIX and ANSI standards, together with the mimic it does to UNIX APIs, makes it friendly to the developers that are used to Linux. NuttX is licensed under BSD license and makes use of the GNU toolchain. Please note that the uClib++ library used with NuttX comes under the stricter GNU LGPL Version 3 license.
 
 <div class="rtoscontainer">
   <div class="rtositem_description">

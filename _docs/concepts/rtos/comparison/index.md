@@ -5,13 +5,13 @@ permalink: /docs/concepts/rtos/comparison/
 
 In this section, we present a techincal comparison between the three RTOSes supported by micro-ROS:
 * [NuttX](https://nuttx.apache.org/)
-* [FreeRTOS](https://www.freertos.org/index.html)
+* [FreeRTOS](https://www.freertos.org/)
 * [Zephyr](https://www.zephyrproject.org/)
 
 The comparison regards the features listed below:
-* Standardized API to Application level
+* Standardized API to application level
 * Maturity
-* Supported Hardware
+* Supported hardware
 * Scheduling options
 * IO Support (native or vendor-specific module needed)
 * Networking stack
