@@ -5,11 +5,11 @@ author: francesca-finocchiaro
 
 In collaboration with [Canonical](https://canonical.com/), we took the liberty to wrap the [Micro XRCE-DDS Agent](https://micro-xrce-dds.docs.eprosima.com/en/latest/agent.html) as a [snap](https://snapcraft.io/) package, which sets an important milestone for easing the use of Micro XRCE-DDS.
 
-<img alt="Canonical" src="/img/posts/canonical.png" width="30%"/>
+<img alt="Canonical" src="/img/posts/canonical.png" width="35%"/>
 
 Snap is a package manager designed to bundle and handle applications and their dependencies on several Linux distros, among which Ubuntu.
 
-<img alt="Snap" src="/img/posts/snap2.png" width="40%"/>
+<img alt="Snap" src="/img/posts/snap2.png" width="45%"/>
 
 The snap packaging of the Agent comes with two ways of running it: as a simple executable or by means of a Linux service.
 
