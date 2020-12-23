@@ -50,7 +50,7 @@ In this section, we review the main features of the three RTOSes supported offic
 
 ### **FreeRTOS**
 
-FreeRTOS is distributed under the MIT license. It is know particularly for is simplicity and the extension a:FreeRTOS provided by Amazon. For micro-ROS, we make use of the POSIX extension.
+FreeRTOS is distributed under the MIT license. It is known particularly for its simplicity and the extension a:FreeRTOS provided by Amazon. For micro-ROS, we make use of the POSIX extension.
 
 <div class="rtoscontainer">
   <div class="rtositem_description">
