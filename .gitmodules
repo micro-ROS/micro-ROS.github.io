@@ -12,3 +12,7 @@
 [submodule "_includes/demobox_demo"]
 	path = _includes/demobox_demo
 	url = https://github.com/micro-ROS/micro-ROS_demobox_demo.git
+[submodule "_includes/thumper_demo"]
+	path = _includes/thumper_demo
+	url = https://github.com/micro-ROS/micro-ROS_thumper_demo
+	branch = foxy
