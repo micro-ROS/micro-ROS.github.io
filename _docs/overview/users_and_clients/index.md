@@ -1,5 +1,5 @@
 ---
-title: Members, Partners and Users
+title: Members, Partners, Users and Collaborators
 permalink: /docs/overview/users_and_clients/
 
 ofera_consortium:
@@ -29,10 +29,10 @@ partners_list:
     text: The Zephyr Project is a Linux Foundation hosted Collaboration Project. It’s an open source effort uniting developers and users in building a best-in-class small, scalable, real-time operating system (RTOS) optimized for resource-constrained devices, across multiple architectures. As an open source project, the community evolves the project to support new hardware, developer tools, sensors, and device drivers.
     title: Zephyr Project
     url: www.zephyrproject.org
-  - path: https://www.amazon.com/ref=nav_logo
+  - path: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/175px-Amazon_logo.svg.png
     text: Amazon is an American multinational technology company based in Seattle that focuses on e-commerce, cloud computing, digital streaming, and artificial intelligence.
     title: Amazon
-    url: www.amazon.com/
+    url: www.amazon.com
 
 users:
   - path: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Renesas_Electronics_logo.svg/210px-Renesas_Electronics_logo.svg.png
@@ -53,7 +53,7 @@ users:
     url: www.wyca-robotics.com
 
 collaborators:
-  - path: https://luxonis.com/img/logo.png
+  - path: https://luxonis.com/img/logo-dark.png
     text: LUXonis is a US-based company specialized in solutions for developing embedded, performant, spatial AI & CV applications. This technology comes with the goal of allowing for human-like perception anywhere, regardless of internet connectivity, and making it productizable, user-friendly and reusable. LUXonis is responsible for devising DepthAI, an open-source platform - a complete ecosystem of custom haredware, firmware, software, and AI training - which combines neural inference, depth vision, and feature tracking into an easy-to-use solution.
     title: LUXonis
     url: www.luxonis.com
@@ -61,11 +61,11 @@ collaborators:
     text: Canonical is a computer software company with products like Ubuntu Linux. The company goal is to deliver, maintain, secure and sustain open source from cloud to desktop and devices.
     title: Canonical
     url: www.canonical.com
-    - path: https://www.freertos.org/fr-content-src/uploads/2018/07/logo-1.jpg
+  - path: https://www.freertos.org/fr-content-src/uploads/2018/07/logo-1.jpg
     text: FreeRTOS is a market-leading Real-Time Operating system (RTOS) for microcontrollers and small microprocessors. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of IoT libraries suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.
     title: FreeRTOS
     url: www.freertos.org
-    - path: https://picknik.ai/assets/images/logo.jpg
+  - path: https://picknik.ai/assets/images/logo.jpg
     text: PickNik combines world-class robotics expertise and edge cutting open-source robotics frameworks that reduce cycle time, increase robustness, and generate optimal motions. PickNik's outstanding software MoveIt is a popular motion planning and manipulation platform in the ROS ecosystem.
     title: PickNik
     url: www.picknik.ai
@@ -102,7 +102,7 @@ collaborators:
 
 .logoImage {
   max-height: 100px;
-  max-width: 240px;
+  max-width: 200px;
 }
 
 .photo-gallery{
