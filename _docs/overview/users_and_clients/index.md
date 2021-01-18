@@ -29,20 +29,50 @@ partners_list:
     text: The Zephyr Project is a Linux Foundation hosted Collaboration Project. It’s an open source effort uniting developers and users in building a best-in-class small, scalable, real-time operating system (RTOS) optimized for resource-constrained devices, across multiple architectures. As an open source project, the community evolves the project to support new hardware, developer tools, sensors, and device drivers.
     title: Zephyr Project
     url: www.zephyrproject.org
+  - path: https://www.amazon.com/ref=nav_logo
+    text: Amazon is an American multinational technology company based in Seattle that focuses on e-commerce, cloud computing, digital streaming, and artificial intelligence.
+    title: Amazon
+    url: www.amazon.com/
 
-mw_users:
+users:
   - path: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Renesas_Electronics_logo.svg/210px-Renesas_Electronics_logo.svg.png
     text: Renesas is a global semiconductor company delivering trusted embedded design innovation with complete semiconductor solutions that enable billions of connected, intelligent devices to enhance the way people work and live.
     title: Renesas
     url: www.renesas.com
   - path: https://cdn11.bigcommerce.com/s-76o5u/images/stencil/250x100/robotis_logo_en_1397779687__24544.original.jpg
-    text: SRobotis is a global robot solutions provider and one of the leading manufacturers of robotic hardware. The company is the exclusive producer of the DYNAMIXEL brand of all-in-one smart servos. Robotis specializes in the manufacture of robotic hardware and full robot platforms for use in all fields of study and industry, as well as educational robotics kits for all ages and skill levels.
+    text: Robotis is a global robot solutions provider and one of the leading manufacturers of robotic hardware. The company is the exclusive producer of the DYNAMIXEL brand of all-in-one smart servos. Robotis specializes in the manufacture of robotic hardware and full robot platforms for use in all fields of study and industry, as well as educational robotics kits for all ages and skill levels.
     title: Robotis
     url: www.robotis.us
   - path: https://www.dronecode.org/wp-content/uploads/sites/24/2020/08/dronecode_logo_default_cropped.png
     text: Dronecode is a nonprofit hosted under the Linux Foundation, dedicated to fostering open-source components and their communities. Working with top developers, end-users, and adopting vendors to create opportunities for collaboration.
     title: Dronecode
     url: www.dronecode.org
+  - path: https://www.wyca-robotics.com/assets/img/LogoAvecRoue%20compact%202.png?h=8fb6472f17b03b02cb7872c4a106281c
+    text: WYCA Robotics is a French company with more than 5 years of edge technology mastering in Robotics, AI and autonomous navigation. They developed Elodie, the first multi-purpose self-driving level 5 indoor vehicle for handling the users' mobiliy challenges.
+    title: Wyca Robotics
+    url: www.wyca-robotics.com
+
+collaborators:
+  - path: https://luxonis.com/img/logo.png
+    text: LUXonis is a US-based company specialized in solutions for developing embedded, performant, spatial AI & CV applications. This technology comes with the goal of allowing for human-like perception anywhere, regardless of internet connectivity, and making it productizable, user-friendly and reusable. LUXonis is responsible for devising DepthAI, an open-source platform - a complete ecosystem of custom haredware, firmware, software, and AI training - which combines neural inference, depth vision, and feature tracking into an easy-to-use solution.
+    title: LUXonis
+    url: www.luxonis.com
+  - path: https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Canonical_logo.svg/200px-Canonical_logo.svg.png
+    text: Canonical is a computer software company with products like Ubuntu Linux. The company goal is to deliver, maintain, secure and sustain open source from cloud to desktop and devices.
+    title: Canonical
+    url: www.canonical.com
+    - path: https://www.freertos.org/fr-content-src/uploads/2018/07/logo-1.jpg
+    text: FreeRTOS is a market-leading Real-Time Operating system (RTOS) for microcontrollers and small microprocessors. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of IoT libraries suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.
+    title: FreeRTOS
+    url: www.freertos.org
+    - path: https://picknik.ai/assets/images/logo.jpg
+    text: PickNik combines world-class robotics expertise and edge cutting open-source robotics frameworks that reduce cycle time, increase robustness, and generate optimal motions. PickNik's outstanding software MoveIt is a popular motion planning and manipulation platform in the ROS ecosystem.
+    title: PickNik
+    url: www.picknik.ai
+  - path: https://www.espressif.com/sites/all/themes/espressif/logo-black.svg
+    text: Espressif Systems is a public multinational, fabless semiconductor company focused on developing cutting-edge Wi-Fi-and-Bluetooth, low-power, AIoT solutions. They have created the popular ESP8266, ESP32, ESP32-S and ESP32-C series of chips, modules and development boards, and offer several open-source frameworks for building AIoT applications, among which the Espressif's IoT Development Framework ESP-IDF.
+    title: Espressif
+    url: www.espressif.com
 
 ---
 
@@ -154,9 +184,18 @@ window.onload = () => {
   {% endfor %}
 </div>
 
-<h2>Middleware Users</h2>
+<h2>Users and Middleware Users</h2>
 <div class="photo-gallery">
-  {% for image in page.mw_users %}
+  {% for image in page.users %}
+    <div class="flex-item">
+        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.title }}','{{ image.url }}','{{ image.text }}')"/>
+    </div>
+  {% endfor %}
+</div>
+
+<h2>Collaborators</h2>
+<div class="photo-gallery">
+  {% for image in page.collaborators %}
     <div class="flex-item">
         <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.title }}','{{ image.url }}','{{ image.text }}')"/>
     </div>
