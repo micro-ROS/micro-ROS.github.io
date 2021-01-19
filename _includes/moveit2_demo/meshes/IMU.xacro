@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="inertial_unit_st_disco">
+  
+
+  <link name="inertial_unit">
+    <visual>
+      <origin xyz="-0.07 0.07 0" rpy="1.57079632679 0 0" />
+      <geometry>
+        <mesh filename="package://microros_moveit2_demo/meshes/arrow.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+</robot>
