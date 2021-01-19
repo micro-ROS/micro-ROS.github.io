@@ -58,7 +58,7 @@ collaborators:
     title: LUXonis
     url: www.luxonis.com
   - path: https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Canonical_logo.svg/200px-Canonical_logo.svg.png
-    text: Canonical is a computer software company with products like Ubuntu Linux. The company's goal is to "deliver, maintain, secure and sustain open source from cloud to desktop and devices".
+    text: Canonical is a computer software company with products like Ubuntu Linux. The company's goal is to 'deliver, maintain, secure and sustain open source from cloud to desktop and devices'.
     title: Canonical
     url: www.canonical.com
   - path: https://www.freertos.org/fr-content-src/uploads/2018/07/logo-1.jpg

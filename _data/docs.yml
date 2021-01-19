@@ -73,6 +73,7 @@
    - tutorials/demos/demobox_demo
    - tutorials/demos/thumper_demo
    - tutorials/demos/combined_demos
+   - tutorials/demos/moveit2_demo
 
 - title: Nuttx-specific Tutorials
   docs:
