@@ -48,7 +48,7 @@ users:
     title: Dronecode
     url: www.dronecode.org
   - path: https://www.wyca-robotics.com/assets/img/LogoAvecRoue%20compact%202.png?h=8fb6472f17b03b02cb7872c4a106281c
-    text: WYCA Robotics is a French company with more than 5 years of edge technology mastering in Robotics, AI and autonomous navigation. They developed Elodie, the first multi-purpose self-driving level 5 indoor vehicle for handling the users' mobiliy challenges.
+    text: WYCA Robotics is a French company with more than 5 years of edge technology mastering in Robotics, AI and autonomous navigation. They developed Elodie, the first multi-purpose self-driving level 5 indoor vehicle for handling the users&#39 mobiliy challenges.
     title: Wyca Robotics
     url: www.wyca-robotics.com
 
@@ -58,7 +58,7 @@ collaborators:
     title: LUXonis
     url: www.luxonis.com
   - path: https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Canonical_logo.svg/200px-Canonical_logo.svg.png
-    text: Canonical is a computer software company with products like Ubuntu Linux. The company's goal is to 'deliver, maintain, secure and sustain open source from cloud to desktop and devices'.
+    text: Canonical is a computer software company with products like Ubuntu Linux. The company&#39s goal is to &#39deliver, maintain, secure and sustain open source from cloud to desktop and devices&#39.
     title: Canonical
     url: www.canonical.com
   - path: https://www.freertos.org/fr-content-src/uploads/2018/07/logo-1.jpg
@@ -66,11 +66,11 @@ collaborators:
     title: FreeRTOS
     url: www.freertos.org
   - path: https://picknik.ai/assets/images/logo.jpg
-    text: PickNik combines world-class robotics expertise and edge cutting open-source robotics frameworks that reduce cycle time, increase robustness, and generate optimal motions. PickNik's outstanding software MoveIt is a popular motion planning and manipulation platform in the ROS ecosystem.
+    text: PickNik combines world-class robotics expertise and edge cutting open-source robotics frameworks that reduce cycle time, increase robustness, and generate optimal motions. PickNik&#39s outstanding software MoveIt is a popular motion planning and manipulation platform in the ROS ecosystem.
     title: PickNik
     url: www.picknik.ai
   - path: https://www.espressif.com/sites/all/themes/espressif/logo-black.svg
-    text: Espressif Systems is a public multinational, fabless semiconductor company focused on developing cutting-edge Wi-Fi-and-Bluetooth, low-power, AIoT solutions. They have created the popular ESP8266, ESP32, ESP32-S and ESP32-C series of chips, modules and development boards, and offer several open-source frameworks for building AIoT applications, among which the Espressif's IoT Development Framework ESP-IDF.
+    text: Espressif Systems is a public multinational, fabless semiconductor company focused on developing cutting-edge Wi-Fi-and-Bluetooth, low-power, AIoT solutions. They have created the popular ESP8266, ESP32, ESP32-S and ESP32-C series of chips, modules and development boards, and offer several open-source frameworks for building AIoT applications, among which the Espressif&#39s IoT Development Framework ESP-IDF.
     title: Espressif
     url: www.espressif.com
 
