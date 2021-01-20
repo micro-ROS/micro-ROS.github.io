@@ -3,7 +3,7 @@ title: micro-ROS is a special guest @ BOSCH research blog!
 author: francesca-finocchiaro
 ---
 
-This week micro-ROS was dedicated a long and detailed [post](https://www.bosch.com/stories/bringing-robotics-middleware-onto-tiny-microcontrollers/) on a brand new **Bosch Research Blog**.
+Last week micro-ROS was dedicated a long and detailed [post](https://www.bosch.com/stories/bringing-robotics-middleware-onto-tiny-microcontrollers/) on a brand new **Bosch Research Blog**.
 
 <img alt="Bosch blog" src="/img/posts/bosch_blog.jpg" width="80%"/>
 
