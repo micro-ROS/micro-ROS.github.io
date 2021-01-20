@@ -16,3 +16,6 @@
 	path = _includes/thumper_demo
 	url = https://github.com/micro-ROS/micro-ROS_thumper_demo
 	branch = foxy
+[submodule "_includes/moveit2_demo"]
+	path = _includes/moveit2_demo
+	url = https://github.com/micro-ROS/micro-ROS_moveit2_demo
