@@ -16,7 +16,7 @@ Choose yourself:
 | [**Kobuki Demo**](../kobuki_demo/) | <img src="kobuki.png" style="margin:auto;"/> | NuttX | Kobuki Turtlebot2, Olimex LTD STM32-E407 |
 | [**Crazyflie Demo**](../crazyflie_demo/) | <img src="crazyflie.png" style="margin:auto;"/> | FreeRTOS | Crazyflie 2.1 Drone |
 | [**ToF Sensor Demo**](../tof_demo/) | <img src="tof_sensor.png" style="margin:auto;"/> | Zephyr | STM32L4 Discovery kit IoT |
-| [**OpenManipulator-X Demo**](../openmanipuator_demo/) | <img src="openmanipulator.png" width="70%" style="margin:auto;"/> | Zephyr | Robotis OpenMANIPULATOR-X, Olimex LTD STM32-E407, Raspberry Pi 4 |
+| [**OpenManipulator-X Demo**](../openmanipulator_demo/) | <img src="openmanipulator.png" width="70%" style="margin:auto;"/> | Zephyr | Robotis OpenMANIPULATOR-X, Olimex LTD STM32-E407, Raspberry Pi 4 |
 | [**Interfacing with FIWARE Context Broker**](../fiware_demo/) | -- | -- |
 | [**DemoBox Power and Boot Time**](../demobox_demo/) | <img src="olimex.png" width="35%" style="margin:auto;"/> | NuttX | Olimex LTD STM32-E407, Raspberry Pi 4 |
 | [**Thumper, a six-wheeled robot**](../thumper_demo/) | <img src="thumper.png" width="45%" style="margin:auto;"/> | NuttX | Wild Thumper 6WD, Olimex LTD STM32-E407 |
