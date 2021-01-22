@@ -4,6 +4,7 @@ permalink: /docs/overview/features/
 redirect_from:
   - /docs/
   - /docs/overview/
+  - /architecture/
 ---
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
