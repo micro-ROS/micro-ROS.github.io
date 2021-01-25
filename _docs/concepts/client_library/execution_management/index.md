@@ -1,7 +1,9 @@
 ---
-title: Real-Time Executor
-redirect_from: /real-time_executor/
-permalink: /docs/concepts/client_library/real-time_executor/
+title: Execution Management
+permalink: /docs/concepts/client_library/execution_management/
+redirect_from:
+  - /real-time_executor/
+  - /docs/concepts/client_library/real-time_executor/
 ---
 
 

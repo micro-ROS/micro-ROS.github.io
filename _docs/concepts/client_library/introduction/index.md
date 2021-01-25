@@ -1,7 +1,9 @@
 ---
 title: Introduction to Client Library
-permalink: /docs/concepts/client_library/
-redirect_from: /docs/concepts/
+permalink: /docs/concepts/client_library/introduction/
+redirect_from:
+  - /docs/concepts/
+  - /docs/concepts/client_library/
 ---
 
 The client library provides the micro-ROS API for the user code, i.e. for application-level micro-ROS nodes. The overall goal is to provide all relevant, major ROS 2 concepts in suitable implementation for microcontrollers. Where possible, API compatibility with ROS 2 shall be achieved for ease of portability.

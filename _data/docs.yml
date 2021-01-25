@@ -12,11 +12,12 @@
 
 - title: Client Library
   docs:
-   - concepts/client_library
-   - concepts/client_library/real-time_executor
-   - concepts/client_library/system_modes
-   - concepts/client_library/decision_paper
-   - concepts/client_library/rcutils_analysis
+   - concepts/client_library/introduction
+   - concepts/client_library/features
+   - concepts/client_library/execution_management
+   - concepts/client_library/lifecycle_and_system_modes
+   - concepts/client_library/diagnostics
+   - concepts/client_library/design_analysis_and_decisions
 
 - title: Middleware
   docs:
