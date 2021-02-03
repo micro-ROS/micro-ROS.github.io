@@ -204,7 +204,7 @@ The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and 
             <li>MCU: ARM Cortex-M4 STM32F405</li>
             <li>RAM: 192 kB</li>
             <li>Flash: 1 MB</li>
-            <li>Peripherals: 3 axis IMU, pressure sensor, SPI, I2C, UART, nRF51822 radio....</li>
+            <li>Peripherals: 3 axis IMU, pressure sensor, SPI, I2C, UART, nRF51822 radio...</li>
         </ul>  
         
         <b>Resources:</b>
@@ -219,6 +219,30 @@ The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and 
   </div>
 </div>
 
+<div class="hardwarecontainer">
+  <div class="hardwareitem_description">
+    <h3><b>Raspberry Pi Pico RP2040</b></h3>
+    <div>
+        <b>Key features:</b>
+        <ul>
+            <li>MCU: Dual-core Arm Cortex-M0+</li>
+            <li>RAM: 264 kB</li>
+            <li>Flash: u to 16 MB</li>
+            <li>Peripherals: I2C, SPI, PIO...</li>
+        </ul>  
+        
+        <b>Resources:</b>
+        <ul>
+            <li><a href="https://www.raspberrypi.org/products/raspberry-pi-pico/">Official website</a></li>
+            <li><a href="https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk">micro-ROS support package</a></li>
+        </ul>    
+    </div>
+  </div>
+
+  <div class="hardwareitem_image">
+    <img src="imgs/rpipico.jpg">
+  </div>
+</div>
 
 ## Community supported boards
 
