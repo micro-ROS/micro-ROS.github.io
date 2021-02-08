@@ -227,7 +227,7 @@ The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and 
         <ul>
             <li>MCU: Dual-core Arm Cortex-M0+</li>
             <li>RAM: 264 kB</li>
-            <li>Flash: u to 16 MB</li>
+            <li>Flash: up to 16 MB</li>
             <li>Peripherals: I2C, SPI, PIO...</li>
         </ul>  
         
@@ -241,6 +241,30 @@ The micro-ROS Tier 2 boards are officially supported for one or more RTOSes and 
 
   <div class="hardwareitem_image">
     <img src="imgs/rpipico.jpg">
+  </div>
+</div>
+
+<div class="hardwarecontainer">
+  <div class="hardwareitem_description">
+    <h3><b>Arduino Portenta H7</b></h3>
+    <div>
+        <b>Key features:</b>
+        <ul>
+            <li>MCU: Dual-core Arm Cortex-M7 and Cortex-M4</li>
+            <li>RAM: 8 MB</li>
+            <li>Flash: 16 MB</li>
+            <li>Peripherals: USB HS, Ethernet, WiFi/BT...</li>
+        </ul>  
+        
+        <b>Resources:</b>
+        <ul>
+            <li><a href="https://store.arduino.cc/portenta-h7">Official website</a></li>
+        </ul>    
+    </div>
+  </div>
+
+  <div class="hardwareitem_image">
+    <img src="imgs/portenta.jpg">
   </div>
 </div>
 
