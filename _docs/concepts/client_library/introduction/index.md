@@ -8,7 +8,7 @@ redirect_from:
 
 The Client Library provides the micro-ROS API for the user code, i.e., for application-level micro-ROS nodes. The goal is to provide all relevant, major ROS 2 concepts in an optimized implementation for microcontrollers. At the same time, we strive to make the API as compatible as possible to standard ROS 2, to facilitate porting of code.
 
-To minimize the long-term maintenance cost, we use existing data structures and algorithms from the ROS 2 stack and to bring necessary changes in the mainline stack as far as possible. That's why the micro-ROS client library is built up from standard [ROS 2 Client Support Library (rcl)](https://github.com/ros2/rcl/) and a new [ROS 2 Client Library package (rclc)](https://github.com/ros2/rclc/). Together, as depicted below, rcl + rclc form a feature-complete client library in the C programming language.
+To minimize the long-term maintenance cost, we use existing data structures and algorithms from the ROS 2 stack and bring necessary changes in the mainline stack as far as possible. That's why the micro-ROS client library is built up from standard [ROS 2 Client Support Library (rcl)](https://github.com/ros2/rcl/) and a new [ROS 2 Client Library package (rclc)](https://github.com/ros2/rclc/). Together, as depicted below, rcl + rclc form a feature-complete client library in the C programming language.
 
 <img src="/img/micro-ROS_architecture.png" style="display:block; width:50%; float:right;"/>
 
