@@ -19,8 +19,8 @@ Important features and properties:
 * Dedicated Executor for fine-grained control over triggering and processing order of callbacks.
 * Specialized implementations for graphs, lifecycle nodes, diagnostics, etc.
 
-Check out our subpages for more information.
+Check out the subpages (see left) for more information.
 
 <br style="clear:both;" />
 
-For the interested reader: The rationales for the decision to use a combination of rcl + rclc are explained in our [decision paper](decision_paper/) from 2019.
+For the interested reader: The rationales for the decision to use a combination of rcl + rclc are explained in our [decision paper (PDF)](/download/client_library_decision_paper_2019.pdf) from 2019.
