@@ -3,7 +3,7 @@ title: Feature List
 permalink: /docs/concepts/client_library/features/
 ---
 
-The micro-ROS Client Library, formed by standard [ROS 2 Client Support Library (rcl)](https://github.com/ros2/rcl/) and the new [ROS 2 Client Library package (rclc)](https://github.com/ros2/rclc/), is going feature all major ROS concepts such as
+The micro-ROS Client Library, formed by standard [ROS 2 Client Support Library (rcl)](https://github.com/ros2/rcl/) and the new [ROS 2 Client Library package (rclc)](https://github.com/ros2/rclc/), is going to feature all major ROS concepts such as
 
 * Nodes
 * Publishers/subscriptions
