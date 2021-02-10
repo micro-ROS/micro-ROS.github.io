@@ -1,7 +1,9 @@
 ---
 title: Lifecycle and System Modes
-permalink: /docs/concepts/client_library/system_modes/
-redirect_from: /system_modes/
+permalink: /docs/concepts/client_library/lifecycle_and_system_modes/
+redirect_from:
+  - /system_modes/
+  - /docs/concepts/client_library/system_modes/
 ---
 
 
