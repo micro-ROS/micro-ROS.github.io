@@ -3,6 +3,8 @@ title: Creating custom static micro-ROS library
 permalink: /docs/tutorials/advanced/create_custom_static_library/
 ---
 
+This tutorial aims at providing step-by-step guidance for those users interested in compiling micro-ROS as a standalone library in order to integrate it in custom development tools.
+
 This tutorial starts in a previously created micro-ROS environment. Check the first steps of [**First micro-ROS application on an RTOS**](../first_application_rtos/) for instructions about how to create a micro-ROS environment for embedded platforms.
 
 Once your micro-ROS workspace is created and the `micro_ros_setup` tool is installed, we are going to prepare the micro-ROS environment:
