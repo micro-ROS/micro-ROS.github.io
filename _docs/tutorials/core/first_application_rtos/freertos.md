@@ -40,8 +40,8 @@ application located at `firmware/freertos_apps/apps/ping_pong`. To execute this 
 run the configuration command above by specifying the `[APP]` and `[OPTIONS]` parameters as below:
 
 ```bash
-# Configure step with ping_pong app and serial-usb transport
-ros2 run micro_ros_setup configure_firmware.sh ping_pong --transport serial --dev 3
+# Configure step with ping_pong app and serial transport
+ros2 run micro_ros_setup configure_firmware.sh ping_pong --transport serial
 ```
 
 You can check the complete content of the `ping_pong` app
