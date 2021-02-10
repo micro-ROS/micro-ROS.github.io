@@ -61,6 +61,7 @@
    - tutorials/advanced/tracing
    - tutorials/advanced/benchmarking
    - tutorials/advanced/zephyr_emulator
+   - tutorials/advanced/create_custom_static_library
 
 - title: Demos
   docs:
