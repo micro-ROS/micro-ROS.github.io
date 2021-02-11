@@ -89,7 +89,7 @@ This means that you can set them in the [configuration file](https://github.com/
 The following example code shows the [API](https://github.com/micro-ROS/rmw-microxrcedds/blob/foxy/rmw_microxrcedds_c/include/rmw_uros/options.h) calls needed to set the agent's IP address, port or serial device:
 
 ```c
-#include <rmw_uros/options.h>
+#include <rmw_microros/api.h>
 
 // Init RCL options and context
 rcl_init_options_t init_options = rcl_get_zero_initialized_init_options();
