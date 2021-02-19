@@ -9,7 +9,7 @@ That's why the micro-ROS Client Library comes with basic diagnostics functionali
 
 * Diagnostic message types (optimized for Micro-XRCE-DDS - no dynamic arrays)
 * Updater mechanisms for rclc
-* Selected basic diagnostic monitors for micro controllers
+* Selected basic diagnostic monitors for microcontrollers
 
 The micro-ROS diagnostics packages do not provide any aggregator as we assume that such aggregation takes place on a microprocessor running standard ROS 2. Hence, we assume the following typical architecture:
 
