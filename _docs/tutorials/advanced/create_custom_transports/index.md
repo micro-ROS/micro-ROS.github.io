@@ -204,4 +204,4 @@ It should set `transport_rc` indicating the result of the operation.
     and write them into `buffer` in `timeout` milliseconds.
 
 * **Packet-oriented mode:** The function should retrieve `length` Bytes from transport
-    and write them into `buffer` in `timeout` milliseconds. If less than `length` Bytes are read transport_rc can be set.
+    and write them into `buffer` in `timeout` milliseconds. If less than `length` bytes are read, `transport_rc` can be set.
