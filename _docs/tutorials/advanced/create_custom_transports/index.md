@@ -165,7 +165,7 @@ Set member value
 void eprosima::uxr::CustomEndPoint::set_member_value(const std::string& member_name, const *KIND* & value);
 ```
 
-Sets the specific value (numeric or string) for a certain member, which must previously exist in the CustomEndPoint.
+This function sets the specific value (numeric or string) for a certain member, which must previously exist in the `CustomEndPoint`.
 
 - **member_name**: The member whose value is going to be modified.
 - **value**: The value to be set, of `KIND`: `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`, `uint128_t` or `std::string`.
