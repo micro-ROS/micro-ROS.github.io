@@ -136,16 +136,49 @@ eprosima::uxr::CustomAgent custom_agent(
 
 custom_agent.start();
 ```
+As in the *Client* API, four functions should be implemented. The behavior of these functions is sightly different
+depending on the selected mode.
+### CustomEndPoint
 
-The `custom_endpoint` is the object in charge of handling the endpoint parameters. The *Agent*, unlike the *Client*, can receive
+The `custom_endpoint` is an object of type `eprosima::uxr::CustomEndPoint` and it us in charge of handling the endpoint parameters. The *Agent*, unlike the *Client*, can receive
 messages from multiple *Clients* so it must be able to differentiate between different *Clients*.
 Therefore, the `eprosima::uxr::CustomEndPoint` should be provided with information about the origin of the message
 in the read callback, and with information about the destination of the message in the write callback.
 
 In general, members of a `eprosima::uxr::CustomEndPoint` object can be unsigned integers and strings.
 
-As in the *Client* API, four functions should be implemented. The behavior of these functions is sightly different
-depending on the selected mode:
+`CustomEndPoint` defines three methods:
+
+Add member
+```cpp
+bool eprosima::uxr::CustomEndPoint::add_member<*KIND*>(const std::string& member_name);
+```
+Allows to dynamically add a new member to the endpoint definition.
+
+Returns `true` if member was correctly added, or `false` if something went wrong (for example, the member already existed).
+
+- **KIND**: To be chosen from: `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`, `uint128_t` or `std::string`.
+- **member_name**: The tag used to identify the endpoint member.
+
+Set member value
+```cpp
+void eprosima::uxr::CustomEndPoint::set_member_value(const std::string& member_name, const *KIND* & value);
+```
+
+Sets the specific value (numeric or string) for a certain member, which must previously exist in the CustomEndPoint.
+
+- **member_name**: The member whose value is going to be modified.
+- **value**: The value to be set, of `KIND`: `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`, `uint128_t` or `std::string`.
+
+Get member
+```cpp
+const *KIND* & eprosima::uxr::CustomEndPoint::get_member(const std::string& member_name);
+```
+
+Gets the current value of the member registered with the given parameter.
+The retrieved value might be an `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`, `uint128_t` or `std::string`.
+
+- **member_name**: The `CustomEndPoint` member name whose current value is requested.
 
 ### Open function
 ```cpp
