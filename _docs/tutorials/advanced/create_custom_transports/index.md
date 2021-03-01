@@ -101,7 +101,7 @@ size_t my_custom_transport_read(
 This function should read data from the custom transport. It returns the number of bytes read.
 `transport->args` have the arguments passed through `uxr_init_custom_transport`.
 
-* **Stream-oriented mode:** The function should retrieve up to `length` Bytes from transport
+* **Stream-oriented mode:** The function should retrieve up to `length` bytes from the transport
     and write them into `buffer` in `timeout` milliseconds.
 
 * **Packet-oriented mode:** The function should retrieve `length` Bytes from transport
