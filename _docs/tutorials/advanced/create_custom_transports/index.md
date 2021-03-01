@@ -36,10 +36,10 @@ struct custom_args args;
 rmw_uros_set_custom_transport(
     true, // Framing enabled here. Using Stream-oriented mode.
     (void *) &args,
-    arduino_transport_open,
-    arduino_transport_close,
-    arduino_transport_write,
-    arduino_transport_read
+    my_custom_transport_open,
+    my_custom_transport_close,
+    my_custom_transport_write,
+    my_custom_transport_read
 );
 ```
 
