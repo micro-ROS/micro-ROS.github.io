@@ -84,7 +84,7 @@ This function should write data to the custom transport. It returns the number o
 
 * **Stream-oriented mode:** The function can send up to `length` bytes from `buffer`.
 
-* **Packet-oriented mode:** The function should send `length` Bytes from `buffer`. If less than `length` Bytes are written `errcode` can be set.
+* **Packet-oriented mode:** The function should send `length` bytes from `buffer`. If less than `length` bytes are written, `errcode` can be set.
 
 ### Read function
 ```c    
