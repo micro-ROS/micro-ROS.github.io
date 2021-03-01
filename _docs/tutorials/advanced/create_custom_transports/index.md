@@ -105,7 +105,7 @@ This function should read data from the custom transport. It returns the number 
     and write them into `buffer` in `timeout` milliseconds.
 
 * **Packet-oriented mode:** The function should retrieve `length` Bytes from transport
-    and write them into `buffer` in `timeout` milliseconds. If less than `length` Bytes are read `errcode` can be set.
+    and write them into `buffer` in `timeout` milliseconds. If less than `length` bytes are read, `errcode` can be set.
 
 
 
