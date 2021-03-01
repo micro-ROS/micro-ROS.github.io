@@ -197,7 +197,7 @@ eprosima::uxr::CustomAgent::RecvMsgFunction my_custom_transport_read = [&](
 }
 ```
 This function should read data to the custom transport. It must fill `source_endpoint` members with data source.
-It returns the number of Bytes read.
+It returns the number of bytes read.
 It should set `transport_rc` indicating the result of the operation.
 
 * **Stream-oriented mode:** The function should retrieve up to `length` Bytes from transport
