@@ -45,7 +45,7 @@ rmw_uros_set_custom_transport(
 
 It is important to notice that in `rmw_uros_set_custom_transport` a pointer to custom arguments is set. This reference will be available to every callbacks call.
 
-In general, four functions need to be implemented. The behavior of these functions is sightly different, depending on the selected mode:
+In general, four functions must be implemented. The behaviour of these functions is slightly different, depending on the selected mode:
 
 ### Open function
 
