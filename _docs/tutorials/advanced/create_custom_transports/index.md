@@ -56,7 +56,7 @@ bool my_custom_transport_open(uxrCustomTransport* transport)
 }
 ```
 This function should open and init the custom transport. It returns a boolean indicating if the opening was successful. 
-`transport->args` have the arguments passed through `uxr_init_custom_transport`.
+`transport->args` holds the arguments passed through `uxr_init_custom_transport`.
 
 ### Close function
 ```c    
