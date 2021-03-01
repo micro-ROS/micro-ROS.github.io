@@ -215,7 +215,7 @@ It should set `transport_rc` indicating the result of the operation.
 
 * **Stream-oriented mode:** The function can send up to `length` Bytes from `buffer`.
 
-* **Packet-oriented mode:** The function should send `length` Bytes from `buffer`. If less than `length` Bytes are written, `transport_rc` can be set.
+* **Packet-oriented mode:** The function should send `length` Bytes from `buffer`. If less than `length` bytes are written, `transport_rc` can be set.
 
 ### Read function
 ```cpp    
