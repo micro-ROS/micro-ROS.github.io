@@ -177,7 +177,7 @@ eprosima::uxr::CustomAgent::SendMsgFunction my_custom_transport_write = [&](
 }
 ```
 This function should write data to the custom transport. It must use
-the `destination_endpoint` members to set the data destination. It returns the number of Bytes written.
+the `destination_endpoint` members to set the data destination. It returns the number of bytes written.
 It should set `transport_rc` indicating the result of the operation.
 
 * **Stream-oriented mode:** The function can send up to `length` Bytes from `buffer`.
