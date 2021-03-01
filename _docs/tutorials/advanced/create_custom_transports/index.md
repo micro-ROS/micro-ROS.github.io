@@ -80,7 +80,7 @@ size_t my_custom_transport_write(
 }
 ```
 This function should write data to the custom transport. It returns the number of Bytes written.
-`transport->args` have the arguments passed through `uxr_init_custom_transport`.
+`transport->args` holds the arguments passed through `uxr_init_custom_transport`.
 
 * **Stream-oriented mode:** The function can send up to `length` Bytes from `buffer`.
 
