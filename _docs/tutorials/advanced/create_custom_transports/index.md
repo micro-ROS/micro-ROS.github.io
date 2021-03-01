@@ -175,7 +175,7 @@ Get member
 const *KIND* & eprosima::uxr::CustomEndPoint::get_member(const std::string& member_name);
 ```
 
-Gets the current value of the member registered with the given parameter.
+This function gets the current value of the member registered with the given parameter.
 The retrieved value might be an `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`, `uint128_t` or `std::string`.
 
 - **member_name**: The `CustomEndPoint` member name whose current value is requested.
