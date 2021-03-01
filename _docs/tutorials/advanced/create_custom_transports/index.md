@@ -140,7 +140,7 @@ As in the *Client* API, four functions should be implemented. The behavior of th
 depending on the selected mode.
 ### CustomEndPoint
 
-The `custom_endpoint` is an object of type `eprosima::uxr::CustomEndPoint` and it us in charge of handling the endpoint parameters. The *Agent*, unlike the *Client*, can receive
+The `custom_endpoint` is an object of type `eprosima::uxr::CustomEndPoint` and it is in charge of handling the endpoint parameters. The *Agent*, unlike the *Client*, can receive
 messages from multiple *Clients* so it must be able to differentiate between them.
 Therefore, the `eprosima::uxr::CustomEndPoint` should be provided with information about the origin of the message
 in the read callback, and with information about the destination of the message in the write callback.
