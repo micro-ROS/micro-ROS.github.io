@@ -203,5 +203,5 @@ It should set `transport_rc` indicating the result of the operation.
 * **Stream-oriented mode:** The function should retrieve up to `length` bytes from the transport
     and write them into `buffer` in `timeout` milliseconds.
 
-* **Packet-oriented mode:** The function should retrieve `length` Bytes from transport
+* **Packet-oriented mode:** The function should retrieve `length` bytes from the transport
     and write them into `buffer` in `timeout` milliseconds. If less than `length` bytes are read, `transport_rc` can be set.
