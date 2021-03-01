@@ -200,7 +200,7 @@ This function should read data to the custom transport. It must fill `source_end
 It returns the number of bytes read.
 It should set `transport_rc` indicating the result of the operation.
 
-* **Stream-oriented mode:** The function should retrieve up to `length` Bytes from transport
+* **Stream-oriented mode:** The function should retrieve up to `length` bytes from the transport
     and write them into `buffer` in `timeout` milliseconds.
 
 * **Packet-oriented mode:** The function should retrieve `length` Bytes from transport
