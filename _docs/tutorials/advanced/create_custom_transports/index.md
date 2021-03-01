@@ -66,7 +66,7 @@ bool my_custom_transport_close(uxrCustomTransport* transport)
 }
 ``` 
 This function should close the custom transport. It returns a boolean indicating if closing was successful. 
-`transport->args` have the arguments passed through `uxr_init_custom_transport`.
+`transport->args` holds the arguments passed through `uxr_init_custom_transport`.
 
 ### Write function
 ```c    
