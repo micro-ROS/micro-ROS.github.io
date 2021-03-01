@@ -470,7 +470,7 @@ The RCLC Executor is an Executor for C applications and can be used with default
     publishing needs to be atomic
 
 ### Download
-The RCLC-Executor can be downloaded from the [micro-ROS rclc repository](https://github.com/micro-ROS/rclc). In this repository, the [rclc package](https://github.com/micro-ROS/rclc/tree/master/rclc) provides the RCLC-Executor and the [rclc_examples package](https://github.com/micro-ROS/rclc/tree/master/rclc_examples) provides several demos. Further more, the rclc Executor is also available from the [ros2/rclc repository](https://github.com/ros2/rclc).
+The RCLC-Executor can be downloaded from the [micro-ROS rclc repository](https://github.com/ros2/rclc). In this repository, the [rclc package](https://github.com/ros2/rclc/tree/master/rclc) provides the RCLC-Executor and the [rclc_examples package](https://github.com/ros2/rclc/tree/master/rclc_examples) provides several demos. Further more, the rclc Executor is also available from the [ros2/rclc repository](https://github.com/ros2/rclc).
 
 
 

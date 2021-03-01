@@ -8,7 +8,7 @@ This tutorial explains the procedure for creating micro-ROS entities using fully
 - By XML (the default option in micro-ROS RMW)
 - By reference
 
-Using the *default option* the micro-ROS user will be able to create entities using RCLC functions such as `rclc_publisher_init_default` for reliable communications or `rclc_publisher_init_best_effort` for best effort communications. Please check [RCLC](https://github.com/micro-ROS/rclc) for an updated list of convenience functions.
+Using the *default option* the micro-ROS user will be able to create entities using RCLC functions such as `rclc_publisher_init_default` for reliable communications or `rclc_publisher_init_best_effort` for best effort communications. Please check [RCLC](https://github.com/ros2/rclc) for an updated list of convenience functions.
 
 For those familiar with the QoS XML format in DDS (click [here](https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/core/policy/policy.html) for detailed information), the underlying QoS profile used by this default mode looks like this:
 

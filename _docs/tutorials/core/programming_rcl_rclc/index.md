@@ -3,7 +3,7 @@ title: Programming with rcl and rclc
 permalink: /docs/tutorials/core/programming_rcl_rclc/
 ---
 
-In this tutorial, you'll learn the basics of the micro-ROS C API. The major concepts (publishers, subscriptions, services,timers, ...) are identical with ROS 2. They even rely on the *same* implementation, as the micro-ROS C API is based on the ROS 2 client support library (rcl), enriched with a set of convenience functions by the package [rclc](https://github.com/micro-ROS/rclc/). That is, rclc does not add a new layer of types on top of rcl (like rclcpp and rclpy do) but only provides functions that ease the programming with the rcl types. New types are introduced only for concepts that are missing in rcl, such as the concept of an executor.
+In this tutorial, you'll learn the basics of the micro-ROS C API. The major concepts (publishers, subscriptions, services,timers, ...) are identical with ROS 2. They even rely on the *same* implementation, as the micro-ROS C API is based on the ROS 2 client support library (rcl), enriched with a set of convenience functions by the package [rclc](https://github.com/ros2/rclc/). That is, rclc does not add a new layer of types on top of rcl (like rclcpp and rclpy do) but only provides functions that ease the programming with the rcl types. New types are introduced only for concepts that are missing in rcl, such as the concept of an executor.
 
 * [Creating a node](#node)
 * [Publishers and subscriptions](#pub_sub)
@@ -14,7 +14,7 @@ In this tutorial, you'll learn the basics of the micro-ROS C API. The major conc
 
 ## <a name="node"/>Creating a Node
 
-To simplify the creation of a node with rcl, rclc provides two functions `rclc_support_init(..)` and `rclc_node_init_default(..)` in [rclc/init.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/init.h) and [rclc/node.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/node.h), respectively. The first lines of the main function of a micro-ROS programm are:
+To simplify the creation of a node with rcl, rclc provides two functions `rclc_support_init(..)` and `rclc_node_init_default(..)` in [rclc/init.h](https://github.com/ros2/rclc/blob/master/rclc/include/rclc/init.h) and [rclc/node.h](https://github.com/ros2/rclc/blob/master/rclc/include/rclc/node.h), respectively. The first lines of the main function of a micro-ROS programm are:
 
 ```C
 rcl_allocator_t allocator = rcl_get_default_allocator();
@@ -39,7 +39,7 @@ if (rc != RCL_RET_OK) {
 
 Publishers and subscribers are most easily created with the rclc package.
 
-Creating a publisher by `rclc_publisher_init_default(..)` from [rclc/publisher.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/publisher.h):
+Creating a publisher by `rclc_publisher_init_default(..)` from [rclc/publisher.h](https://github.com/ros2/rclc/blob/master/rclc/include/rclc/publisher.h):
 
 ```C
 rcl_publisher_t my_pub;
@@ -64,7 +64,7 @@ snprintf(pub_string, 13, "%s", "Hello World!");
 rosidl_generator_c__String__assignn(&pub_msg, pub_string, PUB_MSG_SIZE);
 ```
 
-Creating a subscription by `rclc_subscription_init_default(..)` from [rclc/subscription.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/subscription.h):
+Creating a subscription by `rclc_subscription_init_default(..)` from [rclc/subscription.h](https://github.com/ros2/rclc/blob/master/rclc/include/rclc/subscription.h):
 
 ```C
 rcl_subscription_t my_sub = rcl_get_zero_initialized_subscription();
@@ -198,7 +198,7 @@ while(1){
 ## <a name="timers"/>Timers
 
 A timer can be created with the rclc-package with the function
-`rclc_timer_init_default(..)` in [rclc/timer.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/timer.h):
+`rclc_timer_init_default(..)` in [rclc/timer.h](https://github.com/ros2/rclc/blob/master/rclc/include/rclc/timer.h):
 
 ```C
 // create a timer, which will call the publisher with period=`timer_timeout` ms in the 'my_timer_callback'
@@ -292,9 +292,9 @@ rc += rcl_lifecycle_node_fini(&my_lifecycle_node, &allocator);
 
 ### Example and Limitations
 
-An example of the rclc Lifecycle Node is given in the file `lifecycle_node.c` in the [rclc_examples](https://github.com/micro-ROS/rclc/tree/master/rclc_examples) package.
+An example of the rclc Lifecycle Node is given in the file `lifecycle_node.c` in the [rclc_examples](https://github.com/ros2/rclc/tree/master/rclc_examples) package.
 
-The state machine publishes state changes, however, lifecycle services are not yet exposed via ROS 2 services ([micro-ROS/rclc#40](https://github.com/micro-ROS/rclc/issues/40)).
+The state machine publishes state changes, however, lifecycle services are not yet exposed via ROS 2 services ([ros2/rclc#40](https://github.com/ros2/rclc/issues/40)).
 
 ## <a name="rclc_executor"/>rclc Executor
 
@@ -305,13 +305,13 @@ In this tutorial we provide two examples:
 * Example 1: Hello-World example consisting of one executor and one publisher, timer and subscription.
 * Example 2: Triggered execution example, demonstrating the capability of synchronizing the execution of callbacks based on the availability of new messages
 
-Further examples for using the rclc Executor in mobile robotics scenarios and real-time embedded applications can be found in the [rclc](https://github.com/micro-ROS/rclc/tree/master/rclc) repository.
+Further examples for using the rclc Executor in mobile robotics scenarios and real-time embedded applications can be found in the [rclc](https://github.com/ros2/rclc/tree/master/rclc) repository.
 
 ### Example 1: 'Hello World'
 
 To start with, we provide a very simple example for an rclc Executor with one timer and one subscription, so to say, a 'Hello world' example. It consists of a publisher, sending a 'hello world' message to a subscriber, which then prints out the received message on the console.
 
-First, you include some header files, in particular the [rclc/rclc.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/rclc.h) and [rclc/executor.h](https://github.com/micro-ROS/rclc/blob/master/rclc/include/rclc/executor.h).
+First, you include some header files, in particular the [rclc/rclc.h](https://github.com/ros2/rclc/blob/master/rclc/include/rclc/rclc.h) and [rclc/executor.h](https://github.com/ros2/rclc/blob/master/rclc/include/rclc/executor.h).
 
 ```C
 #include <stdio.h>
@@ -529,7 +529,7 @@ return 0;
 } // main
 ```
 
-This completes the example. The source code can be found in the package rclc-examples [rclc-examples/example_executor_convenience.c](https://github.com/micro-ROS/rclc/blob/master/rclc_examples/src/example_executor_convenience.c).
+This completes the example. The source code can be found in the package rclc-examples [rclc-examples/example_executor_convenience.c](https://github.com/ros2/rclc/blob/master/rclc_examples/src/example_executor_convenience.c).
 
 #### Example 2: Triggered execution
 
@@ -1050,4 +1050,4 @@ The following code will setup the executor accordingly:
 
 The custom structs `pub_trigger_object_t` are used to save the pointer of the handles. The timers `my_string_timer` and `my_int_timer` for the publishing executor; and, likewise, the subscriptions `my_string_sub` and `my_int_sub` for the subscribing executor. The configuration is done also with the `rclc_executor_set_trigger` by passing the trigger function and the trigger object, e.g. `pub_trigger` and `comm_obj_pub` for the `executor_pub`, respectivly.
 
-The complete source code of this example can be found in the file [rclc-examples/example_executor_trigger.c](https://github.com/micro-ROS/rclc/rclc_examples/example_executor_trigger.c).
+The complete source code of this example can be found in the file [rclc-examples/example_executor_trigger.c](https://github.com/ros2/rclc/rclc_examples/example_executor_trigger.c).
