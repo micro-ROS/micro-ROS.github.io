@@ -138,6 +138,7 @@ custom_agent.start();
 ```
 As in the *Client* API, four functions should be implemented. The behavior of these functions is sightly different
 depending on the selected mode.
+
 ### CustomEndPoint
 
 The `custom_endpoint` is an object of type `eprosima::uxr::CustomEndPoint` and it is in charge of handling the endpoint parameters. The *Agent*, unlike the *Client*, can receive
