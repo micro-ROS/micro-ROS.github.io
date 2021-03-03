@@ -57,12 +57,12 @@
 
 - title: Advanced Tutorials
   docs:
-   - tutorials/advanced/microros_nuttx_bsp
-   - tutorials/advanced/tracing
-   - tutorials/advanced/benchmarking
-   - tutorials/advanced/zephyr_emulator
-   - tutorials/advanced/create_custom_static_library
    - tutorials/advanced/create_custom_transports
+   - tutorials/advanced/create_custom_static_library
+   - tutorials/advanced/benchmarking
+   - tutorials/advanced/tracing
+   - tutorials/advanced/zephyr_emulator
+   - tutorials/advanced/microros_nuttx_bsp
 
 - title: Demos
   docs:
