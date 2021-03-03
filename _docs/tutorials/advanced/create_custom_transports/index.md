@@ -109,7 +109,7 @@ This function should read data from the custom transport. It returns the number 
 
 
 
-## Micro XRCE-DDS Agent
+## micro-ROS Agent
 
 The micro-ROS Agent profile for custom transports is enabled by default. 
 
