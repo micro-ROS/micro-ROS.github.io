@@ -27,7 +27,7 @@ if (rc != RCL_RET_OK) {
   return -1;
 }
 
-rcl_node_t my_node = rcl_get_zero_initialized_node();
+rcl_node_t my_node;
 rc = rclc_node_init_default(&my_node, "my_node_name", "my_namespace", &support);
 if (rc != RCL_RET_OK) {
   ...  // Some error reporting.
@@ -202,7 +202,7 @@ A timer can be created with the rclc-package with the function
 
 ```C
 // create a timer, which will call the publisher with period=`timer_timeout` ms in the 'my_timer_callback'
-rcl_timer_t my_timer = rcl_get_zero_initialized_timer();
+rcl_timer_t my_timer;
 const unsigned int timer_timeout = 1000;
 rc = rclc_timer_init_default(&my_timer, &support, RCL_MS_TO_NS(timer_timeout), my_timer_callback);
 if (rc != RCL_RET_OK) {
@@ -232,7 +232,7 @@ rcl_ret_t rc;
 
 // create rcl node
 rc = rclc_support_init(&support, argc, argv, &allocator);
-rcl_node_t my_node = rcl_get_zero_initialized_node();
+rcl_node_t my_node;
 rc = rclc_node_init_default(&my_node, "my_lifecycle_node", "rclc", &support);
 
 // rcl state machine
@@ -379,11 +379,11 @@ int main(int argc, const char * argv[])
   }
 ```
 
-Next, you define a ROS 2 node `my_node` with `rcl_get_zero_initialized_node()` and initialize it with `rclc_executor_init_default()`:
+Next, you define a ROS 2 node `my_node` and initialize it with `rclc_executor_init_default()`:
 
 ```C
   // create rcl_node
-  rcl_node_t my_node = rcl_get_zero_initialized_node();
+  rcl_node_t my_node;
   rc = rclc_node_init_default(&my_node, "node_0", "executor_examples", &support);
   if (rc != RCL_RET_OK) {
     printf("Error in rclc_node_init_default\n");
@@ -410,7 +410,7 @@ Note, that variable `my_pub` was defined globally, so it can be used by the time
 You can create a timer `my_timer` with a period of one second, which executes the callback `my_timer_callback` like this:
 
 ```C
-  rcl_timer_t my_timer = rcl_get_zero_initialized_timer();
+  rcl_timer_t my_timer;
   const unsigned int timer_timeout = 1000; // in ms
   rc = rclc_timer_init_default(&my_timer, &support, RCL_MS_TO_NS(timer_timeout), my_timer_callback);
   if (rc != RCL_RET_OK) {
@@ -805,7 +805,7 @@ First rcl is initialized with the `rclc_support_init` using the default `allocat
 
 ```C
 // create rcl_node
-  rcl_node_t my_node = rcl_get_zero_initialized_node();
+  rcl_node_t my_node;
   rc = rclc_node_init_default(&my_node, "node_0", "executor_examples", &support);
   if (rc != RCL_RET_OK) {
     printf("Error in rclc_node_init_default\n");
@@ -830,7 +830,7 @@ if (RCL_RET_OK != rc) {
 
 // create timer 1
 // - publishes 'my_string_pub' every 'timer_timeout' ms
-rcl_timer_t my_string_timer = rcl_get_zero_initialized_timer();
+rcl_timer_t my_string_timer;
 const unsigned int timer_timeout = 100;
 rc = rclc_timer_init_default(&my_string_timer, &support, RCL_MS_TO_NS(timer_timeout), my_timer_string_callback);
 if (rc != RCL_RET_OK) {
@@ -859,7 +859,7 @@ Likewise, a second publisher `my_int_pub, which publishes an int message and its
 
   // create timer 2
   // - publishes 'my_int_pub' every 'timer_int_timeout' ms
-  rcl_timer_t my_int_timer = rcl_get_zero_initialized_timer();
+  rcl_timer_t my_int_timer;
   const unsigned int timer_int_timeout = 10 * timer_timeout;
   rc = rclc_timer_init_default(&my_int_timer, &support, RCL_MS_TO_NS(timer_int_timeout), my_timer_int_callback);
   if (rc != RCL_RET_OK) {
