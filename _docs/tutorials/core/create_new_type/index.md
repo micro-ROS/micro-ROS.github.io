@@ -1,5 +1,5 @@
 ---
-title: How to create a new micro-ROS type
+title: How to create a new micro-ROS message type
 permalink: /docs/tutorials/core/create_new_type/
 ---
 
