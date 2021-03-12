@@ -27,7 +27,7 @@ Therefore, the raw buffer is a single data buffer where only one message is popp
 ![](./imgs/best_effort_stream.svg)
 
 On the other hand, reliable streams contain multiple messages which are popped/pushed according to the reliable communication protocol described in the DDS-XRCE specification.
-It is achieved splitting the raw buffer into chucks, each of which each contains a single message.
+It is achieved by splitting the raw buffer into chunks, each of which contains a single message.
 
 ![](./imgs/reliable_strea.svg)
 
