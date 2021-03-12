@@ -17,7 +17,7 @@ micro-ROS deals with two different memory resources related with the Micro XRCE-
 ### Micro XRCE-DDS
 
 Micro XRCE-DDS messages flow between Client and Agent through **streams**.
-A stream represents an independent ordered flow of information, so it is a sort of messaging queue.
+A stream represents an independently ordered flow of information, so it is a sort of messaging queue.
 There are two kinds of streams, **best-effort** and **reliable**.
 Both best-effort and reliable streams have a raw buffer (`uint8_t` array) associated with them, but the layout is different.
 
