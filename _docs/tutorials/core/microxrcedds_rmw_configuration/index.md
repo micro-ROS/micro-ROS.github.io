@@ -59,7 +59,7 @@ The rmw-microxrcedds uses a static-memory message queue where to to keep the sub
 The size of this message queue could be set by the `RMW_UXRCE_MAX_HISTORY`.
 
 It is worth noting that all the aforementioned CMake flags shall be set in a `.meta` for each platform supported in [micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup).
-For example, in the [ping-pong application](https://micro-ros.github.io//docs/tutorials/core/first_application_linux/) the host [configuration file](https://github.com/micro-ROS/micro_ros_setup/blob/foxy/micro_ros_setup/config/host/generic/client-host-colcon.meta) can be optimized with the following modifications:
+For example, in the [ping-pong application](https://micro-ros.github.io//docs/tutorials/core/first_application_linux/) the host [configuration file](https://github.com/micro-ROS/micro_ros_setup/blob/foxy/config/host/generic/client-host-colcon.meta) can be optimized with the following modifications:
 
 ```
 {
@@ -84,7 +84,7 @@ For example, in the [ping-pong application](https://micro-ros.github.io//docs/tu
 ## Run-time configuration
 
 There are some build time parameters related to Client-to-Agent connection (such as **CONFIG_RMW_DEFAULT_UDP_PORT**, **CONFIG_RMW_DEFAULT_UDP_IP** and **CONFIG_RMW_DEFAULT_SERIAL_DEVICE**) that can be configured either at build time or at run-time.
-This means that you can set them in the [configuration file](https://github.com/micro-ROS/micro_ros_setup/blob/foxy/micro_ros_setup/config/host/generic/client-host-colcon.meta) mentioned above and that micro-ROS provides a user configuration API for setting some RMW and middleware parameters at run-time.
+This means that you can set them in the [configuration file](https://github.com/micro-ROS/micro_ros_setup/blob/foxy/config/host/generic/client-host-colcon.meta) mentioned above and that micro-ROS provides a user configuration API for setting some RMW and middleware parameters at run-time.
 
 The following example code shows the [API](https://github.com/micro-ROS/rmw-microxrcedds/blob/foxy/rmw_microxrcedds_c/include/rmw_uros/options.h) calls needed to set the agent's IP address, port or serial device:
 
