@@ -86,7 +86,7 @@ Inside this `app-colcon.meta` file we can set application specific CMake options
 }
 ```
 
-Of course you can combine these configurations with others, e.g. the ones described in the [Middleware Configuration](https://micro-ros.github.io/docs/tutorials/advanced/microxrcedds_rmw_configuration/) tutorial.
+Of course you can combine these configurations with others, e.g. the ones described in the [Middleware Configuration](/docs/tutorials/advanced/microxrcedds_rmw_configuration/) tutorial.
 
 Once you have this parameter, write your micro-ROS application using RCLC default convenience functions. Just remember that now you are not providing the topic name but a "QoS reference label":
 
