@@ -1,6 +1,6 @@
 ---
 title: First micro-ROS Application on FreeRTOS
-permalink: /docs/tutorials/firststeps/first_application_rtos/freertos/
+permalink: /docs/tutorials/core/first_application_rtos/freertos/
 redirect_from:
   - /docs/tutorials/advanced/freertos/freertos_getting_started/
 ---

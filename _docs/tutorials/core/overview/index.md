@@ -1,8 +1,8 @@
 ---
 title: Overview
-permalink: /docs/tutorials/firststeps/overview/
+permalink: /docs/tutorials/core/overview/
 redirect_from:
-  - /docs/tutorials/firststeps/
+  - /docs/tutorials/core/
   - /docs/tutorials/
 ---
 

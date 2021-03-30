@@ -68,7 +68,7 @@ But these QoS configurations may not fit some user's requirements. For these cas
 Additionally, using references will also reduce the memory consumption of the micro-ROS client inside the MCU. This is because the parts of the code where XML are handled are just not build with the references approach.
 
 Let's see how to create a micro-ROS node that creates entities with custom QoS. First of all, independently of which RTOS you have selected in [First micro-ROS Application on an RTOS
-](https://micro-ros.github.io/docs/tutorials/firststeps/first_application_rtos/) tutorial, you should have an app configuration file named `app-colcon.meta`.
+](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/) tutorial, you should have an app configuration file named `app-colcon.meta`.
 
 Inside this `app-colcon.meta` file we can set application specific CMake options for the micro-ROS packages that are going to be crosscompiled. So, let's setup the `rmw_microxrcedds` in order to use references; your `app-colcon.meta` should look like this:
 

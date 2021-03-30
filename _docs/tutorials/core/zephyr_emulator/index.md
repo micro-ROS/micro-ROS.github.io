@@ -1,6 +1,6 @@
 ---
 title: Zephyr Emulator
-permalink: /docs/tutorials/firststeps/zephyr_emulator/
+permalink: /docs/tutorials/core/zephyr_emulator/
 ---
 
 ## Target platform
