@@ -37,7 +37,7 @@ Even though recent developments aim at loosening this requirement, with the inte
 To date, micro-ROS is supported by the RTOSes FreeRTOS, Zephyr, NuttX, in addition to Linux and Windows. 
 All three RTOSes are downloaded natively with the [micro-ROS build system](https://github.com/micro-ROS/micro_ros_setup), and can be chosen when creating
 a new firmware workspace.
-Dedicated tutorials for running your first micro-ROS application on each of these Operating Systems can be found [here](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/).
+Dedicated tutorials for running your first micro-ROS application on each of these Operating Systems can be found [here](https://micro-ros.github.io/docs/tutorials/firststeps/first_application_rtos/).
 The features common to all supported RTOSes are an API compliant with POSIX to some degree, extremely low-to-low memory footprint, and availability of different scheduling algorithms to ensure determinism in micro-ROS apps behavior.
 
 Find more details about each of the supported RTOSes below.
@@ -72,7 +72,7 @@ FreeRTOS is distributed under the MIT license. It is known particularly for its 
         <b>FreeRTOS & micro-ROS:</b>
         <ul>
             <li><a href="https://www.freertos.org/2020/09/micro-ros-on-freertos.html">micro-ROS on FreeRTOS</a></li>
-            <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/freertos/">First micro-ROS Application on FreeRTOS</a></li>
+            <li><a href="https://micro-ros.github.io/docs/tutorials/firststeps/first_application_rtos/freertos/">First micro-ROS Application on FreeRTOS</a></li>
         </ul>    
     </div>
   </div>
@@ -109,7 +109,7 @@ Zephyr is a fairly new open-source RTOS, developed in a Linux Foundation Project
         <b>Zephyr & micro-ROS:</b>
         <ul>
             <li><a href="https://www.zephyrproject.org/micro-ros-a-member-of-the-zephyr-project-and-integrated-into-the-zephyr-build-system-as-a-module/">micro-ROS on Zephyr</a></li>
-            <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/zephyr/">First micro-ROS Application on Zephyr</a></li>
+            <li><a href="https://micro-ros.github.io/docs/tutorials/firststeps/first_application_rtos/zephyr/">First micro-ROS Application on Zephyr</a></li>
             <li><a href="https://micro-ros.github.io/docs/tutorials/advanced/zephyr_emulator/">First micro-ROS Application on Zephyr Emulator</a></li>
         </ul>
     </div>
@@ -142,7 +142,7 @@ NuttX emphasizes its compliance with standards - including POSIX - and small foo
         </ul>
         <b>NuttX & micro-ROS:</b>
         <ul>
-            <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/nuttx/">First micro-ROS Application on NuttX</a></li>
+            <li><a href="https://micro-ros.github.io/docs/tutorials/firststeps/first_application_rtos/nuttx/">First micro-ROS Application on NuttX</a></li>
         </ul>
     </div>
   </div>

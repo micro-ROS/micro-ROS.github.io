@@ -59,7 +59,7 @@ The rmw-microxrcedds uses a static-memory message queue where to to keep the sub
 The size of this message queue could be set by the `RMW_UXRCE_MAX_HISTORY`.
 
 It is worth noting that all the aforementioned CMake flags shall be set in a `.meta` for each platform supported in [micro_ros_setup](https://github.com/micro-ROS/micro_ros_setup).
-For example, in the [ping-pong application](https://micro-ros.github.io//docs/tutorials/core/first_application_linux/) the host [configuration file](https://github.com/micro-ROS/micro_ros_setup/blob/foxy/config/host/generic/client-host-colcon.meta) can be optimized with the following modifications:
+For example, in the [ping-pong application](https://micro-ros.github.io//docs/tutorials/firststeps/first_application_linux/) the host [configuration file](https://github.com/micro-ROS/micro_ros_setup/blob/foxy/config/host/generic/client-host-colcon.meta) can be optimized with the following modifications:
 
 ```
 {

@@ -6,7 +6,7 @@ permalink: /docs/tutorials/firststeps/first_application_linux/
 ## Target platform
 
 In this tutorial, you’ll learn the use of micro-ROS with Linux by testing a Ping Pong application.
-In the follow-up tutorial [*First micro-ROS application on an RTOS*](/docs/tutorials/core/first_application_rtos/),
+In the follow-up tutorial [*First micro-ROS application on an RTOS*](/docs/tutorials/firststeps/first_application_rtos/),
 you'll learn how to build and bring this application on a microcontroller running the RTOS NuttX, FreeRTOS, or Zephyr.
 Finally, in the tutorial [*Zephyr Emulator*](/docs/tutorials/advanced/zephyr_emulator/) you'll learn how to test
 a micro-ROS application on a Zephyr emulator.

@@ -8,7 +8,7 @@ Each app is represented by a folder containing the following files:
 * `src/main.c`: This file contains the logic of the application.
 * `app-colcon.meta`: This file contains the micro-ROS app specific colcon configuration. Detailed info on how to
   configure the RMW via this file can be found
-  [here](https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/).
+  [here](https://micro-ros.github.io/docs/tutorials/advanced/microxrcedds_rmw_configuration/).
 * `CMakeLists.txt`: This is the CMake file containing the script to compile the application.
 * `<transport>.conf`: This is a Zephyr specific and transport-dependent app configuration file.
 `<transport>` can be `serial`, `serial-usb` and `host-udp`. 
