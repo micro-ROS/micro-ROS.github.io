@@ -1,6 +1,6 @@
 ---
 title: First micro-ROS Application on NuttX
-permalink: /docs/tutorials/core/first_application_rtos/nuttx/
+permalink: /docs/tutorials/firststeps/first_application_rtos/nuttx/
 redirect_from:
   - /docs/tutorials/advanced/nuttx/nuttx_getting_started/
 ---

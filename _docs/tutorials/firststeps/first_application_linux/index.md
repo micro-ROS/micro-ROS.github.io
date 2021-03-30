@@ -1,6 +1,6 @@
 ---
 title: First micro-ROS Application on Linux
-permalink: /docs/tutorials/core/first_application_linux/
+permalink: /docs/tutorials/firststeps/first_application_linux/
 ---
 
 ## Target platform

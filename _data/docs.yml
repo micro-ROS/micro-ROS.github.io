@@ -3,7 +3,7 @@
    - overview/features
    - overview/hardware
    - overview/rtos
-   - overview/transports
+   - overview/ext_platforms
    - overview/comparison
    - overview/ROS_2_feature_comparison
    - overview/docker_ci_status
@@ -45,24 +45,31 @@
   docs:
    - concepts/fiware_interoperability
 
-- title: Core Tutorials
+- title: First-steps Tutorials
   docs:
-   - tutorials/core/overview
-   - tutorials/core/first_application_linux
-   - tutorials/core/first_application_rtos
-   - tutorials/core/programming_rcl_rclc
-   - tutorials/core/microxrcedds_rmw_configuration
-   - tutorials/core/create_new_type
-   - tutorials/core/create_dds_entities_by_ref
+   - tutorials/firststeps/overview
+   - tutorials/firststeps/first_application_linux
+   - tutorials/firststeps/first_application_rtos
+   - tutorials/firststeps/programming_rcl_rclc
+   - tutorials/firststeps/zephyr_emulator
 
 - title: Advanced Tutorials
   docs:
+   - tutorials/advanced/microxrcedds_rmw_configuration
+   - tutorials/advanced/create_new_type
+   - tutorials/advanced/create_dds_entities_by_ref
    - tutorials/advanced/create_custom_transports
    - tutorials/advanced/create_custom_static_library
    - tutorials/advanced/benchmarking
    - tutorials/advanced/tracing
-   - tutorials/advanced/zephyr_emulator
-   - tutorials/advanced/microros_nuttx_bsp
+
+- title: Unmaintained Tutorials
+  docs:
+   - tutorials/old/microros_nuttx_bsp
+   - tutorials/old/nsh
+   - tutorials/old/6lowpan
+   - tutorials/old/debugging
+   - tutorials/old/add_microros_config
 
 - title: Demos
   docs:
@@ -76,11 +83,3 @@
    - tutorials/demos/thumper_demo
    - tutorials/demos/combined_demos
    - tutorials/demos/moveit2_demo
-
-- title: Nuttx-specific Tutorials
-  docs:
-   - tutorials/advanced/nuttx/nsh
-   - tutorials/advanced/nuttx/6lowpan
-   - tutorials/advanced/nuttx/debugging
-   - tutorials/advanced/nuttx/add_microros_config
-

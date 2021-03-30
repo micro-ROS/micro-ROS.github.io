@@ -1,6 +1,6 @@
 ---
 title: NSH console over UART & USB
-permalink: /docs/tutorials/advanced/nuttx/nsh/
+permalink: /docs/tutorials/old/nsh/
 ---
 
 **Disclaimer: this tutorial is currently unmantained**

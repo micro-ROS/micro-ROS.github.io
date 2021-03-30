@@ -1,6 +1,6 @@
 ---
 title: How to create a new micro-ROS message type
-permalink: /docs/tutorials/core/create_new_type/
+permalink: /docs/tutorials/advanced/create_new_type/
 ---
 
 This tutorial starts in a previously created micro-ROS environment. Check [**First micro-ROS application on an RTOS**](../first_application_rtos/) for instructions about how to create a micro-ROS environment for embedded platforms.

@@ -1,6 +1,6 @@
 ---
 title: First micro-ROS Application on Zephyr
-permalink: /docs/tutorials/core/first_application_rtos/zephyr/
+permalink: /docs/tutorials/firststeps/first_application_rtos/zephyr/
 redirect_from:
   - /docs/tutorials/advanced/zephyr/zephyr_getting_started/
 ---

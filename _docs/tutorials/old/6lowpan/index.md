@@ -1,6 +1,6 @@
 ---
 title: 6LoWPAN Guide
-permalink: /docs/tutorials/advanced/nuttx/6lowpan/
+permalink: /docs/tutorials/old/6lowpan/
 ---
 
 **Disclaimer: this tutorial is currently unmantained**

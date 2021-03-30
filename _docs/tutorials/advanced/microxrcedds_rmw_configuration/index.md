@@ -1,6 +1,6 @@
 ---
 title: Middleware Configuration
-permalink: /docs/tutorials/core/microxrcedds_rmw_configuration/
+permalink: /docs/tutorials/advanced/microxrcedds_rmw_configuration/
 ---
 
 micro-ROS targets microcontroller, devices with low memory resources.

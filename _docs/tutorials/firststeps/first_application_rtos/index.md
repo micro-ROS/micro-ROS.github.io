@@ -1,6 +1,6 @@
 ---
 title: First micro-ROS Application on an RTOS
-permalink: /docs/tutorials/core/first_application_rtos/
+permalink: /docs/tutorials/firststeps/first_application_rtos/
 ---
 
 After you have completed the [First micro-ROS application on Linux tutorial](../first_application_linux), you are now ready to flash a microcontroller with this application based on a Real-Time Operating System (RTOS).
