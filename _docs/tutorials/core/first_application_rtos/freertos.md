@@ -28,7 +28,7 @@ Each app is represented by a folder containing the following files:
 * `app.c`: This file contains the logic of the application.
 * `app-colcon.meta`: This file contains the micro-ROS app specific colcon configuration. Detailed info on how to
   configure the RMW via this file can be found
-  [here](https://micro-ros.github.io/docs/tutorials/core/microxrcedds_rmw_configuration/).
+  [here](/docs/tutorials/advanced/microxrcedds_rmw_configuration/).
 
 For the user to create its custom application, a folder `<my_app>` will need to be registered in this location,
 containing the two files just described.

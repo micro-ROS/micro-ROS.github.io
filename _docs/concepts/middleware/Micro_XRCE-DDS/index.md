@@ -44,7 +44,7 @@ These definitions allow to create a version of the library according to the appl
 For incorporating the desired configuration, it is necessary to run the `cmake` command every time the definitions change.
 
 For more information on how to configure micro-ROS by opportunely tuning parameters either in the Micro XRCE-DDS library
-orin its rmw implementation [`rmw_microxrcedds`](https://github.com/micro-ROS/rmw-microxrcedds), consult this [tutorial](/docs/tutorials/core/microxrcedds_rmw_configuration/) and the `rmw_microxrcedds` [README](https://github.com/micro-ROS/rmw-microxrcedds#rmw-micro-xrce-dds-implementation).
+orin its rmw implementation [`rmw_microxrcedds`](https://github.com/micro-ROS/rmw-microxrcedds), consult this [tutorial](/docs/tutorials/advanced/microxrcedds_rmw_configuration/) and the `rmw_microxrcedds` [README](https://github.com/micro-ROS/rmw-microxrcedds#rmw-micro-xrce-dds-implementation).
 
 ### Multi-Transport Support
 
@@ -76,7 +76,7 @@ Additionally, using references will also reduce the memory consumption of the Cl
 This is because the reference approach allows avoiding to build the parts of the code where XMLs are stored.
 
 Notice that this mechanism is inherited by micro-ROS which, as a consequence, will be able to leverage the same full set of QoS as ROS 2.
-For a comprehensive review on how to use custom QoS in micro-ROS, please visit this [dedicated page](/docs/tutorials/core/create_dds_entities_by_ref/) in the tutorials section.
+For a comprehensive review on how to use custom QoS in micro-ROS, please visit this [dedicated page](/docs/tutorials/advanced/create_dds_entities_by_ref/) in the tutorials section.
 
 
 ## Other links
@@ -87,5 +87,5 @@ For a comprehensive review on how to use custom QoS in micro-ROS, please visit t
 * [XRCE Agent on GitHub](https://github.com/eProsima/Micro-XRCE-DDS-Agent)
 * [rmw_microxrcedds on GitHub](https://github.com/micro-ROS/rmw-microxrcedds)
 * [Micro XRCE-DDS memory profiling](/docs/concepts/middleware/memo_prof/)
-* [Middleware optimization tutorial](/docs/tutorials/core/microxrcedds_rmw_configuration/).
-* [How to use custom QoS in micro-ROS](/docs/tutorials/core/create_dds_entities_by_ref/)
+* [Middleware optimization tutorial](/docs/tutorials/advanced/microxrcedds_rmw_configuration/).
+* [How to use custom QoS in micro-ROS](/docs/tutorials/advanced/create_dds_entities_by_ref/)

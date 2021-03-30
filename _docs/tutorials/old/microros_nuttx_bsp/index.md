@@ -1,6 +1,6 @@
 ---
 title: Adding Micro-ROS to a NuttX board configuration
-permalink: /docs/tutorials/advanced/microros_nuttx_bsp/
+permalink: /docs/tutorials/old/microros_nuttx_bsp/
 ---
 
 # Introduction
