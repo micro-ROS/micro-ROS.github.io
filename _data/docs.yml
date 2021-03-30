@@ -3,12 +3,11 @@
    - overview/features
    - overview/hardware
    - overview/rtos
-   - overview/ext_platforms
+   - overview/ext_tools
    - overview/comparison
    - overview/ROS_2_feature_comparison
    - overview/docker_ci_status
    - overview/users_and_clients
-
 
 - title: Client Library
   docs:

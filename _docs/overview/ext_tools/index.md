@@ -1,6 +1,6 @@
 ---
-title: Integration into External Platforms
-permalink: /docs/overview/ext_platforms/
+title: Integration into External Tools
+permalink: /docs/overview/ext_tools/
 ---
 
 <style>

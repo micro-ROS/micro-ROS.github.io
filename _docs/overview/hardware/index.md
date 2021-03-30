@@ -62,8 +62,8 @@ The officially supported boards are those which have been carried out or tested 
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> FreeRTOS</li>
-            <li><b>External platform:</b> ESP-IDF</li>
+            <li><b>RTOSes:</b> <a href="https://www.freertos.org/">FreeRTOS</a></li>
+            <li><b>External tools:</b> <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/">ESP-IDF</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         UART, WiFi UDP, Ethernet UDP
@@ -93,8 +93,8 @@ The officially supported boards are those which have been carried out or tested 
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> &ndash;</li>
-            <li><b>External platform:</b> Arduino</li>
+            <li><b>RTOSes:</b> &ndash;</li>
+            <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         USB, WiFi UDP   
@@ -125,8 +125,8 @@ The officially supported boards are those which have been carried out or tested 
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> &ndash;</li>
-            <li><b>External platform:</b> Raspberry Pi Pico SDK</li>
+            <li><b>RTOSes:</b> &ndash;</li>
+            <li><b>External tools:</b> <a href="https://github.com/raspberrypi/pico-sdk">Raspberry Pi Pico SDK</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         USB, UART     
@@ -156,8 +156,8 @@ The officially supported boards are those which have been carried out or tested 
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> &ndash;</li>
-            <li><b>External platform:</b> Arduino</li>
+            <li><b>RTOSes:</b> &ndash;</li>
+            <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         USB, UART    
@@ -187,8 +187,8 @@ The officially supported boards are those which have been carried out or tested 
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> &ndash;</li>
-            <li><b>External platform:</b> Arduino</li>
+            <li><b>RTOSes:</b> &ndash;</li>
+            <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         USB, UART      
@@ -218,8 +218,8 @@ The officially supported boards are those which have been carried out or tested 
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> &ndash;</li>
-            <li><b>External platform:</b> Arduino</li>
+            <li><b>RTOSes:</b> &ndash;</li>
+            <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         USB, UART  
@@ -249,8 +249,8 @@ The officially supported boards are those which have been carried out or tested 
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> FreeRTOS</li>
-            <li><b>External platform:</b> &ndash;</li>
+            <li><b>RTOSes:</b> <a href="https://www.freertos.org/">FreeRTOS</a></li>
+            <li><b>External tools:</b> &ndash;</li>
         </ul>
         &#128268; <b>Supported transports:</b>
         Custom Radio Link    
@@ -280,8 +280,8 @@ The officially supported boards are those which have been carried out or tested 
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> Zephyr</li>
-            <li><b>External platform:</b> &ndash;</li>
+            <li><b>RTOSes:</b> <a href="https://www.zephyrproject.org/">Zephyr</a></li>
+            <li><b>External tools:</b> <a href="https://www.zephyrproject.org/">Zephyr</a> build system</li>
         </ul>
         &#128268; <b>Supported transports:</b>
         USB, UART, Ethernet UDP    
@@ -313,8 +313,8 @@ The officially supported boards are those which have been carried out or tested 
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> Zephyr, FreeRTOS, NuttX</li>
-            <li><b>External platform:</b> &ndash;</li>
+            <li><b>RTOSes:</b> <a href="https://www.zephyrproject.org/">Zephyr</a>, <a href="https://www.freertos.org/">FreeRTOS</a>, <a href="https://nuttx.apache.org/">NuttX</a></li>
+            <li><b>External tools:</b> <a href="https://www.zephyrproject.org/">Zephyr</a> build system</li>
         </ul>
         &#128268; <b>Supported transports:</b>
         USB (Z, N), UART (Z, F, N), Ethernet UDP (F, N)
@@ -347,8 +347,8 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> &ndash;</li>
-            <li><b>External platform:</b> Arduino</li>
+            <li><b>RTOSes:</b> &ndash;</li>
+            <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         USB, UART    
@@ -376,8 +376,8 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> &ndash;</li>
-            <li><b>External platform:</b> Arduino</li>
+            <li><b>RTOSes:</b> &ndash;</li>
+            <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         USB, UART    
@@ -399,8 +399,8 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> FreeRTOS</li>
-            <li><b>External platform:</b> STM32CubeMX</li>
+            <li><b>RTOSes:</b> <a href="https://www.freertos.org/">FreeRTOS</a></li>
+            <li><b>External tools:</b> <a ref="https://www.st.com/en/development-tools/stm32cubemx.html">STM32CubeMX</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         UART    
@@ -422,8 +422,8 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> FreeRTOS</li>
-            <li><b>External platform:</b> STM32CubeMX</li>
+            <li><b>RTOSes:</b> <a href="https://www.freertos.org/">FreeRTOS</a></li>
+            <li><b>External tools:</b> <a ref="https://www.st.com/en/development-tools/stm32cubemx.html">STM32CubeMX</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         UART    
@@ -445,8 +445,8 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
         </ul>
         &#9881; <b>Supported platforms:</b>
         <ul>
-            <li><b>RTOS:</b> FreeRTOS</li>
-            <li><b>External platform:</b> STM32CubeMX</li>
+            <li><b>RTOSes:</b> <a href="https://www.freertos.org/">FreeRTOS</a></li>
+            <li><b>External tools:</b> <a ref="https://www.st.com/en/development-tools/stm32cubemx.html">STM32CubeMX</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
         UART    
