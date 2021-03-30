@@ -44,7 +44,7 @@
   docs:
    - concepts/fiware_interoperability
 
-- title: First-steps Tutorials
+- title: First Steps Tutorials
   docs:
    - tutorials/firststeps/overview
    - tutorials/firststeps/first_application_linux

@@ -30,7 +30,7 @@ permalink: /docs/overview/ext_tools/
 
 micro-ROS aims to **bring ROS 2 to microcontrollers** to allow having first-class ROS 2 entities in the embedded world.
 
-One of the approaches offered by micro-ROS to build an application for embedded platforms consists in a [proprietary build system](https://github.com/micro-ROS/micro_ros_setup) comprising modules which integrate the software for cross-compiling said apps on the supported plaforms, both hardware and firmware-wise. A different approach consists in generating standalone modules and components allowing to integrate micro-ROS into external or custom development frameworks, made possible by a [tool dedicated to compiling micro-ROS as a standalone library](../../tutorials/advanced/create_custom_static_library).
+One of the approaches offered by micro-ROS to build an application for embedded platforms consists in a [ROS-specific build system](https://github.com/micro-ROS/micro_ros_setup) comprising modules which integrate the software for cross-compiling said apps on the supported plaforms, both hardware and firmware-wise. A different approach consists in generating standalone modules and components allowing to integrate micro-ROS into external or custom development frameworks, made possible by a [tool dedicated to compiling micro-ROS as a standalone library](../../tutorials/advanced/create_custom_static_library).
 
 The configuration of the generated micro-ROS libraries is based on a `colcon.meta` file.
 
