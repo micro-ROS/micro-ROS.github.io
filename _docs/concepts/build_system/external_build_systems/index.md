@@ -25,6 +25,6 @@ Along with this support package, there are [detailed instructions](https://githu
 
 ## micro-ROS for STM32CubeMX
 
-The [micro-ROS for STM32CubeMX](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) package is a set of utilities which enables the seamless configuration, set-up and integration of micro-ROS into any STM32 controller based project. As such, it allows micro-ROS to be virtually supported by the full set of boards offered by <a href="https://www.st.com/content/st_com/en.html">STMicroelectronics</a>.
+The [micro-ROS for STM32CubeMX](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) package is a set of utilities which enables the seamless configuration, set-up and integration of micro-ROS into an STM32 controller based project. As such, it allows micro-ROS to be virtually supported by the full set of boards offered by <a href="https://www.st.com/content/st_com/en.html">STMicroelectronics</a>.
 
 Its usage is based on Dockers, via a prepared [Dockerfile](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils/blob/foxy/microros_component/Dockerfile) which eases the project configuration and execution.
