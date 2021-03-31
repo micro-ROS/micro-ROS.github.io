@@ -22,6 +22,6 @@ If you are new to micro-ROS, we strongly suggest that you take the tutorials in 
 
   You'll learn the concepts of the micro-ROS C API in this tutorial in depth. If you are already familiar with the ROS 2 C++ API or even the underlying ROS Client Support Library (rcl), you'll learn this very quickly.
 
-* [**Optimizing the Middleware Configuration**](../../advanced/microxrcedds_rmw_configuration/)
+* [**Zephyr Emulator**](../zephyr_emulator/)
 
-  In this tutorial, we'll guide you through the configuration of the middleware between a microcontroller and the micro-ROS agent running on some Linux-based microprocessor, to optimize it for your specific use-case an application.
+  In this tutorial, you'll learn the use of micro-ROS with Zephyr emulator by testing a Ping Pong application.
