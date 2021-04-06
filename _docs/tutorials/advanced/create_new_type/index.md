@@ -1,5 +1,5 @@
 ---
-title: How to create a new micro-ROS message type
+title: How to include a custom ROS message in micro-ROS
 permalink: /docs/tutorials/advanced/create_new_type/
 ---
 

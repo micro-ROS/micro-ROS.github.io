@@ -110,7 +110,7 @@ Zephyr is a fairly new open-source RTOS, developed in a Linux Foundation Project
         <ul>
             <li><a href="https://www.zephyrproject.org/micro-ros-a-member-of-the-zephyr-project-and-integrated-into-the-zephyr-build-system-as-a-module/">micro-ROS on Zephyr</a></li>
             <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/zephyr/">First micro-ROS Application on Zephyr</a></li>
-            <li><a href="https://micro-ros.github.io/docs/tutorials/advanced/zephyr_emulator/">First micro-ROS Application on Zephyr Emulator</a></li>
+            <li><a href="https://micro-ros.github.io/docs/tutorials/core/zephyr_emulator/">First micro-ROS Application on Zephyr Emulator</a></li>
         </ul>
     </div>
   </div>

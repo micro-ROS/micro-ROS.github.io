@@ -54,6 +54,7 @@
 
 - title: Advanced Tutorials
   docs:
+   - tutorials/advanced/overview
    - tutorials/advanced/microxrcedds_rmw_configuration
    - tutorials/advanced/create_new_type
    - tutorials/advanced/create_dds_entities_by_ref
