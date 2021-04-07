@@ -9,7 +9,7 @@ This chapter provides a number of advanced tutorials for those users who already
 
 * [**Optimizing the Middleware Configuration**](../microxrcedds_rmw_configuration/)
 
-  In this tutorial, we'll guide you through the configuration of the middleware between a microcontroller and the micro-ROS agent running on some Linux-based microprocessor, to optimize it for your specific use-case an application.
+  In this tutorial, we'll guide you through the configuration of the middleware between a microcontroller and the micro-ROS agent running on some Linux-based microprocessor, to optimize it for your specific use-case and application.
 
 * [**How to include a custom ROS message in micro-ROS**](../create_new_type/)
 
