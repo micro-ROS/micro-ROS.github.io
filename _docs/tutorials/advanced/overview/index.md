@@ -5,7 +5,7 @@ redirect_from:
   - /docs/tutorials/advanced/
 ---
 
-This chapter provides a number of advanced tutorials for those users who already have some previous micro-ROS knowledge. They are useful to interact with micro-ROS at a deeper level if compared with the [**First Step Tutorials**](../../core/overview). There is no specific order recommended to take these tutorials, as each addresses a different aspect of the micro-ROS stack and toolchain.
+This chapter provides a number of advanced tutorials for those users who already have some previous micro-ROS knowledge. They are useful to interact with micro-ROS at a deeper level compared with the [**First Step Tutorials**](../../core/overview). There is no specific order recommended to take these tutorials, as each addresses a different aspect of the micro-ROS stack and toolchain.
 
 * [**Optimizing the Middleware Configuration**](../microxrcedds_rmw_configuration/)
 
