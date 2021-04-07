@@ -6,7 +6,7 @@ redirect_from:
   - /docs/tutorials/
 ---
 
-This chapter provides you a number of tutorials to learn micro-ROS and relevant tools for the different RTOS supported by micro-ROS. We divided this chapter into two sections core tutorials and advanced tutorials.
+This chapter provides the user with a number of tutorials to learn micro-ROS and relevant tools for the different RTOSes supported by micro-ROS. In the [**Advanced Tutorials**](../../advanced/overview/) section, you'll find more advanced tutorials to strenghten your micro-ROS knowledge.
 
 If you are new to micro-ROS, we strongly suggest that you take the tutorials in the following order:
 
