@@ -13,7 +13,7 @@ This chapter provides a number of advanced tutorials for those users who already
 
 * [**How to include a custom ROS message in micro-ROS**](../create_new_type/)
 
-  This tutorial explains how to create a custom ROS message type to micro-ROS, and then add it to the [build system](https://github.com/micro-ROS/micro_ros_setup).
+  This tutorial explains how to create or include a custom ROS message type in a micro-ROS application - and in particular how to bring it into the [build system](https://github.com/micro-ROS/micro_ros_setup).
 
 * [**How to use custom QoS in micro-ROS**](../create_dds_entities_by_ref/)
 
