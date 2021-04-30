@@ -8,7 +8,7 @@ permalink: /docs/concepts/benchmarking/memo_prof/
 
 In this section, we analyze the memory footprint of the micro-ROS Client library. To perform the profiling, we have taken into account both applications of publishers/subscribers into/to ROS topics of known size and client/server type applications. We explored several different configurations by tuning key parameters such as message size, entity number, history size and transport protocol. Also, we discriminated between different types of memory. Indeed, while the [XRCE-DDS](https://micro-xrce-dds.docs.eprosima.com/en/latest/) Client is completely dynamic memory free, the micro-ROS Client makes use of both static and dynamic memory. It is therefore key to assess how much of each type of memory micro-ROS consumes, especially for what concerns real-timeness and determinism in the library behaviour. 
 
-We performed the measurements for applications running on [FreeRTOS](https://www.freertos.org/index.html) and on an [ESP32](https://www.espressif.com/en/products/socs/esp32) board connected by either UDP (via WiFi) or serial transport (UART) to a micro-ROS Agent running on a Linux machine.
+We performed the measurements for applications running on [FreeRTOS](https://www.freertos.org/index.html) and on an [ESP32](https://www.espressif.com/en/products/socs/esp32) board connected by UDP (via WiFi) to a micro-ROS Agent running on a Linux machine.
 
 Results show that the total memory consumption of the Client is higher than that of the XRCE-DDS middleware, at least by using the default configuration parameters of the library. However, by opportunely adjusting some of these parameters (e.g., the MTU or the history size) to the needs of the specific application, it is possible to tune the total memory consumption to fit way better the limited resources of the target devices.
 
@@ -100,17 +100,14 @@ In general, our aim is to assess how both the total memory and its independent c
 * The topic size (in the form of an array of bytes of variable size)
 * The number of ROS entities (pub/sub and service/client)
 * The communication stream type used (Reliable vs Best-Effort)
-* The transport protocol (UDP and serial)
 
 In the first setup, we analyse the total memory consumption of applications that publish or subscribe to topics of variable size while sweeping through the number of entities (publishers and subscribers) and employ UDP transport. We do so for the two different QoS types, Reliable and Best-Effort.
 
 In the second setup, we report on how the total memory is distributed between static, stack and dynamic.
 
-In the third setup, we change the transport from UDP to serial, and repeat the calculation for an individual subscription only and for a fixed message size.
+The third set of measurements was taken for one subscription only, for a fixed message size and varying the history cache of the RMW layer from 1 to 20 units.
 
-The fourth set of measurements was taken for one subscription only, for a fixed message size and varying the history cache of the RMW layer from 1 to 20 units.
-
-In the fifth set of measurements we measure the footprint of applications of requesters/repliers that act according to a client/service pattern.
+In the fourth set of measurements we measure the footprint of applications of requesters/repliers that act according to a client/service pattern.
 
 ### Results
 
@@ -118,7 +115,7 @@ In this section, we detail the methodology employed for the memory profiling of 
 
 The measurements are conducted on a micro-ROS Client application with a varying number of entities: either publishers/subscribers (from 1 to 15) or client/server (from 1 to 10).
 
-All the tested apps run on top of FreeRTOS and inside of an ESP32 board. The board is connected by either UDP or serial transport to a micro-ROS Agent running on a Linux machine. As explained above, the choice of FreeRTOS has been by virtue of its memory management functionalities, which easily allow to compute the memory used by applications.
+All the tested apps run on top of FreeRTOS and inside of an ESP32 board. The board is connected by UDP transport (WiFi) to a micro-ROS Agent running on a Linux machine. As explained above, the choice of FreeRTOS has been by virtue of its memory management functionalities, which easily allow to compute the memory used by applications.
 
 In order to provide an assessment as much realistic as possible, the following parameters have been set to their default values: the creation mode employed was by XML in all tested cases, the MTU was held fixed to its default value of 512 B, and the XRCE-DDS library history cache was always kept fixed to 4.
 
@@ -189,7 +186,7 @@ To sum up, we have seen that:
 
 * Memory consumption doesn’t vary with message size as long as the sum of the latter plus the overheads can be accommodated by the static buffer pre-allocated at compile-time.
 * Static and Dynamic memories vary with the entity number, while the stack remains constant.
-* A single publisher/subscriber app with default configuration parameters and with both transport protocols explored (UDP and serial) consumes ~ 400-500 B of total memory.
+* A single publisher/subscriber app with default configuration parameters and with UDP transport consumes ~ 400-500 B of total memory.
 * A single client/server app with default configuration parameters and with UDP transport consumes ~ 300 B of total memory, on the same order of magnitude of pub/sub applications.
 * In the case of a single subscription, the total static memory used changes by MTU &#215; XRCE_history for each unit of RMW history that is added to the application.
 
