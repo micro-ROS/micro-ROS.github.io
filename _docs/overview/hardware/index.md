@@ -46,7 +46,7 @@ The officially supported boards are those which have been carried out or tested 
 
 <div class="hardwarecontainer">
   <div class="hardwareitem_description">
-    <h3><b>Espressif ESP32 DevKitC</b></h3>
+    <h3><b>Espressif ESP32</b></h3>
     <div>
         &#10004; <b>Key features:</b>
         <ul>
