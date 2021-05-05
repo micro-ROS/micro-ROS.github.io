@@ -84,7 +84,7 @@
    - tutorials/demos/combined_demos
    - tutorials/demos/moveit2_demo
 
-- title: API reference
+- title: API
   docs:
    - api/overview
    - api/rmw

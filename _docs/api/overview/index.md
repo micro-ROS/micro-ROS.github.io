@@ -5,12 +5,5 @@ redirect_from:
   - /docs/api/
 ---
 
-TODO
-
 * [**RMW Micro XRCE-DDS**](../rmw/)
-
-  TODO
-
 * [**RCLC**](../rclc/)
-
-  TODO
