@@ -17,6 +17,7 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%d-%m-%Y %H:%M')"
       - name: Update libraries
+        shell: bash
         run: |
           apt update
           apt install -y doxygen wget git unzip cmake
