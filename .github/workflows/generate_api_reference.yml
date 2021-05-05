@@ -29,14 +29,13 @@ jobs:
             git clone -b foxy https://github.com/eProsima/Micro-CDR src/Micro-CDR 
             git clone -b foxy https://github.com/eProsima/Micro-XRCE-DDS-Client src/Micro-XRCE-DDS-Client 
             git clone -b foxy https://github.com/micro-ROS/rosidl_typesupport_microxrcedds src/rosidl_typesupport_microxrcedds
-            git clone -b feature/refactor_microros_api https://github.com/micro-ROS/rmw-microxrcedds src/rmw-microxrcedds
+            git clone -b foxy https://github.com/micro-ROS/rmw-microxrcedds src/rmw-microxrcedds
 
             source /opt/ros/$ROS_DISTRO/setup.bash
             colcon build --packages-up-to rmw_microxrcedds --cmake-args -DBUILD_DOCUMENTATION=ON
           popd
 
           /doxybook2/bin/doxybook2 --input /ros2_ws/build/rmw_microxrcedds/doc/xml --output _includes/rmw_doc -c utils/doxy_config -t utils/doxy_templates
-          git status
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
