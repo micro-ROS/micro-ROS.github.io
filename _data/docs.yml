@@ -83,3 +83,9 @@
    - tutorials/demos/thumper_demo
    - tutorials/demos/combined_demos
    - tutorials/demos/moveit2_demo
+
+- title: API
+  docs:
+   - api/overview
+   - api/rmw
+   - api/rclc
