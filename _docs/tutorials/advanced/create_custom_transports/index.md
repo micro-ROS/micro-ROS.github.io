@@ -23,7 +23,7 @@ These two modes can be selected by activating and deactivating the `framing` par
 An example on how to set these external transport callbacks in the micro-ROS Client API is:
 
 ```c
-#include <rmw_uros/options.h>
+#include <rmw_microros/rmw_microros.h>
 
 ...
 
