@@ -77,7 +77,7 @@ Finally, in order to run the micro-ROS node inside of the Zephyr RTOS emulator,
 open a new command shell and execute the flash step by means of the flashing command:
 
 ```bash
-source /opt/ros/foxy/setup.bash
+source /opt/ros/$ROS_DISTRO/setup.bash
 source install/local_setup.bash
 
 # Flash/run step

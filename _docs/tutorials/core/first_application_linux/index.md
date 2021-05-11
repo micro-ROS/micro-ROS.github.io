@@ -74,11 +74,14 @@ To give micro-ROS access to the ROS 2 dataspace, run the agent:
 ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
 ```
 
-And then, in another command line, run the micro-ROS node (remember sourcing the ROS 2 and micro-ROS installations):
+And then, in another command line, run the micro-ROS node (remember sourcing the ROS 2 and micro-ROS installations, and setting the RMW Micro XRCE-DDS implementation):
 
 ```bash
-source /opt/ros/foxy/setup.bash
+source /opt/ros/$ROS_DISTRO/setup.bash
 source install/local_setup.bash
+
+# Use RMW Micro XRCE-DDS implementation
+export RMW_IMPLEMENTATION=rmw_microxrcedds
 
 # Run a micro-ROS node
 ros2 run micro_ros_demos_rclc ping_pong
@@ -96,7 +99,7 @@ each:
 ```bash
 cd microros_ws
 
-source /opt/ros/foxy/setup.bash
+source /opt/ros/$ROS_DISTRO/setup.bash
 source install/local_setup.bash
 
 ros2 run micro_ros_demos_rclc ping_pong
