@@ -57,6 +57,7 @@
    - tutorials/advanced/overview
    - tutorials/advanced/microxrcedds_rmw_configuration
    - tutorials/advanced/create_new_type
+   - tutorials/advanced/handling_type_memory
    - tutorials/advanced/create_dds_entities_by_ref
    - tutorials/advanced/create_custom_transports
    - tutorials/advanced/create_custom_static_library
