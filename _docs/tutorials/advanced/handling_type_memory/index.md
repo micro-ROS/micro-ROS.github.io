@@ -5,9 +5,9 @@ permalink: /docs/tutorials/advanced/handling_type_memory/
 
 This page aims to explain how to handle messages and types memory in micro-ROS.
 
-First of all, since the micro-ROS user is in a embedded C99 environment, it is important to be aware of what messages and ROS 2 types are being used in order to handle memory correctly.
+First of all, since the micro-ROS user is in an embedded C99 environment, it is important to be aware of what messages and ROS 2 types are being used in order to handle memory correctly.
 
-By watching the `.msg` or `.srv` of the types used in a micro-ROS application, you can determine if your type's members are a:
+By watching the `.msg` or `.srv` of the types used in a micro-ROS application, you can determine the type of each member. Currently, the following types are supported:
 - Basic type
 - Array type
 - Sequence type
@@ -31,7 +31,7 @@ In this example:
 - the member `header` is an **compound type member** because it refers to complex type described in the same or other ROS 2 package.
 - the member `name` is an **string type member** and should be understood as a `char[]` (sequence type member).
 
-When dealing with the **micro-ROS typesupport** the application coder need to take into account how this message is going to be handled in the C99 API of micro-ROS. In general, the micro-ROS typesupport will create a C99 representation of this type with this struct:
+When dealing with the **micro-ROS typesupport** the developer needs to take into account how this message is going to be handled in the C99 API of micro-ROS. In general, the micro-ROS typesupport will create a C99 struct representation of the message:
 
 ```c
 typedef struct mypackage__msg__MyType
@@ -94,9 +94,9 @@ for(int32_t i = 0; i < 3; i++){
 
 ## Compound types in micro-ROS
 
-When dealing with a type that uses a compound type, the user should recursively inspect the types in order to determine how to handle the each internal member. 
+When dealing with a compound type, the user should recursively inspect the types in order to determine how to handle each internal member. 
 
-For example in the `MyType.msg` example, when we inspect the `header` member, it looks like:
+For example in the `MyType.msg` example, the `header` member has the following structure:
 
 ```c
 typedef struct std_msgs__msg__Header
@@ -116,7 +116,7 @@ typedef struct builtin_interfaces__msg__Time
 } builtin_interfaces__msg__Time;
 ```
 
-So for example in order to init the `header` member of `MyType.msg`, an user should do:
+To initialize the `header` member of `MyType.msg`:
 
 ```c
 mypackage__msg__MyType mymsg;
@@ -137,7 +137,7 @@ mymsg.stamp.nanosec = 20;
 
 ## Sequences of compound types
 
-User should take into account that **sequence type member** of **compound type member** are also valid ROS 2 type. For example, let's modify the previous example:
+Users should take into account that **sequence type member** of **compound type member** are also valid ROS 2 type. For example, let's modify the previous example:
 
 ```
 # MyComplexType.msg
@@ -161,7 +161,7 @@ typedef struct mypackage__msg__MyComplexType
 } mypackage__msg__MyComplexType;
 ```
 
-Notice that `multiheaders` is a **sequence type member**, so it should be handled properly, but also it is a **compound type member** so it should be handled recursively. For example:
+Notice that `multiheaders` is a **sequence type member**, so it should be handled properly, but also it is a **compound type member** which needs to be handled recursively, initializing its own members. For example:
 
 ```c
 mypackage__msg__MyComplexType mymsg;
@@ -191,4 +191,3 @@ for(int32_t i = 0; i < 3; i++){
   mymsg.multiheaders.size++;
 }
 ```
-
