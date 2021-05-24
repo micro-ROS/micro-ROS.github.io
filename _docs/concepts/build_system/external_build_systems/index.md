@@ -7,7 +7,7 @@ Once you have read about the official [**micro_ros_setup** tool](/docs/concepts/
 
 ## micro-ROS component for ESP-IDF
 
-The [micro-ROS component for ESP-IDF](https://github.com/micro-ROS/micro_ros_espidf_component) allows to integrate micro-ROS as a component in an Espressif ESP-IDF Build System. This component allows the user to integrate the micro-ROS API and utilities in an already created ESP-IDF project just by cloning or copying a folder. 
+The [micro-ROS component for ESP-IDF](https://github.com/micro-ROS/micro_ros_espidf_component) allows to integrate micro-ROS as a component in an Espressif ESP-IDF Build System. This component allows the user to integrate the micro-ROS API and utilities in an already created ESP-IDF project just by cloning or copying a folder.
 
 Configuration of the micro-ROS library is based on the `colcon.meta` file. For more details visit the [Git repository](https://github.com/micro-ROS/micro_ros_espidf_component).
 
@@ -27,4 +27,4 @@ Along with this support package, there are [detailed instructions](https://githu
 
 The [micro-ROS for STM32CubeMX](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils) package is a set of utilities which enables the seamless configuration, set-up and integration of micro-ROS into an STM32 controller based project. As such, it allows micro-ROS to be virtually supported by the full set of boards offered by <a href="https://www.st.com/content/st_com/en.html">STMicroelectronics</a>.
 
-Its usage is based on Dockers, via a prepared [Dockerfile](https://github.com/micro-ROS/micro_ros_stm32cubemx_utils/blob/foxy/microros_component/Dockerfile) which eases micro-ROS library generation outside of a ROS 2 environment.
+Its usage is based on Dockers, via a prepared [Dockerfile](https://github.com/micro-ROS/docker/blob/foxy/micro-ROS-static-library-builder/Dockerfile) which eases micro-ROS library generation outside of a ROS 2 environment.
