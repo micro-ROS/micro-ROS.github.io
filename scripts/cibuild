@@ -19,6 +19,7 @@ IGNORE_HREFS=${IGNORE_HREFS:+$IGNORE_HREFS,}$(ruby -e "puts %w{
   omg.org
   twitter.com
   ieeexplore.ieee.org
+  build.ros2.org
   ${ADDITIONS}
   }.map{|h| \"/#{h}/\"}.join(\",\")"
 )
