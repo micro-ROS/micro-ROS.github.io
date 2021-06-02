@@ -89,4 +89,5 @@
   docs:
    - api/overview
    - api/rmw
+   - api/utils
    - api/rclc

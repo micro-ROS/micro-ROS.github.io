@@ -23,7 +23,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh [RTOS] [HARDWARE BOARD]
 ```
 
 It is possible to obtain a list of the supported hardware by running the command without any argument. By doing so, it is possible to see that along with the RTOSes and hardware supported by micro-ROS this build system also provides with three extra options:
-- By using `zephyr` as RTOS and `host` as hardware name, it is possible to obtain a Zephyr RTOS image with your micro-ROS app that runs in your host computer. 
+- By using `zephyr` as RTOS and `host` as hardware name, it is possible to obtain a Zephyr RTOS image with your micro-ROS app that runs in your host computer.
 - By using just `host` as RTOS, micro-ROS will build a set of [micro-ROS demo applications](https://github.com/micro-ROS/micro-ROS-demos) natively in your host machine. These applications behave just like micro-ROS apps (using the same abstraction layers and middleware implementation) and allow the user to debug and test the applications on a PC.
 - By using `generate_lib` as RTOS it is possible to configure the build system for generating static libraries (`.a`) and a set of headers (`include`) that can be linked in any other external tool. This option requires a valid CMake toolchain.
 
@@ -66,4 +66,4 @@ ros2 run micro_ros_agent micro_ros_agent [OPTIONS]
 
 **Tip 1:** To learn use of the micro_ros_setup build system hands-on, please see the [core tutorials](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/).
 
-**Tip 2 :** Remember that the micro-ROS Agent can be also be used with this simple Docker command: `docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agent:foxy [OPTIONS]`
+**Tip 2 :** Remember that the micro-ROS Agent can be also be used with this simple Docker command: `docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agent:$ROS_DISTRO [OPTIONS]`

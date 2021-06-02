@@ -6,4 +6,5 @@ redirect_from:
 ---
 
 * [**RMW Micro XRCE-DDS**](../rmw/)
+* [**micro-ROS Utils**](../utils/)
 * [**RCLC**](../rclc/)
