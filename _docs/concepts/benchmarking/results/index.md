@@ -17,7 +17,7 @@ permalink: /docs/concepts/benchmarking/results/
 
 ## From tracing to benchmarking
 
-The low-level RTOS (NuutX) was instrumented in a specific way that provides different categories of benchmarking measurements (memory, execution, etc...). The gathered data is following the [Common Trace Format](https://diamon.org/ctf/). The raw trace is later processed using the [Babeltrace API](https://babeltrace.org/) trace manipulation toolkit. The data interpretation is up to the user.
+The low-level RTOS (NuttX) was instrumented in a specific way that provides different categories of benchmarking measurements (memory, execution, etc...). The gathered data is following the [Common Trace Format](https://diamon.org/ctf/). The raw trace is later processed using the [Babeltrace API](https://babeltrace.org/) trace manipulation toolkit. The data interpretation is up to the user.
 
 More information about benchmarks results and methodologies are dealt with within the following [document](https://github.com/micro-ROS/benchmarking-results/blob/master/pdfs/OFERA_55_D5.4_Micro-ROS_benchmarks_-_Final.pdf)
 
