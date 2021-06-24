@@ -22,18 +22,18 @@ The comparison regards the features listed below:
 * POSIX level support
 
 **Key questions:**
-* Evaluation POSIX-compliance of RTOS. 
+* Evaluation POSIX-compliance of RTOS.
 * What is the effort in providing an additional layer for non-POSIX RTOS regarding micro-ROS or ROS 2?
 * Support of RTOS for specific HW platforms
 
 ## Table of Comparisons
 
-| **OS**                                                       | **NuttX**              | **FreeRTOS**                                                                   | **Zephyr**                                                        |
+| **OS**                                                       | **NuttX**                                | **FreeRTOS**                                                                                                             | **Zephyr**                                                                                      |
 | ------------------------------------------------------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
 | **Feature**                                                  |                                          |                                                                                                                          |                                                                                                 |
 | **Standardization**                                          |                                          |                                                                                                                          |                                                                                                 |
 | POSIX                                                        | yes                                      | partial                                                                                                                  | partial                                                                                         |
-| POSIX.1 <sup>1</sup>                                         | [yes](http://nuttx.org/)                 | [wrapper](https://interactive.freertos.org/hc/en-us/community/posts/210029046-POSIX-Wrapper-for-FreeRTOS)                | partial                                                                                         |
+| POSIX.1 <sup>1</sup>                                         | [yes](http://nuttx.org/)                 | [wrapper](https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_POSIX/index.html)                                         | partial                                                                                         |
 | POSIX.1b <sup>2</sup>                                        | yes                                      | partial                                                                                                                  | partial                                                                                         |
 | POSIX.1c <sup>3</sup>                                        | yes                                      | yes                                                                                                                      | partial                                                                                         |
 |                                                              |                                          |                                                                                                                          |                                                                                                 |
