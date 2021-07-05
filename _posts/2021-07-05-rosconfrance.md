@@ -11,7 +11,7 @@ First, Maria Merlan (eProsima) presented in detail a very clear and easy to foll
 
 <embed src="/download/2021-07-04-rosconfrance2021.pdf" type="application/pdf" width="100%" height="450px"/>
 
-Secondly ,Jan Staschulat (Bosch)  gave us precisions on the architecture and how to code with rclc.
+Secondly, Jan Staschulat (Bosch)  gave us precisions on the architecture and how to code with rclc.
 
 Finally Pablo Garrido (eProsima) performed a live demonstration on “using micro-ROS with the [ESP32 board](https://www.espressif.com/en/products/socs/esp32)”.
 
