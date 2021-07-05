@@ -18,7 +18,7 @@ Finally Pablo Garrido (eProsima) performed a live demonstration on “using micr
 <img alt="ROSCon France 2021" src="/img/posts/rosconfrance2021.jpeg" width="80%"/>
 Source: ROSCon France 2021
 
-The presentation was very well received. For example the ROSCon organizar Olivier Strasse [said](https://discourse.ros.org/t/roscon-fr-2021-report/21104): "This chat was actually extremely lively and contribute to further improving participation by French roboticists in global open source robotics activities. All the participants of ROSCon Fr 2021 benefited from their participation."
+The presentation was very well received. For example the ROSCon organizer Olivier Strasse [said](https://discourse.ros.org/t/roscon-fr-2021-report/21104): "This chat was actually extremely lively and contribute to further improving participation by French roboticists in global open source robotics activities. All the participants of ROSCon Fr 2021 benefited from their participation."
 
 At the end, they had a public chat with numerous questions by the French robotics community.
 We are happy about having been participants in the ROSCon France 2021 and therefore  contribute to further dissemination of the micro-ROS framework as well as to improve participation by French roboticists in global open source robotics activities.
