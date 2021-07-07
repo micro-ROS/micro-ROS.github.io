@@ -85,7 +85,7 @@ Micro-ROS offers **seven key features** that make it ready for use in your micro
  <p class="feature_title">&#10004; Permissive license<span class="three_dots"> (...)</span></p>
  <div class="feature_description">
   <p>Micro-ROS comes under the same permissive license as ROS 2, which is Apache License 2.0. This applies to the micro-ROS client library, the middleware layer, and tools.</p>
-  <p>When creating a project with an underlying RTOS, please take into account the license(s) of the RTOS project or vendor.</p>
+  <p>When creating a project with an underlying RTOS, please take into account the license(s) of the RTOS project or vendor as further explained on the <a href="../license/">license</a> page.</p>
  </div>
 </div>
 

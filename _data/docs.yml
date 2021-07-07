@@ -4,6 +4,7 @@
    - overview/hardware
    - overview/rtos
    - overview/ext_tools
+   - overview/license
    - overview/comparison
    - overview/ROS_2_feature_comparison
    - overview/docker_ci_status
