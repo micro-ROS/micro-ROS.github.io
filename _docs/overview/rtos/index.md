@@ -69,7 +69,7 @@ FreeRTOS is distributed under the MIT license. It is known particularly for its 
             <li><a href="https://www.freertos.org/a00104.html">Download</a></li>
             <li><a href="https://www.freertos.org/Documentation/RTOS_book.html">Documentation</a></li>
         </ul>
-        <b>FreeRTOS & micro-ROS:</b>
+        <b>FreeRTOS &amp; micro-ROS:</b>
         <ul>
             <li><a href="https://www.freertos.org/2020/09/micro-ros-on-freertos.html">micro-ROS on FreeRTOS</a></li>
             <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/freertos/">First micro-ROS Application on FreeRTOS</a></li>
@@ -106,7 +106,7 @@ Zephyr is a fairly new open-source RTOS, developed in a Linux Foundation Project
             <li><a href="https://github.com/zephyrproject-rtos/zephyr">Download</a></li>
             <li><a href="https://docs.zephyrproject.org/latest/">Documentation</a></li>
         </ul>
-        <b>Zephyr & micro-ROS:</b>
+        <b>Zephyr &amp; micro-ROS:</b>
         <ul>
             <li><a href="https://www.zephyrproject.org/micro-ros-a-member-of-the-zephyr-project-and-integrated-into-the-zephyr-build-system-as-a-module/">micro-ROS on Zephyr</a></li>
             <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/zephyr/">First micro-ROS Application on Zephyr</a></li>
@@ -140,7 +140,7 @@ NuttX emphasizes its compliance with standards - including POSIX - and small foo
             <li><a href="https://nuttx.apache.org/download/">Download</a></li>
             <li><a href="https://cwiki.apache.org/confluence/display/NUTTX/Nuttx">Documentation</a></li>
         </ul>
-        <b>NuttX & micro-ROS:</b>
+        <b>NuttX &amp; micro-ROS:</b>
         <ul>
             <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/nuttx/">First micro-ROS Application on NuttX</a></li>
         </ul>
@@ -182,6 +182,42 @@ The open-source Arduino Software (IDE) is a library making it easy to program an
 
   <div class="rtositem_image">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/720px-Arduino_Logo.svg.png" width="500">
+  </div>
+</div>
+
+## Experimentally supported Real-Time Operating Systems
+
+### **Arm® Mbed™ OS**
+
+Mbed OS is an open-source RTOS intended for IoT applications with 32-bit ARM Cortex-M microcontrollers.
+
+<div class="rtoscontainer">
+  <div class="rtositem_description">
+    <div>
+        <b>Key features:</b>
+        <ul>
+            <li>Small footprint</li>
+            <li>Many POSIX-compatible modules</li>
+            <li>Preemptive scheduling</li>
+            <li>Support of Arm Compiler and GNU Arm Embedded</li>
+            <li>Online compiler at <a href="https://os.mbed.com/compiler/">https://os.mbed.com/compiler/</a></li>
+        </ul>
+        <b>Mbed OS resources:</b>
+        <ul>
+            <li><a href="https://os.mbed.com/">Official Mbed website</a></li>
+            <li><a href="https://github.com/ARMmbed/mbed-os">Source code</a></li>
+            <li><a href="https://os.mbed.com/docs/">Documentation</a></li>
+        </ul>
+        <b>Mbed OS &amp; micro-ROS:</b>
+        <ul>
+            <li><a href="https://github.com/micro-ROS/micro_ros_mbed">micro-ROS example for Mbed</a></li>
+        </ul>
+    </div>
+  </div>
+
+  <div class="rtositem_image">
+    <!-- Use of logo requires explicit permission, cf. https://www.arm.com/company/policies/trademarks/arm-trademark-list/mbed-trademark.
+         This should be considered if the support is no longer experimental only. -->
   </div>
 </div>
 
