@@ -49,6 +49,7 @@
   docs:
    - tutorials/core/overview
    - tutorials/core/first_application_linux
+   - tutorials/core/first_application_linux/micro-ROS_with_teensy_arduino
    - tutorials/core/first_application_rtos
    - tutorials/core/programming_rcl_rclc
    - tutorials/core/zephyr_emulator
