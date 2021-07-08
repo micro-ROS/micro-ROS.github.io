@@ -194,4 +194,4 @@ If we listen to the topic we will see something like this:
 
 ![Illustration of ros2 topic showing data](topic_show.png)
 
-The integer msg data increasing in each cycle.
+The msg data increasing in each cycle.
