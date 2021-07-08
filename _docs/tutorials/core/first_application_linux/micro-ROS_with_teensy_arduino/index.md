@@ -5,121 +5,193 @@ permalink: /docs/tutorials/core/first_application_linux/micro-ROS_with_teensy_ar
 
 ## Target platform
 
-In this tutorial, you’ll learn the use of micro-ROS with Linux by testing a Ping Pong application.
-In the follow-up tutorial [*First micro-ROS application on an RTOS*](/docs/tutorials/core/first_application_rtos/),
-you'll learn how to build and bring this application on a microcontroller running the RTOS NuttX, FreeRTOS, or Zephyr.
-Finally, in the tutorial [*Zephyr Emulator*](/docs/tutorials/core/zephyr_emulator/) you'll learn how to test
-a micro-ROS application on a Zephyr emulator.
+In this tutorial you will learn how to connect Teensy with micro-ROS and ROS2. 
+You will also learn how to install micro-ROS agent in linux systems to communicate with 
+Teensy based arduino board using Arduino IDE. This tutorial will also cover a 
+simple publisher topic published from teensy and subscribed using ROS2 interface.
 
-{% include first_application_common/build_system.md %}
+For this tutorial, we will need a host computer with either having a native 
+Ubuntu 20.04 installed ROS2 foxy or using a docker version of the freshly build ROS2 foxy 
+from this link. Now let us also look at the connection diagram which will help us 
+understand the full picture better.
+
+![Illustration of Connection diagram of Teensy 3.2 with Host PC running ros2 and micro-ros-agent](Teensy_micro_ros_connection.png)
+
+## Installing ROS2 and micro-ROS in the host computer: 
+Note: These first few steps are the same as in the micro-ROS installation page as in this link
+
+To start with, install ROS 2 Foxy FitzRoy on your Ubuntu 20.04 LTS computer. 
+You can do this from binaries, via Ubuntu packages, which are detailed 
+[*here*](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Binary.html).
+
+Note: Otherwise it is possible to use fresh docker build of ROS2 foxy installation by running these commands:
 
 ```bash
-# Create firmware step
-ros2 run micro_ros_setup create_firmware_ws.sh host
+ sudo apt install docker.io
+ sudo docker run -it --net=host -v /dev:/dev --privileged ros:foxy
+```
+After running the docker, follow the command to verify if the ROS2 is running and shows the topic list:
+
+![Illustration of topics](rostopic_show.png)
+
+Docker builds ROS2 foxy version can also be used where it is not possible to install 
+native ROS2 foxy from binaries, e,g. Jetson Nano running jetpack 4.5 with Ubuntu 18.04.
+
+Now Once you have a ROS 2 installation in the computer or docker, follow these steps to install the micro-ROS build system:
+
+```bash
+#Source the ROS 2 installation
+#source /opt/ros/foxy/setup.bash
+source /opt/ros/$ROS_DISTRO/setup.bash
+# Create a workspace and download the micro-ROS tools
+mkdir microros_ws
+cd microros_ws
+git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro_ros_setup.git src/micro_ros_setup
+# Update dependencies using rosdep
+sudo apt update && rosdep update
+rosdep install --from-path src --ignore-src -y
+# Install pip
+sudo apt-get install python3-pip
+
+# Build micro-ROS tools and source them
+colcon build
+source install/local_setup.bash
 ```
 
-Once the command is executed, a folder named `firmware` must be present in your workspace.
+Once the micro-ROS installation is complete, we can then proceed to install the micro-ros-agent 
+in the host computer or the docker version. Since we are going to use Teensy 3.2 and precompiled 
+micro-ROS client library for our demonstration we will not be going to build the firmware and 
+thus we will skip the firmware build steps from the same [*page*](https://micro.ros.org//docs/tutorials/core/first_application_linux/#:~:text=Installing%20ROS%202%20and%20the%20micro-ROS%20build%20system).
 
-This step is in charge, among other things, of downloading a set of micro-ROS apps for Linux, that are located at
-`src/uros/micro-ROS-demos/rcl`.
-Each app is represented by a folder containing the following files:
+To install the micro-ros-agent follow the steps below:
 
-* `main.c`: This file contains the logic of the application.
-* `CMakeLists.txt`: This is the CMake file containing the script to compile the application.
-
-For the user to create its custom application, a folder `<my_app>` will need to be registered in this location,
-containing the two files just described.
-Also, any such new application folder needs to be registered in
-`src/uros/micro-ROS-demos/rcl/CMakeLists.txt` by adding the following line:
-
+```bash
+# Download micro-ROS-Agent packages
+ros2 run micro_ros_setup create_agent_ws.sh
 ```
-export_executable(<my_app>)
-```
-
-In this tutorial, we will focus on the out-of-the-box `ping_pong` application located at
-`src/uros/micro-ROS-demos/rcl/ping_pong`.
-You can check the complete content of this app
-[here](https://github.com/micro-ROS/micro-ROS-demos/tree/foxy/rclc/ping_pong).
-
-{% include first_application_common/pingpong_logic.md %}
-
-The contents of the host app specific files can be found here:
-[main.c](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/ping_pong/main.c) and
-[CMakeLists.txt](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/ping_pong/CMakeLists.txt).
-A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
-
-## Building the firmware
-
-Once the app has been created, the build step is in order.
-Notice that, with respect to the four-steps workflow delined above, we would expect a configuration step to happen
-before building the app. However, given that we are compiling micro-ROS in the host machine rather than in a board,
-the cross-compilation implemented by the configuration step is not required in this case.
-We can therefore proceed to build the firmware and source the local installation:
+We will now build the agent packages and, when this is done, source the installation:
 
 ```bash
 # Build step
-ros2 run micro_ros_setup build_firmware.sh
+ros2 run micro_ros_setup build_agent.sh
 source install/local_setup.bash
 ```
-{% include first_application_common/agent_creation.md %}
-
-## Running the micro-ROS app
-
-At this point, you have both the client and the agent correctly installed in your host machine.
-
-To give micro-ROS access to the ROS 2 dataspace, run the agent:
+Now, let's give a dry run by running the micro-ros-agent by following the command:
 
 ```bash
-# Run a micro-ROS agent
-ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
+ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyACM0
 ```
+The result should show something like this:
 
-And then, in another command line, run the micro-ROS node (remember sourcing the ROS 2 and micro-ROS installations, and setting the RMW Micro XRCE-DDS implementation):
+![Illustration of agent running](micro_ros_agent_start.png)
+
+This means the installation of the micro-ros-agent is successful. 
+Now we can proceed to the next step which is the installation of Arduino IDE 
+and Teensyduino and patching the Arduino-based Teensy board for using the 
+pre-compiled libraries as described [*here*](https://github.com/micro-ROS/micro_ros_arduino#patch-teensyduino).
+
+## Installation of Arduino IDE, Teensyduino and setting up the patch for using the Teensy with micro-ROS and ROS2 foxy:
+
+Please follow the link for downloading the latest version of 
+[*Arduino 1.8.15*](https://github.com/arduino/Arduino/releases/download/1.8.15/arduino-1.8.15.tar.xz) 
+and install by following this [*link for the Linux version*](https://www.arduino.cc/en/Guide/Linux) here.
+
+After installing Arduino IDE download Teensyduino from this [*link here*](https://www.pjrc.com/teensy/td_154/TeensyduinoInstall.linux64) 
+and follow the instruction as shown [*on this page*](https://www.pjrc.com/teensy/td_154/TeensyduinoInstall.linux64). 
+To summarize the instructions which are as follow:
+
+```
+1. Download the Linux udev rules and copy the file to /etc/udev/rules.d.
+https://www.pjrc.com/teensy/00-teensy.rules
+
+2. type the following command in a terminal 
+$ sudo cp 00-teensy.rules /etc/udev/rules.d/
+
+3. Download and extract one of Arduino's Linux packages.
+Note: Arduino from Linux distro packages is not supported.
+
+4. Download the corresponding Teensyduino installer.
+
+5. Run the installer in a termincal by adding execute permission and then execute it.
+$ chmod 755 TeensyduinoInstall.linux64
+$ ./TeensyduinoInstall.linux64
+```
+Now let's set up the patch for the teensy Arduino to use the pre-compiled micro-ros-client 
+libraries, Open a terminal window and follow the commands below: For more information follow 
+the GitHub link from [*micro-ros-arduino*](https://github.com/micro-ROS/micro_ros_arduino/tree/foxy)
 
 ```bash
-source /opt/ros/$ROS_DISTRO/setup.bash
-source install/local_setup.bash
+# for me it was $ export ARDUINO_PATH=/home/manzur/arduino-1.8.13/
+export ARDUINO_PATH=[Your Arduino + Teensiduino path]
 
-# Use RMW Micro XRCE-DDS implementation
-export RMW_IMPLEMENTATION=rmw_microxrcedds
+cd $ARDUINO_PATH/hardware/teensy/avr/
 
-# Run a micro-ROS node
-ros2 run micro_ros_demos_rclc ping_pong
+curl https://raw.githubusercontent.com/micro-ROS/micro_ros_arduino/foxy/extras/patching_boards/platform_teensy.txt > platform.txt
 ```
 
-{% include first_application_common/test_app_host.md %}
+Once the above instruction is complete, we will now be able to use the Teensy 3.2 and 
+program it with the pre-compiled micro-ros-client libraries using Arduino IDE.
 
-## Multiple Ping Pong nodes
+## Program the Teensy: 
 
-One of the advantages of having a Linux micro-ROS app is that you don't need to buy a bunch of hardware in order to
-test some multi-node micro-ROS apps.
-So, with the same micro-ROS agent of the last section, let's open four different command lines and run the following on
-each:
+Now that we have patched the teensy Arduino IDE, we will be able to use the pre-compiled library by following these instructions:
+
+1. Go to [*link to release section*](https://github.com/micro-ROS/micro_ros_arduino/releases) 
+and download the last release of micro-ROS library for Arduino. 
+Place the file inside ```/home/$USERNAME/Arduino/libraries/ ``` as shown below.
+
+![Illustration of patch location](patch_location.png)
+
+Once this process is complete, now let us look at the example folder below:
+
+![Illustration of example location](arduino_example_location.png)
+
+For this tutorial and test, we will be using mico-ros-publisher example as shown above since this 
+program will only publish integer data which will increase in every cycle. Once we selected the 
+example program, we will then upload the code in the teensy 3.2 connected to our host computer 
+which should show the result as follow.
+
+![Illustration of upload completion](upload_completion.png)
+
+## Running micro-ros-agent in ROS2 Foxy
+
+Now, let's disconnect the teensy for now from the host computer. We will then open a terminal 
+or in the docker run the agent program once again as shown at the end of 
+step 2. Make sure to source the ROS path as below:
 
 ```bash
-cd microros_ws
-
-source /opt/ros/$ROS_DISTRO/setup.bash
-source install/local_setup.bash
-
-ros2 run micro_ros_demos_rclc ping_pong
+#source /opt/ros/foxy/setup.bash
+$ source /opt/ros/$ROS_DISTRO/setup.bash
 ```
 
-As soon as all micro-ROS nodes are up and connected to the micro-ROS agent you will see them interacting:
+and then run the agent program:
 
+```bash
+ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyACM0
 ```
-user@user:~$ ros2 run micro_ros_demos_rclc ping_pong
-Ping send seq 1711620172_1742614911                         <---- This micro-ROS node sends a ping with ping ID "1711620172" and node ID "1742614911"
-Pong for seq 1711620172_1742614911 (1)                      <---- The first mate pongs my ping
-Pong for seq 1711620172_1742614911 (2)                      <---- The second mate pongs my ping
-Pong for seq 1711620172_1742614911 (3)                      <---- The third mate pongs my ping
-Ping received with seq 1845948271_546591567. Answering.     <---- A ping is received from a mate identified as "546591567", let's pong it.
-Ping received with seq 232977719_1681483056. Answering.     <---- A ping is received from a mate identified as "1681483056", let's pong it.
-Ping received with seq 1134264528_1107823050. Answering.    <---- A ping is received from a mate identified as "1107823050", let's pong it.
-Ping send seq 324239260_1742614911
-Pong for seq 324239260_1742614911 (1)
-Pong for seq 324239260_1742614911 (2)
-Pong for seq 324239260_1742614911 (3)
-Ping received with seq 1435780593_546591567. Answering.
-Ping received with seq 2034268578_1681483056. Answering.
+Once the program is running it will show this message:
+
+![Illustration of agent restart completion](agent_restart.png)
+
+We will then reconnect the Teensy with the host computer and then we will see 
+that the connection is complete and it shows like this:
+
+![Illustration of agent connected](agent_connected.png)
+
+This means the connection is complete with teensy containing micro-ros-client and micro-ros-agent in the host computer.
+Now for the big moment and test the ROS topic published from the teensy. 
+This time we will open another terminal or docker window and type as follow:
+
+```bash
+ros2 topic list
 ```
+Which should list as shown below:
+
+![Illustration of ros2 topic connected](ros2_topic_all.png)
+
+See, we have now ```/micro_ros_arduino_node_publisher``` topic publishing in the host computer. 
+If we listen to the topic we will see something like this:
+
+![Illustration of ros2 topic showing data](topic_show.png)
+
+The integer msg data increasing in each cycle.
