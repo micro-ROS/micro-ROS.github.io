@@ -10,7 +10,7 @@ You will also learn how to install micro-ROS agent in linux systems to communica
 Teensy based arduino board using Arduino IDE. This tutorial will also cover a 
 simple publisher topic published from teensy and subscribed using ROS2 interface.
 
-For this tutorial, we will need a host computer with either having a native 
+To start with, we will need a host computer with either having a native 
 Ubuntu 20.04 installed ROS2 foxy or using a docker version of the freshly build ROS2 foxy 
 from this link. Now let us also look at the connection diagram which will help us 
 understand the full picture better.
@@ -20,7 +20,7 @@ understand the full picture better.
 ## Installing ROS2 and micro-ROS in the host computer: 
 Note: These first few steps are the same as in the micro-ROS installation page as in this link
 
-To start with, install ROS 2 Foxy FitzRoy on your Ubuntu 20.04 LTS computer. 
+For this tutorial you have to install ROS 2 Foxy FitzRoy on your Ubuntu 20.04 LTS computer. 
 You can do this from binaries, via Ubuntu packages, which are detailed 
 [*here*](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Binary.html).
 
