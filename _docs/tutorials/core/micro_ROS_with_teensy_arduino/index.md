@@ -1,6 +1,6 @@
 ---
 title: Micro-ROS with Teensy and Arduino IDE
-permalink: /docs/tutorials/core/first_application_linux/micro-ROS_with_teensy_arduini/
+permalink: /docs/tutorials/core/micro_ROS_with_teensy_arduino/
 ---
 
 ## Target platform
