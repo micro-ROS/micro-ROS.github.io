@@ -1,30 +1,30 @@
 ---
-title: Micro-ROS with Teensy and Arduino IDE
-permalink: /docs/tutorials/core/micro_ROS_with_teensy_arduino/
+title: Teensy with Arduino
+permalink: /docs/tutorials/core/Teensy_with_Arduino/
 ---
 
 ## Target platform
 
-In this tutorial you will learn how to connect Teensy with micro-ROS and ROS2. 
-You will also learn how to install micro-ROS agent in linux systems to communicate with 
-Teensy based arduino board using Arduino IDE. This tutorial will also cover a 
-simple publisher topic published from teensy and subscribed using ROS2 interface.
+In this tutorial you will learn how to connect Teensy with micro-ROS and ROS 2. 
+You will also learn how to install micro-ROS agent in Linux systems to communicate with 
+Teensy-based Arduino board using Arduino IDE. This tutorial will also cover a 
+simple publisher topic published from teensy and subscribed using ROS 2 interface.
 
 To start with, we will need a host computer with either having a native 
-Ubuntu 20.04 installed ROS2 foxy or using a docker version of the freshly build ROS2 foxy 
+Ubuntu 20.04 installed ROS 2 Foxy or using a docker version of the freshly build ROS 2 Foxy 
 from this link. Now let us also look at the connection diagram which will help us 
 understand the full picture better.
 
 ![Illustration of Connection diagram of Teensy 3.2 with Host PC running ros2 and micro-ros-agent](Teensy_micro_ros_connection.png)
 
-## Installing ROS2 and micro-ROS in the host computer: 
+## Installing ROS 2 and micro-ROS in the host computer: 
 Note: These first few steps are the same as in the micro-ROS installation page as in this link
 
-For this tutorial you have to install ROS 2 Foxy FitzRoy on your Ubuntu 20.04 LTS computer. 
+For this tutorial you have to install ROS 2 Foxy Fitzroy on your Ubuntu 20.04 LTS computer. 
 You can do this from binaries, via Ubuntu packages, which are detailed 
 [*here*](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Binary.html).
 
-Note: Otherwise it is possible to use fresh docker build of ROS2 foxy installation by running these commands:
+Note: Otherwise it is possible to use fresh docker build of ROS 2 Foxy installation by running these commands:
 
 ```bash
  sudo apt install docker.io
@@ -34,15 +34,14 @@ After running the docker, follow the command to verify if the ROS2 is running an
 
 ![Illustration of topics](rostopic_show.png)
 
-Docker builds ROS2 foxy version can also be used where it is not possible to install 
-native ROS2 foxy from binaries, e,g. Jetson Nano running jetpack 4.5 with Ubuntu 18.04.
+Docker builds ROS 2 Foxy version can also be used where it is not possible to install 
+native ROS 2 Foxy from binaries, e.g., Jetson Nano running Jetpack 4.5 with Ubuntu 18.04.
 
 Now Once you have a ROS 2 installation in the computer or docker, follow these steps to install the micro-ROS build system:
 
 ```bash
-#Source the ROS 2 installation
-#source /opt/ros/foxy/setup.bash
-source /opt/ros/$ROS_DISTRO/setup.bash
+# Source the ROS 2 installation
+source /opt/ros/foxy/setup.bash
 # Create a workspace and download the micro-ROS tools
 mkdir microros_ws
 cd microros_ws
@@ -58,15 +57,15 @@ colcon build
 source install/local_setup.bash
 ```
 
-Once the micro-ROS installation is complete, we can then proceed to install the micro-ros-agent 
+Once the micro-ROS installation is complete, we can then proceed to install the micro-ROS agent 
 in the host computer or the docker version. Since we are going to use Teensy 3.2 and precompiled 
 micro-ROS client library for our demonstration we will not be going to build the firmware and 
-thus we will skip the firmware build steps from the same [*page*](https://micro.ros.org//docs/tutorials/core/first_application_linux/#:~:text=Installing%20ROS%202%20and%20the%20micro-ROS%20build%20system).
+thus we will skip the firmware build steps from the [first micro-ROS Application on an RTOS tutorials](../first_application_rtos/).
 
-To install the micro-ros-agent follow the steps below:
+To install the micro-ros Agent follow the steps below:
 
 ```bash
-# Download micro-ROS-Agent packages
+# Download micro-ROS agent packages
 ros2 run micro_ros_setup create_agent_ws.sh
 ```
 We will now build the agent packages and, when this is done, source the installation:
@@ -76,7 +75,7 @@ We will now build the agent packages and, when this is done, source the installa
 ros2 run micro_ros_setup build_agent.sh
 source install/local_setup.bash
 ```
-Now, let's give a dry run by running the micro-ros-agent by following the command:
+Now, let's give a dry run by running the micro-ROS agent by following the command:
 
 ```bash
 ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyACM0
@@ -85,10 +84,10 @@ The result should show something like this:
 
 ![Illustration of agent running](micro_ros_agent_start.png)
 
-This means the installation of the micro-ros-agent is successful. 
+This means the installation of the agent is successful. 
 Now we can proceed to the next step which is the installation of Arduino IDE 
 and Teensyduino and patching the Arduino-based Teensy board for using the 
-pre-compiled libraries as described [*here*](https://github.com/micro-ROS/micro_ros_arduino#patch-teensyduino).
+pre-compiled libraries as described [*in the micro_ros_arduino repository*](https://github.com/micro-ROS/micro_ros_arduino#patch-teensyduino).
 
 ## Installation of Arduino IDE, Teensyduino and setting up the patch for using the Teensy with micro-ROS and ROS2 foxy:
 
@@ -118,7 +117,7 @@ $ ./TeensyduinoInstall.linux64
 ```
 Now let's set up the patch for the teensy Arduino to use the pre-compiled micro-ros-client 
 libraries, Open a terminal window and follow the commands below: For more information follow 
-the GitHub link from [*micro-ros-arduino*](https://github.com/micro-ROS/micro_ros_arduino/tree/foxy)
+the GitHub link from [*micro_ros_arduino*](https://github.com/micro-ROS/micro_ros_arduino/tree/foxy)
 
 ```bash
 # for me it was $ export ARDUINO_PATH=/home/manzur/arduino-1.8.13/
@@ -132,13 +131,13 @@ curl https://raw.githubusercontent.com/micro-ROS/micro_ros_arduino/foxy/extras/p
 Once the above instruction is complete, we will now be able to use the Teensy 3.2 and 
 program it with the pre-compiled micro-ros-client libraries using Arduino IDE.
 
-## Program the Teensy: 
+## Program the Teensy
 
 Now that we have patched the teensy Arduino IDE, we will be able to use the pre-compiled library by following these instructions:
 
 1. Go to [*link to release section*](https://github.com/micro-ROS/micro_ros_arduino/releases) 
 and download the last release of micro-ROS library for Arduino. 
-Place the file inside ```/home/$USERNAME/Arduino/libraries/ ``` as shown below.
+Place the file inside `/home/$USERNAME/Arduino/libraries/` as shown below.
 
 ![Illustration of patch location](patch_location.png)
 
@@ -148,20 +147,19 @@ Once this process is complete, now let us look at the example folder below:
 
 For this tutorial and test, we will be using mico-ros-publisher example as shown above since this 
 program will only publish integer data which will increase in every cycle. Once we selected the 
-example program, we will then upload the code in the teensy 3.2 connected to our host computer 
+example program, we will then upload the code in the Teensy 3.2 connected to our host computer 
 which should show the result as follow.
 
 ![Illustration of upload completion](upload_completion.png)
 
-## Running micro-ros-agent in ROS2 Foxy
+## Running micro-ROS agent in ROS 2 Foxy
 
-Now, let's disconnect the teensy for now from the host computer. We will then open a terminal 
+Now, let's disconnect the Teensy for now from the host computer. We will then open a terminal 
 or in the docker run the agent program once again as shown at the end of 
 step 2. Make sure to source the ROS path as below:
 
 ```bash
-#source /opt/ros/foxy/setup.bash
-$ source /opt/ros/$ROS_DISTRO/setup.bash
+source /opt/ros/foxy/setup.bash
 ```
 
 and then run the agent program:
@@ -189,7 +187,7 @@ Which should list as shown below:
 
 ![Illustration of ros2 topic connected](ros2_topic_all.png)
 
-See, we have now ```/micro_ros_arduino_node_publisher``` topic publishing in the host computer. 
+See, we have now `/micro_ros_arduino_node_publisher` topic publishing in the host computer. 
 If we listen to the topic we will see something like this:
 
 ![Illustration of ros2 topic showing data](topic_show.png)
