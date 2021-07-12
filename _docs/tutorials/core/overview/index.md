@@ -26,6 +26,6 @@ If you are new to micro-ROS, we strongly suggest that you take the tutorials in 
 
   In this tutorial, you'll learn the use of micro-ROS with Zephyr emulator by testing a Ping Pong application.
   
-* [**Teensy with Arduino**](../Teensy_with_Arduino/)
+* [**Teensy with Arduino**](../teensy_with_arduino/)
      
   In this tutorial you will learn how to connect Teensy with micro-ROS and ROS2. You will also learn how to install micro-ROS agent in linux systems to communicate with Teensy based arduino board using Arduino IDE. This tutorial will also cover a simple publisher topic published from teensy and subscribed using ROS2 interface. 

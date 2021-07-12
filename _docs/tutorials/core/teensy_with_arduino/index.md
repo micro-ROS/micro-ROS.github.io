@@ -1,6 +1,6 @@
 ---
 title: Teensy with Arduino
-permalink: /docs/tutorials/core/Teensy_with_Arduino/
+permalink: /docs/tutorials/core/teensy_with_arduino/
 ---
 
 ## Target platform
