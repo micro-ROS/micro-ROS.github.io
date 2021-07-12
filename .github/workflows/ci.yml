@@ -34,7 +34,6 @@ jobs:
       run: |
         bundle config path vendor/bundle
         bundle install
-        bundle update github-pages
 
     - name: Test web site changes
       run: ./scripts/cibuild
