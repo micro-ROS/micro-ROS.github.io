@@ -5,6 +5,7 @@
 |                | Name           |
 | -------------- | -------------- |
 | MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_init](#function-micro_ros_string_utilities_init)**(const char * data)<br>Create a rosidl_runtime_c__String from a char pointer.  |
+| MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_init_with_size](#function-micro_ros_string_utilities_init_with_size)**(const size_t size)<br>Create a rosidl_runtime_c__String from a size.  |
 | MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_set](#function-micro_ros_string_utilities_set)**(rosidl_runtime_c__String str, const char * data)<br>Create a rosidl_runtime_c__String from a char pointer.  |
 | const MICRO_ROS_UTILITIES_PUBLIC char * | **[micro_ros_string_utilities_get_c_str](#function-micro_ros_string_utilities_get_c_str)**(rosidl_runtime_c__String str)<br>Returns the char pointer to the rosidl_runtime_c__String data.  |
 | rosidl_runtime_c__String | **[micro_ros_string_utilities_append](#function-micro_ros_string_utilities_append)**(rosidl_runtime_c__String str, const char * data)<br>Appends a char pointer to the end of a rosidl_runtime_c__String.  |
@@ -30,6 +31,36 @@ Create a rosidl_runtime_c__String from a char pointer.
 
 
 **Return**: `rosidl_runtime_c__String` string containing data 
+
+
+
+------------------
+
+
+| Attribute  | Adherence   |
+|  -------- | -------- |
+| Allocates Memory  | Yes   |
+| Thread-Safe  | No   |
+| Uses Atomics  | No   |
+| Lock-Free  | Yes   |
+
+
+### function micro_ros_string_utilities_init_with_size
+
+```cpp
+MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String micro_ros_string_utilities_init_with_size(
+    const size_t size
+)
+```
+
+Create a rosidl_runtime_c__String from a size. 
+
+**Parameters**: 
+
+  * **size** size of the required string 
+
+
+**Return**: `rosidl_runtime_c__String` string of size size 
 
 
 
