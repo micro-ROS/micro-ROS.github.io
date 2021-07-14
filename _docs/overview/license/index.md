@@ -20,7 +20,7 @@ Things get particularly interesting at the RTOS level: The micro-ROS build tool 
 We are aware of the following important license specifics in the RTOS supported by micro-ROS:
 
 * NuttX license clearing: With the incubation at The Apache Software Foundation in December 2019, there has been significant license cleanup work. The [changelog for version 10.1](https://cwiki.apache.org/confluence/display/NUTTX/NuttX+10.1) states that thousands of NuttX files have been converted (from BSD) to Apache 2.0 and that the listing of 3rd party licenses used in NuttX has been improved.
-* NuttX and uClib++: Before NuttX version 10, micro-ROS on NuttX required the use of the LGPL-licensed uClib++ library.
+* NuttX and uClib++: Before NuttX version 10, micro-ROS on NuttX required the use of the LGPL-licensed uClibc++ library.
 * ST-specific extensions for FreeRTOS: The [micro-ROS/freertos_apps](https://github.com/micro-ROS/freertos_apps/) repository contains extensions for various microcontroller families. Some of the header files for microcontrollers by STMicroelectronics are provided under ST's [Ultimate Liberty license](https://www.st.com/SLA0044), which "must be used and execute solely and exclusively on or in combination with a microcontroller or microprocessor device manufactured by or for STMicroelectronics."
 * Third-party licenses in Arm® Mbed™ OS: The licenses of the third-party components are listed in the [LICENSE.md file](https://github.com/ARMmbed/mbed-os/blob/master/LICENSE.md) in the root of the repository.
 
