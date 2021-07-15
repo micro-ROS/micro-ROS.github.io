@@ -3,6 +3,8 @@ title: Creating custom micro-ROS transports
 permalink: /docs/tutorials/advanced/create_custom_transports/
 ---
 
+<img src="https://img.shields.io/badge/Applies_to-all_current_distros-green" style="display:inline"/>
+
 This tutorial aims at providing step-by-step guidance for those users interested in creating micro-ROS custom transports, instead of using the ones provided by default in the micro-ROS tools set.
 
 This tutorial starts from a previously created micro-ROS environment. Check the first steps of [**First micro-ROS application on an RTOS**](../../core/first_application_rtos/) for instructions on how to create a micro-ROS environment for embedded platforms.

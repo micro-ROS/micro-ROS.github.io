@@ -6,6 +6,8 @@ redirect_from:
   - /tracing/
 ---
 
+<img src="https://img.shields.io/badge/Applies_to-all_current_distros-green" style="display:inline"/>
+
 - [Introduction](#introduction)
 - [Setup](#setup)
 - [Simple tracing example](#simple-tracing-example)

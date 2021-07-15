@@ -3,7 +3,7 @@ title: Zephyr Emulator
 permalink: /docs/tutorials/core/zephyr_emulator/
 ---
 
-## Target platform
+<img src="https://img.shields.io/badge/Tested_on-Foxy-green" style="display:inline"/>
 
 In this tutorial, you'll learn the use of micro-ROS with a **[Zephyr RTOS](https://www.zephyrproject.org/)**
 emulator (also known as [Native POSIX](https://docs.zephyrproject.org/latest/boards/posix/native_posix/doc/index.html))

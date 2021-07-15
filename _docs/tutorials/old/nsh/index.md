@@ -3,7 +3,7 @@ title: NSH console over UART & USB
 permalink: /docs/tutorials/old/nsh/
 ---
 
-**Disclaimer: this tutorial is currently unmantained**
+<img src="https://img.shields.io/badge/Disclaimer-This_tutorial_is_unmaintained-red" style="display:inline"/>
 
 | RTOS  | Board compatible  |
 | :---: | :---------------: |

@@ -4,7 +4,7 @@ permalink: /docs/tutorials/old/debugging/
 author: Ingo Lütkebohle (merged by Tomasz Kołcon)
 ---
 
-**Disclaimer: this tutorial is currently unmantained**
+<img src="https://img.shields.io/badge/Disclaimer-This_tutorial_is_unmaintained-red" style="display:inline"/>
 
 This tutorial consists of two parts: First, debugging a NuttX target with GDB and OpenOCD. This part covers tool installation and debugging via command line. Second, debugging with Visual Studio Code, i.e. using a modern IDE.
 

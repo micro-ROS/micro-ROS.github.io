@@ -3,6 +3,8 @@ title: Middleware Configuration
 permalink: /docs/tutorials/advanced/microxrcedds_rmw_configuration/
 ---
 
+<img src="https://img.shields.io/badge/Applies_to-all_current_distros-green" style="display:inline"/>
+
 micro-ROS targets microcontroller, devices with low memory resources.
 With that in mind, micro-ROS try to address the memory management issue prioritizing the use of static memory instead of dynamic memory and optimizing the memory footprint of the applications.
 This, of course, has a cost that the users must agree to pay, a precompile tunning.

@@ -5,7 +5,7 @@ redirect_from:
   - /docs/tutorials/advanced/nuttx/nuttx_getting_started/
 ---
 
-## Target platform
+<img src="https://img.shields.io/badge/Tested_on-Foxy-green" style="display:inline"/>
 
 In this tutorial, you'll learn the use of micro-ROS with NuttX by testing a Ping Pong application.
 {% include first_application_common/target_hardware.md %}
