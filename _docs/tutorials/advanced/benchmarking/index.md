@@ -6,6 +6,8 @@ redirect_from:
   - /benchmarking/
 ---
 
+<img src="https://img.shields.io/badge/Applies_to-all_current_distros-green" style="display:inline"/>
+
 - [Benchmarking an applicastion with the TFA Shadow-builder](#benchmarking-an-applicastion-with-the-tfa-shadow-builder)
 - [Prerequisites](#prerequisites)
 - [TFA Plugin](#tfa-plugin)

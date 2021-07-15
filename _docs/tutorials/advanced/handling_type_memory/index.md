@@ -3,6 +3,8 @@ title: Handling messages memory in micro-ROS
 permalink: /docs/tutorials/advanced/handling_type_memory/
 ---
 
+<img src="https://img.shields.io/badge/Applies_to-all_current_distros-green" style="display:inline"/>
+
 This page aims to explain how to handle messages and types memory in micro-ROS.
 
 First of all, since the micro-ROS user is in an embedded C99 environment, it is important to be aware of what messages and ROS 2 types are being used in order to handle memory correctly.
