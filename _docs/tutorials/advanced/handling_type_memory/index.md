@@ -7,7 +7,13 @@ This page aims to explain how to handle messages and types memory in micro-ROS.
 
 First of all, since the micro-ROS user is in an embedded C99 environment, it is important to be aware of what messages and ROS 2 types are being used in order to handle memory correctly.
 
-The micro-ROS type memory handling has changed in the latest micro-ROS Galactic distribution, two approaches are presented in this tutorial: micro-ROS Foxy and micro-ROS Galactic and beyond.
+The micro-ROS type memory handling has changed in the latest micro-ROS Galactic distribution, two approaches are presented in this tutorial: micro-ROS Foxy and micro-ROS Galactic and beyond:
+
+- [micro-ROS Foxy](#micro-ros-foxy)
+  - [Sequence types in micro-ROS](#sequence-types-in-micro-ros)
+  - [Compound types in micro-ROS](#compound-types-in-micro-ros)
+  - [Sequences of compound types](#sequences-of-compound-types)
+- [micro-ROS Galactic](#micro-ros-galactic)
 
 # micro-ROS Foxy
 
