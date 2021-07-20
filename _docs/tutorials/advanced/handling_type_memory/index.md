@@ -7,6 +7,10 @@ This page aims to explain how to handle messages and types memory in micro-ROS.
 
 First of all, since the micro-ROS user is in an embedded C99 environment, it is important to be aware of what messages and ROS 2 types are being used in order to handle memory correctly.
 
+The micro-ROS type memory handling has changed in the latest micro-ROS Galactic distribution, two approaches are presented in this tutorial: micro-ROS Foxy and micro-ROS Galactic and beyond.
+
+# micro-ROS Foxy
+
 By watching the `.msg` or `.srv` of the types used in a micro-ROS application, you can determine the type of each member. Currently, the following types are supported:
 - Basic type
 - Array type
@@ -58,7 +62,7 @@ In the case of `MyType.msg`, the `values` sequence member is represented in C99 
 
 ```c
 typedef struct rosidl_runtime_c__int32__Sequence
-{ 
+{
   int32_t* data;    /* The pointer to an array of int32 */
   size_t size;      /* The number of valid items in data */
   size_t capacity;  /* The number of allocated items in data */
@@ -94,7 +98,7 @@ for(int32_t i = 0; i < 3; i++){
 
 ## Compound types in micro-ROS
 
-When dealing with a compound type, the user should recursively inspect the types in order to determine how to handle each internal member. 
+When dealing with a compound type, the user should recursively inspect the types in order to determine how to handle each internal member.
 
 For example in the `MyType.msg` example, the `header` member has the following structure:
 
@@ -148,7 +152,7 @@ int8[10] coefficients
 string name
 ```
 
-In this case, the generated typesupport will be: 
+In this case, the generated typesupport will be:
 
 ```c
 typedef struct mypackage__msg__MyComplexType
@@ -190,4 +194,123 @@ for(int32_t i = 0; i < 3; i++){
 
   mymsg.multiheaders.size++;
 }
+```
+
+# micro-ROS Galactic
+
+Due to the inclusion of [`rosidl_typesupport_introspection_c`](https://github.com/ros2/rosidl/tree/master/rosidl_typesupport_introspection_c) in micro-ROS Galactic distribution, an automated memory handling for micro-ROS types is available. The tools related to this feature are available in the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities).
+
+The documentation of the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities) are available [here](https://micro.ros.org/docs/api/utils/).
+
+This package is able to auto-assign memory to a certain message struct using default dynamic memory allocators, for example, using the previouly declated type:
+
+```c
+mypackage__msg__MyType mymsg;
+
+static micro_ros_utilities_memory_conf_t conf = {0};
+
+bool success = micro_ros_utilities_create_message_memory(
+  ROSIDL_GET_MSG_TYPE_SUPPORT(mypackage, msg, MyType),
+  &mymsg,
+  conf
+);
+```
+
+This code will init all the string and sequences recursively in `MyType` type. The size of this memory slots will be by default the ones in [`micro_ros_utilities_memory_conf_default`](https://github.com/micro-ROS/micro_ros_utilities/blob/c829971bd33ac1f14a94aa722476110b4b59eaf9/include/micro_ros_utilities/type_utilities.h#L51), that is:
+- String will have 20 characters
+- ROS 2 types sequences will have a length of 5
+- Basic types sequences will have a length of 5
+
+This defaults can be overriden using:
+
+```c
+mypackage__msg__MyType mymsg;
+
+static micro_ros_utilities_memory_conf_t conf = {0};
+
+conf.max_string_capacity = 50;
+conf.max_ros2_type_sequence_capacity = 5;
+conf.max_basic_type_sequence_capacity = 5;
+
+bool success = micro_ros_utilities_create_message_memory(
+  ROSIDL_GET_MSG_TYPE_SUPPORT(mypackage, msg, MyType),
+  &mymsg,
+  conf
+);
+```
+
+A complex rules approach can be used as in the following example:
+
+```c
+mypackage__msg__MyComplexType mymsg;
+
+static micro_ros_utilities_memory_conf_t conf = {0};
+
+micro_ros_utilities_memory_rule_t rules[] = {
+  {"multiheaders", 4},
+  {"multiheaders.frame_id", 60},
+  {"name", 10}
+};
+conf.rules = rules;
+conf.n_rules = sizeof(rules) / sizeof(rules[0]);
+
+// member values of MyComplexType will have the default max_basic_type_sequence_capacity
+
+bool success = micro_ros_utilities_create_message_memory(
+  ROSIDL_GET_MSG_TYPE_SUPPORT(mypackage, msg, MyComplexType),
+  &mymsg,
+  conf
+);
+```
+
+Is also possible to use a user-provided buffer to allocate memory:
+
+```c
+mypackage__msg__MyComplexType mymsg;
+
+static micro_ros_utilities_memory_conf_t conf = {0};
+
+static uint8_t my_buffer[1000];
+
+bool success = micro_ros_utilities_create_static_message_memory(
+  ROSIDL_GET_MSG_TYPE_SUPPORT(mypackage, msg, MyComplexType),
+  &mymsg,
+  conf,
+  my_buffer,
+  sizeof(my_buffer)
+);
+```
+
+The library provides utilies for calculating the size that both approaches will use with a certain configuration. Notice that this amount of memory is only the dynamic usage or the usage in the user provided buffer, `sizeof(mypackage__msg__MyComplexType)` is not taken into account.
+
+```c
+mypackage__msg__MyComplexType mymsg;
+
+static micro_ros_utilities_memory_conf_t conf = {0};
+
+size_t dynamic_size = micro_ros_utilities_get_dynamic_size(
+    ROSIDL_GET_MSG_TYPE_SUPPORT(mypackage, msg, MyComplexType),
+    conf
+);
+
+size_t static_size = micro_ros_utilities_get_static_size(
+    ROSIDL_GET_MSG_TYPE_SUPPORT(mypackage, msg, MyComplexType),
+    conf
+);
+```
+
+Finally, a destruction function is also provided for messages allocated in dynamic memory:
+
+
+```c
+mypackage__msg__MyComplexType mymsg;
+
+// Memory allocation using micro_ros_utilities_create_message_memory
+// ...
+
+bool success = micro_ros_utilities_destroy_message_memory(
+  ROSIDL_GET_MSG_TYPE_SUPPORT(mypackage, msg, MyComplexType),
+  &mymsg,
+  conf
+);
 ```
