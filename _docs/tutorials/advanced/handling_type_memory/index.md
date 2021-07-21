@@ -260,7 +260,7 @@ micro_ros_utilities_memory_rule_t rules[] = {
 conf.rules = rules;
 conf.n_rules = sizeof(rules) / sizeof(rules[0]);
 
-// member values of MyComplexType will have the default max_basic_type_sequence_capacity
+// member named "values" of MyComplexType will have the default max_basic_type_sequence_capacity
 
 bool success = micro_ros_utilities_create_message_memory(
   ROSIDL_GET_MSG_TYPE_SUPPORT(mypackage, msg, MyComplexType),
