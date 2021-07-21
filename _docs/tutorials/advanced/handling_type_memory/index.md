@@ -206,7 +206,7 @@ for(int32_t i = 0; i < 3; i++){
 
 Due to the inclusion of [`rosidl_typesupport_introspection_c`](https://github.com/ros2/rosidl/tree/master/rosidl_typesupport_introspection_c) in micro-ROS Galactic distribution, an automated memory handling for micro-ROS types is available. The tools related to this feature are available in the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities).
 
-The documentation of the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities) are available [here](https://micro.ros.org/docs/api/utils/).
+The documentation of the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities) is available [here](https://micro.ros.org/docs/api/utils/).
 
 This package is able to auto-assign memory to a certain message struct using default dynamic memory allocators, for example, using the previouly declated type:
 
@@ -245,7 +245,7 @@ bool success = micro_ros_utilities_create_message_memory(
 );
 ```
 
-A complex rules approach can be used as in the following example:
+To customize the length of each member of the struct, a complex rules approach can be used as in the following example:
 
 ```c
 mypackage__msg__MyComplexType mymsg;
@@ -311,8 +311,7 @@ Finally, a destruction function is also provided for messages allocated in dynam
 ```c
 mypackage__msg__MyComplexType mymsg;
 
-// Memory allocation using micro_ros_utilities_create_message_memory
-// ...
+// Release memory previously allocated with micro_ros_utilities_create_message_memory
 
 bool success = micro_ros_utilities_destroy_message_memory(
   ROSIDL_GET_MSG_TYPE_SUPPORT(mypackage, msg, MyComplexType),
