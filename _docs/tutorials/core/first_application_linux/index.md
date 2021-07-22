@@ -102,6 +102,8 @@ cd microros_ws
 source /opt/ros/$ROS_DISTRO/setup.bash
 source install/local_setup.bash
 
+export RMW_IMPLEMENTATION=rmw_microxrcedds
+
 ros2 run micro_ros_demos_rclc ping_pong
 ```
 
