@@ -3,12 +3,14 @@ title: Teensy with Arduino
 permalink: /docs/tutorials/core/teensy_with_arduino/
 ---
 
-## Target platform
+<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/>
 
 In this tutorial you will learn how to connect Teensy with micro-ROS and ROS 2. 
 You will also learn how to install micro-ROS agent in Linux systems to communicate with 
 Teensy-based Arduino board using Arduino IDE. This tutorial will also cover a 
 simple publisher topic published from teensy and subscribed using ROS 2 interface.
+
+## Target platform
 
 To start with, we will need a host computer with either having a native 
 Ubuntu 20.04 installed ROS 2 Foxy or using a docker version of the freshly build ROS 2 Foxy 
@@ -18,6 +20,7 @@ understand the full picture better.
 ![Illustration of Connection diagram of Teensy 3.2 with Host PC running ros2 and micro-ros-agent](Teensy_micro_ros_connection.png)
 
 ## Installing ROS 2 and micro-ROS in the host computer: 
+
 Note: These first few steps are the same as in the micro-ROS installation page as in this link
 
 For this tutorial you have to install ROS 2 Foxy Fitzroy on your Ubuntu 20.04 LTS computer. 
@@ -193,3 +196,5 @@ If we listen to the topic we will see something like this:
 ![Illustration of ros2 topic showing data](topic_show.png)
 
 The integer msg data increasing in each cycle.
+
+_Note: This tutorial was first published by the author [Manzur Murshid](https://github.com/shazib2t) on https://manzurmurshid.medium.com/how-to-connect-teensy-3-2-with-micro-ros-and-ros2-foxy-6c8f99c9b66a._

@@ -3,6 +3,8 @@ title: How to include a custom ROS message in micro-ROS
 permalink: /docs/tutorials/advanced/create_new_type/
 ---
 
+<img src="https://img.shields.io/badge/Applies_to-all_current_distros-green" style="display:inline"/>
+
 This tutorial starts in a previously created micro-ROS environment. Check [**First micro-ROS application on an RTOS**](../../core/first_application_rtos/) for instructions about how to create a micro-ROS environment for embedded platforms.
 
 Once your micro-ROS workspace is created, go to `firmware/mcu_ws` and run the package creating command:

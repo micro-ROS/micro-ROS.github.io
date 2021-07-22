@@ -3,11 +3,7 @@ title: Micro-ROS configuration for NuttX
 permalink: /docs/tutorials/old/add_microros_config/
 ---
 
-**Disclaimer: this tutorial is currently unmantained**
-
-|  RTOS | ROS2 Version |
-|:-----:|:------------:|
-| NuttX |   Dashing   |
+<img src="https://img.shields.io/badge/Disclaimer-This_tutorial_is_unmaintained-red" style="display:inline"/> <img src="https://img.shields.io/badge/Written_for-Dashing-yellow" style="display:inline"/>
 
 In this tutorial, we will see how to set a basic Micro-ROS configuration for NuttX over serial communication. Since this guide is only focused on setting the configuration, you should check the tutorial linked here before: [First micro-ROS Application on an RTOS](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/)
 
