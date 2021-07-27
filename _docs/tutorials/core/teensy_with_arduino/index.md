@@ -197,4 +197,4 @@ If we listen to the topic we will see something like this:
 
 The integer msg data increasing in each cycle.
 
-_Note: This tutorial was first published by the author [Manzur Murshid](https://github.com/shazib2t) on https://manzurmurshid.medium.com/how-to-connect-teensy-3-2-with-micro-ros-and-ros2-foxy-6c8f99c9b66a._
+_Note: This tutorial was first published by the author [Manzur Murshid](https://github.com/shazib2t) on [https://manzurmurshid.medium.com/how-to-connect-teensy-3-2-with-micro-ros-and-ros2-foxy-6c8f99c9b66a](https://manzurmurshid.medium.com/how-to-connect-teensy-3-2-with-micro-ros-and-ros2-foxy-6c8f99c9b66a)._
