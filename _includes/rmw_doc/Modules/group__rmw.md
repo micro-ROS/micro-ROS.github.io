@@ -16,6 +16,9 @@
 | int64_t | **[rmw_uros_epoch_millis](#function-rmw_uros_epoch_millis)**()<br>Returns the epoch time in milliseconds taking into account the offset computed during the time synchronization.  |
 | int64_t | **[rmw_uros_epoch_nanos](#function-rmw_uros_epoch_nanos)**()<br>Returns the epoch time in nanoseconds taking into account the offset computed during the time synchronization.  |
 | rmw_ret_t | **[rmw_uros_sync_session](#function-rmw_uros_sync_session)**(const int timeout_ms)<br>Synchronizes the session time using the NTP protocol.  |
+| rmw_ret_t | **[rmw_uros_set_publisher_session_timeout](#function-rmw_uros_set_publisher_session_timeout)**(rmw_publisher_t * publisher, int session_timeout)<br>Sets the DDS-XRCE session spin time in reliable publication.  |
+| rmw_ret_t | **[rmw_uros_set_service_session_timeout](#function-rmw_uros_set_service_session_timeout)**(rmw_service_t * service, int session_timeout)<br>Sets the DDS-XRCE session spin time in reliable service server.  |
+| rmw_ret_t | **[rmw_uros_set_client_session_timeout](#function-rmw_uros_set_client_session_timeout)**(rmw_client_t * client, int session_timeout)<br>Sets the DDS-XRCE session spin time in reliable service client.  |
 
 
 ## Functions Documentation
@@ -274,6 +277,75 @@ Synchronizes the session time using the NTP protocol.
 
   * RMW_RET_OK when success. 
   * RMW_RET_ERROR If no session is running or the synchronization fails. 
+
+
+### function rmw_uros_set_publisher_session_timeout
+
+```cpp
+rmw_ret_t rmw_uros_set_publisher_session_timeout(
+    rmw_publisher_t * publisher,
+    int session_timeout
+)
+```
+
+Sets the DDS-XRCE session spin time in reliable publication. 
+
+**Parameters**: 
+
+  * **publisher** publisher where the spin time is configured 
+  * **session_timeout** time in milliseconds 
+
+
+**Return**: 
+
+  * RMW_RET_OK when success. 
+  * RMW_RET_INVALID_ARGUMENT If publisher is not valid or unexpected arguments. 
+
+
+### function rmw_uros_set_service_session_timeout
+
+```cpp
+rmw_ret_t rmw_uros_set_service_session_timeout(
+    rmw_service_t * service,
+    int session_timeout
+)
+```
+
+Sets the DDS-XRCE session spin time in reliable service server. 
+
+**Parameters**: 
+
+  * **service** service where the spin time is configured 
+  * **session_timeout** time in milliseconds 
+
+
+**Return**: 
+
+  * RMW_RET_OK when success. 
+  * RMW_RET_INVALID_ARGUMENT If service is not valid or unexpected arguments. 
+
+
+### function rmw_uros_set_client_session_timeout
+
+```cpp
+rmw_ret_t rmw_uros_set_client_session_timeout(
+    rmw_client_t * client,
+    int session_timeout
+)
+```
+
+Sets the DDS-XRCE session spin time in reliable service client. 
+
+**Parameters**: 
+
+  * **client** client where the spin time is configured 
+  * **session_timeout** time in milliseconds 
+
+
+**Return**: 
+
+  * RMW_RET_OK when success. 
+  * RMW_RET_INVALID_ARGUMENT If client is not valid or unexpected arguments. 
 
 
 
