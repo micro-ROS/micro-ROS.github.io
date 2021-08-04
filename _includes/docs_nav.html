@@ -25,6 +25,9 @@
   {% if page.path contains "_docs/tutorials" and section.title contains "Tutorials" %}
     {% assign should_show_this_menu = true %}
   {% endif %}
+  {% if page.path contains "_docs/tutorials" and section.title contains "Programming" %}
+    {% assign should_show_this_menu = true %}
+  {% endif %}
   {% if page.path contains "_docs/tutorials" and section.title == "Demos" %}
     {% assign should_show_this_menu = true %}
   {% endif %}
