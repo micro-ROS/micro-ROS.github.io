@@ -33,8 +33,21 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
   }
   ```
   
-  // TODO: Add timeout API for reliable service
+  A reliable service server will wait for confirmation for each response sended, which can increase the blocking time of the executor spins, `rmw-microxrcedds` offers an API to configure the acknowledgement timeout for each service:
 
+  ```C
+  // Set confirmation timeout in milliseconds
+  int ack_timeout = 1000; 
+  rc = rmw_uros_set_service_session_timeout(&service, ack_timeout);
+
+  if (RCL_RET_OK != rc) {
+    ...  // Handle error
+    return -1;
+  }
+  ```
+
+  The default value for all clients is configured at compilation time by the cmake variable `RMW_UXRCE_PUBLISH_RELIABLE_TIMEOUT`.
+  
 - Best effort:  
 
   ```C
@@ -154,8 +167,21 @@ The service client initialization is almost identical to the server one:
   }
   ```
   
-  // TODO: Add timeout API for reliable service
+  A reliable service client will wait for confirmation for each request sended, which can increase the blocking time of the executor spins, `rmw-microxrcedds` offers an API to configure the acknowledgement timeout for each client:
+
+  ```C
+  // Set confirmation timeout in milliseconds
+  int ack_timeout = 1000; 
+  rc = rmw_uros_set_client_session_timeout(&client, ack_timeout);
+
+  if (RCL_RET_OK != rc) {
+    ...  // Handle error
+    return -1;
+  }
+  ```
   
+  The default value for all clients is configured at compilation time by the cmake variable `RMW_UXRCE_PUBLISH_RELIABLE_TIMEOUT`.
+
 - Best effort:  
 
   ```C
