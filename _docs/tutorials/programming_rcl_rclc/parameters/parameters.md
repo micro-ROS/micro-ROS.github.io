@@ -25,7 +25,7 @@ Note: micro-ROS parameter server is only supported on ROS2 galactic distribution
     }
     ```
 
-// TODO: explain options
+    // TODO: explain options
 - Custom options:
     ```C
     // Parameter server object
