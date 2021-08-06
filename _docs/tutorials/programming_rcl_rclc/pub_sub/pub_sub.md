@@ -5,7 +5,9 @@ permalink: /docs/tutorials/programming_rcl_rclc/pub_sub/
 
 ROS 2 publishers and subscribers are the basic communication mechanism between nodes using topics. Further information about ROS 2 publish–subscribe pattern can be found [here](https://docs.ros.org/en/foxy/Tutorials/Topics/Understanding-ROS2-Topics.html).
 
-Ready to use code related to this tutorial can be found in [`micro-ROS-demos/rclc/int32_publisher`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/int32_publisher/main.c) and [`micro-ROS-demos/rclc/int32_subscriber`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/int32_subscriber/main.c) folders. Fragments of code from this examples are used on this tutorial.
+Ready to use code related to this concepts can be found in [`micro-ROS-demos/rclc/int32_publisher`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/int32_publisher/main.c) and [`micro-ROS-demos/rclc/int32_subscriber`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/int32_subscriber/main.c) folders. Fragments of code from this examples are used on this tutorial.
+
+// TODO: add index?
 
 ## <a name="pub"/>Publisher
 
@@ -13,9 +15,7 @@ Ready to use code related to this tutorial can be found in [`micro-ROS-demos/rcl
 
 Starting from a code where RCL is initialized and a micro-ROS node is created, there are tree ways to initialize a publisher depending on the desired quality-of-service configuration:
   
-// TODO: explain and link diferences between each approach on QoS section
-
-- Reliable:
+- Reliable (default):
   ```C
   // Publisher object
   rcl_publisher_t publisher;
@@ -32,23 +32,7 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
     return -1;
   }
   ```
-
-  // TODO: move to micro-ROS features section?
-  Reliable publishers will wait for confirmation for each published message, which leads to blocking `rcl_publish` calls, `rmw-microxrcedds` offers an API to configure the acknowledgement timeout for each publisher:
-
-  ```C
-  // Set confirmation timeout in milliseconds
-  int ack_timeout = 1000; 
-  rc = rmw_uros_set_publisher_session_timeout(&publisher, ack_timeout);
-
-  if (RCL_RET_OK != rc) {
-    ...  // Handle error
-    return -1;
-  }
-  ```
   
-  The default value for all publishers is configured at compilation time by the cmake variable `RMW_UXRCE_PUBLISH_RELIABLE_TIMEOUT`.
-
 - Best effort:
   ```C
   // Publisher object
@@ -66,7 +50,7 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
     return -1;
   }
   ```
-
+  
 - Custom QoS:
 
   ```C
@@ -88,11 +72,13 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
     return -1;
   }
   ```
+  
+  For a detail on the avaliable QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
 
 ## <a name="pub_publish"/>Publish a message
 
-// TODO: explain message memory allocation and link to tutorial
-// TODO: explain periodic publication and link to timers
+To publish messages to the topic:
+
 ```C
 // Int32 message object
 std_msgs__msg__Int32 msg; 
@@ -102,11 +88,14 @@ msg.data = 0;
 
 // Publish message
 rcl_ret_t rc = rcl_publish(&publisher, &msg, NULL);
+
 if (rc != RCL_RET_OK) {
   ...  // Handle error
   return -1;
 }
 ```
+
+For periodic publications,  `rcl_publish` can be placed inside a timer callback. Check the [Executor and timers](../executor/) section for details.
 
 Note: `rcl_publish` is thread safe and can be called from multiple threads.
   
@@ -153,7 +142,7 @@ The suscriptor initialization is almost identical to the publisher one:
   }
   ```
 
-- Add QoS API
+- Custom QoS:
 
   ```C
   // Subscription object
@@ -175,8 +164,13 @@ The suscriptor initialization is almost identical to the publisher one:
   }
   ```
 
+For a detail on the avaliable QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
+  
 ### <a name="sub_callback"/>Callbacks
+The executor is responsible to call the configured callback when a message is published. 
+The function will have the message as its only argument, containing the values sended by the publisher:
 
+// TODO: explain function prototype?  
 ```C
 void subscription_callback(const void * msgin)
 {
@@ -188,10 +182,11 @@ void subscription_callback(const void * msgin)
 }
 ```
 
-Once the subscriber and the executor are initialized, the subscriber callback must be added to the executor to receive incoming publications once the executor is spinning:
 
+Once the subscriber and the executor are initialized, the subscriber callback must be added to the executor to receive incoming publications once its spinning:
+  
 ```C
-// Message object to save publication data
+// Message object to receive publisher data
 std_msgs__msg__Int32 msg;
 
 // Add subscription to the executor
@@ -200,19 +195,26 @@ rcl_ret_t rc = rclc_executor_add_subscription(&executor, &subscriber, &msg, &sub
 if (RCL_RET_OK != rc) {
   ...  // Handle error
   return -1;
-}
+
+// Spin executor to receive messages
+rclc_executor_spin(&executor);
 ```
 
-### <a name="pubsub_end"/>Cleaning Up
+## <a name="pubsub_msg"/>Message initialization
+Before publishing or receiving a message, it may be neccesary to initialize its memory for types with strings or sequences.
+Check the [Handling messages memory in micro-ROS](../../advanced/handling_type_memory/) section for details.
 
+## <a name="pubsub_end"/>Cleaning Up
+
+After finishing the publisher/subscriber, the node will no longer be advertising that it is publishing/listening on the topic.
 To destroy an initialized publisher or subscriber:
 
 ```C
-// Destroy publisher and subscriber
+// Destroy publisher
 rcl_publisher_fini(&publisher, &node);
+
+// Destroy subscriber
 rcl_subscription_fini(&subscriber, &node);
 ```
-
-After finishing the publisher/subscriber, the node will no longer be advertising that it is publishing/listening on the topic.
 
 This will delete any automatically created infrastructure on the agent (if possible) and deallocate used memory on the client side.

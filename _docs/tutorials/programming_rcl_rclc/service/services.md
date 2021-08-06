@@ -5,14 +5,12 @@ permalink: /docs/tutorials/programming_rcl_rclc/service/
 
 ROS 2 services are another communication mechanism between nodes. Services implement a client-server paradigm based on ROS 2 messages and types. Further information about ROS 2 services can be found [here](https://index.ros.org/doc/ros2/Tutorials/Services/Understanding-ROS2-Services/)
 
-Ready to use code related to this tutorial can be found in [`micro-ROS-demos/rclc/addtwoints_server`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/addtwoints_server/main.c) and [`micro-ROS-demos/rclc/addtwoints_client`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/addtwoints_client/main.c) folders. Fragments of code from this examples are used on this tutorial.
+Ready to use code related to this concepts can be found in [`micro-ROS-demos/rclc/addtwoints_server`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/addtwoints_server/main.c) and [`micro-ROS-demos/rclc/addtwoints_client`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/addtwoints_client/main.c) folders. Fragments of code from this examples are used on this tutorial.
 
 ## <a name="server"/>Service server
 
 ### <a name="server_init"/>Initialization
 Starting from a code where RCL is initialized and a micro-ROS node is created, there are tree ways to initialize a service server:
-  
-// TODO: explain and link diferences between each approach on QoS section
   
 - Reliable (default):  
 
@@ -32,21 +30,6 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
     return -1;
   }
   ```
-  
-  A reliable service server will wait for confirmation for each response sended, which can increase the blocking time of the executor spins, `rmw-microxrcedds` offers an API to configure the acknowledgement timeout for each service:
-
-  ```C
-  // Set confirmation timeout in milliseconds
-  int ack_timeout = 1000; 
-  rc = rmw_uros_set_service_session_timeout(&service, ack_timeout);
-
-  if (RCL_RET_OK != rc) {
-    ...  // Handle error
-    return -1;
-  }
-  ```
-
-  The default value for all clients is configured at compilation time by the cmake variable `RMW_UXRCE_PUBLISH_RELIABLE_TIMEOUT`.
   
 - Best effort:  
 
@@ -88,10 +71,11 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
     return -1;
   }
   ```
-  
+
+For a detail on the avaliable QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
+
 ### <a name="server_callback"/>Callback
 
-// TODO: add and explain function prototype?
 Once a request arrives, the executor will call the configured callback with the request and response messages as arguments.
 The request message contains the values sended by the client, the response_msg should be modified here as it will be delivered after the callback returns.
 
@@ -130,17 +114,13 @@ example_interfaces__srv__AddTwoInts_Request request_msg;
 // Add server callback to the executor
 rc = rclc_executor_add_service(&executor, &service, &request_msg, &response_msg, service_callback);
 
-// Spin executor to receive requests
-rclc_executor_spin(&executor);
-
 if (rc != RCL_RET_OK) {
   ...  // Handle error
   return -1;
 }
 
-// TODO ??
-// rclc_executor_add_service_with_context
-// rclc_executor_add_service_with_request_id
+// Spin executor to receive requests
+rclc_executor_spin(&executor);
 ```
   
 ## <a name="client"/>Service Client
@@ -167,21 +147,6 @@ The service client initialization is almost identical to the server one:
   }
   ```
   
-  A reliable service client will wait for confirmation for each request sended, which can increase the blocking time of the executor spins, `rmw-microxrcedds` offers an API to configure the acknowledgement timeout for each client:
-
-  ```C
-  // Set confirmation timeout in milliseconds
-  int ack_timeout = 1000; 
-  rc = rmw_uros_set_client_session_timeout(&client, ack_timeout);
-
-  if (RCL_RET_OK != rc) {
-    ...  // Handle error
-    return -1;
-  }
-  ```
-  
-  The default value for all clients is configured at compilation time by the cmake variable `RMW_UXRCE_PUBLISH_RELIABLE_TIMEOUT`.
-
 - Best effort:  
 
   ```C
@@ -265,6 +230,7 @@ Following the example on `AddTwoInts.srv`:
 example_interfaces__srv__AddTwoInts_Request request_msg;
 
 // Initialize request message memory and set its values
+// TODO: use custom API?
 example_interfaces__srv__AddTwoInts_Request__init(&request_msg);
 request_msg.a = 24;
 request_msg.b = 42;
@@ -279,7 +245,11 @@ rcl_send_request(&client, &request_msg, &sequence_number);
 rclc_executor_spin(&executor);
 ```
 
-### <a name="services_end"/>Cleaning Up
+## <a name="services_msg"/>Message initialization
+Before sending or receiving a message, it may be neccesary to initialize its memory for types with strings or sequences.
+Check the [Handling messages memory in micro-ROS](../../advanced/handling_type_memory/) section for details.
+
+## <a name="services_end"/>Cleaning Up
 
 To destroy an initialized service or client:
 

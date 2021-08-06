@@ -3,9 +3,9 @@ title: Nodes
 permalink: /docs/tutorials/programming_rcl_rclc/node/
 ---
 
-ROS 2 nodes are the ground element on ROS2 ecosystem. They will contain communicate between each other using publishers, subscriptions, services, ... .Further information about ROS 2 nodes can be found [here](https://docs.ros.org/en/galactic/Tutorials/Understanding-ROS2-Nodes.html)
+ROS 2 nodes are the main participants on ROS2 ecosystem. They will communicate between each other using publishers, subscriptions, services, ... Further information about ROS 2 nodes can be found [here](https://docs.ros.org/en/galactic/Tutorials/Understanding-ROS2-Nodes.html)
 
-// TODO: explain general micro-ROS initialization (allocator and support)
+// TODO: explain general micro-ROS initialization (allocator and support). Where?
 ## <a name="init_node"/>Initialization
 
 - Create a node with default configuration:
@@ -33,12 +33,9 @@ ROS 2 nodes are the ground element on ROS2 ecosystem. They will contain communic
   ```
 
 - Create a node with custom options:
+  // TODO: explain possible options
 
-  Node configuration will also be applied to its future elements (Publishers, subscribers, services, ...).
-
-  // TODO: explain possible options and their meaning
-
-  The API used to customize the node options differs between ROS2 distributions:
+  The configuration of the node will also be applied to its future elements (Publishers, subscribers, services, ...).The API used to customize the node options differs between ROS2 distributions:
 
   Foxy: The `rcl_node_options_t` is used to configure the node
 
@@ -67,7 +64,7 @@ ROS 2 nodes are the ground element on ROS2 ecosystem. They will contain communic
     return -1;
   }
   ```
-
+  
   Galactic: In this case, the node options are configured on the `rclc_support_t` object with a custom API
 
   ```C
@@ -101,14 +98,15 @@ ROS 2 nodes are the ground element on ROS2 ecosystem. They will contain communic
 
 ### <a name="node_end"/>Cleaning Up
 
-To destroy a initialized node all entities owned by the node (Publishers, subscribers, services, ...) needs to be destroyed before the node itself:
+To destroy a initialized node all entities owned by the node (Publishers, subscribers, services, ...) have to be destroyed before the node itself:
 
 ```C
-// Destroy created entities
+// Destroy created entities (Example)
+rcl_publisher_fini(&publisher, &node);
 ...
 
-// Destroy a node
+// Destroy the node
 rcl_node_fini(&node);
 ```
 
-This will delete any automatically created infrastructure on the agent (if possible) and deallocate used memory on the client side.
+This will delete the node from ROS2 graph, including any generated infrastructure on the agent (if possible) and used memory on the client.

@@ -1,6 +1,6 @@
 ---
 title: Executor and timers
-permalink: /docs/tutorials/programming_rcl_rclc/micro-ROS/
+permalink: /docs/tutorials/programming_rcl_rclc/executor/
 ---
 
-// TODO: Use existing tutorial if possible
+// TODO: Use existing parts of previous tutorial if possible

@@ -3,10 +3,43 @@ title: Quality of service
 permalink: /docs/tutorials/programming_rcl_rclc/qos/
 ---
 
-## <a name="qos"/>QoS
+// Add benchmark results for Throughput and RTT to compare both modes?
+// Explain custom QoS options
+  
+## <a name="qos"/>Reliable QoS
+
+Reliable communication implies a confirmation for each message sended. This mode can detect errors in the communication process at the cost of increasing the message latency and the resources usage.
+
+This message confirmation proccess can increase blocking time on `rcl_publish` or executor spin calls as reliable publishers, services and clients will wait for acknowledgement for each sended message. `rmw-microxrcedds` offers an API to individually configure the acknowledgement timeout on them:
+
+  ```C
+  // Confirmation timeout in milliseconds
+  int ack_timeout = 1000; 
+
+  // Set reliable publisher timeout
+  rc = rmw_uros_set_publisher_session_timeout(&publisher, ack_timeout);
+
+  // Set reliable service server timeout
+  rc = rmw_uros_set_service_session_timeout(&service, ack_timeout);
+
+  // Set reliable service client timeout
+  rc = rmw_uros_set_client_session_timeout(&client, ack_timeout);
+
+  if (RCL_RET_OK != rc) {
+    ...  // Handle error
+    return -1;
+  }
+  ```
+  
+  The default value for all publishers is configured at compilation time by the cmake variable `RMW_UXRCE_PUBLISH_RELIABLE_TIMEOUT`.
+
+## <a name="qos"/>Best Effort
+
+In best effort mode no acknowledgement is needed, the messages sended are expected to be received. This method improves publication throughput and reduces resources usage but is vulnerable to communication errors.
+
+## <a name="qos"/>Custom QoS configuration
 
 ```C
-
 /// ROS MiddleWare quality of service profile.
 typedef struct RMW_PUBLIC_TYPE rmw_qos_profile_t
 {
@@ -27,19 +60,7 @@ typedef struct RMW_PUBLIC_TYPE rmw_qos_profile_t
   struct rmw_time_t liveliness_lease_duration;
 
   /// If true, any ROS specific namespacing conventions will be circumvented.
-  /**
-   * In the case of DDS and topics, for example, this means the typical
-   * ROS specific prefix of `rt` would not be applied as described here:
-   *
-   *   http://design.ros2.org/articles/topic_and_service_names.html#ros-specific-namespace-prefix
-   *
-   * This might be useful when trying to directly connect a native DDS topic
-   * with a ROS 2 topic.
-   */
   bool avoid_ros_namespace_conventions;
 } rmw_qos_profile_t;
 
 ```
-
-
-// TODO: explain difference between reliable and best effort
