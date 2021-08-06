@@ -5,7 +5,7 @@ permalink: /docs/tutorials/programming_rcl_rclc/parameters/
 
 ROS 2 parameter allow the user to create variables on a node and manipulate/read them with different ROS2 commands. Further information about ROS 2 parameters can be found [here](https://docs.ros.org/en/galactic/Tutorials/Parameters/Understanding-ROS2-Parameters.html)
 
-Ready to use code related to this tutorial can be found in [`rclc/rclc_examples/src/`](https://github.com/ros2/rclc/blob/master/rclc_examples/src/example_parameter_server.c) folder. Fragments of code from this example is used on this tutorial.
+Ready to use code related to this tutorial can be found in [`rclc/rclc_examples/src/example_parameter_server.c`](https://github.com/ros2/rclc/blob/master/rclc_examples/src/example_parameter_server.c). Fragments of code from this example is used on this tutorial.
 
 Note: micro-ROS parameter server is only supported on ROS2 galactic distribution
 
@@ -43,32 +43,33 @@ Note: micro-ROS parameter server is only supported on ROS2 galactic distribution
     }
     ```
 
-- Memory and executor requirements:
-    The variable `RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER` defines the RCLC executor handles required for a parameter server. 
-    This needs to be taken into account when initializing the executor and on the colcon memory configuration of the `rmw-microxredds` package, which will need at least 4 services and 1 publisher:
+## <a name="parameters_init"/>Memory requirements
+The parameter server uses 4 services and an optional publisher, this needs to be taken into account on the `rmw-microxredds` package memory configuration:
 
-    ```C
-    # colcon.meta example with minimum memory requirements to use parameter server
-    {
-        "names": {
-            "rmw_microxrcedds": {
-                "cmake-args": [
-                    "-DRMW_UXRCE_MAX_NODES=1",
-                    "-DRMW_UXRCE_MAX_PUBLISHERS=1",
-                    "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=0",
-                    "-DRMW_UXRCE_MAX_SERVICES=4",
-                    "-DRMW_UXRCE_MAX_CLIENTS=0"
-                ]
-            }
+```C
+# colcon.meta example with memory requirements to use a parameter server
+{
+    "names": {
+        "rmw_microxrcedds": {
+            "cmake-args": [
+                "-DRMW_UXRCE_MAX_NODES=1",
+                "-DRMW_UXRCE_MAX_PUBLISHERS=1",
+                "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=0",
+                "-DRMW_UXRCE_MAX_SERVICES=4",
+                "-DRMW_UXRCE_MAX_CLIENTS=0"
+            ]
         }
     }
-    ```
-    
-    ```C
-    // Executor init example with the minimum RCLC executor handles required
-    rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
-    rc = rclc_executor_init(&executor, &support.context, RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER, &allocator);
-    ```
+}
+```
+
+On runtime, the variable `RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER` defines the RCLC executor handles required for a parameter server:
+
+```C
+// Executor init example with the minimum RCLC executor handles required
+rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
+rc = rclc_executor_init(&executor, &support.context, RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER, &allocator);
+```
   
 ## <a name="parameters_callback"/>Callback
 
