@@ -278,3 +278,15 @@ rcl_send_request(&client, &request_msg, &sequence_number);
 // Spin the executor to get the response
 rclc_executor_spin(&executor);
 ```
+
+### <a name="services_end"/>Cleaning Up
+
+To destroy an initialized service or client:
+
+```C
+// Destroy service server and client
+rcl_service_fini(&service, &node);
+rcl_client_fini(&client, &node);
+```
+
+This will delete any automatically created infrastructure on the agent (if possible) and deallocate used memory on the client side.

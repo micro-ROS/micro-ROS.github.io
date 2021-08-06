@@ -5,7 +5,7 @@ permalink: /docs/tutorials/programming_rcl_rclc/parameters/
 
 ROS 2 parameter allow the user to create variables on a node and manipulate/read them with different ROS2 commands. Further information about ROS 2 parameters can be found [here](https://docs.ros.org/en/galactic/Tutorials/Parameters/Understanding-ROS2-Parameters.html)
 
-Ready to use code related to this tutorial can be found in [`micro-ROS-demos/rclc/parameter_server`](https://github.com/micro-ROS/micro-ROS-demos/blob/galactic/rclc/parameter_server/main.c) folder. Fragments of code from this example is used on this tutorial.
+Ready to use code related to this tutorial can be found in [`rclc/rclc_examples/src/`](https://github.com/ros2/rclc/blob/master/rclc_examples/src/example_parameter_server.c) folder. Fragments of code from this example is used on this tutorial.
 
 Note: micro-ROS parameter server is only supported on ROS2 galactic distribution
 
@@ -169,14 +169,13 @@ rc = rclc_parameter_set_double(&param_server, parameter_name, param_value);
 rc = rclc_parameter_get_double(&param_server, parameter_name, &param_value);
 ```
 
-## <a name="parameters_end"/>Destroy the parameter server
+## <a name="parameters_end"/>Cleaning up
+
+To destroy an initialized parameter server:
 
 ```C
 // Delete parameter server
-rcl_ret_t rc = rclc_parameter_server_fini(&param_server, &node);
-
-if (rc == RCL_RET_OK) {
-  ...  // Handle error
-  return -1;
-}
+rclc_parameter_server_fini(&param_server, &node);
 ```
+
+This will delete any automatically created infrastructure on the agent (if possible) and deallocate used memory on the client side.

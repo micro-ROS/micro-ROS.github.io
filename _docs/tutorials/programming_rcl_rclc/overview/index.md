@@ -13,5 +13,6 @@ In this tutorials, you'll learn the basics of the micro-ROS C API. The major con
 * [**Publishers and Subscriptions**](../pub_sub/)
 * [**Services**](../service/)
 * [**Parameters**](../parameters/)
+* [**Executor and timers**](../executor/)
 * [**QoS**](../qos/)
 * [**micro-ROS Utils**](../micro-ROS/)

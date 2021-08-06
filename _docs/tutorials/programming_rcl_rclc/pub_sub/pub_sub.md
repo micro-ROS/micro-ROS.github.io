@@ -3,7 +3,7 @@ title: Publishers and Subscriptions
 permalink: /docs/tutorials/programming_rcl_rclc/pub_sub/
 ---
 
-ROS 2 publishers and subscribers are the basic communication mechanism between nodes using topics. Further information about ROS 2 publish–subscribe pattern can be found [here](https://docs.ros.org/en/foxy/Tutorials/Topics/Understanding-ROS2-Topics.html)
+ROS 2 publishers and subscribers are the basic communication mechanism between nodes using topics. Further information about ROS 2 publish–subscribe pattern can be found [here](https://docs.ros.org/en/foxy/Tutorials/Topics/Understanding-ROS2-Topics.html).
 
 Ready to use code related to this tutorial can be found in [`micro-ROS-demos/rclc/int32_publisher`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/int32_publisher/main.c) and [`micro-ROS-demos/rclc/int32_subscriber`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/int32_subscriber/main.c) folders. Fragments of code from this examples are used on this tutorial.
 
@@ -110,24 +110,6 @@ if (rc != RCL_RET_OK) {
 
 Note: `rcl_publish` is thread safe and can be called from multiple threads.
   
-## <a name="pub_end"/>Destroy a publisher
-
-Deallocates memory
-After finishing the publisher, the node will no longer be advertising that it is publishing
-on this topic (assuming this is the only publisher on this topic).
-
-```C
-// Destroy publisher
-rcl_ret_t rc = rcl_publisher_fini(&publisher, &node);
-
-if (rc == RCL_RET_OK) {
-  ...  // Handle error
-  return -1;
-}
-```
-
-Note: Publishers needs to be destroyed before its containing node
-
 ## <a name="sub"/>Subscription
 
 ### <a name="sub_init"/>Initialization
@@ -221,16 +203,16 @@ if (RCL_RET_OK != rc) {
 }
 ```
 
-### <a name="sub_end"/>Destroy a subscriber
-Destroy subscriber (Publisher needs to be destroyed manually before the node)
-Destroys any automatically created infrastructure and deallocates memory.
+### <a name="pubsub_end"/>Cleaning Up
+
+To destroy an initialized publisher or subscriber:
 
 ```C
-// Destroy
-rcl_ret_t rc = rcl_publisher_fini(&subscriber, &node);
-
-if (RCL_RET_OK != rc) {
-  ...  // Handle error
-  return -1;
-}
+// Destroy publisher and subscriber
+rcl_publisher_fini(&publisher, &node);
+rcl_subscription_fini(&subscriber, &node);
 ```
+
+After finishing the publisher/subscriber, the node will no longer be advertising that it is publishing/listening on the topic.
+
+This will delete any automatically created infrastructure on the agent (if possible) and deallocate used memory on the client side.
