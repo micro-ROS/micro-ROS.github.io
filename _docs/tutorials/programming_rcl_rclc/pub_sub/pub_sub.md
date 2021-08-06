@@ -73,7 +73,7 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
   }
   ```
   
-  For a detail on the avaliable QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
+  For a detail on the available QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
 
 ## <a name="pub_publish"/>Publish a message
 
@@ -114,7 +114,7 @@ The suscriptor initialization is almost identical to the publisher one:
   // Get message type support
   const rosidl_message_type_support_t * type_support = ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
 
-  // Initialize a realiable subscriber
+  // Initialize a reliable subscriber
   rcl_ret_t rc = rclc_subscription_init_default(&subscriber, &node, &type_support, &topic_name);
 
   if (RCL_RET_OK != rc) {
@@ -164,11 +164,11 @@ The suscriptor initialization is almost identical to the publisher one:
   }
   ```
 
-For a detail on the avaliable QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
+For a detail on the available QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
   
 ### <a name="sub_callback"/>Callbacks
 The executor is responsible to call the configured callback when a message is published. 
-The function will have the message as its only argument, containing the values sended by the publisher:
+The function will have the message as its only argument, containing the values sent by the publisher:
 
 // TODO: explain function prototype?  
 ```C
@@ -201,7 +201,7 @@ rclc_executor_spin(&executor);
 ```
 
 ## <a name="pubsub_msg"/>Message initialization
-Before publishing or receiving a message, it may be neccesary to initialize its memory for types with strings or sequences.
+Before publishing or receiving a message, it may be necessary to initialize its memory for types with strings or sequences.
 Check the [Handling messages memory in micro-ROS](../../advanced/handling_type_memory/) section for details.
 
 ## <a name="pubsub_end"/>Cleaning Up

@@ -8,9 +8,9 @@ permalink: /docs/tutorials/programming_rcl_rclc/qos/
   
 ## <a name="qos"/>Reliable QoS
 
-Reliable communication implies a confirmation for each message sended. This mode can detect errors in the communication process at the cost of increasing the message latency and the resources usage.
+Reliable communication implies a confirmation for each message sent. This mode can detect errors in the communication process at the cost of increasing the message latency and the resources usage.
 
-This message confirmation proccess can increase blocking time on `rcl_publish` or executor spin calls as reliable publishers, services and clients will wait for acknowledgement for each sended message. `rmw-microxrcedds` offers an API to individually configure the acknowledgement timeout on them:
+This message confirmation proccess can increase blocking time on `rcl_publish` or executor spin calls as reliable publishers, services and clients will wait for acknowledgement for each sent message. `rmw-microxrcedds` offers an API to individually configure the acknowledgement timeout on them:
 
   ```C
   // Confirmation timeout in milliseconds
@@ -35,7 +35,7 @@ This message confirmation proccess can increase blocking time on `rcl_publish` o
 
 ## <a name="qos"/>Best Effort
 
-In best effort mode no acknowledgement is needed, the messages sended are expected to be received. This method improves publication throughput and reduces resources usage but is vulnerable to communication errors.
+In best effort mode no acknowledgement is needed, the messages sent are expected to be received. This method improves publication throughput and reduces resources usage but is vulnerable to communication errors.
 
 ## <a name="qos"/>Custom QoS configuration
 

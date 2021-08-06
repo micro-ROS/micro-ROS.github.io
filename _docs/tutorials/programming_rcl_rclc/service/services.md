@@ -72,12 +72,12 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
   }
   ```
 
-For a detail on the avaliable QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
+For a detail on the available QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
 
 ### <a name="server_callback"/>Callback
 
 Once a request arrives, the executor will call the configured callback with the request and response messages as arguments.
-The request message contains the values sended by the client, the response_msg should be modified here as it will be delivered after the callback returns.
+The request message contains the values sent by the client, the response_msg should be modified here as it will be delivered after the callback returns.
 
 Using `AddTwoInts.srv` type definition as an example:
 
@@ -88,7 +88,7 @@ int64 b
 int64 sum
 ```
 
-The client request message will contain two integers `a` and `b`, and expectes the `sum` of them as a response:
+The client request message will contain two integers `a` and `b`, and expects the `sum` of them as a response:
 
 ```C
 void service_callback(const void * request_msg, void * response_msg){
@@ -102,7 +102,7 @@ void service_callback(const void * request_msg, void * response_msg){
 }
 ```
   
-Note that it is neccesary to cast each message to the expected type
+Note that it is necessary to cast each message to the expected type
 
 Once the service and the executor are initialized, the service callback must be added to the executor in order to process incoming requests once the executor is spinning:
 
@@ -190,9 +190,9 @@ The service client initialization is almost identical to the server one:
   
 ### <a name="client_callback"/>Callback
 The executor is responsible to call the configured callback when the service response arrives. 
-The function will have the response message as its only argument, containing the values sended by the server.
+The function will have the response message as its only argument, containing the values sent by the server.
 
-It is neccesary to cast the response message to the expected type. Example:
+It is necessary to cast the response message to the expected type. Example:
 ```C
 void client_callback(const void * response_msg){
   // Cast response message to expected type
@@ -246,7 +246,7 @@ rclc_executor_spin(&executor);
 ```
 
 ## <a name="services_msg"/>Message initialization
-Before sending or receiving a message, it may be neccesary to initialize its memory for types with strings or sequences.
+Before sending or receiving a message, it may be necessary to initialize its memory for types with strings or sequences.
 Check the [Handling messages memory in micro-ROS](../../advanced/handling_type_memory/) section for details.
 
 ## <a name="services_end"/>Cleaning Up

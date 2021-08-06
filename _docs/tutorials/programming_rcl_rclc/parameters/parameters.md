@@ -45,7 +45,7 @@ Note: micro-ROS parameter server is only supported on ROS2 galactic distribution
 
 - Memory and executor requirements:
     The variable `RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER` defines the RCLC executor handles required for a parameter server. 
-    This needs to be taken into account when initializing the executor and on the colcon memory configuration of the `rmw-microxredds` package, which will need atleast 4 services and 1 publisher:
+    This needs to be taken into account when initializing the executor and on the colcon memory configuration of the `rmw-microxredds` package, which will need at least 4 services and 1 publisher:
 
     ```C
     # colcon.meta example with minimum memory requirements to use parameter server
@@ -72,7 +72,7 @@ Note: micro-ROS parameter server is only supported on ROS2 galactic distribution
   
 ## <a name="parameters_callback"/>Callback
 
-When adding the paramater server to the executor, a callback can be configured.
+When adding the parameter server to the executor, a callback can be configured.
 This callback will be executed after a parameter value is modified.
 
 A pointer to the changed parameter is passed as first and only argument. Example:
