@@ -5,18 +5,21 @@ permalink: /docs/tutorials/programming_rcl_rclc/micro-ROS/
 
 // TODO
 
-## <a name="sub"/>Time sync
+- [Time sync](#time-sync)
+- [Ping agent](#ping-agent)
 
-```C
+## Time sync
+
+```c
 bool rmw_uros_epoch_synchronized();
 int64_t rmw_uros_epoch_millis();
 int64_t rmw_uros_epoch_nanos();
 rmw_ret_t rmw_uros_sync_session(const int timeout_ms);
 ```
 
-## <a name="sub"/>Ping agent
+## Ping agent
 
-```C
+```c
 rmw_ret_t rmw_uros_ping_agent(const int timeout_ms, const uint8_t attempts);
 ```
 
@@ -25,7 +28,7 @@ rmw_ret_t rmw_uros_ping_agent(const int timeout_ms, const uint8_t attempts);
 - Discovery ??
 
 - Continous serialization ??
--```C
+-```c
 void rmw_uros_set_continous_serialization_callbacks(
 rmw_publisher_t * publisher,
 rmw_uros_continous_serialization_size size_cb,

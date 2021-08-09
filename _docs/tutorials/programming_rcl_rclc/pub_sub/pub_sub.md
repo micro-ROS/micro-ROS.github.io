@@ -1,5 +1,5 @@
 ---
-title: Publishers and Subscriptions
+title: Publishers and Subscribers
 permalink: /docs/tutorials/programming_rcl_rclc/pub_sub/
 ---
 
@@ -7,81 +7,97 @@ ROS 2 publishers and subscribers are the basic communication mechanism between n
 
 Ready to use code related to this concepts can be found in [`micro-ROS-demos/rclc/int32_publisher`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/int32_publisher/main.c) and [`micro-ROS-demos/rclc/int32_subscriber`](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/int32_subscriber/main.c) folders. Fragments of code from this examples are used on this tutorial.
 
-// TODO: add index?
+- [Publisher](#publisher)
+  - [Initialization](#initialization)
+  - [Publish a message](#publish-a-message)
+- [Subscription](#subscription)
+  - [Initialization](#initialization-1)
+  - [Callbacks](#callbacks)
+- [Message initialization](#message-initialization)
+- [Cleaning Up](#cleaning-up)
 
-## <a name="pub"/>Publisher
+## Publisher
 
-### <a name="pub_init"/>Initialization
+### Initialization
 
 Starting from a code where RCL is initialized and a micro-ROS node is created, there are tree ways to initialize a publisher depending on the desired quality-of-service configuration:
-  
+
 - Reliable (default):
-  ```C
+  ```c
   // Publisher object
   rcl_publisher_t publisher;
   const char * topic_name = "test_topic";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support = ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
+  const rosidl_message_type_support_t * type_support =
+    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
 
   // Creates a reliable rcl publisher
-  rcl_ret_t rc = rclc_publisher_init_default(&publisher, &node, &type_support, &topic_name);
+  rcl_ret_t rc = rclc_publisher_init_default(
+    &publisher, &node,
+    &type_support, &topic_name);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
     return -1;
   }
   ```
-  
+
 - Best effort:
-  ```C
+  ```c
   // Publisher object
   rcl_publisher_t publisher;
   const char * topic_name = "test_topic";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support = ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
+  const rosidl_message_type_support_t * type_support =
+    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
 
   // Creates a best effort rcl publisher
-  rcl_ret_t rc = rclc_publisher_init_best_effort(&publisher, &node, &type_support, &topic_name);
+  rcl_ret_t rc = rclc_publisher_init_best_effort(
+    &publisher, &node,
+    &type_support, &topic_name);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
     return -1;
   }
   ```
-  
+
 - Custom QoS:
 
-  ```C
+  ```c
   // Publisher object
   rcl_publisher_t publisher;
   const char * topic_name = "test_topic";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support = ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
+  const rosidl_message_type_support_t * type_support =
+    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
 
   // Set publisher QoS
   const rmw_qos_profile_t * qos_profile = &rmw_qos_profile_default;
 
   // Creates a rcl publisher with customized quality-of-service options
-  rcl_ret_t rc = rclc_publisher_init(&publisher, &node, &type_support, &topic_name, qos_profile);
+  rcl_ret_t rc = rclc_publisher_init(
+    &publisher, &node,
+    &type_support, &topic_name, qos_profile);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
     return -1;
   }
   ```
-  
+
   For a detail on the available QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
 
-## <a name="pub_publish"/>Publish a message
+### Publish a message
 
 To publish messages to the topic:
 
-```C
+```c
 // Int32 message object
-std_msgs__msg__Int32 msg; 
+std_msgs__msg__Int32 msg;
 
 // Set message value
 msg.data = 0;
@@ -98,24 +114,27 @@ if (rc != RCL_RET_OK) {
 For periodic publications,  `rcl_publish` can be placed inside a timer callback. Check the [Executor and timers](../executor/) section for details.
 
 Note: `rcl_publish` is thread safe and can be called from multiple threads.
-  
-## <a name="sub"/>Subscription
 
-### <a name="sub_init"/>Initialization
+## Subscription
+
+### Initialization
 
 The suscriptor initialization is almost identical to the publisher one:
 
 - Reliable (default):
-  ```C
+  ```c
   // Subscription object
   rcl_subscription_t subscriber;
   const char * topic_name = "test_topic";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support = ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
+  const rosidl_message_type_support_t * type_support =
+    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
 
   // Initialize a reliable subscriber
-  rcl_ret_t rc = rclc_subscription_init_default(&subscriber, &node, &type_support, &topic_name);
+  rcl_ret_t rc = rclc_subscription_init_default(
+    &subscriber, &node,
+    &type_support, &topic_name);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
@@ -125,16 +144,19 @@ The suscriptor initialization is almost identical to the publisher one:
 
 - Best effort:
 
-  ```C
+  ```c
   // Subscription object
   rcl_subscription_t subscriber;
   const char * topic_name = "test_topic";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support = ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
+  const rosidl_message_type_support_t * type_support =
+    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
 
   // Initialize best effort subscriber
-  rcl_ret_t rc = rclc_subscription_init_best_effort(&subscriber, &node, &type_support, &topic_name);
+  rcl_ret_t rc = rclc_subscription_init_best_effort(
+    &subscriber, &node,
+    &type_support, &topic_name);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
@@ -144,19 +166,22 @@ The suscriptor initialization is almost identical to the publisher one:
 
 - Custom QoS:
 
-  ```C
+  ```c
   // Subscription object
   rcl_subscription_t subscriber;
   const char * topic_name = "test_topic";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support = ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
+  const rosidl_message_type_support_t * type_support =
+    ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
 
   // Set client QoS
   const rmw_qos_profile_t * qos_profile = &rmw_qos_profile_default;
 
   // Initialize a subscriber with customized quality-of-service options
-  rcl_ret_t rc = rclc_subscription_init(&subscriber, &node, &type_support, &topic_name, qos_profile);
+  rcl_ret_t rc = rclc_subscription_init(
+    &subscriber, &node,
+    &type_support, &topic_name, qos_profile);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
@@ -165,13 +190,13 @@ The suscriptor initialization is almost identical to the publisher one:
   ```
 
 For a detail on the available QoS options and the advantages and disadvantages between reliable and best effort modes, check the [QoS tutorial](../qos/).
-  
-### <a name="sub_callback"/>Callbacks
-The executor is responsible to call the configured callback when a message is published. 
+
+### Callbacks
+The executor is responsible to call the configured callback when a message is published.
 The function will have the message as its only argument, containing the values sent by the publisher:
 
-// TODO: explain function prototype?  
-```C
+// TODO: explain function prototype?
+```c
 void subscription_callback(const void * msgin)
 {
   // Cast received message to used type
@@ -184,13 +209,15 @@ void subscription_callback(const void * msgin)
 
 
 Once the subscriber and the executor are initialized, the subscriber callback must be added to the executor to receive incoming publications once its spinning:
-  
-```C
+
+```c
 // Message object to receive publisher data
 std_msgs__msg__Int32 msg;
 
 // Add subscription to the executor
-rcl_ret_t rc = rclc_executor_add_subscription(&executor, &subscriber, &msg, &subscription_callback, ON_NEW_DATA);
+rcl_ret_t rc = rclc_executor_add_subscription(
+  &executor, &subscriber, &msg,
+  &subscription_callback, ON_NEW_DATA);
 
 if (RCL_RET_OK != rc) {
   ...  // Handle error
@@ -200,16 +227,16 @@ if (RCL_RET_OK != rc) {
 rclc_executor_spin(&executor);
 ```
 
-## <a name="pubsub_msg"/>Message initialization
+## Message initialization
 Before publishing or receiving a message, it may be necessary to initialize its memory for types with strings or sequences.
 Check the [Handling messages memory in micro-ROS](../../advanced/handling_type_memory/) section for details.
 
-## <a name="pubsub_end"/>Cleaning Up
+## Cleaning Up
 
 After finishing the publisher/subscriber, the node will no longer be advertising that it is publishing/listening on the topic.
 To destroy an initialized publisher or subscriber:
 
-```C
+```c
 // Destroy publisher
 rcl_publisher_fini(&publisher, &node);
 

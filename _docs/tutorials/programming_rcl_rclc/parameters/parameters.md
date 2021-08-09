@@ -9,10 +9,16 @@ Ready to use code related to this tutorial can be found in [`rclc/rclc_examples/
 
 Note: micro-ROS parameter server is only supported on ROS2 galactic distribution
 
-## <a name="parameters_init"/>Initialization
+- [Initialization](#initialization)
+- [Memory requirements](#memory-requirements)
+- [Callback](#callback)
+- [Add a parameter](#add-a-parameter)
+- [Cleaning up](#cleaning-up)
+
+## Initialization
 
 - Default initialization:
-    ```C
+    ```c
     // Parameter server object
     rclc_parameter_server_t param_server;
 
@@ -27,12 +33,14 @@ Note: micro-ROS parameter server is only supported on ROS2 galactic distribution
 
     // TODO: explain options
 - Custom options:
-    ```C
+    ```c
     // Parameter server object
     rclc_parameter_server_t param_server;
 
     // Define parameter server options
-    const rclc_parameter_options_t options = { .notify_changed_over_dds = true, .max_params = 4 };
+    const rclc_parameter_options_t options = {
+        .notify_changed_over_dds = true,
+        .max_params = 4 };
 
     // Initialize parameter server with configured options
     rcl_ret_t rc = rclc_parameter_server_init_with_option(&param_server, &node, &options);
@@ -43,10 +51,10 @@ Note: micro-ROS parameter server is only supported on ROS2 galactic distribution
     }
     ```
 
-## <a name="parameters_init"/>Memory requirements
+## Memory requirements
 The parameter server uses 4 services and an optional publisher, this needs to be taken into account on the `rmw-microxredds` package memory configuration:
 
-```C
+```json
 # colcon.meta example with memory requirements to use a parameter server
 {
     "names": {
@@ -65,19 +73,21 @@ The parameter server uses 4 services and an optional publisher, this needs to be
 
 On runtime, the variable `RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER` defines the RCLC executor handles required for a parameter server:
 
-```C
+```c
 // Executor init example with the minimum RCLC executor handles required
 rclc_executor_t executor = rclc_executor_get_zero_initialized_executor();
-rc = rclc_executor_init(&executor, &support.context, RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER, &allocator);
+rc = rclc_executor_init(
+    &executor, &support.context,
+    RCLC_PARAMETER_EXECUTOR_HANDLES_NUMBER, &allocator);
 ```
-  
-## <a name="parameters_callback"/>Callback
+
+## Callback
 
 When adding the parameter server to the executor, a callback can be configured.
 This callback will be executed after a parameter value is modified.
 
 A pointer to the changed parameter is passed as first and only argument. Example:
-```C
+```c
 void on_parameter_changed(Parameter * param)
 {
     // Get parameter name
@@ -104,24 +114,24 @@ void on_parameter_changed(Parameter * param)
 }
 ```
 Once the parameter server and the executor are initialized, the parameter server must be added to the executor in order to accept parameters commands from ROS2:
-```C
+```c
 // Add parameter server to executor including defined callback
 rc = rclc_executor_add_parameter_server(&executor, &param_server, on_parameter_changed);
 ```
 
 Note that this callback is optional as its just an event information for the user. To use the parameter server without a callback:
-```C
+```c
 // Add parameter server to executor without callback
 rc = rclc_executor_add_parameter_server(&executor, &param_server, NULL);
 ```
 
 
-## <a name="parameters_add"/>Add a parameter
+## Add a parameter
 
 // TODO: improve explanation of types
 
 - Bool parameter
-```C
+```c
 const char * parameter_name = "parameter_bool";
 bool param_value = true;
 
@@ -141,7 +151,7 @@ if (RCL_RET_OK != rc) {
 ```
 
 - Integer parameter
-```C
+```c
 const char * parameter_name = "parameter_int";
 int param_value = 100;
 
@@ -156,7 +166,7 @@ rc = rclc_parameter_get_int(&param_server, parameter_name, &param_value);
 ```
 
 - Double parameter
-```C
+```c
 const char * parameter_name = "parameter_double";
 double param_value = 0.15;
 
@@ -170,11 +180,11 @@ rc = rclc_parameter_set_double(&param_server, parameter_name, param_value);
 rc = rclc_parameter_get_double(&param_server, parameter_name, &param_value);
 ```
 
-## <a name="parameters_end"/>Cleaning up
+## Cleaning up
 
 To destroy an initialized parameter server:
 
-```C
+```c
 // Delete parameter server
 rclc_parameter_server_fini(&param_server, &node);
 ```
