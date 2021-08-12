@@ -11,6 +11,8 @@ In this tutorial, you'll learn the use of micro-ROS with FreeRTOS by testing a P
 {% include first_application_common/target_hardware.md %}
 * [USB-to-Serial Cable Female](https://www.olimex.com/Products/Components/Cables/USB-Serial-Cable/USB-SERIAL-F/)
 
+This tutorial can be adapted to other target hardware relatively easily. [Sameer Tuteja](https://sam-tj.github.io/) wrote a nice blog post for the use with an ESP32 WROOM32 Board at [https://link.medium.com/JFof42RUwib](https://link.medium.com/JFof42RUwib).
+
 {% include first_application_common/build_system.md %}
 
 ```bash
