@@ -1,5 +1,5 @@
 # Site settings
-url: https://micro.ros.org
+url: https://micro.ros.org   # Do not put a trailing slash here, cf. https://github.com/jekyll/jekyll-redirect-from/issues/178.
 title: micro-ROS
 description: >
   ROS 2 for microcontrollers
