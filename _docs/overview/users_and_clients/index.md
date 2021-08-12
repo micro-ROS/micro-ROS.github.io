@@ -25,7 +25,7 @@ partners_list:
     text: Wind River is accelerating digital transformation of critical infrastructure by delivering the technology and expertise that enable the deployment of safe, secure, and reliable IoT systems.
     title: Wind River
     url: www.windriver.com
-  - path: https://upload.wikimedia.org/wikipedia/commons/2/2d/Zephyr-logo.png
+  - path: https://www.zephyrproject.org/wp-content/uploads/sites/38/2019/12/zephyr-logo1.png
     text: The Zephyr Project is a Linux Foundation hosted Collaboration Project. It’s an open source effort uniting developers and users in building a best-in-class small, scalable, real-time operating system (RTOS) optimized for resource-constrained devices, across multiple architectures. As an open source project, the community evolves the project to support new hardware, developer tools, sensors, and device drivers.
     title: Zephyr Project
     url: www.zephyrproject.org
@@ -53,7 +53,7 @@ users:
     url: www.wyca-robotics.com
 
 collaborators:
-  - path: https://luxonis.com/img/logo-dark.png
+  - path: https://cdn.shopify.com/s/files/1/0106/8325/2802/files/minimal_blacktext_medium_b3c1cad9-f620-490b-a86d-5a4a5eed4845.png
     text: LUXonis is a US-based company specialized in solutions for developing embedded, performant, spatial AI & CV applications. This technology comes with the goal of allowing for human-like perception anywhere, regardless of internet connectivity, and making it productizable, user-friendly and reusable. LUXonis is responsible for devising DepthAI, an open-source platform - a complete ecosystem of custom haredware, firmware, software, and AI training - which combines neural inference, depth vision, and feature tracking into an easy-to-use solution.
     title: LUXonis
     url: www.luxonis.com
