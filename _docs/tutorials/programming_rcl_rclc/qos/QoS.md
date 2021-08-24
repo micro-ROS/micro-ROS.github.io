@@ -43,6 +43,8 @@ In best effort mode no acknowledgement is needed, the messages sent are expected
 
 ## Custom QoS configuration
 
+The user can customize their own QoS using the available `rmw_qos_profile_t` struct:
+  
 ```c
 /// ROS MiddleWare quality of service profile.
 typedef struct RMW_PUBLIC_TYPE rmw_qos_profile_t
@@ -66,5 +68,4 @@ typedef struct RMW_PUBLIC_TYPE rmw_qos_profile_t
   /// If true, any ROS specific namespacing conventions will be circumvented.
   bool avoid_ros_namespace_conventions;
 } rmw_qos_profile_t;
-
 ```

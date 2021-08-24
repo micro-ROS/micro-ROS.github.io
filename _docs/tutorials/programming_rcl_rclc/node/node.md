@@ -38,8 +38,6 @@ ROS 2 nodes are the main participants on ROS 2 ecosystem. They will communicate 
 
 - Create a node with custom options:
 
-  // TODO: explain possible options
-
   The configuration of the node will also be applied to its future elements (Publishers, subscribers, services, ...).The API used to customize the node options differs between ROS2 distributions:
 
   Foxy: The `rcl_node_options_t` is used to configure the node
