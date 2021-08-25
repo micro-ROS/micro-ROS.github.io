@@ -110,6 +110,10 @@ int64 sum
 The client request message will contain two integers `a` and `b`, and expects the `sum` of them as a response:
 
 ```c
+// Function prototype:
+void (* rclc_service_callback_t)(const void *, void *);
+
+// Example:
 void service_callback(const void * request_msg, void * response_msg){
   // Cast messages to expected types
   example_interfaces__srv__AddTwoInts_Request * req_in =
@@ -226,6 +230,10 @@ The function will have the response message as its only argument, containing the
 
 It is necessary to cast the response message to the expected type. Example:
 ```c
+// Function prototype:
+void (* rclc_client_callback_t)(const void *);
+
+// Example:
 void client_callback(const void * response_msg){
   // Cast response message to expected type
   example_interfaces__srv__AddTwoInts_Response * msgin =
@@ -263,7 +271,6 @@ Following the example on `AddTwoInts.srv`:
 example_interfaces__srv__AddTwoInts_Request request_msg;
 
 // Initialize request message memory and set its values
-// TODO: use custom API?
 example_interfaces__srv__AddTwoInts_Request__init(&request_msg);
 request_msg.a = 24;
 request_msg.b = 42;

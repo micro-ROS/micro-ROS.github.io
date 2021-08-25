@@ -5,9 +5,120 @@ permalink: /docs/tutorials/programming_rcl_rclc/micro-ROS/
 
 // TODO: Change section name
 
+- [Allocators](#allocators)
+  - [Custom allocator](#custom-allocator)
 - [Time sync](#time-sync)
 - [Ping agent](#ping-agent)
 - [Continous serialization](#continous-serialization)
+
+## Allocators
+
+  The allocator object wraps the dynamic memory allocation and deallocating methods used in micro-ROS
+
+  ```c
+  // Get micro-ROS default allocator
+  rcl_allocator_t allocator = rcl_get_default_allocator();
+  ```
+
+  The default allocator wraps the following methods:
+
+  ```c
+  - allocate = wraps malloc()
+  - deallocate = wraps free()
+  - reallocate = wraps realloc()
+  - zero_allocate = wraps calloc()
+  - state = `NULL`
+  ```
+
+### Custom allocator
+
+Working in embedded systems, the user might need to modify this default functions with its own memory allocation methods.
+To archieve this, the user can modify the default allocator with its own methods:
+
+```c
+// Get empty allocator
+rcl_allocator_t custom_allocator = rcutils_get_zero_initialized_allocator();
+
+// Set custom allocation methods
+custom_allocator.allocate = microros_allocate;
+custom_allocator.deallocate = microros_deallocate;
+custom_allocator.reallocate = microros_reallocate;
+custom_allocator.zero_allocate =  microros_zero_allocate;
+
+// Set custom allocator as default
+if (!rcutils_set_default_allocator(&custom_allocator)) {
+    ... // Handle error
+    return -1;
+}
+```
+
+Custom methods prototypes and examples:
+
+- allocate: 
+  
+  Allocates memory given a size, an error should be indicated by returning `NULL`:
+
+  ```c
+  // Function prototype:
+  void * (*allocate)(size_t size, void * state);
+
+  // Implementation example:
+  void * microros_allocate(size_t size, void * state){
+    (void) state;
+    void * ptr = malloc(size);
+    return ptr;
+  }
+  ```
+
+- deallocate
+
+  Deallocate previously allocated memory, mimicking free():
+
+  ```c
+  // Function prototype:
+  void (* deallocate)(void * pointer, void * state);
+
+  // Implementation example:
+  void microros_deallocate(void * pointer, void * state){
+    (void) state;
+    free(pointer);
+  }
+  ```
+
+- reallocate:
+
+  Reallocate memory if possible, otherwise it deallocates and allocates:
+    
+  ```c
+  // Function prototype:
+  void * (*reallocate)(void * pointer, size_t size, void * state);
+
+  // Implementation example:
+  void * microros_reallocate(void * pointer, size_t size, void * state){
+    (void) state;
+    void * ptr = realloc(pointer, size);
+    return ptr;
+  }
+  ```
+
+- zero_allocate:
+
+  Allocate memory with all elements set to zero, given a number of elements and their size. An error should be indicated by returning `NULL`:
+   
+  ```c
+  // Function prototype:
+  void * (*zero_allocate)(size_t number_of_elements, size_t size_of_element, void * state);
+
+  // Implementation example:
+  void * microros_zero_allocate(size_t number_of_elements, size_t size_of_element, void * state){
+    (void) state;
+    void * ptr = malloc(number_of_elements * size_of_element);
+    memset(ptr, 0, number_of_elements * size_of_element);
+    return ptr;
+  }
+  ```
+
+  *Note: the `state` input argument is espected to be unused*
 
 ## Time sync
 micro-ROS Clients can synchronize their epoch time with the connected Agent, this can be very useful when working in embedded environments that do not provide any time synchronization mechanism. 

@@ -195,8 +195,11 @@ For a detail on the available QoS options and the advantages and disadvantages b
 The executor is responsible to call the configured callback when a message is published.
 The function will have the message as its only argument, containing the values sent by the publisher:
 
-// TODO: explain function prototype?
 ```c
+// Function prototype:
+void (* rclc_subscription_callback_t)(const void *);
+
+// Example:
 void subscription_callback(const void * msgin)
 {
   // Cast received message to used type
