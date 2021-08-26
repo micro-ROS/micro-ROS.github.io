@@ -168,9 +168,62 @@ else
 
 ## Continous serialization
 
--```c
-void rmw_uros_set_continous_serialization_callbacks(
-rmw_publisher_t * publisher,
-rmw_uros_continous_serialization_size size_cb,
-rmw_uros_continous_serialization serialization_cb);
+This utility allows the client to serialize and send data up to a customized size. The user can set the topic lenght and then serialize the data within the publish process. An example can be found on [`micro-ROS-demos/rclc/ping_uros_agent`](https://github.com/micro-ROS/micro-ROS-demos/blob/galactic/rclc/ping_uros_agent/main.c), where fragments from an image are requested and serialized on the spot.
+
+The user needs to define two callbacks, then set them on the `rmw`. It is recommended to clean the callbacks after the publication, to avoid interferences with other topics on the same process:
+
+```c
+// Set serialization callbacks
+rmw_uros_set_continous_serialization_callbacks(size_cb, serialization_cb);
+
+// Publish message
+rcl_publish(...);
+
+// Clean callbacks
+rmw_uros_set_continous_serialization_callbacks(NULL, NULL);
 ```
+
+- Size callback:
+
+This callback will pass a pointer with the calculated message size. The user is responsible of increase this size to the expected value:
+
+```c
+// Function prototype:
+void (* rmw_uros_continous_serialization_size)(uint32_t * topic_length);
+
+// Implementation example:
+void size_cb(uint32_t * topic_length){
+    // Increase message size
+    *topic_length += ucdr_alignment(*topic_length, sizeof(uint32_t)) + sizeof(uint32_t);
+    *topic_length += IMAGE_BYTES;
+}
+```
+
+- Serialize callback:
+
+This callback gives the user the message buffer to be completed. The user is responsible of serialize the data up to the lenght established on the size callback:
+
+```c
+// Function prototype:
+void (* rmw_uros_continous_serialization)(ucdrBuffer * ucdr);
+
+// Implementation example:
+void serialization_cb(ucdrBuffer * ucdr){
+    size_t len = 0;
+    micro_ros_fragment_t fragment;
+
+    // Serialize array size
+    ucdr_serialize_uint32_t(ucdr, IMAGE_BYTES); 
+
+    while(len < IMAGE_BYTES){
+      // Wait for new image "fragment"
+      ...
+
+      // Serialize data fragment
+      ucdr_serialize_array_uint8_t(ucdr, fragment.data, fragment.len);
+      len += fragment.len;
+    }
+}
+```
+
+*Note: When the callback ends, the message will be published.*

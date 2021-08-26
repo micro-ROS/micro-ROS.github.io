@@ -199,7 +199,7 @@ The function will have the message as its only argument, containing the values s
 // Function prototype:
 void (* rclc_subscription_callback_t)(const void *);
 
-// Example:
+// Implementation example:
 void subscription_callback(const void * msgin)
 {
   // Cast received message to used type
@@ -209,7 +209,6 @@ void subscription_callback(const void * msgin)
   printf("Received: %d\n", msg->data);
 }
 ```
-
 
 Once the subscriber and the executor are initialized, the subscriber callback must be added to the executor to receive incoming publications once its spinning:
 
@@ -225,6 +224,7 @@ rcl_ret_t rc = rclc_executor_add_subscription(
 if (RCL_RET_OK != rc) {
   ...  // Handle error
   return -1;
+}
 
 // Spin executor to receive messages
 rclc_executor_spin(&executor);

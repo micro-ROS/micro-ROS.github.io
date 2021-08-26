@@ -53,7 +53,6 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time)
 
 During the callback the timer can be canceled or have its period and/or callback modified using the passed pointer. Check [rcl/timer.h](https://github.com/ros2/rcl/blob/galactic/rcl/include/rcl/timer.h) for details.
 
-
 ### Cleaning Up
 
 To destroy an initialized timer:

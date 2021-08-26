@@ -113,7 +113,7 @@ The client request message will contain two integers `a` and `b`, and expects th
 // Function prototype:
 void (* rclc_service_callback_t)(const void *, void *);
 
-// Example:
+// Implementation example:
 void service_callback(const void * request_msg, void * response_msg){
   // Cast messages to expected types
   example_interfaces__srv__AddTwoInts_Request * req_in =
@@ -233,7 +233,7 @@ It is necessary to cast the response message to the expected type. Example:
 // Function prototype:
 void (* rclc_client_callback_t)(const void *);
 
-// Example:
+// Implementation example:
 void client_callback(const void * response_msg){
   // Cast response message to expected type
   example_interfaces__srv__AddTwoInts_Response * msgin =

@@ -3,9 +3,6 @@ title: Quality of service
 permalink: /docs/tutorials/programming_rcl_rclc/qos/
 ---
 
-// Add benchmark results for Throughput and RTT to compare both modes?
-// Explain custom QoS options
-
 - [Reliable QoS](#reliable-qos)
 - [Best Effort](#best-effort)
 - [Custom QoS configuration](#custom-qos-configuration)
