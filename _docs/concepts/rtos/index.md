@@ -21,7 +21,7 @@ By clicking on the logos below, you'll be redirected to the Overview section, wh
 <table style="border:none;">
  <tr>
   <td style="width:33%; text-align:center; vertical-align:bottom; font-weight:bold;"><a href="/docs/overview/rtos/#freertos"><img style="margin-left:auto; margin-right:auto; padding-bottom:5px;" width="263" height="100" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Logo_freeRTOS.png"><br/>FreeRTOS</a></td>
-  <td style="width:33%; text-align:center; vertical-align:bottom; font-weight:bold;"><a href="/docs/overview/rtos/#zephyr"><img style="margin-left:auto; margin-right:auto; padding-bottom:5px;" width="220" height="114" src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Zephyr-logo.png"><br/>Zephyr</a></td>
+  <td style="width:33%; text-align:center; vertical-align:bottom; font-weight:bold;"><a href="/docs/overview/rtos/#zephyr"><img style="margin-left:auto; margin-right:auto; padding-bottom:5px;" width="220" height="114" src="https://www.linuxfoundation.org/wp-content/uploads/zephyr-color.svg"><br/>Zephyr</a></td>
   <td style="width:33%; text-align:center; vertical-align:bottom; font-weight:bold;"><a href="/docs/overview/rtos/#nuttx"><img style="margin-left:auto; margin-right:auto; padding-bottom:5px;" width="125" height="125" src="https://upload.wikimedia.org/wikipedia/commons/b/b0/NuttX_logo.png"><br/>NuttX</a></td>
  </tr>
 </table>

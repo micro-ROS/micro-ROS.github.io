@@ -20,7 +20,7 @@ permalink: /docs/overview/rtos/
 }
 
 .rtositem_description {
-  width: 50%;  
+  width: 50%;
 }
 
 .rtositem_image img {
@@ -34,7 +34,7 @@ The standard approach to micro-ROS assumes a Real-Time Operating System undernea
 
 Even though recent developments aim at loosening this requirement, with the integration into Arduino IDE as an important step towards true micro-ROS bare-metal support, the RTOS-based support remains the main entrypoint to micro-ROS.
 
-To date, micro-ROS is supported by the RTOSes FreeRTOS, Zephyr, NuttX, in addition to Linux and Windows. 
+To date, micro-ROS is supported by the RTOSes FreeRTOS, Zephyr, NuttX, in addition to Linux and Windows.
 All three RTOSes are downloaded natively with the [micro-ROS build system](https://github.com/micro-ROS/micro_ros_setup), and can be chosen when creating
 a new firmware workspace.
 Dedicated tutorials for running your first micro-ROS application on each of these Operating Systems can be found [here](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/).
@@ -62,7 +62,7 @@ FreeRTOS is distributed under the MIT license. It is known particularly for its 
             <li>Memory management tools</li>
             <li>Standard and idle tasks available with assignable priorities</li>
             <li>Transport resources: TCP/IP and lwIP</li>
-        </ul>  
+        </ul>
         <b>FreeRTOS resources:</b>
         <ul>
             <li><a href="https://www.freertos.org/">Official FreeRTOS website</a></li>
@@ -73,7 +73,7 @@ FreeRTOS is distributed under the MIT license. It is known particularly for its 
         <ul>
             <li><a href="https://www.freertos.org/2020/09/micro-ros-on-freertos.html">micro-ROS on FreeRTOS</a></li>
             <li><a href="https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/freertos/">First micro-ROS Application on FreeRTOS</a></li>
-        </ul>    
+        </ul>
     </div>
   </div>
 
@@ -98,7 +98,7 @@ Zephyr is a fairly new open-source RTOS, developed in a Linux Foundation Project
             <li>Multiple Scheduling Algorithms</li>
             <li>Highly configurable/Modular for flexibility</li>
             <li>Native Linux, macOS, and Windows Development</li>
-        </ul>  
+        </ul>
         <b>Zephyr resources:</b>
         <ul>
             <li><a href="https://www.zephyrproject.org/">Official Zephyr website</a></li>
@@ -116,7 +116,7 @@ Zephyr is a fairly new open-source RTOS, developed in a Linux Foundation Project
   </div>
 
   <div class="rtositem_image">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Zephyr-logo.png">
+    <img src="https://www.linuxfoundation.org/wp-content/uploads/zephyr-color.svg">
   </div>
 </div>
 
@@ -133,7 +133,7 @@ NuttX emphasizes its compliance with standards - including POSIX - and small foo
             <li>Rich Feature OS Set</li>
             <li>Highly scalable</li>
             <li>Real-Time behavior: fully pre-emptible; fixed priority, round-robin, and “sporadic” scheduling</li>
-        </ul>  
+        </ul>
         <b>NuttX resources:</b>
         <ul>
             <li><a href="https://nuttx.apache.org/">Official NuttX website</a></li>
@@ -176,7 +176,7 @@ The open-source Arduino Software (IDE) is a library making it easy to program an
         <ul>
             <li><a href="https://www.arduino.cc/">Official Arduino Website</a></li>
             <li><a href="https://github.com/micro-ROS/micro_ros_arduino">micro_ros_arduino repo</a></li>
-        </ul>    
+        </ul>
     </div>
   </div>
 

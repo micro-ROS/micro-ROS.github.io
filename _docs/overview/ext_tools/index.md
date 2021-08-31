@@ -20,7 +20,7 @@ permalink: /docs/overview/ext_tools/
 }
 
 .extplatitem_description {
-  width: 65%;  
+  width: 65%;
 }
 
 .extplatitem_image img {
@@ -51,7 +51,7 @@ The modules that exist up to date for integrating into external build systems ar
             <li><a href="https://github.com/micro-ROS/micro_ros_espidf_component">micro-ROS component for ESP-IDF on GitHub</a></li>
             <li><a href="https://github.com/espressif/esp-idf">ESP-IDF on GitHub</a></li>
             <li><a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/">ESP-IDF docs</a></li>
-        </ul>    
+        </ul>
     </div>
   </div>
 
@@ -73,12 +73,12 @@ The modules that exist up to date for integrating into external build systems ar
             <li><a href="https://github.com/micro-ROS/micro_ros_zephyr_module">micro-ROS module for Zephyr build system on GitHub</a></li>
             <li><a href="https://github.com/zephyrproject-rtos/zephyr">Primary GitHub repository for the Zephyr Project</a></li>
             <li><a href="https://github.com/zephyrproject-rtos/zephyr">Zephyr Project official webpage</a></li>
-        </ul>    
+        </ul>
     </div>
   </div>
 
   <div class="extplatitem_image">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Zephyr-logo.png">
+    <img src="https://www.linuxfoundation.org/wp-content/uploads/zephyr-color.svg">
   </div>
 </div>
 
