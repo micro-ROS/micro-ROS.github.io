@@ -20,21 +20,23 @@ permalink: /docs/overview/hardware/
 }
 
 .hardwareitem_description {
-  width: 60%;  
+  width: 60%;
 }
 
 .hardwareitem_image img {
     max-width: 100%;
+    max-height: 80%;
+
 }
 </style>
 
 Micro-ROS aims to **bring ROS 2 to a wide set of microcontrollers** to allow having first-class ROS 2 entities in the embedded world.
 
-The main targets of micro-ROS are mid-range 32-bits microcontroller families. Usually, the minimum requirements for running micro-ROS in an embedded platform are memory constraints. Since memory usage in micro-ROS is a complex matter we provide a [complete article](/docs/concepts/benchmarking/benchmarking/) describing it and a tutorial on [how to tune the memory consuption](../../tutorials/advanced/microxrcedds_rmw_configuration/) in the micro-ROS middleware. 
+The main targets of micro-ROS are mid-range 32-bits microcontroller families. Usually, the minimum requirements for running micro-ROS in an embedded platform are memory constraints. Since memory usage in micro-ROS is a complex matter we provide a [complete article](/docs/concepts/benchmarking/benchmarking/) describing it and a tutorial on [how to tune the memory consuption](../../tutorials/advanced/microxrcedds_rmw_configuration/) in the micro-ROS middleware.
 
 In general micro-ROS will need MCUs that have tens of kilobytes of RAM memory and communication peripherals that enable the micro-ROS [Client to Agent communication](../features/).
 
-The micro-ROS hardware support is divided into two categories: 
+The micro-ROS hardware support is divided into two categories:
 - Officially supported boards
 - Community supported boards
 
@@ -46,6 +48,37 @@ The officially supported boards are those which have been carried out or tested 
 
 <div class="hardwarecontainer">
   <div class="hardwareitem_description">
+    <h3><b>Renesas EK RA6M5</b> and <b>e2studio</b></h3>
+    <div>
+        &#10004; <b>Key features:</b>
+        <ul>
+            <li>MCU: ARM Cortex M-33 core @ 200 MHz</li>
+            <li>RAM: 512 kB</li>
+            <li>Flash: up to 2 MB</li>
+            <li>Peripherals: Ethernet, SCI, SPI, I2C, I2S, UART, USB, SDIO, CAN, GPIO, ADC/DAC, PWM</li>
+        </ul>
+        &#127758; <b>Resources:</b>
+        <ul>
+            <li><a href="https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ek-ra6m5-evaluation-kit-ra6m5-mcu-group">Official website</a></li>
+            <li><a href="https://www.renesas.com/us/en/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra6m5-200mhz-arm-cortex-m33-trustzone-highest-integration-ethernet-and-can-fd">Datasheet</a></li>
+            <li><a href="https://www.renesas.com/us/en/application/technologies/robotics">HW support information</a></li>
+        </ul>
+        &#9881; <b>Supported platforms:</b>
+        <ul>
+            <li><b>RTOSes:</b> <a href="https://www.freertos.org/">FreeRTOS</a>, <a href="https://docs.microsoft.com/en-us/azure/rtos/threadx/">ThreadX</a> and Bare-metal</li>
+        </ul>
+        &#128268; <b>Supported transports:</b>
+        UDP, UART, USB-CDC
+    </div>
+  </div>
+
+  <div class="hardwareitem_image">
+    <img src="imgs/renesas.png">
+  </div>
+</div>
+
+<div class="hardwarecontainer">
+  <div class="hardwareitem_description">
     <h3><b>Espressif ESP32</b></h3>
     <div>
         &#10004; <b>Key features:</b>
@@ -54,7 +87,7 @@ The officially supported boards are those which have been carried out or tested 
             <li>RAM: 520 kB</li>
             <li>Flash: 4 MB</li>
             <li>Peripherals: Ethernet MAC, Wi-Fi 802.11 b/g/n, Bluetooth v4.2 BR/EDR, BLE, SPI, I2C, I2S, UART, SDIO, CAN, GPIO, ADC/DAC, PWM  </li>
-        </ul>  
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://www.espressif.com/en/products/socs/esp32">Official website</a></li>
@@ -86,7 +119,7 @@ The officially supported boards are those which have been carried out or tested 
             <li>RAM: 8 MB</li>
             <li>Flash: 16 MB</li>
             <li>Peripherals: USB HS, Ethernet, WiFi/BT...</li>
-        </ul>  
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://store.arduino.cc/portenta-h7">Official website</a></li>
@@ -97,7 +130,7 @@ The officially supported boards are those which have been carried out or tested 
             <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        USB, WiFi UDP   
+        USB, WiFi UDP
   </div>
 </div>
 
@@ -117,7 +150,7 @@ The officially supported boards are those which have been carried out or tested 
             <li>RAM: 264 kB</li>
             <li>Flash: up to 16 MB</li>
             <li>Peripherals: I2C, SPI, PIO...</li>
-        </ul> 
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://www.raspberrypi.org/products/raspberry-pi-pico/">Official website</a></li>
@@ -129,7 +162,7 @@ The officially supported boards are those which have been carried out or tested 
             <li><b>External tools:</b> <a href="https://github.com/raspberrypi/pico-sdk">Raspberry Pi Pico SDK</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        USB, UART     
+        USB, UART
     </div>
   </div>
 
@@ -149,7 +182,7 @@ The officially supported boards are those which have been carried out or tested 
             <li>RAM: 320 kB</li>
             <li>Flash: 1024 kB</li>
             <li>Peripherals: 3-axis IMU, Dynamixel ports, SPI, I2C... </li>
-        </ul>  
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://emanual.robotis.com/docs/en/parts/controller/opencr10/">Official website</a></li>
@@ -160,7 +193,7 @@ The officially supported boards are those which have been carried out or tested 
             <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        USB, UART    
+        USB, UART
     </div>
   </div>
 
@@ -180,7 +213,7 @@ The officially supported boards are those which have been carried out or tested 
             <li>RAM: 64 kB</li>
             <li>Flash: 256 kB</li>
             <li>Peripherals: USB, SPI, I2C, CAN, I2S... </li>
-        </ul>  
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://www.pjrc.com/teensy/teensy31.html">Official website</a></li>
@@ -191,7 +224,7 @@ The officially supported boards are those which have been carried out or tested 
             <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        USB, UART      
+        USB, UART
     </div>
   </div>
 
@@ -211,7 +244,7 @@ The officially supported boards are those which have been carried out or tested 
             <li>RAM: 1024 kB</li>
             <li>Flash: 2048 kB</li>
             <li>Peripherals: USB, PWM, SPI, I2C, CAN, I2S, SDIO,... </li>
-        </ul>  
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://www.pjrc.com/store/teensy40.html">Official website</a></li>
@@ -222,7 +255,7 @@ The officially supported boards are those which have been carried out or tested 
             <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        USB, UART  
+        USB, UART
     </div>
   </div>
 
@@ -242,7 +275,7 @@ The officially supported boards are those which have been carried out or tested 
             <li>RAM: 192 kB</li>
             <li>Flash: 1 MB</li>
             <li>Peripherals: 3 axis IMU, pressure sensor, SPI, I2C, UART, nRF51822 radio...</li>
-        </ul>  
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://www.bitcraze.io/products/crazyflie-2-1/">Official website</a></li>
@@ -253,7 +286,7 @@ The officially supported boards are those which have been carried out or tested 
             <li><b>External tools:</b> &ndash;</li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        Custom Radio Link    
+        Custom Radio Link
     </div>
   </div>
 
@@ -273,7 +306,7 @@ The officially supported boards are those which have been carried out or tested 
             <li>RAM: 128 kB</li>
             <li>Flash: 1 MB</li>
             <li>Peripherals: Bluetooth, low-power RF module, 802.11 b/g/n, NFC, 2 digital microphone, temperature/humidity sensor, 3 axis IMU, ToF sensor...</li>
-        </ul>  
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://www.st.com/en/evaluation-tools/b-l475e-iot01a.html">Official website</a></li>
@@ -284,7 +317,7 @@ The officially supported boards are those which have been carried out or tested 
             <li><b>External tools:</b> <a href="https://www.zephyrproject.org/">Zephyr</a> build system</li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        USB, UART, Ethernet UDP    
+        USB, UART, Ethernet UDP
     </div>
   </div>
 
@@ -304,7 +337,7 @@ The officially supported boards are those which have been carried out or tested 
             <li>RAM: 196 kB</li>
             <li>Flash: 1 MB</li>
             <li>Peripherals:  USB OTG, Ethernet, SD Card slot, SPI, CAN, I2C... </li>
-        </ul>  
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://www.olimex.com/Products/ARM/ST/STM32-E407/open-source-hardware">Official website</a></li>
@@ -318,7 +351,7 @@ The officially supported boards are those which have been carried out or tested 
         </ul>
         &#128268; <b>Supported transports:</b>
         USB (Z, N), UART (Z, F, N), Ethernet UDP (F, N)
-        <br><i><b>Note:</b> Only RTOS initials used for convenience.</i>   
+        <br><i><b>Note:</b> Only RTOS initials used for convenience.</i>
     </div>
   </div>
 
@@ -340,7 +373,7 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
             <li>MCU: ARM Cortex-M3 AT91SAM3X8E</li>
             <li>RAM: 96 kB</li>
             <li>Flash: 512 kB</li>
-        </ul>  
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://store.arduino.cc/arduino-due">Official website</a></li>
@@ -351,7 +384,7 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
             <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        USB, UART    
+        USB, UART
     </div>
   </div>
 
@@ -369,7 +402,7 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
             <li>MCU: ARM Cortex-M0+ ATSAMD21G18</li>
             <li>RAM: 32 kB</li>
             <li>Flash: 256 kB</li>
-        </ul>  
+        </ul>
         &#127758; <b>Resources:</b>
         <ul>
             <li><a href="https://store.arduino.cc/arduino-zero">Official website</a></li>
@@ -380,7 +413,7 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
             <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        USB, UART    
+        USB, UART
     </div>
   </div>
 
@@ -403,7 +436,7 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
             <li><b>External tools:</b> <a ref="https://www.st.com/en/development-tools/stm32cubemx.html">STM32CubeMX</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        UART    
+        UART
     </div>
   </div>
 
@@ -426,7 +459,7 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
             <li><b>External tools:</b> <a ref="https://www.st.com/en/development-tools/stm32cubemx.html">STM32CubeMX</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        UART    
+        UART
     </div>
   </div>
 
@@ -449,7 +482,7 @@ The micro-ROS community supported boards are contributions of micro-ROS' users a
             <li><b>External tools:</b> <a ref="https://www.st.com/en/development-tools/stm32cubemx.html">STM32CubeMX</a></li>
         </ul>
         &#128268; <b>Supported transports:</b>
-        UART    
+        UART
     </div>
   </div>
 
