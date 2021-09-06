@@ -1,6 +1,20 @@
 ---
-title: Members, Partners, Users and Collaborators
+title: Customers, Partners, Users and Collaborators
 permalink: /docs/overview/users_and_clients/
+
+customers_list:
+  - path: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Renesas_Electronics_logo.svg/210px-Renesas_Electronics_logo.svg.png
+    text: Renesas is a global semiconductor company delivering trusted embedded design innovation with complete semiconductor solutions that enable billions of connected, intelligent devices to enhance the way people work and live.
+    title: Renesas
+    url: www.renesas.com
+  - path: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/LG_logo_%282015%29.svg/2560px-LG_logo_%282015%29.svg.png
+    text: LG Electronics is one of the fourth-largest electronics company in South Korea. It comprises four business units home Entertainment, mobile communications, home appliances and vehicle components
+    title: LG
+    url: www.lg.com
+  - path: https://capra.ooo/wp-content/themes/capra/img/logo_w-tagline.svg
+    text: Capra descriptipn here
+    title: Capra Robotics
+    url: https://capra.ooo/
 
 ofera_consortium:
   - path: https://www.eprosima.com/images/logos/eprosima/logo.png
@@ -35,10 +49,6 @@ partners_list:
     url: www.amazon.com
 
 users:
-  - path: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Renesas_Electronics_logo.svg/210px-Renesas_Electronics_logo.svg.png
-    text: Renesas is a global semiconductor company delivering trusted embedded design innovation with complete semiconductor solutions that enable billions of connected, intelligent devices to enhance the way people work and live.
-    title: Renesas
-    url: www.renesas.com
   - path: https://cdn11.bigcommerce.com/s-76o5u/images/stencil/250x100/robotis_logo_en_1397779687__24544.original.jpg
     text: Robotis is a global robot solutions provider and one of the leading manufacturers of robotic hardware. The company is the exclusive producer of the DYNAMIXEL brand of all-in-one smart servos. Robotis specializes in the manufacture of robotic hardware and full robot platforms for use in all fields of study and industry, as well as educational robotics kits for all ages and skill levels.
     title: Robotis
@@ -47,7 +57,7 @@ users:
     text: Dronecode is a nonprofit hosted under the Linux Foundation, dedicated to fostering open-source components and their communities. Working with top developers, end-users, and adopting vendors to create opportunities for collaboration.
     title: Dronecode
     url: www.dronecode.org
-  - path: https://www.wyca-robotics.com/assets/img/LogoAvecRoue%20compact%202.png?h=8fb6472f17b03b02cb7872c4a106281c
+  - path: https://www.wyca-robotics.fr/wp-content/uploads/2021/04/LogoAvecRoue.png
     text: WYCA Robotics is a French company with more than 5 years of edge technology mastering in Robotics, AI and autonomous navigation. They developed Elodie, the first multi-purpose self-driving level 5 indoor vehicle for handling the users&#39 mobiliy challenges.
     title: Wyca Robotics
     url: www.wyca-robotics.com
@@ -84,24 +94,24 @@ collaborators:
 
 <style type="text/css">
 .modal {
-  display: none; 
+  display: none;
   position: fixed;
-  z-index: 3; 
+  z-index: 3;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; 
+  margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%; 
+  width: 50%;
 }
 
 .logoImage {
@@ -169,6 +179,15 @@ window.onload = () => {
 </div>
 
 <!-- CONTENT -->
+<h2>Customers</h2>
+<div class="photo-gallery">
+  {% for image in page.customers_list %}
+    <div class="flex-item">
+        <img class="logoImage" src="{{ image.path }}" style="cursor:pointer;" alt="{{ image.title}}" onclick="open_modal('{{ image.title }}','{{ image.url }}','{{ image.text }}')"/>
+    </div>
+  {% endfor %}
+</div>
+
 <h2>Members of the EU project OFERA</h2>
 <div class="photo-gallery">
   {% for image in page.ofera_consortium %}
