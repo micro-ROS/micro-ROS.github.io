@@ -5,13 +5,15 @@
 |                | Name           |
 | -------------- | -------------- |
 | void | **[rmw_uros_set_continous_serialization_callbacks](#function-rmw_uros_set_continous_serialization_callbacks)**(rmw_publisher_t * publisher, rmw_uros_continous_serialization_size size_cb, rmw_uros_continous_serialization serialization_cb)<br>Sets the callback functions for continous serialization for a publisher.  |
-| rmw_ret_t | **[rmw_uros_set_custom_transport](#function-rmw_uros_set_custom_transport)**(bool framing, void * args, open_custom_func open_cb, close_custom_func close_cb, write_custom_func write_cb, read_custom_func read_cb)<br>Check if micro-ROS Agent answers to micro-ROS client.  |
+| rmw_ret_t | **[rmw_uros_set_custom_transport](#function-rmw_uros_set_custom_transport)**(bool framing, void * args, open_custom_func open_cb, close_custom_func close_cb, write_custom_func write_cb, read_custom_func read_cb)<br>Sets micro-ROS default custom transport.  |
+| rmw_ret_t | **[rmw_uros_options_set_custom_transport](#function-rmw_uros_options_set_custom_transport)**(bool framing, void * args, open_custom_func open_cb, close_custom_func close_cb, write_custom_func write_cb, read_custom_func read_cb, rmw_init_options_t * rmw_options)<br>Fills rmw implementation-specific options with the given custom transport.  |
 | rmw_ret_t | **[rmw_uros_discover_agent](#function-rmw_uros_discover_agent)**(rmw_init_options_t * rmw_options)<br>Fills rmw implementation-specific options with the autodicovered address of an micro-ROS Agent.  |
 | rmw_ret_t | **[rmw_uros_init_options](#function-rmw_uros_init_options)**(int argc, const char *const argv[], rmw_init_options_t * rmw_options)<br>Parses command line args and fills rmw implementation-specific options.  |
 | rmw_ret_t | **[rmw_uros_options_set_serial_device](#function-rmw_uros_options_set_serial_device)**(const char * dev, rmw_init_options_t * rmw_options)<br>Fills rmw implementation-specific options with the given parameters.  |
 | rmw_ret_t | **[rmw_uros_options_set_udp_address](#function-rmw_uros_options_set_udp_address)**(const char * ip, const char * port, rmw_init_options_t * rmw_options)<br>Fills rmw implementation-specific options with the given parameters.  |
 | rmw_ret_t | **[rmw_uros_options_set_client_key](#function-rmw_uros_options_set_client_key)**(uint32_t client_key, rmw_init_options_t * rmw_options)<br>Fills rmw implementation-specific options with the given parameters.  |
 | rmw_ret_t | **[rmw_uros_ping_agent](#function-rmw_uros_ping_agent)**(const int timeout_ms, const uint8_t attempts)<br>Check if micro-ROS Agent is up and running.  |
+| rmw_ret_t | **[rmw_uros_ping_agent_options](#function-rmw_uros_ping_agent_options)**(const int timeout_ms, const uint8_t attempts, rmw_init_options_t * rmw_options)<br>Check if micro-ROS Agent is up and running using the transport set on the given rmw options.  |
 | bool | **[rmw_uros_epoch_synchronized](#function-rmw_uros_epoch_synchronized)**()<br>Returns the time synchronization state of the epoch time.  |
 | int64_t | **[rmw_uros_epoch_millis](#function-rmw_uros_epoch_millis)**()<br>Returns the epoch time in milliseconds taking into account the offset computed during the time synchronization.  |
 | int64_t | **[rmw_uros_epoch_nanos](#function-rmw_uros_epoch_nanos)**()<br>Returns the epoch time in nanoseconds taking into account the offset computed during the time synchronization.  |
@@ -55,7 +57,7 @@ rmw_ret_t rmw_uros_set_custom_transport(
 )
 ```
 
-Check if micro-ROS Agent answers to micro-ROS client. 
+Sets micro-ROS default custom transport. 
 
 **Parameters**: 
 
@@ -71,6 +73,39 @@ Check if micro-ROS Agent answers to micro-ROS client.
 
   * RMW_RET_OK If correct. 
   * RMW_RET_ERROR If invalid. 
+
+
+### function rmw_uros_options_set_custom_transport
+
+```cpp
+rmw_ret_t rmw_uros_options_set_custom_transport(
+    bool framing,
+    void * args,
+    open_custom_func open_cb,
+    close_custom_func close_cb,
+    write_custom_func write_cb,
+    read_custom_func read_cb,
+    rmw_init_options_t * rmw_options
+)
+```
+
+Fills rmw implementation-specific options with the given custom transport. 
+
+**Parameters**: 
+
+  * **framing** Enable XRCE framing. 
+  * **args** Arguments for open function. 
+  * **open_cb** Open transport callback. 
+  * **close_cb** Close transport callback. 
+  * **write_cb** Write transport callback. 
+  * **read_cb** Read transport callback. 
+  * **rmw_options** Updated options with updated transport. 
+
+
+**Return**: 
+
+  * RMW_RET_OK If arguments were valid and set in rmw_init_options. 
+  * RMW_RET_INVALID_ARGUMENT If rmw_init_options is not valid or unexpected arguments. 
 
 
 ### function rmw_uros_discover_agent
@@ -218,6 +253,34 @@ Check if micro-ROS Agent is up and running.
 
 
 This function can be called even when the micro-ROS context has not yet been initialized by the application logics. 
+
+
+### function rmw_uros_ping_agent_options
+
+```cpp
+rmw_ret_t rmw_uros_ping_agent_options(
+    const int timeout_ms,
+    const uint8_t attempts,
+    rmw_init_options_t * rmw_options
+)
+```
+
+Check if micro-ROS Agent is up and running using the transport set on the given rmw options. 
+
+**Parameters**: 
+
+  * **timeout_ms** Timeout in ms (per attempt). 
+  * **attempts** Number of tries before considering the ping as failed. 
+  * **rmw_options** rmw options with populated transport parameters. 
+
+
+**Return**: 
+
+  * RMW_RET_OK If micro-ROS Agent is available. 
+  * RMW_RET_ERROR If micro-ROS Agent is not available. 
+
+
+This function can be called even when the micro-ROS context has not yet been initialized. The transport will be initialized and closed once during the ping process. 
 
 
 ### function rmw_uros_epoch_synchronized
