@@ -53,6 +53,17 @@
    - tutorials/core/zephyr_emulator
    - tutorials/core/teensy_with_arduino
 
+- title: Programming with rcl and rclc
+  docs:
+   - tutorials/programming_rcl_rclc/overview
+   - tutorials/programming_rcl_rclc/node
+   - tutorials/programming_rcl_rclc/pub_sub
+   - tutorials/programming_rcl_rclc/service
+   - tutorials/programming_rcl_rclc/parameters
+   - tutorials/programming_rcl_rclc/executor
+   - tutorials/programming_rcl_rclc/qos
+   - tutorials/programming_rcl_rclc/micro-ROS
+
 - title: Advanced Tutorials
   docs:
    - tutorials/advanced/overview
@@ -64,17 +75,6 @@
    - tutorials/advanced/create_custom_static_library
    - tutorials/advanced/benchmarking
    - tutorials/advanced/tracing
-
-- title: Programming with rcl and rclc
-  docs:
-   - tutorials/programming_rcl_rclc/overview
-   - tutorials/programming_rcl_rclc/node
-   - tutorials/programming_rcl_rclc/pub_sub
-   - tutorials/programming_rcl_rclc/service
-   - tutorials/programming_rcl_rclc/parameters
-   - tutorials/programming_rcl_rclc/executor
-   - tutorials/programming_rcl_rclc/qos
-   - tutorials/programming_rcl_rclc/micro-ROS
 
 - title: Unmaintained Tutorials
   docs:
