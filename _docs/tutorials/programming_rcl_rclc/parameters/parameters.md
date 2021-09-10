@@ -3,6 +3,8 @@ title: Parameter server
 permalink: /docs/tutorials/programming_rcl_rclc/parameters/
 ---
 
+<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/>
+  
 ROS 2 parameters allow the user to create variables on a node and manipulate/read them with different ROS2 commands. Further information about ROS 2 parameters can be found [here](https://docs.ros.org/en/galactic/Tutorials/Parameters/Understanding-ROS2-Parameters.html)
 
 Ready to use code related to this tutorial can be found in [`rclc/rclc_examples/src/example_parameter_server.c`](https://github.com/ros2/rclc/blob/master/rclc_examples/src/example_parameter_server.c). Fragments of code from this example is used on this tutorial.

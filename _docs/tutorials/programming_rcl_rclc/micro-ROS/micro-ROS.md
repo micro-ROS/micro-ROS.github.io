@@ -3,8 +3,10 @@ title: micro-ROS utilities
 permalink: /docs/tutorials/programming_rcl_rclc/micro-ROS/
 ---
 
-// TODO: Change section name
+<!-- TODO: Change section name -->
 
+<img src="https://img.shields.io/badge/Written_for-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/>
+  
 - [Allocators](#allocators)
   - [Custom allocator](#custom-allocator)
 - [Time sync](#time-sync)
