@@ -7,7 +7,7 @@ This is the source for the micro-ROS website, available
 at [https://micro-ros.github.io/](https://micro-ros.github.io/)
 
 ## Editing
-
+ 
 See [editing instructions](EDITING-INSTRUCTIONS.md)
 
 ## License
