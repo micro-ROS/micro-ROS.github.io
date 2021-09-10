@@ -6,9 +6,7 @@ redirect_from:
   - /docs/tutorials/
 ---
 
-This chapter provides the user with a number of tutorials to learn micro-ROS and relevant tools for the different RTOSes supported by micro-ROS. In the [**Advanced Tutorials**](../../advanced/overview/) section, you'll find more advanced tutorials to strenghten your micro-ROS knowledge.
-
-If you are new to micro-ROS, we strongly suggest that you take the tutorials in the following order:
+This chapter provides a number of tutorials to learn micro-ROS and relevant tools for the different RTOSes supported by micro-ROS. If you are new to micro-ROS, we strongly suggest that you take the tutorials in the following order:
 
 * [**First micro-ROS application on Linux**](../first_application_linux/)
     
@@ -18,9 +16,9 @@ If you are new to micro-ROS, we strongly suggest that you take the tutorials in 
 
   In this tutorial, you will learn how to build the application from the previous tutorial for an Real-Time Operating System (RTOS). You will see how to flash a microcontroller board with the application and how to communicate with it from a microprocessor running ROS 2 on Linux. (The tutorial covers all three RTOS supported by micro-ROS, namely NuttX, FreeRTOS, and Zephyr. The choice is up to you!)
 
-* [**Programming with rcl and rclc**](../programming_rcl_rclc/)
+Then, at this point, you may head over to the next section [**Programming with rcl and rclc**](../../programming_rcl_rclc/), where you 'll learn the concepts of the micro-ROS C API in this tutorial in depth. If you are already familiar with the ROS 2 C++ API or even the underlying ROS Client Support Library (rcl), you'll learn this very quickly.
 
-  You'll learn the concepts of the micro-ROS C API in this tutorial in depth. If you are already familiar with the ROS 2 C++ API or even the underlying ROS Client Support Library (rcl), you'll learn this very quickly.
+In case you are using the corresponding RTOS or hardware, the following basic tutorials may be interesting before switching to the [**Programming with rcl and rclc**](../../programming_rcl_rclc/) section:
 
 * [**Zephyr Emulator**](../zephyr_emulator/)
 
@@ -28,4 +26,6 @@ If you are new to micro-ROS, we strongly suggest that you take the tutorials in 
   
 * [**Teensy with Arduino**](../teensy_with_arduino/)
      
-  In this tutorial you will learn how to connect Teensy with micro-ROS and ROS2. You will also learn how to install micro-ROS agent in linux systems to communicate with Teensy based arduino board using Arduino IDE. This tutorial will also cover a simple publisher topic published from teensy and subscribed using ROS2 interface. 
+  In this tutorial you will learn how to connect Teensy with micro-ROS and ROS 2. You will also learn how to install micro-ROS agent in linux systems to communicate with Teensy based arduino board using Arduino IDE. This tutorial will also cover a simple publisher topic published from teensy and subscribed using ROS2 interface. 
+
+ In the [**Advanced Tutorials**](../../advanced/overview/) section, you'll find more advanced tutorials to strenghten your micro-ROS knowledge.
