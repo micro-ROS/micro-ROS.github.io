@@ -135,55 +135,55 @@ rc = rclc_executor_add_parameter_server(&executor, &param_server, NULL);
 micro-ROS parameter server supports the following parameter types:
 
 - Boolean:
-```c
-const char * parameter_name = "parameter_bool";
-bool param_value = true;
+    ```c
+    const char * parameter_name = "parameter_bool";
+    bool param_value = true;
 
-// Add parameter to the server
-rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_BOOL);
+    // Add parameter to the server
+    rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_BOOL);
 
-// Set parameter value (Triggers parameter change callback)
-rc = rclc_parameter_set_bool(&param_server, parameter_name, param_value);
+    // Set parameter value (Triggers parameter change callback)
+    rc = rclc_parameter_set_bool(&param_server, parameter_name, param_value);
 
-// Get parameter value on param_value
-rc = rclc_parameter_get_bool(&param_server, "param1", &param_value);
+    // Get parameter value on param_value
+    rc = rclc_parameter_get_bool(&param_server, "param1", &param_value);
 
-if (RCL_RET_OK != rc) {
-  ... // Handle error
-  return -1;
-}
-```
+    if (RCL_RET_OK != rc) {
+    ... // Handle error
+    return -1;
+    }
+    ```
 
 - Integer:
-```c
-const char * parameter_name = "parameter_int";
-int param_value = 100;
+    ```c
+    const char * parameter_name = "parameter_int";
+    int param_value = 100;
 
-// Add parameter to the server
-rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_INT);
+    // Add parameter to the server
+    rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_INT);
 
-// Set parameter value
-rc = rclc_parameter_set_int(&param_server, parameter_name, param_value);
+    // Set parameter value
+    rc = rclc_parameter_set_int(&param_server, parameter_name, param_value);
 
-// Get parameter value on param_value
-rc = rclc_parameter_get_int(&param_server, parameter_name, &param_value);
-```
+    // Get parameter value on param_value
+    rc = rclc_parameter_get_int(&param_server, parameter_name, &param_value);
+    ```
 
 - Double:
-```c
-const char * parameter_name = "parameter_double";
-double param_value = 0.15;
+    ```c
+    const char * parameter_name = "parameter_double";
+    double param_value = 0.15;
 
-// Add parameter to the server
-rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_DOUBLE);
+    // Add parameter to the server
+    rcl_ret_t rc = rclc_add_parameter(&param_server, parameter_name, RCLC_PARAMETER_DOUBLE);
 
-// Set parameter value
-rc = rclc_parameter_set_double(&param_server, parameter_name, param_value);
+    // Set parameter value
+    rc = rclc_parameter_set_double(&param_server, parameter_name, param_value);
 
-// Get parameter value on param_value
-rc = rclc_parameter_get_double(&param_server, parameter_name, &param_value);
-```
-
+    // Get parameter value on param_value
+    rc = rclc_parameter_get_double(&param_server, parameter_name, &param_value);
+    ```
+ 
 ## Cleaning up
 
 To destroy an initialized parameter server:
