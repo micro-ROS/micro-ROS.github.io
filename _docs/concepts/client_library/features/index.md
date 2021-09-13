@@ -13,4 +13,4 @@ The micro-ROS Client Library, formed by standard [ROS 2 Client Support Library (
 * Lifecycle
 * Parameters
 
-Most features are already available in the Foxy release. Please see our [Feature Overview page](/docs/overview/features/) for details on the status. To learn developing your own application nodes with rcl + rclc, please head to the corresponding [programming tutorial](/docs/tutorials/core/programming_rcl_rclc/).
+Most features are already available in the Foxy release. Please see our [Feature Overview page](/docs/overview/features/) for details on the status. To learn developing your own application nodes with rcl + rclc, please head to the corresponding [programming tutorial](/docs/tutorials/programming_rcl_rclc/).
