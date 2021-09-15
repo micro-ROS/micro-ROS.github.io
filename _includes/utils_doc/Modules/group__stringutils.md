@@ -6,11 +6,11 @@
 | -------------- | -------------- |
 | MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_init](#function-micro_ros_string_utilities_init)**(const char * data)<br>Create a rosidl_runtime_c__String from a char pointer.  |
 | MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_init_with_size](#function-micro_ros_string_utilities_init_with_size)**(const size_t size)<br>Create a rosidl_runtime_c__String from a size.  |
-| MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_set](#function-micro_ros_string_utilities_set)**(rosidl_runtime_c__String str, const char * data)<br>Create a rosidl_runtime_c__String from a char pointer.  |
-| const MICRO_ROS_UTILITIES_PUBLIC char * | **[micro_ros_string_utilities_get_c_str](#function-micro_ros_string_utilities_get_c_str)**(rosidl_runtime_c__String str)<br>Returns the char pointer to the rosidl_runtime_c__String data.  |
-| rosidl_runtime_c__String | **[micro_ros_string_utilities_append](#function-micro_ros_string_utilities_append)**(rosidl_runtime_c__String str, const char * data)<br>Appends a char pointer to the end of a rosidl_runtime_c__String.  |
-| MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_remove_tail_chars](#function-micro_ros_string_utilities_remove_tail_chars)**(rosidl_runtime_c__String str, const size_t n)<br>Removes characters from the end of a string.  |
-| MICRO_ROS_UTILITIES_PUBLIC void | **[micro_ros_string_utilities_destroy](#function-micro_ros_string_utilities_destroy)**(rosidl_runtime_c__String * str)<br>Destroys a rosidl_runtime_c__String.  |
+| MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_set](#function-micro_ros_string_utilities_set)**(const rosidl_runtime_c__String str, const char * data)<br>Create a rosidl_runtime_c__String from a char pointer.  |
+| const MICRO_ROS_UTILITIES_PUBLIC char * | **[micro_ros_string_utilities_get_c_str](#function-micro_ros_string_utilities_get_c_str)**(const rosidl_runtime_c__String str)<br>Returns the char pointer to the rosidl_runtime_c__String data.  |
+| rosidl_runtime_c__String | **[micro_ros_string_utilities_append](#function-micro_ros_string_utilities_append)**(const rosidl_runtime_c__String str, const char * data)<br>Appends a char pointer to the end of a rosidl_runtime_c__String.  |
+| MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_remove_tail_chars](#function-micro_ros_string_utilities_remove_tail_chars)**(const rosidl_runtime_c__String str, const size_t n)<br>Removes characters from the end of a string.  |
+| MICRO_ROS_UTILITIES_PUBLIC void | **[micro_ros_string_utilities_destroy](#function-micro_ros_string_utilities_destroy)**(rosidl_runtime_c__String *const str)<br>Destroys a rosidl_runtime_c__String.  |
 
 
 ## Functions Documentation
@@ -79,7 +79,7 @@ Create a rosidl_runtime_c__String from a size.
 
 ```cpp
 MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String micro_ros_string_utilities_set(
-    rosidl_runtime_c__String str,
+    const rosidl_runtime_c__String str,
     const char * data
 )
 ```
@@ -111,7 +111,7 @@ Create a rosidl_runtime_c__String from a char pointer.
 
 ```cpp
 const MICRO_ROS_UTILITIES_PUBLIC char * micro_ros_string_utilities_get_c_str(
-    rosidl_runtime_c__String str
+    const rosidl_runtime_c__String str
 )
 ```
 
@@ -141,7 +141,7 @@ Returns the char pointer to the rosidl_runtime_c__String data.
 
 ```cpp
 rosidl_runtime_c__String micro_ros_string_utilities_append(
-    rosidl_runtime_c__String str,
+    const rosidl_runtime_c__String str,
     const char * data
 )
 ```
@@ -173,7 +173,7 @@ Appends a char pointer to the end of a rosidl_runtime_c__String.
 
 ```cpp
 MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String micro_ros_string_utilities_remove_tail_chars(
-    rosidl_runtime_c__String str,
+    const rosidl_runtime_c__String str,
     const size_t n
 )
 ```
@@ -205,7 +205,7 @@ Removes characters from the end of a string.
 
 ```cpp
 MICRO_ROS_UTILITIES_PUBLIC void micro_ros_string_utilities_destroy(
-    rosidl_runtime_c__String * str
+    rosidl_runtime_c__String *const str
 )
 ```
 
