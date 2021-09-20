@@ -1,5 +1,5 @@
 ---
-title: Timeout RMW &  QoS in RCLC APIs 
+title: Timeout RMW & QoS in RCLC APIs 
 author: Maria Merlan
 ---
 There are NEW APIs available to improve the usability and scope of micro-ROS:
