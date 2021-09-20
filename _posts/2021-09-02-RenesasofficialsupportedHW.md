@@ -17,7 +17,8 @@ eProsima: “Achieving cost-effective development depends on a common platform a
 Renesas: “Robotics is becoming increasingly important as Industry 4.0 and Industrial IoT gain steam,” said Roger Wendelken, Senior Vice President in the IoT and Infrastructure Business Unit at Renesas. “The performance and feature set of the RA Family make it the best choice for robotic applications, and we’re pleased to work with eProsima to deliver solutions to our diverse customer base.”
 
 Learn how to integrate micro-ROS with RA Family in your high-level system with [Getting Started Guide and Demo videos](https://www.youtube.com/playlist?list=PL-Kh3H15FsNTD8A8wD0_iMnvhDsqw-rga).
-- GITHUB SOURCES:
+
+Source code at GitHub:
 - https://github.com/micro-ROS/micro_ros_renesas2estudio_component
 - https://github.com/micro-ROS/micro_ros_renesas_testbench
 - https://github.com/micro-ROS/micro_ros_renesas_demos
