@@ -13,4 +13,4 @@ This achievement brings the following benefits:
 
 Check this [video](https://www.youtube.com/watch?v=RsnHEaD8b9E) on “Getting started with micro-ROS and Azure RTOS using STMicroelectronics B-L475E-IOT01A” to get the insights and reproduce the integration of micro-ROS in any Azure RTOS supported HW. 
 
-[Azure RTOS](https://github.com/azure-rtos) developed by Microsoft in C, is an embedded development suite including an operating system that provides reliable, ultra-fast performance for resource-constrained devices. Azure RTOS supports the most popular 32-bit microcontrollers and embedded development tools.
+[Azure RTOS](https://github.com/azure-rtos), developed by Microsoft in C, is an embedded development suite including an operating system that provides reliable, ultra-fast performance for resource-constrained devices. Azure RTOS supports the most popular 32-bit microcontrollers and embedded development tools.
