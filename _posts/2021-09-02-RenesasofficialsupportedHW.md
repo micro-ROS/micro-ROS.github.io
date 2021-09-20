@@ -1,5 +1,5 @@
 ---
-title: Renesas and eProsima Simplify Development Of Professional Robotics Applications On RA MCUs With micro-ROS Development Framework
+title: Renesas and eProsima Simplify Development of Professional Robotics Applications on RA MCUs with micro-ROS Development Framework
 author: Maria Merlan
 ---
 Agreement Facilitates Adoption of Robotics in Industrial and IoT Sectors; EK-RA6M5 Evaluation Kit Now Official Supported micro-ROS Development Board.
