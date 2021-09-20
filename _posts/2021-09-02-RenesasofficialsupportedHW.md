@@ -4,7 +4,7 @@ author: Maria Merlan
 ---
 Agreement Facilitates Adoption of Robotics in Industrial and IoT Sectors; EK-RA6M5 Evaluation Kit Now Official Supported micro-ROS Development Board.
 
-Renesas is teaming with eProsima to facilitate the adoption of Robotics in the Industrial and IoT sectors. [Renesas RA6M5 based micro-ROS project](https://github.com/micro-ROS/micro_ros_renesas2estudio_component) is a disruptive solution that provides an eclipse environment that covers the full development cycle of embedded applications in ROS 2. This will strongly impact on reducing the time-to-market of robotics solutions across many different sectors. 
+Renesas is teaming with eProsima to facilitate the adoption of robotics in the industrial and IoT sectors. [Renesas RA6M5 based micro-ROS project](https://github.com/micro-ROS/micro_ros_renesas2estudio_component) is a disruptive solution that provides an Eclipse environment that covers the full development cycle of embedded applications in ROS 2. This will strongly impact on reducing the time-to-market of robotics solutions across many different sectors. 
 
 [This achievement](https://www.renesas.com/eu/en/about/press-room/renesas-and-eprosima-simplify-development-professional-robotics-applications-ra-mcus-micro-ros) comes from joint collaboration between Renesas Electronics Corporation (TSE:6723), a premier supplier of advanced semiconductor solutions and eProsima, the middleware expert SME. 
 
