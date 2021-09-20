@@ -14,7 +14,7 @@ The new RMW API allows the user to set a specific value for the timeout paramete
  
 This brings advantages:	
   - Users can control the blocking time of a reliable publication.
-  - Users can reinforce time constraints to adjust the behaviour to their use case, allowing to fine-tune the timing of the micro-ROS publisher operation.
+  - Users can reinforce time constraints to adjust the behaviour to their use case, allowing to fine-tune the timing of micro-ROS publisher operations.
  
 These enhancements are in line with the strategy of improving usability and scope of micro-ROS. We thank the community and early adopters for their great insights that contribute to enhancing micro-ROS usability and to better focus real use cases. 
  
