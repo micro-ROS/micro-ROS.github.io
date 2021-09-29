@@ -59,15 +59,12 @@ It checks a broad set of points: internal and external links existence (alerting
 
 To install it, It has been incorporated in the Gemfile so the previous dependency install command would have already installed it.
 
-You can run the following gem to tests the generated site.
-
-```bash
-bundle exec jekyll build
-bundle exec htmlproofer ./_site
-```
-
-A utility script has also been included to run these checks in a CI system smoothly.
+You can run `bundle exec jekyll build` followed by `bundle exec htmlproofer ./_site` to build and test the generated site.
+However, note that a comprehensive configuration is required for the htmlproofer.
+Therefore, we strongly suggest to run the utility script at
 
 ```bash
 ./scripts/cibuild
 ```
+
+which is also used for CI.
