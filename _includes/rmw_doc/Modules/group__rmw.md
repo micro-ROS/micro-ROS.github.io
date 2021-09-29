@@ -21,6 +21,8 @@
 | rmw_ret_t | **[rmw_uros_set_publisher_session_timeout](#function-rmw_uros_set_publisher_session_timeout)**(rmw_publisher_t * publisher, int session_timeout)<br>Sets the DDS-XRCE session spin time in reliable publication.  |
 | rmw_ret_t | **[rmw_uros_set_service_session_timeout](#function-rmw_uros_set_service_session_timeout)**(rmw_service_t * service, int session_timeout)<br>Sets the DDS-XRCE session spin time in reliable service server.  |
 | rmw_ret_t | **[rmw_uros_set_client_session_timeout](#function-rmw_uros_set_client_session_timeout)**(rmw_client_t * client, int session_timeout)<br>Sets the DDS-XRCE session spin time in reliable service client.  |
+| rmw_ret_t | **[rmw_uros_set_context_entity_creation_session_timeout](#function-rmw_uros_set_context_entity_creation_session_timeout)**(rmw_context_t * context, int session_timeout)<br>Sets the DDS-XRCE session spin time for creating entities.  |
+| rmw_ret_t | **[rmw_uros_set_context_entity_destroy_session_timeout](#function-rmw_uros_set_context_entity_destroy_session_timeout)**(rmw_context_t * context, int session_timeout)<br>Sets the DDS-XRCE session spin time for destroying entities.  |
 
 
 ## Functions Documentation
@@ -402,6 +404,52 @@ Sets the DDS-XRCE session spin time in reliable service client.
 **Parameters**: 
 
   * **client** client where the spin time is configured 
+  * **session_timeout** time in milliseconds 
+
+
+**Return**: 
+
+  * RMW_RET_OK when success. 
+  * RMW_RET_INVALID_ARGUMENT If client is not valid or unexpected arguments. 
+
+
+### function rmw_uros_set_context_entity_creation_session_timeout
+
+```cpp
+rmw_ret_t rmw_uros_set_context_entity_creation_session_timeout(
+    rmw_context_t * context,
+    int session_timeout
+)
+```
+
+Sets the DDS-XRCE session spin time for creating entities. 
+
+**Parameters**: 
+
+  * **context** RWM context where the spin time is configured 
+  * **session_timeout** time in milliseconds 
+
+
+**Return**: 
+
+  * RMW_RET_OK when success. 
+  * RMW_RET_INVALID_ARGUMENT If client is not valid or unexpected arguments. 
+
+
+### function rmw_uros_set_context_entity_destroy_session_timeout
+
+```cpp
+rmw_ret_t rmw_uros_set_context_entity_destroy_session_timeout(
+    rmw_context_t * context,
+    int session_timeout
+)
+```
+
+Sets the DDS-XRCE session spin time for destroying entities. 
+
+**Parameters**: 
+
+  * **context** RWM context where the spin time is configured 
   * **session_timeout** time in milliseconds 
 
 
