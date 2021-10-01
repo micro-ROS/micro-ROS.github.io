@@ -14,9 +14,9 @@ This chapter provides a number of tutorials to learn micro-ROS and relevant tool
     
 * [**First micro-ROS application on an RTOS**](../first_application_rtos/)
 
-  In this tutorial, you will learn how to build the application from the previous tutorial for an Real-Time Operating System (RTOS). You will see how to flash a microcontroller board with the application and how to communicate with it from a microprocessor running ROS 2 on Linux. (The tutorial covers all three RTOS supported by micro-ROS, namely NuttX, FreeRTOS, and Zephyr. The choice is up to you!)
+  In this tutorial, you will learn how to build the application from the previous tutorial for a Real-Time Operating System (RTOS). You will see how to flash a microcontroller board with the application and how to communicate with it from a microprocessor running ROS 2 on Linux. (The tutorial covers all three RTOS supported by micro-ROS, namely NuttX, FreeRTOS, and Zephyr. The choice is up to you!)
 
-Then, at this point, you may head over to the next section [**Programming with rcl and rclc**](../../programming_rcl_rclc/), where you 'll learn the concepts of the micro-ROS C API in this tutorial in depth. If you are already familiar with the ROS 2 C++ API or even the underlying ROS Client Support Library (rcl), you'll learn this very quickly.
+Then, at this point, you may head over to the next section [**Programming with rcl and rclc**](../../programming_rcl_rclc/), where you will learn the concepts of the micro-ROS C API in this tutorial in depth. If you are already familiar with the ROS 2 C++ API or even the underlying ROS Client Support Library (rcl), you'll learn this very quickly.
 
 In case you are using the corresponding RTOS or hardware, the following basic tutorials may be interesting before switching to the [**Programming with rcl and rclc**](../../programming_rcl_rclc/) section:
 
