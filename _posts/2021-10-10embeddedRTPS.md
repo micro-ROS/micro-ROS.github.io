@@ -15,6 +15,5 @@ So, we have created a basic [rmw_embeddedrtps for micro-ROS](https://github.com/
 
 **micro-ROS can be compiled either with Micro XRCE-DDS for low-mid MCUs or with embeddedRTPS for larger devices that are used in critical applications. So, the developer can easily choose the preferred middleware for any application.**
 
+Watch this [video](https://www.youtube.com/watch?v=AHs_Ysi6IGw) to get the full detail.
 Get more information [here](https://discourse.ros.org/t/embeddedrtps-the-new-experimental-middleware-for-micro-ros/22741?u=mamerlan)
-
-All detail of eRTPS find it [here](https://www.youtube.com/watch?v=AHs_Ysi6IGw)
