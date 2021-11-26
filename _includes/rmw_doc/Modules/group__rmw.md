@@ -254,7 +254,7 @@ Check if micro-ROS Agent is up and running.
   * RMW_RET_ERROR If micro-ROS Agent is not available. 
 
 
-This function can be called even when the micro-ROS context has not yet been initialized by the application logics. 
+This function can be called even when the micro-ROS context has not yet been initialized by the application logics. This function cannot be called concurrently with `rmw_init()` or `rmw_shutdown()`. 
 
 
 ### function rmw_uros_ping_agent_options
@@ -282,7 +282,7 @@ Check if micro-ROS Agent is up and running using the transport set on the given 
   * RMW_RET_ERROR If micro-ROS Agent is not available. 
 
 
-This function can be called even when the micro-ROS context has not yet been initialized. The transport will be initialized and closed once during the ping process. 
+This function can be called even when the micro-ROS context has not yet been initialized. The transport will be initialized and closed once during the ping process. This function cannot be called concurrently with `rmw_init()` or `rmw_shutdown()`. 
 
 
 ### function rmw_uros_epoch_synchronized
