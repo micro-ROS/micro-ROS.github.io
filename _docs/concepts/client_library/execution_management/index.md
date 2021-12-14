@@ -20,7 +20,7 @@ redirect_from:
     * [Sense-plan-act pipeline in robotics](#sense-plan-act-pipeline-in-robotics)
     * [Synchronization of multiple rates](#synchronization-of-multiple-rates)
     * [High-priority processing path](#high-priority-processing-path)
-*   [RCLC-Executor](#rclc-executor)
+*   [rclc Executor](#rclc-executor)
     * [Executive Summary](#executive-summary)
     * [Motivation](#motivation)
     * [Features](#features)
@@ -32,8 +32,10 @@ redirect_from:
       * [Running phase](#running-phase)
     * [Examples](#examples)
       * [Embedded use-case](#embedded-use-case)
+      * [Sense-plan-act pipeline](#sense-plan-act-pipeline)
       * [Sensor fusion](#sensor-fusion)
       * [High priority path](#high-priority-path)
+      * [ROS 2 Executor Workshop Reference System](#ros-2-executor-workshop-reference-system)
     * [Future work](#future-work)
     * [Download](#download)
 
@@ -148,7 +150,7 @@ The described embedded use case relies on the following concepts:
 - co-operative scheduling of tasks within a process (sequential execution)
 - data synchronization with LET-semantics
 
-While periodic activation is possible in ROS2 by using timers, preemptive scheduling is supported by the operating system and assigning priorities on the granularity of threads/processes that correspond to the ROS nodes; it is not possible to sequentially execute callbacks, which have no data-dependency. Furthermore data is read from the DDS queue just before the callback is executed and data is written sometime during the time the application is executed. While the `spin_period` function of the rclcpp-Executor allows to check for data at a fixed period and executing those callbacks for which data is available, however, with this spin-function does not execute all callbacks irrespective wheter data is available or not. So `spin_period` is not helpful to periodically execute a number of callbacks (aka tasks within a process). So we need a mechanism that triggers the execution of multiple callbacks (aka tasks) based on a timer. Data transmission is achieved via DDS which does not allow to implement a LET-semantics. To summarize, we derive the following requirements:
+While periodic activation is possible in ROS2 by using timers, preemptive scheduling is supported by the operating system and assigning priorities on the granularity of threads/processes that correspond to the ROS nodes; it is not possible to sequentially execute callbacks, which have no data-dependency. Furthermore data is read from the DDS queue just before the callback is executed and data is written sometime during the time the application is executed. While the `spin_period` function of the rclcpp Executor allows to check for data at a fixed period and executing those callbacks for which data is available, however, with this spin-function does not execute all callbacks irrespective wheter data is available or not. So `spin_period` is not helpful to periodically execute a number of callbacks (aka tasks within a process). So we need a mechanism that triggers the execution of multiple callbacks (aka tasks) based on a timer. Data transmission is achieved via DDS which does not allow to implement a LET-semantics. To summarize, we derive the following requirements:
 
 Derived Requirements:
 - trigger the execution of multiple callbacks
@@ -168,7 +170,7 @@ Figure 4: Multiple sensors driving a Sense-Plan-Act pipeline.
 
 Typically multiple sensors are used to perceive the environment. For example an IMU and a laser scanner. The quality of localization algorithms highly depend on how old such sensor data is when it is processed. Ideally the latest data of all sensors should be processed. One way to achive this is to execute first all sensor drivers in the sense-phase and then process all algorithms in the plan-phase.
 
-Currently, such a processing order cannot be defined with the default ROS2-Executor. One could in principle design a data-driven pipeline, however if e.g. the Laser scan is needed by some other callback in the sense-phase as well as in the plan-phase, the processing order of these subscribers is arbitrary.
+Currently, such a processing order cannot be defined with the default ROS2 Executor. One could in principle design a data-driven pipeline, however if e.g. the Laser scan is needed by some other callback in the sense-phase as well as in the plan-phase, the processing order of these subscribers is arbitrary.
 
 For this sense-plan-act pattern, we could define one executor for each phase. The plan-phase would be triggered only when all callbacks in the sense-phase have finished.
 
@@ -226,11 +228,11 @@ Assuming a simplified control loop with the activities sense-plan-act, the obsta
 Derived requirements:
 - sequential processing of callbacks
 
-## RCLC-Executor
+## rclc Executor
 
 ### Executive Summary
 
-The RCLC Executor is an Executor for C applications and can be used with default rclcpp Executor semantics. If additional deterministic behavior is necessary, the user can rely on pre-defined sequential execution, trigged execution and LET-Semantics for data synchronization. The concept of the rclc-Executor has been published in [[SLL2020](#SLL2020)].
+The rclc Executor is an Executor for C applications and can be used with default rclcpp Executor semantics. If additional deterministic behavior is necessary, the user can rely on pre-defined sequential execution, trigged execution and LET-Semantics for data synchronization. The concept of the rclc Executor has been published in [[SLL2020](#SLL2020)].
 
 ### Motivation
 The need for the processing patterns, as described in the previous section, are often non-functional requirements that a robotic application must met: bounded end-to-end latencies, low jitter of response times of cause-effect chains, deterministic processing, and quick response times even in overload situations.
@@ -254,7 +256,7 @@ Based on the real-time embedded use-case as well as the processing patterns in m
 
 These features are now described in more detail.
 
-The rclc-Executor supports all event types as the default ROS~2 Executor, which are:
+The rclc Executor supports all event types as the default ROS~2 Executor, which are:
 - subscriptions
 - timers
 - services
@@ -287,6 +289,7 @@ Figure 10: Trigger condition ANY
 <img src="png/trigger_ONE.png" alt="Trigger condition ONE" width="60%" />
 Figure 11: Trigger condition ONE
 </center>
+
 <center>
 <img src="png/trigger_user_defined.png" alt="Trigger condition user-defined" width="60%" />
 Figure 12: Trigger condition user-defined
@@ -320,7 +323,7 @@ Additionally we have implemented the current rclcpp Executor semantics ("RCLCPP"
 The selection of the Executor semantics is optional. The default semantics is "RCLCPP".
 
 ### Executor API
-The API of the RCLC-Executor can be divided in two phases: Configuration and Running.
+The API of the rclc Executor can be divided in two phases: Configuration and Running.
 #### Configuration phase
 During the configuration phase, the user shall define:
 - the total number of callbacks
@@ -328,7 +331,7 @@ During the configuration phase, the user shall define:
 - trigger condition (optional, default: ANY)
 - data communcation semantics (optional, default ROS2)
 
-As the Executor is intended for embedded controllers, dynamic memory management is crucial. Therefore at initialization of the RCLC-Executor, the user defines the total number of callbacks. The necessary dynamic memory will be allocated only in this phase and no more memory in the running phase. This makes this Executor static in the sense, that during runtime no additional callbacks can be added.
+As the Executor is intended for embedded controllers, dynamic memory management is crucial. Therefore at initialization of the rclc Executor, the user defines the total number of callbacks. The necessary dynamic memory will be allocated only in this phase and no more memory in the running phase. This makes this Executor static in the sense, that during runtime no additional callbacks can be added.
 
 Then, the user adds handles and the corresponding callbacks (e.g. for subscriptions and timers) to the Executor. The order in which this takes place, defines later the sequential processing order during runtime.
 
@@ -360,7 +363,7 @@ Available spin functions are
 - `spin` - spin indefinitly
 
 ### Examples
-We provide the relevant code snippets how to setup the RCLC-Executor for the embedded use case and for the software design patterns in mobile robotics applications as described above.
+We provide the relevant code snippets how to setup the rclc Executor for the embedded use case and for the software design patterns in mobile robotics applications as described above.
 #### Embedded use-case
 
 With seqential execution the co-operative scheduling of tasks within a process can be modeled. The trigger condition is used to periodically activate the process which will then execute all callbacks in a pre-defined order. Data will be communicated using the LET-semantics. Every Executor is executed in its own tread, to which an appropriate priority can be assigned.
@@ -522,8 +525,12 @@ rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &sense_Laser);
 // spin
 rclc_executor_spin(&exe);
 ```
+#### ROS 2 Executor Workshop Reference System
+The rclc Executor has been presented at the workshop 'ROS~2 Executor: How to make it efficient, real-time and deterministic?' at [ROS World 2021](https://roscon.ros.org/world/2021/) (i.e. the online version of ROSCon)[[S2021](#S2021)]. A [Reference System](https://github.com/ros-realtime/reference-system) for testing and benchmarking ROS Executors has been developed for this workshop. The application of the rclc Executor on the reference system with the trigger condition can be found in the [rclc-executor branch of the Reference System](https://github.com/ros-realtime/reference-system/tree/rclc_executor). 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IazrPF3RN1U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+The slides can be downloaded [here](https://ec2a4d36-bac8-4759-b25e-bb1f794177f4.filesusr.com/ugd/984e93_749e27b917a54b45b9ccb5be930841b8.pdf). All information and the videos and slides of the other talks of the workshop can be found at [www.apex.ai/roscon-21](https://www.apex.ai/roscon-21).
 
 ### Future work
 
@@ -531,9 +538,10 @@ rclc_executor_spin(&exe);
   - one publisher that periodically publishes
   - if Executors are running in multiple threads,
     publishing needs to be atomic
+- Multi-threaded executor with assignment of scheduling policies of unerlying operating system. [Pull Request](https://github.com/ros2/rclc/pull/87) pre-print [SLD2021](#SLD2021).
 
 ### Download
-The RCLC-Executor can be downloaded from the [micro-ROS rclc repository](https://github.com/ros2/rclc). In this repository, the [rclc package](https://github.com/ros2/rclc/tree/master/rclc) provides the RCLC-Executor and the [rclc_examples package](https://github.com/ros2/rclc/tree/master/rclc_examples) provides several demos. Further more, the rclc Executor is also available from the [ros2/rclc repository](https://github.com/ros2/rclc).
+The rclc Executor can be downloaded from the [micro-ROS rclc repository](https://github.com/ros2/rclc). In this repository, the [rclc package](https://github.com/ros2/rclc/tree/master/rclc) provides the rclc Executor and the [rclc_examples package](https://github.com/ros2/rclc/tree/master/rclc_examples) provides several demos. Further more, the rclc Executor is also available from the [ros2/rclc repository](https://github.com/ros2/rclc).
 
 
 
@@ -672,6 +680,10 @@ URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8376277&isnumber=83
 
 ## References
 
+* [SLD2021]<a name="SLD2021"></a> J. Staschulat, R. Lange and D. N. Dasari, "Budget-based real-time Executor for Micro-ROS", arXiv Pre-Print, May 2021. [[paper](https://arxiv.org/abs/2105.05590)] 
+
+* [S2021]<a name="S2021"></a> J. Staschulat, "Micro-ROS: The rclc Executor", ROS 2 Executor: How to make it efficient, real-time and deterministic?, ROS World 2021, [[slides](https://ec2a4d36-bac8-4759-b25e-bb1f794177f4.filesusr.com/ugd/984e93_749e27b917a54b45b9ccb5be930841b8.pdf)] [[recorded presentation](https://www.youtube.com/embed/IazrPF3RN1U)]
+
 * [L2020]<a name="L2020"></a> Ralph Lange: Advanced Execution Management with ROS 2, ROS-Industrial Conference, Dec 2020 [[Slides]](https://micro-ros.github.io/download/2020-12-16_Advanced_Execution_Management_with_ROS_2.pdf)
 
 * [SLL2020]<a name="SLL2020"></a> J. Staschulat, I. Lütkebohle and R. Lange, "The rclc Executor: Domain-specific deterministic scheduling mechanisms for ROS applications on microcontrollers: work-in-progress," 2020 International Conference on Embedded Software (EMSOFT), Singapore, Singapore, 2020, pp. 18-19. [[Paper]](https://ieeexplore.ieee.org/document/9244014) [[Video]](https://whova.com/embedded/session/eswe_202009/1145800/)
@@ -691,7 +703,8 @@ URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8376277&isnumber=83
 * [NSP2018]<a name="NSP2018"></a> A. Naderlinger, S. Resmerita, and W. Pree: LET for Legacy and Model-based Applications,
 Proceedings of The Logical Execution Time Paradigm: New Perspectives for Multicore Systems (Dagstuhl Seminar 18092), Wadern, Germany, February 2018.
 
-* [KZH2015]<a name="KZH2015"></a> S. Kramer, D. Ziegenbein, and A. Hamann: Real World Automotive Benchmarks For Free, International Workshop on Analysis Tools and Methodologies for Embedded adn Real-Time Sysems (WATERS), 2015.[[Paper]](https://www.ecrts.org/forum/download/file.php?id=9&sid=efda71c95b6afdd240d72cc1e491bb8b)
+* [KZH2015]<a name="KZH2015"></a> S. Kramer, D. Ziegenbein, and A. Hamann: Real World Automotive Benchmarks For Free, International Workshop on Analysis Tools and Methodologies for Embedded adn Real-Time Sysems (WATERS), 2015.
+
 ## Acknowledgments
 
 This activity has received funding from the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation programme (grant agreement n° 780785).
