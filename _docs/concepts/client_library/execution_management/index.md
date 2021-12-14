@@ -15,11 +15,26 @@ redirect_from:
     * [Architecture](#architecture)
     * [Scheduling Semantics](#scheduling-semantics)
 
+*   [Analysis of processing patterns](#analysis-of-processing-patterns)
+    * [Real-time embedded applications](#real-time-embedded-applications)
+    * [Sense-plan-act pipeline in robotics](#sense-plan-act-pipeline-in-robotics)
+    * [Synchronization of multiple rates](#synchronization-of-multiple-rates)
+    * [High-priority processing path](#high-priority-processing-path)
 *   [RCLC-Executor](#rclc-executor)
-    * [Requirement Analysis](#requirement-analysis)
+    * [Executive Summary](#executive-summary)
+    * [Motivation](#motivation)
     * [Features](#features)
+      * [Trigger condition](#trigger-condition)
+      * [Sequential execution](#sequential-execution)
+      * [LET-Semantics](#let-semantics)
     * [Executor API](#executor-api)
+      * [Configuration phase](#configuration-phase)
+      * [Running phase](#running-phase)
     * [Examples](#examples)
+      * [Embedded use-case](#embedded-use-case)
+      * [Sensor fusion](#sensor-fusion)
+      * [High priority path](#high-priority-path)
+    * [Future work](#future-work)
     * [Download](#download)
 
 *   [Callback-group-level Executor](#callback-group-level-executor)
@@ -84,7 +99,7 @@ The Executor concept, however, does not provide means for prioritization or cate
 
 ### Scheduling Semantics
 
-In a recent paper [CB2019](#CB2019), the rclcpp Executor has been analyzed in detail and a response time analysis of cause-effect chains has been proposed under reservation-based scheduling. The Executor distinguishes four categories of callbacks: _timers_, which are triggered by system-level timers, _subscribers_, which are triggered by new messages on a subscribed topic, _services_, which are triggered by service requests, and _clients_, which are triggered by responses to service requests. The Executor is responsible for taking messages from the input queues of the DDS layer and executing the corresponding callback. Since it executes callbacks to completion, it is a non-preemptive scheduler, However it does not consider all ready tasks for execution, but only a snapshot, called readySet. This readySet is updated when the Executor is idle and in this step it interacts with the DDS layer updating the set of ready tasks. Then for every type of task, there are dedicated queues (timers, subscriptions, services, clients) which are processed sequentially. The following undesired properties were pointed out:
+In a recent paper [[CB2019](#CB2019)], the rclcpp Executor has been analyzed in detail and a response time analysis of cause-effect chains has been proposed under reservation-based scheduling. The Executor distinguishes four categories of callbacks: _timers_, which are triggered by system-level timers, _subscribers_, which are triggered by new messages on a subscribed topic, _services_, which are triggered by service requests, and _clients_, which are triggered by responses to service requests. The Executor is responsible for taking messages from the input queues of the DDS layer and executing the corresponding callback. Since it executes callbacks to completion, it is a non-preemptive scheduler, However it does not consider all ready tasks for execution, but only a snapshot, called readySet. This readySet is updated when the Executor is idle and in this step it interacts with the DDS layer updating the set of ready tasks. Then for every type of task, there are dedicated queues (timers, subscriptions, services, clients) which are processed sequentially. The following undesired properties were pointed out:
 
 * Timers have the highest priority. The Executor processes _timers_ always first.  This can lead to the intrinsic effect, that in overload situations messages from the DDS queue are not processed.
 * Non-preemptive round-robin scheduling of non-timer handles. Messages arriving during the processing of the readySet are not considered until the next update, which depends on the execution time of all remaining callbacks. This leads to priority inversion, as lower-priority callbacks may implicitly block higher-priority callbacks by prolonging the current processing of the readySet.
@@ -92,37 +107,37 @@ In a recent paper [CB2019](#CB2019), the rclcpp Executor has been analyzed in de
 
 Due to these findings, the authors present an alternative approach to provide determinism and to apply well-known schedulability analyses to a ROS 2 systems. A response time analysis is described under reservation-based scheduling.
 
-## RCLC-Executor
-Here we introduce the rclc Executor, which is a ROS 2 Executor implemented based on and for the rcl API, for applications written in the C language. Often embedded applications require real-time to guarantee end-to-end latencies and need deterministic runtime behavior to correctly replay test data. However, this is difficult with the default ROS 2 Executor because of its complex semantics, as discussed in the previous section.
+## Analysis of processing patterns
+The development of an execution management mechanism for micro-ROS is based on an analysis of processing patterns commonly used in robotic applications. First, the processing patterns in the real-time embedded systems are described, in which the time-triggered paradigm is often used to guarantee deterministic and real-time behavior. Then, typical processing patterns are descrived for mobile robotics to implement deterministic runtime behavior.
 
-First, we will analyse the requirements for such applications and, secondly, derive simple features for an Executor to enable deterministic and real-time behavior. Then we will present the API of the RCLC-Executor and provide example usages of the RCLC-Executor to address these requirements.
+### Real-time embedded applications
+In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure~1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are preempted multiple times depicted with empty dashed boxes.
 
-### Requirement Analysis
-First we discuss a use-case in the embedded domain, in which the time-triggered paradigm is often used to guarantee deterministic and real-time behavior. Then we analyse software design patterns in mobile robotics which enable deterministic behavior.
-
-#### Real-time embedded application used-case
-In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure 1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are preempted multiple times depicted with empty dashed boxes.
-
-<img src="png/scheduling_01.png" alt="Schedule with fixed periods" width="350"/>
-
-Figure 1: Fixed periodic preemptive scheduling
+<center>
+<img src="png/scheduling_01.png" alt="Schedule with fixed periods" width="30%"/>
+Figure 1: Fixed periodic preemptive scheduling.
+</center>
 
 To each process one or multiple tasks can be assigned, as shown in Figure 2. These tasks are executed sequentially, which is often called cooperative scheduling.
 
-<img src="png/scheduling_02.png" alt="Schedule with fixed periods" width="250"/>
-
+<center>
+<img src="png/scheduling_02.png" alt="Schedule with fixed periods" width="30%"/>
 Figure 2: Processes with sequentially executed tasks.
+</center>
 
 While there are different ways to assign priorities to a given number of processes,
-the rate-monotonic scheduling assignment, in which processes with a shorter period have a higher priority, has been shown optimal if the processor utilization is less than 69% [LL1973](#LL1973).
+the rate-monotonic scheduling assignment, in which processes with a shorter period have a higher priority, has been shown optimal if the processor utilization is less than 69% [[LL1973](#LL1973)].
 
- In the last decades many different scheduling approaches have been presented, however fixed-periodic preemptive scheduling is still widely used in embedded real-time systems [KZH2015](#KZH2015). This becomes also obvious, when looking at the features of current operating systems. Like Linux, real-time operating systems, such as NuttX, Zephyr, FreeRTOS, QNX etc., support fixed-periodic preemptive scheduling and the assignment of priorities, which makes the time-triggered paradigm the dominant design principle in this domain.
+ In the last decades many different scheduling approaches have been presented, however fixed-periodic preemptive scheduling is still widely used in embedded real-time systems [[KZH2015](#KZH2015)]. This becomes also obvious, when looking at the features of current operating systems. Like Linux, real-time operating systems, such as NuttX, Zephyr, FreeRTOS, QNX etc., support fixed-periodic preemptive scheduling and the assignment of priorities, which makes the time-triggered paradigm the dominant design principle in this domain.
 
-However, data consistency is often an issue when preemptive scheduling is used and if data is being shared across multiple processes via global variables. Due to scheduling effects and varying execution times of processes, writing and reading these variables could occur sometimes sooner or later. This results in an latency jitter of update times (the timepoint at which a variable change becomes visible to other processes). Race conditions can occur when multiple processes access a variable at the same time. So solve this problem, the concept of logical-execution time (LET) was introduced in [HHK2001](#HHK2001), in which communication of data occurs only at pre-defined periodic time instances: Reading data only at the beginning of the period and writing data only at the end of the period. The cost of an additional latency delay is traded for data consistency and reduced jitter. This concept has also recently been applied to automotive applications  [NSP2018](#NSP2018).
+However, data consistency is often an issue when preemptive scheduling is used and if data is being shared across multiple processes via global variables. Due to scheduling effects and varying execution times of processes, writing and reading these variables could occur sometimes sooner or later. This results in an latency jitter of update times (the timepoint at which a variable change becomes visible to other processes). Race conditions can occur when multiple processes access a variable at the same time. So solve this problem, the concept of logical-execution time (LET) was introduced in [[HHK2001](#HHK2001)], in which communication of data occurs only at pre-defined periodic time instances: Reading data only at the beginning of the period and writing data only at the end of the period. The cost of an additional latency delay is traded for data consistency and reduced jitter. This concept has also recently been applied to automotive applications[[NSP2018](#NSP2018)].
 
-<img src="png/scheduling_LET.png" alt="Schedule with fixed periods" />
-
+<center>
+<img src="png/scheduling_LET.png" alt="Schedule with fixed periods" width="80%"/>
 Figure 3: Data communication without and with Logical Execution Time paradigm.
+</center>
+
+
 
 An Example of the LET concept is shown in Figure 3. Assume that two processes are communicating data via one global variable. The timepoint when this data is written is at the end of the processing time. In the default case (left side), the process p<sub>3</sub> and p<sub>4</sub> receive the update. At the right side of the figure, the same scenario is shown with LET semantics. Here, the data is communicated only at period boundaries. In this case, the lower process communicates at the end of the period, so that always process p<sub>3</sub> and p<sub>5</sub> receive the new data.
 
@@ -140,15 +155,16 @@ Derived Requirements:
 - sequential processing of callbacks
 - data synchronization with LET semantics
 
-#### Sense-plan-act pipeline in robotics
+### Sense-plan-act pipeline in robotics
 Now we describe common software design patterns which are used in mobile robotics to achieve deterministic behavior. For each design pattern we describe the concept and the derived requirements for a deterministic Executor.
 Concept:
 
 A common design paradigm in mobile robotics is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and an actuation-phase to steer the mobile robot. Of course, more phases are possible, here these three phases shall serve as an example. Such a processing pipeline is shown in Figure 4.
 
-<img src="png/sensePlanActScheme.png" alt="Sense Plan Act Pipeline" width="700"/>
-
+<center>
+<img src="png/sensePlanActScheme.png" alt="Sense Plan Act Pipeline" width="60%"/>
 Figure 4: Multiple sensors driving a Sense-Plan-Act pipeline.
+</center>
 
 Typically multiple sensors are used to perceive the environment. For example an IMU and a laser scanner. The quality of localization algorithms highly depend on how old such sensor data is when it is processed. Ideally the latest data of all sensors should be processed. One way to achive this is to execute first all sensor drivers in the sense-phase and then process all algorithms in the plan-phase.
 
@@ -159,68 +175,122 @@ For this sense-plan-act pattern, we could define one executor for each phase. Th
 Derived Requirements:
 - triggered execution of callbacks
 
-#### Synchronization of multiple rates
+### Synchronization of multiple rates
 
 Concept:
 
 Often multiple sensors are being used to sense the environment for mobile robotics. While an IMU sensor provides data samples at a very high rate (e.g., 500 Hz), laser scans are availabe at a much slower frequency (e.g. 10Hz) determined by the revolution time. Then the challenge is, how to deterministically fuse sensor data with different frequencies. This problem is depicted in Figure 5.
 
-<img src="png/sensorFusion_01.png" alt="Sychronization of multiple rates" width="300" />
-
+<center>
+<img src="png/sensorFusion_01.png" alt="Sychronization of multiple rates" width="30%" />
 Figure 5: How to deterministically process multi-frequent sensor data.
+</center>
+
+
 
 Due to scheduling effects, the callback for evaluating the laser scan might be called just before or just after an IMU data is received. One way to tackle this is to write additional synchronization code inside the application. Obviously, this is a cumbersome and not-portable solution.
 
 An Alternative would be to evalute the IMU sample and the laser scan by synchronizing their frequency. For example by processing always 50 IMU samples with one laser scan. This approach is shown in Figure 6. A pre-processing callback aggregates the IMU samples and sends an aggregated message with 50 samples at 10Hz rate. Now both messages have the same frequency. With a trigger condition, which fires when both messages are available, the sensor fusion algorithm can expect always synchronized input data.
 
-<img src="png/sensorFusion_02.png" alt="Sychnronization with a trigger" width="400" />
-
+<center>
+<img src="png/sensorFusion_02.png" alt="Sychnronization with a trigger" width="40%" />
 Figure 6: Synchronization of multiple input data with a trigger.
+</center>
 
 In ROS 2, this is currently not possible to be modeled because of the lack of a trigger concept in the ROS2 Executor. Message filters could be used to synchronize input data based on the timestamp in the header, but this is only available in rclcpp (and not in rcl). Further more, it would be more efficient to have such a trigger concept directly in the Executor.
 
 
 Another idea would be to activly request for IMU data only when a laser scan is received. This concept is shown in Figure 7. Upon arrival of a laser scan mesage, first, a message with aggregated IMU samples is requested. Then, the laser scan is processed and later the sensor fusion algorithm. An Executor, which would support sequential execution of callbacks, could realize this idea.
 
-<img src="png/sensorFusion_03.png" alt="Sychronization with sequence" width="350" />
-
+<center>
+<img src="png/sensorFusion_03.png" alt="Sychronization with sequence" width="30%" />
 Figure 7: Synchronization with sequential processing.
-
+</center>
 
 Derived Requirements from both concepts:
 - triggered execution
 - sequential procesing of callbacks
 
-#### High-priority processing path
+### High-priority processing path
 Motivation:
 
 Often a robot has to fullfill several activities at the same time. For example following a path and avoiding obstacles. While path following is a permanent activity, obstacle avoidance is trigged by the environment and should be immediately reacted upon. Therefore one would like to specify priorities to activities. This is depicted in Figure 8:
 
-<img src="png/highPriorityPath.png" alt="HighPriorityPath" width="500" />
-
+<center>
+<img src="png/highPriorityPath.png" alt="HighPriorityPath" width="50%" />
 Figure 8: Managing high priority path with sequential order.
+</center>
 
 Assuming a simplified control loop with the activities sense-plan-act, the obstacle avoidance, which might temporarily stop the robot, should be processed before the planning phase. In this example we assume that these activites are processed in one thread.
 
 Derived requirements:
 - sequential processing of callbacks
 
+## RCLC-Executor
+
+### Executive Summary
+
+The RCLC Executor is an Executor for C applications and can be used with default rclcpp Executor semantics. If additional deterministic behavior is necessary, the user can rely on pre-defined sequential execution, trigged execution and LET-Semantics for data synchronization. The concept of the rclc-Executor has been published in [[SLL2020](#SLL2020)].
+
+### Motivation
+The need for the processing patterns, as described in the previous section, are often non-functional requirements that a robotic application must met: bounded end-to-end latencies, low jitter of response times of cause-effect chains, deterministic processing, and quick response times even in overload situations.
+
+Real-time requirements in embedded applications are typically met using real-time scheduling. The most common is the periodic scheduling policy, in which all functions are mapped to pre-defined periods, e.g., *1 ms*, *10 ms* or *100 ms*. This scheduling policy is well supported by all real-time operating systems and formal performance analysis approaches have been well known for decades.
+
+In contrast, ROS~2 follows an event-driven approach. Messages are communicated between nodes using the publish and subscribe paradigm. It is the responsibility of an Executor to react upon new messages. In detail, this Executor coordinates the execution of callbacks issued by the participating nodes by checking the incoming messages from the DDS queue and dispatching them to the underlying threads for execution. Currently, the dispatching mechanism is very basic: the Executor looks up wait queues, which notifies it of any pending messages in the DDS queue.
+
+If there are pending messages, the Executor executes the corresponding callbacks one after the other, which is also called round-robin to completion. In addition, the Executor also checks for events from application-level timers, which are always processed before messages. There is no further notion of prioritization or categorization of these callback calls. Moreover, the ROS~2 Executor from rclcpp in its current form does not leverage the real-time capabilities of the underlying operating system scheduler to have finer control on the execution order. The overall implication of this behavior is that time-critical callbacks could suffer possible deadline misses and degraded performance since they are serviced later than non-critical callbacks. Additionally, due to the round-robin mechanism and the resulting dependencies it causes on the execution time, it is difficult to determine usable bounds on the worst-case latency that each callback execution may incur [[CB2019](#CB2019)].
+
+To address the aforementioned common processing patterns found in robotic applications with the event-driven ROS~2 execution scheme, we have developed a very flexible approach in micro-ROS named *rclc Executor* [[SLL2020](#SLL2020)].
+
+It supports three main features: First, a *trigger condition* allows to define when the processing of a callback shall start. This is useful to implement sense-plan-act control loops or more complex processing structures with directed acyclic graphs. Second, a user can specify the *processing order* in which these callbacks will be executed. With this feature, the pattern of sensor fusion with multiple rates, in which data is requested from a sensor based on the arrival of some other sensor, can be easily implemented. Third, the rclc Executor allows to set scheduling parameters (e.g., priorities) of the underlying operating system. With this feature, prioritized processing can be implemented. Third, for periodic applications, the *LET Semantics* has been implemented.
+
 ### Features
 
-Based on the real-time embedded use-case as well as the software architecture patterns in mobile robotics, we propose an Executor with the following main features:
-- user-defined sequential execution of callbacks
+Based on the real-time embedded use-case as well as the processing patterns in mobile robotics, a flexible Executor with the following main features was developed:
 - trigger condition to activate processing
+- user-defined sequential execution of callbacks
 - data synchronization: LET-semantics or rclcpp Executor semantics
 
-As stated before, this Executor is based on the RCL library and is written in C to nativly support microcontroller applications written in C. These features are now described in more detail.
+These features are now described in more detail.
 
-The rclc-Executor supports all event types like the ROS 2 rclc executor, which are:
-- subscription
-- timer
-- service
-- client
-- guard condition
+The rclc-Executor supports all event types as the default ROS~2 Executor, which are:
+- subscriptions
+- timers
+- services
+- clients
+- guard conditions
+- actions
+- lifecycle
 
+#### Trigger condition
+
+- Given a set of handles, a trigger condition, which is based on the availability of input data of these handles, decides when the processing of all callbacks starts.
+
+- Available options:
+  - ALL operation: fires when input data is available for all handles
+  - ANY operation: fires when input data is available for at least one handle
+  - ONE: fires when input data for a user-specified handle is available
+  - User-defined function: user can implement more sophisticated logic
+
+<center>
+<img src="png/trigger_ALL.png" alt="Trigger condition ALL" width="60%" />
+Figure 9: Trigger condition ALL
+</center>
+
+<center>
+<img src="png/trigger_ANY.png" alt="Trigger condition ANY" width="60%" />
+Figure 10: Trigger condition ANY
+</center>
+
+<center>
+<img src="png/trigger_ONE.png" alt="Trigger condition ONE" width="60%" />
+Figure 11: Trigger condition ONE
+</center>
+<center>
+<img src="png/trigger_user_defined.png" alt="Trigger condition user-defined" width="60%" />
+Figure 12: Trigger condition user-defined
+</center>
 
 #### Sequential execution
 
@@ -230,15 +300,10 @@ The rclc-Executor supports all event types like the ROS 2 rclc executor, which a
   - if the configuration of handle is ON_NEW_DATA, then the corresponding callback is only called if new data is available
   - if the configuration of the handle is ALWAYS, then the corresponding callback is always. If no data is available, then the callback is called with no data (e.g. NULL pointer).
 
-#### Trigger condition
-
-- Given a set of handles, a trigger condition based on the input data of these handles shall decide when the processing is started.
-
-- Available options:
-  - ALL operation: fires when input data is available for all handles
-  - ANY operation: fires when input data is available for at least one handle
-  - ONE: fires when input data for a user-specified handle is available
-  - User-defined function: user can implement more sophisticated logic
+<center>
+<img src="png/executor_sequential_semantics.png" alt="Sequential execution semantics" width="60%" />
+Figure 13: Sequential execution semantics.
+</center>
 
 #### LET-Semantics
 - Assumption: time-triggered system, the executor is activated periodically
@@ -432,7 +497,7 @@ rclc_executor_set_trigger(&exe_sense, rclc_executor_trigger_one, &sense_Laser);
 // spin
 rclc_executor_spin(&exe_sense);
 ```
-#### High priorty path
+#### High priority path
 
 This example shows the sequential processing order to execute the obstacle avoidance `obst_avoid`
 after the callbacks of the sense-phase and before the callback of the planning phase `plan`.
@@ -458,9 +523,7 @@ rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &sense_Laser);
 rclc_executor_spin(&exe);
 ```
 
-### Summary
 
-The RCLC Executor is an Executor for C applications and can be used with default rclcpp Executor semantics. If additional deterministic behavior is necessary, the user can rely on pre-defined sequential execution, trigged execution and LET-Semantics for data synchronization. The concept of the rclc-Executor has been published in [SLL2020](#SLL2020).
 
 ### Future work
 
