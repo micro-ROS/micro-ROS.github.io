@@ -319,36 +319,36 @@ Figure 10: Executor with trigger condition
   - ONE: fires when input data for a user-specified handle is available
   - User-defined function: user can implement custom logic
 
-Figure 10 shows an example of the ALL semantics. Only if all messages *msg_A, msg_B, msg_C* were received, then trigger condition is fullfilled and the callbacks are processed in a user-defined order.
+Figure 11 shows an example of the ALL semantics. Only if all messages *msg_A, msg_B, msg_C* were received, then trigger condition is fullfilled and the callbacks are processed in a user-defined order.
 <center>
 <img src="png/trigger_ALL.png" alt="Trigger condition ALL" width="30%" />
 </center>
 <center>
-Figure 10: Trigger condition ALL
+Figure 11: Trigger condition ALL
 </center>
 
-Figure 11 shows an example of the ANY semantics. Thas is, if any messages *msg_A, msg_B, msg_C* was received, then trigger condition is fullfilled and the callbacks are processed in a user-defined order. This is equivalent to OR semantics.
+Figure 12 shows an example of the ANY semantics. Thas is, if any messages *msg_A, msg_B, msg_C* was received, then trigger condition is fullfilled and the callbacks are processed in a user-defined order. This is equivalent to OR semantics.
 <center>
 <img src="png/trigger_OR.png" alt="Trigger condition ANY" width="30%" />
 </center>
 <center>
-Figure 11: Trigger condition ANY (OR)
+Figure 12: Trigger condition ANY (OR)
 </center>
 
-Figure 12 shows an example of the ONE semantics. Thas is, only if message *msg_B* was received, the trigger condition is fullfilled and (potentially all) callbacks are processed in a user-defined order.
+Figure 13 shows an example of the ONE semantics. Thas is, only if message *msg_B* was received, the trigger condition is fullfilled and (potentially all) callbacks are processed in a user-defined order.
 <center>
 <img src="png/trigger_ONE.png" alt="Trigger condition ONE" width="30%" />
 </center>
 <center>
-Figure 12: Trigger condition ONE
+Figure 13: Trigger condition ONE
 </center>
 
-Figure 13 describes the custom semantics. A custom trigger condition with could be a more complex logic of multiple messages, can be passed to the executor. This might also include hardware triggers, like interrupts. 
+Figure 14 describes the custom semantics. A custom trigger condition with could be a more complex logic of multiple messages, can be passed to the executor. This might also include hardware triggers, like interrupts. 
 <center>
 <img src="png/trigger_user_defined.png" alt="Trigger condition user-defined" width="30%" />
 </center>
 <center>
-Figure 13: Trigger condition user-defined
+Figure 14: Trigger condition user-defined
 </center>
 
 
