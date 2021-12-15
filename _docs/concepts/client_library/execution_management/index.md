@@ -266,36 +266,6 @@ The rclc Executor supports all event types as the default ROS 2 Executor, which 
 - actions
 - lifecycle
 
-#### Trigger condition
-
-- Given a set of handles, a trigger condition, which is based on the availability of input data of these handles, decides when the processing of all callbacks starts.
-
-- Available options:
-  - ALL operation: fires when input data is available for all handles
-  - ANY operation: fires when input data is available for at least one handle
-  - ONE: fires when input data for a user-specified handle is available
-  - User-defined function: user can implement more sophisticated logic
-
-<center>
-<img src="png/trigger_ALL.png" alt="Trigger condition ALL" width="60%" />
-Figure 9: Trigger condition ALL
-</center>
-
-<center>
-<img src="png/trigger_ANY.png" alt="Trigger condition ANY" width="60%" />
-Figure 10: Trigger condition ANY
-</center>
-
-<center>
-<img src="png/trigger_ONE.png" alt="Trigger condition ONE" width="60%" />
-Figure 11: Trigger condition ONE
-</center>
-
-<center>
-<img src="png/trigger_user_defined.png" alt="Trigger condition user-defined" width="60%" />
-Figure 12: Trigger condition user-defined
-</center>
-
 #### Sequential execution
 
 - At configuration, the user defines the order of handles.
@@ -304,10 +274,47 @@ Figure 12: Trigger condition user-defined
   - if the configuration of handle is ON_NEW_DATA, then the corresponding callback is only called if new data is available
   - if the configuration of the handle is ALWAYS, then the corresponding callback is always. If no data is available, then the callback is called with no data (e.g. NULL pointer).
 
+Figure 9 shows three callbacks, A, B and C. Assume, they shall be executed in the order *B,A,C*. Then the user adds the callbacks to the rclc Executor in this order. Whenever new messages have arrived then the callbacks for which a new message is availabe will be always executed in the user-defined processing order. 
 <center>
-<img src="png/executor_sequential_semantics.png" alt="Sequential execution semantics" width="60%" />
-Figure 13: Sequential execution semantics.
+<img src="png/rclc_executor_sequential_execution.png" alt="Sequential execution semantics" width="60%" />
+Figure 9: Sequential execution semantics.
 </center>
+
+#### Trigger condition
+
+- Given a set of handles, a trigger condition, which is based on the availability of input data of these handles, decides when the processing of all callbacks starts.
+
+- Available options:
+  - ALL operation: fires when input data is available for all handles
+  - ANY operation: fires when input data is available for at least one handle (OR semantics)
+  - ONE: fires when input data for a user-specified handle is available
+  - User-defined function: user can implement custom logic
+
+Figure 10 shows an example of the ALL semantics. Only if all messages *msg_A, msg_B, msg_C* were received, then trigger condition is fullfilled and the callbacks are processed in a user-defined order.
+<center>
+<img src="png/trigger_ALL.png" alt="Trigger condition ALL" width="30%" />
+Figure 10: Trigger condition ALL
+</center>
+
+Figure 11 shows an example of the ANY semantics. Thas is, if any messages *msg_A, msg_B, msg_C* was received, then trigger condition is fullfilled and the callbacks are processed in a user-defined order. This is equivalent to OR semantics.
+<center>
+<img src="png/trigger_OR.png" alt="Trigger condition ANY" width="30%" />
+Figure 11: Trigger condition ANY (OR)
+</center>
+
+Figure 12 shows an example of the ONE semantics. Thas is, only if message *msg_B* was received, the trigger condition is fullfilled and (potentially all) callbacks are processed in a user-defined order.
+<center>
+<img src="png/trigger_ONE.png" alt="Trigger condition ONE" width="30%" />
+Figure 12: Trigger condition ONE
+</center>
+
+Figure 13 describes the custom semantics. A custom trigger condition with could be a more complex logic of multiple messages, can be passed to the executor. This might also include hardware triggers, like interrupts. 
+<center>
+<img src="png/trigger_user_defined.png" alt="Trigger condition user-defined" width="30%" />
+Figure 13: Trigger condition user-defined
+</center>
+
+
 
 #### LET-Semantics
 - Assumption: time-triggered system, the executor is activated periodically
@@ -543,8 +550,6 @@ The slides can be downloaded [here](https://ec2a4d36-bac8-4759-b25e-bb1f794177f4
 
 ### Download
 The rclc Executor can be downloaded from the [ros2/rclc repository](https://github.com/ros2/rclc). It is available for the ROS 2 versions Foxy, Galactic and Rolling. The repository provides several packages including the [rclc Executor](https://github.com/ros2/rclc/tree/master/rclc) and an [rclc_examples package](https://github.com/ros2/rclc/tree/master/rclc_examples) with several application examples.
-
-
 
 ## Callback-group-level Executor
 
