@@ -583,7 +583,7 @@ The slides can be downloaded [here](https://ec2a4d36-bac8-4759-b25e-bb1f794177f4
   - one publisher that periodically publishes
   - if Executors are running in multiple threads,
     publishing needs to be atomic
-- Multi-threaded executor with assignment of scheduling policies of unerlying operating system. [Pull Request](https://github.com/ros2/rclc/pull/87) pre-print [SLD2021](#SLD2021).
+- Multi-threaded executor with assignment of scheduling policies of unerlying operating system. [[Pull Request](https://github.com/ros2/rclc/pull/87), pre-print [SLD2021](#SLD2021)].
 
 ### Download
 The rclc Executor can be downloaded from the [ros2/rclc repository](https://github.com/ros2/rclc). It is available for the ROS 2 versions Foxy, Galactic and Rolling. The repository provides several packages including the [rclc Executor](https://github.com/ros2/rclc/tree/master/rclc) and an [rclc_examples package](https://github.com/ros2/rclc/tree/master/rclc_examples) with several application examples.
