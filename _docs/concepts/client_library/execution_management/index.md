@@ -90,13 +90,17 @@ The dispatching mechanism resembles the ROS 1 spin thread behavior: the Executor
 
 The following diagram depicts the relevant classes of the standard ROS 2 Executor implementation:
 
-![ROS 2 Executor class diagram](executor_class_diagram.png)
+<center>
+<img src="png/executor_class_diagram.png" alt="ROS 2 Executor class diagram" width="100%" />
+</center>
 
 Note that an Executor instance maintains weak pointers to the NodeBaseInterfaces of the nodes only. Therefore, nodes can be destroyed safely, without notifying the Executor.
 
 Also, the Executor does not maintain an explicit callback queue, but relies on the queue mechanism of the underlying DDS implementation as illustrated in the following sequence diagram:
 
-![Call sequence from executor to DDS](executor_to_dds_sequence_diagram.png)
+<center>
+<img src="png/executor_to_dds_sequence_diagram.png" alt="Call sequence from executor to DDS" width="100%" />
+</center>
 
 The Executor concept, however, does not provide means for prioritization or categorization of the incoming callback calls. Moreover, it does not leverage the real-time characteristics of the underlying operating-system scheduler to have finer control on the order of executions. The overall implication of this behavior is that time-critical callbacks could suffer possible deadline misses and a degraded performance since they are serviced later than non-critical callbacks. Additionally, due to the FIFO mechanism, it is difficult to determine usable bounds on the worst-case latency that each callback execution may incur.
 
@@ -118,6 +122,8 @@ In embedded systems, real-time behavior is approached by using the time-triggere
 
 <center>
 <img src="png/scheduling_01.png" alt="Schedule with fixed periods" width="30%"/>
+</center>
+<center>
 Figure 1: Fixed periodic preemptive scheduling.
 </center>
 
@@ -125,6 +131,8 @@ To each process one or multiple tasks can be assigned, as shown in Figure 2. The
 
 <center>
 <img src="png/scheduling_02.png" alt="Schedule with fixed periods" width="30%"/>
+</center>
+<center>
 Figure 2: Processes with sequentially executed tasks.
 </center>
 
@@ -137,6 +145,8 @@ However, data consistency is often an issue when preemptive scheduling is used a
 
 <center>
 <img src="png/scheduling_LET.png" alt="Schedule with fixed periods" width="80%"/>
+</center>
+<center>
 Figure 3: Data communication without and with Logical Execution Time paradigm.
 </center>
 
@@ -166,6 +176,8 @@ A common design paradigm in mobile robotics is a control loop, consisting of sev
 
 <center>
 <img src="png/sensePlanActScheme.png" alt="Sense Plan Act Pipeline" width="60%"/>
+</center>
+<center>
 Figure 4: Multiple sensors driving a Sense-Plan-Act pipeline.
 </center>
 
@@ -186,6 +198,8 @@ Often multiple sensors are being used to sense the environment for mobile roboti
 
 <center>
 <img src="png/sensorFusion_01.png" alt="Sychronization of multiple rates" width="30%" />
+</center>
+<center>
 Figure 5: How to deterministically process multi-frequent sensor data.
 </center>
 
@@ -197,6 +211,8 @@ An Alternative would be to evalute the IMU sample and the laser scan by synchron
 
 <center>
 <img src="png/sensorFusion_02.png" alt="Sychnronization with a trigger" width="40%" />
+</center>
+<center>
 Figure 6: Synchronization of multiple input data with a trigger.
 </center>
 
@@ -207,6 +223,8 @@ Another idea would be to activly request for IMU data only when a laser scan is 
 
 <center>
 <img src="png/sensorFusion_03.png" alt="Sychronization with sequence" width="30%" />
+</center>
+<center>
 Figure 7: Synchronization with sequential processing.
 </center>
 
@@ -221,6 +239,8 @@ Often a robot has to fullfill several activities at the same time. For example f
 
 <center>
 <img src="png/highPriorityPath.png" alt="HighPriorityPath" width="50%" />
+</center>
+<center>
 Figure 8: Managing high priority path with sequential order.
 </center>
 
@@ -276,13 +296,22 @@ The rclc Executor supports all event types as the default ROS 2 Executor, which 
 
 Figure 9 shows three callbacks, A, B and C. Assume, they shall be executed in the order *B,A,C*. Then the user adds the callbacks to the rclc Executor in this order. Whenever new messages have arrived then the callbacks for which a new message is availabe will be always executed in the user-defined processing order. 
 <center>
-<img src="png/rclc_executor_sequential_execution.png" alt="Sequential execution semantics" width="60%" />
+<img src="png/rclc_executor_sequential_execution.png" alt="Sequential execution semantics" width="50%" />
+</center>
+<center>
 Figure 9: Sequential execution semantics.
 </center>
 
 #### Trigger condition
 
-- Given a set of handles, a trigger condition, which is based on the availability of input data of these handles, decides when the processing of all callbacks starts.
+- Given a set of handles, a trigger condition, which is based on the availability of input data of these handles, decides when the processing of all callbacks starts. This is shown in Figure 10. 
+
+<center>
+<img src="png/trigger_01.png" alt="Trigger condition overview" width="50%" />
+</center>
+<center>
+Figure 10: Executor with trigger condition
+</center>
 
 - Available options:
   - ALL operation: fires when input data is available for all handles
@@ -293,24 +322,32 @@ Figure 9: Sequential execution semantics.
 Figure 10 shows an example of the ALL semantics. Only if all messages *msg_A, msg_B, msg_C* were received, then trigger condition is fullfilled and the callbacks are processed in a user-defined order.
 <center>
 <img src="png/trigger_ALL.png" alt="Trigger condition ALL" width="30%" />
+</center>
+<center>
 Figure 10: Trigger condition ALL
 </center>
 
 Figure 11 shows an example of the ANY semantics. Thas is, if any messages *msg_A, msg_B, msg_C* was received, then trigger condition is fullfilled and the callbacks are processed in a user-defined order. This is equivalent to OR semantics.
 <center>
 <img src="png/trigger_OR.png" alt="Trigger condition ANY" width="30%" />
+</center>
+<center>
 Figure 11: Trigger condition ANY (OR)
 </center>
 
 Figure 12 shows an example of the ONE semantics. Thas is, only if message *msg_B* was received, the trigger condition is fullfilled and (potentially all) callbacks are processed in a user-defined order.
 <center>
 <img src="png/trigger_ONE.png" alt="Trigger condition ONE" width="30%" />
+</center>
+<center>
 Figure 12: Trigger condition ONE
 </center>
 
 Figure 13 describes the custom semantics. A custom trigger condition with could be a more complex logic of multiple messages, can be passed to the executor. This might also include hardware triggers, like interrupts. 
 <center>
 <img src="png/trigger_user_defined.png" alt="Trigger condition user-defined" width="30%" />
+</center>
+<center>
 Figure 13: Trigger condition user-defined
 </center>
 
@@ -561,7 +598,9 @@ Thus, an Executor instance can be dedicated to specific callback group(s) and th
 
 The following figure illustrates this approach with two nodes served by three Callback-group-level Executors in one process:
 
-![Sample system with two nodes and three Callback-group-level Executors in one process](cbg-executor_sample_system.png)
+<center>
+<img src="png/cbg-executor_sample_system.png" alt="Sample system with two nodes and three Callback-group-level Executors in one process" width="60%" />
+</center>
 
 The different callbacks of the Drive-Base node are distributed to different Executors (visualized by the color red, yellow and green).  For example the onCmdVel and publishWheelTicks callback are scheduled by the same Executor (yellow). Callbacks from different nodes can be serviced by the same Executor.
 
@@ -592,10 +631,16 @@ The callback-group-level executor has been merged into ROS 2 rclcpp in [pull req
 
 As a proof of concept, we implemented a small test bench in the present package cbg-executor_ping-pong_cpp. The test bench comprises a Ping node and a Pong node which exchange real-time and best-effort messages simultaneously with each other. Each class of messages is handled with a dedicated Executor, as illustrated in the following figure.
 
-![Architecture for the Callback-group-level Executor test bench](ping_pong_diagram.png)
+<center>
+<img src="png/ping_pong_diagram.png" alt="Architecture for the Callback-group-level Executor test bench" width="100%" />
+</center>
+
 With the test bench, we validated the functioning of the approach.
 
-![Results from Callback-group-level Executor test bench](cbg_executor_demo_plot.png)
+<center>
+<img src="png/cbg_executor_demo_plot.png" alt="Results from Callback-group-level Executor test bench" width="80%" />
+</center>
+
 In this example, the callback for the high priority task (red line) consumes 10ms and the low priority task (blue line) 40ms in the Pong Node. With a ping rate of 20 Hz, the CPU saturates (10ms\*20+40ms\*20=1000ms). With higher frequencies the high priorty task can continue to send its pong message, while the low priority pong task degrades. With a frequency of 100Hz the high priority task requires 100% CPU utilization. With higher ping rates it keeps sending pong messages with 100Hz, while the low priority task does not get any CPU ressources any more and cannot send any messages.
 
 The test bench is provided in the [cbg_executor_demo](https://github.com/boschresearch/ros2_demos/tree/cbg_executor_demo/cbg_executor_demo).
@@ -647,7 +692,9 @@ A module (thread) can be configured independent of these sense-plan-act synchron
 
 The high level overview of the Fawkes framework is shown in the next figure. At compile-time the configuration of the sense-plan act wakeup hook is done (upper part), while at run-time the scheduler iterates through this list of wakeup-hooks (lower part):
 
-![Sequence diagram for Executor concept in Fawkes](fawkes_executor_diagram.png)
+<center>
+<img src="png/fawkes_executor_diagram.png" alt="Sequence diagram for Fawkes Executor" width="50%" />
+</center>
 
 Hence, at run-time, the hooks are executed as a fixed static schedule without preemption. Multiple threads registered in the same hook are executed in parallel.
 
