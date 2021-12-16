@@ -138,7 +138,7 @@ Currently, such a processing order cannot be defined with the default ROS2 Execu
 For this sense-plan-act pattern, we could define one executor for each phase. The plan-phase would be triggered only when all callbacks in the sense-phase have finished.
 
 **Derived requirements:**
-- triggered execution of callbacks
+- triggered execution
 
 ### Synchronization of multiple rates
 
@@ -241,7 +241,7 @@ An Example of the LET concept is shown in Figure 3. Assume that two processes ar
 While periodic activation is possible in ROS2 by using timers, preemptive scheduling is supported by the operating system and assigning priorities on the granularity of threads/processes that correspond to the ROS nodes; it is not possible to sequentially execute callbacks, which have no data-dependency. Furthermore data is read from the DDS queue just before the callback is executed and data is written sometime during the time the application is executed. While the `spin_period` function of the rclcpp Executor allows to check for data at a fixed period and executing those callbacks for which data is available, however, with this spin-function does not execute all callbacks irrespective wheter data is available or not. So `spin_period` is not helpful to periodically execute a number of callbacks (aka tasks within a process). So we need a mechanism that triggers the execution of multiple callbacks (aka tasks) based on a timer. Data transmission is achieved via DDS which does not allow to implement a LET-semantics. To summarize, we derive the following requirements:
 
 **Derived requirements:**
-- trigger the execution of multiple callbacks
+- trigger the execution
 - sequential processing of callbacks
 - data synchronization with LET semantics
 
@@ -261,7 +261,7 @@ The rclc Executor is feature-complete, i.e. it supports all event types as the d
 - lifecycle
 
 The flexible rclc Executor provides on top the following new features:
-- trigger for conditional execution
+- triggered execution
 - user-defined sequential execution
 - multi-threading and scheduling configuration (WIP)
 - LET-semantics for data synchronization of periodic process scheduling
