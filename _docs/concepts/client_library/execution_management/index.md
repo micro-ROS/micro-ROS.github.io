@@ -34,7 +34,7 @@ redirect_from:
       * [Synchronization of multiple rates example](#synchronization-of-multiple-rates-example)
       * [High-priority processing path example](#high-priority-processing-path-example)
       * [Real-time embedded applications example](#real-time-embedded-applications-example)
-      * [ROS 2 Executor Workshop Reference System](#(5)-ros-2-executor-workshop-reference-system)
+      * [ROS 2 Executor Workshop Reference System](#ros-2-executor-workshop-reference-system)
     * [Future work](#future-work)
     * [Download](#download)
 
