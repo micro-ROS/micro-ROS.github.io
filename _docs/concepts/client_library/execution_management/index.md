@@ -30,11 +30,11 @@ redirect_from:
       * [Configuration phase](#configuration-phase)
       * [Running phase](#running-phase)
     * [Examples](#examples)
-      * [Sense-plan-act pipeline](#sense-plan-act-pipeline)
-      * [Sensor fusion](#sensor-fusion)
-      * [High priority path](#high-priority-path)
-      * [Embedded use-case](#embedded-use-case)
-      * [ROS 2 Executor Workshop Reference System](#ros-2-executor-workshop-reference-system)
+    * [(1) Sense-plan-act pipeline in robotics](#(1)-sense-plan-act-pipeline-in-robotics)
+    * [(2) Synchronization of multiple rates](#(2)-synchronization-of-multiple-rates)
+    * [(3) High-priority processing path](#(3)-high-priority-processing-path)
+    * [(4) Real-time embedded applications](#(4)-real-time-embedded-applications)
+    * [(5) ROS 2 Executor Workshop Reference System](#(5)-ros-2-executor-workshop-reference-system)
     * [Future work](#future-work)
     * [Download](#download)
 
@@ -402,7 +402,7 @@ Available spin functions are
 ### Examples
 We provide the relevant code snippets how to setup the rclc Executor for the processing patterns as described above.
 
-#### Sense-plan-act pipeline
+#### (1) Sense-plan-act pipeline in robotics
 
 In this example we want to realise a sense-plan-act pipeline in a single thread. The trigger condition is demonstrated by activating
 the sense-phase when both data for the Laser and IMU are available. Three executors are necessary `exe_sense`, `exe_plan` and `exe_act`. The two sensor acquisition callbacks `sense_Laser` and `sense_IMU` are registered in the Executor `exe_sense`.
@@ -434,7 +434,8 @@ while (true) {
   rclc_executor_spin_some(&exe_act);
 }
 ```
-#### Sensor fusion
+
+#### (2) Synchronization of multiple rates
 
 The sensor fusion synchronizing the multiple rates with a trigger is shown below.
 
@@ -476,7 +477,7 @@ rclc_executor_set_trigger(&exe_sense, rclc_executor_trigger_one, &sense_Laser);
 // spin
 rclc_executor_spin(&exe_sense);
 ```
-#### High priority path
+#### (3) High priority processing path
 
 This example shows the sequential processing order to execute the obstacle avoidance `obst_avoid`
 after the callbacks of the sense-phase and before the callback of the planning phase `plan`.
@@ -502,7 +503,7 @@ rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &sense_Laser);
 rclc_executor_spin(&exe);
 ```
 
-#### Embedded use-case
+#### (4) Real-time embedded applications
 
 With seqential execution the co-operative scheduling of tasks within a process can be modeled. The trigger condition is used to periodically activate the process which will then execute all callbacks in a pre-defined order. Data will be communicated using the LET-semantics. Every Executor is executed in its own tread, to which an appropriate priority can be assigned.
 
@@ -564,7 +565,7 @@ rclc_executor_data_comm_semantics(&exe, LET);
 rclc_executor_spin(&exe);
 ```
 
-#### ROS 2 Executor Workshop Reference System
+#### (5) ROS 2 Executor Workshop Reference System
 The rclc Executor has been presented at the workshop 'ROS 2 Executor: How to make it efficient, real-time and deterministic?' at [ROS World 2021](https://roscon.ros.org/world/2021/) (i.e. the online version of ROSCon)[[S2021](#S2021)]. A [Reference System](https://github.com/ros-realtime/reference-system) for testing and benchmarking ROS Executors has been developed for this workshop. The application of the rclc Executor on the reference system with the trigger condition can be found in the [rclc-executor branch of the Reference System](https://github.com/ros-realtime/reference-system/tree/rclc_executor). 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IazrPF3RN1U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
