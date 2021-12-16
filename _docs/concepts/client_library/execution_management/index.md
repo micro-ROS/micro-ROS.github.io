@@ -72,11 +72,12 @@ Given the goals for a Real-Time Executor and the limitations of the ROS 2 standa
 - to model requirements (like latencies, determinism in subsystems)
 - mapping of ROS framework and OS scheduler (semi-automated and optimized mapping is desired as well as generic, well-understood framework mechanisms)
 
-Our approach is to provide Real-Time Executors on two layers as described in section [Introduction to Client Library](../). One based on the rcl-layer written in C programming language and one based on rclcpp written in C++.
+Our approach is to provide a Real-Time Executor on the rcl-layer (as described in section [Introduction to Client Library](../).) in C programming language .
 
-As the first step, we propose the LET-Executor for the rcl-layer in C, which implements static order scheduling policy with logic execution time semantics. In this scheduling policy, all callbacks are executed in a pre-defined order. Logical execution time refers to the concept, that first input data is read before tasks are executed.  Secondly, we developed a Callback-group-level Executor, which allows to prioritize a group of callbacks. These approaches are based on the concept of Executors, which have been introduced in ROS 2.
+As the first step, we propose the rclc Executor for the rcl-layer in C with several features to support real-time and deterministic execution: It supports 1.) static sequential execution, 2) conditional execution and 3) logical execution semantics (LET). Sequential execution refers to the runtime behavior, that all callbacks are executed in a pre-defined order independent of the arrival time of messages. Conditional execution is available with a trigger condition which enables typical processing patterns in robotics (which are analyzed in detail in section [Analysis of processing patterns](#analysis-of-processing-patterns). The logical execution time concept provides data consistency for fixed periodic task scheduling, which is often used in embedded real-time applications. 
 
-In the future, we plan to provide other Real-Time Executors for the rcl- and rclcpp-layer.
+Beyond the advanced execution management mechanisms for micro-ROS, we also contributed to improving and extending the Executor concept in rclcpp for standard ROS 2: the callback group-level Executor. It is not a new Executor but rather a refinement of the API allowing to prioritize a group of callbacks which is not possible with the ROS 2 default Executor in its current Galactic release.
+
 
 ## Analysis of rclcpp standard Executor
 
