@@ -21,8 +21,6 @@ redirect_from:
     * [Synchronization of multiple rates](#synchronization-of-multiple-rates)
     * [High-priority processing path](#high-priority-processing-path)
 *   [rclc Executor](#rclc-executor)
-    * [Executive Summary](#executive-summary)
-    * [Motivation](#motivation)
     * [Features](#features)
       * [Trigger condition](#trigger-condition)
       * [Sequential execution](#sequential-execution)
@@ -54,7 +52,7 @@ redirect_from:
 
 Predictable execution under given real-time constraints is a crucial requirement for many robotic applications. While the service-based paradigm of ROS allows a fast integration of many different functionalities, it does not provide sufficient control over the execution management. For example, there are no mechanisms to enforce a certain execution order of callbacks within a node. Also the execution order of multiple nodes is essential for control applications in mobile robotics. Cause-effect-chains comprising of sensor acquisition, evaluation of data and actuation control should be mapped to ROS nodes executed in this order, however there are no explicit mechanisms to enforce it. Furthermore, when input data is collected in field tests, saved with ROS-bags and re-played, often results are different due to non-determinism of process scheduling.
 
-Manually setting up a particular execution order of subscribing and publishing topics in the callbacks or by tweaking the priorities of the corresponding Linux processes is always possible. However, this approach is error-prone, difficult to extend and requires an in-depth knowledge of the deplyed ROS 2 packages in the system.
+Manually setting up a particular execution order of subscribing and publishing topics in the callbacks or by tweaking the priorities of the corresponding Linux processes is always possible. However, this approach is error-prone, difficult to extend and requires an in-depth knowledge of the deployed ROS 2 packages in the system.
 
 Therefore the goal of the Real-Time Executor is to support roboticists with practical and easy-to-use real-time mechanisms which provide solutions for:
 - Deterministic execution
@@ -63,21 +61,21 @@ Therefore the goal of the Real-Time Executor is to support roboticists with prac
 - Specific support for RTOS and microcontrollers
 
 
-In ROS 1 a network thread is responsible for receiving all messages and putting them into a FIFO queue (in roscpp). That is, all callbacks were called in a FIFO manner, without any execution management. With the introduction of DDS (data distribution service) in ROS 2, the messages are buffered in DDS. In ROS 2, an Executor concept was introduced to support execution management, like priorization. At the rcl-layer, a _wait-set_ is configured with handles to be received and in a second step, the handles are taken from the DDS-queue. A handle is a term defined in rcl-layer and summarizes timers, subscriptions, clients and services etc..
+In ROS 1 a network thread is responsible for receiving all messages and putting them into a FIFO queue (in roscpp). That is, all callbacks were called in a FIFO manner, without any execution management. With the introduction of DDS (data distribution service) in ROS 2, the messages are buffered in DDS. In ROS 2, an Executor concept was introduced to support execution management. At the rcl-layer, a _wait-set_ is configured with handles to be received and in a second step, the handles are taken from the DDS-queue. A handle is a generic term defined in rcl-layer for timers, subscriptions, services, clients and guard conditions.
 
-The standard implementation of the ROS 2 Executor for the C++ API (rclcpp) has, however, certain unusual features, like precedence of timers over all other DDS handles, non-preemptive round-robin scheduling for non-timer handles and considering only one input data for each handle (even if multiple could be available). These features have the consequence, that in certain situations the standard rclcpp Executor is not deterministic and it makes proving real-time guarantees hard. We have not looked at the ROS 2 Executor implementation for Python frontend (rclpy) because we consider a micro-controllers platform, on which typically C or C++ appliations will run.
+The standard implementation of the ROS 2 Executor for the C++ API (rclcpp) has, however, certain unusual features, like precedence of timers over all other DDS handles, non-preemptive round-robin scheduling for non-timer handles and considering only one input data for each handle (even if multiple could be available). These features have the consequence, that in certain situations the standard rclcpp Executor is not deterministic and it makes guaranteeing real-time requirements very hard [[CB2019](#CB2019)]. We have not looked at the ROS 2 Executor implementation for Python Frontend (rclpy) because we consider a micro-controllers platform, on which typically C or C++ appliations will run.
 
 Given the goals for a Real-Time Executor and the limitations of the ROS 2 standard rclcpp Executor, the challenges are:
 - to develop an adequate and well-defined scheduling mechanisms for the ROS 2 framework and the real-time operating system (RTOS)
-- to define an easy-to-use interface for ROS-developers
+- to define an easy-to-use interface for ROS developers
 - to model requirements (like latencies, determinism in subsystems)
-- mapping of ROS framework and OS scheduler (semi-automated and optimized mapping is desired as well as generic, well-understood framework mechanisms)
+- mapping of ROS 2 framework and operating system schedulers (semi-automated and optimized mapping is desired as well as generic, well-understood framework mechanisms)
 
 Our approach is to provide a Real-Time Executor on the rcl-layer (as described in section [Introduction to Client Library](../).) in C programming language .
 
 As the first step, we propose the rclc Executor for the rcl-layer in C with several features to support real-time and deterministic execution: It supports 1.) static sequential execution, 2) conditional execution and 3) logical execution semantics (LET). Sequential execution refers to the runtime behavior, that all callbacks are executed in a pre-defined order independent of the arrival time of messages. Conditional execution is available with a trigger condition which enables typical processing patterns in robotics (which are analyzed in detail in section [Analysis of processing patterns](#analysis-of-processing-patterns). The logical execution time concept provides data consistency for fixed periodic task scheduling, which is often used in embedded real-time applications. 
 
-Beyond the advanced execution management mechanisms for micro-ROS, we also contributed to improving and extending the Executor concept in rclcpp for standard ROS 2: the callback group-level Executor. It is not a new Executor but rather a refinement of the API allowing to prioritize a group of callbacks which is not possible with the ROS 2 default Executor in its current Galactic release.
+Beyond the advanced execution management mechanisms for micro-ROS, we also contributed to improving and extending the Executor concept in rclcpp for standard ROS 2: the callback group-level Executor. It is not a new Executor but rather a refinement of the ROS 2 Executor API allowing to prioritize a group of callbacks which is not possible with the ROS 2 default Executor in its current Galactic release.
 
 
 ## Analysis of rclcpp standard Executor
@@ -117,10 +115,10 @@ In a recent paper [[CB2019](#CB2019)], the rclcpp Executor has been analyzed in 
 Due to these findings, the authors present an alternative approach to provide determinism and to apply well-known schedulability analyses to a ROS 2 systems. A response time analysis is described under reservation-based scheduling.
 
 ## Analysis of processing patterns
-The development of an execution management mechanism for micro-ROS is based on an analysis of processing patterns commonly used in robotic applications. First, the processing patterns in the real-time embedded systems are described, in which the time-triggered paradigm is often used to guarantee deterministic and real-time behavior. Then, typical processing patterns are descrived for mobile robotics to implement deterministic runtime behavior.
+The development of an execution management mechanism for micro-ROS is based on an analysis of processing patterns commonly used in robotics and embedded systems. First, the processing patterns in the real-time embedded systems are analyzed, in which the time-triggered paradigm is applied to accomplish real-time behavior. Then, typical processing patterns in mobile robotics are presented which are used to implement deterministic behavior.
 
 ### Real-time embedded applications
-In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure~1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are preempted multiple times depicted with empty dashed boxes.
+In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure 1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are preempted multiple times depicted with empty dashed boxes.
 
 <center>
 <img src="png/scheduling_01.png" alt="Schedule with fixed periods" width="30%"/>
@@ -152,11 +150,9 @@ However, data consistency is often an issue when preemptive scheduling is used a
 Figure 3: Data communication without and with Logical Execution Time paradigm.
 </center>
 
-
-
 An Example of the LET concept is shown in Figure 3. Assume that two processes are communicating data via one global variable. The timepoint when this data is written is at the end of the processing time. In the default case (left side), the process p<sub>3</sub> and p<sub>4</sub> receive the update. At the right side of the figure, the same scenario is shown with LET semantics. Here, the data is communicated only at period boundaries. In this case, the lower process communicates at the end of the period, so that always process p<sub>3</sub> and p<sub>5</sub> receive the new data.
 
-The described embedded use case relies on the following concepts:
+**Concept:**
 - periodic execution of processes
 - assignment of fixed priorities to processes
 - preemptive scheduling of processes
@@ -165,14 +161,15 @@ The described embedded use case relies on the following concepts:
 
 While periodic activation is possible in ROS2 by using timers, preemptive scheduling is supported by the operating system and assigning priorities on the granularity of threads/processes that correspond to the ROS nodes; it is not possible to sequentially execute callbacks, which have no data-dependency. Furthermore data is read from the DDS queue just before the callback is executed and data is written sometime during the time the application is executed. While the `spin_period` function of the rclcpp Executor allows to check for data at a fixed period and executing those callbacks for which data is available, however, with this spin-function does not execute all callbacks irrespective wheter data is available or not. So `spin_period` is not helpful to periodically execute a number of callbacks (aka tasks within a process). So we need a mechanism that triggers the execution of multiple callbacks (aka tasks) based on a timer. Data transmission is achieved via DDS which does not allow to implement a LET-semantics. To summarize, we derive the following requirements:
 
-Derived Requirements:
+**Derived requirements:**
 - trigger the execution of multiple callbacks
 - sequential processing of callbacks
 - data synchronization with LET semantics
 
 ### Sense-plan-act pipeline in robotics
 Now we describe common software design patterns which are used in mobile robotics to achieve deterministic behavior. For each design pattern we describe the concept and the derived requirements for a deterministic Executor.
-Concept:
+
+**Concept:**
 
 A common design paradigm in mobile robotics is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and an actuation-phase to steer the mobile robot. Of course, more phases are possible, here these three phases shall serve as an example. Such a processing pipeline is shown in Figure 4.
 
@@ -189,12 +186,12 @@ Currently, such a processing order cannot be defined with the default ROS2 Execu
 
 For this sense-plan-act pattern, we could define one executor for each phase. The plan-phase would be triggered only when all callbacks in the sense-phase have finished.
 
-Derived Requirements:
+**Derived requirements:**
 - triggered execution of callbacks
 
 ### Synchronization of multiple rates
 
-Concept:
+**Concept:**
 
 Often multiple sensors are being used to sense the environment for mobile robotics. While an IMU sensor provides data samples at a very high rate (e.g., 500 Hz), laser scans are availabe at a much slower frequency (e.g. 10Hz) determined by the revolution time. Then the challenge is, how to deterministically fuse sensor data with different frequencies. This problem is depicted in Figure 5.
 
@@ -204,8 +201,6 @@ Often multiple sensors are being used to sense the environment for mobile roboti
 <center>
 Figure 5: How to deterministically process multi-frequent sensor data.
 </center>
-
-
 
 Due to scheduling effects, the callback for evaluating the laser scan might be called just before or just after an IMU data is received. One way to tackle this is to write additional synchronization code inside the application. Obviously, this is a cumbersome and not-portable solution.
 
@@ -220,7 +215,6 @@ Figure 6: Synchronization of multiple input data with a trigger.
 
 In ROS 2, this is currently not possible to be modeled because of the lack of a trigger concept in the ROS2 Executor. Message filters could be used to synchronize input data based on the timestamp in the header, but this is only available in rclcpp (and not in rcl). Further more, it would be more efficient to have such a trigger concept directly in the Executor.
 
-
 Another idea would be to activly request for IMU data only when a laser scan is received. This concept is shown in Figure 7. Upon arrival of a laser scan mesage, first, a message with aggregated IMU samples is requested. Then, the laser scan is processed and later the sensor fusion algorithm. An Executor, which would support sequential execution of callbacks, could realize this idea.
 
 <center>
@@ -230,13 +224,12 @@ Another idea would be to activly request for IMU data only when a laser scan is 
 Figure 7: Synchronization with sequential processing.
 </center>
 
-Derived Requirements from both concepts:
+**Derived requirements:**
 - triggered execution
 - sequential procesing of callbacks
 
 ### High-priority processing path
-Motivation:
-
+**Concept**
 Often a robot has to fullfill several activities at the same time. For example following a path and avoiding obstacles. While path following is a permanent activity, obstacle avoidance is trigged by the environment and should be immediately reacted upon. Therefore one would like to specify priorities to activities. This is depicted in Figure 8:
 
 <center>
@@ -248,26 +241,18 @@ Figure 8: Managing high priority path with sequential order.
 
 Assuming a simplified control loop with the activities sense-plan-act, the obstacle avoidance, which might temporarily stop the robot, should be processed before the planning phase. In this example we assume that these activites are processed in one thread.
 
-Derived requirements:
+**Derived requirements:**
 - sequential processing of callbacks
 
 ## rclc Executor
 
-The rclc Executor is an Executor based on the rcl-layer in C programming language. As discussed above, the default rclcpp Executor is not suitable to implement real-time applications because of three main reasons: timers are preferred over all other handles, no priorization of callback execution and the round-robin to completion execution of callbacks. On the other hand, several processing patterns have been developed as best practice recipies in robotics to achieve non-functional requirements, such as bounded end-to-end latencies, low jitter of response times of cause-effect chains, deterministic processing, and quick response times even in overload situations. These processing patterns are difficult to implement with the default rclcpp Executor, therefore we have developed a flexible Executor: the rclc Executor. 
+The rclc Executor is a ROS 2 Executor based on the rcl-layer in C programming language. As discussed above, the default rclcpp Executor is not suitable to implement real-time applications because of three main reasons: timers are preferred over all other handles, no priorization of callback execution and the round-robin to completion execution of callbacks. On the other hand, several processing patterns have been developed as best practices to achieve non-functional requirements, such as bounded end-to-end latencies, low jitter of response times of cause-effect chains, deterministic processing and short response times even in overload situations. These processing patterns are difficult to implement with the concepts availabe in the default ROS 2 Executor, therefore we have developed a flexible Executor: the rclc Executor. 
 
-It supports three main features: First, a *trigger condition* allows to define when the processing of a callback shall start. This is useful to implement sense-plan-act control loops or more complex processing structures with directed acyclic graphs. Second, a user can specify the *processing order* in which these callbacks will be executed. With this feature, the pattern of sensor fusion with multiple rates, in which data is requested from a sensor based on the arrival of some other sensor, can be easily implemented. Third, the rclc Executor allows to set scheduling parameters (e.g., priorities) of the underlying operating system (WIP). With this feature, prioritized processing can be implemented. Third, for periodic applications, the *LET Semantics* has been implemented.
+
 
 ### Features
 
-The flexible rclc Executor provides the following main features:
-- trigger condition to activate processing
-- user-defined sequential execution of callbacks
-- data synchronization: LET-semantics or rclcpp Executor semantics
-- multi-threading and configuration of operating system scheduling parameters to callbacks 
-
-These features are now described in more detail.
-
-The rclc Executor supports all event types as the default ROS 2 Executor, which are:
+The rclc Executor is feature-complete, i.e. it supports all event types as the default ROS 2 Executor, which are:
 - subscriptions
 - timers
 - services
@@ -275,6 +260,14 @@ The rclc Executor supports all event types as the default ROS 2 Executor, which 
 - guard conditions
 - actions
 - lifecycle
+
+The flexible rclc Executor provides on top the following new features:
+- trigger for conditional execution
+- user-defined sequential execution
+- multi-threading and scheduling configuration (WIP)
+- LET-semantics for data synchronization of periodic process scheduling
+
+First, a *trigger condition* allows to define when the processing of a callback shall start. This is useful to implement sense-plan-act control loops or more complex processing structures with directed acyclic graphs. Second, a user can specify the *processing order* in which these callbacks will be executed. With this feature, the pattern of sensor fusion with multiple rates, in which data is requested from a sensor based on the arrival of some other sensor, can be easily implemented. Third, the assignment of scheduling parameters (e.g., priorities) of the underlying operating system. With this feature, prioritized processing can be implemented. Finally, for periodic applications, the *LET Semantics* has been implemented to support data consistency for periodic process scheduling. These features are now described in more detail.
 
 #### Sequential execution
 
@@ -360,7 +353,7 @@ The selection of the Executor semantics is optional. The default semantics is "R
 The rclc Executor has been extended for multi-threading. It supports the assignment of scheduling policies, like priorities or more advanced scheduling algorithms as reservation-based scheduling, to subscription callbacks. [[Pull Request](https://github.com/ros2/rclc/pull/87), Pre-print [SLD2021](#SLD2021)]. The overall architecture is shown in Figure 15. One Executor thread is responsible for checking for new data from the DDS queue. For every callback, a thread is spawned with the dedicted scheduling policy provided by the operating system. The Executor then dispatches new data of a subscription to it's corresponding callback function, which is then executed in its own thread by operating system.
 
 <center>
-<img src="png/rclc_executor_multi_threaded.png" alt="Multi-threaded rclc Executor" width="80%" />
+<img src="png/rclc_executor_multi_threaded.png" alt="Multi-threaded rclc Executor" width="90%" />
 </center>
 <center>
 Figure 15: multi-threaded rclc-Executor
