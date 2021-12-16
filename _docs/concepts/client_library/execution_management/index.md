@@ -602,20 +602,20 @@ The different callbacks of the Drive-Base node are distributed to different Exec
 ### API Changes
 
 In this section, we describe the necessary changes to the Executor API:
-*   [include/rclcpp/callback\_group.hpp](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1/rclcpp/include/rclcpp/callback_group.hpp):
+*   [include/rclcpp/callback\_group.hpp](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/callback_group.hpp):
 
     * Introduced an enum to distinguish up to three real-time classes (requirements) per node (RealTimeCritical, SoftRealTime, BestEffort)
     * Changed association with Executor instance from nodes to callback groups.
-*   [include/rclcpp/executor.hpp](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1/rclcpp/include/rclcpp/executor.hpp)
+*   [include/rclcpp/executor.hpp](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/executor.hpp)
 
     * Added functions to add and remove individual callback groups in addition to whole nodes.
 
     * Replaced private vector of nodes with a map from callback groups to nodes.
 
-*   [include/rclcpp/memory\_strategy.hpp](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1/rclcpp/include/rclcpp/memory_strategy.hpp)
+*   [include/rclcpp/memory\_strategy.hpp](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/memory_strategy.hpp)
 
     * Changed all functions that expect a vector of nodes to the just mentioned map.
-*   [include/rclcpp/node.hpp](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1/rclcpp/include/rclcpp/node.hpp) and [include/rclcpp/node_interfaces/node_base.hpp](https://github.com/boschresearch/ros2_rclcpp/tree/cbg-executor-0.5.1/rclcpp/include/rclcpp/node_interfaces/node_base.hpp)
+*   [include/rclcpp/node.hpp](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/node.hpp) and [include/rclcpp/node_interfaces/node_base.hpp](https://github.com/ros2/rclcpp/blob/master/rclcpp/include/rclcpp/node_interfaces/node_base.hpp)
 
     * Extended arguments of create\_callback\_group function for the real-time class.
     * Removed the get\_associated\_with\_executor\_atomic function.
