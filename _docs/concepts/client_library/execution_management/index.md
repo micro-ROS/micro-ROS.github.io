@@ -54,7 +54,7 @@ Predictable execution under given real-time constraints is a crucial requirement
 
 Manually setting up a particular execution order of subscriptions and publishing topics as well as defining use-case specific priorities of the corresponding Linux processes is always possible. However, this approach is error-prone, difficult to extend and requires an in-depth knowledge of the deployed ROS 2 packages in the system.
 
-Therefore the goal of the Real-Time Executor is to support roboticists with practical and easy-to-use real-time mechanisms which provide solutions for:
+Therefore the goal of the Executor in micro-ROS is to support roboticists with practical and easy-to-use real-time mechanisms which provide solutions for:
 - Deterministic execution
 - Real-time guarantees
 - Integration of real-time and non real-time functionalities on one platform
