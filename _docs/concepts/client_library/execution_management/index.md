@@ -27,6 +27,7 @@ redirect_from:
       * [Trigger condition](#trigger-condition)
       * [Sequential execution](#sequential-execution)
       * [LET-Semantics](#let-semantics)
+      * [Multi-threading and scheduling configuration](#multi-threading-and-scheduling-configuration)
     * [Executor API](#executor-api)
       * [Configuration phase](#configuration-phase)
       * [Running phase](#running-phase)
@@ -252,29 +253,17 @@ Derived requirements:
 
 ## rclc Executor
 
-### Executive Summary
+The rclc Executor is an Executor based on the rcl-layer in C programming language. As discussed above, the default rclcpp Executor is not suitable to implement real-time applications because of three main reasons: timers are preferred over all other handles, no priorization of callback execution and the round-robin to completion execution of callbacks. On the other hand, several processing patterns have been developed as best practice recipies in robotics to achieve non-functional requirements, such as bounded end-to-end latencies, low jitter of response times of cause-effect chains, deterministic processing, and quick response times even in overload situations. These processing patterns are difficult to implement with the default rclcpp Executor, therefore we have developed a flexible Executor: the rclc Executor. 
 
-The rclc Executor is an Executor for C applications and can be used with default rclcpp Executor semantics. If additional deterministic behavior is necessary, the user can rely on pre-defined sequential execution, trigged execution and LET-Semantics for data synchronization. The concept of the rclc Executor has been published in [[SLL2020](#SLL2020)].
-
-### Motivation
-The need for the processing patterns, as described in the previous section, are often non-functional requirements that a robotic application must met: bounded end-to-end latencies, low jitter of response times of cause-effect chains, deterministic processing, and quick response times even in overload situations.
-
-Real-time requirements in embedded applications are typically met using real-time scheduling. The most common is the periodic scheduling policy, in which all functions are mapped to pre-defined periods, e.g., *1 ms*, *10 ms* or *100 ms*. This scheduling policy is well supported by all real-time operating systems and formal performance analysis approaches have been well known for decades.
-
-In contrast, ROS 2 follows an event-driven approach. Messages are communicated between nodes using the publish and subscribe paradigm. It is the responsibility of an Executor to react upon new messages. In detail, this Executor coordinates the execution of callbacks issued by the participating nodes by checking the incoming messages from the DDS queue and dispatching them to the underlying threads for execution. Currently, the dispatching mechanism is very basic: the Executor looks up wait queues, which notifies it of any pending messages in the DDS queue.
-
-If there are pending messages, the Executor executes the corresponding callbacks one after the other, which is also called round-robin to completion. In addition, the Executor also checks for events from application-level timers, which are always processed before messages. There is no further notion of prioritization or categorization of these callback calls. Moreover, the ROS 2 Executor from rclcpp in its current form does not leverage the real-time capabilities of the underlying operating system scheduler to have finer control on the execution order. The overall implication of this behavior is that time-critical callbacks could suffer possible deadline misses and degraded performance since they are serviced later than non-critical callbacks. Additionally, due to the round-robin mechanism and the resulting dependencies it causes on the execution time, it is difficult to determine usable bounds on the worst-case latency that each callback execution may incur [[CB2019](#CB2019)].
-
-To address the aforementioned common processing patterns found in robotic applications with the event-driven ROS 2 execution scheme, we have developed a very flexible approach in micro-ROS named *rclc Executor* [[SLL2020](#SLL2020)].
-
-It supports three main features: First, a *trigger condition* allows to define when the processing of a callback shall start. This is useful to implement sense-plan-act control loops or more complex processing structures with directed acyclic graphs. Second, a user can specify the *processing order* in which these callbacks will be executed. With this feature, the pattern of sensor fusion with multiple rates, in which data is requested from a sensor based on the arrival of some other sensor, can be easily implemented. Third, the rclc Executor allows to set scheduling parameters (e.g., priorities) of the underlying operating system. With this feature, prioritized processing can be implemented. Third, for periodic applications, the *LET Semantics* has been implemented.
+It supports three main features: First, a *trigger condition* allows to define when the processing of a callback shall start. This is useful to implement sense-plan-act control loops or more complex processing structures with directed acyclic graphs. Second, a user can specify the *processing order* in which these callbacks will be executed. With this feature, the pattern of sensor fusion with multiple rates, in which data is requested from a sensor based on the arrival of some other sensor, can be easily implemented. Third, the rclc Executor allows to set scheduling parameters (e.g., priorities) of the underlying operating system (WIP). With this feature, prioritized processing can be implemented. Third, for periodic applications, the *LET Semantics* has been implemented.
 
 ### Features
 
-Based on the real-time embedded use-case as well as the processing patterns in mobile robotics, a flexible Executor with the following main features was developed:
+The flexible rclc Executor provides the following main features:
 - trigger condition to activate processing
 - user-defined sequential execution of callbacks
 - data synchronization: LET-semantics or rclcpp Executor semantics
+- multi-threading and configuration of operating system scheduling parameters to callbacks 
 
 These features are now described in more detail.
 
@@ -352,8 +341,6 @@ Figure 14 describes the custom semantics. A custom trigger condition with could 
 Figure 14: Trigger condition user-defined
 </center>
 
-
-
 #### LET-Semantics
 - Assumption: time-triggered system, the executor is activated periodically
 - When the trigger fires, reads all input data and makes a local copy
@@ -367,6 +354,17 @@ Additionally we have implemented the current rclcpp Executor semantics ("RCLCPP"
 - request from DDS-queue the new data just before the handle is executed (rcl_take)
 
 The selection of the Executor semantics is optional. The default semantics is "RCLCPP".
+
+#### Multi-threading and scheduling configuration
+
+The rclc Executor has been extended for multi-threading. It supports the assignment of scheduling policies, like priorities or more advanced scheduling algorithms as reservation-based scheduling, to subscription callbacks. [[Pull Request](https://github.com/ros2/rclc/pull/87), Pre-print [SLD2021](#SLD2021)]. The overall architecture is shown in Figure 15. One Executor thread is responsible for checking for new data from the DDS queue. For every callback, a thread is spawned with the dedicted scheduling policy provided by the operating system. The Executor then dispatches new data of a subscription to it's corresponding callback function, which is then executed in its own thread by operating system.
+
+<center>
+<img src="png/rclc_executor_multi_threaded.png" alt="Multi-threaded rclc Executor" width="80%" />
+</center>
+<center>
+Figure 15: multi-threaded rclc-Executor
+</center>
 
 ### Executor API
 The API of the rclc Executor can be divided in two phases: Configuration and Running.
