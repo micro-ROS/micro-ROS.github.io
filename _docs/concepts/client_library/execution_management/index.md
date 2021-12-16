@@ -638,7 +638,7 @@ With the test bench, we validated the functioning of the approach.
 
 In this example, the callback for the high priority task (red line) consumes 10ms and the low priority task (blue line) 40ms in the Pong Node. With a ping rate of 20 Hz, the CPU saturates (10ms\*20+40ms\*20=1000ms). With higher frequencies the high priorty task can continue to send its pong message, while the low priority pong task degrades. With a frequency of 100Hz the high priority task requires 100% CPU utilization. With higher ping rates it keeps sending pong messages with 100Hz, while the low priority task does not get any CPU ressources any more and cannot send any messages.
 
-The test bench is provided in the [cbg_executor_demo](https://github.com/boschresearch/ros2_demos/tree/cbg_executor_demo/cbg_executor_demo).
+The test bench is provided in the [cbg_executor_demo](https://github.com/ros2/examples/tree/master/rclcpp/executors/cbg_executor).
 
 ## Related Work
 
