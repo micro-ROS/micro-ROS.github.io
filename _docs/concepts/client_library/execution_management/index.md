@@ -30,10 +30,10 @@ redirect_from:
       * [Configuration phase](#configuration-phase)
       * [Running phase](#running-phase)
     * [Examples](#examples)
-      * [Embedded use-case](#embedded-use-case)
       * [Sense-plan-act pipeline](#sense-plan-act-pipeline)
       * [Sensor fusion](#sensor-fusion)
       * [High priority path](#high-priority-path)
+      * [Embedded use-case](#embedded-use-case)
       * [ROS 2 Executor Workshop Reference System](#ros-2-executor-workshop-reference-system)
     * [Future work](#future-work)
     * [Download](#download)
@@ -400,68 +400,7 @@ Available spin functions are
 - `spin` - spin indefinitly
 
 ### Examples
-We provide the relevant code snippets how to setup the rclc Executor for the embedded use case and for the software design patterns in mobile robotics applications as described above.
-#### Embedded use-case
-
-With seqential execution the co-operative scheduling of tasks within a process can be modeled. The trigger condition is used to periodically activate the process which will then execute all callbacks in a pre-defined order. Data will be communicated using the LET-semantics. Every Executor is executed in its own tread, to which an appropriate priority can be assigned.
-
-In the following example, the Executor is setup with 4 handles. We assume a process has three subscriptions `sub1`, `sub2`, `sub3`. The sequential processing order is given by the order as they are added to the Executor. A timer `timer` defines the period.  The `trigger_one` with the paramter `timer` is used, so that whenever the timer is ready, all callbacks are processed. Finally the data communication semantics LET is defined.
-```C
-#include "rcl_executor/let_executor.h"
-
-// define subscription callback
-void my_sub_cb1(const void * msgin)
-{
-  // ...
-}
-// define subscription callback
-void my_sub_cb2(const void * msgin)
-{
-  // ...
-}
-// define subscription callback
-void my_sub_cb3(const void * msgin)
-{
-  // ...
-}
-
-// define timer callback
-void my_timer_cb(rcl_timer_t * timer, int64_t last_call_time)
-{
-  // ...
-}
-
-// necessary ROS 2 objects
-rcl_context_t context;   
-rcl_node_t node;
-rcl_subscription_t sub1, sub2, sub3;
-rcl_timer_t timer;
-rcle_let_executor_t exe;
-
-// define ROS context
-context = rcl_get_zero_initialized_context();
-// initialize ROS node
-rcl_node_init(&node, &context,...);
-// create subscriptions
-rcl_subscription_init(&sub1, &node, ...);
-rcl_subscription_init(&sub2, &node, ...);
-rcl_subscription_init(&sub3, &node, ...);
-// create a timer
-rcl_timer_init(&timer, &my_timer_cb, ... );
-// initialize executor with four handles
-rclc_executor_init(&exe, &context, 4, ...);
-// define static execution order of handles
-rclc_executor_add_subscription(&exe, &sub1, &my_sub_cb1, ALWAYS);
-rclc_executor_add_subscription(&exe, &sub2, &my_sub_cb2, ALWAYS);
-rclc_executor_add_subscription(&exe, &sub3, &my_sub_cb3, ALWAYS);
-rclc_executor_add_timer(&exe, &timer);
-// trigger when handle 'timer' is ready
-rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &timer);
-// select LET-semantics
-rclc_executor_data_comm_semantics(&exe, LET);
-// spin forever
-rclc_executor_spin(&exe);
-```
+We provide the relevant code snippets how to setup the rclc Executor for the processing patterns as described above.
 
 #### Sense-plan-act pipeline
 
@@ -562,6 +501,69 @@ rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &sense_Laser);
 // spin
 rclc_executor_spin(&exe);
 ```
+
+#### Embedded use-case
+
+With seqential execution the co-operative scheduling of tasks within a process can be modeled. The trigger condition is used to periodically activate the process which will then execute all callbacks in a pre-defined order. Data will be communicated using the LET-semantics. Every Executor is executed in its own tread, to which an appropriate priority can be assigned.
+
+In the following example, the Executor is setup with 4 handles. We assume a process has three subscriptions `sub1`, `sub2`, `sub3`. The sequential processing order is given by the order as they are added to the Executor. A timer `timer` defines the period.  The `trigger_one` with the paramter `timer` is used, so that whenever the timer is ready, all callbacks are processed. Finally the data communication semantics LET is defined.
+```C
+#include "rcl_executor/let_executor.h"
+
+// define subscription callback
+void my_sub_cb1(const void * msgin)
+{
+  // ...
+}
+// define subscription callback
+void my_sub_cb2(const void * msgin)
+{
+  // ...
+}
+// define subscription callback
+void my_sub_cb3(const void * msgin)
+{
+  // ...
+}
+
+// define timer callback
+void my_timer_cb(rcl_timer_t * timer, int64_t last_call_time)
+{
+  // ...
+}
+
+// necessary ROS 2 objects
+rcl_context_t context;   
+rcl_node_t node;
+rcl_subscription_t sub1, sub2, sub3;
+rcl_timer_t timer;
+rcle_let_executor_t exe;
+
+// define ROS context
+context = rcl_get_zero_initialized_context();
+// initialize ROS node
+rcl_node_init(&node, &context,...);
+// create subscriptions
+rcl_subscription_init(&sub1, &node, ...);
+rcl_subscription_init(&sub2, &node, ...);
+rcl_subscription_init(&sub3, &node, ...);
+// create a timer
+rcl_timer_init(&timer, &my_timer_cb, ... );
+// initialize executor with four handles
+rclc_executor_init(&exe, &context, 4, ...);
+// define static execution order of handles
+rclc_executor_add_subscription(&exe, &sub1, &my_sub_cb1, ALWAYS);
+rclc_executor_add_subscription(&exe, &sub2, &my_sub_cb2, ALWAYS);
+rclc_executor_add_subscription(&exe, &sub3, &my_sub_cb3, ALWAYS);
+rclc_executor_add_timer(&exe, &timer);
+// trigger when handle 'timer' is ready
+rclc_executor_set_trigger(&exe, rclc_executor_trigger_one, &timer);
+// select LET-semantics
+rclc_executor_data_comm_semantics(&exe, LET);
+// spin forever
+rclc_executor_spin(&exe);
+```
+
 #### ROS 2 Executor Workshop Reference System
 The rclc Executor has been presented at the workshop 'ROS 2 Executor: How to make it efficient, real-time and deterministic?' at [ROS World 2021](https://roscon.ros.org/world/2021/) (i.e. the online version of ROSCon)[[S2021](#S2021)]. A [Reference System](https://github.com/ros-realtime/reference-system) for testing and benchmarking ROS Executors has been developed for this workshop. The application of the rclc Executor on the reference system with the trigger condition can be found in the [rclc-executor branch of the Reference System](https://github.com/ros-realtime/reference-system/tree/rclc_executor). 
 
