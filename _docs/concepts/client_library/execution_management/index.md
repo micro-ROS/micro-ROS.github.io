@@ -723,7 +723,7 @@ URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8376277&isnumber=83
 
 
 ## References
-* [S2021]<a name="S2021"></a> J. Staschulat, "Micro-ROS: The rclc Executor", ROS 2 Executor: How to make it efficient, real-time and deterministic?, ROS World, Oct. 2021, [[slides](https://ec2a4d36-bac8-4759-b25e-bb1f794177f4.filesusr.com/ugd/984e93_749e27b917a54b45b9ccb5be930841b8.pdf)] [[recorded presentation](https://www.youtube.com/embed/IazrPF3RN1U)]
+* [S2021]<a name="S2021"></a> J. Staschulat, "Micro-ROS: The rclc Executor", ROS 2 Executor: How to make it efficient, real-time and deterministic?, ROS World, Oct. 2021, [[slides](https://ec2a4d36-bac8-4759-b25e-bb1f794177f4.filesusr.com/ugd/984e93_749e27b917a54b45b9ccb5be930841b8.pdf)] [[Video](https://www.youtube.com/embed/IazrPF3RN1U)]
 
 * [SLD2021]<a name="SLD2021"></a> J. Staschulat, R. Lange and D. N. Dasari, "Budget-based real-time Executor for Micro-ROS", arXiv Pre-Print, May 2021. [[paper](https://arxiv.org/abs/2105.05590)] 
 
