@@ -624,7 +624,7 @@ The callback-group-level executor has been merged into ROS 2 rclcpp in [pull req
 
 ### Test Bench
 
-As a proof of concept, we implemented a small test bench in the present package cbg-executor_ping-pong_cpp. The test bench comprises a Ping node and a Pong node which exchange real-time and best-effort messages simultaneously with each other. Each class of messages is handled with a dedicated Executor, as illustrated in the following Figure.
+As a proof of concept, we implemented a small test bench in the present package cbg-executor_ping-pong_cpp. The test bench comprises a Ping node and a Pong node which exchange real-time and best-effort messages simultaneously with each other. Each class of messages is handled with a dedicated Executor, as illustrated in the following figure.
 
 <center>
 <img src="png/ping_pong_diagram.png" alt="Architecture for the Callback-group-level Executor test bench" width="100%" />
