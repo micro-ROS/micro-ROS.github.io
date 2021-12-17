@@ -591,7 +591,7 @@ As the default rclcpp Executor works at a node-level granularity – which is a 
 
 Thus, an Executor instance can be dedicated to specific callback group(s) and the Executor’s thread(s) can be prioritized according to the real-time requirements of these groups. For example, all time-critical callbacks are handled by an "RT-CRITICAL" Executor instance running at the highest scheduler priority.
 
-The following Figure illustrates this approach with two nodes served by three Callback-group-level Executors in one process:
+The following figure illustrates this approach with two nodes served by three Callback-group-level Executors in one process:
 
 <center>
 <img src="png/cbg-executor_sample_system.png" alt="Sample system with two nodes and three Callback-group-level Executors in one process" width="60%" />
