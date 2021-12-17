@@ -122,13 +122,13 @@ Now we describe common software design patterns which are used in mobile robotic
 
 **Concept:**
 
-A common design paradigm in mobile robotics is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and an actuation-phase to steer the mobile robot. Of course, more phases are possible, here these three phases shall serve as an example. Such a processing pipeline is shown in Figure 4.
+A common design paradigm in mobile robotics is a control loop, consisting of several phases: A sensing phase to aquire sensor data, a plan phase for localization and path planning and an actuation-phase to steer the mobile robot. Of course, more phases are possible, here these three phases shall serve as an example. Such a processing pipeline is shown in Figure 1.
 
 <center>
 <img src="png/sensePlanActScheme.png" alt="Sense Plan Act Pipeline" width="60%"/>
 </center>
 <center>
-Figure 4: Multiple sensors driving a Sense-Plan-Act pipeline.
+Figure 1: Multiple sensors driving a Sense-Plan-Act pipeline.
 </center>
 
 Typically multiple sensors are used to perceive the environment. For example an IMU and a laser scanner. The quality of localization algorithms highly depend on how old such sensor data is when it is processed. Ideally the latest data of all sensors should be processed. One way to achive this is to execute first all sensor drivers in the sense-phase and then process all algorithms in the plan-phase.
@@ -144,35 +144,35 @@ For this sense-plan-act pattern, we could define one executor for each phase. Th
 
 **Concept:**
 
-Often multiple sensors are being used to sense the environment for mobile robotics. While an IMU sensor provides data samples at a very high rate (e.g., 500 Hz), laser scans are availabe at a much slower frequency (e.g. 10Hz) determined by the revolution time. Then the challenge is, how to deterministically fuse sensor data with different frequencies. This problem is depicted in Figure 5.
+Often multiple sensors are being used to sense the environment for mobile robotics. While an IMU sensor provides data samples at a very high rate (e.g., 500 Hz), laser scans are availabe at a much slower frequency (e.g. 10Hz) determined by the revolution time. Then the challenge is, how to deterministically fuse sensor data with different frequencies. This problem is depicted in Figure 2.
 
 <center>
 <img src="png/sensorFusion_01.png" alt="Sychronization of multiple rates" width="30%" />
 </center>
 <center>
-Figure 5: How to deterministically process multi-frequent sensor data.
+Figure 2: How to deterministically process multi-frequent sensor data.
 </center>
 
 Due to scheduling effects, the callback for evaluating the laser scan might be called just before or just after an IMU data is received. One way to tackle this is to write additional synchronization code inside the application. Obviously, this is a cumbersome and not-portable solution.
 
-An Alternative would be to evalute the IMU sample and the laser scan by synchronizing their frequency. For example by processing always 50 IMU samples with one laser scan. This approach is shown in Figure 6. A pre-processing callback aggregates the IMU samples and sends an aggregated message with 50 samples at 10Hz rate. Now both messages have the same frequency. With a trigger condition, which fires when both messages are available, the sensor fusion algorithm can expect always synchronized input data.
+An Alternative would be to evalute the IMU sample and the laser scan by synchronizing their frequency. For example by processing always 50 IMU samples with one laser scan. This approach is shown in Figure 3. A pre-processing callback aggregates the IMU samples and sends an aggregated message with 50 samples at 10Hz rate. Now both messages have the same frequency. With a trigger condition, which fires when both messages are available, the sensor fusion algorithm can expect always synchronized input data.
 
 <center>
 <img src="png/sensorFusion_02.png" alt="Sychnronization with a trigger" width="40%" />
 </center>
 <center>
-Figure 6: Synchronization of multiple input data with a trigger.
+Figure 3: Synchronization of multiple input data with a trigger.
 </center>
 
 In ROS 2, this is currently not possible to be modeled because of the lack of a trigger concept in the Executors of rclcpp and rclpy. Message filters could be used to synchronize input data based on the timestamp in the header, but this is only available in rclcpp (and not in rcl). Further more, it would be more efficient to have such a trigger concept directly in the Executor.
 
-Another idea would be to activly request for IMU data only when a laser scan is received. This concept is shown in Figure 7. Upon arrival of a laser scan mesage, first, a message with aggregated IMU samples is requested. Then, the laser scan is processed and later the sensor fusion algorithm. An Executor, which would support sequential execution of callbacks, could realize this idea.
+Another idea would be to activly request for IMU data only when a laser scan is received. This concept is shown in Figure 4. Upon arrival of a laser scan mesage, first, a message with aggregated IMU samples is requested. Then, the laser scan is processed and later the sensor fusion algorithm. An Executor, which would support sequential execution of callbacks, could realize this idea.
 
 <center>
 <img src="png/sensorFusion_03.png" alt="Sychronization with sequence" width="30%" />
 </center>
 <center>
-Figure 7: Synchronization with sequential processing.
+Figure 4: Synchronization with sequential processing.
 </center>
 
 **Derived requirements:**
@@ -181,13 +181,13 @@ Figure 7: Synchronization with sequential processing.
 
 ### High-priority processing path
 **Concept**
-Often a robot has to fullfill several activities at the same time. For example following a path and avoiding obstacles. While path following is a permanent activity, obstacle avoidance is trigged by the environment and should be immediately reacted upon. Therefore one would like to specify priorities to activities. This is depicted in Figure 8:
+Often a robot has to fullfill several activities at the same time. For example following a path and avoiding obstacles. While path following is a permanent activity, obstacle avoidance is trigged by the environment and should be immediately reacted upon. Therefore one would like to specify priorities to activities. This is depicted in Figure 5:
 
 <center>
 <img src="png/highPriorityPath.png" alt="HighPriorityPath" width="50%" />
 </center>
 <center>
-Figure 8: Managing high priority path with sequential order.
+Figure 5: Managing high priority path with sequential order.
 </center>
 
 Assuming a simplified control loop with the activities sense-plan-act, the obstacle avoidance, which might temporarily stop the robot, should be processed before the planning phase. In this example we assume that these activites are processed in one thread.
@@ -197,22 +197,22 @@ Assuming a simplified control loop with the activities sense-plan-act, the obsta
 
 
 ### Real-time embedded applications
-In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure 1 shows an example, in which three processes with fixed periods are shown. The middle and lower process are preempted multiple times depicted with empty dashed boxes.
+In embedded systems, real-time behavior is approached by using the time-triggered paradigm, which means that the processes are periodically activated. Processes can be assigned priorities to allow pre-emptions. Figure 6 shows an example, in which three processes with fixed periods are shown. The middle and lower process are preempted multiple times depicted with empty dashed boxes.
 
 <center>
 <img src="png/scheduling_01.png" alt="Schedule with fixed periods" width="30%"/>
 </center>
 <center>
-Figure 1: Fixed periodic preemptive scheduling.
+Figure 6: Fixed periodic preemptive scheduling.
 </center>
 
-To each process one or multiple tasks can be assigned, as shown in Figure 2. These tasks are executed sequentially, which is often called cooperative scheduling.
+To each process one or multiple tasks can be assigned, as shown in Figure 7. These tasks are executed sequentially, which is often called cooperative scheduling.
 
 <center>
 <img src="png/scheduling_02.png" alt="Schedule with fixed periods" width="30%"/>
 </center>
 <center>
-Figure 2: Processes with sequentially executed tasks.
+Figure 7: Processes with sequentially executed tasks.
 </center>
 
 While there are different ways to assign priorities to a given number of processes,
@@ -226,10 +226,10 @@ However, data consistency is often an issue when preemptive scheduling is used a
 <img src="png/scheduling_LET.png" alt="Schedule with fixed periods" width="80%"/>
 </center>
 <center>
-Figure 3: Data communication without and with Logical Execution Time paradigm.
+Figure 8: Data communication without and with Logical Execution Time paradigm.
 </center>
 
-An Example of the LET concept is shown in Figure 3. Assume that two processes are communicating data via one global variable. The timepoint when this data is written is at the end of the processing time. In the default case (left side), the process p<sub>3</sub> and p<sub>4</sub> receive the update. At the right side of the figure, the same scenario is shown with LET semantics. Here, the data is communicated only at period boundaries. In this case, the lower process communicates at the end of the period, so that always process p<sub>3</sub> and p<sub>5</sub> receive the new data.
+An Example of the LET concept is shown in Figure 8. Assume that two processes are communicating data via one global variable. The timepoint when this data is written is at the end of the processing time. In the default case (left side), the process p<sub>3</sub> and p<sub>4</sub> receive the update. At the right side of Figure 8, the same scenario is shown with LET semantics. Here, the data is communicated only at period boundaries. In this case, the lower process communicates at the end of the period, so that always process p<sub>3</sub> and p<sub>5</sub> receive the new data.
 
 **Concept:**
 - periodic execution of processes
