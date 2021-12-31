@@ -31,18 +31,33 @@ Each app is represented by a folder containing the following files:
 * `Make.defs`: This file contains the	NuttX build system definitions.
 * `Makefile`: This file contains the NuttX specific app build script.
 
-{% include first_application_common/config.md %}
+## Configuring the firmware
 
-In this tutorial, we will use a Serial transport (labeled as `serial`) and focus on the out-of-the-box `uros_pingpong`
+The configuration step will set up the main micro-ROS options and select the desired application.
+It can be executed with the following command:
+
+```bash
+# Configure step
+ros2 run micro_ros_setup configure_firmware.sh [APP] [OPTIONS]
+```
+
+In this tutorial, we will use a Serial transport and focus on the out-of-the-box `uros_pingpong`
 application located [here](https://github.com/micro-ROS/nuttx_apps/tree/foxy/examples/uros_pingpong).
 To execute this application with the chosen transport, run the configuration command above by specifying the `[APP]` parameter as below:
 
 ```bash
 # Configure step with ping_pong app and serial-usb transport
-ros2 run micro_ros_setup configure_firmware.sh drive_base
+ros2 run micro_ros_setup configure_firmware.sh pingpong
 ```
 
 and with no `[OPTIONS]` parameter.
+
+A pre-configured ethernet example is also available:
+```bash
+# Configure step with ping_pong app and serial-usb transport
+ros2 run micro_ros_setup configure_firmware.sh pingpong-eth
+```
+
 To proceed with the configuration, clone the following NuttX tools repo:
 
 ```bash
@@ -64,29 +79,44 @@ sudo ldconfig
 popd
 ```
 
-We'll now open an interactive NuttX menu config, which allows to modify the configuration of the RTOS, including adding a new application.
+Now we have two options to configure our micro-ROS transport:
 
-```bash
-cd firmware/NuttX
-make menuconfig
-```
+- Interactive NuttX menu config
+  * Launch the configuration menu:
 
-To add the `uros_pingpong` application, follow the steps listed below:
+    ```bash
+    cd firmware/NuttX
+    make menuconfig
+    ```
 
-* On the menu, follow the path: `Application Configuration ---> Examples`
-* A list of the available applications will appear. You need to find: `micro-ROS Ping-Pong` and press the space bar to add it.
-* Navigate to the bottom menu with the left and right arrows, and click on the `Exit` button.
-* When you're back to the `Application Configuration` menu, go to `micro-ROS ---> Transport (UDP transport)`.
-* A list of the available transports will appear. You need to go to `Serial transport` and press the space bar to set the Serial port as micro-ROS transport. After that, you'll be automatically redirected to the previous menu.
-* Navigate to the bottom menu with the left and right arrows, and click on the `Save` button.
-* You will be asked if you want to save your new `.config` configuration, and you need to click `Ok`, and then `Exit`.
-* Finally, push three times the `Esc` key to close the menu.
+  * You can check that the application has been selected under `Application Configuration ---> Examples ---> micro-ROS Ping Pong`.
+  * The transport is also pre-configured under the `Application Configuration ---> micro-ROS ---> Transport` option.
+  * To configure the transport, use the `IP address of the agent` and `Port number of the agent` options for UDP and `Serial port to use` for the serial example.
+  * To save the changes, navigate to the bottom menu with the left and right arrows, and click on the `Save` button.
+  * You will be asked if you want to save your new `.config` configuration, and you need to click `Ok`, and then `Exit`.
+  * Push three times the `Esc` key to close the menu and go back to `microros_ws` with:
 
-When the configuration process is over, go back to the `microros_ws`:
+      ```bash
+      cd ../..
+      ```
 
-```bash
-cd ../..
-```
+- `kconfig-tweak` console commands:
+  * Go to Nuttx configuration path:
+
+    ```bash
+    cd firmware/NuttX
+    ```
+
+  * UDP transport configuration:
+    ```bash
+    kconfig-tweak --set-val CONFIG_UROS_AGENT_IP "127.0.0.1"
+    kconfig-tweak --set-val CONFIG_UROS_AGENT_PORT 8888
+    ```
+
+  * Serial transport configuration:
+    ```bash
+    kconfig-tweak --set-val CONFIG_UROS_SERIAL_PORT "/dev/ttyS0"
+    ```
 
 You can check the complete content of the `uros_pingpong` app
 [here](https://github.com/micro-ROS/nuttx_apps/tree/foxy/examples/uros_pingpong).
