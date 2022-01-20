@@ -1,0 +1,22 @@
+---
+title: micro-ROS reaching commercial platforms: CAPRA HIRCUS 
+author: Maria Merlan
+---
+
+Capra Robotics and eProsima join forces to launch Capra Hircus: a ROS 2 & micro-ROS based platform
+
+Today, Capra Robotics announced the launch of their state-of-the-art mobile robot platform, [Capra Hircus](https://www.linkedin.com/pulse/capra-robotics-eprosima-join-forces-launch-hircus-ros-2-/?trackingId=bqD0%2BmvGRF%2BDEC5LEC32PA%3D%3D). The versatility of the platform enables a wide range of applications, including but not limited to Inspection, Surveillance, Logistics, and Maintenance. Due to its flexible chassis and large engine power, it can be used for numerous types of tasks in uneven terrain, as well as in urban areas.
+The Capra Mobile Robot Platform is based on the Robot Operating System (ROS 2) framework. As a novelty, the Capra Robot has a combination of micro processors (CPUs) and micro controllers (MCUs) which communication is based on ROS 2. MCUs have access to the DDS Data Space through [micro-ROS](https://micro.ros.org/), this framework enhances ROS 2 and allows the integration of embedded devices.
+
+<img alt="hiRCUS capra" src="/img/posts/HIRCUSCAPRA.jpeg" width="80%"/>
+Source: hiRCUS
+
+DDS was chosen over other middlewares because of its use as ROS 2’s middleware
+which allows for almost effortless integration between the resource-constrained system and the high-level system running ROS 2. Additionally, the DDS protocol is designed around reliability and security, which is a key factor when designing an industrial product.
+
+The communication between the resource-constrained system and the high-level system occurs over an ethernet transport. Capra Robotics’ embedded system runs a DDS version designed for resource-constrained systems developed by eProsima[https://www.eprosima.com/]. This protocol [(Micro XRCE-DDS)](https://www.eprosima.com/index.php/products-all/eprosima-micro-xrce-dds) follows agent-client based communication design, meaning that the client runs on the embedded device and the agent is running on the high-level device. The agent then bridges the minimal DDS protocol to [Fast DDS](https://www.eprosima.com/index.php/products-all/eprosima-fast-dds) which the Capra ROS 2 nodes operate with.
+
+The Capra control loop is running entirely on their embedded system which allows for controlling the robot in real-time. Capra Robotics have multiple embedded devices running, however only one device runs the micro-ROS client. This device is in charge of gathering the data of all the other devices to then compute several statuses and forward this information to the high-level system.
+
+https://www.youtube.com/watch?v=V7z62dCUXh0
+
