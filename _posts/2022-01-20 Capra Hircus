@@ -9,7 +9,7 @@ Today, Capra Robotics announced the launch of their state-of-the-art mobile robo
 The Capra Mobile Robot Platform is based on the Robot Operating System (ROS 2) framework. As a novelty, the Capra Robot has a combination of micro processors (CPUs) and micro controllers (MCUs) which communication is based on ROS 2. MCUs have access to the DDS Data Space through [micro-ROS](https://micro.ros.org/), this framework enhances ROS 2 and allows the integration of embedded devices.
 
 <img alt="hiRCUS capra" src="/img/posts/HIRCUSCAPRA.png" width="80%"/>
-Source: hiRCUS
+Source: CAPRA Robotics
 
 DDS was chosen over other middlewares because of its use as ROS 2’s middleware
 which allows for almost effortless integration between the resource-constrained system and the high-level system running ROS 2. Additionally, the DDS protocol is designed around reliability and security, which is a key factor when designing an industrial product.
