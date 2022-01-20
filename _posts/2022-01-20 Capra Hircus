@@ -18,5 +18,4 @@ The communication between the resource-constrained system and the high-level sys
 
 The Capra control loop is running entirely on their embedded system which allows for controlling the robot in real-time. Capra Robotics have multiple embedded devices running, however only one device runs the micro-ROS client. This device is in charge of gathering the data of all the other devices to then compute several statuses and forward this information to the high-level system.
 
-https://www.youtube.com/watch?v=V7z62dCUXh0
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/V7z62dCUXh0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
