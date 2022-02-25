@@ -6,7 +6,7 @@ author: Maria Merlan
 Capra Robotics and eProsima join forces to launch Capra Hircus: a ROS 2 & micro-ROS based platform
 
 Today, Capra Robotics announced the launch of their state-of-the-art mobile robot platform, [Capra Hircus](https://www.linkedin.com/pulse/capra-robotics-eprosima-join-forces-launch-hircus-ros-2-/?trackingId=bqD0%2BmvGRF%2BDEC5LEC32PA%3D%3D). The versatility of the platform enables a wide range of applications, including but not limited to Inspection, Surveillance, Logistics, and Maintenance. Due to its flexible chassis and large engine power, it can be used for numerous types of tasks in uneven terrain, as well as in urban areas.
-The Capra Mobile Robot Platform is based on the Robot Operating System (ROS 2) framework. As a novelty, the Capra Robot has a combination of micro processors (CPUs) and micro controllers (MCUs) which communication is based on ROS 2. MCUs have access to the DDS Data Space through [micro-ROS](https://micro.ros.org/), this framework enhances ROS 2 and allows the integration of embedded devices.
+The Capra Mobile Robot Platform is based on the Robot Operating System (ROS 2) framework. As a novelty, the Capra Robot has a combination of microprocessors (CPUs) and microcontrollers (MCUs) which communication is based on ROS 2. MCUs have access to the DDS Data Space through [micro-ROS](https://micro.ros.org/), this framework enhances ROS 2 and allows the integration of embedded devices.
 
 <img alt="hiRCUS capra" src="/img/posts/HIRCUSCAPRA.png" width="80%"/>
 Source: CAPRA Robotics
