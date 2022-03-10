@@ -8,6 +8,10 @@ redirect_from:
 
 <img src="https://img.shields.io/badge/Applies_to-all_current_distros-green" style="display:inline"/>
 
+**Note: While `ros2_tracing` has been associated with micro-ROS, `ros2_tracing` does not currently officially support nor target microcontrollers.**
+
+**Note: For a more up-to-date tutorial, please refer to the [`ros2_tracing` tutorial on the ROS 2 Real-Time Working Group documentation](https://real-time-working-group.readthedocs.io/en/latest/Guides/ros2_tracing_trace_and_analyze.html).**
+
 - [Introduction](#introduction)
 - [Setup](#setup)
 - [Simple tracing example](#simple-tracing-example)
