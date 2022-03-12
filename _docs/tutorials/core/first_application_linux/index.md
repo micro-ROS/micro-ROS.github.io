@@ -21,7 +21,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh host
 Once the command is executed, a folder named `firmware` must be present in your workspace.
 
 This step is in charge, among other things, of downloading a set of micro-ROS apps for Linux, that are located at
-`src/uros/micro-ROS-demos/rcl`.
+`src/uros/micro-ROS-demos/rclc`.
 Each app is represented by a folder containing the following files:
 
 * `main.c`: This file contains the logic of the application.
@@ -30,14 +30,14 @@ Each app is represented by a folder containing the following files:
 For the user to create its custom application, a folder `<my_app>` will need to be registered in this location,
 containing the two files just described.
 Also, any such new application folder needs to be registered in
-`src/uros/micro-ROS-demos/rcl/CMakeLists.txt` by adding the following line:
+`src/uros/micro-ROS-demos/rclc/CMakeLists.txt` by adding the following line:
 
 ```
 export_executable(<my_app>)
 ```
 
 In this tutorial, we will focus on the out-of-the-box `ping_pong` application located at
-`src/uros/micro-ROS-demos/rcl/ping_pong`.
+`src/uros/micro-ROS-demos/rclc/ping_pong`.
 You can check the complete content of this app
 [here](https://github.com/micro-ROS/micro-ROS-demos/tree/foxy/rclc/ping_pong).
 
