@@ -57,7 +57,7 @@ Note: micro-ROS parameter server is only supported on ROS 2 Galactic distributio
 
 ## Memory requirements
 
-The parameter server uses 4 services and an optional publisher, this needs to be taken into account on the `rmw-microxredds` package memory configuration:
+The parameter server uses 5 services and an optional publisher, this needs to be taken into account on the `rmw-microxredds` package memory configuration:
 
 ```json
 # colcon.meta example with memory requirements to use a parameter server
@@ -68,7 +68,7 @@ The parameter server uses 4 services and an optional publisher, this needs to be
                 "-DRMW_UXRCE_MAX_NODES=1",
                 "-DRMW_UXRCE_MAX_PUBLISHERS=1",
                 "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=0",
-                "-DRMW_UXRCE_MAX_SERVICES=4",
+                "-DRMW_UXRCE_MAX_SERVICES=5",
                 "-DRMW_UXRCE_MAX_CLIENTS=0"
             ]
         }
