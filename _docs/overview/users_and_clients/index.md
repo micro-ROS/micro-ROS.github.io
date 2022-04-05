@@ -11,7 +11,7 @@ customers_list:
     text: LG Electronics is one of the fourth-largest electronics company in South Korea. It comprises four business units home entertainment, mobile communications, home appliances and vehicle components
     title: LG
     url: www.lg.com
-  - path: https://capra.ooo/wp-content/themes/capra/img/logo_w-tagline.svg
+  - path: ./images/capra.png
     text: Capra Robotics creates outdoor mobile robots for multiple uses. Their robot platform, Capra Hircus, is designed to easily integrate with additional hard- or software, making it customizable for specific applications. They support businesses in optimizing their operations and relieve people of repetitive and unhealthy job tasks. Their state-of-the-art mobile robot answers the issues that have troubled the mobile robot industry for years, namely a lack of versatility, poor driving capabilities, short ranges, low operating time and high pricing.
     title: Capra Robotics
     url: capra.ooo
