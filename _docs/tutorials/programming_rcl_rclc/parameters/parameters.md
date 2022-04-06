@@ -9,7 +9,7 @@ ROS 2 parameters allow the user to create variables on a node and manipulate/rea
 
 Ready to use code related to this tutorial can be found in [`rclc/rclc_examples/src/example_parameter_server.c`](https://github.com/ros2/rclc/blob/master/rclc_examples/src/example_parameter_server.c). Fragments of code from this example is used on this tutorial.
 
-micro-ROS parameters implementation has been upgraded in the latest micro-ROS Rolling distribution, two approaches are presented in this tutorial: micro-ROS Foxy/Galactic and micro-ROS Rolling and beyond:
+micro-ROS parameters implementation has been upgraded in the latest micro-ROS Humble distribution, two approaches are presented in this tutorial: micro-ROS Foxy/Galactic and micro-ROS Humble and beyond:
 
 - [General implementation](#general-implementation)
   - [Initialization](#initialization)
@@ -19,7 +19,7 @@ micro-ROS parameters implementation has been upgraded in the latest micro-ROS Ro
 - [micro-ROS Foxy/Galactic](#micro-ros-foxygalactic)
   - [Initialization options](#initialization-options)
   - [Callback](#callback)
-- [micro-ROS Rolling](#micro-ros-rolling)
+- [micro-ROS Humble](#micro-ros-humble)
   - [Initialization options](#initialization-options-1)
   - [Callback](#callback-1)
   - [Add a parameter](#add-a-parameter-1)
@@ -213,7 +213,7 @@ Note that this callback is optional as its just an event information for the use
 rc = rclc_executor_add_parameter_server(&executor, &param_server, NULL);
 ```
 
-## micro-ROS Rolling
+## micro-ROS Humble
 
 ### Initialization options
 
