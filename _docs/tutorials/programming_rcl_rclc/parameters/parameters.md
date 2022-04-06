@@ -45,9 +45,9 @@ micro-ROS parameters implementation has been upgraded in the latest micro-ROS Ro
 
 ### Memory requirements
 
-The parameter server uses 5 services and an optional publisher, this needs to be taken into account on the `rmw-microxredds` package memory configuration:
+The parameter server uses 5 services and an optional publisher, this needs to be taken into account on the `rmw_microxredds` package memory configuration:
 
-```yaml
+```json
 # colcon.meta example with memory requirements to use a parameter server
 {
     "names": {
