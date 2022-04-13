@@ -38,7 +38,7 @@ jobs:
 
           /doxybook2/bin/doxybook2 --input /ros2_ws/build/rmw_microxrcedds/doc/xml --output _includes/rmw_doc -c utils/doxy_config -t utils/doxy_templates
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v4
         with:
           commit-message: micro-ROS RMW API reference auto-update ${{ steps.date.outputs.date }}
           title: micro-ROS RMW API reference auto-update ${{ steps.date.outputs.date }}
@@ -74,7 +74,7 @@ jobs:
 
           /doxybook2/bin/doxybook2 --input /ros2_ws/build/micro_ros_utilities/doc/xml --output _includes/utils_doc -c utils/doxy_config -t utils/doxy_templates
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v4
         with:
           commit-message: micro-ROS Utils API reference auto-update ${{ steps.date.outputs.date }}
           title: micro-ROS Utils API reference auto-update ${{ steps.date.outputs.date }}
