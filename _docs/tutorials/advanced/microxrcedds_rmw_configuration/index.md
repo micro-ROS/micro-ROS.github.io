@@ -36,13 +36,15 @@ It is achieved by splitting the raw buffer into chunks, each of which contains a
 The size of the best-effort and reliable stream can be configured by two sets of CMake flags.
 
 * `UCLIENT_UDP_TRANSPORT_MTU`, `UCLIENT_TCP_TRANSPORT_MTU` and `UCLIENT_SERIAL_TRANSPORT_MTU` (depending on the transport selected): these flags control the size of the best-effort stream buffer which matches with the size of each chunk of the reliable stream.
-* `RMW_UXRCE_MAX_HISTORY`: sets the number of slots for the reliable streams.
+* `RMW_UXRCE_STREAM_HISTORY`: sets the number of slots for the reliable streams.
 
 The size of the stream sets indirectly the maximum message size (MMS) of the micro-ROS application.
-This MMS is (`UCLIENT_<XXX>_TRANSPORT_MTU` - 12 B) for best-effort messages and (`UCLIENT_<XXX>_TRANSPORT_MTU` * (`RMW_UXRCE_MAX_HISTORY` - 12 B)) in the case of reliable messages.
+This MMS is (`UCLIENT_<XXX>_TRANSPORT_MTU` - 12 B) for best-effort messages and (`UCLIENT_<XXX>_TRANSPORT_MTU` * (`RMW_UXRCE_STREAM_HISTORY` - 12 B)) in the case of reliable messages.
 
 The use of best-effort or reliable stream is handled by the `rmw_qos_reliability_policy_t` set in the `rmw_qos_profile_t` for a particular publisher or subscription.
 In the case of `RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT` best-effort streams are used and for `RMW_QOS_POLICY_RELIABILITY_RELIABLE` reliable streams are used instead.
+
+More details about the micro-ROS middleware can be found in the [Micro XRCE-DDS documentation](https://micro-xrce-dds.docs.eprosima.com/).
 
 ### rmw-microxrcedds
 
