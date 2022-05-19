@@ -4,51 +4,19 @@
 
 |                | Name           |
 | -------------- | -------------- |
-| struct | **[micro_ros_utilities_memory_rule_t](Classes/structmicro__ros__utilities__memory__rule__t.md)** <br>Memory rule.  |
-| struct | **[micro_ros_utilities_memory_conf_t](Classes/structmicro__ros__utilities__memory__conf__t.md)** <br>Memory configuration string.  |
-
-## Types
-
-|                | Name           |
-| -------------- | -------------- |
-| typedef struct [micro_ros_utilities_memory_rule_t](Classes/structmicro__ros__utilities__memory__rule__t.md) | **[micro_ros_utilities_memory_rule_t](Modules/group__typeutils.md#typedef-micro_ros_utilities_memory_rule_t)** <br>Memory rule.  |
-| typedef struct [micro_ros_utilities_memory_conf_t](Classes/structmicro__ros__utilities__memory__conf__t.md) | **[micro_ros_utilities_memory_conf_t](Modules/group__typeutils.md#typedef-micro_ros_utilities_memory_conf_t)** <br>Memory configuration string.  |
+| struct | **[micro_ros_utilities_memory_rule_t](#micro_ros_utilities_memory_rule_t)** <br>Memory rule.  |
+| struct | **[micro_ros_utilities_memory_conf_t](#micro_ros_utilities_memory_conf_t)** <br>Memory configuration string.  |
 
 ## Functions
 
 |                | Name           |
 | -------------- | -------------- |
 | MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_utilities_type_info](#function-micro_ros_utilities_type_info)**(const rosidl_message_type_support_t * type_support)<br>Returns a string with the type introspection data.  |
-| MICRO_ROS_UTILITIES_PUBLIC size_t | **[micro_ros_utilities_get_dynamic_size](#function-micro_ros_utilities_get_dynamic_size)**(const rosidl_message_type_support_t * type_support, const [micro_ros_utilities_memory_conf_t](Classes/structmicro__ros__utilities__memory__conf__t.md) conf)<br>Returns the dynamic memory size that will be used for a type.  |
-| MICRO_ROS_UTILITIES_PUBLIC size_t | **[micro_ros_utilities_get_static_size](#function-micro_ros_utilities_get_static_size)**(const rosidl_message_type_support_t * type_support, const [micro_ros_utilities_memory_conf_t](Classes/structmicro__ros__utilities__memory__conf__t.md) conf)<br>Returns the static memory size that will be used for a type.  |
-| MICRO_ROS_UTILITIES_PUBLIC bool | **[micro_ros_utilities_create_message_memory](#function-micro_ros_utilities_create_message_memory)**(const rosidl_message_type_support_t * type_support, void * ros_msg, const [micro_ros_utilities_memory_conf_t](Classes/structmicro__ros__utilities__memory__conf__t.md) conf)<br>Allocates the dynamic memory required for a message.  |
-| MICRO_ROS_UTILITIES_PUBLIC bool | **[micro_ros_utilities_create_static_message_memory](#function-micro_ros_utilities_create_static_message_memory)**(const rosidl_message_type_support_t * type_support, void * ros_msg, const [micro_ros_utilities_memory_conf_t](Classes/structmicro__ros__utilities__memory__conf__t.md) conf, uint8_t * buffer, size_t buffer_len)<br>Allocates the memory required for a message in a user-provided buffer.  |
-| MICRO_ROS_UTILITIES_PUBLIC bool | **[micro_ros_utilities_destroy_message_memory](#function-micro_ros_utilities_destroy_message_memory)**(const rosidl_message_type_support_t * type_support, void * ros_msg, const [micro_ros_utilities_memory_conf_t](Classes/structmicro__ros__utilities__memory__conf__t.md) conf)<br>Deallocates the dynamic memory of a message.  |
-
-## Attributes
-
-|                | Name           |
-| -------------- | -------------- |
-| const [micro_ros_utilities_memory_conf_t](Classes/structmicro__ros__utilities__memory__conf__t.md) | **[micro_ros_utilities_memory_conf_default](Modules/group__typeutils.md#variable-micro_ros_utilities_memory_conf_default)**  |
-
-## Types Documentation
-
-### typedef micro_ros_utilities_memory_rule_t
-
-```cpp
-typedef struct micro_ros_utilities_memory_rule_t micro_ros_utilities_memory_rule_t;
-```
-
-Memory rule. 
-
-### typedef micro_ros_utilities_memory_conf_t
-
-```cpp
-typedef struct micro_ros_utilities_memory_conf_t micro_ros_utilities_memory_conf_t;
-```
-
-Memory configuration string. 
-
+| MICRO_ROS_UTILITIES_PUBLIC size_t | **[micro_ros_utilities_get_dynamic_size](#function-micro_ros_utilities_get_dynamic_size)**(const rosidl_message_type_support_t * type_support, const micro_ros_utilities_memory_conf_t conf)<br>Returns the dynamic memory size that will be used for a type.  |
+| MICRO_ROS_UTILITIES_PUBLIC size_t | **[micro_ros_utilities_get_static_size](#function-micro_ros_utilities_get_static_size)**(const rosidl_message_type_support_t * type_support, const micro_ros_utilities_memory_conf_t conf)<br>Returns the static memory size that will be used for a type.  |
+| MICRO_ROS_UTILITIES_PUBLIC bool | **[micro_ros_utilities_create_message_memory](#function-micro_ros_utilities_create_message_memory)**(const rosidl_message_type_support_t * type_support, void * ros_msg, const micro_ros_utilities_memory_conf_t conf)<br>Allocates the dynamic memory required for a message.  |
+| MICRO_ROS_UTILITIES_PUBLIC bool | **[micro_ros_utilities_create_static_message_memory](#function-micro_ros_utilities_create_static_message_memory)**(const rosidl_message_type_support_t * type_support, void * ros_msg, const micro_ros_utilities_memory_conf_t conf, uint8_t * buffer, size_t buffer_len)<br>Allocates the memory required for a message in a user-provided buffer.  |
+| MICRO_ROS_UTILITIES_PUBLIC bool | **[micro_ros_utilities_destroy_message_memory](#function-micro_ros_utilities_destroy_message_memory)**(const rosidl_message_type_support_t * type_support, void * ros_msg, const micro_ros_utilities_memory_conf_t conf)<br>Deallocates the dynamic memory of a message.  |
 
 ## Functions Documentation
 
