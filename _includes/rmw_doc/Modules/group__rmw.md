@@ -24,7 +24,6 @@
 | rmw_ret_t | **[rmw_uros_set_context_entity_creation_session_timeout](#function-rmw_uros_set_context_entity_creation_session_timeout)**(rmw_context_t * context, int session_timeout)<br>Sets the DDS-XRCE session spin time for creating entities.  |
 | rmw_ret_t | **[rmw_uros_set_context_entity_destroy_session_timeout](#function-rmw_uros_set_context_entity_destroy_session_timeout)**(rmw_context_t * context, int session_timeout)<br>Sets the DDS-XRCE session spin time for destroying entities.  |
 
-
 ## Functions Documentation
 
 ### function rmw_uros_set_continous_serialization_callbacks
