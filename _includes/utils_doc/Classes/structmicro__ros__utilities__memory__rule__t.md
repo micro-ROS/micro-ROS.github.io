@@ -1,7 +1,5 @@
 # micro_ros_utilities_memory_rule_t
 
-**Module:** **[micro-ROS Types Utilities](Modules/group__typeutils.md)**
-
 
 
 Memory rule. 
@@ -13,8 +11,8 @@ Memory rule.
 
 |                | Name           |
 | -------------- | -------------- |
-| const char * | **[rule](Classes/structmicro__ros__utilities__memory__rule__t.md#variable-rule)** <br>Pattern matching the fully qualified name of a msg field.  |
-| size_t | **[size](Classes/structmicro__ros__utilities__memory__rule__t.md#variable-size)** <br>Maximum string or sequence capacity for fields matching [rule](Classes/structmicro__ros__utilities__memory__rule__t.md#variable-rule).  |
+| const char * | **[rule](#variable-rule)** <br>Pattern matching the fully qualified name of a msg field.  |
+| size_t | **[size](#variable-size)** <br>Maximum string or sequence capacity for fields matching rule.  |
 
 ## Public Attributes Documentation
 
@@ -32,6 +30,6 @@ Pattern matching the fully qualified name of a msg field.
 size_t size;
 ```
 
-Maximum string or sequence capacity for fields matching [rule](Classes/structmicro__ros__utilities__memory__rule__t.md#variable-rule). 
+Maximum string or sequence capacity for fields matching rule. 
 
 -------------------------------
