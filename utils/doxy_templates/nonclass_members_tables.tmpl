@@ -38,27 +38,10 @@
 |                | Name           |
 | -------------- | -------------- |
 {% for child in publicClasses -%}
-| {{child.kind}} | **[{{child.name}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
+| {{child.kind}} | **[{{child.name}}](#{{child.name}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
 {% endfor %}
 {% endif -%}
-{%- if exists("publicTypes") %}## Types
 
-|                | Name           |
-| -------------- | -------------- |
-{% for child in publicTypes -%}
-| {% if existsIn(child, "templateParams") -%}
-template <{% for param in child.templateParams -%}
-{{param.typePlain}} {{param.name}}{% if existsIn(param, "defvalPlain") %} ={{param.defvalPlain}}{% endif -%}
-{% if not loop.is_last %},{% endif -%}
-{% endfor %}\> <br>{% endif -%}
-{{child.kind}}{% if existsIn(child, "type") %} {{child.type}} {% endif -%}
-| **[{{child.name}}]({{child.url}})** {% if child.kind == "enum" %}{ {% for enumvalue in child.enumvalues -%}
-{{enumvalue.name}}{% if existsIn(enumvalue, "initializer") %} {{enumvalue.initializer}}{% endif -%}
-{% if not loop.is_last %}, {% endif %}{% endfor -%}
- }{% endif -%}
-{% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
-{% endfor %}
-{% endif -%}
 {%- if exists("publicSlots") %}## Slots
 
 |                | Name           |
@@ -118,7 +101,7 @@ template <{% for param in child.templateParams -%}
 {% if child.virtual %}virtual {% endif -%}
 {% if existsIn(child, "type") %}{{child.type}} {% endif -%}
 | **[{{child.name}}](#function-{{child.name}})**({% for param in child.params -%}
-{{param.type}} {{param.name}}{% if existsIn(param, "defval") %} ={{param.defval}}{% endif -%}
+{{param.typePlain}} {{param.name}}{% if existsIn(param, "defval") %} ={{param.defval}}{% endif -%}
 {% if not loop.is_last %}, {% endif -%}
 {% endfor %}){% if child.const %} const{% endif -%}
 {% if child.override %} override{% endif -%}
@@ -128,15 +111,7 @@ template <{% for param in child.templateParams -%}
  {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
 {% endfor %}
 {% endif -%}
-{%- if exists("publicAttributes") %}## Attributes
 
-|                | Name           |
-| -------------- | -------------- |
-{% for child in publicAttributes -%}
-| {% if existsIn(child, "type") %}{{child.type}} {% endif -%}
-| **[{{child.name}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
-{% endfor %}
-{% endif -%}
 {%- if exists("defines") %}## Defines
 
 |                | Name           |
