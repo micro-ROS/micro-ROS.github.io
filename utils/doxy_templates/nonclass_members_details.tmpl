@@ -1,9 +1,3 @@
-{% if exists("publicTypes") %}## Types Documentation
-
-{% for child in publicTypes %}### {{child.kind}} {{child.name}}
-
-{{ render("member_details", child) }}
-{% endfor %}{% endif %}
 {% if exists("publicFunctions") %}## Functions Documentation
 
 {% for child in publicFunctions %}### {{child.kind}} {{child.name}}
