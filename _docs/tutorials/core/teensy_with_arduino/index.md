@@ -25,7 +25,7 @@ Note: These first few steps are the same as in the micro-ROS installation page a
 
 For this tutorial you have to install ROS 2 Foxy Fitzroy on your Ubuntu 20.04 LTS computer. 
 You can do this from binaries, via Ubuntu packages, which are detailed 
-[*here*](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Binary.html).
+[*here*](https://docs.ros.org/en/foxy/Installation/Alternatives/Ubuntu-Install-Binary.html).
 
 Note: Otherwise it is possible to use fresh docker build of ROS 2 Foxy installation by running these commands:
 

@@ -257,8 +257,8 @@ template <{% for param in child.templateParams -%}
 |                | Name           |
 | -------------- | -------------- |
 {% for child in publicAttributes -%}
-| {% if existsIn(child, "type") %}{{child.type}} {% endif -%}
-| **[{{child.name}}]({{child.url}})** {% if existsIn(child, "brief") %}<br>{{child.brief}}{% endif %} |
+| {% if existsIn(child, "type") %}{{child.typePlain}} {% endif -%}
+| **[{{child.name}}](#variable-{{child.name}})** {% if existsIn(child, "summary") %}<br>{{child.summary}}{% endif %} |
 {% endfor %}
 {% endif -%}
 {%- if exists("protectedAttributes") %}## Protected Attributes
