@@ -12,7 +12,6 @@
 | MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_remove_tail_chars](#function-micro_ros_string_utilities_remove_tail_chars)**(const rosidl_runtime_c__String str, const size_t n)<br>Removes characters from the end of a string.  |
 | MICRO_ROS_UTILITIES_PUBLIC void | **[micro_ros_string_utilities_destroy](#function-micro_ros_string_utilities_destroy)**(rosidl_runtime_c__String *const str)<br>Destroys a rosidl_runtime_c__String.  |
 
-
 ## Functions Documentation
 
 ### function micro_ros_string_utilities_init
