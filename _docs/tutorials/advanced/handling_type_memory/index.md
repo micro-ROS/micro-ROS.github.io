@@ -15,7 +15,7 @@ The micro-ROS type memory handling has changed in the latest micro-ROS Galactic 
   - [Sequence types in micro-ROS](#sequence-types-in-micro-ros)
   - [Compound types in micro-ROS](#compound-types-in-micro-ros)
   - [Sequences of compound types](#sequences-of-compound-types)
-- [micro-ROS  and beyond](#micro-ros--and-beyond)
+- [micro-ROS Galactic and beyond](#micro-ros-galactic-and-beyond)
 
 # micro-ROS Foxy
 
@@ -204,7 +204,7 @@ for(int32_t i = 0; i < 3; i++){
 }
 ```
 
-# micro-ROS  and beyond
+# micro-ROS Galactic and beyond
 
 Due to the inclusion of [`rosidl_typesupport_introspection_c`](https://github.com/ros2/rosidl/tree/master/rosidl_typesupport_introspection_c) in micro-ROS Galactic distribution, an automated memory handling for micro-ROS types is available. The tools related to this feature are available in the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities).
 

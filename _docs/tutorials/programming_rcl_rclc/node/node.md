@@ -75,7 +75,7 @@ ROS 2 nodes are the main participants on ROS 2 ecosystem. They will communicate 
   }
   ```
 
-  Galactic: In this case, the node options are configured on the `rclc_support_t` object with a custom API
+  Galactic and beyond: In this case, the node options are configured on the `rclc_support_t` object with a custom API
 
   ```c
   // Initialize micro-ROS allocator
