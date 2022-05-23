@@ -5,8 +5,8 @@ permalink: /docs/tutorials/programming_rcl_rclc/micro-ROS/
 
 <!-- TODO: Change section name -->
 
-<img src="https://img.shields.io/badge/Written_for-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/>
-  
+<img src="https://img.shields.io/badge/Written_for-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
+
 - [Allocators](#allocators)
   - [Custom allocator](#custom-allocator)
 - [Time sync](#time-sync)
@@ -56,8 +56,8 @@ if (!rcutils_set_default_allocator(&custom_allocator)) {
 
 Custom methods prototypes and examples:
 
-- allocate: 
-  
+- allocate:
+
   Allocates memory given a size, an error should be indicated by returning `NULL`:
 
   ```c
@@ -90,7 +90,7 @@ Custom methods prototypes and examples:
 - reallocate:
 
   Reallocate memory if possible, otherwise it deallocates and allocates:
-    
+
   ```c
   // Function prototype:
   void * (*reallocate)(void * pointer, size_t size, void * state);
@@ -106,7 +106,7 @@ Custom methods prototypes and examples:
 - zero_allocate:
 
   Allocate memory with all elements set to zero, given a number of elements and their size. An error should be indicated by returning `NULL`:
-   
+
   ```c
   // Function prototype:
   void * (*zero_allocate)(size_t number_of_elements, size_t size_of_element, void * state);
@@ -123,7 +123,7 @@ Custom methods prototypes and examples:
   *Note: the `state` input argument is espected to be unused*
 
 ## Time sync
-micro-ROS Clients can synchronize their epoch time with the connected Agent, this can be very useful when working in embedded environments that do not provide any time synchronization mechanism. 
+micro-ROS Clients can synchronize their epoch time with the connected Agent, this can be very useful when working in embedded environments that do not provide any time synchronization mechanism.
 This utility is based on the NTP protocol, taking into account delays caused by the transport layer. An usage example can be found on [`micro-ROS-demos/rclc/epoch_synchronization`](https://github.com/micro-ROS/micro-ROS-demos/blob/galactic/rclc/epoch_synchronization/main.c).
 
 ```c
@@ -133,14 +133,14 @@ const int timeout_ms = 1000;
 // Synchronize time with the agent
 rmw_uros_sync_session(timeout_ms);
 
-if (rmw_uros_epoch_synchronized()) 
+if (rmw_uros_epoch_synchronized())
 {
     // Get time in milliseconds or nanoseconds
     int64_t time_ms = rmw_uros_epoch_millis();
     int64_t time_ns = rmw_uros_epoch_nanos();
 }
 ```
-  
+
 ## Ping agent
 The Client can test the connection with the Agent with the ping utility. This functionality can be used even when the micro-ROS context has not yet been initialized, which is useful to test the connection before trying to connect to the Agent. An example can be found on [`micro-ROS-demos/rclc/ping_uros_agent`](https://github.com/micro-ROS/micro-ROS-demos/blob/galactic/rclc/ping_uros_agent/main.c).
 
@@ -154,12 +154,12 @@ const uint8_t attemps = 5;
 // Ping the agent
 rmw_ret_t ping_result = rmw_uros_ping_agent(timeout_ms, attempts);
 
-if (RMW_RET_OK == ping_result) 
+if (RMW_RET_OK == ping_result)
 {
     // micro-ROS Agent is reachable
     ...
-} 
-else 
+}
+else
 {
     // micro-ROS Agent is not available
     ...
@@ -215,7 +215,7 @@ void serialization_cb(ucdrBuffer * ucdr){
     micro_ros_fragment_t fragment;
 
     // Serialize array size
-    ucdr_serialize_uint32_t(ucdr, IMAGE_BYTES); 
+    ucdr_serialize_uint32_t(ucdr, IMAGE_BYTES);
 
     while(len < IMAGE_BYTES){
       // Wait for new image "fragment"

@@ -5,7 +5,7 @@ redirect_from:
   - /docs/tutorials/advanced/zephyr/zephyr_getting_started/
 ---
 
-<img src="https://img.shields.io/badge/Tested_on-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Tested_on-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
 
 In this tutorial, you'll learn the use of micro-ROS with Zephyr by testing a Ping Pong application.
 {% include first_application_common/target_hardware.md %}

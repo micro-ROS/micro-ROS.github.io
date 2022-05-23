@@ -3,8 +3,8 @@ title: Parameter server
 permalink: /docs/tutorials/programming_rcl_rclc/parameters/
 ---
 
-<img src="https://img.shields.io/badge/Written_for-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/>
-  
+<img src="https://img.shields.io/badge/Written_for-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
+
 ROS 2 parameters allow the user to create variables on a node and manipulate/read them with different ROS 2 commands. Further information about ROS 2 parameters can be found [here](https://docs.ros.org/en/rolling/Tutorials/Parameters/Understanding-ROS2-Parameters.html)
 
 Ready to use code examples related to this tutorial can be found in [`rclc/rclc_examples/src/example_parameter_server.c`](https://github.com/ros2/rclc/blob/master/rclc_examples/src/example_parameter_server.c).
@@ -230,7 +230,7 @@ rc = rclc_executor_add_parameter_server(&executor, &param_server, NULL);
   - notify_changed_over_dds: Publish parameter events to other ROS 2 nodes as well.
   - max_params: Maximum number of parameters allowed on the `rclc_parameter_server_t` object.
   - allow_undeclared_parameters: Allows creation of parameters from external parameter clients. A new parameter will be created if a `set` operation is requested on a non-existing parameter.
-  - low_mem_mode: Reduces the memory used by the parameter server, functionality constrains are applied.  
+  - low_mem_mode: Reduces the memory used by the parameter server, functionality constrains are applied.
 
     ```c
     // Parameter server object
@@ -265,7 +265,7 @@ rc = rclc_executor_add_parameter_server(&executor, &param_server, NULL);
 
 ### Callback
 
-When adding the parameter server to the executor, a callback could to be configured. This callback would then be executed on the following events:  
+When adding the parameter server to the executor, a callback could to be configured. This callback would then be executed on the following events:
 - Parameter value change: Internal and external parameter set on existing parameters.
 - Parameter creation: External parameter set on unexisting parameter if `allow_undeclared_parameters` is set.
 - Parameter delete: External parameter delete on existing parameter.
@@ -360,7 +360,7 @@ rclc_delete_parameter(&param_server, "param2");
 
 ### Parameters description
 
-- Parameter description  
+- Parameter description
     Adds a description of a parameter and its constrains, which will be returned on a describe parameter requests:
     ```c
     rclc_add_parameter_description(&param_server, "param2", "Second parameter", "Only even numbers");
@@ -368,7 +368,7 @@ rclc_delete_parameter(&param_server, "param2");
 
     *The maximum string size is controlled by the compilation time option `RCLC_PARAMETER_MAX_STRING_LENGTH`, default value is 50.*
 
-- Parameter constraints  
+- Parameter constraints
     Informative numeric constraints can be added to int and double parameters, returning this values on describe parameter requests:
     - `from_value`: Start value for valid values, inclusive.
     - `to_value`: End value for valid values, inclusive.
@@ -388,7 +388,7 @@ rclc_delete_parameter(&param_server, "param2");
 
     *This constrains will not be applied by the parameter server, leaving values filtering to the user callback.*
 
-- Read-only parameters:  
+- Read-only parameters:
     The new API offers a read-only flag. This flag blocks parameter changes from external clients, but allows changes on the server side:
     ```c
     bool read_only = true;
