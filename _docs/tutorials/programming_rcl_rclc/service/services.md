@@ -3,7 +3,7 @@ title: Services
 permalink: /docs/tutorials/programming_rcl_rclc/service/
 ---
 
-<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
 
 ROS 2 services are another communication mechanism between nodes. Services implement a client-server paradigm based on ROS 2 messages and types. Further information about ROS 2 services can be found [here](https://index.ros.org/doc/ros2/Tutorials/Services/Understanding-ROS2-Services/)
 

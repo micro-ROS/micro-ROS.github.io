@@ -3,8 +3,8 @@ title: Quality of service
 permalink: /docs/tutorials/programming_rcl_rclc/qos/
 ---
 
-<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/>
-  
+<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
+
 - [Reliable QoS](#reliable-qos)
 - [Best Effort](#best-effort)
 - [Custom QoS configuration](#custom-qos-configuration)
@@ -43,7 +43,7 @@ In best effort mode no acknowledgement is needed, the messages sent are expected
 ## Custom QoS configuration
 
 The user can customize their own QoS using the available `rmw_qos_profile_t` struct:
-  
+
 ```c
 /// ROS MiddleWare quality of service profile.
 typedef struct RMW_PUBLIC_TYPE rmw_qos_profile_t

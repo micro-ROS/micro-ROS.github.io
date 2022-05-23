@@ -3,8 +3,8 @@ title: Nodes
 permalink: /docs/tutorials/programming_rcl_rclc/node/
 ---
 
-<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/>
-  
+<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
+
 ROS 2 nodes are the main participants on ROS 2 ecosystem. They will communicate between each other using publishers, subscriptions, services, etc. Further information about ROS 2 nodes can be found [here](https://docs.ros.org/en/galactic/Tutorials/Understanding-ROS2-Nodes.html)
 
 
@@ -75,7 +75,7 @@ ROS 2 nodes are the main participants on ROS 2 ecosystem. They will communicate 
   }
   ```
 
-  Galactic: In this case, the node options are configured on the `rclc_support_t` object with a custom API
+  Galactic and beyond: In this case, the node options are configured on the `rclc_support_t` object with a custom API
 
   ```c
   // Initialize micro-ROS allocator
@@ -133,7 +133,7 @@ Creation of a lifecycle node as a bundle of an rcl node and the rcl lifecycle st
 
 ```c
 // Create rcl state machine
-rcl_lifecycle_state_machine_t state_machine = 
+rcl_lifecycle_state_machine_t state_machine =
 rcl_lifecycle_get_zero_initialized_state_machine();
 
 // Create the lifecycle node

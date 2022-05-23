@@ -3,8 +3,8 @@ title: Executor and timers
 permalink: /docs/tutorials/programming_rcl_rclc/executor/
 ---
 
-<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/>
-  
+<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
+
 - [Timers](#timers)
   - [Initialization](#initialization)
   - [Callback](#callback)
@@ -19,7 +19,7 @@ Timers can be created and added to the executor, which will call the timer callb
 They are usually used to handle periodic publications or events.
 
 ### Initialization
-  
+
 ```c
 // Timer period on nanoseconds
 const unsigned int timer_period = RCL_MS_TO_NS(1000);
@@ -65,7 +65,7 @@ rcl_timer_fini(&timer);
 ```
 
 This will deallocate used memory and make the timer invalid
-  
+
 
 ## Executor
 
