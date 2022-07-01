@@ -37,7 +37,7 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
   // Creates a reliable rcl publisher
   rcl_ret_t rc = rclc_publisher_init_default(
     &publisher, &node,
-    &type_support, &topic_name);
+    type_support, topic_name);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
@@ -58,7 +58,7 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
   // Creates a best effort rcl publisher
   rcl_ret_t rc = rclc_publisher_init_best_effort(
     &publisher, &node,
-    &type_support, &topic_name);
+    type_support, topic_name);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
@@ -83,7 +83,7 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
   // Creates a rcl publisher with customized quality-of-service options
   rcl_ret_t rc = rclc_publisher_init(
     &publisher, &node,
-    &type_support, &topic_name, qos_profile);
+    type_support, topic_name, qos_profile);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
@@ -136,7 +136,7 @@ The suscriptor initialization is almost identical to the publisher one:
   // Initialize a reliable subscriber
   rcl_ret_t rc = rclc_subscription_init_default(
     &subscriber, &node,
-    &type_support, &topic_name);
+    type_support, topic_name);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
@@ -158,7 +158,7 @@ The suscriptor initialization is almost identical to the publisher one:
   // Initialize best effort subscriber
   rcl_ret_t rc = rclc_subscription_init_best_effort(
     &subscriber, &node,
-    &type_support, &topic_name);
+    type_support, topic_name);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
@@ -183,7 +183,7 @@ The suscriptor initialization is almost identical to the publisher one:
   // Initialize a subscriber with customized quality-of-service options
   rcl_ret_t rc = rclc_subscription_init(
     &subscriber, &node,
-    &type_support, &topic_name, qos_profile);
+    type_support, topic_name, qos_profile);
 
   if (RCL_RET_OK != rc) {
     ...  // Handle error
