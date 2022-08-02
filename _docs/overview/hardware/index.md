@@ -260,7 +260,7 @@ The officially supported boards are those which have been carried out or tested 
             <li><b>External tools:</b> <a href="https://www.arduino.cc/">Arduino</a></li>
         </ul>
         <img class="bulletimage" src="icons/transports.png"> <b>Supported transports:</b>
-        USB, UART
+        USB, UART, Ethernet UDP (4.1)
     </div>
   </div>
 
