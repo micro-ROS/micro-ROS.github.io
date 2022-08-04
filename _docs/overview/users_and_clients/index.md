@@ -15,6 +15,9 @@ customers_list:
     text: Capra Robotics creates outdoor mobile robots for multiple uses. Their robot platform, Capra Hircus, is designed to easily integrate with additional hard- or software, making it customizable for specific applications. They support businesses in optimizing their operations and relieve people of repetitive and unhealthy job tasks. Their state-of-the-art mobile robot answers the issues that have troubled the mobile robot industry for years, namely a lack of versatility, poor driving capabilities, short ranges, low operating time and high pricing.
     title: Capra Robotics
     url: capra.ooo
+  - path: ./images/vulcanexus_logo2_no_margins.png
+    text:
+    url: vulcanexus.org
 
 ofera_consortium:
   - path: https://www.eprosima.com/images/logos/eprosima/logo.png
