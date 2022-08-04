@@ -15,9 +15,6 @@ customers_list:
     text: Capra Robotics creates outdoor mobile robots for multiple uses. Their robot platform, Capra Hircus, is designed to easily integrate with additional hard- or software, making it customizable for specific applications. They support businesses in optimizing their operations and relieve people of repetitive and unhealthy job tasks. Their state-of-the-art mobile robot answers the issues that have troubled the mobile robot industry for years, namely a lack of versatility, poor driving capabilities, short ranges, low operating time and high pricing.
     title: Capra Robotics
     url: capra.ooo
-  - path: ./images/vulcanexus_logo2_no_margins.png
-    text:
-    url: vulcanexus.org
 
 ofera_consortium:
   - path: https://www.eprosima.com/images/logos/eprosima/logo.png
@@ -50,6 +47,9 @@ partners_list:
     text: Amazon is an American multinational technology company based in Seattle that focuses on e-commerce, cloud computing, digital streaming, and artificial intelligence.
     title: Amazon
     url: www.amazon.com
+  - path: ./images/vulcanexus_logo2_no_margins.png
+    text:
+    url: vulcanexus.org
 
 users:
   - path: https://cdn11.bigcommerce.com/s-76o5u/images/stencil/250x100/robotis_logo_en_1397779687__24544.original.jpg
