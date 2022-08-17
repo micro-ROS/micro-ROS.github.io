@@ -10,7 +10,7 @@ This chapter provides a number of tutorials to learn micro-ROS and relevant tool
 
 * [**First micro-ROS application on Linux**](../first_application_linux/)
     
-  This tutorial teaches you how to install the micro-ROS framework and tools. Then it will guide you to developed your own first micro-ROS application under Linux. (If you already know ROS 2, you will see that the tools are well integrated with standard ROS 2.)
+  This tutorial teaches you how to install the micro-ROS framework and tools. Then it will guide you to develop your own first micro-ROS application under Linux. (If you already know ROS 2, you will see that the tools are well integrated with standard ROS 2.)
     
 * [**First micro-ROS application on an RTOS**](../first_application_rtos/)
 
