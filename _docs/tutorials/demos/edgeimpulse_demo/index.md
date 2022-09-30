@@ -31,7 +31,7 @@ It contains all labels and their probabilities (together summing to 1). The size
 
 
 
-By running neural networks on MCUs and publishing their inferences using micro-ROS it becomes straightforward to experiment with a "distributed" approach to AI in robotics, where the central computer is concerned only with the results of the neural networks and not with sensor data ingest nor calculation.
+By running neural networks on MCUs and publishing their inferences using micro-ROS, it becomes straightforward to experiment with a "distributed" approach to AI in robotics, where the central computer is concerned only with the results of the neural networks and not with sensor data ingest nor calculation.
 
 ![Traditional vs distributed approach](traditional_vs_distributed.png)
 
