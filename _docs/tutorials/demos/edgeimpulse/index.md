@@ -1,9 +1,9 @@
 ---
 title: Edge Impulse Demo
 layout: docs_noheader
-permalink: /docs/tutorials/demos/edgeimpulse_demo/
+permalink: /docs/tutorials/demos/edgeimpulse/
 redirect_from:
-  - /edgeimpulse_demo/
+  - /edgeimpulse/
 ---
 
 <img src="https://img.shields.io/badge/Tested_on-Humble-blue" style="display:inline"/>
