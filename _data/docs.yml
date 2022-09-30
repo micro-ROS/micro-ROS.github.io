@@ -94,9 +94,9 @@
    - tutorials/demos/fiware_demo
    - tutorials/demos/demobox_demo
    - tutorials/demos/thumper_demo
-   - tutorials/demos/combined_demos
    - tutorials/demos/moveit2_demo
    - tutorials/demos/edgeimpulse
+   - tutorials/demos/combined_demos
 
 - title: API
   docs:
