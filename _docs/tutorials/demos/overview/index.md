@@ -21,7 +21,7 @@ Choose yourself:
 | [**DemoBox Power and Boot Time**](../demobox_demo/) | <img src="olimex.png" width="35%" style="margin:auto;"/> | NuttX | Olimex LTD STM32-E407, Raspberry Pi 4 |
 | [**Thumper, a six-wheeled robot**](../thumper_demo/) | <img src="thumper.png" width="45%" style="margin:auto;"/> | NuttX | Wild Thumper 6WD, Olimex LTD STM32-E407 |
 | [**MoveIt 2 Demo**](../moveit2_demo/) | <img src="tof_sensor.png" style="margin:auto;"/> | Zephyr | STM32L4 Discovery kit IoT |
-| [**Edge Impulse AI demo**](../edgeimpulse/) | <img src="portenta.png" width="50%" style="margin:auto;"/> | Arduino | Arduino Portenta H7, Vision shield |
+| [**Edge Impulse AI demo**](../edgeimpulse/) | <img src="portenta.png" width="40%" style="margin:auto;"/> | Arduino | Arduino Portenta H7, Vision shield |
 | [**Combined Demos**](../combined_demos/) | -- | -- |
 
 <div style="font-size:80%;color:gray;text-align:right;margin-bottom:1em;">*As a matter of course, in addition to the hardware detailed above, you'll need a computer/laptop, various cables, and further auxiliary equipment.</div>
