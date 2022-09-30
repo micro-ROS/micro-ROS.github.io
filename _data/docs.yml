@@ -96,6 +96,7 @@
    - tutorials/demos/thumper_demo
    - tutorials/demos/combined_demos
    - tutorials/demos/moveit2_demo
+   - tutorials/demos/edgeimpulse
 
 - title: API
   docs:
