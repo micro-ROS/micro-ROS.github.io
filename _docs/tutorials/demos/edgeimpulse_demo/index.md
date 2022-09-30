@@ -38,4 +38,4 @@ By running neural networks on MCUs and publishing their inferences using micro-R
 ---
 
 
-To run this demo yourself check out the video walk through and instructions given [here](https://github.com/avielbr/micro_ros_ei).
+To run this demo yourself, check out the video walk through and instructions given [here](https://github.com/avielbr/micro_ros_ei).
