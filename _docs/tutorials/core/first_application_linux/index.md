@@ -63,6 +63,13 @@ source install/local_setup.bash
 ```
 {% include first_application_common/agent_creation.md %}
 
+### Add microros environment to bashrc (optional)
+
+You can add the ROS2 and microROS workspace setup files to your bashrc so the files do not have to be sourced everytime a new command line is opened
+```bash
+echo source /opt/ros/$ROS_DISTRO/setup.bash >> ~/.bashrc
+echo source ~/microros_ws/install/local_setup.bash >> ~/.bashrc
+```
 ## Running the micro-ROS app
 
 At this point, you have both the client and the agent correctly installed in your host machine.
