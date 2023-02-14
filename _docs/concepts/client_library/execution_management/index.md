@@ -71,7 +71,7 @@ Given the goals for a Real-Time Executor and the limitations of the ROS 2 standa
 - to model requirements (like latencies, determinism in subsystems)
 - mapping of ROS 2 framework and operating system schedulers (semi-automated and optimized mapping is desired as well as generic, well-understood framework mechanisms)
 
-Our approach is to provide a real-time-capable Executor for the rcl+rclc layer (as described in section [Introduction to Client Library](../).) in the C programming language .
+Our approach is to provide a real-time-capable Executor for the rcl+rclc layer (as described in section [Introduction to Client Library](../).) in the C programming language.
 
 As the first step, we propose the rclc Executor for the rcl-layer in C programming language with several new features to support real-time and deterministic execution: It supports 1.) user-defined static sequential execution, 2) conditional execution semantics, 3) multi-threaded execution with scheduling configuration, and 4) logical execution semantics (LET). Sequential execution refers to the runtime behavior, that all callbacks are executed in a pre-defined order independent of the arrival time of messages. Conditional execution is available with a trigger condition which enables typical processing patterns in robotics (which are analyzed in detail in section [Analysis of processing patterns](#analysis-of-processing-patterns). Configuration of scheduling parameters for multi-threaded application accomplishes prioritized execution. The logical execution time concept (LET) provides data synchronization for fixed periodic task scheduling of embedded applications. 
 
@@ -218,7 +218,7 @@ Figure 7: Processes with sequentially executed tasks.
 While there are different ways to assign priorities to a given number of processes,
 the rate-monotonic scheduling assignment, in which processes with a shorter period have a higher priority, has been shown optimal if the processor utilization is less than 69% [[LL1973](#LL1973)].
 
- In the last decades many different scheduling approaches have been presented, however fixed-periodic preemptive scheduling is still widely used in embedded real-time systems [[KZH2015](#KZH2015)]. This becomes also obvious, when looking at the features of current operating systems. Like Linux, real-time operating systems, such as NuttX, Zephyr, FreeRTOS, QNX etc., support fixed-periodic preemptive scheduling and the assignment of priorities, which makes the time-triggered paradigm the dominant design principle in this domain.
+ In the last decades many different scheduling approaches have been presented; however fixed-periodic preemptive scheduling is still widely used in embedded real-time systems [[KZH2015](#KZH2015)]. This becomes also obvious, when looking at the features of current operating systems. Like Linux, real-time operating systems, such as NuttX, Zephyr, FreeRTOS, QNX etc., support fixed-periodic preemptive scheduling and the assignment of priorities, which makes the time-triggered paradigm the dominant design principle in this domain.
 
 However, data consistency is often an issue when preemptive scheduling is used and if data is being shared across multiple processes via global variables. Due to scheduling effects and varying execution times of processes, writing and reading these variables could occur sometimes sooner or later. This results in a latency jitter of update times (the timepoint at which a variable change becomes visible to other processes). Race conditions can occur when multiple processes access a variable at the same time. So to solve this problem, the concept of logical-execution time (LET) was introduced in [[HHK2001](#HHK2001)], in which communication of data occurs only at pre-defined periodic time instances: Reading data only at the beginning of the period and writing data only at the end of the period. The cost of an additional latency delay is traded for data consistency and reduced jitter. This concept has also recently been applied to automotive applications[[NSP2018](#NSP2018)].
 
@@ -350,7 +350,7 @@ The selection of the Executor semantics is optional. The default semantics is "R
 
 #### Multi-threading and scheduling configuration
 
-The rclc Executor has been extended for multi-threading. It supports the assignment of scheduling policies, like priorities or more advanced scheduling algorithms as reservation-based scheduling, to subscription callbacks. [[Pull Request](https://github.com/ros2/rclc/pull/87), Pre-print [SLD2021](#SLD2021)]. The overall architecture is shown in Figure 15. One Executor thread is responsible for checking for new data from the DDS queue. For every callback, a thread is spawned with the dedicted scheduling policy provided by the operating system. The Executor then dispatches new data of a subscription to it's corresponding callback function, which is then executed in its own thread by operating system.
+The rclc Executor has been extended for multi-threading. It supports the assignment of scheduling policies, like priorities or more advanced scheduling algorithms as reservation-based scheduling, to subscription callbacks. [[Pull Request](https://github.com/ros2/rclc/pull/87), Pre-print [SLD2021](#SLD2021)]. The overall architecture is shown in Figure 15. One Executor thread is responsible for checking for new data from the DDS queue. For every callback, a thread is spawned with the dedicted scheduling policy provided by the operating system. The Executor then dispatches new data of a subscription to its corresponding callback function, which is then executed in its own thread by operating system.
 
 <center>
 <img src="png/rclc_executor_multi_threaded.png" alt="Multi-threaded rclc Executor" width="90%" />
@@ -505,9 +505,9 @@ rclc_executor_spin(&exe);
 
 #### Real-time embedded applications example
 
-With seqential execution the co-operative scheduling of tasks within a process can be modeled. The trigger condition is used to periodically activate the process which will then execute all callbacks in a pre-defined order. Data will be communicated using the LET-semantics. Every Executor is executed in its own tread, to which an appropriate priority can be assigned.
+With sequential execution, the co-operative scheduling of tasks within a process can be modeled. The trigger condition is used to periodically activate the process which will then execute all callbacks in a pre-defined order. Data will be communicated using the LET-semantics. Every Executor is executed in its own thread, to which an appropriate priority can be assigned.
 
-In the following example, the Executor is setup with 4 handles. We assume a process has three subscriptions `sub1`, `sub2`, `sub3`. The sequential processing order is given by the order as they are added to the Executor. A timer `timer` defines the period.  The `trigger_one` with the paramter `timer` is used, so that whenever the timer is ready, all callbacks are processed. Finally the data communication semantics LET is defined.
+In the following example, the Executor is setup with 4 handles. We assume a process has three subscriptions `sub1`, `sub2`, `sub3`. The sequential processing order is given by the order as they are added to the Executor. A timer `timer` defines the period.  The `trigger_one` with the parameter `timer` is used, so that whenever the timer is ready, all callbacks are processed. Finally the data communication semantics LET is defined.
 ```C
 #include "rcl_executor/let_executor.h"
 
@@ -578,7 +578,7 @@ The slides can be downloaded [here](https://ec2a4d36-bac8-4759-b25e-bb1f794177f4
   - one publisher that periodically publishes
   - if Executors are running in multiple threads,
     publishing needs to be atomic
-- Multi-threaded executor with assignment of scheduling policies of unerlying operating system. [[Pull Request](https://github.com/ros2/rclc/pull/87), pre-print [SLD2021](#SLD2021)].
+- Multi-threaded executor with assignment of scheduling policies of underlying operating system. [[Pull Request](https://github.com/ros2/rclc/pull/87), pre-print [SLD2021](#SLD2021)].
 
 ### Download
 The rclc Executor can be downloaded from the [ros2/rclc repository](https://github.com/ros2/rclc). It is available for the ROS 2 versions Foxy, Galactic, Humble and Rolling. The repository provides several packages including the [rclc Executor](https://github.com/ros2/rclc/tree/master/rclc) and an [rclc_examples package](https://github.com/ros2/rclc/tree/master/rclc_examples) with several application examples.
