@@ -15,10 +15,10 @@ jobs:
       with:
         submodules: true
 
-    - name: Set up Ruby 2.7
+    - name: Set up Ruby 3.0
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.7.x
+        ruby-version: '3.0'
 
     - name: Install Bundler
       run: gem install bundler
@@ -29,7 +29,7 @@ jobs:
         key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gems-
-    
+
     - name: Bundle install
       run: |
         bundle config path vendor/bundle
