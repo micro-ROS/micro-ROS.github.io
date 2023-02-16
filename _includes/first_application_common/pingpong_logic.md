@@ -11,4 +11,4 @@ with a `pong`. To test that this logic is correctly functioning, we implement co
 
 The diagram below clarifies the communication flow between these entities:
 
-![pingpong](http://www.plantuml.com/plantuml/png/ZOwnIWGn48RxFCNFzSkoUG2vqce5jHEHi1dtWZkPa6GByNntavZY10yknMJu-ORlFwPiOjvvK-d3-M2YOR1uMKvHc93ZJafvoMML07d7h1NAE-DPWblg_na8vnwEx9OeZmzFOt1-BK7AzetJciPxCfRYVw1S0SbRLBEg1IpXPIvpUWLCmZpXIm6BS3addt7uQpu0ZQlxT1MK2r0g-7sfqbsbRrVfMrMwgbev3CDTlsqJGtJhATUmSMrMg5TKwaZUxfcttuMt7m00)
+![pingpong](//www.plantuml.com/plantuml/png/ZOv1IyGm48Nl-HMFlPVI_W3PewSAwar4GZjsWvrCIAO7SVtlTc8FAxYmbydZyONl7Olwh2ilhdo4c7ps39OeuoaB4pIlv5oKYV0oRBTx1Np1qE7B0QDmaaXHSMWvZ5aU7vxQ5E9y02fdkRiAoWKe1dvVglfTrT-kwczLzQQguz0qT_lVUj7aC9_KoihLMw4wqGOgGIL1tZ6O43ZZML8OxVrCXFDU_jsv5KMdDovpQU_9JvJ_0-KAI762cPqxRd5LNdu3Bpy0)
