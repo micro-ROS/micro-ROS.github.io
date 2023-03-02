@@ -109,7 +109,7 @@ The officially supported boards are those which have been carried out or tested 
   </div>
 
   <div class="hardwareitem_image">
-    <img src="imgs/4.jpg">
+    <img src="/img/posts/logo-zephyr.jpg">
   </div>
 </div>
 

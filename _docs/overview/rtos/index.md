@@ -116,7 +116,7 @@ Zephyr is a fairly new open-source RTOS, developed in a Linux Foundation Project
   </div>
 
   <div class="rtositem_image">
-    <img src="https://www.linuxfoundation.org/wp-content/uploads/zephyr-color.svg">
+    <img src="/img/posts/logo-zephyr.jpg">
   </div>
 </div>
 

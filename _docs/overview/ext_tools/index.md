@@ -88,7 +88,7 @@ The modules that exist up to date for integrating into external build systems ar
   </div>
 
   <div class="extplatitem_image">
-    <img src="https://www.linuxfoundation.org/wp-content/uploads/zephyr-color.svg">
+    <img src="/img/posts/logo-zephyr.jpg">
   </div>
 </div>
 
