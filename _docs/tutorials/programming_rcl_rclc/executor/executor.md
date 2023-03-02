@@ -300,7 +300,7 @@ return 0;
 } // main
 ```
 
-This completes the example. The source code can be found in the package rclc-examples [rclc-examples/example_executor_convenience.c](https://github.com/ros2/rclc/blob/master/rclc_examples/src/example_executor_convenience.c).
+This completes the example. The source code can be found in the package rclc-examples [rclc-examples/example_executor_only_rcl.c](https://github.com/ros2/rclc/blob/master/rclc_examples/src/example_executor_only_rcl.c).
 
 ### Example 2: Triggered execution
 
@@ -821,6 +821,6 @@ The following code will setup the executor accordingly:
 
 The custom structs `pub_trigger_object_t` are used to save the pointer of the handles. The timers `my_string_timer` and `my_int_timer` for the publishing executor; and, likewise, the subscriptions `my_string_sub` and `my_int_sub` for the subscribing executor. The configuration is done also with the `rclc_executor_set_trigger` by passing the trigger function and the trigger object, e.g. `pub_trigger` and `comm_obj_pub` for the `executor_pub`, respectivly.
 
-The complete source code of this example can be found in the file [rclc-examples/example_executor_trigger.c](https://github.com/ros2/rclc/rclc_examples/example_executor_trigger.c).
+The complete source code of this example can be found in the file [rclc-examples/example_executor_trigger.c](https://github.com/ros2/rclc/blob/humble/rclc_examples/src/example_executor_trigger.c).
 
 

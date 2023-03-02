@@ -3,7 +3,7 @@ title: micro-ROS at European Robotics Forum 2019
 author: borjaouterelo
 ---
 
-The [European Robotics Forum](https://www.eu-robotics.net/robotics_forum/), the most influential meeting of the robotics community in Europe, was held in Bucharest, Romania, in March 2019. Over 900 European robotics top experts attended the 10th edition of the conference.
+The [European Robotics Forum](https://eu-robotics.net/eurobotics/activities/european-robotics-forum/), the most influential meeting of the robotics community in Europe, was held in Bucharest, Romania, in March 2019. Over 900 European robotics top experts attended the 10th edition of the conference.
 
 OFERA consortium, taking advantage of the opportunity, arranged one of their face-to-face meetings the days before the ERF as some of the members will also be attending to the forum.
 

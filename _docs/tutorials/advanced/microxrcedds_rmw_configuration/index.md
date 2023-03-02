@@ -90,7 +90,7 @@ For example, in the [ping-pong application](https://micro-ros.github.io//docs/tu
 There are some build time parameters related to Client-to-Agent connection (such as **CONFIG_RMW_DEFAULT_UDP_PORT**, **CONFIG_RMW_DEFAULT_UDP_IP** and **CONFIG_RMW_DEFAULT_SERIAL_DEVICE**) that can be configured either at build time or at run-time.
 This means that you can set them in the [configuration file](https://github.com/micro-ROS/micro_ros_setup/blob/foxy/config/host/generic/client-host-colcon.meta) mentioned above and that micro-ROS provides a user configuration API for setting some RMW and middleware parameters at run-time.
 
-The following example code shows the [API](https://github.com/micro-ROS/rmw-microxrcedds/blob/foxy/rmw_microxrcedds_c/include/rmw_uros/init_options.h) calls needed to set the agent's IP address, port or serial device:
+The following example code shows the [API](https://github.com/micro-ROS/rmw_microxrcedds/blob/humble/rmw_microxrcedds_c/include/rmw_microros/init_options.h) calls needed to set the agent's IP address, port or serial device:
 
 ```c
 #include <rmw_microros/rmw_microros.h>
