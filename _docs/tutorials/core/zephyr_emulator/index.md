@@ -10,7 +10,7 @@ emulator (also known as [Native POSIX](https://docs.zephyrproject.org/latest/boa
 by testing a Ping Pong application.
 
 <div>
-<img  width="300" style="padding-right: 25px;" src="imgs/4.jpg">
+<img  width="300" style="padding-right: 25px;" src="/img/posts/logo-zephyr.jpg">
 </div>
 
 {% include first_application_common/build_system.md %}
