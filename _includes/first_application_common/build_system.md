@@ -1,21 +1,21 @@
 ## Installing ROS 2 and the micro-ROS build system
 
-First of all, install **ROS 2 Foxy FitzRoy** on your Ubuntu 20.04 LTS computer.
+First of all, install **ROS 2 Humble Hawskbill** on your Ubuntu 22.04 LTS computer.
 To do so from binaries, via Debian packages, follow the instructions detailed
-[here](https://index.ros.org/doc/ros2/Installation/Foxy/Linux-Install-Debians/).
+[here](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html).
 
-***TIP:** Alternatively, you can use a docker container with a fresh ROS 2 Foxy installation. The one that serves
+***TIP:** Alternatively, you can use a docker container with a fresh ROS 2 Humble installation. The one that serves
 the purpose is the container run by the command:*
 
 ```bash
-docker run -it --net=host -v /dev:/dev --privileged ros:foxy
+docker run -it --net=host -v /dev:/dev --privileged ros:humble
 ```
 
 Once you have a ROS 2 installation in the computer, follow these steps to install the micro-ROS build system:
 
 ```bash
 # Source the ROS 2 installation
-source /opt/ros/$ROS_DISTRO/setup.bash
+source /opt/ros/humble/setup.bash
 
 # Create a workspace and download the micro-ROS tools
 mkdir microros_ws

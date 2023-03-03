@@ -33,23 +33,36 @@ Please note the following third-party elements and content:
 
 For details on the open source components included in the micro-ros.github.io repository, see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
 
+
 ## Running locally
+
+```bash
+git clone --recurse-submodules <your fork of micro-ROS.github.io>
+```
 
 To test locally, you need a local version of Jekyll, the site-generation
 engine used by GitHub Pages. See [Jekyll Quickstart](https://jekyllrb.com/docs/)
 for installation instructions.
 
-After installing Jekyll, install all dependencies by running
+Or, if using VSCode, feel free to use the attached devcontainer with
+`ms-vscode-remote.remote-containers` extension.
+
+After installing Jekyll or opening the Docker container,
+install all dependencies by running
 ```bash
 bundle install
 ```
 
+For the includes of README.md files on the micro-ROS demos (in the tutorials chapter) from the corresponding repositories, please init and update the corresponding git submodules (i.e. `git submodule update --init --recursive`).
+
 Then, you may launch Jekyll to build and serve the website continuously by
 ```bash
-bundle exec jekyll serve
+bundle exec jekyll serve --incremental
+# ... 
+# Server address: http://127.0.0.1:4000/
 ```
 
-For the includes of README.md files on the micro-ROS demos (in the tutorials chapter) from the corresponding repositories, please init and update the corresponding git submodules (i.e. `git submodule init ; git submodule update`).
+When complete, click the link to vuew the local website.
 
 ## Testing generated site
 
@@ -57,7 +70,7 @@ To test the generated HTML site, you can use `html-proofer` gem.
 This Ruby gem checks and validates the jekyll generated HTML files.
 It checks a broad set of points: internal and external links existence (alerting of possible 404 errors), HTML attributes of the images and so on.
 
-To install it, It has been incorporated in the Gemfile so the previous dependency install command would have already installed it.
+To install it, it has been incorporated in the Gemfile so the previous dependency install command would have already installed it.
 
 You can run `bundle exec jekyll build` followed by `bundle exec htmlproofer ./_site` to build and test the generated site.
 However, note that a comprehensive configuration is required for the htmlproofer.
