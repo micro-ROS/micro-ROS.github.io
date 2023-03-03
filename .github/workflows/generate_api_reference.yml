@@ -10,7 +10,7 @@ on:
 jobs:
   generate_rmw_api_reference:
     runs-on: ubuntu-latest
-    container: ros:foxy
+    container: ros:humble
     steps:
       - uses: actions/checkout@v3
       - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -28,10 +28,10 @@ jobs:
             unzip doxybook2-linux-amd64-v1.3.3.zip -d doxybook2
 
             mkdir -p ros2_ws/src; cd ros2_ws
-            git clone -b foxy https://github.com/eProsima/Micro-CDR src/Micro-CDR
-            git clone -b foxy https://github.com/eProsima/Micro-XRCE-DDS-Client src/Micro-XRCE-DDS-Client
-            git clone -b foxy https://github.com/micro-ROS/rosidl_typesupport_microxrcedds src/rosidl_typesupport_microxrcedds
-            git clone -b foxy https://github.com/micro-ROS/rmw-microxrcedds src/rmw-microxrcedds
+            git clone -b master https://github.com/eProsima/Micro-CDR src/Micro-CDR
+            git clone -b master https://github.com/eProsima/Micro-XRCE-DDS-Client src/Micro-XRCE-DDS-Client
+            git clone -b humble https://github.com/micro-ROS/rosidl_typesupport_microxrcedds src/rosidl_typesupport_microxrcedds
+            git clone -b humble https://github.com/micro-ROS/rmw-microxrcedds src/rmw-microxrcedds
 
             source /opt/ros/$ROS_DISTRO/setup.bash
             colcon build --packages-up-to rmw_microxrcedds --cmake-args -DBUILD_DOCUMENTATION=ON
@@ -50,7 +50,7 @@ jobs:
 
   generate_utils_api_reference:
     runs-on: ubuntu-latest
-    container: ros:foxy
+    container: ros:humble
     steps:
       - uses: actions/checkout@v3
       - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -61,7 +61,7 @@ jobs:
         shell: bash
         run: |
           apt update
-          apt install -y doxygen wget git unzip cmake ros-foxy-osrf-testing-tools-cpp
+          apt install -y doxygen wget git unzip cmake ros-humble-osrf-testing-tools-cpp
 
           pushd /
             wget https://github.com/matusnovak/doxybook2/releases/download/v1.3.3/doxybook2-linux-amd64-v1.3.3.zip
