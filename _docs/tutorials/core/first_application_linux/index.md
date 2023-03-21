@@ -27,7 +27,7 @@ Each app is represented by a folder containing the following files:
 * `main.c`: This file contains the logic of the application.
 * `CMakeLists.txt`: This is the CMake file containing the script to compile the application.
 
-For the user to create its custom application, a folder `<my_app>` will need to be registered in this location,
+For the user to create a custom application, a folder `<my_app>` will need to be registered in this location,
 containing the two files just described.
 Also, any such new application folder needs to be registered in
 `src/uros/micro-ROS-demos/rclc/CMakeLists.txt` by adding the following line:
