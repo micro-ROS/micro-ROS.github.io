@@ -28,7 +28,7 @@ jobs:
             unzip doxybook2-linux-amd64-v1.3.3.zip -d doxybook2
 
             mkdir -p ros2_ws/src; cd ros2_ws
-            git clone -b master https://github.com/eProsima/Micro-CDR src/Micro-CDR
+            git clone -b ros2 https://github.com/eProsima/Micro-CDR src/Micro-CDR
             git clone -b master https://github.com/eProsima/Micro-XRCE-DDS-Client src/Micro-XRCE-DDS-Client
             git clone -b humble https://github.com/micro-ROS/rosidl_typesupport_microxrcedds src/rosidl_typesupport_microxrcedds
             git clone -b humble https://github.com/micro-ROS/rmw-microxrcedds src/rmw-microxrcedds
