@@ -62,7 +62,7 @@ bundle exec jekyll serve --incremental
 # Server address: http://127.0.0.1:4000/
 ```
 
-When complete, click the link to vuew the local website.
+When complete, click the link to view the local website.
 
 ## Testing generated site
 
