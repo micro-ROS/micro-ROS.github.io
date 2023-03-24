@@ -37,7 +37,7 @@ For details on the open source components included in the micro-ros.github.io re
 ## Running locally
 
 ```bash
-git clone --recurse-submodules <your fork of micro-ROS.github.io>
+git clone --recurse-submodules https://github.com/micro-ROS/micro-ROS.github.io
 ```
 
 To test locally, you need a local version of Jekyll, the site-generation
