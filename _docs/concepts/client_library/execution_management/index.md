@@ -429,9 +429,9 @@ rclc_executor_add_subscription(&exe_act, &act, &my_sub_cb4, ON_NEW_DATA);
 
 // spin all executors
 while (true) {
-  rclc_executor_spin_some(&exe_sense);
-  rclc_executor_spin_some(&exe_plan);
-  rclc_executor_spin_some(&exe_act);
+  rclc_executor_spin_some(&exe_sense, RCL_MS_TO_NS(100));
+  rclc_executor_spin_some(&exe_plan, RCL_MS_TO_NS(100));
+  rclc_executor_spin_some(&exe_act, RCL_MS_TO_NS(100));
 }
 ```
 
@@ -455,8 +455,8 @@ rclc_executor_set_trigger(&exe_sense, rclc_executor_trigger_all, NULL);
 
 // spin all executors
 while (true) {
-  rclc_executor_spin_some(&exe_aggr);
-  rclc_executor_spin_some(&exe_sense);
+  rclc_executor_spin_some(&exe_aggr, RCL_MS_TO_NS(100));
+  rclc_executor_spin_some(&exe_sense, RCL_MS_TO_NS(100));
 }
 ```
 
