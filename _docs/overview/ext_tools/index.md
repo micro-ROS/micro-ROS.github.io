@@ -41,7 +41,7 @@ The modules that exist up to date for integrating into external build systems ar
 <div class="extplatcontainer">
   <div class="extplatitem_description">
     <div>
-      <a href="https://vulcanexus.org">Vulcanexus</a> is an all-in-one ROS 2 tool set for easy and customized robotics development. It offers natively integrated solutions for ROS 2 networks in terms of performance improvement, simulation, cloud/edge communication, and microcontroller integration. The latter relies on micro-ROS. Vulcanexus is free and open source, and available as a Docker image for Galactic and Humble. All components enjoy continuous updates so users benefit from the latest features at all times.
+      <a href="https://vulcanexus.org">Vulcanexus</a> is an all-in-one ROS 2 tool set for easy and customized robotics development. It offers natively integrated solutions for ROS 2 networks in terms of performance improvement, simulation, cloud/edge communication, and microcontroller integration. The latter relies on micro-ROS. Vulcanexus is free and open source, and available as a Docker image for Humble and Iron. All components enjoy continuous updates so users benefit from the latest features at all times.
     </div>
   </div>
 </div>

@@ -68,7 +68,7 @@ jobs:
             unzip doxybook2-linux-amd64-v1.3.3.zip -d doxybook2
 
             mkdir -p ros2_ws/src; cd ros2_ws
-            git clone -b humble https://github.com/micro-ROS/micro_ros_utilities src/micro_ros_utilities
+            git clone -b Iron https://github.com/micro-ROS/micro_ros_utilities src/micro_ros_utilities
 
             source /opt/ros/$ROS_DISTRO/setup.bash
             colcon build --packages-up-to micro_ros_utilities --cmake-args -DBUILD_DOCUMENTATION=ON

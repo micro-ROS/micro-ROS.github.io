@@ -3,7 +3,7 @@ title: Publishers and subscribers
 permalink: /docs/tutorials/programming_rcl_rclc/pub_sub/
 ---
 
-<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/>  <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
 
 ROS 2 publishers and subscribers are the basic communication mechanism between nodes using topics. Further information about ROS 2 publish–subscribe pattern can be found [here](https://docs.ros.org/en/foxy/Tutorials/Topics/Understanding-ROS2-Topics.html).
 

@@ -3,9 +3,9 @@ title: Nodes
 permalink: /docs/tutorials/programming_rcl_rclc/node/
 ---
 
-<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
 
-ROS 2 nodes are the main participants on ROS 2 ecosystem. They will communicate between each other using publishers, subscriptions, services, etc. Further information about ROS 2 nodes can be found [here](https://docs.ros.org/en/galactic/Tutorials/Understanding-ROS2-Nodes.html)
+ROS 2 nodes are the main participants on ROS 2 ecosystem. They will communicate between each other using publishers, subscriptions, services, etc. Further information about ROS 2 nodes can be found [here](https://docs.ros.org/en/iron/Tutorials/Understanding-ROS2-Nodes.html)
 
 
 - [Initialization](#initialization)
@@ -45,37 +45,7 @@ ROS 2 nodes are the main participants on ROS 2 ecosystem. They will communicate 
 
 - Create a node with custom options:
 
-  The configuration of the node will also be applied to its future elements (Publishers, subscribers, services, ...).The API used to customize the node options differs between ROS2 distributions:
-
-  Foxy: The `rcl_node_options_t` is used to configure the node
-
-  ```c
-  // Initialize allocator and support objects
-  ...
-
-  // Create node object
-  rcl_node_t node;
-  const char * node_name = "test_node";
-
-  // Node namespace (Can remain empty "")
-  const char * namespace = "test_namespace";
-
-  // Get default node options and modify them
-  rcl_node_options_t node_ops = rcl_node_get_default_options();
-
-  // Set node ROS domain ID to 10
-  node_ops.domain_id = (size_t)(10);
-
-  // Init node with custom options
-  rc = rclc_node_init_with_options(&node, node_name, namespace, &support, &node_ops);
-
-  if (rc != RCL_RET_OK) {
-    ... // Handle error
-    return -1;
-  }
-  ```
-
-  Galactic and beyond: In this case, the node options are configured on the `rclc_support_t` object with a custom API
+  The configuration of the node will also be applied to its future elements (Publishers, subscribers, services, ...). The node options are configured on the `rclc_support_t` object with a custom API:
 
   ```c
   // Initialize micro-ROS allocator
