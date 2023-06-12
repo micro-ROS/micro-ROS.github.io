@@ -3,7 +3,7 @@ title: Quality of service
 permalink: /docs/tutorials/programming_rcl_rclc/qos/
 ---
 
-<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Written_for-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
 
 - [Reliable QoS](#reliable-qos)
 - [Best Effort](#best-effort)

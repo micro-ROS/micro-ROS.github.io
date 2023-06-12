@@ -3,7 +3,7 @@ title: Nodes
 permalink: /docs/tutorials/programming_rcl_rclc/node/
 ---
 
-<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Written_for-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
 
 ROS 2 nodes are the main participants on ROS 2 ecosystem. They will communicate between each other using publishers, subscriptions, services, etc. Further information about ROS 2 nodes can be found [here](https://docs.ros.org/en/iron/Tutorials/Understanding-ROS2-Nodes.html)
 

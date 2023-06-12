@@ -5,7 +5,7 @@ permalink: /docs/tutorials/programming_rcl_rclc/micro-ROS/
 
 <!-- TODO: Change section name -->
 
-<img src="https://img.shields.io/badge/Written_for-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Written_for-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
 
 - [Allocators](#allocators)
   - [Custom allocator](#custom-allocator)

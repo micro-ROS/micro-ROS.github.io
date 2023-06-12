@@ -3,7 +3,7 @@ title: First micro-ROS Application on Linux
 permalink: /docs/tutorials/core/first_application_linux/
 ---
 
-<img src="https://img.shields.io/badge/Written_for-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Written_for-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
 
 In this tutorial, you’ll learn the use of micro-ROS with Linux by testing a Ping Pong application.
 In the follow-up tutorial [*First micro-ROS application on an RTOS*](/docs/tutorials/core/first_application_rtos/),
@@ -39,13 +39,13 @@ export_executable(<my_app>)
 In this tutorial, we will focus on the out-of-the-box `ping_pong` application located at
 `src/uros/micro-ROS-demos/rclc/ping_pong`.
 You can check the complete content of this app
-[here](https://github.com/micro-ROS/micro-ROS-demos/tree/foxy/rclc/ping_pong).
+[here](https://github.com/micro-ROS/micro-ROS-demos/tree/humble/rclc/ping_pong).
 
 {% include first_application_common/pingpong_logic.md %}
 
 The contents of the host app specific files can be found here:
-[main.c](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/ping_pong/main.c) and
-[CMakeLists.txt](https://github.com/micro-ROS/micro-ROS-demos/blob/foxy/rclc/ping_pong/CMakeLists.txt).
+[main.c](https://github.com/micro-ROS/micro-ROS-demos/blob/humble/rclc/ping_pong/main.c) and
+[CMakeLists.txt](https://github.com/micro-ROS/micro-ROS-demos/blob/humble/rclc/ping_pong/CMakeLists.txt).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
 ## Building the firmware

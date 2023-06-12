@@ -30,7 +30,3 @@ This chapter provides a number of advanced tutorials for those users who already
 * [**Benchmarking with the Shadow-Builder**](../benchmarking/)
 
   This tutorial aims at describing a specific benchmarking tooling called the *Shadow Builder*. More specifically, it explains how to create a plugin from A to Z and how to instrument the code.
-
-* [**Getting started with ROS 2 tracing**](../tracing/)
-
-  Tracing is a method for recording run-time data which is already well integrated with operating systems. This tutorial aims to introduce our ongoing effort to instrument ROS 2 and provide trace analysis tools.
