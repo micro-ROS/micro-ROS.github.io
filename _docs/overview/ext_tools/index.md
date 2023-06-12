@@ -41,7 +41,7 @@ The modules that exist up to date for integrating into external build systems ar
 <div class="extplatcontainer">
   <div class="extplatitem_description">
     <div>
-      <a href="https://vulcanexus.org">Vulcanexus</a> is an all-in-one ROS 2 tool set for easy and customized robotics development. It offers natively integrated solutions for ROS 2 networks in terms of performance improvement, simulation, cloud/edge communication, and microcontroller integration. The latter relies on micro-ROS. Vulcanexus is free and open source, and available as a Docker image for Galactic and Humble. All components enjoy continuous updates so users benefit from the latest features at all times.
+      <a href="https://vulcanexus.org">Vulcanexus</a> is an all-in-one ROS 2 tool set for easy and customized robotics development. It offers natively integrated solutions for ROS 2 networks in terms of performance improvement, simulation, cloud/edge communication, and microcontroller integration. The latter relies on micro-ROS. Vulcanexus is free and open source, and available as a Docker image for Humble and Iron. All components enjoy continuous updates so users benefit from the latest features at all times.
     </div>
   </div>
 </div>
@@ -121,11 +121,11 @@ The modules that exist up to date for integrating into external build systems ar
   <div class="extplatitem_description">
     <div>
         The STM32CubeMX is a graphical tool by ST for configuring STM32 microcontrollers and microprocessors. It enables to optimally program and manipulate the software thanks to a set of utilities that help setting up pinouts, peripherals, and middleware stacks.
-        <i>micro-ROS for STM32CubeMX</i> is based on a <a href="https://github.com/micro-ROS/micro_ros_stm32cubemx_utils/blob/foxy/microros_component/Dockerfile">Dockerfile</a> and allows micro-ROS to be virtually supported by the full set of boards offered by <a href="https://www.st.com/content/st_com/en.html">STMicroelectronics</a>, in turn enabling the seamless integration of micro-ROS into any STM32 controller based project.
+        <i>micro-ROS for STM32CubeMX</i> is based on a <a href="https://github.com/micro-ROS/micro_ros_stm32cubemx_utils/blob/humble/microros_component/Dockerfile">Dockerfile</a> and allows micro-ROS to be virtually supported by the full set of boards offered by <a href="https://www.st.com">STMicroelectronics</a>, in turn enabling the seamless integration of micro-ROS into any STM32 controller based project.
         <hr><b>Resources:</b>
         <ul>
             <li><a href="https://github.com/micro-ROS/micro_ros_stm32cubemx_utils">micro-ROS for STM32CubeMX on GitHub</a></li>
-            <li><a href="https://www.st.com/content/st_com/en.html">STMicroelectronics official webpage</a></li>
+            <li><a href="https://www.st.com">STMicroelectronics official webpage</a></li>
             <li><a href="https://github.com/STMicroelectronics/STM32Cube_MCU_Overall_Offer">STMicroelectronics official webpage</a></li>
         </ul>
     </div>

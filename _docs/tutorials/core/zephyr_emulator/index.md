@@ -3,7 +3,7 @@ title: Zephyr Emulator
 permalink: /docs/tutorials/core/zephyr_emulator/
 ---
 
-<img src="https://img.shields.io/badge/Tested_on-Foxy-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
 
 In this tutorial, you'll learn the use of micro-ROS with a **[Zephyr RTOS](https://www.zephyrproject.org/)**
 emulator (also known as [Native POSIX](https://docs.zephyrproject.org/latest/boards/posix/native_posix/doc/index.html))
@@ -35,15 +35,15 @@ ros2 run micro_ros_setup configure_firmware.sh ping_pong --transport udp --ip 12
 ```
 
 You can check the complete content of the `ping_pong` app
-[here](https://github.com/micro-ROS/zephyr_apps/tree/foxy/apps/ping_pong).
+[here](https://github.com/micro-ROS/zephyr_apps/tree/humble/apps/ping_pong).
 
 {% include first_application_common/pingpong_logic.md %}
 
 The contents of the Zephyr app specific files can be found here:
-[main.c](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/src/main.c),
-[app-colcon.meta](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/app-colcon.meta),
-[CMakeLists.txt](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/CMakeLists.txt)
-and [host-udp.conf](https://github.com/micro-ROS/zephyr_apps/blob/foxy/apps/ping_pong/host-udp.conf).
+[main.c](https://github.com/micro-ROS/zephyr_apps/blob/humble/apps/ping_pong/src/main.c),
+[app-colcon.meta](https://github.com/micro-ROS/zephyr_apps/blob/humble/apps/ping_pong/app-colcon.meta),
+[CMakeLists.txt](https://github.com/micro-ROS/zephyr_apps/blob/humble/apps/ping_pong/CMakeLists.txt)
+and [host-udp.conf](https://github.com/micro-ROS/zephyr_apps/blob/humble/apps/ping_pong/host-udp.conf).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
 ## Building the firmware

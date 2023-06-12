@@ -60,7 +60,7 @@ users:
     text: Dronecode is a nonprofit hosted under the Linux Foundation, dedicated to fostering open-source components and their communities. Working with top developers, end-users, and adopting vendors to create opportunities for collaboration.
     title: Dronecode
     url: www.dronecode.org
-  - path: https://www.wyca-robotics.fr/wp-content/uploads/2021/04/LogoAvecRoue.png
+  - path: https://global-uploads.webflow.com/642fc874fdfc5b6e86529427/643002c6f56ab31a4f8ee213_white.svg
     text: WYCA Robotics is a French company with more than 5 years of edge technology mastering in Robotics, AI and autonomous navigation. They developed Elodie, the first multi-purpose self-driving level 5 indoor vehicle for handling the users&#39 mobiliy challenges.
     title: Wyca Robotics
     url: www.wyca-robotics.com
@@ -86,7 +86,7 @@ collaborators:
     text: Espressif Systems is a public multinational, fabless semiconductor company focused on developing cutting-edge Wi-Fi-and-Bluetooth, low-power, AIoT solutions. They have created the popular ESP8266, ESP32, ESP32-S and ESP32-C series of chips, modules and development boards, and offer several open-source frameworks for building AIoT applications, among which the Espressif&#39s IoT Development Framework ESP-IDF.
     title: Espressif
     url: www.espressif.com
-  - path: http://hydrasystem.pl/img/hydra_system_black.png
+  - path: https://hydrasystem.pl/images/hydra_system_on_white.png
     text: Hydra System provides a multi-component solution, designed specifically for precise localisation of agricultural machines with work efficiency in mind Hydra System is composed of navigation module for agricultural machine (Hydra Box), specialised software (Hydra Nav) and an optional base station module (Hydra Base).
     title: Hydra System
     url: www.hydrasystem.pl/index.en_GB.html

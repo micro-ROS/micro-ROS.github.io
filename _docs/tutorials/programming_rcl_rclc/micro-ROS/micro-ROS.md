@@ -5,7 +5,7 @@ permalink: /docs/tutorials/programming_rcl_rclc/micro-ROS/
 
 <!-- TODO: Change section name -->
 
-<img src="https://img.shields.io/badge/Written_for-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Written_for-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
 
 - [Allocators](#allocators)
   - [Custom allocator](#custom-allocator)
@@ -124,7 +124,7 @@ Custom methods prototypes and examples:
 
 ## Time sync
 micro-ROS Clients can synchronize their epoch time with the connected Agent, this can be very useful when working in embedded environments that do not provide any time synchronization mechanism.
-This utility is based on the NTP protocol, taking into account delays caused by the transport layer. An usage example can be found on [`micro-ROS-demos/rclc/epoch_synchronization`](https://github.com/micro-ROS/micro-ROS-demos/blob/galactic/rclc/epoch_synchronization/main.c).
+This utility is based on the NTP protocol, taking into account delays caused by the transport layer. An usage example can be found on [`micro-ROS-demos/rclc/epoch_synchronization`](https://github.com/micro-ROS/micro-ROS-demos/blob/iron/rclc/epoch_synchronization/main.c).
 
 ```c
 // Sync timeout
@@ -142,7 +142,7 @@ if (rmw_uros_epoch_synchronized())
 ```
 
 ## Ping agent
-The Client can test the connection with the Agent with the ping utility. This functionality can be used even when the micro-ROS context has not yet been initialized, which is useful to test the connection before trying to connect to the Agent. An example can be found on [`micro-ROS-demos/rclc/ping_uros_agent`](https://github.com/micro-ROS/micro-ROS-demos/blob/galactic/rclc/ping_uros_agent/main.c).
+The Client can test the connection with the Agent with the ping utility. This functionality can be used even when the micro-ROS context has not yet been initialized, which is useful to test the connection before trying to connect to the Agent. An example can be found on [`micro-ROS-demos/rclc/ping_uros_agent`](https://github.com/micro-ROS/micro-ROS-demos/blob/iron/rclc/ping_uros_agent/main.c).
 
 ```c
 // Timeout for each attempt
@@ -170,7 +170,7 @@ else
 
 ## Continous serialization
 
-This utility allows the client to serialize and send data up to a customized size. The user can set the topic lenght and then serialize the data within the publish process. An example can be found on [`micro-ROS-demos/rclc/ping_uros_agent`](https://github.com/micro-ROS/micro-ROS-demos/blob/galactic/rclc/ping_uros_agent/main.c), where fragments from an image are requested and serialized on the spot.
+This utility allows the client to serialize and send data up to a customized size. The user can set the topic lenght and then serialize the data within the publish process. An example can be found on [`micro-ROS-demos/rclc/ping_uros_agent`](https://github.com/micro-ROS/micro-ROS-demos/blob/iron/rclc/ping_uros_agent/main.c), where fragments from an image are requested and serialized on the spot.
 
 The user needs to define two callbacks, then set them on the `rmw`. It is recommended to clean the callbacks after the publication, to avoid interferences with other topics on the same process:
 

@@ -26,7 +26,7 @@ In order to implement the steps highlighted in this guide, you need the followin
 - micro-ROS-bridge-RPI.
 
 **Important!**
-You can find a guide of how to setup the micro-ROS-bridge_RPI at its [repository](https://github.com/micro-ROS/micro-ROS-bridge_RPI/blob/new_bridge_tools/Readme.md).
+You can find a guide of how to setup the micro-ROS-bridge_RPI at its [repository](https://github.com/micro-ROS/micro-ROS-bridge_RPI/blob/new_bridge_tools/README.md).
 In the micro-ROS-bridge-RPI guide, you can find everything that you need to set-up this device base.
 
 ## Configure the board

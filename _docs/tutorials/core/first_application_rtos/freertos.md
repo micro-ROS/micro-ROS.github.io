@@ -5,7 +5,7 @@ redirect_from:
   - /docs/tutorials/advanced/freertos/freertos_getting_started/
 ---
 
-<img src="https://img.shields.io/badge/Tested_on-Foxy-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Galactic-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
+<img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Rolling-green" style="display:inline"/> <img src="https://img.shields.io/badge/Tested_on-Iron-green" style="display:inline"/>
 
 In this tutorial, you'll learn the use of micro-ROS with FreeRTOS by testing a Ping Pong application.
 {% include first_application_common/target_hardware.md %}
@@ -47,13 +47,13 @@ ros2 run micro_ros_setup configure_firmware.sh ping_pong --transport serial
 ```
 
 You can check the complete content of the `ping_pong` app
-[here](https://github.com/micro-ROS/freertos_apps/tree/foxy/apps/ping_pong).
+[here](https://github.com/micro-ROS/freertos_apps/tree/humble/apps/ping_pong).
 
 {% include first_application_common/pingpong_logic.md %}
 
 The contents of the FreeRTOS app specific files can be found here:
-[app.c](https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/ping_pong/app.c) and
-[app-colcon.meta](https://github.com/micro-ROS/freertos_apps/blob/foxy/apps/ping_pong/app-colcon.meta).
+[app.c](https://github.com/micro-ROS/freertos_apps/blob/humble/apps/ping_pong/app.c) and
+[app-colcon.meta](https://github.com/micro-ROS/freertos_apps/blob/humble/apps/ping_pong/app-colcon.meta).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
 {% include first_application_common/build_and_flash.md %}

@@ -9,15 +9,15 @@ This page aims to explain how to handle messages and types memory in micro-ROS.
 
 First of all, since the micro-ROS user is in an embedded C99 environment, it is important to be aware of what messages and ROS 2 types are being used in order to handle memory correctly.
 
-The micro-ROS type memory handling has changed in the latest micro-ROS Galactic distribution, two approaches are presented in this tutorial: micro-ROS Foxy and micro-ROS Galactic and beyond:
+Two approaches are presented in this tutorial: manual memory allocation, and automated approach using the [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities) package:
 
-- [micro-ROS Foxy](#micro-ros-foxy)
+- [Manual allocation](#manual-allocation)
   - [Sequence types in micro-ROS](#sequence-types-in-micro-ros)
   - [Compound types in micro-ROS](#compound-types-in-micro-ros)
   - [Sequences of compound types](#sequences-of-compound-types)
-- [micro-ROS Galactic and beyond](#micro-ros-galactic-and-beyond)
+- [micro-ROS utilities](#micro-ros-utilities)
 
-# micro-ROS Foxy
+# Manual allocation
 
 By watching the `.msg` or `.srv` of the types used in a micro-ROS application, you can determine the type of each member. Currently, the following types are supported:
 - Basic type
@@ -204,9 +204,9 @@ for(int32_t i = 0; i < 3; i++){
 }
 ```
 
-# micro-ROS Galactic and beyond
+# micro-ROS utilities
 
-Due to the inclusion of [`rosidl_typesupport_introspection_c`](https://github.com/ros2/rosidl/tree/master/rosidl_typesupport_introspection_c) in micro-ROS Galactic distribution, an automated memory handling for micro-ROS types is available. The tools related to this feature are available in the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities).
+Due to the inclusion of [`rosidl_typesupport_introspection_c`](https://github.com/ros2/rosidl/tree/rolling/rosidl_typesupport_introspection_c), an automated memory handling for micro-ROS types is available. The tools related to this feature are available in the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities).
 
 The documentation of the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities) is available [here](https://micro.ros.org/docs/api/utils/).
 
