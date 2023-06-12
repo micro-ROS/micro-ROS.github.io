@@ -31,7 +31,7 @@ To accomplish this, two different approaches can be taken:
 * Relying on an integration platform that uses a common types language representation, and defines a conversion library from/to the generic type to the specific type of each middleware.
 
 While the first approach might result in a more lightweight tool, it has several flaws, for instance a more difficult maintenance and the incapability of communicating with any other middleware, rather than ROS2 or micro-ROS.
-On the other hand, using an integration service platform, such as [SOSS](https://github.com/eProsima/soss_v2), enables automatically the possibility of communicating with a wide (and growing) set of middlewares, if their System Handle implementation is available.
+On the other hand, using an integration service platform, such as [SOSS](https://github.com/eProsima/Integration-Service), enables automatically the possibility of communicating with a wide (and growing) set of middlewares, if their System Handle implementation is available.
 
 ## SOSS: System-Of-Systems-Synthesizer
 
@@ -63,7 +63,7 @@ For this reason, if a type defined in the topics section of the configuration fi
 This is something important to notice when connecting to ROS2, because in ROS2 most of the types have a / in their names.
 To deal with this issue, using SOSS [remapping](https://soss.docs.eprosima.com/en/latest/yaml_config.html?highlight=remap#remapping) capabilities come in handy.
 
-Of course, given that micro-ROS applications act as a bridge between microcontrollers and the ROS 2 dataspace (using the micro-ROS Agent), FIROS2 should also take care of communicating FIWARE's Context Broker with ROS 2, leveraging the existing [ROS 2 System Handle](https://github.com/eProsima/soss_v2/tree/feature/xtypes-dds/packages/ros2), which comes natively included into the SOSS package.
+Of course, given that micro-ROS applications act as a bridge between microcontrollers and the ROS 2 dataspace (using the micro-ROS Agent), FIROS2 should also take care of communicating FIWARE's Context Broker with ROS 2, leveraging the existing [ROS 2 System Handle](https://github.com/eProsima/Integration-Service), which comes natively included into the SOSS package.
 
 This is exactly the situation reflected in the use case that is explained below.
 
@@ -79,7 +79,7 @@ This is exactly the situation reflected in the use case that is explained below.
 
 * Clone the SOSS project into the source subfolder.
   ```bash
-    $ git clone https://github.com/osrf/soss_v2.git src/soss --branch feature/xtypes-dds
+    $ git clone https://github.com/eProsima/Integration-Service.git src/soss --branch feature/xtypes-dds
   ```
 
 * Clone the SOSS-FIWARE project into the source subfolder.

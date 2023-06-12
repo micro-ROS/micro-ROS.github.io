@@ -60,7 +60,7 @@ users:
     text: Dronecode is a nonprofit hosted under the Linux Foundation, dedicated to fostering open-source components and their communities. Working with top developers, end-users, and adopting vendors to create opportunities for collaboration.
     title: Dronecode
     url: www.dronecode.org
-  - path: https://www.wyca-robotics.fr/wp-content/uploads/2021/04/LogoAvecRoue.png
+  - path: https://global-uploads.webflow.com/642fc874fdfc5b6e86529427/643002c6f56ab31a4f8ee213_white.svg
     text: WYCA Robotics is a French company with more than 5 years of edge technology mastering in Robotics, AI and autonomous navigation. They developed Elodie, the first multi-purpose self-driving level 5 indoor vehicle for handling the users&#39 mobiliy challenges.
     title: Wyca Robotics
     url: www.wyca-robotics.com
