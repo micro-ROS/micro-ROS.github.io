@@ -7,7 +7,7 @@
 | MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_init](#function-micro_ros_string_utilities_init)**(const char * data)<br>Create a rosidl_runtime_c__String from a char pointer.  |
 | MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_init_with_size](#function-micro_ros_string_utilities_init_with_size)**(const size_t size)<br>Create a rosidl_runtime_c__String from a size.  |
 | MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_set](#function-micro_ros_string_utilities_set)**(const rosidl_runtime_c__String str, const char * data)<br>Create a rosidl_runtime_c__String from a char pointer.  |
-| const MICRO_ROS_UTILITIES_PUBLIC char * | **[micro_ros_string_utilities_get_c_str](#function-micro_ros_string_utilities_get_c_str)**(const rosidl_runtime_c__String str)<br>Returns the char pointer to the rosidl_runtime_c__String data.  |
+| MICRO_ROS_UTILITIES_PUBLIC const char * | **[micro_ros_string_utilities_get_c_str](#function-micro_ros_string_utilities_get_c_str)**(const rosidl_runtime_c__String str)<br>Returns the char pointer to the rosidl_runtime_c__String data.  |
 | rosidl_runtime_c__String | **[micro_ros_string_utilities_append](#function-micro_ros_string_utilities_append)**(const rosidl_runtime_c__String str, const char * data)<br>Appends a char pointer to the end of a rosidl_runtime_c__String.  |
 | MICRO_ROS_UTILITIES_PUBLIC rosidl_runtime_c__String | **[micro_ros_string_utilities_remove_tail_chars](#function-micro_ros_string_utilities_remove_tail_chars)**(const rosidl_runtime_c__String str, const size_t n)<br>Removes characters from the end of a string.  |
 | MICRO_ROS_UTILITIES_PUBLIC void | **[micro_ros_string_utilities_destroy](#function-micro_ros_string_utilities_destroy)**(rosidl_runtime_c__String *const str)<br>Destroys a rosidl_runtime_c__String.  |
@@ -36,12 +36,12 @@ Create a rosidl_runtime_c__String from a char pointer.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_string_utilities_init_with_size
@@ -66,12 +66,12 @@ Create a rosidl_runtime_c__String from a size.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_string_utilities_set
@@ -98,18 +98,18 @@ Create a rosidl_runtime_c__String from a char pointer.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_string_utilities_get_c_str
 
 ```cpp
-const MICRO_ROS_UTILITIES_PUBLIC char * micro_ros_string_utilities_get_c_str(
+MICRO_ROS_UTILITIES_PUBLIC const char * micro_ros_string_utilities_get_c_str(
     const rosidl_runtime_c__String str
 )
 ```
@@ -128,12 +128,12 @@ Returns the char pointer to the rosidl_runtime_c__String data.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_string_utilities_append
@@ -160,12 +160,12 @@ Appends a char pointer to the end of a rosidl_runtime_c__String.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_string_utilities_remove_tail_chars
@@ -192,12 +192,12 @@ Removes characters from the end of a string.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_string_utilities_destroy
@@ -220,12 +220,12 @@ Destroys a rosidl_runtime_c__String.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 
