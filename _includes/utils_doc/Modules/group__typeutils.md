@@ -42,12 +42,12 @@ Returns a string with the type introspection data.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_utilities_get_dynamic_size
@@ -74,12 +74,12 @@ Returns the dynamic memory size that will be used for a type.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_utilities_get_static_size
@@ -106,12 +106,12 @@ Returns the static memory size that will be used for a type.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_utilities_create_message_memory
@@ -140,12 +140,12 @@ Allocates the dynamic memory required for a message.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_utilities_create_static_message_memory
@@ -178,12 +178,12 @@ Allocates the memory required for a message in a user-provided buffer.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 ### function micro_ros_utilities_destroy_message_memory
@@ -212,12 +212,12 @@ Deallocates the dynamic memory of a message.
 ------------------
 
 
-| Attribute  | Adherence   |
+| Attribute    | Adherence     |
 |  -------- | -------- |
-| Allocates Memory  | Yes   |
-| Thread-Safe  | No   |
-| Uses Atomics  | No   |
-| Lock-Free  | Yes   |
+| Allocates Memory    | Yes     |
+| Thread-Safe    | No     |
+| Uses Atomics    | No     |
+| Lock-Free    | Yes    |
 
 
 
