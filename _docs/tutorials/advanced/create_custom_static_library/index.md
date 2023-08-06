@@ -115,6 +115,6 @@ Once you have both files ready, just run the build step in the micro-ROS build s
 ros2 run micro_ros_setup build_firmware.sh $(pwd)/my_custom_toolchain.cmake $(pwd)/my_custom_colcon.meta
 ```
 
-Once the build finishes you will have a precompiled static library with all the micro-ROS functionality in `firmware/build/libmicroros.a` and you will have all the required headers for your application in `firmware/include`. 
+Once the build finishes you will have a precompiled static library with all the micro-ROS functionality in `firmware/build/libmicroros.a` and you will have all the required headers for your application in `firmware/build/include`. 
 
 Just use them to link against in your development tools, and remember **if you are using a commercially available board we are accepting micro-ROS ports from the community**.
