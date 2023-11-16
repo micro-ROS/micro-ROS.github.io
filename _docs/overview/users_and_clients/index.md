@@ -70,7 +70,7 @@ collaborators:
     text: LUXonis is a US-based company specialized in solutions for developing embedded, performant, spatial AI & CV applications. This technology comes with the goal of allowing for human-like perception anywhere, regardless of internet connectivity, and making it productizable, user-friendly and reusable. LUXonis is responsible for devising DepthAI, an open-source platform - a complete ecosystem of custom haredware, firmware, software, and AI training - which combines neural inference, depth vision, and feature tracking into an easy-to-use solution.
     title: LUXonis
     url: www.luxonis.com
-  - path: https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Canonical_logo.svg/200px-Canonical_logo.svg.png
+  - path: https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Canonical_logo_2023.svg/1920px-Canonical_logo_2023.svg.png
     text: Canonical is a computer software company with products like Ubuntu Linux. The company&#39s goal is to &#39deliver, maintain, secure and sustain open source from cloud to desktop and devices&#39.
     title: Canonical
     url: www.canonical.com
