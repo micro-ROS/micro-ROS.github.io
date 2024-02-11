@@ -107,7 +107,7 @@ Micro-ROS offers **seven key features** that make it ready for use in your micro
 
 ## Layered and Modular Architecture
 
-Micro-ROS follows the [ROS 2 architecture](https://docs.ros.org/) and makes use of its middleware pluggability to use [DDS-XRCE](https://www.omg.org/spec/DDS-XRCE/), which is optimized for microcontrollers. Moreover, it uses POSIX-based RTOS (FreeRTOS, Zephyr, or NuttX) instead of Linux.
+Micro-ROS follows the [ROS 2 architecture](https://docs.ros.org/en/rolling/Concepts/Advanced/About-Internal-Interfaces.html) and makes use of its middleware pluggability to use [DDS-XRCE](https://www.omg.org/spec/DDS-XRCE/), which is optimized for microcontrollers. Moreover, it uses POSIX-based RTOS (FreeRTOS, Zephyr, or NuttX) instead of Linux.
 
 <img src="/img/micro-ROS_architecture.png" style="display: block; margin: auto; width: 100%; max-width: 500px;"/>
 
