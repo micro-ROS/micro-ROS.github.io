@@ -57,7 +57,7 @@ int64 int64_test
 uint64 uint64_test
 ```
 
-Now, you can build your micro-ROS workspace as usual. As explained in [**First micro-ROS application on an RTOS**](../../core/first_application_rtos/), the `ros2 run micro_ros_setup build_firmware.sh` command will build all packages located inside `mcu_ws`. 
+Now, you can build your micro-ROS workspace as usual. As explained in [**First micro-ROS application on an RTOS**](../../core/first_application_rtos/), the `ros2 run micro_ros_setup build_firmware.sh` command will build all packages located inside `mcu_ws`.
 
 In your micro-ROS application code, you can use your new message type as usual:
 
@@ -75,17 +75,17 @@ msg.uint32_test = 42;
 
 rclc_publisher_init_default(&publisher, &node, ROSIDL_GET_MSG_TYPE_SUPPORT(my_custom_message, msg, MyCustomMessage), "my_custom_publisher");
 rcl_publish(&publisher, &msg, NULL);
- 
+
 ...
 ```
 
-You can find further information in the [ROS 2 Create custom ROS 2 msg and srv files](https://index.ros.org/doc/ros2/Tutorials/Custom-ROS2-Interfaces).
+You can find further information in the [ROS 2 Create custom ROS 2 msg and srv files](https://docs.ros.org/en/rolling/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.html).
 
 ## Using type composition
 
 It is possible to create custom types that include members from another ROS 2 message types packages. For example let's add a member with type `Point32` from the ROS 2 package `geometry_msgs`.
 
-First of all, you have to include the dependency in the `CMakeLists.txt`: 
+First of all, you have to include the dependency in the `CMakeLists.txt`:
 
 ```cmake
 ...

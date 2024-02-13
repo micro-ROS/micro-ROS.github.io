@@ -3,7 +3,7 @@ title: ROS 2 Feature Comparison
 permalink: /docs/overview/ROS_2_feature_comparison/
 ---
 
-Comparison of micro-ROS features with ROS 2 features. The following list has been compiled from [https://index.ros.org/doc/ros2/Features/](https://index.ros.org/doc/ros2/Features/) and [https://index.ros.org/doc/ros2/Roadmap/](https://index.ros.org/doc/ros2/Roadmap/), and the features have been organized into sub-tables according to the macrocategories defined in the [Features and Architecture page](https://micro-ros.github.io//docs/overview/features/).
+Comparison of micro-ROS features with ROS 2 features. The following list has been compiled from [https://docs.ros.org/en/rolling/The-ROS2-Project/Features.html](https://docs.ros.org/en/rolling/The-ROS2-Project/Features.html) and [https://docs.ros.org/en/rolling/The-ROS2-Project/Roadmap.html](https://docs.ros.org/en/rolling/The-ROS2-Project/Roadmap.html), and the features have been organized into sub-tables according to the macrocategories defined in the [Features and Architecture page](https://micro-ros.github.io//docs/overview/features/).
 
 <style>
   .status_flag {

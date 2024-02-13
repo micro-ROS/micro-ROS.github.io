@@ -23,7 +23,7 @@ Once the command is executed, a folder named `firmware` must be present in your 
 
 This step is in charge, among other things, of downloading a set of micro-ROS apps for the specific platform you are
 addressing.
-In the case of NuttX, these are located [here](https://github.com/micro-ROS/nuttx_apps/tree/humble/examples).
+In the case of NuttX, these are located [here](https://github.com/micro-ROS/nuttx_apps/tree/foxy/examples).
 Each app is represented by a folder containing the following files:
 
 * `app.c`: This file contains the logic of the application.
@@ -42,7 +42,7 @@ ros2 run micro_ros_setup configure_firmware.sh [APP] [OPTIONS]
 ```
 
 In this tutorial, we will use a Serial transport and focus on the out-of-the-box `uros_pingpong`
-application located [here](https://github.com/micro-ROS/nuttx_apps/tree/humble/examples/uros_pingpong).
+application located [here](https://github.com/micro-ROS/nuttx_apps/tree/foxy/examples/uros_pingpong).
 To execute this application with the chosen transport, run the configuration command above by specifying the `[APP]` parameter as below:
 
 ```bash
@@ -119,15 +119,15 @@ Now we have two options to configure our micro-ROS transport:
     ```
 
 You can check the complete content of the `uros_pingpong` app
-[here](https://github.com/micro-ROS/nuttx_apps/tree/humble/examples/uros_pingpong).
+[here](https://github.com/micro-ROS/nuttx_apps/tree/foxy/examples/uros_pingpong).
 
 {% include first_application_common/pingpong_logic.md %}
 
 The contents of the FreeRTOS app specific files can be found here:
-[app.c](https://github.com/micro-ROS/nuttx_apps/blob/humble/examples/uros_pingpong/app.c),
-[Kconfig](https://github.com/micro-ROS/nuttx_apps/blob/humble/examples/uros_pingpong/Kconfig),
-[Make.defs](https://github.com/micro-ROS/nuttx_apps/blob/humble/examples/uros_pingpong/Make.defs) and
-[Makefile](https://github.com/micro-ROS/nuttx_apps/blob/humble/examples/uros_pingpong/Makefile).
+[app.c](https://github.com/micro-ROS/nuttx_apps/blob/foxy/examples/uros_pingpong/app.c),
+[Kconfig](https://github.com/micro-ROS/nuttx_apps/blob/foxy/examples/uros_pingpong/Kconfig),
+[Make.defs](https://github.com/micro-ROS/nuttx_apps/blob/foxy/examples/uros_pingpong/Make.defs) and
+[Makefile](https://github.com/micro-ROS/nuttx_apps/blob/foxy/examples/uros_pingpong/Makefile).
 A thorough review of these files is illustrative of how to create a micro-ROS app in this RTOS.
 
 {% include first_application_common/build_and_flash.md %}
