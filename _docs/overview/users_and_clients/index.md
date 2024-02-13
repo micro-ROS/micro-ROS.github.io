@@ -7,7 +7,7 @@ customers_list:
     text: Renesas is a global semiconductor company delivering trusted embedded design innovation with complete semiconductor solutions that enable billions of connected, intelligent devices to enhance the way people work and live.
     title: Renesas
     url: www.renesas.com
-  - path: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/LG_logo_%282015%29.svg/2560px-LG_logo_%282015%29.svg.png
+  - path: https://upload.wikimedia.org/wikipedia/commons/2/2b/Renesas_Electronics_logo.svg
     text: LG Electronics is one of the fourth-largest electronics company in South Korea. It comprises four business units home entertainment, mobile communications, home appliances and vehicle components
     title: LG
     url: www.lg.com

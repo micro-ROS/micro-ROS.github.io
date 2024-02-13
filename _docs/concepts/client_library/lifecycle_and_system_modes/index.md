@@ -64,7 +64,7 @@ Our approach is based on the ROS 2 Lifecycle. The primary goal of the ROS 2 life
 The description of the concept can be found at:
 [http://design.ros2.org/articles/node_lifecycle.html](http://design.ros2.org/articles/node_lifecycle.html)
 The implementation of the Lifecycle Node is described at:
-[https://index.ros.org/doc/ros2/Managed-Nodes/](https://index.ros.org/doc/ros2/Managed-Nodes/).
+[https://design.ros2.org/articles/node_lifecycle.html](https://design.ros2.org/articles/node_lifecycle.html).
 
 ## Main Features
 
