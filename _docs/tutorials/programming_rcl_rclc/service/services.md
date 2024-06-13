@@ -32,7 +32,7 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
   const char * service_name = "/addtwoints";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support =
+  const rosidl_service_type_support_t * type_support =
     ROSIDL_GET_SRV_TYPE_SUPPORT(example_interfaces, srv, AddTwoInts);
 
   // Initialize server with default configuration
@@ -54,7 +54,7 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
   const char * service_name = "/addtwoints";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support =
+  const rosidl_service_type_support_t * type_support =
     ROSIDL_GET_SRV_TYPE_SUPPORT(example_interfaces, srv, AddTwoInts);
 
   // Initialize server with default configuration
@@ -76,7 +76,7 @@ Starting from a code where RCL is initialized and a micro-ROS node is created, t
   const char * service_name = "/addtwoints";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support =
+  const rosidl_service_type_support_t * type_support =
     ROSIDL_GET_SRV_TYPE_SUPPORT(example_interfaces, srv, AddTwoInts);
 
   // Set service QoS
@@ -165,7 +165,7 @@ The service client initialization is almost identical to the server one:
   const char * service_name = "/addtwoints";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support =
+  const rosidl_service_type_support_t * type_support =
     ROSIDL_GET_SRV_TYPE_SUPPORT(example_interfaces, srv, AddTwoInts);
 
   // Initialize client with default configuration
@@ -187,7 +187,7 @@ The service client initialization is almost identical to the server one:
   const char * service_name = "/addtwoints";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support =
+  const rosidl_service_type_support_t * type_support =
     ROSIDL_GET_SRV_TYPE_SUPPORT(example_interfaces, srv, AddTwoInts);
 
   // Initialize client with default configuration
@@ -209,7 +209,7 @@ The service client initialization is almost identical to the server one:
   const char * service_name = "/addtwoints";
 
   // Get message type support
-  const rosidl_message_type_support_t * type_support =
+  const rosidl_service_type_support_t * type_support =
     ROSIDL_GET_SRV_TYPE_SUPPORT(example_interfaces, srv, AddTwoInts);
 
   // Set client QoS
