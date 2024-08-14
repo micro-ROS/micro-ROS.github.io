@@ -107,7 +107,7 @@ rmw_init_options_t* rmw_options = rcl_init_options_get_rmw_init_options(&init_op
 rmw_uros_options_set_udp_address("127.0.0.1", "8888", rmw_options);
 
 // Serial case: Set RMW serial device parameters
-mw_uros_options_set_serial_device("/dev/ttyAMA0", rmw_options)
+rmw_uros_options_set_serial_device("/dev/ttyAMA0", rmw_options)
 
 // Set RMW client key
 rmw_uros_options_set_client_key(0xBA5EBA11, rmw_options);
