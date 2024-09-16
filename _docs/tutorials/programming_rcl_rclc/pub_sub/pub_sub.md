@@ -22,7 +22,7 @@ Ready to use code related to this concepts can be found in [`micro-ROS-demos/rcl
 
 ### Initialization
 
-Starting from a code where RCL is initialized and a micro-ROS node is created, there are tree ways to initialize a publisher depending on the desired quality-of-service configuration:
+Starting from a code where RCL is initialized and a micro-ROS node is created, there are three ways to initialize a publisher depending on the desired quality-of-service configuration:
 
 - Reliable (default):
   ```c
