@@ -34,10 +34,90 @@ Please note the following third-party elements and content:
 For details on the open source components included in the micro-ros.github.io repository, see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
 
 ## Running locally
+This project uses Jekyll, the static site generator behind GitHub Pages (see [Jekyll Quickstart](https://jekyllrb.com/docs/) for more information).
+To preview the site locally, you’ll need to install Ruby, Jekyll, and the project dependencies.
 
-To test locally, you need a local version of Jekyll, the site-generation
-engine used by GitHub Pages. See [Jekyll Quickstart](https://jekyllrb.com/docs/)
-for installation instructions.
+### Prerequisites
+Make sure your system has the necessary build tools and libraries for compiling Ruby and Jekyll dependencies:
+
+```bash
+sudo apt update
+sudo apt install -y \
+  libffi-dev \
+  libyaml-dev \
+  git
+```
+
+### Install Ruby via rbenv
+We recommend using rbenv to manage Ruby versions locally:
+
+```bash
+# Install rbenv
+sudo apt install -y rbenv
+
+# Add rbenv to your shell
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
+source ~/.bashrc
+
+# Install ruby-build plugin
+git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+git -C "$(rbenv root)"/plugins/ruby-build pull
+
+# Install Ruby 3.4.5
+rbenv install 3.4.5
+rbenv global 3.4.5
+```
+
+### Configure UTF-8 Locale
+Jekyll and its plugins require UTF-8 encoding to handle special characters correctly:
+
+```bash
+export LC_ALL="C.UTF-8"
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
+```
+
+### Install Jekyll and Bundler
+
+```bash
+gem install jekyll bundler
+```
+
+Using a Bundler version different from the one recorded in the `Gemfile.lock` (currently 2.7.2) may lead to compatibility issues.
+You can check your installed Bundler version by running:
+
+```bash
+bundler -v
+```
+
+### Clone repository and dependencies
+For the includes of README.md files on the micro-ROS demos (in the tutorials chapter) from the corresponding repositories, please init and update the corresponding git submodules:
+
+```bash
+git clone https://github.com/micro-ROS/micro-ROS.github.io.git
+cd micro-ROS.github.io/
+
+# Fetch tutorials and demos included via submodules
+git submodule update --init --recursive
+```
+
+### Install project dependencies
+After installing Jekyll, install all dependencies by running:
+
+```bash
+bundle install
+```
+
+### Run the Jekyll server
+You may launch Jekyll to build and serve the website continuously by running:
+
+```bash
+bundle exec jekyll serve
+```
+
+By default, the site will be available at http://localhost:4000
+
 
 After installing Jekyll, install all dependencies by running
 ```bash
@@ -49,7 +129,18 @@ Then, you may launch Jekyll to build and serve the website continuously by
 bundle exec jekyll serve
 ```
 
-For the includes of README.md files on the micro-ROS demos (in the tutorials chapter) from the corresponding repositories, please init and update the corresponding git submodules (i.e. `git submodule init ; git submodule update`).
+### (Optional) Regenerate `Gemfile.lock` file
+
+When updating Ruby or Bundler version it is possible that dependencies no longer resolve cleanly, causing `bundle install` to fail.
+It can be fixed by regenerating the `Gemfile.lock` file and commiting the changes:
+
+```bash
+rm Gemfile.lock
+
+bundle install
+```
+
+This will resolve all dependencies defined in your `Gemfile` and generate a new `Gemfile.lock` consistent with your current Bundler version and available gems.
 
 ## Testing generated site
 
