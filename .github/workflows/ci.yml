@@ -15,15 +15,15 @@ jobs:
       with:
         submodules: true
 
-    - name: Set up Ruby 2.7
+    - name: Set up Ruby 3.4.5
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7.0
+        ruby-version: 3.4.5
 
     - name: Install Bundler
-      run: gem install bundler -v 2.4.22
+      run: gem install bundler -v 2.7.2
 
-    - uses: actions/cache@v1
+    - uses: actions/cache@v4
       with:
         path: vendor/bundle
         key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
