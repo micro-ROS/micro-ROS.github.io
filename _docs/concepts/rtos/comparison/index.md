@@ -80,7 +80,7 @@ The comparison regards the features listed below:
 | ROM                                                          | "small footprint"                        | 5 - 10 kB                                                                                                                | "small footprint"                                                                               |
 | **Safety Certification**                                     |                                          |                                                                                                                          |                                                                                                 |
 | Software Development Process DO178B Level A / EUROCAE ED-12B | no                                       | [SafeRTOS: DO178C (Aerspace) by Wittenstein](https://www.highintegritysystems.com/safertos/certification-and-standards/) | no                                                                                              |
-| Functional Safety IEC-61508                                  | no                                       | [SafeRTOS (SIL 3)](https://www.freertos.org/FreeRTOS-Plus/Safety_Critical_Certified/SafeRTOS.shtml)                      | soon                                                                                            |
+| Functional Safety IEC-61508                                  | no                                       | [SafeRTOS (SIL 3)](http://www.openrtos.net/FreeRTOS-Plus/Safety_Critical_Certified/SafeRTOS-Safety-Critical-Certification.shtml)                      | soon                                                                                            |
 | **License**                                                  | BSD                                      | MIT and Commercial                                                                                                       | Apache 2                                                                                        |
 
 <sup>1</sup> Processes, signals, fpe, segmentation, bus errors, timers, file and directory ops, pipes, c library, IO Port Interface
@@ -93,7 +93,7 @@ The comparison regards the features listed below:
 
 <sup>5</sup> XDK is based on a microcontroller of the ARM Cortex M3 EFM32GG390F1024 Giant Gecko family by Silicon Labs. Note that the version used in the XDK is not fully supported by Zephyr.
 
-<sup>6</sup> [Note: Time slicing](https://www.freertos.org/Documentation/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)
+<sup>6</sup> [Note: Time slicing](https://www.freertos.org/media/2018/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)
 
 <sup>7</sup> Hardware-support for Networking and Storage often depends on the platform and sometimes packages of hardware-vendors are available, which work for a particular operating system. But it is in general difficult to determine the harware-support of a given RTOS.
 

@@ -121,7 +121,7 @@ The modules that exist up to date for integrating into external build systems ar
   <div class="extplatitem_description">
     <div>
         The STM32CubeMX is a graphical tool by ST for configuring STM32 microcontrollers and microprocessors. It enables to optimally program and manipulate the software thanks to a set of utilities that help setting up pinouts, peripherals, and middleware stacks.
-        <i>micro-ROS for STM32CubeMX</i> is based on a <a href="https://github.com/micro-ROS/micro_ros_stm32cubemx_utils/blob/humble/microros_component/Dockerfile">Dockerfile</a> and allows micro-ROS to be virtually supported by the full set of boards offered by <a href="https://www.st.com">STMicroelectronics</a>, in turn enabling the seamless integration of micro-ROS into any STM32 controller based project.
+        <i>micro-ROS for STM32CubeMX</i> can be configured using the static library builder <a href="https://hub.docker.com/r/microros/micro_ros_static_library_builder/">docker image</a>  and allows micro-ROS to be virtually supported by the full set of boards offered by <a href="https://www.st.com">STMicroelectronics</a>, in turn enabling the seamless integration of micro-ROS into any STM32 controller based project.
         <hr><b>Resources:</b>
         <ul>
             <li><a href="https://github.com/micro-ROS/micro_ros_stm32cubemx_utils">micro-ROS for STM32CubeMX on GitHub</a></li>

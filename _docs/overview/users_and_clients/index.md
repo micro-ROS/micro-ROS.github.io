@@ -39,7 +39,7 @@ partners_list:
     text: Wind River is accelerating digital transformation of critical infrastructure by delivering the technology and expertise that enable the deployment of safe, secure, and reliable IoT systems.
     title: Wind River
     url: www.windriver.com
-  - path: https://www.zephyrproject.org/wp-content/uploads/sites/38/2019/12/zephyr-logo1.png
+  - path: https://www.zephyrproject.org/wp-content/uploads/2023/03/Zephyr_color-10.svg
     text: The Zephyr Project is a Linux Foundation hosted Collaboration Project. It’s an open source effort uniting developers and users in building a best-in-class small, scalable, real-time operating system (RTOS) optimized for resource-constrained devices, across multiple architectures. As an open source project, the community evolves the project to support new hardware, developer tools, sensors, and device drivers.
     title: Zephyr Project
     url: www.zephyrproject.org
@@ -74,7 +74,7 @@ collaborators:
     text: Canonical is a computer software company with products like Ubuntu Linux. The company&#39s goal is to &#39deliver, maintain, secure and sustain open source from cloud to desktop and devices&#39.
     title: Canonical
     url: www.canonical.com
-  - path: https://www.freertos.org/fr-content-src/uploads/2018/07/logo-1.jpg
+  - path: https://www.freertos.org/media/2023/logo.png
     text: FreeRTOS is a market-leading Real-Time Operating system (RTOS) for microcontrollers and small microprocessors. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of IoT libraries suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.
     title: FreeRTOS
     url: www.freertos.org
