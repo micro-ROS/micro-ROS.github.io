@@ -75,7 +75,7 @@ Ready to use code examples related to this tutorial can be found in [`rclc/rclc_
 
 ## Memory requirements
 
-The parameter server uses five services and an optional publisher. These need to be taken into account on the `rmw-microxrcedds` package memory configuration:
+The parameter server uses six services and an optional publisher. These need to be taken into account on the `rmw-microxrcedds` package memory configuration:
 
 ```yaml
 # colcon.meta example with memory requirements to use a parameter server
