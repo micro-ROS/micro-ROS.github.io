@@ -86,7 +86,7 @@ The parameter server uses five services and an optional publisher. These need to
                 "-DRMW_UXRCE_MAX_NODES=1",
                 "-DRMW_UXRCE_MAX_PUBLISHERS=1",
                 "-DRMW_UXRCE_MAX_SUBSCRIPTIONS=0",
-                "-DRMW_UXRCE_MAX_SERVICES=5",
+                "-DRMW_UXRCE_MAX_SERVICES=6",
                 "-DRMW_UXRCE_MAX_CLIENTS=0"
             ]
         }
