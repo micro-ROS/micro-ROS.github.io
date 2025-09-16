@@ -2,7 +2,7 @@
 title: embeddedRTPS the new experimental middleware for micro-ROS
 author: Maria Merlan
 ---
-Alexandru Kampmann currently works at the Software for Embedded Systems Research Group, RWTH Aachen University [research profile](https://www.embedded.rwth-aachen.de/doku.php?id=lehrstuhl:mitarbeiter:gurghian), and he is the main contributor of [embeddedRTPS](https://github.com/embedded-software-laboratory/embeddedRTPS)
+Alexandru Kampmann currently works at the Software for Embedded Systems Research Group, RWTH Aachen University, and he is the main contributor of [embeddedRTPS](https://github.com/embedded-software-laboratory/embeddedRTPS)
 
 Middleware implementations such as embeddedRTPS, bring the possibility of using RTPS communication layers on mid to high range MCU with networking capabilities.
 

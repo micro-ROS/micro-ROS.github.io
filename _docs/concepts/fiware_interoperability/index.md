@@ -53,7 +53,7 @@ This common representation is provided, user-wise, using IDL definitions, which 
 ## SOSS-FIWARE System Handle
 
 The [FIWARE System Handle](https://github.com/eProsima/SOSS-FIWARE/tree/feature/xtypes-support) allows bringing information from and to FIWARE's Context Broker into the SOSS world.
-This [System Handle](https://soss.docs.eprosima.com/en/latest/sh_creation.html) is configured and launched in the same way as any SOSS System Handle.
+This System Handle is configured and launched in the same way as any SOSS System Handle.
 
 Besides the standard information included in any System Handle's configuration (such as system's name and type, which would be `fiware` for this specific System Handle),
 in the case of the FIWARE System Handle users must specify two extra YAML key-value pairs, which are the host's IP and port in which this System Handle will try to connect to an instance of FIWARE's Orion Context Broker.
@@ -61,7 +61,7 @@ in the case of the FIWARE System Handle users must specify two extra YAML key-va
 Regarding more specific details about the implementation, FIWARE does not allow certain characters in its entities names.
 For this reason, if a type defined in the topics section of the configuration file has in its name a /, the FIWARE System Handle will map that character into two underscores.
 This is something important to notice when connecting to ROS2, because in ROS2 most of the types have a / in their names.
-To deal with this issue, using SOSS [remapping](https://soss.docs.eprosima.com/en/latest/yaml_config.html?highlight=remap#remapping) capabilities come in handy.
+To deal with this issue, using SOSS remapping capabilities come in handy.
 
 Of course, given that micro-ROS applications act as a bridge between microcontrollers and the ROS 2 dataspace (using the micro-ROS Agent), FIROS2 should also take care of communicating FIWARE's Context Broker with ROS 2, leveraging the existing [ROS 2 System Handle](https://github.com/eProsima/Integration-Service), which comes natively included into the SOSS package.
 
@@ -119,7 +119,7 @@ This is exactly the situation reflected in the use case that is explained below.
 
 ### Configuration
 
-SOSS must be configured with a [YAML](https://soss.docs.eprosima.com/en/latest/yaml_config.html) file, which tells the program everything it needs to know in order to establish the connection between two or more systems that the user wants.
+SOSS must be configured with a YAML file, which tells the program everything it needs to know in order to establish the connection between two or more systems that the user wants.
 For example, if the user wants to exchange a simple string message between FIWARE and ROS2, the configuration file for SOSS should look as follows:
 
   ```yaml

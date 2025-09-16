@@ -6,7 +6,7 @@ permalink: /docs/tutorials/core/zephyr_emulator/
 <img src="https://img.shields.io/badge/Tested_on-Humble-green" style="display:inline"/>
 
 In this tutorial, you'll learn the use of micro-ROS with a **[Zephyr RTOS](https://www.zephyrproject.org/)**
-emulator (also known as [Native POSIX](https://docs.zephyrproject.org/latest/boards/posix/native_posix/doc/index.html))
+emulator (also known as [Native POSIX](https://docs.zephyrproject.org/4.1.0/boards/native/native_posix/doc/index.html))
 by testing a Ping Pong application.
 
 <div>
