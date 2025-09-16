@@ -70,6 +70,7 @@ You can add the ROS 2 and micro-ROS workspace setup files to your `.bashrc` so t
 echo source /opt/ros/$ROS_DISTRO/setup.bash >> ~/.bashrc
 echo source ~/microros_ws/install/local_setup.bash >> ~/.bashrc
 ```
+
 ## Running the micro-ROS app
 
 At this point, you have both the client and the agent correctly installed in your host machine.
