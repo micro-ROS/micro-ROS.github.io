@@ -6,7 +6,7 @@ permalink: /docs/tutorials/advanced/create_dds_entities_by_ref/
 
 <img src="https://img.shields.io/badge/Applies_to-all_current_distros-green" style="display:inline"/>
 
-This tutorial explains the procedure for creating micro-ROS entities using fully configurable QoS settings. The micro-ROS default middleware (Micro XRCE-DDS Client) allows the user to take two different approaches for creating ROS 2 (DDS) entities in the micro-ROS Agent (Please check the [architecture section](https://micro-ros.github.io/docs/overview/) for detailed information):
+This tutorial explains the procedure for creating micro-ROS entities using fully configurable QoS settings. The micro-ROS default middleware (Micro XRCE-DDS Client) allows the user to take two different approaches for creating ROS 2 (DDS) entities in the micro-ROS Agent (Please check the [architecture section](/docs/overview/) for detailed information):
 - By XML (the default option in micro-ROS RMW)
 - By reference
 
@@ -70,7 +70,7 @@ But these QoS configurations may not fit some user's requirements. For these cas
 Additionally, using references will also reduce the memory consumption of the micro-ROS client inside the MCU. This is because the parts of the code where XML are handled are just not build with the references approach.
 
 Let's see how to create a micro-ROS node that creates entities with custom QoS. First of all, independently of which RTOS you have selected in [First micro-ROS Application on an RTOS
-](https://micro-ros.github.io/docs/tutorials/core/first_application_rtos/) tutorial, you should have an app configuration file named `app-colcon.meta`.
+](/docs/tutorials/core/first_application_rtos/) tutorial, you should have an app configuration file named `app-colcon.meta`.
 
 Inside this `app-colcon.meta` file we can set application specific CMake options for the micro-ROS packages that are going to be crosscompiled. So, let's setup the `rmw_microxrcedds` in order to use references; your `app-colcon.meta` should look like this:
 

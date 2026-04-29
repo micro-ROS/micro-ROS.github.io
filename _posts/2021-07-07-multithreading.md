@@ -2,7 +2,7 @@
 title: micro-ROS Multithreading support
 author: Maria Merlan
 ---
-[micro-ROS](https://micro.ros.org/) Foxy, Galactic and Rolling provides a new enhancement, the multithreading feature. 
+[micro-ROS](/) Foxy, Galactic and Rolling provides a new enhancement, the multithreading feature. 
 
 Multithreading allows the micro-ROS default middleware (Micro XRCE-DDS) to be thread safe. This way, micro-ROS nodes can run ROS 2 entities such as publishers, subscribers or services in different RTOS execution threads.
 As a result, micro-ROS will run in a multi threaded approach under specific circumstances, improving the performance, the usability and resource optimization.

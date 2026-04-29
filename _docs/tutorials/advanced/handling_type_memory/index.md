@@ -208,7 +208,7 @@ for(int32_t i = 0; i < 3; i++){
 
 Due to the inclusion of [`rosidl_typesupport_introspection_c`](https://github.com/ros2/rosidl/tree/rolling/rosidl_typesupport_introspection_c), an automated memory handling for micro-ROS types is available. The tools related to this feature are available in the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities).
 
-The documentation of the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities) is available [here](https://micro.ros.org/docs/api/utils/).
+The documentation of the package [`micro_ros_utilities`](https://github.com/micro-ROS/micro_ros_utilities) is available [here](/docs/api/utils/).
 
 This package is able to auto-assign memory to a certain message struct using default dynamic memory allocators, for example, using the previouly declated type:
 

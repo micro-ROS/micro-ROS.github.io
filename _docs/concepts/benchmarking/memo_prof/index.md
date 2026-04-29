@@ -29,7 +29,7 @@ Results show that the total memory consumption of the Client is higher than that
 
 ## Memory management of the micro-ROS stack
 
-micro-ROS’ [target devices](https://micro-ros.github.io/docs/overview/hardware/) are low-to-mid range Microcontroller Units (MCUs) with highly constrained resources, so that it is critical to assess the Client’s memory consumption to help users selecting the optimal library configuration for their application and the adequate platform on which to run it.
+micro-ROS’ [target devices](/docs/overview/hardware/) are low-to-mid range Microcontroller Units (MCUs) with highly constrained resources, so that it is critical to assess the Client’s memory consumption to help users selecting the optimal library configuration for their application and the adequate platform on which to run it.
 
 Given the limited memory resources of these devices, the possibility to manipulate and tune its memory consumption is key. micro-ROS tries to address the memory management issue by prioritizing the use of static memory instead of dynamic memory as much as possible, and by optimizing the memory footprint of the applications by tuning a set of configuration parameters related with the memory resources at compile-time. 
 
@@ -199,4 +199,3 @@ To sum up, we have seen that:
 }
 
 </style>
-
