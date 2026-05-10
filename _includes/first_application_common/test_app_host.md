@@ -75,7 +75,7 @@ frame_id: '2084670932_1085377743'
 Also, we expect that, because of having received the `fake_ping`, the micro-ROS node will answer with a `pong`:
 
 ```
-user@user:~$ ros2 run micro_ros_demos_rcl ping_pong
+user@user:~$ ros2 run micro_ros_demos_rclc ping_pong
 Ping send seq 1706097268_1085377743
 Ping send seq 181171802_1085377743
 Ping send seq 1385567526_1085377743
