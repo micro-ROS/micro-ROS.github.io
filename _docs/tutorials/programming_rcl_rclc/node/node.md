@@ -108,11 +108,7 @@ rcl_lifecycle_get_zero_initialized_state_machine();
 
 // Create the lifecycle node
 rclc_lifecycle_node_t my_lifecycle_node;
-rcl_ret_t rc = rclc_make_node_a_lifecycle_node(
-  &my_lifecycle_node,
-  &node,
-  &state_machine,
-  &allocator);
+clc_lifecycle_node_init(&my_lifecycle_node, &node, &state_machine, &allocator);
 
 // Register lifecycle services on the allocator
 rclc_lifecycle_add_get_state_service(&lifecycle_node, &executor);
