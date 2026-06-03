@@ -138,7 +138,7 @@ NuttX emphasizes its compliance with standards - including POSIX - and small foo
         <ul>
             <li><a href="https://nuttx.apache.org/">Official NuttX website</a></li>
             <li><a href="https://nuttx.apache.org/download/">Download</a></li>
-            <li><a href="https://cwiki.apache.org/confluence/display/NUTTX/Nuttx">Documentation</a></li>
+            <li><a href="https://nuttx.apache.org/docs/latest/">Documentation</a></li>
         </ul>
         <b>NuttX &amp; micro-ROS:</b>
         <ul>
